@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Włącz Wizję</title>
+    <meta name="description" content="Praktyczny 3-dniowy warsztat online o audytach WCAG. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami. Start 2 lutego 2026.">
+    <meta name="keywords" content="WCAG, dostępność, accessibility, audyt, kurs online, QA, testing">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5F28B4;
+            --accent: #fa9632;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Inter, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: #fff;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #f0821f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(250, 150, 50, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-stats {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .section-title .highlight {
+            color: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Program Section */
+        .program {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .days-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .day-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .day-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .day-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .day-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .day-card li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .day-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Instructors Section */
+        .instructors {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .instructor-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+        }
+
+        .instructor-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .instructor-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .instructor-info h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .instructor-bio {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-card.featured {
+            border: 3px solid var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(95, 40, 180, 0.15);
+        }
+
+        .price-card.featured .badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .price-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-currency {
+            font-size: 1.2rem;
+        }
+
+        .price-period {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 0.7rem 0;
+            color: var(--gray);
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 0.95rem;
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .price-features li::before {
+            content: '✓ ';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: var(--gray);
+            line-height: 1.8;
+            display: none;
+            border-left: 4px solid var(--accent);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            font-size: 1rem;
+        }
+
+        .cta-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .instructors-grid {
+                gap: 2rem;
+            }
+
+            .instructor-image {
+                height: 250px;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Włącz Wizję</div>
+                <nav>
+                    <a href="#program">Program</a>
+                    <a href="#instructors">Instruktorzy</a>
+                    <a href="#pricing">Cennik</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>WCAG dla specjalistów</h1>
+            <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
+                <a href="#program" class="btn btn-secondary">Poznaj program</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">dni warsztatów</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">32h</div>
+                    <div class="stat-label">dydaktycznych</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">miejsc (limit)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Co wyróżnia ten kurs?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Jedyny modułowy kurs</h3>
+                    <p>Możesz wybrać 3 dni albo pojedyncze dni dopasowane do Twojej roli i doświadczenia.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Praktyka, nie teoria</h3>
+                    <p>Pracujemy na rzeczywistych projektach i dokumentach, nie na "idealnych makietach".</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Wdrażalne raporty</h3>
+                    <p>Uczymy jak raportować błędy WCAG tak, aby developerzy faktycznie je wdrażali.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Certyfikat uczestnictwa</h3>
+                    <p>Potwierdź swoją wiedzę certyfikatem, który możesz wykorzystać w CV.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Materiały komercyjne</h3>
+                    <p>Otrzymasz materiały do wykorzystania komercyjnego w swoich projektach.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Sesje na żywo, informacje zwrotne na bieżąco</h3>
+                    <p>Warsztaty z instruktorami, sesje Q&A i feedback na żywo na Twoich pytania.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="program">
+        <div class="container">
+            <h2 class="section-title">Program kursu</h2>
+            <div class="days-container">
+                <div class="day-card">
+                    <div class="day-number">1</div>
+                    <h3>Fundamenty WCAG + walidatory</h3>
+                    <ul>
+                        <li>Struktura i kryteria WCAG</li>
+                        <li>Narzędzia diagnostyczne w praktyce</li>
+                        <li>Jak zacząć audyt od początku</li>
+                        <li>Walidatory dostępności</li>
+                    </ul>
+                </div>
+                <div class="day-card">
+                    <div class="day-number">2</div>
+                    <h3>Testy manualne</h3>
+                    <ul>
+                        <li>Testowanie nawigacji klawiaturą</li>
+                        <li>Analiza kodu HTML i CSS pod kątem dostępności</li>
+                        <li>Czytniki ekranu w działaniu</li>
+                        <li>Rzeczywiste problemy z rzeczywistych projektów</li>
+                    </ul>
+                </div>
+                <div class="day-card">
+                    <div class="day-number">3</div>
+                    <h3>Audyt WCAG i raportowanie</h3>
+                    <ul>
+                        <li>Jak przeprowadzić profesjonalny audyt?</li>
+                        <li>Raportowanie błędów w sposób ułatwiający wdrażanie poprawek</li>
+                        <li>Tworzenie dokumentacji dla deweloperów</li>
+                        <li>Najlepsze praktyki w raportowaniu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors Section -->
+    <section id="instructors" class="instructors">
+        <div class="container">
+            <h2 class="section-title">Twoi instruktorzy</h2>
+            <div class="instructors-grid">
+                <div class="instructor-card">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/1d21c94229e8f03641730c9e923889abffb37239.jpg" alt="Damian Żłobicki" class="instructor-image">
+                    <div class="instructor-info">
+                        <h3>Damian Żłobicki</h3>
+                        <div class="instructor-company">Włącz Wizję</div>
+                        <p class="instructor-bio">Doświadczony audytor, trener dostępności cyfrowej i wdrożeniowiec. Lider zespołu komunikacji „Sieci Dostępności Cyfrowej".</p>
+                    </div>
+                </div>
+                <div class="instructor-card">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg" alt="Aleksandra Migus" class="instructor-image">
+                    <div class="instructor-info">
+                        <h3>Aleksandra Migus</h3>
+                        <div class="instructor-company">SOFTIQ</div>
+                        <p class="instructor-bio">Specjalistka w audytach WCAG i wdrażaniu dostępności cyfrowej w projektach. Ma wieloletnie doświadczenie w testowaniu dostępności i szkoleniach dla zespołów IT.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Cennik i warunki</h2>
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h3>Pojedynczy dzień</h3>
+                    <div class="price"><span class="price-currency">zł</span>699</div>
+                    <div class="price-period">za jedną dzień szkoleniowy</div>
+                    <ul class="price-features">
+                        <li>8h dydaktyczne, 8h zegarowe</li>
+                        <li>Warsztaty na żywo</li>
+                        <li>Materiały</li>
+                        <li>Certyfikat uczestnictwa</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Wybierz dzień</a>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">Najpopularniejszy</div>
+                    <h3>Pełny kurs (3 dni)</h3>
+                    <div class="price"><span class="price-currency">zł</span>1499</div>
+                    <div class="price-period">za jeden dzień szkoleniowy</div>
+                    <ul class="price-features">
+                        <li>32h dydaktyczne, 24h zegarowe</li>
+                        <li>Warsztaty na żywo i sesje Q&A</li>
+                        <li>Wszystkie materiały</li>
+                        <li>Certyfikat uczestnictwa</li>
+                        <li>Materiały do użytku komercyjnego</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; color: var(--gray);">
+                <p><strong>ℹ️ Kurs uruchamiany przy minimum 4 osobach zapisanych na pełny kurs</strong></p>
+                <p style="margin-top: 0.5rem;">Start: <strong>2 lutego 2026</strong> | Limit: <strong>12 uczestników</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Często zadawane pytania</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Jaki jest warunek wstępny do udziału?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Wymagana jest bazowa znajomość HTML i umiejętność obsługi DevTools. Kurs jest skierowany do osób, które mają techniczne podstawy, ale chcą rozwijać umiejętności w testowaniu dostępności.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy mogę wziąć udział tylko w jednym dniu?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 699 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy otrzymam materiały i certyfikat?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Tak! Każdy uczestnik otrzyma certyfikat uczestnictwa i materiały szkoleniowe. Co więcej – materiały można wykorzystać komercyjnie w Twoich projektach.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Jakie są godziny szkolenia?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Warsztat trwa 3 dni, każdy dzień obejmuje 8 godzin zegarowych (32 godziny dydaktyczne łącznie). Dokładny harmonogram z godzinami uruchomienia otrzymasz wraz z potwierdzeniem zapisu.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Czy mogę zwrócić pieniądze?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Szczegółowe warunki zwrotu i politykę rezygnacji otrzymasz przy zarejestrowaniu. W przypadku pytań prosimy o kontakt z zespołem organizacyjnym.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Ile uczestników może wziąć udział?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Limit wynosi 12 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Jesteś gotowy/a na praktyczne szkolenie z audytu WCAG?</h2>
+            <p>Dołącz do pierwszej edycji kursu i naucz się testować dostępność na rzeczywistych projektach.</p>
+            <div class="cta-info">
+                <div class="cta-info-item">
+                    📅 Start: 2 lutego 2026
+                </div>
+                <div class="cta-info-item">
+                    👥 Limit: 12 osób
+                </div>
+                <div class="cta-info-item">
+                    💰 Od 699 zł
+                </div>
+            </div>
+            <a href="[ZAREZERWUJ MIEJSCE - PLACEHOLDER LINKU]" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
+                🚀 Zarezerwuj miejsce teraz
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Włącz Wizję</h3>
+                <p style="margin-top: 0.5rem; margin-bottom: 1rem;">To odpowiedni czas na rozszerzenie możliwości</p>
+                <div class="footer-contact">
+                    <p>📧 Kontakt: <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a></p>
+                    <p>🌐 <a href="https://wlaczwizje.pl" target="_blank">wlaczwizje.pl</a></p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://linkedin.com/company/wlacz-wizje" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszystkie prawa zastrzeżone. | #WCAG #dostępność #d8ć</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
