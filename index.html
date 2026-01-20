@@ -21,8 +21,8 @@
             --gray: #6c757d;
             --gray-light: #e9ecef;
             --accent-dark: #8B4513;
-            --text-on-accent: #FFFFFF;
-            --accent-hover: #6B3410;
+            --text-on-accent: #000000;
+            --accent-hover: #e68a1c;
         }
 
         body {
@@ -30,6 +30,7 @@
             line-height: 1.6;
             color: var(--dark);
             background: #fff;
+            text-align: left;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -40,6 +41,355 @@
             }
         }
 
+        /* ===== DESIGN SYSTEM VARIABLES ===== */
+        :root {
+            /* Colors */
+            --accent: #fa9632;
+            --accent-hover: #e68a1c;
+            --accent-dark: #8B4513;
+            --primary: #5F28B4;
+            --primary-light: #7a4fd4;
+            --text-color: #1f2121;
+            --text-secondary: #666666;
+            --text-on-accent: #000000;
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --focus-color: #FFD700;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-2xl: 2rem;
+            --font-size-3xl: 2.5rem;
+        }
+
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        h2 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            font-size: var(--font-size-base);
+            margin-bottom: var(--spacing-md);
+            text-align: left;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: 8px;
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid var(--focus-color);
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-on-accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:active {
+            background-color: #d97d1a;
+        }
+
+        .btn-full-width {
+            width: 100%;
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .pricing {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, rgba(95, 40, 180, 0.05) 0%, rgba(250, 150, 50, 0.05) 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ===== PRICE CARD ===== */
+        .price-card {
+            position: relative;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .price-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        /* FEATURED CARD - Purple border */
+        .price-card--featured {
+            background: white;
+            border: 3px solid var(--primary);
+            box-shadow: 0 8px 32px rgba(95, 40, 180, 0.15);
+        }
+
+        .price-card--featured:hover {
+            box-shadow: 0 12px 40px rgba(95, 40, 180, 0.2);
+        }
+
+        /* ===== BADGE ===== */
+        .price-card__badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--text-on-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(250, 150, 50, 0.3);
+            display: inline-block;
+        }
+
+        /* CARD TITLE */
+        .price-card h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* PRICE DISPLAY */
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: var(--spacing-md) 0;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        /* PRICE PERIOD */
+        .price-period {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        /* ===== FEATURES LIST ===== */
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-lg) 0;
+            flex-grow: 1;
+        }
+
+        .price-features li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            text-align: left;
+        }
+
+        .checkmark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* CTA BUTTON IN CARD */
+        .price-card .btn {
+            margin-top: auto;
+            min-height: 48px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .price {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .price-card,
+            .btn {
+                transition: none;
+            }
+        }
+
+        /* Focus visible for better accessibility */
+        *:focus-visible {
+            outline: 3px solid var(--focus-color);
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+        /* ✅ WCAG 2.2 AAA: ARIA alert region */
+        .aria-alert-region {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            max-width: 300px;
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .aria-alert-region.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            @keyframes slideIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+        }
+
+       <!-- Skip to content link for accessibility -->
+    <a href="#pricing" class="skip-link">Przejdź do zawartości głównej</a>
         /* Header & Navigation */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
@@ -111,11 +461,19 @@
 
         .hero .subtitle {
             font-size: 1.4rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             opacity: 0.95;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .hero .course-dates {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--accent);
         }
 
         .hero-cta {
@@ -144,15 +502,16 @@
             border-radius: 4px;
         }
 
+        /* ✅ WCAG 2.2 AAA: Przywrócony kolor pomarańczowy */
         .btn-primary {
-            background: var(--accent-dark);
+            background: var(--accent);
             color: var(--text-on-accent);
         }
 
         .btn-primary:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(139, 69, 19, 0.3);
+            box-shadow: 0 8px 16px rgba(250, 150, 50, 0.3);
         }
 
         .btn-secondary {
@@ -181,7 +540,7 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: var(--accent-dark);
+            color: var(--accent);
         }
 
         .stat-label {
@@ -230,7 +589,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            border-left: 4px solid var(--accent-dark);
+            border-left: 4px solid var(--accent);
         }
 
         .feature-card:hover {
@@ -252,9 +611,169 @@
         .feature-card p {
             color: var(--gray);
             line-height: 1.7;
+            text-align: left;
         }
 
-        /* Program Section - FLIP CARDY (ULEPSZONE) */
+        /* Instructors Section - FLIP CARDY */
+        .instructors {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* ✅ WCAG 2.2 AAA: Instructor flip cards (toggle + Enter/Space) */
+        .instructor-flip-card {
+            perspective: 1000px;
+            height: 400px;
+            position: relative;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            border-radius: 12px;
+            overflow: visible;
+            outline-offset: 2px;
+        }
+
+        .instructor-flip-card:focus-visible {
+            outline: 3px solid #FFD700;
+            border-radius: 12px;
+        }
+
+        .instructor-flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .instructor-flip-card-inner {
+                transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .instructor-flip-card-inner {
+                transition: none;
+            }
+        }
+
+        .instructor-flip-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .instructor-front,
+        .instructor-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .instructor-front {
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-top: 4px solid var(--primary);
+            overflow: hidden;
+        }
+
+        .instructor-image {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .instructor-info-front {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .instructor-info-front h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-company {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .instructor-bio {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .instructor-back {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+            color: white;
+            transform: rotateY(180deg);
+            border-top: 4px solid var(--accent);
+            padding: 1.5rem;
+            justify-content: space-between;
+        }
+
+        .instructor-credentials {
+            list-style: none;
+        }
+
+        .instructor-credentials li {
+            padding: 0.6rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            display: flex;
+            gap: 0.5rem;
+            text-align: left;
+        }
+
+        .instructor-credentials li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .instructor-cta-link {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text-on-accent);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            outline-offset: 2px;
+        }
+
+        .instructor-cta-link:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .instructor-cta-link:focus-visible {
+            outline: 2px solid #FFD700;
+        }
+
+        /* Program Section */
         .program {
             padding: 5rem 2rem;
             background: white;
@@ -267,7 +786,7 @@
             margin-top: 3rem;
         }
 
-        /* ✅ WCAG 2.2 AAA: ZMNIEJSZONE z 400px na 300px + toggle flip */
+        /* ✅ WCAG 2.2 AAA: Day flip cards */
         .day-card {
             perspective: 1000px;
             height: 300px;
@@ -286,7 +805,6 @@
             border-radius: 12px;
         }
 
-        /* ✅ WCAG 2.2 AAA: Animacja flip z prefers-reduced-motion */
         .day-card-inner {
             position: relative;
             width: 100%;
@@ -333,7 +851,7 @@
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
             color: white;
             transform: rotateY(180deg);
-            border-top: 4px solid var(--accent-dark);
+            border-top: 4px solid var(--accent);
             justify-content: space-between;
         }
 
@@ -356,6 +874,7 @@
             margin-bottom: 0.8rem;
             color: var(--dark);
             line-height: 1.3;
+            text-align: left;
         }
 
         .day-card-front ul {
@@ -373,32 +892,35 @@
             line-height: 1.4;
             display: flex;
             gap: 0.5rem;
+            text-align: left;
         }
 
         .day-card-front li::before {
             content: '✓';
-            color: var(--accent-dark);
+            color: var(--accent);
             font-weight: bold;
             flex-shrink: 0;
         }
 
-        /* Back of card */
         .day-card-back h3 {
             font-size: 1rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            text-align: left;
         }
 
         .day-card-back p {
             font-size: 0.9rem;
             margin-bottom: 0.8rem;
             line-height: 1.4;
+            text-align: left;
         }
 
         .day-card-back .day-price {
             font-size: 1.6rem;
             font-weight: bold;
             margin: 0.5rem 0;
+            color: var(--accent);
         }
 
         .day-card-back label {
@@ -409,70 +931,14 @@
             font-weight: 500;
             font-size: 0.95rem;
             margin-bottom: auto;
+            text-align: left;
         }
 
         .day-card-back input[type="checkbox"] {
             width: 20px;
             height: 20px;
             cursor: pointer;
-            accent-color: var(--accent-dark);
-        }
-
-        /* Instructors Section */
-        .instructors {
-            padding: 5rem 2rem;
-            background: var(--light);
-        }
-
-        .instructors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .instructor-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .instructor-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 16px 32px rgba(0,0,0,0.15);
-        }
-
-        .instructor-image {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            background: linear-gradient(135deg, var(--primary), var(--accent-dark));
-        }
-
-        .instructor-info {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .instructor-info h3 {
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .instructor-company {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .instructor-bio {
-            color: var(--gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
+            accent-color: var(--accent);
         }
 
         /* Pricing Section */
@@ -495,6 +961,7 @@
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .price-card.featured {
@@ -503,27 +970,38 @@
             box-shadow: 0 20px 40px rgba(95, 40, 180, 0.15);
         }
 
+        /* ✅ WCAG 2.2 AAA: Badge positioned absolutely */
         .price-card.featured .badge {
-            background: var(--accent-dark);
-            color: white;
-            padding: 0.5rem 1rem;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--text-on-accent);
+            padding: 0.6rem 1.2rem;
             border-radius: 20px;
             display: inline-block;
-            margin-bottom: 1rem;
             font-size: 0.85rem;
             font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .price-card h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--dark);
+            text-align: center;
+        }
+
+        .price-card.featured h3 {
+            margin-top: 0.5rem;
         }
 
         .price {
             font-size: 3rem;
             font-weight: bold;
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 0.5rem;
         }
 
@@ -548,6 +1026,7 @@
             color: var(--gray);
             border-bottom: 1px solid var(--gray-light);
             font-size: 0.95rem;
+            text-align: left;
         }
 
         .price-features li:last-child {
@@ -556,47 +1035,9 @@
 
         .price-features li::before {
             content: '✓ ';
-            color: var(--accent-dark);
+            color: var(--accent);
             font-weight: bold;
             margin-right: 0.5rem;
-        }
-
-        /* ✅ WCAG 2.2 AAA: ARIA alert region */
-        .aria-alert-region {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-            max-width: 300px;
-            z-index: 1000;
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-
-        .aria-alert-region.show {
-            display: block;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            @keyframes slideIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
         }
 
         /* FAQ Section */
@@ -655,7 +1096,8 @@
             color: var(--gray);
             line-height: 1.8;
             display: none;
-            border-left: 4px solid var(--accent-dark);
+            border-left: 4px solid var(--accent);
+            text-align: left;
         }
 
         .faq-answer.active {
@@ -718,7 +1160,7 @@
         }
 
         .footer-contact a {
-            color: var(--accent-dark);
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
         }
@@ -744,7 +1186,7 @@
         }
 
         .footer-social a:hover {
-            color: var(--accent-dark);
+            color: var(--accent);
         }
 
         .footer-social a:focus-visible {
@@ -758,6 +1200,54 @@
             padding-top: 1.5rem;
             font-size: 0.85rem;
             opacity: 0.8;
+        }
+
+        .checkout-summary {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+        }
+
+        .checkout-summary h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .checkout-summary > div {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .checkout-summary p {
+            margin: 0;
+        }
+
+        #selectedDays {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        #totalPrice {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: var(--accent);
+            color: var(--text-on-accent);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         /* Responsive */
@@ -782,23 +1272,8 @@
                 transform: scale(1);
             }
 
-            .instructors-grid {
-                gap: 2rem;
-            }
-
-            .instructor-image {
-                height: 250px;
-            }
-
-            nav a {
-                margin-left: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .aria-alert-region {
-                right: 10px;
-                left: 10px;
-                max-width: none;
+            .instructor-flip-card {
+                height: 380px;
             }
 
             .day-card {
@@ -817,18 +1292,32 @@
             .day-card-front li {
                 font-size: 0.85rem;
             }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .aria-alert-region {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ✅ WCAG 2.2 AAA: ARIA alert region -->
+    <div class="aria-alert-region" role="alert" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">Włącz Wizję</div>
                 <nav>
-                    <a href="#program">Program</a>
                     <a href="#instructors">Instruktorzy</a>
+                    <a href="#program">Program</a>
                     <a href="#pricing">Cennik</a>
                     <a href="#faq">FAQ</a>
                 </nav>
@@ -836,14 +1325,12 @@
         </div>
     </header>
 
-    <!-- ✅ WCAG 2.2 AAA: ARIA alert region -->
-    <div class="aria-alert-region" role="alert" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>WCAG dla specjalistów</h1>
             <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami.</p>
+            <p class="course-dates">📅 2.02.2026 - 4.02.2026 (online)</p>
             <div class="hero-cta">
                 <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
                 <a href="#program" class="btn btn-secondary">Poznaj program</a>
@@ -904,7 +1391,20 @@
         </div>
     </section>
 
-    <!-- Program Section - FLIP CARDY (ULEPSZONE) -->
+    <!-- Instructors Section - PRZED Program! -->
+    <section id="instructors" class="instructors">
+        <div class="container">
+            <h2 class="section-title">Twoi instruktorzy</h2>
+            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 0.95rem;">
+                💡 <strong>Kliknij kartę aby zobaczyć szczegóły</strong>
+            </p>
+            <div class="instructors-grid" id="instructorsContainer">
+                <!-- Dynamicznie generowane karty instruktorów -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
     <section id="program" class="program">
         <div class="container">
             <h2 class="section-title">Program kursu</h2>
@@ -917,51 +1417,69 @@
         </div>
     </section>
 
-    <!-- Instructors Section -->
-    <section id="instructors" class="instructors">
-        <div class="container">
-            <h2 class="section-title">Twoi instruktorzy</h2>
-            <div class="instructors-grid">
-                <div class="instructor-card">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/1d21c94229e8f03641730c9e923889abffb37239.jpg" alt="Damian Żłobicki" class="instructor-image">
-                    <div class="instructor-info">
-                        <h3>Damian Żłobicki</h3>
-                        <div class="instructor-company">Włącz Wizję</div>
-                        <p class="instructor-bio">Doświadczony audytor, trener dostępności cyfrowej i wdrożeniowiec. Lider zespołu komunikacji „Sieci Dostępności Cyfrowej".</p>
-                    </div>
-                </div>
-                <div class="instructor-card">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg" alt="Aleksandra Migus" class="instructor-image">
-                    <div class="instructor-info">
-                        <h3>Aleksandra Migus</h3>
-                        <div class="instructor-company">SOFTIQ</div>
-                        <p class="instructor-bio">Specjalistka w audytach WCAG i wdrażaniu dostępności cyfrowej w projektach. Ma wieloletnie doświadczenie w testowaniu dostępności i szkoleniach dla zespołów IT.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
         <div class="container">
             <h2 class="section-title">Cennik i warunki</h2>
+            
+                    <div class="pricing-grid">
+                        <!-- CARD 1: Pojedynczy dzień -->
+                        <div class="price-card">
+                            <h3>Pojedynczy dzień</h3>
+                            <div class="price">zł<span class="price-amount">699</span></div>
+                            <p class="price-period">za jeden dzień szkoleniowy</p>
+
+                            <ul class="price-features">
+                                <li><span class="checkmark">✓</span> 8h dydaktyczne, 8h zegarowe</li>
+                                <li><span class="checkmark">✓</span> Warsztaty na żywo</li>
+                                <li><span class="checkmark">✓</span> Materiały</li>
+                                <li><span class="checkmark">✓</span> Certyfikat uczestnictwa</li>
+                            </ul>
+
+                            <button class="btn btn-primary btn-full-width" aria-label="Wybierz pojedynczy dzień szkolenia">
+                                Wybierz dzień
+                            </button>
+                        </div>
+
+                        <!-- CARD 2: Pełny kurs (FEATURED) -->
+                        <div class="price-card price-card--featured">
+                            <span class="price-card__badge" aria-label="Najpopularniejszy wybór">Najpopularniejszy</span>
+
+                            <h3>Pełny kurs (3 dni)</h3>
+                            <div class="price">zł<span class="price-amount">1499</span></div>
+                            <p class="price-period">za jeden dzień szkoleniowy</p>
+
+                            <ul class="price-features">
+                                <li><span class="checkmark">✓</span> 32h dydaktyczne pracy</li>
+                                <li><span class="checkmark">✓</span> Warsztaty na żywo i sesje Q&A</li>
+                                <li><span class="checkmark">✓</span> Wszystkie materiały</li>
+                                <li><span class="checkmark">✓</span> Certyfikat uczestnictwa</li>
+                                <li><span class="checkmark">✓</span> Materiały do użytku komercyjnego</li>
+                            </ul>
+
+                            <button class="btn btn-primary btn-full-width" aria-label="Zarezerwuj miejsce na pełny 3-dniowy kurs">
+                                🚀 Zarezerwuj miejsce
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem;">
                 💡 <strong>Możesz wybrać poszczególne dni</strong> lub cały kurs. Wybierz interesujące Cię dni i zobacz cenę!
             </p>
             <div class="pricing-cards" id="pricingContainer">
                 <!-- Dynamicznie generowane karty -->
             </div>
-            <div style="text-align: center; margin-top: 3rem; padding: 1.5rem; background: var(--light); border-radius: 8px;">
-                <h3 style="margin-bottom: 1rem; color: var(--primary);">Twój wybór:</h3>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: center;">
+            <div class="checkout-summary">
+                <h3>Twój wybór:</h3>
+                <div>
                     <div>
                         <p style="color: var(--gray); margin-bottom: 0.5rem;">Wybrane dni:</p>
-                        <p id="selectedDays" style="font-size: 1.3rem; font-weight: bold; color: var(--dark);">Brak wyboru</p>
+                        <p id="selectedDays">Brak wyboru</p>
                     </div>
                     <div>
                         <p style="color: var(--gray); margin-bottom: 0.5rem;">Razem do zapłaty:</p>
-                        <p id="totalPrice" style="font-size: 1.3rem; font-weight: bold; color: var(--accent-dark);">0 zł</p>
+                        <p id="totalPrice">0 zł</p>
                     </div>
                 </div>
                 <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;" onclick="proceedToPayment()" id="proceedBtn" disabled>
@@ -1087,12 +1605,11 @@
     </footer>
 
     <script>
-        /* ✅ WCAG 2.2 AAA: Logika biznesowa z ARIA alerts + TOGGLE FLIP */
-
         // Stan aplikacji
         const appState = {
             selectedDays: [],
             flippedCards: {},
+            flippedInstructors: {},
             prices: {
                 1: 699,
                 2: 699,
@@ -1138,7 +1655,32 @@
             }
         ];
 
-        // ✅ ULEPSZONE: Inicjalizacja flip-cardów z toggle
+        const instructorsData = [
+            {
+                id: 'damian',
+                name: 'Damian Żłobicki',
+                company: 'Włącz Wizję',
+                bio: 'Doświadczony audytor, trener dostępności cyfrowej i wdrożeniowiec.',
+                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/1d21c94229e8f03641730c9e923889abffb37239.jpg',
+                credentials: [
+                    '2500+ godzin szkoleniowych',
+                    'CEO Włącz Wizję',
+                    'Andragog (wykształcenie)',
+                    'Lider Sieci Dostępności Cyfrowej',
+                    'Certyfikowany WCAG audytor'
+                ]
+            },
+            {
+                id: 'aleksandra',
+                name: 'Aleksandra Migus',
+                company: 'SOFTIQ',
+                bio: 'Specjalistka w audytach WCAG i wdrażaniu dostępności cyfrowej w projektach.',
+                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg',
+                linkedinUrl: 'https://linkedin.com/in/aleksandra-migus'
+            }
+        ];
+
+        // ✅ WCAG 2.2 AAA: Inicjalizacja flip-cardów dni
         function initializeFlipCards() {
             const daysContainer = document.getElementById('daysContainer');
             daysContainer.innerHTML = '';
@@ -1149,6 +1691,8 @@
                 const dayCardHTML = `
                     <button class="day-card" 
                             aria-label="Dzień ${day.id}: ${day.title}. Kliknij aby zobaczyć szczegóły i wybrać dzień."
+                            data-day-id="${day.id}"
+                            onkeydown="handleDayCardKeydown(event, ${day.id})"
                             onclick="toggleFlip(${day.id})">
                         <div class="day-card-inner" id="card-${day.id}">
                             <!-- Front -->
@@ -1168,7 +1712,11 @@
                                     <div class="day-price">${appState.prices[day.id]} zł</div>
                                 </div>
                                 <label>
-                                    <input type="checkbox" value="${day.id}" class="day-checkbox" onchange="updateSelection()">
+                                    <input type="checkbox" 
+                                           value="${day.id}" 
+                                           class="day-checkbox" 
+                                           onchange="updateSelection()"
+                                           aria-label="Wybieram Dzień ${day.id}">
                                     Wybieram ten dzień
                                 </label>
                             </div>
@@ -1179,10 +1727,88 @@
             });
         }
 
-        // ✅ ULEPSZONE: Toggle flip - jeden klik = obrót tam i z powrotem
+        // ✅ WCAG 2.2 AAA: Obsługa Enter/Space na dniach
+        function handleDayCardKeydown(event, dayId) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleFlip(dayId);
+            }
+        }
+
+        // Toggle flip dla dnia
         function toggleFlip(dayId) {
             const card = document.getElementById(`card-${dayId}`);
             appState.flippedCards[dayId] = !appState.flippedCards[dayId];
+            card.classList.toggle('flipped');
+        }
+
+        // ✅ WCAG 2.2 AAA: Inicjalizacja flip-cardów instruktorów
+        function initializeInstructorCards() {
+            const instructorsContainer = document.getElementById('instructorsContainer');
+            instructorsContainer.innerHTML = '';
+
+            instructorsData.forEach(instructor => {
+                appState.flippedInstructors[instructor.id] = false;
+
+                let backContent = '';
+                if (instructor.id === 'damian') {
+                    backContent = `
+                        <h3>Kompetencje</h3>
+                        <ul class="instructor-credentials">
+                            ${instructor.credentials.map(cred => `<li>${cred}</li>`).join('')}
+                        </ul>
+                    `;
+                } else if (instructor.id === 'aleksandra') {
+                    backContent = `
+                        <div>
+                            <h3>Odkryj więcej</h3>
+                            <p style="margin-bottom: 1.5rem;">Sprawdź profil Aleksandry na LinkedIn</p>
+                        </div>
+                        <a href="${instructor.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">
+                            🔗 Przejdź do LinkedIna
+                        </a>
+                    `;
+                }
+
+                const instructorCardHTML = `
+                    <button class="instructor-flip-card" 
+                            aria-label="${instructor.name} - ${instructor.company}. Kliknij aby zobaczyć szczegóły."
+                            data-instructor-id="${instructor.id}"
+                            onkeydown="handleInstructorCardKeydown(event, '${instructor.id}')"
+                            onclick="toggleInstructorFlip('${instructor.id}')">
+                        <div class="instructor-flip-card-inner" id="instructor-card-${instructor.id}">
+                            <!-- Front -->
+                            <div class="instructor-front">
+                                <img src="${instructor.image}" alt="${instructor.name}" class="instructor-image">
+                                <div class="instructor-info-front">
+                                    <h3>${instructor.name}</h3>
+                                    <div class="instructor-company">${instructor.company}</div>
+                                    <p class="instructor-bio">${instructor.bio}</p>
+                                </div>
+                            </div>
+                            <!-- Back -->
+                            <div class="instructor-back">
+                                ${backContent}
+                            </div>
+                        </div>
+                    </button>
+                `;
+                instructorsContainer.innerHTML += instructorCardHTML;
+            });
+        }
+
+        // ✅ WCAG 2.2 AAA: Obsługa Enter/Space na instruktorach
+        function handleInstructorCardKeydown(event, instructorId) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleInstructorFlip(instructorId);
+            }
+        }
+
+        // Toggle flip dla instruktora
+        function toggleInstructorFlip(instructorId) {
+            const card = document.getElementById(`instructor-card-${instructorId}`);
+            appState.flippedInstructors[instructorId] = !appState.flippedInstructors[instructorId];
             card.classList.toggle('flipped');
         }
 
@@ -1204,6 +1830,19 @@
                 showAlert('🎉 Wybrałeś/aś 3 dni! Automatycznie przechodzisz na pełny kurs za 1499 zł (zaoszczędzisz 598 zł!)');
                 
                 appState.selectedDays = [1, 2, 3];
+            } else if (appState.selectedDays.length < 3) {
+                // ✅ WCAG 2.2 AAA: Alert o każdej zmianie
+                const dayNames = appState.selectedDays.map(d => {
+                    const day = daysData.find(x => x.id === d);
+                    return `Dzień ${d}`;
+                }).join(', ');
+
+                if (appState.selectedDays.length > 0) {
+                    const total = appState.selectedDays.reduce((sum, day) => sum + appState.prices[day], 0);
+                    showAlert(`Wybrałeś/aś: ${dayNames}. Razem: ${total} zł`);
+                } else {
+                    showAlert('Nie masz wybranego żadnego dnia');
+                }
             }
 
             updatePricing();
@@ -1302,7 +1941,37 @@
         // Inicjalizuj stronę
         document.addEventListener('DOMContentLoaded', () => {
             initializeFlipCards();
+            initializeInstructorCards();
         });
+
+        // Button click handlers
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const cardText = this.closest('.price-card').querySelector('h3').textContent;
+                console.log(`Clicked: ${cardText}`);
+                // Add your booking logic here
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (e.target.classList.contains('btn')) {
+                    e.preventDefault();
+                    e.target.click();
+                }
+            }
+        });
+
+        // Dark mode support (optional)
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.style.setProperty('--bg-primary', '#1a1a1a');
+            document.documentElement.style.setProperty('--bg-secondary', '#2a2a2a');
+            document.documentElement.style.setProperty('--text-color', '#ffffff');
+            document.documentElement.style.setProperty('--border-color', '#404040');
+        }
+    </script>
+        
     </script>
 </body>
 </html>
