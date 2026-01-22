@@ -1297,21 +1297,21 @@
         ];
 
         // ✅ WCAG 2.2 AAA: Inicjalizacja flip-cardów dni
-        function initializeFlipCards() {
+             function initializeFlipCards() {
             const daysContainer = document.getElementById('daysContainer');
             daysContainer.innerHTML = '';
 
             daysData.forEach(day => {
                 appState.flippedCards[day.id] = false;
 
-                const dayCardHTML = `
+                const cardHTML = `
                     <button class="day-card" 
-                            aria-label="Dzień ${day.id}: ${day.title}. Kliknij aby zobaczyć szczegóły i wybrać dzień."
+                            aria-label="Dzień ${day.id}: ${day.title}"
                             data-day-id="${day.id}"
                             onkeydown="handleDayCardKeydown(event, ${day.id})"
                             onclick="toggleFlip(${day.id})">
                         <div class="day-card-inner" id="card-${day.id}">
-                            <!-- Front -->
+                            <!-- FRONT: ZAWSZE DOSTĘPNY -->
                             <div class="day-card-front">
                                 <div class="day-number">${day.number}</div>
                                 <h3>${day.title}</h3>
@@ -1319,27 +1319,32 @@
                                     ${day.items.map(item => `<li>${item}</li>`).join('')}
                                 </ul>
                             </div>
-                            <!-- Back -->
-                            <div class="day-card-back">
+
+                            <!-- BACK: UKRYTY INICJALNIE Z inert + aria-hidden -->
+                            <div class="day-card-back" inert aria-hidden="true">
                                 <div>
-                                    <h3>Szczegóły dnia</h3>
-                                    <p><strong>Dzień ${day.id}:</strong></p>
+                                    <h3>Szczegóły</h3>
+                                    <p><strong>Dzień ${day.id}</strong></p>
                                     <p>${day.title}</p>
                                     <div class="day-price">${appState.prices[day.id]} zł</div>
                                 </div>
-                                <label>
+                                <div class="checkbox-wrapper">
                                     <input type="checkbox" 
-                                           value="${day.id}" 
+                                           id="day-${day.id}" 
                                            class="day-checkbox" 
+                                           value="${day.id}"
+                                           aria-label="Wybieram Dzień ${day.id}"
                                            onchange="updateSelection()"
-                                           aria-label="Wybieram Dzień ${day.id}">
-                                    Wybieram ten dzień
-                                </label>
+                                           onkeydown="handleCheckboxKeydown(event)">
+                                    <label for="day-${day.id}" class="day-checkbox-label">
+                                        Wybieram ten dzień
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </button>
                 `;
-                daysContainer.innerHTML += dayCardHTML;
+                daysContainer.innerHTML += cardHTML;
             });
         }
 
