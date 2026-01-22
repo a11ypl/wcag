@@ -1328,10 +1328,11 @@
                                     <div class="day-price">${appState.prices[day.id]} zł</div>
                                 </div>
                                 <label>
-                                    <input type="checkbox" 
+                                    <input type="checkbox"                
                                            value="${day.id}" 
                                            class="day-checkbox" 
                                            onchange="updateSelection()"
+                                onkeydown="handleCheckboxKeydown(event)">
                                            aria-label="Wybieram Dzień ${day.id}">
                                     Wybieram ten dzień
                                 </label>
@@ -1559,6 +1560,17 @@
             initializeFlipCards();
             initializeInstructorCards();
         });
+        function handleCheckboxKeydown(event) {
+            if (event.key === ' ' || event.key === 'Enter') {
+                event.stopPropagation();
+                event.preventDefault();
+                const checkbox = event.target;
+                checkbox.checked = !checkbox.checked;
+                updateSelection();
+            }
+            // Tab i inne klawisze propagują normalnie
+        }
+
     </script>
 </body>
 </html>
