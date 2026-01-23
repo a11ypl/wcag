@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Włącz Wizję</title>
-    <meta name="description" content="Praktyczny 3-dniowy warsztat online o audytach WCAG. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami. Start 2 lutego 2026.">
-    <meta name="keywords" content="WCAG, dostępność, accessibility, audyt, kurs online, QA, testing">
+    <title>Audyt Dostępności WCAG 2.1 - Praktyczny Warsztat</title>
     <style>
         * {
             margin: 0;
@@ -13,476 +11,55 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #5F28B4;
-            --accent: #fa9632;
-            --dark: #1a1a1a;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --gray-light: #e9ecef;
-            --accent-dark: #8B4513;
-            --text-on-accent: #000000;
-            --accent-hover: #e68a1c;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Inter, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: #fff;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* ✅ WCAG 2.2 AAA: ARIA alert region */
-        .aria-alert-region {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-            max-width: 300px;
-            z-index: 1000;
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-
-        .aria-alert-region.show {
-            display: block;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            @keyframes slideIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-        }
-
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 40px 20px;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: -0.5px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.95rem;
-            transition: opacity 0.3s;
-            outline-offset: 2px;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        nav a:focus-visible {
-            outline: 2px solid #FFD700;
-            border-radius: 4px;
-            padding: 4px 8px;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white;
-            padding: 6rem 2rem;
+        h1 {
             text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            max-width: 700px;
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.95);
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            outline-offset: 2px;
-        }
-
-        .btn:focus-visible {
-            outline: 3px solid #FFD700;
-            border-radius: 4px;
-        }
-
-        /* ✅ WCAG 2.2 AAA: Przywrócony kolor pomarańczowy */
-        .btn-primary {
-            background: var(--accent);
-            color: var(--text-on-accent);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(250, 150, 50, 0.3);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: transparent;
-            color: white;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-            .hero-stats {
-                gap: 1.5rem;
-            }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 2rem;
-            background: var(--light);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-
-        .section-title .highlight {
-            color: var(--primary);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--accent);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* Instructors Section - FLIP CARDY */
-        .instructors {
-            padding: 5rem 2rem;
-            background: var(--light);
-        }
-
-        .instructors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        /* ✅ WCAG 2.2 AAA: Instructor flip cards (toggle + Enter/Space) */
-        .instructor-flip-card {
-            perspective: 1000px;
-            height: 400px;
-            position: relative;
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            border-radius: 12px;
-            overflow: visible;
-            outline-offset: 2px;
-        }
-
-        .instructor-flip-card:focus-visible {
-            outline: 3px solid #FFD700;
-            border-radius: 12px;
-        }
-
-        .instructor-flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-            .instructor-flip-card-inner {
-                transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .instructor-flip-card-inner {
-                transition: none;
-            }
-        }
-
-        .instructor-flip-card-inner.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .instructor-front,
-        .instructor-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .instructor-front {
-            background: white;
-            border: 2px solid var(--gray-light);
-            border-top: 4px solid var(--primary);
-            overflow: hidden;
-        }
-
-        .instructor-image {
-            width: 100%;
-            height: 60%;
-            object-fit: cover;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-        }
-
-        .instructor-info-front {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .instructor-info-front h3 {
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .instructor-company {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .instructor-bio {
-            color: var(--gray);
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-
-        .instructor-back {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white;
-            transform: rotateY(180deg);
-            border-top: 4px solid var(--accent);
-            padding: 1.5rem;
-            justify-content: space-between;
-        }
-
-        .instructor-credentials {
-            list-style: none;
-        }
-
-        .instructor-credentials li {
-            padding: 0.6rem 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .instructor-credentials li::before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .instructor-cta-link {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--text-on-accent);
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            outline-offset: 2px;
-        }
-
-        .instructor-cta-link:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .instructor-cta-link:focus-visible {
-            outline: 2px solid #FFD700;
-        }
-
-        /* Program Section */
-        .program {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .days-container {
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
-        /* ✅ WCAG 2.2 AAA: Day flip cards */
-        .day-card {
+        /* Poprawka 1: Struktura karty zgodna z KS 2.4.3 */
+        .flip-card {
+            background-color: transparent;
+            height: 450px;
             perspective: 1000px;
-            height: 300px;
             position: relative;
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            border-radius: 12px;
-            overflow: visible;
-            outline-offset: 2px;
         }
 
-        .day-card:focus-visible {
-            outline: 3px solid #FFD700;
-            border-radius: 12px;
-        }
-
-        .day-card-inner {
+        .flip-card-inner {
             position: relative;
             width: 100%;
             height: 100%;
@@ -490,1087 +67,601 @@
             transform-style: preserve-3d;
         }
 
-        @media (prefers-reduced-motion: no-preference) {
-            .day-card-inner {
-                transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            }
+        /* Poprawka 2: Zarządzanie focusem - ukryj tylną stronę przed focusem gdy nieaktywna */
+        .flip-card:not(.flipped) .flip-card-back,
+        .flip-card:not(.flipped) .flip-card-back * {
+            visibility: hidden;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .day-card-inner {
-                transition: none;
-            }
+        .flip-card.flipped .flip-card-front,
+        .flip-card.flipped .flip-card-front * {
+            visibility: hidden;
         }
 
-        .day-card-inner.flipped {
+        .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
 
-        .day-card-front,
-        .day-card-back {
+        .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 12px;
-            padding: 1.8rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 30px;
             display: flex;
             flex-direction: column;
         }
 
-        .day-card-front {
-            background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
-            border: 2px solid var(--gray-light);
-            border-top: 4px solid var(--primary);
+        .flip-card-front {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         }
 
-        .day-card-back {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+        .flip-card-back {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
             color: white;
             transform: rotateY(180deg);
-            border-top: 4px solid var(--accent);
+        }
+
+        /* Poprawka 3: Poprawa widoczności fokusa zgodnie z KS 2.4.7 */
+        .flip-card-front:focus-within,
+        .flip-card-back:focus-within {
+            outline: 3px solid #005fcc;
+            outline-offset: 3px;
+        }
+
+        /* Przycisk flip - dostępny klawiaturowo */
+        .flip-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: auto;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .flip-button:hover,
+        .flip-button:focus {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            outline: 3px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        .flip-button:active {
+            transform: translateY(0);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .flip-card-back .card-title {
+            color: white;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .flip-card-back .card-description {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        /* Sekcja wyboru dni */
+        .day-selection {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 50px;
+        }
+
+        .day-selection h2 {
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Poprawka 4: Dostępny checkbox zgodnie z KS 2.1.1 i KS 4.1.2 */
+        .day-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Ukryty natywny checkbox */
+        .day-checkbox {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Poprawka 5: Widoczny fokus na checkboxie zgodnie z KS 2.4.7 */
+        .day-checkbox:focus + .day-card {
+            outline: 3px solid #005fcc;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 6px rgba(0, 95, 204, 0.25);
+        }
+
+        .day-checkbox:checked + .day-card {
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .day-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .day-card-header {
+            display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
         .day-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .day-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        /* Wizualna reprezentacja checkboxa */
+        .checkbox-indicator {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #cbd5e0;
+            border-radius: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.8rem;
-        }
-
-        .day-card-front h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-            line-height: 1.3;
-        }
-
-        .day-card-front ul {
-            list-style: none;
-            padding: 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .day-card-front li {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.4;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .day-card-front li::before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: bold;
+            transition: all 0.3s ease;
             flex-shrink: 0;
         }
 
-        .day-card-back h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+        .day-checkbox:checked + .day-card .checkbox-indicator {
+            background: #667eea;
+            border-color: #667eea;
         }
 
-        .day-card-back p {
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-        }
-
-        .day-card-back .day-price {
-            font-size: 1.6rem;
+        .day-checkbox:checked + .day-card .checkbox-indicator:after {
+            content: "✓";
+            color: white;
             font-weight: bold;
-            margin: 0.5rem 0;
-            color: var(--accent);
         }
 
-        .day-card-back label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-bottom: auto;
-        }
-
-        .day-card-back input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: var(--accent);
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .price-card {
-            background: white;
-            border: 2px solid var(--gray-light);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .price-card.featured {
-            border: 3px solid var(--primary);
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(95, 40, 180, 0.15);
-        }
-
-        .price-card.featured .badge {
-            background: var(--accent);
-            color: var(--text-on-accent);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .price-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .price {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .price-currency {
+        .day-title {
             font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
         }
 
-        .price-period {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+        .day-topics {
+            font-size: 0.9rem;
+            color: #718096;
+            line-height: 1.6;
         }
 
-        .price-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
+        /* Summary */
+        .selection-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
         }
 
-        .price-features li {
-            padding: 0.7rem 0;
-            color: var(--gray);
-            border-bottom: 1px solid var(--gray-light);
-            font-size: 0.95rem;
-        }
-
-        .price-features li:last-child {
-            border-bottom: none;
-        }
-
-        .price-features li::before {
-            content: '✓ ';
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 5rem 2rem;
-            background: var(--light);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
-            cursor: pointer;
+        .summary-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
-            color: var(--dark);
-            transition: all 0.3s ease;
-            border: none;
-            width: 100%;
-            text-align: left;
-            font-size: 1rem;
-            outline-offset: 2px;
-        }
-
-        .faq-question:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white;
-        }
-
-        .faq-question:focus-visible {
-            outline: 3px solid #FFD700;
-        }
-
-        .faq-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-answer {
-            padding: 1.5rem;
-            color: var(--gray);
-            line-height: 1.8;
-            display: none;
-            border-left: 4px solid var(--accent);
-        }
-
-        .faq-answer.active {
-            display: block;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .cta-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
             flex-wrap: wrap;
-            font-size: 1rem;
+            gap: 20px;
         }
 
-        .cta-info-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .selected-days {
+            font-size: 1.1rem;
         }
 
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
+        .total-price {
+            font-size: 2rem;
+            font-weight: bold;
         }
 
-        .footer-content {
-            margin-bottom: 2rem;
-        }
-
-        .footer-contact {
-            margin-bottom: 1rem;
+        .info-note {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
             font-size: 0.95rem;
         }
 
-        .footer-contact a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer-contact a:focus-visible {
-            outline: 2px solid #FFD700;
-            border-radius: 4px;
-            padding: 4px 8px;
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-social a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            outline-offset: 2px;
-        }
-
-        .footer-social a:hover {
-            color: var(--accent);
-        }
-
-        .footer-social a:focus-visible {
-            outline: 2px solid #FFD700;
-            border-radius: 4px;
-            padding: 4px 8px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.5rem;
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        .checkout-summary {
+        .course-info {
             text-align: center;
-            margin-top: 3rem;
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: 8px;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
         }
 
-        .checkout-summary h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
-        .checkout-summary > div {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-            align-items: center;
-        }
-
-        .checkout-summary p {
-            margin: 0;
-        }
-
-        #selectedDays {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--dark);
-        }
-
-        #totalPrice {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            background: var(--accent);
-            color: var(--text-on-accent);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .hero {
-                padding: 3rem 1rem;
-            }
-
-            .hero h1 {
+            h1 {
                 font-size: 2rem;
             }
-
-            .section-title {
-                font-size: 1.8rem;
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
-
-            .price-card.featured {
-                transform: scale(1);
-            }
-
-            .instructor-flip-card {
-                height: 380px;
-            }
-
-            .day-card {
-                height: 280px;
-            }
-
-            .day-card-front,
-            .day-card-back {
-                padding: 1.5rem;
-            }
-
-            .day-card-front h3 {
-                font-size: 1rem;
-            }
-
-            .day-card-front li {
-                font-size: 0.85rem;
-            }
-
-            nav a {
-                margin-left: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .aria-alert-region {
-                right: 10px;
-                left: 10px;
-                max-width: none;
+            
+            .day-selection {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ✅ WCAG 2.2 AAA: ARIA alert region -->
-    <div class="aria-alert-region" role="alert" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">Włącz Wizję</div>
-                <nav>
-                    <a href="#instructors">Instruktorzy</a>
-                    <a href="#program">Program</a>
-                    <a href="#pricing">Cennik</a>
-                    <a href="#faq">FAQ</a>
-                </nav>
+    <div class="container">
+        <h1>Audyt Dostępności WCAG 2.1</h1>
+        <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami.</p>
+
+        <!-- Poprawka 6: Usunięto aria-label z .flip-card-inner, dodano do przycisku -->
+        <div class="cards-grid">
+            <!-- Karta 1 -->
+            <div class="flip-card" id="card1">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon">🎯</div>
+                        <h2 class="card-title">Dlaczego ten kurs?</h2>
+                        <p class="card-description">
+                            Możesz wybrać 3 dni albo pojedyncze dni dopasowane do Twojej roli i doświadczenia.
+                        </p>
+                        <button class="flip-button" 
+                                aria-label="Pokaż szczegóły kursu - Dlaczego ten kurs"
+                                aria-expanded="false"
+                                aria-controls="card1-back">
+                            Kliknij kartę aby zobaczyć szczegóły
+                        </button>
+                    </div>
+                    <div class="flip-card-back" id="card1-back">
+                        <div class="card-icon">✨</div>
+                        <h2 class="card-title">Co nas wyróżnia?</h2>
+                        <ul class="feature-list">
+                            <li>Pracujemy na rzeczywistych projektach i dokumentach, nie na "idealnych makietach".</li>
+                            <li>Uczymy jak raportować błędy WCAG tak, aby developerzy faktycznie je wdrażali.</li>
+                            <li>Potwierdź swoją wiedzę certyfikatem, który możesz wykorzystać w CV.</li>
+                            <li>Otrzymasz materiały do wykorzystania komercyjnego w swoich projektach.</li>
+                            <li>Warsztaty z instruktorami, sesje Q&A i feedback na żywo na Twoich pytania.</li>
+                        </ul>
+                        <button class="flip-button" 
+                                aria-label="Wróć do przodu karty - Dlaczego ten kurs"
+                                aria-expanded="true"
+                                aria-controls="card1-back">
+                            Wróć do przodu
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Karta 2 -->
+            <div class="flip-card" id="card2">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon">📅</div>
+                        <h2 class="card-title">Elastyczny wybór</h2>
+                        <p class="card-description">
+                            Możesz wybrać poszczególne dni lub cały kurs. Wybierz interesujące Cię dni i zobacz cenę!
+                        </p>
+                        <button class="flip-button" 
+                                aria-label="Pokaż szczegóły - Elastyczny wybór dni"
+                                aria-expanded="false"
+                                aria-controls="card2-back">
+                            Kliknij kartę aby zobaczyć szczegóły i wybrać dzień
+                        </button>
+                    </div>
+                    <div class="flip-card-back" id="card2-back">
+                        <div class="card-icon">🎓</div>
+                        <h2 class="card-title">Program modułowy</h2>
+                        <ul class="feature-list">
+                            <li><strong>Dzień 1:</strong> Podstawy WCAG 2.1 - poziom percepcji i obsługi</li>
+                            <li><strong>Dzień 2:</strong> Zaawansowane techniki testowania - formularze, multimedia</li>
+                            <li><strong>Dzień 3:</strong> Raportowanie i dokumentacja audytu</li>
+                        </ul>
+                        <p class="card-description" style="margin-top: 20px;">
+                            Każdy dzień to 8 godzin praktycznych warsztatów z certyfikatem po ukończeniu.
+                        </p>
+                        <button class="flip-button" 
+                                aria-label="Wróć do przodu karty - Elastyczny wybór"
+                                aria-expanded="true"
+                                aria-controls="card2-back">
+                            Wróć do przodu
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Karta 3 -->
+            <div class="flip-card" id="card3">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon">💼</div>
+                        <h2 class="card-title">Dla kogo?</h2>
+                        <p class="card-description">
+                            Kurs przeznaczony dla audytorów, testerów, developerów i projektantów UX/UI.
+                        </p>
+                        <button class="flip-button" 
+                                aria-label="Pokaż szczegóły - Dla kogo jest ten kurs"
+                                aria-expanded="false"
+                                aria-controls="card3-back">
+                            Kliknij kartę aby zobaczyć szczegóły
+                        </button>
+                    </div>
+                    <div class="flip-card-back" id="card3-back">
+                        <div class="card-icon">👥</div>
+                        <h2 class="card-title">Idealne dla:</h2>
+                        <ul class="feature-list">
+                            <li>Audytorów dostępności cyfrowej - poznaj zaawansowane techniki</li>
+                            <li>Testerów QA - rozszerz kompetencje o accessibility testing</li>
+                            <li>Frontend Developerów - naucz się implementować dostępność</li>
+                            <li>Projektantów UX/UI - projektuj z myślą o wszystkich użytkownikach</li>
+                            <li>Product Ownerów - zarządzaj dostępnością w projekcie</li>
+                        </ul>
+                        <button class="flip-button" 
+                                aria-label="Wróć do przodu karty - Dla kogo"
+                                aria-expanded="true"
+                                aria-controls="card3-back">
+                            Wróć do przodu
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>WCAG dla specjalistów</h1>
-            <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami.</p>
-            <div class="hero-cta">
-                <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
-                <a href="#program" class="btn btn-secondary">Poznaj program</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">dni warsztatów</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">32h</div>
-                    <div class="stat-label">dydaktycznych</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">miejsc (limit)</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Sekcja wyboru dni -->
+        <!-- Poprawka 7: Formularz z fieldset dla grupowania checkboxów -->
+        <div class="day-selection">
+            <h2>Wybierz interesujące Cię dni</h2>
+            
+            <form id="daySelectionForm">
+                <fieldset style="border: none;">
+                    <legend class="sr-only">Wybór dni szkolenia</legend>
+                    
+                    <div class="days-grid">
+                        <!-- Dzień 1 -->
+                        <label for="day1" style="cursor: pointer;">
+                            <input type="checkbox" 
+                                   id="day1" 
+                                   name="day" 
+                                   value="1" 
+                                   data-price="890"
+                                   class="day-checkbox">
+                            <div class="day-card">
+                                <div class="day-card-header">
+                                    <span class="day-number">Dzień 1</span>
+                                    <div class="checkbox-indicator" aria-hidden="true"></div>
+                                    <span class="day-price">890 zł</span>
+                                </div>
+                                <h3 class="day-title">Podstawy audytu WCAG 2.1</h3>
+                                <p class="day-topics">
+                                    Zasady POUR, kryteria sukcesu A i AA, narzędzia audytorskie, testowanie struktury i nawigacji
+                                </p>
+                            </div>
+                        </label>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Co wyróżnia ten kurs?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Jedyny modułowy kurs</h3>
-                    <p>Możesz wybrać 3 dni albo pojedyncze dni dopasowane do Twojej roli i doświadczenia.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Praktyka, nie teoria</h3>
-                    <p>Pracujemy na rzeczywistych projektach i dokumentach, nie na "idealnych makietach".</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>Wdrażalne raporty</h3>
-                    <p>Uczymy jak raportować błędy WCAG tak, aby developerzy faktycznie je wdrażali.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎓</div>
-                    <h3>Certyfikat uczestnictwa</h3>
-                    <p>Potwierdź swoją wiedzę certyfikatem, który możesz wykorzystać w CV.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Materiały komercyjne</h3>
-                    <p>Otrzymasz materiały do wykorzystania komercyjnego w swoich projektach.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Sesje na żywo, informacje zwrotne na bieżąco</h3>
-                    <p>Warsztaty z instruktorami, sesje Q&A i feedback na żywo na Twoich pytania.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <!-- Dzień 2 -->
+                        <label for="day2" style="cursor: pointer;">
+                            <input type="checkbox" 
+                                   id="day2" 
+                                   name="day" 
+                                   value="2" 
+                                   data-price="890"
+                                   class="day-checkbox">
+                            <div class="day-card">
+                                <div class="day-card-header">
+                                    <span class="day-number">Dzień 2</span>
+                                    <div class="checkbox-indicator" aria-hidden="true"></div>
+                                    <span class="day-price">890 zł</span>
+                                </div>
+                                <h3 class="day-title">Zaawansowane techniki testowania</h3>
+                                <p class="day-topics">
+                                    Formularze, multimedia, PDF, ARIA, testowanie z czytnikami ekranu (NVDA, JAWS)
+                                </p>
+                            </div>
+                        </label>
 
-    <!-- Instructors Section - PRZED Program! -->
-    <section id="instructors" class="instructors">
-        <div class="container">
-            <h2 class="section-title">Twoi instruktorzy</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 0.95rem;">
-                💡 <strong>Kliknij kartę aby zobaczyć szczegóły</strong>
-            </p>
-            <div class="instructors-grid" id="instructorsContainer">
-                <!-- Dynamicznie generowane karty instruktorów -->
-            </div>
-        </div>
-    </section>
+                        <!-- Dzień 3 -->
+                        <label for="day3" style="cursor: pointer;">
+                            <input type="checkbox" 
+                                   id="day3" 
+                                   name="day" 
+                                   value="3" 
+                                   data-price="890"
+                                   class="day-checkbox">
+                            <div class="day-card">
+                                <div class="day-card-header">
+                                    <span class="day-number">Dzień 3</span>
+                                    <div class="checkbox-indicator" aria-hidden="true"></div>
+                                    <span class="day-price">890 zł</span>
+                                </div>
+                                <h3 class="day-title">Raportowanie i dokumentacja</h3>
+                                <p class="day-topics">
+                                    Tworzenie raportów audytu, deklaracja dostępności, komunikacja z zespołem, certyfikat audytora
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </fieldset>
+            </form>
 
-    <!-- Program Section -->
-    <section id="program" class="program">
-        <div class="container">
-            <h2 class="section-title">Program kursu</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 0.95rem;">
-                💡 <strong>Kliknij kartę aby zobaczyć szczegóły i wybrać dzień</strong>
-            </p>
-            <div class="days-container" id="daysContainer">
-                <!-- Day cards będą generowane przez JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Cennik i warunki</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem;">
-                💡 <strong>Możesz wybrać poszczególne dni</strong> lub cały kurs. Wybierz interesujące Cię dni i zobacz cenę!
-            </p>
-            <div class="pricing-cards" id="pricingContainer">
-                <!-- Dynamicznie generowane karty -->
-            </div>
-            <div class="checkout-summary">
-                <h3>Twój wybór:</h3>
-                <div>
+            <!-- Podsumowanie wyboru -->
+            <div class="selection-summary">
+                <div class="summary-content">
                     <div>
-                        <p style="color: var(--gray); margin-bottom: 0.5rem;">Wybrane dni:</p>
-                        <p id="selectedDays">Brak wyboru</p>
+                        <p class="selected-days">Wybrane dni: <strong id="selectedDaysText">Brak wyboru</strong></p>
                     </div>
                     <div>
-                        <p style="color: var(--gray); margin-bottom: 0.5rem;">Razem do zapłaty:</p>
-                        <p id="totalPrice">0 zł</p>
+                        <p>Razem do zapłaty:</p>
+                        <p class="total-price" id="totalPrice">0 zł</p>
                     </div>
                 </div>
-                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;" onclick="proceedToPayment()" id="proceedBtn" disabled>
-                    Przejdź do płatności
-                </button>
-                <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem;">Minimum 1 dzień, maksimum 3 dni. Od 3 dni automatycznie oferta zmienia się na pełny kurs.</p>
-            </div>
-            <div style="text-align: center; margin-top: 2rem; color: var(--gray);">
-                <p><strong>ℹ️ Kurs uruchamiany przy minimum 4 osobach zapisanych na pełny kurs</strong></p>
-                <p style="margin-top: 0.5rem;">Start: <strong>2 lutego 2026</strong> | Limit: <strong>12 uczestników</strong></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Często zadawane pytania</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Jaki jest warunek wstępny do udziału?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        Wymagana jest bazowa znajomość HTML i umiejętność obsługi DevTools. Kurs jest skierowany do osób, które mają techniczne podstawy, ale chcą rozwijać umiejętności w testowaniu dostępności.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Czy mogę wziąć udział tylko w jednym dniu?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 699 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Czy otrzymam materiały i certyfikat?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        Tak! Każdy uczestnik otrzyma certyfikat uczestnictwa i materiały szkoleniowe. Co więcej – materiały można wykorzystać komercyjnie w Twoich projektach.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Jakie są godziny szkolenia?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        Warsztat trwa 3 dni, każdy dzień obejmuje 8 godzin zegarowych (32 godziny dydaktyczne łącznie). Dokładny harmonogram z godzinami uruchomienia otrzymasz wraz z potwierdzeniem zapisu.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Czy mogę zwrócić pieniądze?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        Szczegółowe warunki zwrotu i politykę rezygnacji otrzymasz przy zarejestrowaniu. W przypadku pytań prosimy o kontakt z zespołem organizacyjnym.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Ile uczestników może wziąć udział?</span>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        Limit wynosi 12 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.
-                    </div>
+                <div class="info-note" role="status" aria-live="polite">
+                    Minimum 1 dzień, maksimum 3 dni. Od 3 dni automatycznie oferta zmienia się na pełny kurs.
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Jesteś gotowy/a na praktyczne szkolenie z audytu WCAG?</h2>
-            <p>Dołącz do pierwszej edycji kursu i naucz się testować dostępność na rzeczywistych projektach.</p>
-            <div class="cta-info">
-                <div class="cta-info-item">
-                    📅 Start: 2 lutego 2026
-                </div>
-                <div class="cta-info-item">
-                    👥 Limit: 12 osób
-                </div>
-                <div class="cta-info-item">
-                    💰 Od 699 zł
-                </div>
-            </div>
-            <a href="#pricing" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
-                🚀 Zarezerwuj miejsce teraz
-            </a>
+        <!-- Info o kursie -->
+        <div class="course-info">
+            <p><strong>ℹ️ Kurs uruchamiany przy minimum 4 osobach zapisanych na pełny kurs</strong></p>
+            <p style="margin-top: 10px;">Start: <strong>2 lutego 2026</strong> | Limit: <strong>12 uczestników</strong></p>
+            <p style="margin-top: 10px;">Dołącz do pierwszej edycji kursu i naucz się testować dostępność na rzeczywistych projektach.</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <h3>Włącz Wizję</h3>
-                <p style="margin-top: 0.5rem; margin-bottom: 1rem;">To odpowiedni czas na rozszerzenie możliwości</p>
-                <div class="footer-contact">
-                    <p>📧 Kontakt: <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a></p>
-                    <p>🌐 <a href="https://wlaczwizje.pl" target="_blank">wlaczwizje.pl</a></p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://linkedin.com/company/wlacz-wizje" target="_blank">LinkedIn</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Włącz Wizję. Wszystkie prawa zastrzeżone. | #WCAG #dostępność #d8ć</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        /* ✅ WCAG 2.2 AAA: Kompletna logika z Enter/Space support */
-
-        // Stan aplikacji
-        const appState = {
-            selectedDays: [],
-            flippedCards: {},
-            flippedInstructors: {},
-            prices: {
-                1: 699,
-                2: 699,
-                3: 699,
-                fullCourse: 1499
-            }
-        };
-
-        // Dane dni
-        const daysData = [
-            {
-                id: 1,
-                number: '1',
-                title: 'Fundamenty WCAG + walidatory',
-                items: [
-                    'Struktura i kryteria WCAG',
-                    'Narzędzia diagnostyczne w praktyce',
-                    'Jak zacząć audyt od początku?',
-                    'Których walidatorów dostępności używać'
-                ]
-            },
-            {
-                id: 2,
-                number: '2',
-                title: 'Testy manualne',
-                items: [
-                    'Testowanie nawigacji klawiaturą',
-                    'Analiza kodu HTML i CSS pod kątem dostępności',
-                    'Czytniki ekranu w działaniu',
-                    'Powtarzalne błędy twórców stron'
-                ]
-            },
-            {
-                id: 3,
-                number: '3',
-                title: 'Audyt WCAG i raportowanie',
-                items: [
-                    'Jak przeprowadzić profesjonalny audyt?',
-                    'Raportowanie błędów w sposób ułatwiający wdrażanie poprawek',
-                    'Tworzenie dokumentacji dla deweloperów',
-                    'Najlepsze praktyki w raportowaniu'
-                ]
-            }
-        ];
-
-        const instructorsData = [
-            {
-                id: 'damian',
-                name: 'Damian Żłobicki',
-                company: 'Włącz Wizję',
-                bio: 'Doświadczony audytor, trener dostępności cyfrowej i wdrożeniowiec.',
-                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/1d21c94229e8f03641730c9e923889abffb37239.jpg',
-                credentials: [
-                    '2500+ godzin szkoleniowych',
-                    'CEO Włącz Wizję',
-                    'Andragog (wykształcenie)',
-                    'Lider Sieci Dostępności Cyfrowej',
-                    'Certyfikowany WCAG audytor'
-                ]
-            },
-            {
-                id: 'aleksandra',
-                name: 'Aleksandra Migus',
-                company: 'SOFTIQ',
-                bio: 'Specjalistka w audytach WCAG i wdrażaniu dostępności cyfrowej w projektach.',
-                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg',
-                linkedinUrl: 'https://linkedin.com/in/aleksandra-migus'
-            }
-        ];
-
-        // ✅ WCAG 2.2 AAA: Inicjalizacja flip-cardów dni
-        function initializeFlipCards() {
-            const daysContainer = document.getElementById('daysContainer');
-            daysContainer.innerHTML = '';
-
-            daysData.forEach(day => {
-                appState.flippedCards[day.id] = false;
-
-                const dayCardHTML = `
-                    <button class="day-card" 
-                            aria-label="Dzień ${day.id}: ${day.title}. Kliknij aby zobaczyć szczegóły i wybrać dzień."
-                            data-day-id="${day.id}"
-                            onkeydown="handleDayCardKeydown(event, ${day.id})"
-                            onclick="toggleFlip(${day.id})">
-                        <div class="day-card-inner" id="card-${day.id}">
-                            <!-- Front -->
-                            <div class="day-card-front">
-                                <div class="day-number">${day.number}</div>
-                                <h3>${day.title}</h3>
-                                <ul>
-                                    ${day.items.map(item => `<li>${item}</li>`).join('')}
-                                </ul>
-                            </div>
-                            <!-- Back -->
-                            <div class="day-card-back">
-                                <div>
-                                    <h3>Szczegóły dnia</h3>
-                                    <p><strong>Dzień ${day.id}:</strong></p>
-                                    <p>${day.title}</p>
-                                    <div class="day-price">${appState.prices[day.id]} zł</div>
-                                </div>
-                                <label>
-                                    <input type="checkbox"                
-                                           value="${day.id}" 
-                                           class="day-checkbox" 
-                                           onchange="updateSelection()"
-                                onkeydown="handleCheckboxKeydown(event)">
-                                           aria-label="Wybieram Dzień ${day.id}">
-                                    Wybieram ten dzień
-                                </label>
-                            </div>
-                        </div>
-                    </button>
-                `;
-                daysContainer.innerHTML += dayCardHTML;
-            });
-        }
-
-        // ✅ WCAG 2.2 AAA: Obsługa Enter/Space na dniach
-        function handleDayCardKeydown(event, dayId) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleFlip(dayId);
-            }
-        }
-
-        // Toggle flip dla dnia
-        function toggleFlip(dayId) {
-            const card = document.getElementById(`card-${dayId}`);
-            appState.flippedCards[dayId] = !appState.flippedCards[dayId];
-            card.classList.toggle('flipped');
-        }
-
-        // ✅ WCAG 2.2 AAA: Inicjalizacja flip-cardów instruktorów
-        function initializeInstructorCards() {
-            const instructorsContainer = document.getElementById('instructorsContainer');
-            instructorsContainer.innerHTML = '';
-
-            instructorsData.forEach(instructor => {
-                appState.flippedInstructors[instructor.id] = false;
-
-                let backContent = '';
-                if (instructor.id === 'damian') {
-                    backContent = `
-                        <h3>Kompetencje</h3>
-                        <ul class="instructor-credentials">
-                            ${instructor.credentials.map(cred => `<li>${cred}</li>`).join('')}
-                        </ul>
-                    `;
-                } else if (instructor.id === 'aleksandra') {
-                    backContent = `
-                        <div>
-                            <h3>Odkryj więcej</h3>
-                            <p style="margin-bottom: 1.5rem;">Sprawdź profil Aleksandry na LinkedIn</p>
-                        </div>
-                        <a href="${instructor.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">
-                            🔗 Przejdź do LinkedIna
-                        </a>
-                    `;
-                }
-
-                const instructorCardHTML = `
-                    <button class="instructor-flip-card" 
-                            aria-label="${instructor.name} - ${instructor.company}. Kliknij aby zobaczyć szczegóły."
-                            data-instructor-id="${instructor.id}"
-                            onkeydown="handleInstructorCardKeydown(event, '${instructor.id}')"
-                            onclick="toggleInstructorFlip('${instructor.id}')">
-                        <div class="instructor-flip-card-inner" id="instructor-card-${instructor.id}">
-                            <!-- Front -->
-                            <div class="instructor-front">
-                                <img src="${instructor.image}" alt="${instructor.name}" class="instructor-image">
-                                <div class="instructor-info-front">
-                                    <h3>${instructor.name}</h3>
-                                    <div class="instructor-company">${instructor.company}</div>
-                                    <p class="instructor-bio">${instructor.bio}</p>
-                                </div>
-                            </div>
-                            <!-- Back -->
-                            <div class="instructor-back">
-                                ${backContent}
-                            </div>
-                        </div>
-                    </button>
-                `;
-                instructorsContainer.innerHTML += instructorCardHTML;
-            });
-        }
-
-        // ✅ WCAG 2.2 AAA: Obsługa Enter/Space na instruktorach
-        function handleInstructorCardKeydown(event, instructorId) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleInstructorFlip(instructorId);
-            }
-        }
-
-        // Toggle flip dla instruktora
-        function toggleInstructorFlip(instructorId) {
-            const card = document.getElementById(`instructor-card-${instructorId}`);
-            appState.flippedInstructors[instructorId] = !appState.flippedInstructors[instructorId];
-            card.classList.toggle('flipped');
-        }
-
-        // Aktualizacja wyboru dni
-        function updateSelection() {
-            appState.selectedDays = [];
-            const checkboxes = document.querySelectorAll('.day-checkbox:checked');
-            
-            checkboxes.forEach(checkbox => {
-                appState.selectedDays.push(parseInt(checkbox.value));
-            });
-
-            appState.selectedDays.sort((a, b) => a - b);
-
-            // ✅ WCAG 2.2 AAA: Logika automatycznego przejścia na pełny kurs
-            if (appState.selectedDays.length === 3) {
-                document.querySelectorAll('.day-checkbox').forEach(cb => cb.checked = true);
-                
-                showAlert('🎉 Wybrałeś/aś 3 dni! Automatycznie przechodzisz na pełny kurs za 1499 zł (zaoszczędzisz 598 zł!)');
-                
-                appState.selectedDays = [1, 2, 3];
-            } else if (appState.selectedDays.length < 3) {
-                // ✅ WCAG 2.2 AAA: Alert o każdej zmianie
-                const dayNames = appState.selectedDays.map(d => {
-                    const day = daysData.find(x => x.id === d);
-                    return `Dzień ${d}`;
-                }).join(', ');
-
-                if (appState.selectedDays.length > 0) {
-                    const total = appState.selectedDays.reduce((sum, day) => sum + appState.prices[day], 0);
-                    showAlert(`Wybrałeś/aś: ${dayNames}. Razem: ${total} zł`);
-                } else {
-                    showAlert('Nie masz wybranego żadnego dnia');
-                }
-            }
-
-            updatePricing();
-        }
-
-        // Aktualizacja ceny
-        function updatePricing() {
-            const selectedDaysEl = document.getElementById('selectedDays');
-            const totalPriceEl = document.getElementById('totalPrice');
-            const proceedBtn = document.getElementById('proceedBtn');
-
-            if (appState.selectedDays.length === 0) {
-                selectedDaysEl.textContent = 'Brak wyboru';
-                totalPriceEl.textContent = '0 zł';
-                proceedBtn.disabled = true;
-                return;
-            }
-
-            if (appState.selectedDays.length === 3) {
-                selectedDaysEl.textContent = 'Pełny kurs (wszystkie 3 dni)';
-                totalPriceEl.textContent = appState.prices.fullCourse + ' zł';
-            } else {
-                selectedDaysEl.textContent = `Dzień ${appState.selectedDays.join(', ')}`;
-                const total = appState.selectedDays.reduce((sum, day) => sum + appState.prices[day], 0);
-                totalPriceEl.textContent = total + ' zł';
-            }
-
-            proceedBtn.disabled = false;
-        }
-
-        // ✅ WCAG 2.2 AAA: Przejście do płatności z komunikatem
-        function proceedToPayment() {
-            if (appState.selectedDays.length === 0) {
-                showAlert('⚠️ Proszę wybrać co najmniej jeden dzień.');
-                return;
-            }
-
-            const dayNames = appState.selectedDays.map(d => {
-                const day = daysData.find(x => x.id === d);
-                return day.title;
-            });
-
-            const total = appState.selectedDays.length === 3 
-                ? appState.prices.fullCourse 
-                : appState.selectedDays.reduce((sum, day) => sum + appState.prices[day], 0);
-
-            const message = `Przechodzisz do płatności za: ${dayNames.join(', ')}. Kwota do zapłaty: ${total} zł.`;
-            showAlert(message);
-
-            setTimeout(() => {
-                window.location.href = `/checkout?days=${appState.selectedDays.join(',')}&total=${total}`;
-            }, 2000);
-        }
-
-        // ✅ WCAG 2.2 AAA: Wyświetlanie alertów
-        function showAlert(message) {
-            const alertRegion = document.getElementById('alertRegion');
-            alertRegion.textContent = message;
-            alertRegion.classList.add('show');
-
-            setTimeout(() => {
-                alertRegion.classList.remove('show');
-            }, 5000);
-        }
-
-        // FAQ Toggle
-        const faqItems = document.querySelectorAll('.faq-item');
-
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-
-            question.addEventListener('click', () => {
-                item.classList.toggle('active');
-                answer.classList.toggle('active');
-                
-                const isExpanded = question.getAttribute('aria-expanded') === 'true';
-                question.setAttribute('aria-expanded', !isExpanded);
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Poprawka 8: Prawidłowa obsługa flip bez naruszenia dostępności klawiatury
+        document.querySelectorAll('.flip-button').forEach(button => {
+            button.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const card = this.closest('.flip-card');
+                const isFlipped = card.classList.contains('flipped');
+                
+                // Toggle flip
+                card.classList.toggle('flipped');
+                
+                // Aktualizuj aria-expanded
+                this.setAttribute('aria-expanded', !isFlipped);
+                
+                // Zarządzanie fokusem - przenieś fokus na przycisk po drugiej stronie
+                setTimeout(() => {
+                    const targetButton = card.querySelector('.flip-card-' + (isFlipped ? 'front' : 'back') + ' .flip-button');
+                    if (targetButton) {
+                        targetButton.focus();
+                    }
+                }, 300); // Czekamy na zakończenie animacji
+            });
+        });
+
+        // Poprawka 9: Obsługa checkboxów - Enter i Spacja zgodnie z KS 2.1.1
+        const checkboxes = document.querySelectorAll('.day-checkbox');
+        const fullCoursePrice = 2390;
+        
+        function updateSelection() {
+            const selectedCheckboxes = document.querySelectorAll('.day-checkbox:checked');
+            const count = selectedCheckboxes.length;
+            let total = 0;
+            let selectedDays = [];
+
+            selectedCheckboxes.forEach(cb => {
+                selectedDays.push('Dzień ' + cb.value);
+                total += parseInt(cb.dataset.price);
+            });
+
+            // Jeśli wybrano 3 dni, zastosuj cenę pakietu
+            if (count === 3) {
+                total = fullCoursePrice;
+            }
+
+            // Aktualizuj UI
+            const selectedDaysText = count === 0 ? 'Brak wyboru' : selectedDays.join(', ');
+            document.getElementById('selectedDaysText').textContent = selectedDaysText;
+            document.getElementById('totalPrice').textContent = total + ' zł';
+        }
+
+        // Obsługa zmiany checkboxów
+        checkboxes.forEach(checkbox => {
+            // Obsługa przez natywne eventy - checkbox obsługuje Space automatycznie
+            checkbox.addEventListener('change', function(e) {
+                updateSelection();
+            });
+
+            // Zapobiegnij propagacji Enter, aby nie submitować formularza
+            checkbox.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.checked = !this.checked;
+                    this.dispatchEvent(new Event('change'));
                 }
             });
         });
 
-        // Inicjalizuj stronę
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeFlipCards();
-            initializeInstructorCards();
+        // Zapobiegnij submitowaniu formularza
+        document.getElementById('daySelectionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
         });
-        function handleCheckboxKeydown(event) {
-            if (event.key === ' ' || event.key === 'Enter') {
-                event.stopPropagation();
-                event.preventDefault();
-                const checkbox = event.target;
-                checkbox.checked = !checkbox.checked;
-                updateSelection();
-            }
-            // Tab i inne klawisze propagują normalnie
-        }
 
+        // Inicjalizacja
+        updateSelection();
     </script>
+
 </body>
 </html>
