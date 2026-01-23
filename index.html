@@ -40,6 +40,30 @@
             }
         }
 
+/* Dodaj do swojego CSS */
+.day-card {
+    /* Zmieniamy button na div, więc musimy przywrócić style kursora i braku obramowania */
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: visible;
+    outline-offset: 2px;
+}
+
+/* Kiedy strona karty jest nieaktywna (ukryta), wyłączamy jej interakcję */
+.card-side-hidden {
+    visibility: hidden;
+    transition: visibility 0s linear 0.6s; /* Opóźnienie, aby zniknęło PO animacji obrotu */
+}
+
+/* Kiedy strona jest aktywna, jest widoczna natychmiast */
+.card-side-visible {
+    visibility: visible;
+    transition: visibility 0s linear 0s;
+}
+        
         /* ✅ WCAG 2.2 AAA: ARIA alert region */
         .aria-alert-region {
             position: fixed;
@@ -1219,6 +1243,118 @@
     </footer>
 
     <script>
+
+        // ✅ WCAG 2.2 AAA: Poprawiona inicjalizacja flip-cardów dni
+function initializeFlipCards() {
+    const daysContainer = document.getElementById('daysContainer');
+    daysContainer.innerHTML = '';
+
+    daysData.forEach(day => {
+        appState.flippedCards[day.id] = false;
+
+        // UWAGA: Zmieniono <button> na <div role="button"> aby umożliwić interakcję wewnątrz
+        // Tył karty ma na start atrybut 'inert', żeby nie łapał fokusa
+        const dayCardHTML = `
+            <div class="day-card" 
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
+                    aria-label="Dzień ${day.id}: ${day.title}. Kliknij aby zobaczyć szczegóły."
+                    id="day-btn-${day.id}"
+                    onkeydown="handleDayCardKeydown(event, ${day.id})"
+                    onclick="toggleFlip(${day.id})">
+                
+                <div class="day-card-inner" id="card-${day.id}">
+                    <div class="day-card-front card-side-visible" id="front-${day.id}">
+                        <div class="day-number">${day.number}</div>
+                        <h3>${day.title}</h3>
+                        <ul>
+                            ${day.items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        <span style="margin-top:auto; color:var(--primary); font-weight:600; font-size:0.9rem">👉 Zobacz szczegóły</span>
+                    </div>
+
+                    <div class="day-card-back card-side-hidden" id="back-${day.id}" inert>
+                        <div>
+                            <h3>Szczegóły dnia</h3>
+                            <p><strong>Dzień ${day.id}:</strong></p>
+                            <p>${day.title}</p>
+                            <div class="day-price">${appState.prices[day.id]} zł</div>
+                        </div>
+                        
+                        <div onclick="stopProp(event)" onkeydown="stopProp(event)">
+                            <label class="checkbox-label" style="display:flex; align-items:center; cursor:pointer;">
+                                <input type="checkbox" 
+                                       value="${day.id}" 
+                                       class="day-checkbox" 
+                                       onchange="updateSelection()"
+                                       aria-label="Wybierz Dzień ${day.id} do zakupu">
+                                <span style="margin-left: 8px;">Wybieram ten dzień</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        daysContainer.innerHTML += dayCardHTML;
+    });
+}
+
+// ✅ Funkcja pomocnicza do zatrzymania bąbelkowania (żeby checkbox nie obracał karty)
+function stopProp(event) {
+    // Zatrzymujemy propagację, aby kliknięcie/enter na checkboxie nie dotarło do div.day-card
+    event.stopPropagation();
+}
+
+// ✅ WCAG 2.2 AAA: Obsługa Enter/Space na wrapperze karty
+function handleDayCardKeydown(event, dayId) {
+    // Reaguj tylko na Enter i Spację na samym wrapperze
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleFlip(dayId);
+    }
+}
+
+// ✅ Logika obracania z zarządzaniem atrybutem INERT
+function toggleFlip(dayId) {
+    const cardInner = document.getElementById(`card-${dayId}`);
+    const cardWrapper = document.getElementById(`day-btn-${dayId}`);
+    const front = document.getElementById(`front-${dayId}`);
+    const back = document.getElementById(`back-${dayId}`);
+    
+    // Zmieniamy stan
+    appState.flippedCards[dayId] = !appState.flippedCards[dayId];
+    const isFlipped = appState.flippedCards[dayId];
+
+    // Animacja CSS
+    cardInner.classList.toggle('flipped');
+    
+    // Aktualizacja ARIA
+    cardWrapper.setAttribute('aria-pressed', isFlipped);
+
+    if (isFlipped) {
+        // Pokaż TYŁ: Zdejmij inert z tyłu, daj inert na przód
+        back.removeAttribute('inert');
+        back.classList.remove('card-side-hidden');
+        back.classList.add('card-side-visible');
+
+        front.setAttribute('inert', '');
+        front.classList.remove('card-side-visible');
+        front.classList.add('card-side-hidden');
+        
+        // Opcjonalnie: przenieś fokus na pierwszy element interaktywny z tyłu (UX)
+        // setTimeout(() => back.querySelector('input').focus(), 100); 
+    } else {
+        // Pokaż PRZÓD: Zdejmij inert z przodu, daj inert na tył
+        front.removeAttribute('inert');
+        front.classList.remove('card-side-hidden');
+        front.classList.add('card-side-visible');
+
+        back.setAttribute('inert', '');
+        back.classList.remove('card-side-visible');
+        back.classList.add('card-side-hidden');
+    }
+}
         /* ✅ WCAG 2.2 AAA: Kompletna logika z Enter/Space support */
 
         // Stan aplikacji
