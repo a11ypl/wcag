@@ -1,3 +1,4 @@
+Kod na dzień 23.01.26 - najlepszy a11yfirst
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,7 +7,7 @@
     <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Włącz Wizję</title>
     <meta name="description" content="Praktyczny 3-dniowy warsztat online o audytach WCAG. Start 2 lutego 2026.">
     <style>
-        /* ===== ZMIENNE ===== */
+        /* ===== ZMIENNE I BAZA ===== */
         :root {
             --primary: #5F28B4;
             --accent: #fa9632;
@@ -21,7 +22,6 @@
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
-        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -31,19 +31,17 @@
             background: #fff;
         }
 
-        p { margin-bottom: 1rem; }
-
-        /* Focus Visible */
+        /* Focus Visible (WCAG) */
         *:focus-visible {
             outline: 3px solid var(--focus-color);
             outline-offset: 2px;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER & HERO ===== */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
             color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         .header-content { display: flex; justify-content: space-between; align-items: center; }
@@ -51,14 +49,13 @@
         nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; }
         nav a:focus-visible { outline: 2px solid #FFD700; border-radius: 4px; padding: 4px 8px; }
 
-        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
             color: white; padding: 6rem 2rem; text-align: center;
         }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; text-align: center; }
         
-        /* Centrowanie */
+        /* Centrowanie daty i opisów w Hero */
         .hero p, .hero .subtitle, .hero .course-dates {
             text-align: center; margin-left: auto; margin-right: auto;
         }
@@ -69,8 +66,9 @@
         .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; }
         .stat { text-align: center; }
         .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--accent); }
+        .stat-label { font-size: 0.95rem; opacity: 0.9; }
 
-        /* Buttons */
+        /* Przyciski */
         .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; font-size: 1.1rem; text-align: center; }
         .btn-primary { background: var(--accent); color: var(--text-on-accent); }
         .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
@@ -86,21 +84,38 @@
         .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
         .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
         .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--primary); }
-        .feature-card p { color: var(--gray); line-height: 1.7; }
+        .feature-card p { color: var(--gray); line-height: 1.7; margin-bottom: 0; }
 
         /* =========================================
-           FLIP CARDS - NATIVE BUTTON RESET
+           FLIP CARDS - ODZYSKANE STYLE
            ========================================= */
         
         .instructors { padding: 5rem 2rem; background: var(--light); }
-        .instructors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 900px; margin: 3rem auto 0; }
+        
+        /* Grid instruktorów: 2 kolumny, max 900px */
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
 
         .program { padding: 5rem 2rem; background: white; }
-        .days-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        
+        /* Grid program: 3 kolumny */
+        .days-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-        .instructor-flip-card { height: 400px; perspective: 1000px; position: relative; }
-        .day-card { height: 300px; perspective: 1000px; position: relative; }
+        /* Kontenery kart - SZTYWNE WYMIARY ZE ŹRÓDŁA */
+        .instructor-flip-card { height: 400px; perspective: 1000px; position: relative; background: transparent; border: none; padding: 0; outline: none; }
+        .day-card { height: 300px; perspective: 1000px; position: relative; background: transparent; border: none; padding: 0; outline: none; }
 
+        /* Wnętrze 3D */
         .instructor-flip-card-inner, .day-card-inner {
             position: relative; width: 100%; height: 100%;
             transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -108,48 +123,25 @@
         }
         .instructor-flip-card-inner.flipped, .day-card-inner.flipped { transform: rotateY(180deg); }
 
+        /* Dostępność (ukrywanie) */
         .card-side-hidden { visibility: hidden; transition: visibility 0s linear 0.6s; }
         .card-side-visible { visibility: visible; transition: visibility 0s linear 0s; }
 
-        /* ✅ RESET DLA NATYWNYCH BUTTONÓW (AWERS) */
-        button.instructor-front, button.day-card-front {
-            /* Reset domyślnych stylów przeglądarki */
-            appearance: none;
-            -webkit-appearance: none;
-            border: none;
-            background: none;
-            padding: 0;
-            margin: 0;
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-            text-align: inherit;
-            width: 100%;
-            height: 100%;
-            /* Przywrócenie stylów karty */
-            position: absolute;
-            backface-visibility: hidden;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        /* Styl dla Rewersu (musi być div, bo zawiera input) */
-        .instructor-back, .day-card-back {
+        /* Przód i Tył */
+        .instructor-front, .instructor-back, .day-card-front, .day-card-back {
             position: absolute; width: 100%; height: 100%;
             backface-visibility: hidden; border-radius: 12px;
             display: flex; flex-direction: column;
             cursor: pointer;
         }
 
-        /* Focus visible */
+        /* Focus outline wewnątrz karty */
         .instructor-front:focus-visible, .instructor-back:focus-visible,
         .day-card-front:focus-visible, .day-card-back:focus-visible {
             outline: 3px solid var(--focus-color); outline-offset: -4px; z-index: 10;
         }
 
-        /* --- INSTRUKTORZY --- */
+        /* --- STYL INSTRUKTORÓW --- */
         .instructor-front { background: white; border: 2px solid var(--gray-light); border-top: 4px solid var(--primary); overflow: hidden; }
         
         .instructor-image {
@@ -159,7 +151,7 @@
         }
         
         .instructor-info-front { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .instructor-info-front h3 { font-size: 1.4rem; color: var(--dark); margin-bottom: 0.2rem; font-weight: 700; }
+        .instructor-info-front h3 { font-size: 1.4rem; color: var(--dark); margin-bottom: 0.2rem; }
         .instructor-company { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
         .instructor-bio { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
 
@@ -179,7 +171,7 @@
         }
         .instructor-cta-link:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-        /* --- DNI --- */
+        /* --- STYL DNI --- */
         .day-card-front { background: linear-gradient(135deg, #f8f9fa 0%, white 100%); border: 2px solid var(--gray-light); border-top: 4px solid var(--primary); padding: 1.8rem; }
         .day-card-back { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; transform: rotateY(180deg); border-top: 4px solid var(--accent); padding: 1.8rem; justify-content: space-between; }
         
@@ -188,7 +180,7 @@
             background: var(--primary); color: white; width: 40px; height: 40px;
             border-radius: 50%; font-size: 1.2rem; font-weight: bold; margin-bottom: 0.8rem; flex-shrink: 0;
         }
-        .day-card-front h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--dark); line-height: 1.3; text-align: left; font-weight: 700; }
+        .day-card-front h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--dark); line-height: 1.3; text-align: left; }
         .day-card-front ul { list-style: none; padding: 0; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
         .day-card-front li { font-size: 0.9rem; color: var(--gray); line-height: 1.4; display: flex; gap: 0.5rem; text-align: left; }
         .day-card-front li::before { content: '✓'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
@@ -197,6 +189,7 @@
         .day-card-back p { font-size: 0.9rem; margin-bottom: 0.8rem; line-height: 1.4; text-align: left; }
         .day-card-back .day-price { font-size: 1.6rem; font-weight: bold; color: var(--accent); margin: 0.5rem 0; }
         
+        /* Checkbox stylizacja */
         .day-card-back label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 500; font-size: 0.95rem; text-align: left; }
         .day-checkbox { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; }
 
@@ -234,6 +227,7 @@
         }
         .faq-question:hover { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; }
         
+        /* Kontrast fokusu w FAQ */
         .faq-question:focus-visible {
             outline: 3px solid #000;
             outline-offset: -3px;
@@ -452,4 +446,132 @@
             },
             { 
                 id: 'aleksandra', name: 'Aleksandra Migus', company: 'SOFTIQ', 
-                bio: 'Specjalistka w audytach WCAG i wdrażaniu
+                bio: 'Specjalistka w audytach WCAG i wdrażaniu dostępności cyfrowej w projektach.', 
+                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg', 
+                backContent: '<div><h3>Odkryj więcej</h3><p style="margin-bottom: 1.5rem;">Sprawdź profil Aleksandry na LinkedIn</p></div><a href="https://linkedin.com/in/aleksandra-migus" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">🔗 Przejdź do LinkedIna</a>' 
+            }
+        ];
+
+        const appState = { selectedDays: [], flippedCards: {}, flippedInstructors: {}, prices: { 1: 699, 2: 699, 3: 699, fullCourse: 1499 } };
+
+        /* === INIT === */
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeFlipCards();
+            initializeInstructorCards();
+        });
+
+        /* === FLIP LOGIC (WCAG FRIENDLY) === */
+        function initializeFlipCards() {
+            document.getElementById('daysContainer').innerHTML = daysData.map(day => createCardHTML('day', day)).join('');
+        }
+
+        function initializeInstructorCards() {
+            document.getElementById('instructorsContainer').innerHTML = instructorsData.map(inst => createCardHTML('inst', inst)).join('');
+        }
+
+        function createCardHTML(type, data) {
+            const isInst = type === 'inst';
+            const id = data.id;
+            const frontContent = isInst 
+                ? `<img src="${data.image}" alt="${data.name}" class="instructor-image">
+                   <div class="instructor-info-front"><h3>${data.name}</h3><div class="instructor-company">${data.company}</div><p class="instructor-bio">${data.bio}</p></div>`
+                : `<div class="day-number">${data.number}</div><h3>${data.title}</h3><ul>${data.items.map(i=>`<li>${i}</li>`).join('')}</ul><span style="margin-top:auto;color:var(--primary);font-weight:bold;font-size:0.9rem">👉 Zobacz szczegóły</span>`;
+            
+            const backContent = isInst
+                ? `<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between"><div onclick="stopProp(event)" onkeydown="stopProp(event)">${data.backContent}</div><div style="font-size:0.8rem;opacity:0.8">(Kliknij tło aby obrócić)</div></div>`
+                : `<div><h3>Szczegóły dnia</h3><p><strong>Dzień ${data.id}:</strong></p><p>${data.title}</p><div class="day-price">${appState.prices[id]} zł</div></div>
+                   <div onclick="stopProp(event)" onkeydown="stopProp(event)"><label class="checkbox-label" style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;background:rgba(255,255,255,0.1);padding:0.5rem;border-radius:4px"><input type="checkbox" class="day-checkbox" value="${id}" onchange="updateSelection()" aria-label="Wybierz dzień ${id}"><span style="margin-left:8px;font-size:0.9rem">Wybieram ten dzień</span></label></div>
+                   <div style="font-size:0.8rem;opacity:0.8;margin-top:1rem">(Kliknij tło aby obrócić)</div>`;
+
+            const wrapperClass = isInst ? 'instructor-flip-card' : 'day-card';
+            const innerClass = isInst ? 'instructor-flip-card-inner' : 'day-card-inner';
+            const frontClass = isInst ? 'instructor-front' : 'day-card-front';
+            const backClass = isInst ? 'instructor-back' : 'day-card-back';
+
+            return `
+            <div class="${wrapperClass}" id="${type}-wrapper-${id}">
+                <div class="${innerClass}" id="${type}-inner-${id}">
+                    <div class="${frontClass} card-side-visible" id="${type}-front-${id}" role="button" tabindex="0"
+                         aria-label="${isInst ? 'Instruktor ' + data.name : 'Dzień ' + id}. Kliknij po szczegóły."
+                         onclick="flipCard('${type}', '${id}', true)" onkeydown="handleKey(event, '${type}', '${id}', true)">
+                        ${frontContent}
+                    </div>
+                    <div class="${backClass} card-side-hidden" id="${type}-back-${id}" inert role="button" tabindex="-1"
+                         aria-label="Szczegóły. Kliknij tło aby wrócić."
+                         onclick="flipCard('${type}', '${id}', false)" onkeydown="handleKey(event, '${type}', '${id}', false)">
+                        ${backContent}
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function flipCard(type, id, open) {
+            const inner = document.getElementById(`${type}-inner-${id}`);
+            const front = document.getElementById(`${type}-front-${id}`);
+            const back = document.getElementById(`${type}-back-${id}`);
+
+            if(open) {
+                inner.classList.add('flipped');
+                toggleInert(front, back);
+                setTimeout(() => back.focus(), 100);
+            } else {
+                inner.classList.remove('flipped');
+                toggleInert(back, front);
+                setTimeout(() => front.focus(), 100);
+            }
+        }
+
+        function toggleInert(hide, show) {
+            hide.setAttribute('inert', ''); hide.setAttribute('tabindex', '-1');
+            hide.classList.remove('card-side-visible'); hide.classList.add('card-side-hidden');
+            show.removeAttribute('inert'); show.setAttribute('tabindex', '0');
+            show.classList.remove('card-side-hidden'); show.classList.add('card-side-visible');
+        }
+
+        function handleKey(e, t, i, o) { if(e.key==='Enter'||e.key===' '){e.preventDefault(); flipCard(t,i,o);} }
+        function stopProp(e) { e.stopPropagation(); }
+
+        /* === PRICING === */
+        function updateSelection() {
+            appState.selectedDays = Array.from(document.querySelectorAll('.day-checkbox:checked')).map(cb => parseInt(cb.value)).sort();
+            if(appState.selectedDays.length === 3) showAlert('🎉 Wybrano 3 dni! Zniżka na pełny kurs.');
+            
+            const selectedText = appState.selectedDays.length === 3 ? "Pełny kurs (3 dni)" : (appState.selectedDays.length ? "Dzień: " + appState.selectedDays.join(', ') : "Brak wyboru");
+            const priceVal = appState.selectedDays.length === 3 ? appState.prices.fullCourse : appState.selectedDays.length * 699;
+            
+            document.getElementById('selectedDays').textContent = selectedText;
+            document.getElementById('totalPrice').textContent = priceVal + " zł";
+            document.getElementById('proceedBtn').disabled = appState.selectedDays.length === 0;
+        }
+
+        function selectAllDays() {
+            document.querySelectorAll('.day-checkbox').forEach(cb => cb.checked = true);
+            updateSelection();
+            document.querySelector('.checkout-summary').scrollIntoView({behavior:'smooth'});
+        }
+
+        function scrollToProgram() {
+            document.getElementById('program').scrollIntoView({behavior:'smooth'});
+            setTimeout(()=>document.querySelector('.day-card-front').focus(), 800);
+        }
+
+        function proceedToPayment() { showAlert(`Płatność: ${document.getElementById('totalPrice').textContent}`); }
+        
+        function showAlert(msg) {
+            const el = document.getElementById('alertRegion');
+            el.textContent = msg; el.classList.add('show');
+            setTimeout(()=>el.classList.remove('show'), 4000);
+        }
+
+        /* === FAQ === */
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', !expanded);
+                btn.nextElementSibling.classList.toggle('active');
+                btn.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
