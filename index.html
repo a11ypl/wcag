@@ -15,6 +15,7 @@
             --accent-hover: #e68a1c; 
             --text-on-accent: #000000; 
             --focus-color: #FFD700; 
+            --focus-strong: #000000; /* New variable for strong focus */
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.1); 
             --shadow-md: 0 8px 24px rgba(0,0,0,0.12); 
         }
@@ -30,7 +31,7 @@
 
         p { margin-bottom: 1rem; }
         
-        /* AAA Accessibility: Focus States */
+        /* AAA Accessibility: Global Focus States */
         *:focus-visible { 
             outline: 3px solid var(--focus-color); 
             outline-offset: 2px; 
@@ -55,6 +56,13 @@
         
         nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; }
         nav a:hover { text-decoration: underline; }
+        
+        /* RESTORED: Specific Nav Focus Style */
+        nav a:focus-visible { 
+            outline: 2px solid #FFD700; 
+            border-radius: 4px; 
+            padding: 4px 8px; 
+        }
         
         .hero { 
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
@@ -162,7 +170,8 @@
 
         /* FLIP CARDS CORE */
         .instructor-flip-card { height: 400px; perspective: 1200px; position: relative; }
-        .day-card { height: 300px; perspective: 1200px; position: relative; }
+        /* INCREASED HEIGHT to accommodate more padding */
+        .day-card { height: 340px; perspective: 1200px; position: relative; }
         
         .instructor-flip-card-inner, .day-card-inner { 
             position: relative; 
@@ -174,16 +183,34 @@
         
         .instructor-flip-card-inner.flipped, .day-card-inner.flipped { transform: rotateY(180deg); }
         
-        .card-side-hidden { visibility: hidden; pointer-events: none; }
-        .card-side-visible { visibility: visible; }
+        /* FIX: Visibility transition delay ensures card doesn't disappear during flip */
+        .card-side-hidden { 
+            visibility: hidden; 
+            pointer-events: none; 
+            transition: visibility 0s linear 0.7s; /* Wait for flip to finish */
+        }
+        .card-side-visible { 
+            visibility: visible; 
+            transition: visibility 0s linear 0s; /* Show immediately on start */
+        }
 
-        /* FLIP CARDS FACES */
+        /* FLIP CARDS FACES - RESET */
+        /* Note: This resets borders/backgrounds. 
+           Specific styles below MUST use 'button.class' to override this. */
         button.instructor-front, button.day-card-front {
             appearance: none; border: none; background: none; padding: 0; margin: 0;
             font-family: inherit; font-size: inherit; width: 100%; height: 100%;
             position: absolute; backface-visibility: hidden; border-radius: 12px; 
             display: flex; flex-direction: column; cursor: pointer;
             box-shadow: var(--shadow-sm);
+        }
+        
+        /* FOCUS STYLE */
+        button.instructor-front:focus-visible, button.day-card-front:focus-visible,
+        .instructor-back:focus-visible, .day-card-back:focus-visible {
+            outline: 4px solid var(--focus-strong); /* BLACK Focus */
+            outline-offset: 2px;
+            z-index: 20;
         }
         
         .instructor-back, .day-card-back {
@@ -193,7 +220,13 @@
         }
 
         /* INSTRUCTORS STYLE */
-        .instructor-front { background: white; border: 2px solid var(--gray-light); border-top: 5px solid var(--primary); overflow: hidden; }
+        /* FIX: Added 'button' tag to selector to override reset styles */
+        button.instructor-front { 
+            background: white; 
+            border: 3px solid var(--accent); 
+            border-top: 5px solid var(--primary); 
+            overflow: hidden; 
+        }
         .instructor-image { width: 100%; height: 60%; object-fit: cover; display: block; background: #eee; }
         .instructor-info-front { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; }
         .instructor-info-front h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 0.3rem; font-weight: 700; }
@@ -213,8 +246,15 @@
         }
 
         /* DAYS STYLE */
-        .day-card-front { background: white; border: 2px solid var(--gray-light); border-top: 5px solid var(--primary); padding: 2rem; }
-        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
+        /* FIX: Added 'button' tag to selector to override reset styles (border: none) */
+        button.day-card-front { 
+            background: white; 
+            border: 3px solid var(--accent); 
+            border-top: 5px solid var(--primary); 
+            padding: 2.5rem; 
+        }
+
+        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2.5rem; justify-content: space-between; }
         
         .day-number { 
             display: flex; align-items: center; justify-content: center; 
@@ -272,6 +312,15 @@
             cursor: pointer; color: var(--dark); font-size: 1.1rem; 
         }
         .faq-question:hover { color: var(--primary); }
+        
+        /* RESTORED: Specific FAQ Focus Style */
+        .faq-question:focus-visible {
+            outline: 3px solid #000;
+            outline-offset: -3px;
+            background-color: #f0f0f0;
+            z-index: 2;
+        }
+
         .faq-answer { padding: 0 2rem 2rem 2rem; display: none; line-height: 1.8; color: var(--gray); border-top: 1px solid var(--gray-light); padding-top: 1.5rem; }
         .faq-answer.active { display: block; }
         .faq-icon { transition: 0.3s; color: var(--accent); font-size: 0.8rem; }
@@ -326,7 +375,7 @@
             <div class="container">
                 <h1>WCAG dla specjalistów</h1>
                 <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować systemy na rzeczywistych projektach pod okiem ekspertów.</p>
-                <p class="course-dates" aria-label="Data kursu">📅 2.02.2026 - 4.02.2026 (Online Live)</p>
+                <p class="course-dates" aria-label="Data kursu">📅 4.03.2026 - 6.03.2026 | 9:00 - 17:00 (Online Live)</p>
                 
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
@@ -407,14 +456,17 @@
                             <li>Imienny certyfikat</li>
                             <li>Materiały poszkoleniowe</li>
                         </ul>
-                        <button class="btn btn-secondary btn-full-width" onclick="scrollToProgram()">Wybierz dni w programie</button>
+                        <!-- FIX: Changed from btn-secondary to btn-primary for visibility on white bg -->
+                        <button class="btn btn-primary btn-full-width" onclick="scrollToProgram()">Wybierz dni w programie</button>
                     </div>
 
                     <div class="price-card price-card--featured">
                         <span class="price-card__badge">Najlepsza wartość</span>
                         <h3>Pełny kurs (3 dni)</h3>
-                        <div class="price">1499 <span style="font-size: 1.5rem">zł</span></div>
-                        <p class="price-period">netto za całość (oszczędzasz 598 zł)</p>
+                        <!-- UPDATED PRICE: Changed from 1499 to 1599 -->
+                        <div class="price">1599 <span style="font-size: 1.5rem">zł</span></div>
+                        <!-- UPDATED SAVINGS: (3 * 699) - 1599 = 498 -->
+                        <p class="price-period">netto za całość (oszczędzasz 498 zł)</p>
                         <ul class="price-features">
                             <li>Kompletna ścieżka audytora</li>
                             <li>Wszystkie materiały i checklisty</li>
@@ -448,20 +500,48 @@
             <div class="container">
                 <h2 class="section-title">FAQ</h2>
                 <div class="faq-container" id="faqAccordion">
-                    <!-- FAQ Items -->
+                    <!-- FAQ Items Restored -->
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
-                            <span>Czy kurs jest dla osób nietechnicznych?</span>
+                            <span>Jaki jest warunek wstępny do udziału?</span>
                             <span class="faq-icon">▼</span>
                         </button>
-                        <div class="faq-answer">Wymagamy podstaw HTML i znajomości DevTools. Kurs skupia się na technicznych aspektach audytu, więc pewien poziom technicznego obycia jest niezbędny.</div>
+                        <div class="faq-answer">Wymagana jest bazowa znajomość HTML i umiejętność obsługi DevTools. Kurs jest skierowany do osób, które mają techniczne podstawy, ale chcą rozwijać umiejętności w testowaniu dostępności.</div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
-                            <span>Czy wystawiacie faktury VAT?</span>
+                            <span>Czy mogę wziąć udział tylko w jednym dniu?</span>
                             <span class="faq-icon">▼</span>
                         </button>
-                        <div class="faq-answer">Tak, za każde szkolenie wystawiamy pełną fakturę VAT 23%. Dane do faktury podasz w kolejnym kroku zamówienia.</div>
+                        <div class="faq-answer">Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 699 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Czy otrzymam materiały i certyfikat?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Tak! Każdy uczestnik otrzyma certyfikat uczestnictwa i materiały szkoleniowe. Co więcej – materiały można wykorzystać komercyjnie w Twoich projektach.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Jakie są godziny szkolenia?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Warsztat trwa 3 dni, każdy dzień obejmuje 8 godzin zegarowych (9:00 - 17:00, 32h dydaktyczne łącznie). Dokładny harmonogram otrzymasz wraz z potwierdzeniem zapisu.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Czy mogę zwrócić pieniądze?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Szczegółowe warunki zwrotu i politykę rezygnacji otrzymasz przy zarejestrowaniu. W przypadku pytań prosimy o kontakt z zespołem organizacyjnym.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Ile uczestników może wziąć udział?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Limit wynosi 12 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.</div>
                     </div>
                 </div>
             </div>
@@ -503,7 +583,8 @@
             }
         ];
 
-        const state = { selectedDays: [], prices: { single: 699, full: 1499 } };
+        // UPDATED PRICE IN STATE: full: 1599
+        const state = { selectedDays: [], prices: { single: 699, full: 1599 } };
 
         function renderCards() {
             document.getElementById('daysContainer').innerHTML = daysData.map(d => createFlipCard('day', d)).join('');
