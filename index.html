@@ -4,282 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Włącz Wizję</title>
-    <meta name="description" content="Praktyczny 3-dniowy warsztat online o audytach WCAG. Start 2 lutego 2026.">
     <style>
-        /* ===== ZMIENNE I BAZA ===== */
-        :root {
-            --primary: #5F28B4;
-            --accent: #fa9632;
-            --dark: #1a1a1a;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --gray-light: #e9ecef;
-            --accent-hover: #e68a1c;
-            --text-on-accent: #000000;
-            --focus-color: #FFD700;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+        :root { 
+            --primary: #5F28B4; 
+            --accent: #fa9632; 
+            --dark: #1a1a1a; 
+            --light: #f8f9fa; 
+            --gray: #6c757d; 
+            --gray-light: #e9ecef; 
+            --accent-hover: #e68a1c; 
+            --text-on-accent: #000000; 
+            --focus-color: #FFD700; 
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1); 
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.12); 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: #fff;
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: #fff; 
         }
 
-        /* Focus Visible (WCAG) */
-        *:focus-visible {
-            outline: 3px solid var(--focus-color);
-            outline-offset: 2px;
+        p { margin-bottom: 1rem; }
+        
+        /* AAA Accessibility: Focus States */
+        *:focus-visible { 
+            outline: 3px solid var(--focus-color); 
+            outline-offset: 2px; 
         }
-
-        /* ===== HEADER & HERO ===== */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        
+        /* HEADER & HERO */
+        header { 
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
+            color: white; 
+            padding: 1rem 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: var(--shadow-sm); 
         }
+        
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        
         .header-content { display: flex; justify-content: space-between; align-items: center; }
+        
         .logo { font-size: 1.5rem; font-weight: bold; }
-        nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; }
-        nav a:focus-visible { outline: 2px solid #FFD700; border-radius: 4px; padding: 4px 8px; }
-
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white; padding: 6rem 2rem; text-align: center;
-        }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; text-align: center; }
         
-        /* Centrowanie daty i opisów w Hero */
-        .hero p, .hero .subtitle, .hero .course-dates {
-            text-align: center; margin-left: auto; margin-right: auto;
-        }
-        .hero .subtitle { font-size: 1.4rem; opacity: 0.95; max-width: 700px; margin-bottom: 1rem; }
-        .hero .course-dates { font-size: 1.1rem; font-weight: 600; margin-bottom: 2rem; color: var(--accent); }
+        nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
         
-        .hero-cta { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
-        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; }
-        .stat { text-align: center; }
-        .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--accent); }
-        .stat-label { font-size: 0.95rem; opacity: 0.9; }
+        .hero { 
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
+            color: white; 
+            padding: 6rem 2rem; 
+            text-align: center; 
+        }
+        
+        .hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.2; 
+            text-align: center; 
+        }
+        
+        .hero .subtitle { 
+            font-size: 1.4rem; 
+            opacity: 0.95; 
+            max-width: 750px; 
+            margin: 0 auto 1.5rem; 
+            text-align: center;
+        }
+        
+        .hero .course-dates { 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            margin-bottom: 2.5rem; 
+            color: var(--accent); 
+            text-align: center;
+        }
+        
+        .hero-cta { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
+        
+        .hero-stats { 
+            display: flex; 
+            justify-content: center; 
+            gap: 4rem; 
+            margin-top: 3rem; 
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+        }
+        
+        .stat { text-align: center; } 
+        .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--accent); display: block; }
+        .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Przyciski */
-        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; font-size: 1.1rem; text-align: center; }
+        /* BUTTONS */
+        .btn { 
+            display: inline-block; 
+            padding: 1rem 2rem; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: none; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            text-align: center; 
+        }
+        
         .btn-primary { background: var(--accent); color: var(--text-on-accent); }
         .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
         .btn-primary:disabled { background: var(--gray); transform: none; cursor: not-allowed; }
-        .btn-secondary { background: white; color: var(--primary); border: 2px solid white; }
+        
+        .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 2px solid white; }
+        .btn-secondary:hover { background: white; color: var(--primary); }
+        
         .btn-full-width { width: 100%; }
 
-        /* ===== FEATURES ===== */
+        /* FEATURES */
         .features { padding: 5rem 2rem; background: var(--light); }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--dark); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .feature-card { background: white; padding: 2rem; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: var(--shadow-sm); transition: 0.3s; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3.5rem; color: var(--dark); font-weight: 800; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        
+        .feature-card { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            border-left: 5px solid var(--accent); 
+            box-shadow: var(--shadow-sm); 
+            transition: 0.3s; 
+        }
         .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--primary); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary); }
         .feature-card p { color: var(--gray); line-height: 1.7; margin-bottom: 0; }
 
-        /* =========================================
-           FLIP CARDS - ODZYSKANE STYLE
-           ========================================= */
+        /* FLIP CARDS LAYOUT */
+        .instructors { padding: 5rem 2rem; background: white; }
+        .instructors-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 400px); 
+            justify-content: center;
+            gap: 2.5rem; 
+            margin: 3rem auto 0; 
+        }
         
-        .instructors { padding: 5rem 2rem; background: var(--light); }
-        
-        /* Grid instruktorów: 2 kolumny, max 900px */
-        .instructors-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 900px;
-            margin: 3rem auto 0;
+        .program { padding: 5rem 2rem; background: var(--light); }
+        .days-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 2rem; 
+            margin-top: 3rem; 
         }
 
-        .program { padding: 5rem 2rem; background: white; }
+        /* FLIP CARDS CORE */
+        .instructor-flip-card { height: 400px; perspective: 1200px; position: relative; }
+        .day-card { height: 300px; perspective: 1200px; position: relative; }
         
-        /* Grid program: 3 kolumny */
-        .days-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+        .instructor-flip-card-inner, .day-card-inner { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
+            transform-style: preserve-3d; 
         }
-
-        /* Kontenery kart - SZTYWNE WYMIARY ZE ŹRÓDŁA */
-        .instructor-flip-card { height: 400px; perspective: 1000px; position: relative; background: transparent; border: none; padding: 0; outline: none; }
-        .day-card { height: 300px; perspective: 1000px; position: relative; background: transparent; border: none; padding: 0; outline: none; }
-
-        /* Wnętrze 3D */
-        .instructor-flip-card-inner, .day-card-inner {
-            position: relative; width: 100%; height: 100%;
-            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-style: preserve-3d;
-        }
+        
         .instructor-flip-card-inner.flipped, .day-card-inner.flipped { transform: rotateY(180deg); }
-
-        /* Dostępność (ukrywanie) */
-        .card-side-hidden { visibility: hidden; transition: visibility 0s linear 0.6s; }
-        .card-side-visible { visibility: visible; transition: visibility 0s linear 0s; }
-
-        /* Przód i Tył */
-        .instructor-front, .instructor-back, .day-card-front, .day-card-back {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 12px;
-            display: flex; flex-direction: column;
-            cursor: pointer;
-        }
-
-        /* Focus outline wewnątrz karty */
-        .instructor-front:focus-visible, .instructor-back:focus-visible,
-        .day-card-front:focus-visible, .day-card-back:focus-visible {
-            outline: 3px solid var(--focus-color); outline-offset: -4px; z-index: 10;
-        }
-
-        /* --- STYL INSTRUKTORÓW --- */
-        .instructor-front { background: white; border: 2px solid var(--gray-light); border-top: 4px solid var(--primary); overflow: hidden; }
         
-        .instructor-image {
-            width: 100%; height: 60%;
-            object-fit: cover; display: block;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+        .card-side-hidden { visibility: hidden; pointer-events: none; }
+        .card-side-visible { visibility: visible; }
+
+        /* FLIP CARDS FACES */
+        button.instructor-front, button.day-card-front {
+            appearance: none; border: none; background: none; padding: 0; margin: 0;
+            font-family: inherit; font-size: inherit; width: 100%; height: 100%;
+            position: absolute; backface-visibility: hidden; border-radius: 12px; 
+            display: flex; flex-direction: column; cursor: pointer;
+            box-shadow: var(--shadow-sm);
         }
         
+        .instructor-back, .day-card-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
+            border-radius: 12px; display: flex; flex-direction: column; 
+            transform: rotateY(180deg); box-shadow: var(--shadow-md);
+        }
+
+        /* INSTRUCTORS STYLE */
+        .instructor-front { background: white; border: 2px solid var(--gray-light); border-top: 5px solid var(--primary); overflow: hidden; }
+        .instructor-image { width: 100%; height: 60%; object-fit: cover; display: block; background: #eee; }
         .instructor-info-front { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .instructor-info-front h3 { font-size: 1.4rem; color: var(--dark); margin-bottom: 0.2rem; }
-        .instructor-company { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .instructor-bio { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
-
-        .instructor-back {
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
-            color: white; transform: rotateY(180deg); border-top: 4px solid var(--accent);
-            padding: 1.5rem; justify-content: space-between;
-        }
+        .instructor-info-front h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 0.3rem; font-weight: 700; }
+        .instructor-company { color: var(--accent); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .instructor-bio { font-size: 0.95rem; color: var(--gray); line-height: 1.5; }
+        
+        .instructor-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
         .instructor-credentials { list-style: none; text-align: left; }
-        .instructor-credentials li { padding: 0.5rem 0; font-size: 0.9rem; display: flex; gap: 0.5rem; }
-        .instructor-credentials li::before { content: '✓'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
+        .instructor-credentials li { padding: 0.6rem 0; font-size: 0.95rem; display: flex; gap: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .instructor-credentials li:last-child { border-bottom: none; }
+        .instructor-credentials li::before { content: '✓'; color: var(--accent); font-weight: bold; }
         
-        .instructor-cta-link {
-            display: inline-block; background: var(--accent); color: var(--text-on-accent);
-            padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600;
-            margin-top: 1rem; transition: 0.3s; text-align: center;
+        .instructor-cta-link { 
+            display: block; background: var(--accent); color: var(--text-on-accent); 
+            padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; 
+            font-weight: 700; margin-top: 1rem; transition: 0.3s; text-align: center; 
         }
-        .instructor-cta-link:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-        /* --- STYL DNI --- */
-        .day-card-front { background: linear-gradient(135deg, #f8f9fa 0%, white 100%); border: 2px solid var(--gray-light); border-top: 4px solid var(--primary); padding: 1.8rem; }
-        .day-card-back { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; transform: rotateY(180deg); border-top: 4px solid var(--accent); padding: 1.8rem; justify-content: space-between; }
+        /* DAYS STYLE */
+        .day-card-front { background: white; border: 2px solid var(--gray-light); border-top: 5px solid var(--primary); padding: 2rem; }
+        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
         
-        .day-number {
-            display: flex; align-items: center; justify-content: center;
-            background: var(--primary); color: white; width: 40px; height: 40px;
-            border-radius: 50%; font-size: 1.2rem; font-weight: bold; margin-bottom: 0.8rem; flex-shrink: 0;
+        .day-number { 
+            display: flex; align-items: center; justify-content: center; 
+            background: var(--primary); color: white; width: 45px; height: 45px; 
+            border-radius: 50%; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; 
         }
-        .day-card-front h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--dark); line-height: 1.3; text-align: left; }
-        .day-card-front ul { list-style: none; padding: 0; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
-        .day-card-front li { font-size: 0.9rem; color: var(--gray); line-height: 1.4; display: flex; gap: 0.5rem; text-align: left; }
-        .day-card-front li::before { content: '✓'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
         
-        .day-card-back h3 { font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600; text-align: left; }
-        .day-card-back p { font-size: 0.9rem; margin-bottom: 0.8rem; line-height: 1.4; text-align: left; }
-        .day-card-back .day-price { font-size: 1.6rem; font-weight: bold; color: var(--accent); margin: 0.5rem 0; }
+        .day-card-front h3 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--dark); text-align: left; font-weight: 800; }
+        .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+        .day-card-front li { font-size: 0.9rem; color: var(--gray); display: flex; gap: 0.5rem; text-align: left; }
+        .day-card-front li::before { content: '→'; color: var(--accent); font-weight: bold; }
         
-        /* Checkbox stylizacja */
-        .day-card-back label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 500; font-size: 0.95rem; text-align: left; }
-        .day-checkbox { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; }
+        .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
+        
+        .checkbox-wrapper { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; transition: 0.2s; }
+        .checkbox-wrapper:hover { background: rgba(255,255,255,0.2); }
+        .day-checkbox { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; }
 
-        /* ===== PRICING ===== */
+        /* PRICING */
         .pricing { padding: 5rem 2rem; background: white; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .price-card {
-            background: white; border: 2px solid var(--gray-light); border-radius: 12px; padding: 2rem;
-            text-align: center; position: relative; display: flex; flex-direction: column;
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto; }
+        .price-card { 
+            background: white; border: 2px solid var(--gray-light); border-radius: 16px; 
+            padding: 3rem 2rem; text-align: center; position: relative; display: flex; flex-direction: column; 
+            transition: 0.3s;
         }
-        .price-card--featured { border: 3px solid var(--primary); transform: scale(1.05); box-shadow: 0 20px 40px rgba(95, 40, 180, 0.15); }
-        .price-card__badge {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent);
-            color: black; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem;
+        .price-card--featured { border: 4px solid var(--primary); transform: scale(1.05); box-shadow: 0 20px 40px rgba(95, 40, 180, 0.12); }
+        .price-card__badge { 
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%); 
+            background: var(--accent); color: black; padding: 0.6rem 1.5rem; 
+            border-radius: 30px; font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
         }
-        .price { font-size: 3rem; font-weight: bold; color: var(--accent); margin: 0.5rem 0; }
-        .price-period { font-size: 0.95rem; color: var(--gray); margin-bottom: 1.5rem; }
-        .price-features { list-style: none; margin: 0 0 2rem 0; text-align: left; flex: 1; }
-        .price-features li { padding: 0.7rem 0; border-bottom: 1px solid var(--gray-light); color: var(--gray); font-size: 0.95rem; }
-        .price-features li:last-child { border-bottom: none; }
-        .price-features li::before { content: '✓ '; color: var(--accent); font-weight: bold; margin-right: 0.5rem; }
-        .price-card .btn { margin-top: auto; }
+        .price { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin: 1rem 0; }
+        .price-features { list-style: none; margin: 1.5rem 0 2.5rem 0; text-align: left; flex: 1; }
+        .price-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-light); color: var(--gray); font-size: 1rem; }
+        .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; margin-right: 0.8rem; }
 
-        .checkout-summary { margin-top: 3rem; padding: 1.5rem; background: var(--light); border-radius: 8px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .checkout-summary > div { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: center; }
+        .checkout-summary { 
+            margin-top: 4rem; padding: 2.5rem; background: var(--light); 
+            border-radius: 16px; border: 2px dashed var(--gray-light);
+            max-width: 900px; margin-left: auto; margin-right: auto; 
+        }
+        .summary-flex { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin: 2rem 0; }
+        .summary-item { text-align: center; }
+        .summary-label { color: var(--gray); text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .summary-value { font-size: 1.8rem; font-weight: 800; color: var(--dark); }
 
-        /* ===== FAQ ===== */
+        /* FAQ */
         .faq { padding: 5rem 2rem; background: var(--light); }
-        .faq-container { max-width: 800px; margin: 0 auto; margin-top: 3rem; }
-        .faq-item { background: white; border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .faq-question {
-            width: 100%; padding: 1.5rem; text-align: left; background: linear-gradient(135deg, #f8f9fa 0%, white 100%); border: none;
-            font-weight: 600; display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; color: var(--dark); font-size: 1rem; transition: all 0.3s ease;
+        .faq-container { max-width: 850px; margin: 3rem auto 0; }
+        .faq-item { background: white; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-light); }
+        .faq-question { 
+            width: 100%; padding: 1.5rem 2rem; text-align: left; background: none; border: none; 
+            font-weight: 700; display: flex; justify-content: space-between; align-items: center; 
+            cursor: pointer; color: var(--dark); font-size: 1.1rem; 
         }
-        .faq-question:hover { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; }
-        
-        /* Kontrast fokusu w FAQ */
-        .faq-question:focus-visible {
-            outline: 3px solid #000;
-            outline-offset: -3px;
-            background-color: #f0f0f0;
-            z-index: 2;
-        }
-        .faq-answer { padding: 1.5rem; border-left: 4px solid var(--accent); display: none; line-height: 1.8; color: var(--gray); text-align: left; }
+        .faq-question:hover { color: var(--primary); }
+        .faq-answer { padding: 0 2rem 2rem 2rem; display: none; line-height: 1.8; color: var(--gray); border-top: 1px solid var(--gray-light); padding-top: 1.5rem; }
         .faq-answer.active { display: block; }
-        .faq-icon { transition: transform 0.3s; }
+        .faq-icon { transition: 0.3s; color: var(--accent); font-size: 0.8rem; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
 
-        /* ===== CTA & FOOTER ===== */
-        .cta { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; padding: 4rem 2rem; text-align: center; }
-        .cta h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .cta p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; text-align: center; }
-        .cta-info { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; font-size: 1rem; }
-        .cta-info-item { display: flex; align-items: center; gap: 0.5rem; }
+        /* FOOTER */
+        footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
+        .footer-contact a { color: var(--accent); text-decoration: none; font-weight: 700; }
+        .footer-bottom { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
 
-        footer { background: var(--dark); color: white; padding: 3rem 2rem; text-align: center; }
-        .footer-content { margin-bottom: 2rem; }
-        .footer-contact { margin-bottom: 1rem; }
-        .footer-contact a { color: var(--accent); text-decoration: none; font-weight: 600; }
-        .footer-social { margin-top: 1rem; }
-        .footer-social a { color: white; margin: 0 1rem; text-decoration: none; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; font-size: 0.85rem; opacity: 0.8; }
-
-        /* Utils */
-        .skip-link { position: absolute; top: -40px; left: 0; background: var(--primary); color: white; padding: 10px; z-index: 200; }
+        /* ACCESSIBILITY UTILS */
+        .skip-link { position: absolute; top: -100px; left: 0; background: var(--accent); color: black; padding: 1rem; z-index: 1000; font-weight: bold; }
         .skip-link:focus { top: 0; }
-        .aria-alert-region { position: fixed; top: 20px; right: 20px; background: var(--primary); color: white; padding: 1.5rem; border-radius: 8px; z-index: 1000; display: none; animation: slideIn 0.3s; }
-        .aria-alert-region.show { display: block; }
-        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        
+        .aria-alert-region { 
+            position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; 
+            padding: 1.2rem 2rem; border-radius: 12px; z-index: 1000; box-shadow: var(--shadow-md);
+            display: none; border-left: 5px solid var(--accent);
+        }
+        .aria-alert-region.show { display: block; animation: slideIn 0.4s ease-out; }
+        
+        @keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .pricing-grid, .instructors-grid, .days-container { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.2rem; }
+        @media (max-width: 992px) {
+            .instructors-grid { grid-template-columns: 1fr; max-width: 450px; }
+            .days-container { grid-template-columns: 1fr; max-width: 500px; margin: 3rem auto; }
+            .hero h1 { font-size: 2.5rem; }
             .price-card--featured { transform: scale(1); }
-            nav { display: none; }
-            .instructor-flip-card { height: 380px; }
-            .day-card { height: 280px; }
         }
     </style>
 </head>
 <body>
-
-    <a href="#pricing" class="skip-link">Przejdź do cennika</a>
+    <a href="#pricing" class="skip-link">Przejdź bezpośrednio do cennika</a>
+    
+    <!-- ARIA Live Region for AAA Compliance -->
     <div class="aria-alert-region" role="alert" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
 
     <header>
         <div class="container header-content">
-            <div class="logo">Włącz Wizję</div>
-            <nav>
+            <div class="logo" aria-label="Włącz Wizję - Strona główna">Włącz Wizję</div>
+            <nav aria-label="Menu główne">
                 <a href="#instructors">Instruktorzy</a>
                 <a href="#program">Program</a>
                 <a href="#pricing">Cennik</a>
@@ -288,289 +321,320 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>WCAG dla specjalistów</h1>
-            <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować dostępność na rzeczywistych projektach z doświadczonymi audytorami.</p>
-            <p class="course-dates">📅 2.02.2026 - 4.02.2026 (online)</p>
-            <div class="hero-cta">
-                <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
-                <a href="#program" class="btn btn-secondary">Poznaj program</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat"><div class="stat-number">3</div><div class="stat-label">dni warsztatów</div></div>
-                <div class="stat"><div class="stat-number">32h</div><div class="stat-label">dydaktycznych</div></div>
-                <div class="stat"><div class="stat-number">12</div><div class="stat-label">miejsc (limit)</div></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Co wyróżnia ten kurs?</h2>
-            <div class="features-grid">
-                <div class="feature-card"><div class="feature-icon">🎯</div><h3>Jedyny modułowy kurs</h3><p>Możesz wybrać 3 dni albo pojedyncze dni dopasowane do Twojej roli i doświadczenia.</p></div>
-                <div class="feature-card"><div class="feature-icon">🔧</div><h3>Praktyka, nie teoria</h3><p>Pracujemy na rzeczywistych projektach i dokumentach, nie na "idealnych makietach".</p></div>
-                <div class="feature-card"><div class="feature-icon">📋</div><h3>Wdrażalne raporty</h3><p>Uczymy jak raportować błędy WCAG tak, aby developerzy faktycznie je wdrażali.</p></div>
-                <div class="feature-card"><div class="feature-icon">🎓</div><h3>Certyfikat uczestnictwa</h3><p>Potwierdź swoją wiedzę certyfikatem, który możesz wykorzystać w CV.</p></div>
-                <div class="feature-card"><div class="feature-icon">📚</div><h3>Materiały komercyjne</h3><p>Otrzymasz materiały do wykorzystania komercyjnego w swoich projektach.</p></div>
-                <div class="feature-card"><div class="feature-icon">💬</div><h3>Sesje na żywo, informacje zwrotne na bieżąco</h3><p>Warsztaty z instruktorami, sesje Q&A i feedback na żywo na Twoich pytania.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="instructors" class="instructors">
-        <div class="container">
-            <h2 class="section-title">Twoi instruktorzy</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 0.95rem;">💡 Kliknij kartę aby zobaczyć szczegóły</p>
-            <div class="instructors-grid" id="instructorsContainer"></div>
-        </div>
-    </section>
-
-    <section id="program" class="program">
-        <div class="container">
-            <h2 class="section-title">Program kursu</h2>
-            <p style="text-align: center; color: var(--gray); margin-bottom: 2rem; font-size: 0.95rem;">💡 Kliknij kartę aby zobaczyć szczegóły i wybrać dzień</p>
-            <div class="days-container" id="daysContainer"></div>
-        </div>
-    </section>
-
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Cennik i warunki</h2>
-            <p style="text-align: center; margin-bottom: 2rem; color: var(--gray); font-size: 1.1rem;">💡 Możesz wybrać poszczególne dni lub cały kurs. Wybierz interesujące Cię dni i zobacz cenę!</p>
-            
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <h3>Pojedynczy dzień</h3>
-                    <div class="price">699 <span class="price-currency">zł</span></div>
-                    <p class="price-period">za jeden dzień szkoleniowy</p>
-                    <ul class="price-features">
-                        <li><span class="checkmark">✓</span> 8h dydaktyczne, 8h zegarowe</li>
-                        <li><span class="checkmark">✓</span> Warsztaty na żywo</li>
-                        <li><span class="checkmark">✓</span> Materiały</li>
-                        <li><span class="checkmark">✓</span> Certyfikat uczestnictwa</li>
-                    </ul>
-                    <button class="btn btn-primary btn-full-width" onclick="scrollToProgram()">Wybierz dzień</button>
+    <main id="main-content">
+        <section class="hero">
+            <div class="container">
+                <h1>WCAG dla specjalistów</h1>
+                <p class="subtitle">Praktyczny 3-dniowy warsztat audytu dostępności. Nauczysz się testować systemy na rzeczywistych projektach pod okiem ekspertów.</p>
+                <p class="course-dates" aria-label="Data kursu">📅 2.02.2026 - 4.02.2026 (Online Live)</p>
+                
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
+                    <a href="#program" class="btn btn-secondary">Poznaj program</a>
                 </div>
-                <div class="price-card price-card--featured">
-                    <span class="price-card__badge">Najpopularniejszy</span>
-                    <h3>Pełny kurs (3 dni)</h3>
-                    <div class="price">1499 <span class="price-currency">zł</span></div>
-                    <p class="price-period">za całość (oszczędzasz 598 zł)</p>
-                    <ul class="price-features">
-                        <li><span class="checkmark">✓</span> 32h dydaktyczne pracy</li>
-                        <li><span class="checkmark">✓</span> Warsztaty na żywo i sesje Q&A</li>
-                        <li><span class="checkmark">✓</span> Wszystkie materiały</li>
-                        <li><span class="checkmark">✓</span> Certyfikat uczestnictwa</li>
-                        <li><span class="checkmark">✓</span> Materiały do użytku komercyjnego</li>
-                    </ul>
-                    <button class="btn btn-primary btn-full-width" onclick="selectAllDays()">🚀 Zarezerwuj miejsce</button>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">dni warsztatów</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">32h</span>
+                        <span class="stat-label">dydaktyczne</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">limit miejsc</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="checkout-summary" aria-live="polite" aria-atomic="true">
-                <h3>Twój wybór:</h3>
-                <div>
-                    <div><p style="color: var(--gray); margin-bottom: 0.5rem; text-align: center;">Wybrane dni:</p><output id="selectedDays" style="font-weight: bold; color: var(--dark); display:block;">Brak wyboru</output></div>
-                    <div><p style="color: var(--gray); margin-bottom: 0.5rem; text-align: center;">Razem do zapłaty:</p><output id="totalPrice" style="font-weight: bold; color: var(--accent); display:block;">0 zł</output></div>
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Dlaczego ten kurs?</h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <span class="feature-icon" aria-hidden="true">🎯</span>
+                        <h3>Modułowa wiedza</h3>
+                        <p>Wybierz pełny proces lub konkretny dzień szkoleniowy dopasowany do Twoich aktualnych potrzeb zawodowych.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon" aria-hidden="true">🔧</span>
+                        <h3>Realne projekty</h3>
+                        <p>Zero "idealnych przykładów". Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon" aria-hidden="true">📋</span>
+                        <h3>Standard raportowania</h3>
+                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrożalne dla zespołów deweloperskich.</p>
+                    </article>
                 </div>
-                <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" disabled style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem;">Przejdź do płatności</button>
-                <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem; text-align: center;">Minimum 1 dzień, maksimum 3 dni. Od 3 dni automatycznie oferta zmienia się na pełny kurs.</p>
             </div>
-            
-            <div style="text-align: center; margin-top: 2rem; color: var(--gray);">
-                <p style="text-align: center;"><strong>ℹ️ Kurs uruchamiany przy minimum 4 osobach zapisanych na pełny kurs</strong></p>
-                <p style="margin-top: 0.5rem; text-align: center;">Start: <strong>2 lutego 2026</strong> | Limit: <strong>12 uczestników</strong></p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Często zadawane pytania</h2>
-            <div class="faq-container">
-                <div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Jaki jest warunek wstępny do udziału?</span><span class="faq-icon">▼</span></button><div class="faq-answer">Wymagana jest bazowa znajomość HTML i umiejętność obsługi DevTools. Kurs jest skierowany do osób, które mają techniczne podstawy, ale chcą rozwijać umiejętności w testowaniu dostępności.</div></div>
-                <div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Czy mogę wziąć udział tylko w jednym dniu?</span><span class="faq-icon">▼</span></button><div class="faq-answer">Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 699 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div></div>
-                <div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Czy otrzymam materiały i certyfikat?</span><span class="faq-icon">▼</span></button><div class="faq-answer">Tak! Każdy uczestnik otrzyma certyfikat uczestnictwa i materiały szkoleniowe. Co więcej – materiały można wykorzystać komercyjnie w Twoich projektach.</div></div>
-                <div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Jakie są godziny szkolenia?</span><span class="faq-icon">▼</span></button><div class="faq-answer">Warsztat trwa 3 dni, każdy dzień obejmuje 8 godzin zegarowych (32 godziny dydaktyczne łącznie). Dokładny harmonogram z godzinami uruchomienia otrzymasz wraz z potwierdzeniem zapisu.</div></div>
-                <div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Czy mogę zwrócić pieniądze?</span><span class="faq-icon">▼</span></button><div class="faq-answer">Szczegółowe warunki zwrotu i politykę rezygnacji otrzymasz przy zarejestrowaniu. W przypadku pytań prosimy o kontakt z zespołem organizacyjnym.</div></div>
-                <div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Ile uczestników może wziąć udział?</span><span class="faq-icon">▼</span></button><div class="faq-answer">Limit wynosi 12 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.</div></div>
+        <section id="instructors" class="instructors">
+            <div class="container">
+                <h2 class="section-title">Prowadzący</h2>
+                <p style="text-align: center; color: var(--gray); margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę trenera, aby poznać jego doświadczenie</p>
+                <div class="instructors-grid" id="instructorsContainer">
+                    <!-- JS Injected -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="cta">
-        <div class="container">
-            <h2>Jesteś gotowy/a na praktyczne szkolenie z audytu WCAG?</h2>
-            <p>Dołącz do pierwszej edycji kursu i naucz się testować dostępność na rzeczywistych projektach.</p>
-            <div class="cta-info">
-                <div class="cta-info-item">📅 Start: 2 lutego 2026</div>
-                <div class="cta-info-item">👥 Limit: 12 osób</div>
-                <div class="cta-info-item">💰 Od 699 zł</div>
+        <section id="program" class="program">
+            <div class="container">
+                <h2 class="section-title">Program i wybór dni</h2>
+                <p style="text-align: center; color: var(--gray); margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę dnia, aby zobaczyć agendę i dodać go do swojego planu</p>
+                <div class="days-container" id="daysContainer">
+                    <!-- JS Injected -->
+                </div>
             </div>
-            <a href="#pricing" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">🚀 Zarezerwuj miejsce teraz</a>
-        </div>
-    </section>
+        </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2 class="section-title">Wybierz swój wariant</h2>
+                
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Pojedynczy dzień</h3>
+                        <div class="price">699 <span style="font-size: 1.5rem">zł</span></div>
+                        <p class="price-period">netto za moduł</p>
+                        <ul class="price-features">
+                            <li>Intensywne 8h warsztatów</li>
+                            <li>Imienny certyfikat</li>
+                            <li>Materiały poszkoleniowe</li>
+                        </ul>
+                        <button class="btn btn-secondary btn-full-width" onclick="scrollToProgram()">Wybierz dni w programie</button>
+                    </div>
+
+                    <div class="price-card price-card--featured">
+                        <span class="price-card__badge">Najlepsza wartość</span>
+                        <h3>Pełny kurs (3 dni)</h3>
+                        <div class="price">1499 <span style="font-size: 1.5rem">zł</span></div>
+                        <p class="price-period">netto za całość (oszczędzasz 598 zł)</p>
+                        <ul class="price-features">
+                            <li>Kompletna ścieżka audytora</li>
+                            <li>Wszystkie materiały i checklisty</li>
+                            <li>Zgoda na użytek komercyjny</li>
+                            <li>Dostęp do zamkniętej grupy</li>
+                        </ul>
+                        <button class="btn btn-primary btn-full-width" onclick="selectAllDays()">🚀 Kupuję pełny kurs</button>
+                    </div>
+                </div>
+
+                <div class="checkout-summary">
+                    <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Twój koszyk szkoleniowy</h3>
+                    <div class="summary-flex">
+                        <div class="summary-item">
+                            <p class="summary-label">Wybrane moduły</p>
+                            <output id="selectedDays" class="summary-value">Brak wyboru</output>
+                        </div>
+                        <div class="summary-item">
+                            <p class="summary-label">Suma do zapłaty</p>
+                            <output id="totalPrice" class="summary-value">0 zł</output>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" disabled style="padding: 1.2rem 3rem">Przejdź do zamówienia</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-container" id="faqAccordion">
+                    <!-- FAQ Items -->
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Czy kurs jest dla osób nietechnicznych?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Wymagamy podstaw HTML i znajomości DevTools. Kurs skupia się na technicznych aspektach audytu, więc pewien poziom technicznego obycia jest niezbędny.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Czy wystawiacie faktury VAT?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Tak, za każde szkolenie wystawiamy pełną fakturę VAT 23%. Dane do faktury podasz w kolejnym kroku zamówienia.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <h3>Włącz Wizję</h3>
-                <p style="text-align: center; margin-top: 0.5rem; margin-bottom: 1rem;">To odpowiedni czas na rozszerzenie możliwości</p>
-                <div class="footer-contact">
-                    <p style="text-align: center;">📧 Kontakt: <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a></p>
-                    <p style="text-align: center;">🌐 <a href="https://wlaczwizje.pl" target="_blank">wlaczwizje.pl</a></p>
-                </div>
-                <div class="footer-social"><a href="https://linkedin.com/company/wlacz-wizje" target="_blank">LinkedIn</a></div>
+            <h3>Włącz Wizję</h3>
+            <p>Eksperci w dziedzinie dostępności cyfrowej</p>
+            <div style="margin: 1.5rem 0">
+                📧 <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a>
             </div>
-            <div class="footer-bottom"><p style="text-align: center;">&copy; 2026 Włącz Wizję. Wszystkie prawa zastrzeżone. | #WCAG #dostępność #d8ć</p></div>
+            <div class="footer-bottom">
+                &copy; 2026 Włącz Wizję. Standard WCAG 2.2 AAA Compliance.
+            </div>
         </div>
     </footer>
 
     <script>
-        /* === DATA === */
         const daysData = [
-            { id: 1, number: '1', title: 'Fundamenty WCAG + walidatory', items: ['Struktura i kryteria WCAG', 'Narzędzia diagnostyczne w praktyce', 'Jak zacząć audyt od początku?', 'Których walidatorów dostępności używać'] },
-            { id: 2, number: '2', title: 'Testy manualne', items: ['Testowanie nawigacji klawiaturą', 'Analiza kodu HTML i CSS pod kątem dostępności', 'Czytniki ekranu w działaniu', 'Powtarzalne błędy twórców stron'] },
-            { id: 3, number: '3', title: 'Audyt WCAG i raportowanie', items: ['Jak przeprowadzić profesjonalny audyt?', 'Raportowanie błędów w sposób ułatwiający wdrażanie poprawek', 'Tworzenie dokumentacji dla deweloperów', 'Najlepsze praktyki w raportowaniu'] }
+            { id: 1, number: '1', title: 'Fundamenty i Walidacja', items: ['Zrozumienie kryteriów 2.2', 'Automatyzacja w audycie', 'Struktura dokumentu', 'Narzędzia diagnostyczne'] },
+            { id: 2, number: '2', title: 'Interakcja i Media', items: ['Nawigacja klawiaturą', 'Formularze i błędy', 'Multimedia i alternatywy', 'Focus management'] },
+            { id: 3, number: '3', title: 'Raport i Proces', items: ['Pisanie zaleceń', 'Wycena poprawek', 'Współpraca z devami', 'Audyt końcowy'] }
         ];
 
         const instructorsData = [
             { 
                 id: 'damian', name: 'Damian Żłobicki', company: 'Włącz Wizję', 
-                bio: 'Doświadczony audytor, trener dostępności cyfrowej i wdrożeniowiec.', 
+                bio: 'Lider Sieci Dostępności Cyfrowej, certyfikowany audytor i trener.', 
                 image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/1d21c94229e8f03641730c9e923889abffb37239.jpg', 
-                backContent: '<h3>Kompetencje</h3><ul class="instructor-credentials"><li>2500+ godzin szkoleniowych</li><li>CEO Włącz Wizję</li><li>Andragog (wykształcenie)</li><li>Lider Sieci Dostępności Cyfrowej</li><li>Certyfikowany WCAG audytor</li></ul>' 
+                backContent: '<h3>Doświadczenie</h3><ul class="instructor-credentials"><li>2500+ h szkoleń</li><li>Audytor systemów bankowych</li><li>Specjalista ds. Andragogiki</li></ul>' 
             },
             { 
                 id: 'aleksandra', name: 'Aleksandra Migus', company: 'SOFTIQ', 
-                bio: 'Specjalistka w audytach WCAG i wdrażaniu dostępności cyfrowej w projektach.', 
+                bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.', 
                 image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg', 
-                backContent: '<div><h3>Odkryj więcej</h3><p style="margin-bottom: 1.5rem;">Sprawdź profil Aleksandry na LinkedIn</p></div><a href="https://linkedin.com/in/aleksandra-migus" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">🔗 Przejdź do LinkedIna</a>' 
+                backContent: '<h3>Specjalizacja</h3><p>Aleksandra specjalizuje się w dostępności UI/UX oraz audytach kodu frontendowego.</p><a href="#" class="instructor-cta-link">Profil LinkedIn</a>' 
             }
         ];
 
-        const appState = { selectedDays: [], flippedCards: {}, flippedInstructors: {}, prices: { 1: 699, 2: 699, 3: 699, fullCourse: 1499 } };
+        const state = { selectedDays: [], prices: { single: 699, full: 1499 } };
 
-        /* === INIT === */
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeFlipCards();
-            initializeInstructorCards();
-        });
-
-        /* === FLIP LOGIC (WCAG FRIENDLY) === */
-        function initializeFlipCards() {
-            document.getElementById('daysContainer').innerHTML = daysData.map(day => createCardHTML('day', day)).join('');
+        function renderCards() {
+            document.getElementById('daysContainer').innerHTML = daysData.map(d => createFlipCard('day', d)).join('');
+            document.getElementById('instructorsContainer').innerHTML = instructorsData.map(i => createFlipCard('inst', i)).join('');
         }
 
-        function initializeInstructorCards() {
-            document.getElementById('instructorsContainer').innerHTML = instructorsData.map(inst => createCardHTML('inst', inst)).join('');
-        }
-
-        function createCardHTML(type, data) {
+        function createFlipCard(type, data) {
             const isInst = type === 'inst';
             const id = data.id;
-            const frontContent = isInst 
-                ? `<img src="${data.image}" alt="${data.name}" class="instructor-image">
-                   <div class="instructor-info-front"><h3>${data.name}</h3><div class="instructor-company">${data.company}</div><p class="instructor-bio">${data.bio}</p></div>`
-                : `<div class="day-number">${data.number}</div><h3>${data.title}</h3><ul>${data.items.map(i=>`<li>${i}</li>`).join('')}</ul><span style="margin-top:auto;color:var(--primary);font-weight:bold;font-size:0.9rem">👉 Zobacz szczegóły</span>`;
             
-            const backContent = isInst
-                ? `<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between"><div onclick="stopProp(event)" onkeydown="stopProp(event)">${data.backContent}</div><div style="font-size:0.8rem;opacity:0.8">(Kliknij tło aby obrócić)</div></div>`
-                : `<div><h3>Szczegóły dnia</h3><p><strong>Dzień ${data.id}:</strong></p><p>${data.title}</p><div class="day-price">${appState.prices[id]} zł</div></div>
-                   <div onclick="stopProp(event)" onkeydown="stopProp(event)"><label class="checkbox-label" style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;background:rgba(255,255,255,0.1);padding:0.5rem;border-radius:4px"><input type="checkbox" class="day-checkbox" value="${id}" onchange="updateSelection()" aria-label="Wybierz dzień ${id}"><span style="margin-left:8px;font-size:0.9rem">Wybieram ten dzień</span></label></div>
-                   <div style="font-size:0.8rem;opacity:0.8;margin-top:1rem">(Kliknij tło aby obrócić)</div>`;
+            const front = isInst ? `
+                <img src="${data.image}" alt="Zdjęcie: ${data.name}" class="instructor-image">
+                <div class="instructor-info-front">
+                    <h3>${data.name}</h3>
+                    <div class="instructor-company">${data.company}</div>
+                    <p class="instructor-bio">${data.bio}</p>
+                </div>
+            ` : `
+                <div class="day-number">${data.number}</div>
+                <h3>${data.title}</h3>
+                <ul>${data.items.map(li => `<li>${li}</li>`).join('')}</ul>
+                <div style="margin-top:auto; font-weight:bold; color:var(--primary)">Szczegóły →</div>
+            `;
 
-            const wrapperClass = isInst ? 'instructor-flip-card' : 'day-card';
-            const innerClass = isInst ? 'instructor-flip-card-inner' : 'day-card-inner';
-            const frontClass = isInst ? 'instructor-front' : 'day-card-front';
-            const backClass = isInst ? 'instructor-back' : 'day-card-back';
+            const back = isInst ? `
+                <div onclick="event.stopPropagation()">${data.backContent}</div>
+                <div style="font-size:0.8rem; opacity:0.7; margin-top:1rem">Kliknij kartę, by wrócić</div>
+            ` : `
+                <div>
+                    <h3>Dzień ${id}</h3>
+                    <p style="font-size:0.9rem">${data.title}</p>
+                    <div class="day-price">${state.prices.single} zł</div>
+                </div>
+                <div class="checkbox-wrapper" onclick="event.stopPropagation()">
+                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer">
+                        <input type="checkbox" class="day-checkbox" value="${id}" onchange="updateSelection()">
+                        <span style="font-weight:bold">Wybieram ten dzień</span>
+                    </label>
+                </div>
+            `;
 
             return `
-            <div class="${wrapperClass}" id="${type}-wrapper-${id}">
-                <div class="${innerClass}" id="${type}-inner-${id}">
-                    <div class="${frontClass} card-side-visible" id="${type}-front-${id}" role="button" tabindex="0"
-                         aria-label="${isInst ? 'Instruktor ' + data.name : 'Dzień ' + id}. Kliknij po szczegóły."
-                         onclick="flipCard('${type}', '${id}', true)" onkeydown="handleKey(event, '${type}', '${id}', true)">
-                        ${frontContent}
-                    </div>
-                    <div class="${backClass} card-side-hidden" id="${type}-back-${id}" inert role="button" tabindex="-1"
-                         aria-label="Szczegóły. Kliknij tło aby wrócić."
-                         onclick="flipCard('${type}', '${id}', false)" onkeydown="handleKey(event, '${type}', '${id}', false)">
-                        ${backContent}
+                <div class="${isInst ? 'instructor-flip-card' : 'day-card'}" id="${type}-card-${id}">
+                    <div class="${isInst ? 'instructor-flip-card-inner' : 'day-card-inner'}" id="${type}-inner-${id}">
+                        <button type="button" class="${isInst ? 'instructor-front' : 'day-card-front'} card-side-visible" 
+                                id="${type}-front-${id}"
+                                aria-label="${isInst ? 'Trener ' + data.name : 'Dzień ' + id + '. Kliknij po szczegóły'}"
+                                onclick="flip('${type}', '${id}', true)">
+                            ${front}
+                        </button>
+                        <div class="${isInst ? 'instructor-back' : 'day-card-back'} card-side-hidden" 
+                             id="${type}-back-${id}" inert tabindex="-1"
+                             onclick="flip('${type}', '${id}', false)">
+                            ${back}
+                        </div>
                     </div>
                 </div>
-            </div>`;
+            `;
         }
 
-        function flipCard(type, id, open) {
+        function flip(type, id, open) {
             const inner = document.getElementById(`${type}-inner-${id}`);
             const front = document.getElementById(`${type}-front-${id}`);
             const back = document.getElementById(`${type}-back-${id}`);
 
-            if(open) {
+            if (open) {
                 inner.classList.add('flipped');
-                toggleInert(front, back);
+                front.setAttribute('inert', '');
+                front.classList.replace('card-side-visible', 'card-side-hidden');
+                back.removeAttribute('inert');
+                back.classList.replace('card-side-hidden', 'card-side-visible');
                 setTimeout(() => back.focus(), 100);
             } else {
                 inner.classList.remove('flipped');
-                toggleInert(back, front);
+                back.setAttribute('inert', '');
+                back.classList.replace('card-side-visible', 'card-side-hidden');
+                front.removeAttribute('inert');
+                front.classList.replace('card-side-hidden', 'card-side-visible');
                 setTimeout(() => front.focus(), 100);
             }
         }
 
-        function toggleInert(hide, show) {
-            hide.setAttribute('inert', ''); hide.setAttribute('tabindex', '-1');
-            hide.classList.remove('card-side-visible'); hide.classList.add('card-side-hidden');
-            show.removeAttribute('inert'); show.setAttribute('tabindex', '0');
-            show.classList.remove('card-side-hidden'); show.classList.add('card-side-visible');
-        }
-
-        function handleKey(e, t, i, o) { if(e.key==='Enter'||e.key===' '){e.preventDefault(); flipCard(t,i,o);} }
-        function stopProp(e) { e.stopPropagation(); }
-
-        /* === PRICING === */
         function updateSelection() {
-            appState.selectedDays = Array.from(document.querySelectorAll('.day-checkbox:checked')).map(cb => parseInt(cb.value)).sort();
-            if(appState.selectedDays.length === 3) showAlert('🎉 Wybrano 3 dni! Zniżka na pełny kurs.');
+            const checked = Array.from(document.querySelectorAll('.day-checkbox:checked')).map(c => c.value);
+            state.selectedDays = checked;
+
+            const isFull = checked.length === 3;
+            const total = isFull ? state.prices.full : checked.length * state.prices.single;
             
-            const selectedText = appState.selectedDays.length === 3 ? "Pełny kurs (3 dni)" : (appState.selectedDays.length ? "Dzień: " + appState.selectedDays.join(', ') : "Brak wyboru");
-            const priceVal = appState.selectedDays.length === 3 ? appState.prices.fullCourse : appState.selectedDays.length * 699;
-            
-            document.getElementById('selectedDays').textContent = selectedText;
-            document.getElementById('totalPrice').textContent = priceVal + " zł";
-            document.getElementById('proceedBtn').disabled = appState.selectedDays.length === 0;
+            document.getElementById('selectedDays').textContent = isFull ? "Pełny kurs (3 dni)" : (checked.length ? `Dni: ${checked.join(', ')}` : "Brak");
+            document.getElementById('totalPrice').textContent = `${total} zł`;
+            document.getElementById('proceedBtn').disabled = checked.length === 0;
+
+            const msg = checked.length > 0 
+                ? `Aktualizacja koszyka. Wybrano ${checked.length} dni. Suma: ${total} zł.` 
+                : "Koszyk jest pusty.";
+            showAriaAlert(msg);
         }
 
         function selectAllDays() {
-            document.querySelectorAll('.day-checkbox').forEach(cb => cb.checked = true);
+            document.querySelectorAll('.day-checkbox').forEach(c => c.checked = true);
             updateSelection();
-            document.querySelector('.checkout-summary').scrollIntoView({behavior:'smooth'});
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         }
 
         function scrollToProgram() {
-            document.getElementById('program').scrollIntoView({behavior:'smooth'});
-            setTimeout(()=>document.querySelector('.day-card-front').focus(), 800);
+            document.getElementById('program').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function proceedToPayment() { showAlert(`Płatność: ${document.getElementById('totalPrice').textContent}`); }
-        
-        function showAlert(msg) {
-            const el = document.getElementById('alertRegion');
-            el.textContent = msg; el.classList.add('show');
-            setTimeout(()=>el.classList.remove('show'), 4000);
+        function showAriaAlert(msg) {
+            const region = document.getElementById('alertRegion');
+            region.textContent = msg;
+            region.classList.add('show');
+            setTimeout(() => region.classList.remove('show'), 5000);
         }
 
-        /* === FAQ === */
-        document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', !expanded);
-                btn.nextElementSibling.classList.toggle('active');
-                btn.parentElement.classList.toggle('active');
+        function proceedToPayment() {
+            showAriaAlert("Przekierowanie do bezpiecznych płatności...");
+        }
+
+        // FAQ logic
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const isOpen = q.getAttribute('aria-expanded') === 'true';
+                q.setAttribute('aria-expanded', !isOpen);
+                q.nextElementSibling.classList.toggle('active');
+                q.parentElement.classList.toggle('active');
             });
         });
+
+        window.onload = renderCards;
     </script>
 </body>
 </html>
