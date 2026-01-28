@@ -31,10 +31,16 @@
 
         p { margin-bottom: 1rem; }
         
-        /* AAA Accessibility: Global Focus States */
+        /* AAA Accessibility: Global TRICOLOR Focus States */
+        /* Pattern: Element Border (Black via Box-shadow inset) | White Spacer | Black Outline */
         *:focus-visible { 
-            outline: 3px solid var(--focus-color); 
-            outline-offset: 2px; 
+            outline: 3px solid #000000; /* Outer Black */
+            outline-offset: 2px;        /* Spacing for White */
+            box-shadow: 
+                0 0 0 2px #ffffff,      /* Middle White Spacer */
+                inset 0 0 0 2px #000000; /* Inner Black Border (for tricolor effect) */
+            z-index: 100; /* Ensure visibility on top */
+            border-radius: 4px; /* Slight rounding for better look on text links */
         }
         
         /* HEADER & HERO */
@@ -57,12 +63,7 @@
         nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; }
         nav a:hover { text-decoration: underline; }
         
-        /* RESTORED: Specific Nav Focus Style */
-        nav a:focus-visible { 
-            outline: 2px solid #FFD700; 
-            border-radius: 4px; 
-            padding: 4px 8px; 
-        }
+        /* Removed specific nav focus to inherit global tricolor style */
         
         .hero { 
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
@@ -205,12 +206,13 @@
             box-shadow: var(--shadow-sm);
         }
         
-        /* FOCUS STYLE */
+        /* Removed specific focus style for flip cards to inherit global tricolor style */
+        /* IMPORTANT: Ensuring box-shadow doesn't conflict with global focus */
         button.instructor-front:focus-visible, button.day-card-front:focus-visible,
         .instructor-back:focus-visible, .day-card-back:focus-visible {
-            outline: 4px solid var(--focus-strong); /* BLACK Focus */
-            outline-offset: 2px;
-            z-index: 20;
+             /* The global *:focus-visible applies here. 
+                We just need to ensure border-radius matches the card. */
+             border-radius: 12px; 
         }
         
         .instructor-back, .day-card-back {
@@ -313,13 +315,7 @@
         }
         .faq-question:hover { color: var(--primary); }
         
-        /* RESTORED: Specific FAQ Focus Style */
-        .faq-question:focus-visible {
-            outline: 3px solid #000;
-            outline-offset: -3px;
-            background-color: #f0f0f0;
-            z-index: 2;
-        }
+        /* Removed specific FAQ focus to inherit global tricolor style */
 
         .faq-answer { padding: 0 2rem 2rem 2rem; display: none; line-height: 1.8; color: var(--gray); border-top: 1px solid var(--gray-light); padding-top: 1.5rem; }
         .faq-answer.active { display: block; }
