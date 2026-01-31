@@ -31,16 +31,15 @@
 
         p { margin-bottom: 1rem; }
         
-        /* AAA Accessibility: Global TRICOLOR Focus States */
-        /* Pattern: Element Border (Black via Box-shadow inset) | White Spacer | Black Outline */
+        /* AAA Accessibility: Global TRICOLOR Focus States (Pink-Lime-Black) */
+        /* HEAVY THICKNESS: 4px Inner Black + 4px Lime Gap + 4px Outer Pink = 12px Total Visual Weight */
         *:focus-visible { 
-            outline: 3px solid #000000; /* Outer Black */
-            outline-offset: 2px;        /* Spacing for White */
+            outline: 4px solid #FF00FF; /* Outer Pink (Magenta) */
+            outline-offset: 4px;        /* Spacing for Lime */
             box-shadow: 
-                0 0 0 2px #ffffff,      /* Middle White Spacer */
-                inset 0 0 0 2px #000000; /* Inner Black Border (for tricolor effect) */
+                0 0 0 4px #CCFF00,      /* Middle Lime Spacer */
+                inset 0 0 0 4px #000000; /* Inner Black Border */
             z-index: 100; /* Ensure visibility on top */
-            border-radius: 4px; /* Slight rounding for better look on text links */
         }
         
         /* HEADER & HERO */
@@ -207,13 +206,6 @@
         }
         
         /* Removed specific focus style for flip cards to inherit global tricolor style */
-        /* IMPORTANT: Ensuring box-shadow doesn't conflict with global focus */
-        button.instructor-front:focus-visible, button.day-card-front:focus-visible,
-        .instructor-back:focus-visible, .day-card-back:focus-visible {
-             /* The global *:focus-visible applies here. 
-                We just need to ensure border-radius matches the card. */
-             border-radius: 12px; 
-        }
         
         .instructor-back, .day-card-back {
             position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
@@ -266,7 +258,8 @@
         
         .day-card-front h3 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--dark); text-align: left; font-weight: 800; }
         .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-        .day-card-front li { font-size: 0.9rem; color: var(--gray); display: flex; gap: 0.5rem; text-align: left; }
+        /* CHANGED: Text color set to black as requested */
+        .day-card-front li { font-size: 0.9rem; color: black; display: flex; gap: 0.5rem; text-align: left; }
         .day-card-front li::before { content: '→'; color: var(--accent); font-weight: bold; }
         
         .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
@@ -291,7 +284,9 @@
         }
         .price { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin: 1rem 0; }
         .price-features { list-style: none; margin: 1.5rem 0 2.5rem 0; text-align: left; flex: 1; }
-        .price-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-light); color: var(--gray); font-size: 1rem; }
+        /* CHANGED: Text color set to black as requested */
+        .price-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-light); color: black; font-size: 1rem; }
+        .price-features li:last-child { border-bottom: none; }
         .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; margin-right: 0.8rem; }
 
         .checkout-summary { 
@@ -324,6 +319,7 @@
 
         /* FOOTER */
         footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
+        /* Add class for specific targeting */
         .footer-contact a { color: var(--accent); text-decoration: none; font-weight: 700; }
         .footer-bottom { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
 
@@ -548,7 +544,7 @@
         <div class="container">
             <h3>Włącz Wizję</h3>
             <p>Eksperci w dziedzinie dostępności cyfrowej</p>
-            <div style="margin: 1.5rem 0">
+            <div class="footer-contact" style="margin: 1.5rem 0">
                 📧 <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a>
             </div>
             <div class="footer-bottom">
@@ -559,9 +555,9 @@
 
     <script>
         const daysData = [
-            { id: 1, number: '1', title: 'Fundamenty i Walidacja', items: ['Zrozumienie kryteriów 2.2', 'Automatyzacja w audycie', 'Struktura dokumentu', 'Narzędzia diagnostyczne'] },
-            { id: 2, number: '2', title: 'Interakcja i Media', items: ['Nawigacja klawiaturą', 'Formularze i błędy', 'Multimedia i alternatywy', 'Focus management'] },
-            { id: 3, number: '3', title: 'Raport i Proces', items: ['Pisanie zaleceń', 'Wycena poprawek', 'Współpraca z devami', 'Audyt końcowy'] }
+            { id: 1, number: '1', date: '4.03.26', title: 'Fundamenty i Walidacja', items: ['Zrozumienie kryteriów 2.2', 'Automatyzacja w audycie', 'Struktura dokumentu', 'Narzędzia diagnostyczne'] },
+            { id: 2, number: '2', date: '5.03.26', title: 'Interakcja i Media', items: ['Nawigacja klawiaturą', 'Formularze i błędy', 'Multimedia i alternatywy', 'Focus management'] },
+            { id: 3, number: '3', date: '6.03.26', title: 'Raport i Proces', items: ['Pisanie zaleceń', 'Wycena poprawek', 'Współpraca z devami', 'Audyt końcowy'] }
         ];
 
         const instructorsData = [
@@ -610,8 +606,8 @@
                 <div style="font-size:0.8rem; opacity:0.7; margin-top:1rem">Kliknij kartę, by wrócić</div>
             ` : `
                 <div>
-                    <h3>Dzień ${id}</h3>
-                    <p style="font-size:0.9rem">${data.title}</p>
+                    <h3>Dzień ${id} <span style="display:block; font-size:0.8em; font-weight:normal; margin-top:0.2rem">(${data.date}, 9:00 - 17:00)</span></h3>
+                    <p style="font-size:0.9rem; margin-top:0.5rem">${data.title}</p>
                     <div class="day-price">${state.prices.single} zł</div>
                 </div>
                 <div class="checkbox-wrapper" onclick="event.stopPropagation()">
