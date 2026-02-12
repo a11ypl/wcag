@@ -62,8 +62,6 @@
         nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; }
         nav a:hover { text-decoration: underline; }
         
-        /* Removed specific nav focus to inherit global tricolor style */
-        
         .hero { 
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
             color: white; 
@@ -79,11 +77,34 @@
         }
         
         .hero .subtitle { 
-            font-size: 1.4rem; 
+            font-size: 1.2rem; 
             opacity: 0.95; 
-            max-width: 750px; 
-            margin: 0 auto 1.5rem; 
-            text-align: center;
+            max-width: 800px; 
+            margin: 0 auto 2rem; 
+            text-align: left; /* Changed to left for list readability */
+            display: inline-block; /* Centers the block itself */
+        }
+
+        .hero-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .hero-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .hero-list li::before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
         }
         
         .hero .course-dates { 
@@ -170,7 +191,8 @@
 
         /* FLIP CARDS CORE */
         .instructor-flip-card { height: 400px; perspective: 1200px; position: relative; }
-        /* INCREASED HEIGHT to accommodate more padding */
+        
+        /* INCREASED HEIGHT to accommodate more text content from the new design */
         .day-card { height: 340px; perspective: 1200px; position: relative; }
         
         .instructor-flip-card-inner, .day-card-inner { 
@@ -184,19 +206,20 @@
         .instructor-flip-card-inner.flipped, .day-card-inner.flipped { transform: rotateY(180deg); }
         
         /* FIX: Visibility transition delay ensures card doesn't disappear during flip */
+        /* ADDED: Z-Index management to prevent back card (which is later in DOM) from capturing focus/clicks when hidden */
         .card-side-hidden { 
             visibility: hidden; 
             pointer-events: none; 
-            transition: visibility 0s linear 0.7s; /* Wait for flip to finish */
+            z-index: 1; /* Lower z-index so it doesn't cover the visible side */
+            transition: visibility 0s linear 0.7s; 
         }
         .card-side-visible { 
             visibility: visible; 
-            transition: visibility 0s linear 0s; /* Show immediately on start */
+            z-index: 5; /* Higher z-index to ensure focusability and clickability */
+            transition: visibility 0s linear 0s; 
         }
 
         /* FLIP CARDS FACES - RESET */
-        /* Note: This resets borders/backgrounds. 
-           Specific styles below MUST use 'button.class' to override this. */
         button.instructor-front, button.day-card-front {
             appearance: none; border: none; background: none; padding: 0; margin: 0;
             font-family: inherit; font-size: inherit; width: 100%; height: 100%;
@@ -205,8 +228,6 @@
             box-shadow: var(--shadow-sm);
         }
         
-        /* Removed specific focus style for flip cards to inherit global tricolor style */
-        
         .instructor-back, .day-card-back {
             position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
             border-radius: 12px; display: flex; flex-direction: column; 
@@ -214,7 +235,6 @@
         }
 
         /* INSTRUCTORS STYLE */
-        /* FIX: Added 'button' tag to selector to override reset styles */
         button.instructor-front { 
             background: white; 
             border: 3px solid var(--accent); 
@@ -240,32 +260,46 @@
         }
 
         /* DAYS STYLE */
-        /* FIX: Added 'button' tag to selector to override reset styles (border: none) */
         button.day-card-front { 
             background: white; 
             border: 3px solid var(--accent); 
             border-top: 5px solid var(--primary); 
-            padding: 2.5rem; 
+            padding: 1.8rem; /* Slightly reduced padding to fit content */
         }
 
-        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2.5rem; justify-content: space-between; }
+        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
+        
+        .day-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; width: 100%; }
         
         .day-number { 
             display: flex; align-items: center; justify-content: center; 
-            background: var(--primary); color: white; width: 45px; height: 45px; 
-            border-radius: 50%; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; 
+            background: var(--primary); color: white; width: 35px; height: 35px; 
+            border-radius: 50%; font-size: 1rem; font-weight: bold; flex-shrink: 0;
         }
         
-        .day-card-front h3 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--dark); text-align: left; font-weight: 800; }
-        .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-        /* CHANGED: Text color set to black as requested */
-        .day-card-front li { font-size: 0.9rem; color: black; display: flex; gap: 0.5rem; text-align: left; }
-        .day-card-front li::before { content: '→'; color: var(--accent); font-weight: bold; }
+        .day-card-front h3 { font-size: 1.2rem; color: var(--dark); text-align: left; font-weight: 800; line-height: 1.3; margin-bottom: 0.3rem;}
+        .day-subtitle { font-size: 0.9rem; font-weight: 700; color: var(--accent); text-align: left; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; width: 100%; }
+        .day-card-front li { font-size: 0.85rem; color: black; display: flex; gap: 0.5rem; text-align: left; line-height: 1.4; }
+        .day-card-front li strong { color: var(--primary); font-weight: 700; }
+        .day-card-front li::before { content: '•'; color: var(--accent); font-weight: bold; font-size: 1.2em; line-height: 1; }
         
+        .day-effect {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .day-effect strong { color: var(--accent); }
+
         .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
         
-        .checkbox-wrapper { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; transition: 0.2s; }
-        .checkbox-wrapper:hover { background: rgba(255,255,255,0.2); }
+        .checkbox-wrapper { background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; transition: 0.2s; }
+        .checkbox-wrapper:hover { background: rgba(0,0,0,0.3); }
         .day-checkbox { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; }
 
         /* PRICING */
@@ -284,7 +318,6 @@
         }
         .price { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin: 1rem 0; }
         .price-features { list-style: none; margin: 1.5rem 0 2.5rem 0; text-align: left; flex: 1; }
-        /* CHANGED: Text color set to black as requested */
         .price-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-light); color: black; font-size: 1rem; }
         .price-features li:last-child { border-bottom: none; }
         .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; margin-right: 0.8rem; }
@@ -310,8 +343,6 @@
         }
         .faq-question:hover { color: var(--primary); }
         
-        /* Removed specific FAQ focus to inherit global tricolor style */
-
         .faq-answer { padding: 0 2rem 2rem 2rem; display: none; line-height: 1.8; color: var(--gray); border-top: 1px solid var(--gray-light); padding-top: 1.5rem; }
         .faq-answer.active { display: block; }
         .faq-icon { transition: 0.3s; color: var(--accent); font-size: 0.8rem; }
@@ -319,7 +350,6 @@
 
         /* FOOTER */
         footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
-        /* Add class for specific targeting */
         .footer-contact a { color: var(--accent); text-decoration: none; font-weight: 700; }
         .footer-bottom { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
 
@@ -366,7 +396,16 @@
         <section class="hero">
             <div class="container">
                 <h1>Zostań ekspertem audytu WCAG</h1>
-                <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
+                
+                <div class="subtitle">
+                    <p>Praktyczny, 3-dniowy warsztat, podczas którego:</p>
+                    <ul class="hero-list">
+                        <li>testujesz <strong>prawdziwe systemy</strong>,</li>
+                        <li>uczysz się <strong>jak wykrywać i opisywać błędy dostępności</strong>,</li>
+                        <li>pracujesz z ekspertami, którzy <strong>robią audyty na co dzień</strong>.</li>
+                    </ul>
+                </div>
+
                 <p class="course-dates" aria-label="Data kursu">📅 4.03.2026 - 6.03.2026 | 9:00 - 17:00 (Online Live)</p>
                 
                 <div class="hero-cta">
@@ -397,18 +436,18 @@
                 <div class="features-grid">
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">🎯</span>
-                        <h3>Modułowa wiedza</h3>
-                        <p>Wybierz pełny proces lub konkretny dzień szkoleniowy dopasowany do Twoich aktualnych potrzeb zawodowych.</p>
+                        <h3>Wiedza dopasowana do Ciebie</h3>
+                        <p>Uczysz się dokładnie tego, czego potrzebujesz — cały proces audytu albo wybrane obszary WCAG, w zależności od Twoich celów i doświadczenia.</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">🔧</span>
-                        <h3>Realne projekty</h3>
-                        <p>Zero "idealnych przykładów". Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
+                        <h3>Prawdziwe projekty, prawdziwe problemy</h3>
+                        <p>Zero podręcznikowych przykładów. Pracujemy na realnych systemach i żywym kodzie, szukając błędów tam, gdzie faktycznie się pojawiają.</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">📋</span>
-                        <h3>Standard raportowania</h3>
-                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrożalne dla zespołów deweloperskich.</p>
+                        <h3>Raporty, które da się wdrożyć</h3>
+                        <p>Nauczysz się tworzyć raporty z audytu WCAG zrozumiałe dla biznesu i konkretne dla zespołów developerskich — bez lania wody.</p>
                     </article>
                 </div>
             </div>
@@ -427,7 +466,7 @@
         <section id="program" class="program">
             <div class="container">
                 <h2 class="section-title">Program i wybór dni</h2>
-                <p style="text-align: center; color: var(--gray); margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę dnia, aby zobaczyć agendę i dodać go do swojego planu</p>
+                <p style="text-align: center; color: var(--gray); margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę dnia, aby zobaczyć efekt szkolenia i dodać go do planu</p>
                 <div class="days-container" id="daysContainer">
                     <!-- JS Injected -->
                 </div>
@@ -448,16 +487,13 @@
                             <li>Imienny certyfikat</li>
                             <li>Materiały poszkoleniowe</li>
                         </ul>
-                        <!-- FIX: Changed from btn-secondary to btn-primary for visibility on white bg -->
                         <button class="btn btn-primary btn-full-width" onclick="scrollToProgram()">Wybierz dni w programie</button>
                     </div>
 
                     <div class="price-card price-card--featured">
                         <span class="price-card__badge">Najlepsza wartość</span>
                         <h3>Pełny kurs (3 dni)</h3>
-                        <!-- UPDATED PRICE: Changed from 1499 to 1599 -->
                         <div class="price">1599 <span style="font-size: 1.5rem">zł</span></div>
-                        <!-- UPDATED SAVINGS: (3 * 699) - 1599 = 498 -->
                         <p class="price-period">netto za całość (oszczędzasz 498 zł)</p>
                         <ul class="price-features">
                             <li>Kompletna ścieżka audytora</li>
@@ -492,7 +528,6 @@
             <div class="container">
                 <h2 class="section-title">FAQ</h2>
                 <div class="faq-container" id="faqAccordion">
-                    <!-- FAQ Items Restored -->
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
                             <span>Jaki jest warunek wstępny do udziału?</span>
@@ -555,9 +590,48 @@
 
     <script>
         const daysData = [
-            { id: 1, number: '1', date: '4.03.26', title: 'Fundamenty i Walidacja', items: ['Zrozumienie kryteriów 2.2', 'Automatyzacja w audycie', 'Struktura dokumentu', 'Narzędzia diagnostyczne'] },
-            { id: 2, number: '2', date: '5.03.26', title: 'Interakcja i Media', items: ['Nawigacja klawiaturą', 'Formularze i błędy', 'Multimedia i alternatywy', 'Focus management'] },
-            { id: 3, number: '3', date: '6.03.26', title: 'Raport i Proces', items: ['Pisanie zaleceń', 'Wycena poprawek', 'Współpraca z devami', 'Audyt końcowy'] }
+            { 
+                id: 1, 
+                number: '1', 
+                date: '4.03.26', 
+                title: 'Fundamenty i walidacja WCAG', 
+                subtitle: 'Zbuduj solidną bazę audytu',
+                items: [
+                    'Jak <strong>czytać i interpretować WCAG 2.2</strong>, bez zgadywania', 
+                    'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
+                    'Jak sprawdzać <strong>strukturę dokumentu i semantykę</strong>', 
+                    'Narzędzia, które realnie przyspieszają audyt'
+                ],
+                effect: 'Efekt: wiesz <strong>co sprawdzać i dlaczego</strong>, zanim wejdziesz w detale.'
+            },
+            { 
+                id: 2, 
+                number: '2', 
+                date: '5.03.26', 
+                title: 'Interakcja i media', 
+                subtitle: 'Najczęstsze problemy, największy wpływ',
+                items: [
+                    'Audyt <strong>nawigacji klawiaturą</strong> krok po kroku', 
+                    'Formularze: identyfikacja błędów i ich przyczyn', 
+                    'Multimedia i treści alternatywne w praktyce', 
+                    'Zarządzanie focusem w realnych interfejsach'
+                ],
+                effect: 'Efekt: potrafisz znaleźć <strong>krytyczne bariery</strong>, które realnie blokują użytkowników.'
+            },
+            { 
+                id: 3, 
+                number: '3', 
+                date: '6.03.26', 
+                title: 'Raport i proces', 
+                subtitle: 'Od błędu do wdrożenia',
+                items: [
+                    'Jak pisać zalecenia, które są <strong>jasne i technicznie użyteczne</strong>', 
+                    'Jak wyceniać poprawki i priorytetyzować problemy', 
+                    'Współpraca z developerami', 
+                    'Jak wygląda <strong>kompletny audyt końcowy</strong>'
+                ],
+                effect: 'Efekt: oddajesz raport, który <strong>da się wdrożyć</strong>, a nie tylko „zaliczyć”.'
+            }
         ];
 
         const instructorsData = [
@@ -575,7 +649,6 @@
             }
         ];
 
-        // UPDATED PRICE IN STATE: full: 1599
         const state = { selectedDays: [], prices: { single: 699, full: 1599 } };
 
         function renderCards() {
@@ -595,10 +668,13 @@
                     <p class="instructor-bio">${data.bio}</p>
                 </div>
             ` : `
-                <div class="day-number">${data.number}</div>
+                <div class="day-header">
+                     <div class="day-number">${data.number}</div>
+                </div>
                 <h3>${data.title}</h3>
+                <div class="day-subtitle">${data.subtitle}</div>
                 <ul>${data.items.map(li => `<li>${li}</li>`).join('')}</ul>
-                <div style="margin-top:auto; font-weight:bold; color:var(--primary)">Szczegóły →</div>
+                <div style="margin-top:auto; font-weight:bold; color:var(--primary)">Szczegóły i efekt →</div>
             `;
 
             const back = isInst ? `
@@ -606,8 +682,8 @@
                 <div style="font-size:0.8rem; opacity:0.7; margin-top:1rem">Kliknij kartę, by wrócić</div>
             ` : `
                 <div>
-                    <h3>Dzień ${id} <span style="display:block; font-size:0.8em; font-weight:normal; margin-top:0.2rem">(${data.date}, 9:00 - 17:00)</span></h3>
-                    <p style="font-size:0.9rem; margin-top:0.5rem">${data.title}</p>
+                    <h3>Dzień ${id} <span style="display:block; font-size:0.8em; font-weight:normal; margin-top:0.2rem">(${data.date})</span></h3>
+                    <div class="day-effect">${data.effect}</div>
                     <div class="day-price">${state.prices.single} zł</div>
                 </div>
                 <div class="checkbox-wrapper" onclick="event.stopPropagation()">
@@ -623,12 +699,12 @@
                     <div class="${isInst ? 'instructor-flip-card-inner' : 'day-card-inner'}" id="${type}-inner-${id}">
                         <button type="button" class="${isInst ? 'instructor-front' : 'day-card-front'} card-side-visible" 
                                 id="${type}-front-${id}"
-                                aria-label="${isInst ? 'Trener ' + data.name : 'Dzień ' + id + '. Kliknij po szczegóły'}"
+                                aria-label="${isInst ? 'Trener ' + data.name : 'Dzień ' + id + ': ' + data.title + '. Kliknij po szczegóły'}"
                                 onclick="flip('${type}', '${id}', true)">
                             ${front}
                         </button>
                         <div class="${isInst ? 'instructor-back' : 'day-card-back'} card-side-hidden" 
-                             id="${type}-back-${id}" inert tabindex="-1"
+                             id="${type}-back-${id}" inert aria-hidden="true" tabindex="-1"
                              onclick="flip('${type}', '${id}', false)">
                             ${back}
                         </div>
@@ -644,17 +720,31 @@
 
             if (open) {
                 inner.classList.add('flipped');
+                
+                // Front logic
                 front.setAttribute('inert', '');
+                front.setAttribute('aria-hidden', 'true');
                 front.classList.replace('card-side-visible', 'card-side-hidden');
+                
+                // Back logic
                 back.removeAttribute('inert');
+                back.removeAttribute('aria-hidden');
                 back.classList.replace('card-side-hidden', 'card-side-visible');
+                
                 setTimeout(() => back.focus(), 100);
             } else {
                 inner.classList.remove('flipped');
+                
+                // Back logic
                 back.setAttribute('inert', '');
+                back.setAttribute('aria-hidden', 'true');
                 back.classList.replace('card-side-visible', 'card-side-hidden');
+                
+                // Front logic
                 front.removeAttribute('inert');
+                front.removeAttribute('aria-hidden');
                 front.classList.replace('card-side-hidden', 'card-side-visible');
+                
                 setTimeout(() => front.focus(), 100);
             }
         }
