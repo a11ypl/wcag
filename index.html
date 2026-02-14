@@ -278,42 +278,61 @@
             background: white; 
             border: 3px solid var(--accent); 
             border-top: 5px solid var(--primary); 
-            padding: 1.8rem; /* Slightly reduced padding to fit content */
+            padding: 2.2rem; 
         }
 
-        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
-        
-        .day-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; width: 100%; }
+        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2.5rem; justify-content: space-between; }
         
         .day-number { 
             display: flex; align-items: center; justify-content: center; 
-            background: var(--primary); color: white; width: 35px; height: 35px; 
-            border-radius: 50%; font-size: 1rem; font-weight: bold; flex-shrink: 0;
+            background: var(--primary); color: white; width: 45px; height: 45px; 
+            border-radius: 50%; font-size: 1.2rem; font-weight: bold; margin-bottom: 0.8rem; 
         }
         
-        .day-card-front h3 { font-size: 1.2rem; color: var(--dark); text-align: left; font-weight: 800; line-height: 1.3; margin-bottom: 0.3rem;}
-        .day-subtitle { font-size: 0.9rem; font-weight: 700; color: var(--accent); text-align: left; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; width: 100%; }
-        .day-card-front li { font-size: 0.85rem; color: black; display: flex; gap: 0.5rem; text-align: left; line-height: 1.4; }
-        .day-card-front li strong { color: var(--primary); font-weight: 700; }
-        .day-card-front li::before { content: '•'; color: var(--accent); font-weight: bold; font-size: 1.2em; line-height: 1; }
+        .day-card-front h3 { font-size: 1.25rem; margin-bottom: 0.2rem; color: var(--dark); text-align: left; font-weight: 800; }
         
-        .day-effect {
-            background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+        /* NEW SUBTITLE STYLE */
+        .day-subtitle {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
             text-align: left;
+            letter-spacing: 0.5px;
         }
-        .day-effect strong { color: var(--accent); }
 
+        .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+        
+        /* FIXED LIST ITEM LAYOUT for A11Y and Wrapping */
+        .day-card-front li { 
+            font-size: 0.9rem; 
+            color: black; 
+            display: flex; 
+            gap: 0.5rem; 
+            text-align: left;
+            align-items: flex-start; /* Aligns bullet with the top of the text */
+        }
+        
+        /* Wrapper for text content inside LI to ensure it flows correctly as a block next to bullet */
+        .day-card-front li span {
+            flex: 1; /* Takes up remaining space */
+        }
+
+        .day-card-front li::before { 
+            content: '•'; 
+            color: var(--accent); 
+            font-weight: bold; 
+            font-size: 1.5em; /* Bigger bullet */
+            line-height: 1;   /* Tight line height for bullet */
+            flex-shrink: 0;   /* Prevents bullet from shrinking */
+            margin-top: -3px; /* Optical adjustment */
+        }
+        
         .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
         
-        .checkbox-wrapper { background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; transition: 0.2s; }
-        .checkbox-wrapper:hover { background: rgba(0,0,0,0.3); }
+        .checkbox-wrapper { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; transition: 0.2s; }
+        .checkbox-wrapper:hover { background: rgba(255,255,255,0.2); }
         .day-checkbox { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; }
 
         /* PRICING */
@@ -410,16 +429,7 @@
         <section class="hero">
             <div class="container">
                 <h1>Zostań ekspertem audytu WCAG</h1>
-                
-                <div class="subtitle">
-                    <p>Praktyczny, 3-dniowy warsztat, podczas którego:</p>
-                    <ul class="hero-list">
-                        <li>testujesz <strong>prawdziwe systemy</strong>,</li>
-                        <li>uczysz się <strong>jak wykrywać i opisywać błędy dostępności</strong>,</li>
-                        <li>pracujesz z ekspertami, którzy <strong>robią audyty na co dzień</strong>.</li>
-                    </ul>
-                </div>
-
+                <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
                 <p class="course-dates" aria-label="Data kursu">📅 4.03.2026 - 6.03.2026 | 9:00 - 17:00 (Online Live)</p>
                 
                 <div class="hero-cta">
@@ -450,18 +460,18 @@
                 <div class="features-grid">
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">🎯</span>
-                        <h3>Wiedza dopasowana do Ciebie</h3>
-                        <p>Uczysz się dokładnie tego, czego potrzebujesz — cały proces audytu albo wybrane obszary WCAG, w zależności od Twoich celów i doświadczenia.</p>
+                        <h3>Modułowa wiedza</h3>
+                        <p>Wybierz pełny proces lub konkretny dzień szkoleniowy dopasowany do Twoich aktualnych potrzeb zawodowych.</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">🔧</span>
-                        <h3>Prawdziwe projekty, prawdziwe problemy</h3>
-                        <p>Zero podręcznikowych przykładów. Pracujemy na realnych systemach i żywym kodzie, szukając błędów tam, gdzie faktycznie się pojawiają.</p>
+                        <h3>Realne projekty</h3>
+                        <p>Zero "idealnych przykładów". Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">📋</span>
-                        <h3>Raporty, które da się wdrożyć</h3>
-                        <p>Nauczysz się tworzyć raporty z audytu WCAG zrozumiałe dla biznesu i konkretne dla zespołów developerskich — bez lania wody.</p>
+                        <h3>Standard raportowania</h3>
+                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrożalne dla zespołów deweloperskich.</p>
                     </article>
                 </div>
             </div>
@@ -480,7 +490,7 @@
         <section id="program" class="program">
             <div class="container">
                 <h2 class="section-title">Program i wybór dni</h2>
-                <p style="text-align: center; color: var(--gray); margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę dnia, aby zobaczyć efekt szkolenia i dodać go do planu</p>
+                <p style="text-align: center; color: var(--gray); margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę dnia, aby zobaczyć agendę i dodać go do swojego planu</p>
                 <div class="days-container" id="daysContainer">
                     <!-- JS Injected -->
                 </div>
@@ -604,21 +614,14 @@
 
     <script>
         // === KONFIGURACJA LINKÓW PŁATNICZYCH ===
-        // Tutaj wklej linki wygenerowane przez operatora płatności dla każdej kombinacji.
-        // Klucze (np. "1,2") oznaczają numery wybranych dni, posortowane rosnąco.
         const paymentLinks = {
-            // Pojedyncze dni
-            "1": "https://twoje-platnosci.pl/dzien-1", // Zmień na swój link
-            "2": "https://twoje-platnosci.pl/dzien-2", // Zmień na swój link
-            "3": "https://twoje-platnosci.pl/dzien-3", // Zmień na swój link
-            
-            // Pakiety 2-dniowe
-            "1,2": "https://twoje-platnosci.pl/pakiet-1-2", // Zmień na swój link
-            "1,3": "https://twoje-platnosci.pl/pakiet-1-3", // Zmień na swój link
-            "2,3": "https://twoje-platnosci.pl/pakiet-2-3", // Zmień na swój link
-            
-            // Pełny pakiet (wszystkie dni)
-            "1,2,3": "https://twoje-platnosci.pl/pelny-kurs" // Zmień na swój link
+            "1": "https://twoje-platnosci.pl/dzien-1",
+            "2": "https://twoje-platnosci.pl/dzien-2",
+            "3": "https://twoje-platnosci.pl/dzien-3",
+            "1,2": "https://twoje-platnosci.pl/pakiet-1-2",
+            "1,3": "https://twoje-platnosci.pl/pakiet-1-3",
+            "2,3": "https://twoje-platnosci.pl/pakiet-2-3",
+            "1,2,3": "https://twoje-platnosci.pl/pelny-kurs"
         };
 
         const daysData = [
@@ -629,12 +632,11 @@
                 title: 'Fundamenty i walidacja WCAG', 
                 subtitle: 'Zbuduj solidną bazę audytu',
                 items: [
-                    'Jak <strong>czytać i interpretować WCAG 2.2</strong>, bez zgadywania', 
+                    'Jak <strong>czytać i interpretować WCAG 2.2</strong> , bez zgadywania', 
                     'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
                     'Jak sprawdzać <strong>strukturę dokumentu i semantykę</strong>', 
                     'Narzędzia, które realnie przyspieszają audyt'
-                ],
-                effect: 'Efekt: wiesz <strong>co sprawdzać i dlaczego</strong>, zanim wejdziesz w detale.'
+                ]
             },
             { 
                 id: 2, 
@@ -647,8 +649,7 @@
                     'Formularze: identyfikacja błędów i ich przyczyn', 
                     'Multimedia i treści alternatywne w praktyce', 
                     'Zarządzanie focusem w realnych interfejsach'
-                ],
-                effect: 'Efekt: potrafisz znaleźć <strong>krytyczne bariery</strong>, które realnie blokują użytkowników.'
+                ]
             },
             { 
                 id: 3, 
@@ -661,8 +662,7 @@
                     'Jak wyceniać poprawki i priorytetyzować problemy', 
                     'Współpraca z developerami', 
                     'Jak wygląda <strong>kompletny audyt końcowy</strong>'
-                ],
-                effect: 'Efekt: oddajesz raport, który <strong>da się wdrożyć</strong>, a nie tylko „zaliczyć”.'
+                ]
             }
         ];
 
@@ -700,13 +700,11 @@
                     <p class="instructor-bio">${data.bio}</p>
                 </div>
             ` : `
-                <div class="day-header">
-                     <div class="day-number">${data.number}</div>
-                </div>
+                <div class="day-number">${data.number}</div>
                 <h3>${data.title}</h3>
                 <div class="day-subtitle">${data.subtitle}</div>
-                <ul>${data.items.map(li => `<li>${li}</li>`).join('')}</ul>
-                <div style="margin-top:auto; font-weight:bold; color:var(--primary)">Szczegóły i efekt →</div>
+                <ul>${data.items.map(li => `<li><span>${li}</span></li>`).join('')}</ul>
+                <div style="margin-top:auto; font-weight:bold; color:var(--primary)">Szczegóły →</div>
             `;
 
             const back = isInst ? `
@@ -714,8 +712,8 @@
                 <div style="font-size:0.8rem; opacity:0.7; margin-top:1rem">Kliknij kartę, by wrócić</div>
             ` : `
                 <div>
-                    <h3>Dzień ${id} <span style="display:block; font-size:0.8em; font-weight:normal; margin-top:0.2rem">(${data.date})</span></h3>
-                    <div class="day-effect">${data.effect}</div>
+                    <h3>Dzień ${id} <span style="display:block; font-size:0.8em; font-weight:normal; margin-top:0.2rem">(${data.date}, 9:00 - 17:00)</span></h3>
+                    <p style="font-size:0.9rem; margin-top:0.5rem">${data.title}</p>
                     <div class="day-price">${state.prices.single} zł</div>
                 </div>
                 <div class="checkbox-wrapper" onclick="event.stopPropagation()">
@@ -731,12 +729,12 @@
                     <div class="${isInst ? 'instructor-flip-card-inner' : 'day-card-inner'}" id="${type}-inner-${id}">
                         <button type="button" class="${isInst ? 'instructor-front' : 'day-card-front'} card-side-visible" 
                                 id="${type}-front-${id}"
-                                aria-label="${isInst ? 'Trener ' + data.name : 'Dzień ' + id + ': ' + data.title + '. Kliknij po szczegóły'}"
+                                aria-label="${isInst ? 'Trener ' + data.name : 'Dzień ' + id + '. Kliknij po szczegóły'}"
                                 onclick="flip('${type}', '${id}', true)">
                             ${front}
                         </button>
                         <div class="${isInst ? 'instructor-back' : 'day-card-back'} card-side-hidden" 
-                             id="${type}-back-${id}" inert aria-hidden="true" tabindex="-1"
+                             id="${type}-back-${id}" inert tabindex="-1"
                              onclick="flip('${type}', '${id}', false)">
                             ${back}
                         </div>
@@ -752,31 +750,17 @@
 
             if (open) {
                 inner.classList.add('flipped');
-                
-                // Front logic
                 front.setAttribute('inert', '');
-                front.setAttribute('aria-hidden', 'true');
                 front.classList.replace('card-side-visible', 'card-side-hidden');
-                
-                // Back logic
                 back.removeAttribute('inert');
-                back.removeAttribute('aria-hidden');
                 back.classList.replace('card-side-hidden', 'card-side-visible');
-                
                 setTimeout(() => back.focus(), 100);
             } else {
                 inner.classList.remove('flipped');
-                
-                // Back logic
                 back.setAttribute('inert', '');
-                back.setAttribute('aria-hidden', 'true');
                 back.classList.replace('card-side-visible', 'card-side-hidden');
-                
-                // Front logic
                 front.removeAttribute('inert');
-                front.removeAttribute('aria-hidden');
                 front.classList.replace('card-side-hidden', 'card-side-visible');
-                
                 setTimeout(() => front.focus(), 100);
             }
         }
@@ -816,23 +800,17 @@
         }
 
         function proceedToPayment() {
-            // Sortujemy wybrane dni (np. [2,1] -> "1,2") aby klucz pasował do mapy paymentLinks
             const key = state.selectedDays.sort().join(',');
             const link = paymentLinks[key];
 
             if (link) {
                 showAriaAlert("Przekierowanie do płatności...");
-                // Małe opóźnienie dla UX, aby użytkownik zdążył przeczytać komunikat
-                setTimeout(() => {
-                    window.location.href = link;
-                }, 1000);
+                setTimeout(() => { window.location.href = link; }, 1000);
             } else {
                 showAriaAlert("Wystąpił błąd konfiguracji linku. Skontaktuj się z obsługą.");
-                console.error("Brak linku dla kombinacji:", key);
             }
         }
 
-        // FAQ logic
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
                 const isOpen = q.getAttribute('aria-expanded') === 'true';
