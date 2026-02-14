@@ -153,6 +153,11 @@
         
         .btn-full-width { width: 100%; }
 
+        /* Custom checkout button style (Purple) */
+        .btn-checkout { background: var(--primary); color: white; }
+        .btn-checkout:hover { background: #4a1f8f; transform: translateY(-2px); }
+        .btn-checkout:disabled { background: var(--gray); transform: none; cursor: not-allowed; }
+
         /* FEATURES */
         .features { padding: 5rem 2rem; background: var(--light); }
         .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3.5rem; color: var(--dark); font-weight: 800; }
@@ -241,7 +246,16 @@
             border-top: 5px solid var(--primary); 
             overflow: hidden; 
         }
-        .instructor-image { width: 100%; height: 60%; object-fit: cover; display: block; background: #eee; }
+        /* MODIFIED: Changed background to accent color (orange) to fill spaces around the image */
+        .instructor-image { 
+            width: 100%; 
+            height: 60%; 
+            object-fit: contain; /* Full image visible */
+            object-position: center; 
+            display: block; 
+            background: var(--accent); /* Orange background for the image section */
+            border-bottom: 3px solid var(--accent); /* Separator line (matches background so creates solid block) */
+        }
         .instructor-info-front { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; }
         .instructor-info-front h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 0.3rem; font-weight: 700; }
         .instructor-company { color: var(--accent); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; }
@@ -518,7 +532,7 @@
                         </div>
                     </div>
                     <div style="text-align: center">
-                        <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" disabled style="padding: 1.2rem 3rem">Przejdź do zamówienia</button>
+                        <button class="btn btn-checkout" id="proceedBtn" onclick="proceedToPayment()" disabled style="padding: 1.2rem 3rem">Przejdź do zamówienia</button>
                     </div>
                 </div>
             </div>
@@ -589,6 +603,24 @@
     </footer>
 
     <script>
+        // === KONFIGURACJA LINKÓW PŁATNICZYCH ===
+        // Tutaj wklej linki wygenerowane przez operatora płatności dla każdej kombinacji.
+        // Klucze (np. "1,2") oznaczają numery wybranych dni, posortowane rosnąco.
+        const paymentLinks = {
+            // Pojedyncze dni
+            "1": "https://twoje-platnosci.pl/dzien-1", // Zmień na swój link
+            "2": "https://twoje-platnosci.pl/dzien-2", // Zmień na swój link
+            "3": "https://twoje-platnosci.pl/dzien-3", // Zmień na swój link
+            
+            // Pakiety 2-dniowe
+            "1,2": "https://twoje-platnosci.pl/pakiet-1-2", // Zmień na swój link
+            "1,3": "https://twoje-platnosci.pl/pakiet-1-3", // Zmień na swój link
+            "2,3": "https://twoje-platnosci.pl/pakiet-2-3", // Zmień na swój link
+            
+            // Pełny pakiet (wszystkie dni)
+            "1,2,3": "https://twoje-platnosci.pl/pelny-kurs" // Zmień na swój link
+        };
+
         const daysData = [
             { 
                 id: 1, 
@@ -637,9 +669,9 @@
         const instructorsData = [
             { 
                 id: 'damian', name: 'Damian Żłobicki', company: 'Włącz Wizję', 
-                bio: 'Lider Sieci Dostępności Cyfrowej, certyfikowany audytor i trener.', 
-                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/1d21c94229e8f03641730c9e923889abffb37239.jpg', 
-                backContent: '<h3>Doświadczenie</h3><ul class="instructor-credentials"><li>2500+ h szkoleń</li><li>Audytor systemów bankowych</li><li>Specjalista ds. Andragogiki</li></ul>' 
+                bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Twórca podcastu „AKTYWIZJE”. Ekspert od wystąpień publicznych i AI.', 
+                image: 'https://scontent-waw2-1.xx.fbcdn.net/v/t51.82787-15/573488097_18076869497271214_485699435517027793_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TI9SpcZ-tOUQ7kNvwHapzri&_nc_oc=AdkMXs6uGQGALmYMUpbyu7LkGZA_Gw0bkLmdVJgEFHhhPGGaN1d42xlCBB6ApYlRmGM&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=6DLRTjw5z9fs10f-h0vVMg&oh=00_Afv6oc_ftvbbFzLX5ZsZAchT8wahVP5e8uyr7eGCse7umw&oe=699594CC', 
+                backContent: '<h3>Kompetencje</h3><ul class="instructor-credentials"><li>Wystąpienia publiczne i konferansjerka</li><li>Kompetencje liderskie i zarządzanie</li><li>Wdrażanie sztucznej inteligencji (AI)</li><li>Transformacje cyfrowe organizacji</li><li>Andragogika (UW)</li></ul>' 
             },
             { 
                 id: 'aleksandra', name: 'Aleksandra Migus', company: 'SOFTIQ', 
@@ -784,7 +816,20 @@
         }
 
         function proceedToPayment() {
-            showAriaAlert("Przekierowanie do bezpiecznych płatności...");
+            // Sortujemy wybrane dni (np. [2,1] -> "1,2") aby klucz pasował do mapy paymentLinks
+            const key = state.selectedDays.sort().join(',');
+            const link = paymentLinks[key];
+
+            if (link) {
+                showAriaAlert("Przekierowanie do płatności...");
+                // Małe opóźnienie dla UX, aby użytkownik zdążył przeczytać komunikat
+                setTimeout(() => {
+                    window.location.href = link;
+                }, 1000);
+            } else {
+                showAriaAlert("Wystąpił błąd konfiguracji linku. Skontaktuj się z obsługą.");
+                console.error("Brak linku dla kombinacji:", key);
+            }
         }
 
         // FAQ logic
