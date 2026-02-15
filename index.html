@@ -175,8 +175,8 @@
 
         /* FLIP CARDS CORE */
         .instructor-flip-card { height: 400px; perspective: 1200px; position: relative; }
-        /* INCREASED HEIGHT to accommodate more padding */
-        .day-card { height: 340px; perspective: 1200px; position: relative; }
+        /* INCREASED HEIGHT to 420px to prevent text overlap */
+        .day-card { height: 420px; perspective: 1200px; position: relative; }
         
         .instructor-flip-card-inner, .day-card-inner { 
             position: relative; 
@@ -260,8 +260,8 @@
             background: white; 
             border: 3px solid var(--primary); /* UPDATED to purple */
             border-top: 5px solid var(--primary); 
-            /* UPDATED PADDING: Increased bottom padding to 4rem to make space for absolute footer */
-            padding: 2.2rem 2.2rem 4rem 2.2rem; 
+            /* UPDATED PADDING: Increased bottom padding to 5rem to make absolute space for footer and prevent overlap */
+            padding: 2.2rem 2.2rem 5rem 2.2rem; 
         }
 
         .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2.5rem; justify-content: space-between; }
@@ -320,13 +320,14 @@
         /* NEW CLASS FOR FOOTER TEXT IN CARD */
         .card-footer-info {
             position: absolute;
-            bottom: 1.5rem;
+            bottom: 2rem;
             left: 0;
             width: 100%;
             text-align: center;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary);
+            pointer-events: none;
         }
 
         .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
@@ -600,19 +601,6 @@
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <h3>Włącz Wizję</h3>
-            <p>Eksperci w dziedzinie dostępności cyfrowej</p>
-            <div class="footer-contact" style="margin: 1.5rem 0">
-                📧 <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 Włącz Wizję. Standard WCAG 2.2 AAA Compliance.
-            </div>
-        </div>
-    </footer>
 
     <script>
         // === KONFIGURACJA LINKÓW PŁATNICZYCH ===
