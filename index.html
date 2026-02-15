@@ -62,6 +62,8 @@
         nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; }
         nav a:hover { text-decoration: underline; }
         
+        /* Removed specific nav focus to inherit global tricolor style */
+        
         .hero { 
             background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
             color: white; 
@@ -77,34 +79,11 @@
         }
         
         .hero .subtitle { 
-            font-size: 1.2rem; 
+            font-size: 1.4rem; 
             opacity: 0.95; 
-            max-width: 800px; 
-            margin: 0 auto 2rem; 
-            text-align: left; /* Changed to left for list readability */
-            display: inline-block; /* Centers the block itself */
-        }
-
-        .hero-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 1rem;
-        }
-
-        .hero-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .hero-list li::before {
-            content: '•';
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
+            max-width: 750px; 
+            margin: 0 auto 1.5rem; 
+            text-align: center;
         }
         
         .hero .course-dates { 
@@ -196,8 +175,7 @@
 
         /* FLIP CARDS CORE */
         .instructor-flip-card { height: 400px; perspective: 1200px; position: relative; }
-        
-        /* INCREASED HEIGHT to accommodate more text content from the new design */
+        /* INCREASED HEIGHT to accommodate more padding */
         .day-card { height: 340px; perspective: 1200px; position: relative; }
         
         .instructor-flip-card-inner, .day-card-inner { 
@@ -211,20 +189,19 @@
         .instructor-flip-card-inner.flipped, .day-card-inner.flipped { transform: rotateY(180deg); }
         
         /* FIX: Visibility transition delay ensures card doesn't disappear during flip */
-        /* ADDED: Z-Index management to prevent back card (which is later in DOM) from capturing focus/clicks when hidden */
         .card-side-hidden { 
             visibility: hidden; 
             pointer-events: none; 
-            z-index: 1; /* Lower z-index so it doesn't cover the visible side */
-            transition: visibility 0s linear 0.7s; 
+            transition: visibility 0s linear 0.7s; /* Wait for flip to finish */
         }
         .card-side-visible { 
             visibility: visible; 
-            z-index: 5; /* Higher z-index to ensure focusability and clickability */
-            transition: visibility 0s linear 0s; 
+            transition: visibility 0s linear 0s; /* Show immediately on start */
         }
 
         /* FLIP CARDS FACES - RESET */
+        /* Note: This resets borders/backgrounds. 
+           Specific styles below MUST use 'button.class' to override this. */
         button.instructor-front, button.day-card-front {
             appearance: none; border: none; background: none; padding: 0; margin: 0;
             font-family: inherit; font-size: inherit; width: 100%; height: 100%;
@@ -233,6 +210,8 @@
             box-shadow: var(--shadow-sm);
         }
         
+        /* Removed specific focus style for flip cards to inherit global tricolor style */
+        
         .instructor-back, .day-card-back {
             position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
             border-radius: 12px; display: flex; flex-direction: column; 
@@ -240,6 +219,7 @@
         }
 
         /* INSTRUCTORS STYLE */
+        /* FIX: Added 'button' tag to selector to override reset styles */
         button.instructor-front { 
             background: white; 
             border: 3px solid var(--accent); 
@@ -275,6 +255,7 @@
         }
 
         /* DAYS STYLE */
+        /* FIX: Added 'button' tag to selector to override reset styles (border: none) */
         button.day-card-front { 
             background: white; 
             border: 3px solid var(--primary); /* UPDATED to purple */
@@ -320,8 +301,9 @@
             flex: 1; /* Takes up remaining space */
         }
 
+        /* CHANGED: Strong tags inside list items now inherit color (black) instead of being purple */
         .day-card-front li strong {
-            color: var(--primary); /* Keeps highlighted text purple */
+            color: inherit; 
         }
 
         .day-card-front li::before { 
@@ -356,6 +338,7 @@
         }
         .price { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin: 1rem 0; }
         .price-features { list-style: none; margin: 1.5rem 0 2.5rem 0; text-align: left; flex: 1; }
+        /* CHANGED: Text color set to black as requested */
         .price-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-light); color: black; font-size: 1rem; }
         .price-features li:last-child { border-bottom: none; }
         .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; margin-right: 0.8rem; }
@@ -496,7 +479,6 @@
         <section id="program" class="program">
             <div class="container">
                 <h2 class="section-title">Program i wybór dni</h2>
-                <!-- UPDATED: Changed color from var(--gray) to black -->
                 <p style="text-align: center; color: black; margin-top: -2.5rem; margin-bottom: 3rem;">Kliknij kartę dnia, aby zobaczyć agendę i dodać go do swojego planu</p>
                 <div class="days-container" id="daysContainer">
                     <!-- JS Injected -->
@@ -733,7 +715,7 @@
                 <h3>${data.title}</h3>
                 <div class="day-subtitle">${data.subtitle}</div>
                 <ul>${data.items.map(li => `<li><span>${li}</span></li>`).join('')}</ul>
-                <div style="margin-top:auto; font-weight:bold; color:var(--primary)">Szczegóły →</div>
+                <div style="margin-top:auto; width:100%; text-align:center; font-size:0.9rem; color:var(--primary); font-weight:600;">(kliknij w kartę, aby obrócić)</div>
             `;
 
             const back = isInst ? `
@@ -794,33 +776,21 @@
 
             if (open) {
                 inner.classList.add('flipped');
-                
-                // Front logic
                 front.setAttribute('inert', '');
-                front.setAttribute('aria-hidden', 'true');
                 front.classList.replace('card-side-visible', 'card-side-hidden');
-                
-                // Back logic
                 back.removeAttribute('inert');
-                back.removeAttribute('aria-hidden');
                 back.setAttribute('tabindex', '0'); // FIX HERE
                 back.classList.replace('card-side-hidden', 'card-side-visible');
-                
                 setTimeout(() => back.focus(), 100);
             } else {
                 inner.classList.remove('flipped');
-                
-                // Back logic
                 back.setAttribute('inert', '');
                 back.setAttribute('aria-hidden', 'true');
                 back.setAttribute('tabindex', '-1'); // FIX HERE
                 back.classList.replace('card-side-visible', 'card-side-hidden');
-                
-                // Front logic
                 front.removeAttribute('inert');
                 front.removeAttribute('aria-hidden');
                 front.classList.replace('card-side-hidden', 'card-side-visible');
-                
                 setTimeout(() => front.focus(), 100);
             }
         }
