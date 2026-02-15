@@ -346,6 +346,50 @@
         .price-features li:last-child { border-bottom: none; }
         .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; margin-right: 0.8rem; }
 
+        /* DROPDOWN IN PRICING */
+        .pricing-dropdown {
+            margin-top: 1rem;
+            background: var(--light);
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            text-align: left;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .pricing-dropdown-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .pricing-dropdown-item:last-child { border-bottom: none; }
+        
+        .pricing-dropdown-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .pricing-dropdown-item label {
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: black;
+            font-weight: 500;
+        }
+        
+        .pricing-dropdown-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
         .checkout-summary { 
             margin-top: 4rem; padding: 2.5rem; background: var(--light); 
             border-radius: 16px; border: 2px dashed var(--gray-light);
@@ -503,7 +547,13 @@
                             <li>Imienny certyfikat</li>
                             <li>Materiały poszkoleniowe</li>
                         </ul>
-                        <button class="btn btn-primary btn-full-width" onclick="scrollToProgram()">Wybierz dni w programie</button>
+                        <!-- Zmieniony przycisk z scrollToProgram na toggleList -->
+                        <button class="btn btn-primary btn-full-width" id="toggleDaysBtn" aria-expanded="false" aria-controls="single-day-list" onclick="toggleDaysList()">Wybierz dni w programie</button>
+                        
+                        <!-- Lista rozwijana wewnątrz karty -->
+                        <div id="single-day-list" class="pricing-dropdown" hidden>
+                            <!-- JS Injected -->
+                        </div>
                     </div>
 
                     <div class="price-card price-card--featured">
@@ -604,7 +654,7 @@
                 title: 'Fundamenty i walidacja WCAG', 
                 subtitle: 'ZBUDUJ SOLIDNĄ BAZĘ AUDYTU',
                 items: [
-                    'Jak <strong>czytać i interpretować WCAG 2.2</strong>, bez zgadywania', 
+                    'Jak <strong>czytać i interpretować WCAG 2.2</strong> , bez zgadywania', 
                     'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
                     'Jak sprawdzać <strong>strukturę dokumentu i semantykę</strong>', 
                     'Narzędzia, które realnie przyspieszają audyt'
@@ -679,6 +729,53 @@
         function renderCards() {
             document.getElementById('daysContainer').innerHTML = daysData.map(d => createFlipCard('day', d)).join('');
             document.getElementById('instructorsContainer').innerHTML = instructorsData.map(i => createFlipCard('inst', i)).join('');
+            
+            // Render dropdown items in pricing section
+            document.getElementById('single-day-list').innerHTML = daysData.map(d => `
+                <div class="pricing-dropdown-item" onclick="toggleCheckboxInDropdown('${d.id}')">
+                    <label>
+                        <input type="checkbox" class="day-checkbox" value="${d.id}" onchange="handleCheckboxChange(this)" onclick="event.stopPropagation()">
+                        Dzień ${d.id}: ${d.title} (699 zł)
+                    </label>
+                </div>
+            `).join('');
+        }
+
+        // Helpers for dropdown interaction
+        function toggleDaysList() {
+            const list = document.getElementById('single-day-list');
+            const btn = document.getElementById('toggleDaysBtn');
+            const isHidden = list.hasAttribute('hidden');
+            
+            if (isHidden) {
+                list.removeAttribute('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                list.setAttribute('hidden', '');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function toggleCheckboxInDropdown(val) {
+            // Helper to click checkbox when row is clicked
+            const cb = document.querySelector(`#single-day-list input[value="${val}"]`);
+            if(cb) {
+                cb.checked = !cb.checked;
+                handleCheckboxChange(cb);
+            }
+        }
+
+        // Main synchronization handler
+        function handleCheckboxChange(changedInput) {
+            const val = changedInput.value;
+            const checked = changedInput.checked;
+            
+            // Sync all boxes with this value across the page (flip cards & pricing dropdown)
+            document.querySelectorAll(`.day-checkbox[value="${val}"]`).forEach(cb => {
+                cb.checked = checked;
+            });
+            
+            updateSelection();
         }
 
         function createFlipCard(type, data) {
@@ -700,6 +797,7 @@
                 <div class="card-footer-info">(kliknij w kartę, aby obrócić)</div>
             `;
 
+            // Updated back content to use the new synchronized handler
             const back = isInst ? `
                 <div onclick="event.stopPropagation()">${data.backContent}</div>
             ` : `
@@ -710,7 +808,7 @@
                 </div>
                 <div class="checkbox-wrapper" onclick="event.stopPropagation()">
                     <label style="display:flex; align-items:center; gap:10px; cursor:pointer">
-                        <input type="checkbox" class="day-checkbox" value="${id}" onchange="updateSelection()">
+                        <input type="checkbox" class="day-checkbox" value="${id}" onchange="handleCheckboxChange(this)">
                         <span style="font-weight:bold">Wybieram ten dzień</span>
                     </label>
                 </div>
@@ -777,24 +875,32 @@
         }
 
         function updateSelection() {
-            const checked = Array.from(document.querySelectorAll('.day-checkbox:checked')).map(c => c.value);
-            state.selectedDays = checked;
-
-            const isFull = checked.length === 3;
-            const total = isFull ? state.prices.full : checked.length * state.prices.single;
+            // Now checking ANY checked boxes with class day-checkbox (both in flip cards and dropdown)
+            // Using a Set to avoid duplicates if DOM has multiple inputs for same value (which it does now)
+            const allChecked = document.querySelectorAll('.day-checkbox:checked');
+            const uniqueValues = new Set();
+            allChecked.forEach(cb => uniqueValues.add(cb.value));
             
-            document.getElementById('selectedDays').textContent = isFull ? "Pełny kurs (3 dni)" : (checked.length ? `Dni: ${checked.join(', ')}` : "Brak");
-            document.getElementById('totalPrice').textContent = `${total} zł`;
-            document.getElementById('proceedBtn').disabled = checked.length === 0;
+            const checkedValues = Array.from(uniqueValues);
+            state.selectedDays = checkedValues;
 
-            const msg = checked.length > 0 
-                ? `Aktualizacja koszyka. Wybrano ${checked.length} dni. Suma: ${total} zł.` 
+            const isFull = checkedValues.length === 3;
+            const total = isFull ? state.prices.full : checkedValues.length * state.prices.single;
+            
+            document.getElementById('selectedDays').textContent = isFull ? "Pełny kurs (3 dni)" : (checkedValues.length ? `Dni: ${checkedValues.sort().join(', ')}` : "Brak");
+            document.getElementById('totalPrice').textContent = `${total} zł`;
+            document.getElementById('proceedBtn').disabled = checkedValues.length === 0;
+
+            const msg = checkedValues.length > 0 
+                ? `Aktualizacja koszyka. Wybrano ${checkedValues.length} dni. Suma: ${total} zł.` 
                 : "Koszyk jest pusty.";
             showAriaAlert(msg);
         }
 
         function selectAllDays() {
-            document.querySelectorAll('.day-checkbox').forEach(c => c.checked = true);
+            // Logic updated to check all boxes, then sync
+            const allBoxes = document.querySelectorAll('.day-checkbox');
+            allBoxes.forEach(c => c.checked = true);
             updateSelection();
             document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         }
