@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Błąd płatności | Włącz Wizję</title>
+    <style>
+        /* Te same style co wyżej */
+        body { display: flex; flex-direction: column; min-height: 100vh; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        :root { --primary: #5F28B4; --accent: #fa9632; --dark: #1a1a1a; }
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--accent); color: black; border: none; cursor: pointer; }
+        header { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; padding: 1rem 0; }
+        main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
+        .status-icon { font-size: 5rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div style="font-size: 1.5rem; font-weight: bold; text-align: center;">Włącz Wizję</div>
+        </div>
+    </header>
 
+    <main>
+        <div class="status-icon" aria-hidden="true">⚠️</div>
+        <h1 style="color: #d9534f;">Coś poszło nie tak</h1>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6;">
+            Nie udało nam się przetworzyć Twojej płatności. Środki nie zostały pobrane.
+            Spróbuj ponownie lub skontaktuj się z nami, jeśli problem będzie się powtarzał.
+        </p>
+        
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="/#pricing" class="btn">Spróbuj ponownie</a>
+            <a href="mailto:biuro@wlaczwizje.pl" style="padding: 1rem; color: var(--dark);">Napisz do nas</a>
+        </div>
+    </main>
+</body>
+</html>
