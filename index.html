@@ -276,7 +276,7 @@
         /* DAYS STYLE */
         button.day-card-front { 
             background: white; 
-            border: 3px solid var(--accent); 
+            border: 3px solid var(--primary); /* UPDATED to purple */
             border-top: 5px solid var(--primary); 
             padding: 2.2rem; 
         }
@@ -293,7 +293,7 @@
         
         /* NEW SUBTITLE STYLE */
         .day-subtitle {
-            color: var(--accent);
+            color: var(--primary); /* UPDATED to purple */
             text-transform: uppercase;
             font-weight: 700;
             font-size: 0.85rem;
@@ -307,7 +307,7 @@
         /* FIXED LIST ITEM LAYOUT for A11Y and Wrapping */
         .day-card-front li { 
             font-size: 0.9rem; 
-            color: black; 
+            color: #000000; /* UPDATED to black */
             display: flex; 
             gap: 0.5rem; 
             text-align: left;
@@ -319,9 +319,13 @@
             flex: 1; /* Takes up remaining space */
         }
 
+        .day-card-front li strong {
+            color: var(--primary); /* Keeps highlighted text purple */
+        }
+
         .day-card-front li::before { 
             content: '•'; 
-            color: var(--accent); 
+            color: var(--primary); /* UPDATED to purple */
             font-weight: bold; 
             font-size: 1.5em; /* Bigger bullet */
             line-height: 1;   /* Tight line height for bullet */
@@ -630,7 +634,7 @@
                 number: '1', 
                 date: '4.03.26', 
                 title: 'Fundamenty i walidacja WCAG', 
-                subtitle: 'Zbuduj solidną bazę audytu',
+                subtitle: 'ZBUDUJ SOLIDNĄ BAZĘ AUDYTU',
                 items: [
                     'Jak <strong>czytać i interpretować WCAG 2.2</strong> , bez zgadywania', 
                     'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
@@ -643,7 +647,7 @@
                 number: '2', 
                 date: '5.03.26', 
                 title: 'Interakcja i media', 
-                subtitle: 'Najczęstsze problemy, największy wpływ',
+                subtitle: 'NAJCZĘSTSZE PROBLEMY, NAJWIĘKSZY WPŁYW',
                 items: [
                     'Audyt <strong>nawigacji klawiaturą</strong> krok po kroku', 
                     'Formularze: identyfikacja błędów i ich analiza funkcjonalna', 
@@ -656,7 +660,7 @@
                 number: '3', 
                 date: '6.03.26', 
                 title: 'Raport i proces', 
-                subtitle: 'Od błędu do wdrożenia',
+                subtitle: 'OD BŁĘDU DO WDROŻENIA',
                 items: [
                     'Jak pisać zalecenia, które są <strong>jasne i technicznie użyteczne</strong>', 
                     'Jak wyceniać poprawki i hierarchizować problemy', 
