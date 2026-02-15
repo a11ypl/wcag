@@ -466,12 +466,12 @@
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">🔧</span>
                         <h3>Realne projekty</h3>
-                        <p>Zero "idealnych przykładów". Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
+                        <p>Zero „idealnych przykładów”. Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">📋</span>
                         <h3>Standard raportowania</h3>
-                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrożalne dla zespołów deweloperskich.</p>
+                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrażalne dla zespołów deweloperskich.</p>
                     </article>
                 </div>
             </div>
@@ -632,10 +632,10 @@
                 title: 'Fundamenty i walidacja WCAG', 
                 subtitle: 'Zbuduj solidną bazę audytu',
                 items: [
-                    'Jak <strong>czytać i interpretować WCAG 2.2</strong> , bez zgadywania', 
+                    'Jak <strong>czytać i interpretować WCAG 2.2</strong>', 
                     'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
                     'Jak sprawdzać <strong>strukturę dokumentu i semantykę</strong>', 
-                    'Narzędzia, które realnie przyspieszają audyt'
+                    'Poznaj narzędzia, które realnie przyspieszają audyt'
                 ]
             },
             { 
@@ -646,9 +646,9 @@
                 subtitle: 'Najczęstsze problemy, największy wpływ',
                 items: [
                     'Audyt <strong>nawigacji klawiaturą</strong> krok po kroku', 
-                    'Formularze: identyfikacja błędów i ich przyczyn', 
+                    'Formularze: identyfikacja błędów i ich analiza funkcjonalna', 
                     'Multimedia i treści alternatywne w praktyce', 
-                    'Zarządzanie focusem w realnych interfejsach'
+                    'Sprawne korzystanie z czytników ekranu (NVDA, VoiceOver, TalkBack)'
                 ]
             },
             { 
@@ -659,9 +659,9 @@
                 subtitle: 'Od błędu do wdrożenia',
                 items: [
                     'Jak pisać zalecenia, które są <strong>jasne i technicznie użyteczne</strong>', 
-                    'Jak wyceniać poprawki i priorytetyzować problemy', 
+                    'Jak wyceniać poprawki i hierarchizować problemy', 
                     'Współpraca z developerami', 
-                    'Jak wygląda <strong>kompletny audyt końcowy</strong>'
+                    'Jak automatyzować tworzenie <strong>kompletnego audytu końcowego</strong>'
                 ]
             }
         ];
@@ -669,7 +669,7 @@
         const instructorsData = [
             { 
                 id: 'damian', name: 'Damian Żłobicki', company: 'Włącz Wizję', 
-                bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Twórca podcastu „AKTYWIZJE”. Ekspert od wystąpień publicznych i AI.', 
+                bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Lider Sieci Dostępności Cyfrowej. Wdraża narzędzia sztucznej inteligencji w firmach i nadzoruje transformacje cyfrowe.', 
                 image: 'https://scontent-waw2-1.xx.fbcdn.net/v/t51.82787-15/573488097_18076869497271214_485699435517027793_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TI9SpcZ-tOUQ7kNvwHapzri&_nc_oc=AdkMXs6uGQGALmYMUpbyu7LkGZA_Gw0bkLmdVJgEFHhhPGGaN1d42xlCBB6ApYlRmGM&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=6DLRTjw5z9fs10f-h0vVMg&oh=00_Afv6oc_ftvbbFzLX5ZsZAchT8wahVP5e8uyr7eGCse7umw&oe=699594CC', 
                 backContent: '<h3>Kompetencje</h3><ul class="instructor-credentials"><li>Wystąpienia publiczne i konferansjerka</li><li>Kompetencje liderskie i zarządzanie</li><li>Wdrażanie sztucznej inteligencji (AI)</li><li>Transformacje cyfrowe organizacji</li><li>Andragogika (UW)</li></ul>' 
             },
@@ -735,12 +735,27 @@
                         </button>
                         <div class="${isInst ? 'instructor-back' : 'day-card-back'} card-side-hidden" 
                              id="${type}-back-${id}" inert tabindex="-1"
-                             onclick="flip('${type}', '${id}', false)">
+                             onclick="flip('${type}', '${id}', false)"
+                             onkeydown="handleBackKey(event, '${type}', '${id}')">
                             ${back}
                         </div>
                     </div>
                 </div>
             `;
+        }
+
+        function handleBackKey(e, type, id) {
+            // Allow default behavior for interactive elements (links, buttons) on Enter
+            // Checkboxes (inputs) use Space to toggle, so Enter is free to close card (good UX)
+            if (e.key === 'Enter' && (e.target.tagName === 'A' || e.target.tagName === 'BUTTON')) return;
+            
+            // Allow Space to scroll or toggle inputs
+            if (e.key === ' ' && e.target !== e.currentTarget) return;
+
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                flip(type, id, false);
+            }
         }
 
         function flip(type, id, open) {
@@ -750,17 +765,33 @@
 
             if (open) {
                 inner.classList.add('flipped');
+                
+                // Front logic
                 front.setAttribute('inert', '');
+                front.setAttribute('aria-hidden', 'true');
                 front.classList.replace('card-side-visible', 'card-side-hidden');
+                
+                // Back logic
                 back.removeAttribute('inert');
+                back.removeAttribute('aria-hidden');
+                back.setAttribute('tabindex', '0'); // FIX HERE
                 back.classList.replace('card-side-hidden', 'card-side-visible');
+                
                 setTimeout(() => back.focus(), 100);
             } else {
                 inner.classList.remove('flipped');
+                
+                // Back logic
                 back.setAttribute('inert', '');
+                back.setAttribute('aria-hidden', 'true');
+                back.setAttribute('tabindex', '-1'); // FIX HERE
                 back.classList.replace('card-side-visible', 'card-side-hidden');
+                
+                // Front logic
                 front.removeAttribute('inert');
+                front.removeAttribute('aria-hidden');
                 front.classList.replace('card-side-hidden', 'card-side-visible');
+                
                 setTimeout(() => front.focus(), 100);
             }
         }
