@@ -466,12 +466,12 @@
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">🔧</span>
                         <h3>Realne projekty</h3>
-                        <p>Zero „idealnych przykładów”. Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
+                        <p>Zero "idealnych przykładów". Pracujemy na żywym kodzie, szukając błędów tam, gdzie one faktycznie występują.</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-icon" aria-hidden="true">📋</span>
                         <h3>Standard raportowania</h3>
-                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrażalne dla zespołów deweloperskich.</p>
+                        <p>Nauczysz się tworzyć raporty, które są zrozumiałe dla biznesu i wdrożalne dla zespołów deweloperskich.</p>
                     </article>
                 </div>
             </div>
@@ -632,10 +632,10 @@
                 title: 'Fundamenty i walidacja WCAG', 
                 subtitle: 'Zbuduj solidną bazę audytu',
                 items: [
-                    'Jak <strong>czytać i interpretować WCAG 2.2</strong>', 
+                    'Jak <strong>czytać i interpretować WCAG 2.2</strong> , bez zgadywania', 
                     'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
                     'Jak sprawdzać <strong>strukturę dokumentu i semantykę</strong>', 
-                    'Poznaj narzędzia, które realnie przyspieszają audyt'
+                    'Narzędzia, które realnie przyspieszają audyt'
                 ]
             },
             { 
@@ -648,7 +648,7 @@
                     'Audyt <strong>nawigacji klawiaturą</strong> krok po kroku', 
                     'Formularze: identyfikacja błędów i ich analiza funkcjonalna', 
                     'Multimedia i treści alternatywne w praktyce', 
-                    'Sprawne korzystanie z czytników ekranu (NVDA, VoiceOver, TalkBack)'
+                    'Zarządzanie focusem w realnych interfejsach'
                 ]
             },
             { 
@@ -668,16 +668,38 @@
 
         const instructorsData = [
             { 
-                id: 'damian', name: 'Damian Żłobicki', company: 'Włącz Wizję', 
-                bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Lider Sieci Dostępności Cyfrowej. Wdraża narzędzia sztucznej inteligencji w firmach i nadzoruje transformacje cyfrowe.', 
-                image: 'https://scontent-waw2-1.xx.fbcdn.net/v/t51.82787-15/573488097_18076869497271214_485699435517027793_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TI9SpcZ-tOUQ7kNvwHapzri&_nc_oc=AdkMXs6uGQGALmYMUpbyu7LkGZA_Gw0bkLmdVJgEFHhhPGGaN1d42xlCBB6ApYlRmGM&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=6DLRTjw5z9fs10f-h0vVMg&oh=00_Afv6oc_ftvbbFzLX5ZsZAchT8wahVP5e8uyr7eGCse7umw&oe=699594CC', 
-                backContent: '<h3>Kompetencje</h3><ul class="instructor-credentials"><li>Wystąpienia publiczne i konferansjerka</li><li>Kompetencje liderskie i zarządzanie</li><li>Wdrażanie sztucznej inteligencji (AI)</li><li>Transformacje cyfrowe organizacji</li><li>Andragogika (UW)</li></ul>' 
+                id: 'damian', 
+                name: 'Damian Żłobicki', 
+                company: 'Włącz Wizję', 
+                bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Twórca podcastu „AKTYWIZJE”. Ekspert od wystąpień publicznych i AI.', 
+                image: 'https://scontent-waw2-1.xx.fbcdn.net/v/t51.82787-15/573488097_18076869497271214_485699435517027793_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TI9SpcZ-tOUQ7kNvwHapzri&_nc_oc=AdkMXs6uGQGALmYMUpbyu7LkGZA_Gw0bkLmdVJgEFHhhPGGaN1d42xlCBB6ApYlRmGM&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=6DLRTjw5z9fs10f-h0vVMg&oh=00_Afv6oc_ftvbbFzLX5ZsZAchT8wahVP5e8uyr7eGCse7umw&oe=699594CC',
+                alt: 'Damian Żłobicki siedzący na schodach w różowej koszuli.',
+                backContent: `
+                    <h3>Damian Żłobicki</h3>
+                    <p style="margin-bottom:0.5rem; font-weight:bold; color:var(--accent)">Kompetencje:</p>
+                    <ul class="instructor-credentials">
+                        <li>Wystąpienia publiczne i konferansjerka</li>
+                        <li>Kompetencje liderskie i zarządzanie</li>
+                        <li>Wdrażanie sztucznej inteligencji (AI)</li>
+                        <li>Transformacje cyfrowe organizacji</li>
+                        <li>Andragogika (UW)</li>
+                    </ul>
+                    <a href="https://linktr.ee/bergivision" target="_blank" class="instructor-cta-link">Poznaj Damiana</a>
+                `
             },
             { 
-                id: 'aleksandra', name: 'Aleksandra Migus', company: 'SOFTIQ', 
+                id: 'aleksandra', 
+                name: 'Aleksandra Migus', 
+                company: 'SOFTIQ', 
                 bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.', 
                 image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg', 
-                backContent: '<h3>Specjalizacja</h3><p>Aleksandra specjalizuje się w dostępności UI/UX oraz audytach kodu frontendowego.</p><a href="#" class="instructor-cta-link">Profil LinkedIn</a>' 
+                alt: 'Portret Aleksandry Migus.',
+                backContent: `
+                    <h3>Aleksandra Migus</h3>
+                    <p style="margin-bottom:0.5rem; font-weight:bold; color:var(--accent)">Specjalizacja:</p>
+                    <p>Aleksandra specjalizuje się w dostępności UI/UX oraz audytach kodu frontendowego.</p>
+                    <a href="#" class="instructor-cta-link">Profil LinkedIn</a>
+                ` 
             }
         ];
 
@@ -693,7 +715,7 @@
             const id = data.id;
             
             const front = isInst ? `
-                <img src="${data.image}" alt="Zdjęcie: ${data.name}" class="instructor-image">
+                <img src="${data.image}" alt="${data.alt}" class="instructor-image">
                 <div class="instructor-info-front">
                     <h3>${data.name}</h3>
                     <div class="instructor-company">${data.company}</div>
