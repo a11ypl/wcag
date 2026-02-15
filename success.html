@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Płatność udana - Dziękujemy! | Włącz Wizję</title>
+    <style>
+        /* Skopiuj style z index.html, plus ten mały dodatek dla stron statusu: */
+        body { display: flex; flex-direction: column; min-height: 100vh; text-align: center; }
+        main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
+        .status-icon { font-size: 5rem; margin-bottom: 1rem; }
+        h1 { color: var(--primary); margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Włącz Wizję</div>
+        </div>
+    </header>
 
+    <main>
+        <div class="status-icon" aria-hidden="true">🎉</div>
+        <h1>Dziękujemy za zakup!</h1>
+        <p class="subtitle" style="max-width: 600px; margin: 0 auto 2rem auto;">
+            Twoja płatność została potwierdzona. Na podany adres e-mail wysłaliśmy fakturę oraz szczegóły organizacyjne szkolenia.
+        </p>
+        <a href="/" class="btn btn-primary">Wróć na stronę główną</a>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Włącz Wizję.</p>
+        </div>
+    </footer>
+</body>
+</html>
