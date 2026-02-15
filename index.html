@@ -260,7 +260,8 @@
             background: white; 
             border: 3px solid var(--primary); /* UPDATED to purple */
             border-top: 5px solid var(--primary); 
-            padding: 2.2rem; 
+            /* UPDATED PADDING: Increased bottom padding to 4rem to make space for absolute footer */
+            padding: 2.2rem 2.2rem 4rem 2.2rem; 
         }
 
         .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2.5rem; justify-content: space-between; }
@@ -316,6 +317,18 @@
             margin-top: -3px; /* Optical adjustment */
         }
         
+        /* NEW CLASS FOR FOOTER TEXT IN CARD */
+        .card-footer-info {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
         .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
         
         .checkbox-wrapper { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; transition: 0.2s; }
@@ -715,7 +728,7 @@
                 <h3>${data.title}</h3>
                 <div class="day-subtitle">${data.subtitle}</div>
                 <ul>${data.items.map(li => `<li><span>${li}</span></li>`).join('')}</ul>
-                <div style="margin-top:auto; width:100%; text-align:center; font-size:0.9rem; color:var(--primary); font-weight:600;">(kliknij w kartę, aby obrócić)</div>
+                <div class="card-footer-info">(kliknij w kartę, aby obrócić)</div>
             `;
 
             const back = isInst ? `
