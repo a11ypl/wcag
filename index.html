@@ -175,7 +175,6 @@
         }
 
         /* FLIP CARDS CORE */
-        /* UPDATED: Increased height to 460px to fit content */
         .instructor-flip-card { height: 460px; perspective: 1200px; position: relative; }
         .day-card { height: 420px; perspective: 1200px; position: relative; }
         
@@ -642,13 +641,13 @@
     <script>
         // === KONFIGURACJA LINKÓW PŁATNICZYCH ===
         const paymentLinks = {
-            "1": "LINK_DZIEN_1",
-            "2": "LINK_DZIEN_2",
-            "3": "LINK_DZIEN_3",
-            "1,2": "LINK_PAKIET_1_2",
-            "1,3": "LINK_PAKIET_1_3",
-            "2,3": "LINK_PAKIET_2_3",
-            "1,2,3": "LINK_PELNY_KURS"
+            "1": "https://secure.tpay.com/?h=dbaf0ac2de69f12a9c873f92b4d45f5399d70b21",
+            "2": "https://secure.tpay.com/?h=9231e94939fbaad04835e484ee5dfc417949cae8",
+            "3": "https://secure.tpay.com/?h=dea8295966fb5ad5adb8c405c06860cfc360babe",
+            "1,2": "https://secure.tpay.com/?h=755b160f0e87e02c162a7716520c3b5db1851aa6",
+            "1,3": "https://secure.tpay.com/?h=1df33858a7ee59332bbd9b551411f7d47135776b",
+            "2,3": "https://secure.tpay.com/?h=569b951a340e528f36fac14dc3aaba9e9d8114e4",
+            "1,2,3": "https://secure.tpay.com/?h=7c158e206f4f3adbda638e5905262deea5d0d1f0"
         };
 
         const daysData = [
@@ -831,12 +830,9 @@
         }
 
         function handleBackKey(e, type, id) {
-            // Allow default behavior for interactive elements (links, buttons) on Enter
-            // Checkboxes (inputs) use Space to toggle, so Enter is free to close card (good UX)
-            if (e.key === 'Enter' && (e.target.tagName === 'A' || e.target.tagName === 'BUTTON')) return;
-            
-            // Allow Space to scroll or toggle inputs
-            if (e.key === ' ' && e.target !== e.currentTarget) return;
+            // User requirement: Only flip if focus is on the card container itself
+            // Prevents flip when pressing Enter on checkboxes or other interactive elements
+            if (e.target !== e.currentTarget) return;
 
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
