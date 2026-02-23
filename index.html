@@ -136,6 +136,11 @@
         .btn-checkout { background: var(--primary); color: white; }
         .btn-checkout:hover { background: #4a1f8f; transform: translateY(-2px); }
         .btn-checkout:disabled { background: var(--gray); transform: none; cursor: not-allowed; }
+        input[type="text"]:focus-visible, input[type="email"]:focus-visible {
+            outline: 3px solid var(--focus-color);
+            outline-offset: 2px;
+            border-color: var(--primary);
+        }
 
         /* FEATURES */
         .features { padding: 5rem 2rem; background: var(--light); }
@@ -576,7 +581,7 @@
                 </div>
 <div class="checkout-summary" aria-live="polite" aria-atomic="true">
     <h3>Twój wybór:</h3>
-    <div>
+    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: center;">
         <div>
             <p style="color: var(--gray); margin-bottom: 0.5rem; text-align: center;">Wybrane dni:</p>
             <output id="selectedDays" style="font-weight: bold; color: var(--dark); display:block;">Brak wyboru</output>
@@ -586,6 +591,31 @@
             <output id="totalPrice" style="font-weight: bold; color: var(--accent); display:block;">0 zł</output>
         </div>
     </div>
+
+    <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
+        <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div style="display: flex; flex-direction: column;">
+                <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
+                <input type="text" id="payer-fname" name="fname" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <label for="payer-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span aria-hidden="true" style="color: red;">*</span></label>
+                <input type="text" id="payer-lname" name="lname" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+            <label for="payer-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span aria-hidden="true" style="color: red;">*</span></label>
+            <input type="email" id="payer-email" name="email" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
+            <input type="text" id="payer-nip" name="nip" aria-required="false" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;">
+        </div>
+    </fieldset>
 
     <fieldset style="border: none; padding: 0; margin: 2rem auto; max-width: 600px; text-align: left;">
         <legend class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Zgody formalne niezbędne do realizacji zamówienia</legend>
@@ -603,11 +633,7 @@
     <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Przejdź do płatności</button>
     <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem; text-align: center;">Operatorem płatności jest Krajowy Integrator Płatności S.A. (Tpay).</p>
 </div>
-                        
-                    </div>
-                    <div style="text-align: center">
-                        <button class="btn btn-checkout" id="proceedBtn" onclick="proceedToPayment()" disabled style="padding: 1.2rem 3rem">Przejdź do zamówienia</button>
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -655,6 +681,24 @@
             </div>
         </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                <a href="regulamin.html" style="color: var(--accent); margin-right: 1.5rem; text-decoration: underline;">Regulamin świadczenia usług</a>
+                <a href="polityka-prywatnosci.html" style="color: var(--accent); text-decoration: underline;">Polityka prywatności i Cookies</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://linktr.ee/bergivision" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Social media</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // === KONFIGURACJA LINKÓW PŁATNICZYCH ===
@@ -899,12 +943,37 @@
             
             document.getElementById('selectedDays').textContent = isFull ? "Pełny kurs (3 dni)" : (checkedValues.length ? `Dni: ${checkedValues.sort().join(', ')}` : "Brak");
             document.getElementById('totalPrice').textContent = `${total} zł`;
-            document.getElementById('proceedBtn').disabled = checkedValues.length === 0;
+            validateCheckout();
 
             const msg = checkedValues.length > 0 
                 ? `Aktualizacja koszyka. Wybrano ${checkedValues.length} dni. Suma: ${total} zł.` 
                 : "Koszyk jest pusty.";
             showAriaAlert(msg);
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validateCheckout() {
+            const btn = document.getElementById('proceedBtn');
+            const hasDays = state.selectedDays.length > 0;
+            const consent = document.getElementById('consent-tos');
+            const hasConsent = consent ? consent.checked : false;
+            const fname = document.getElementById('payer-fname').value.trim();
+            const lname = document.getElementById('payer-lname').value.trim();
+            const email = document.getElementById('payer-email').value.trim();
+            const isFormValid = fname !== '' && lname !== '' && isValidEmail(email);
+            const isValid = hasDays && hasConsent && isFormValid;
+
+            btn.setAttribute('aria-disabled', String(!isValid));
+            if (isValid) {
+                btn.style.opacity = '1';
+                btn.style.cursor = 'pointer';
+            } else {
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            }
         }
 
         function selectAllDays() {
@@ -926,19 +995,77 @@
             setTimeout(() => region.classList.remove('show'), 5000);
         }
 
-        function proceedToPayment() {
-            // Sort selected IDs numerically to match keys like "1,2" (not "2,1")
-            const key = state.selectedDays.map(Number).sort((a, b) => a - b).join(',');
-            const link = paymentLinks[key];
+        function showAlert(msg) {
+            showAriaAlert(msg);
+        }
 
-            if (!link || link.includes("LINK_")) {
-                console.error("Błąd konfiguracji płatności: Brak linku lub placeholder dla kombinacji " + key);
-                alert("Przepraszamy, płatności nie są jeszcze skonfigurowane. Skontaktuj się z biurem.");
+        async function proceedToPayment() {
+            const btn = document.getElementById('proceedBtn');
+            if (btn.getAttribute('aria-disabled') === 'true') {
+                showAlert('Wypełnij poprawnie wszystkie wymagane pola, wybierz dni kursu i zaakceptuj zgody.');
                 return;
             }
 
-            showAriaAlert("Przekierowanie do płatności...");
-            setTimeout(() => { window.location.href = link; }, 1000);
+            const sortedDays = state.selectedDays.map(Number).sort((a, b) => a - b);
+            const priceVal = sortedDays.length === 3 ? state.prices.full : sortedDays.length * 699;
+            const tpayPayload = {
+                amount: priceVal,
+                description: `Kurs WCAG dla specjalistów - dni: ${sortedDays.join(', ')}`,
+                hiddenDescription: `NIP: ${document.getElementById('payer-nip').value.trim()}`,
+                payer: {
+                    email: document.getElementById('payer-email').value.trim(),
+                    name: `${document.getElementById('payer-fname').value.trim()} ${document.getElementById('payer-lname').value.trim()}`,
+                },
+                callbacks: {
+                    payerUrls: {
+                        success: "/success.html",
+                        error: "/error.html"
+                    }
+                }
+            };
+
+            console.log("Gotowy Payload dla Tpay API:", JSON.stringify(tpayPayload, null, 2));
+            showAlert("Generowanie transakcji... Proszę czekać.");
+            btn.setAttribute('aria-disabled', 'true');
+            btn.setAttribute('aria-busy', 'true');
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+
+            try {
+                const response = await fetch('/api/tpay/create-transaction', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(tpayPayload)
+                });
+
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    const errorMsg = data.message || `Błąd tworzenia transakcji (${response.status}).`;
+                    throw new Error(errorMsg);
+                }
+
+                const paymentUrl =
+                    data.paymentUrl ||
+                    data.transactionPaymentUrl ||
+                    data.redirectUrl ||
+                    (data.transaction && data.transaction.paymentUrl) ||
+                    null;
+
+                if (!paymentUrl) {
+                    throw new Error('Backend nie zwrócił adresu płatności.');
+                }
+
+                showAlert('Transakcja utworzona. Przekierowanie do Tpay...');
+                window.location.href = paymentUrl;
+            } catch (error) {
+                const msg = error && error.message ? error.message : 'Nie udało się utworzyć transakcji.';
+                showAlert(`Błąd płatności: ${msg}`);
+                validateCheckout();
+            } finally {
+                btn.removeAttribute('aria-busy');
+            }
         }
 
         document.querySelectorAll('.faq-question').forEach(q => {
@@ -950,7 +1077,10 @@
             });
         });
 
-        window.onload = renderCards;
+        window.onload = () => {
+            renderCards();
+            validateCheckout();
+        };
     </script>
 </body>
 </html>

@@ -5,34 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Błąd płatności | Włącz Wizję</title>
     <style>
-        /* Te same style co wyżej */
-        body { display: flex; flex-direction: column; min-height: 100vh; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        :root { --primary: #5F28B4; --accent: #fa9632; --dark: #1a1a1a; }
-        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--accent); color: black; border: none; cursor: pointer; }
-        header { background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); color: white; padding: 1rem 0; }
-        main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
-        .status-icon { font-size: 5rem; margin-bottom: 1rem; }
+        :root {
+            --primary: #5F28B4;
+            --accent: #fa9632;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --accent-hover: #e68a1c;
+            --text-on-accent: #000000;
+            --error: #B3261E;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(180deg, #ffffff 0%, var(--light) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        *:focus-visible {
+            outline: 4px solid #FF00FF;
+            outline-offset: 4px;
+            box-shadow: 0 0 0 4px #CCFF00, inset 0 0 0 4px #000000;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .header-content { display: flex; justify-content: center; align-items: center; }
+
+        .logo { font-size: 1.5rem; font-weight: 700; }
+
+        main {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            padding: 2rem;
+        }
+
+        .status-card {
+            width: 100%;
+            max-width: 760px;
+            background: #fff;
+            border: 2px solid var(--gray-light);
+            border-top: 8px solid var(--error);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .status-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        h1 {
+            color: var(--error);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+        }
+
+        p { margin-bottom: 1.5rem; color: #222; }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--text-on-accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-link {
+            color: var(--primary);
+            text-underline-offset: 2px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 0 1rem; }
+            .status-card { padding: 1.5rem; border-radius: 12px; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div style="font-size: 1.5rem; font-weight: bold; text-align: center;">Włącz Wizję</div>
+        <div class="container header-content">
+            <div class="logo">Włącz Wizję</div>
         </div>
     </header>
 
-    <main>
-        <div class="status-icon" aria-hidden="true">⚠️</div>
-        <h1 style="color: #d9534f;">Coś poszło nie tak</h1>
-        <p style="max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6;">
-            Nie udało nam się przetworzyć Twojej płatności. Środki nie zostały pobrane.
-            Spróbuj ponownie lub skontaktuj się z nami, jeśli problem będzie się powtarzał.
-        </p>
-        
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-            <a href="/#pricing" class="btn">Spróbuj ponownie</a>
-            <a href="mailto:biuro@wlaczwizje.pl" style="padding: 1rem; color: var(--dark);">Napisz do nas</a>
-        </div>
+    <main id="main-content">
+        <section class="status-card" aria-live="assertive">
+            <div class="status-icon" aria-hidden="true">⚠️</div>
+            <h1>Nie udało się opłacić zamówienia</h1>
+            <p>
+                Płatność nie została zrealizowana, a środki nie zostały pobrane.
+                Spróbuj ponownie lub skontaktuj się z nami, jeśli problem się powtórzy.
+            </p>
+            <div class="actions">
+                <a href="/index.html#pricing" class="btn btn-primary">Spróbuj ponownie</a>
+                <a href="mailto:biuro@wlaczwizje.pl" class="btn-link">Napisz do nas</a>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
 </body>
 </html>
