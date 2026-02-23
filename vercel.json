@@ -2,7 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "echo \"Skip install for static landing\"",
-  "buildCommand": "echo \"No build required for static landing\"",
+  "buildCommand": "mkdir -p public && cp index.html success.html error.html regulamin.html polityka-prywatnosci.html public/",
+  "outputDirectory": "public",
   "cleanUrls": true,
   "rewrites": [
     {
