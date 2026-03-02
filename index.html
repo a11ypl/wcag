@@ -475,7 +475,7 @@
             <div class="container">
                 <h1>Zostań ekspertem audytu WCAG</h1>
                 <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
-                <p class="course-dates" aria-label="Data kursu">📅 4.03.2026 - 6.03.2026 | 9:00 - 17:00 (Online Live)</p>
+                <p class="course-dates"><span aria-hidden="true">📅</span> 7.04.2026 - 9.04.2026 | 9:00 - 17:00 (Online Live)</p>
                 
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
@@ -630,8 +630,17 @@
         </div>
     </fieldset>
 
-    <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Przejdź do płatności</button>
-    <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem; text-align: center;">Operatorem płatności jest Krajowy Integrator Płatności S.A. (Tpay).</p>
+    <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Pokaż dane do przelewu</button>
+    <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem; text-align: center;">Po potwierdzeniu pokażemy dane do przelewu tradycyjnego.</p>
+
+    <section id="bankTransferInfo" hidden aria-live="polite" style="margin: 2rem auto 0; max-width: 700px; text-align: left; border: 2px solid var(--gray-light); border-radius: 12px; background: var(--light); padding: 1.5rem;">
+        <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.2rem;">Dane do przelewu</h4>
+        <p><strong>Odbiorca:</strong> <span id="transferRecipient">Włącz Wizję sp. z o.o.</span></p>
+        <p><strong>Numer rachunku:</strong> <span id="transferAccount">43 1870 1045 2078 1086 1525 0001</span></p>
+        <p><strong>Kwota:</strong> <span id="transferAmount">0 zł</span></p>
+        <p><strong>Tytuł przelewu:</strong> <span id="transferTitle">Wybierz wariant kursu.</span></p>
+        <p style="margin-bottom: 0; color: var(--gray); font-size: 0.95rem;">Po wykonaniu przelewu wyślij potwierdzenie na adres <a href="mailto:biuro@wlaczwizje.pl" style="color: var(--primary); font-weight: 600;">biuro@wlaczwizje.pl</a>.</p>
+    </section>
 </div>
 
                 </div>
@@ -701,22 +710,21 @@
     </footer>
 
     <script>
-        // === KONFIGURACJA LINKÓW PŁATNICZYCH ===
-        const paymentLinks = {
-            "1": "https://secure.tpay.com/?h=dbaf0ac2de69f12a9c873f92b4d45f5399d70b21",
-            "2": "https://secure.tpay.com/?h=9231e94939fbaad04835e484ee5dfc417949cae8",
-            "3": "https://secure.tpay.com/?h=dea8295966fb5ad5adb8c405c06860cfc360babe",
-            "1,2": "https://secure.tpay.com/?h=755b160f0e87e02c162a7716520c3b5db1851aa6",
-            "1,3": "https://secure.tpay.com/?h=1df33858a7ee59332bbd9b551411f7d47135776b",
-            "2,3": "https://secure.tpay.com/?h=569b951a340e528f36fac14dc3aaba9e9d8114e4",
-            "1,2,3": "https://secure.tpay.com/?h=7c158e206f4f3adbda638e5905262deea5d0d1f0"
+        const transferTitles = {
+            "1": "Szkolenie WCAG dla specjalistów: Dzień 1",
+            "2": "Szkolenie WCAG dla specjalistów: Dzień 2",
+            "3": "Szkolenie WCAG dla specjalistów: Dzień 3",
+            "1,2": "Szkolenie WCAG dla specjalistów: Dzień 1, 2",
+            "1,3": "Szkolenie WCAG dla specjalistów: Dzień 1, 3",
+            "2,3": "Szkolenie WCAG dla specjalistów: Dzień 2, 3",
+            "1,2,3": "Szkolenie WCAG dla specjalistów: Pełny kurs"
         };
 
         const daysData = [
             { 
                 id: 1, 
                 number: '1', 
-                date: '4.03.26', 
+                date: '7.04.26', 
                 title: 'Fundamenty i walidacja WCAG', 
                 subtitle: 'ZBUDUJ SOLIDNĄ BAZĘ AUDYTU',
                 items: [
@@ -729,7 +737,7 @@
             { 
                 id: 2, 
                 number: '2', 
-                date: '5.03.26', 
+                date: '8.04.26', 
                 title: 'Interakcja i media', 
                 subtitle: 'NAJCZĘSTSZE PROBLEMY, NAJWIĘKSZY WPŁYW',
                 items: [
@@ -742,7 +750,7 @@
             { 
                 id: 3, 
                 number: '3', 
-                date: '6.03.26', 
+                date: '9.04.26', 
                 title: 'Raport i proces', 
                 subtitle: 'OD BŁĘDU DO WDROŻENIA',
                 items: [
@@ -760,8 +768,8 @@
                 name: 'Damian Żłobicki', 
                 company: 'Włącz Wizję', 
                 bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Twórca podcastu „AKTYWIZJE”. Ekspert od wystąpień publicznych i AI.', 
-                image: 'https://scontent-waw2-1.xx.fbcdn.net/v/t51.82787-15/573488097_18076869497271214_485699435517027793_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TI9SpcZ-tOUQ7kNvwHapzri&_nc_oc=AdkMXs6uGQGALmYMUpbyu7LkGZA_Gw0bkLmdVJgEFHhhPGGaN1d42xlCBB6ApYlRmGM&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=6DLRTjw5z9fs10f-h0vVMg&oh=00_Afv6oc_ftvbbFzLX5ZsZAchT8wahVP5e8uyr7eGCse7umw&oe=699594CC',
-                alt: 'Damian Żłobicki siedzący na schodach w różowej koszuli.',
+                image: 'assets/damian-zlobicki.jpeg',
+                alt: 'Portret Damiana Żłobickiego.',
                 backContent: `
                     <h3>Damian Żłobicki</h3>
                     <p style="margin-bottom:0.5rem; font-weight:bold; color:var(--accent)">Kompetencje:</p>
@@ -779,7 +787,7 @@
                 name: 'Aleksandra Migus', 
                 company: 'SOFTIQ', 
                 bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.', 
-                image: 'https://pplx-res.cloudinary.com/image/upload/v1768730748/search_images/eee2fdfa61ef6eed1965363a30e716cd6171645a.jpg', 
+                image: 'assets/aleksandra-migus.jpg', 
                 alt: 'Portret Aleksandry Migus.',
                 backContent: `
                     <h3>Aleksandra Migus</h3>
@@ -999,7 +1007,7 @@
             showAriaAlert(msg);
         }
 
-        async function proceedToPayment() {
+        function proceedToPayment() {
             const btn = document.getElementById('proceedBtn');
             if (btn.getAttribute('aria-disabled') === 'true') {
                 showAlert('Wypełnij poprawnie wszystkie wymagane pola, wybierz dni kursu i zaakceptuj zgody.');
@@ -1007,65 +1015,16 @@
             }
 
             const sortedDays = state.selectedDays.map(Number).sort((a, b) => a - b);
+            const key = sortedDays.join(',');
             const priceVal = sortedDays.length === 3 ? state.prices.full : sortedDays.length * 699;
-            const tpayPayload = {
-                amount: priceVal,
-                description: `Kurs WCAG dla specjalistów - dni: ${sortedDays.join(', ')}`,
-                hiddenDescription: `NIP: ${document.getElementById('payer-nip').value.trim()}`,
-                payer: {
-                    email: document.getElementById('payer-email').value.trim(),
-                    name: `${document.getElementById('payer-fname').value.trim()} ${document.getElementById('payer-lname').value.trim()}`,
-                },
-                callbacks: {
-                    payerUrls: {
-                        success: "/sukces",
-                        error: "/blad"
-                    }
-                }
-            };
+            const transferInfo = document.getElementById('bankTransferInfo');
+            const transferTitle = transferTitles[key] || 'Wybierz wariant kursu.';
 
-            console.log("Gotowy Payload dla Tpay API:", JSON.stringify(tpayPayload, null, 2));
-            showAlert("Generowanie transakcji... Proszę czekać.");
-            btn.setAttribute('aria-disabled', 'true');
-            btn.setAttribute('aria-busy', 'true');
-            btn.style.opacity = '0.5';
-            btn.style.cursor = 'not-allowed';
-
-            try {
-                const response = await fetch('/api/tpay/create-transaction', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(tpayPayload)
-                });
-
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok) {
-                    const errorMsg = data.message || `Błąd tworzenia transakcji (${response.status}).`;
-                    throw new Error(errorMsg);
-                }
-
-                const paymentUrl =
-                    data.paymentUrl ||
-                    data.transactionPaymentUrl ||
-                    data.redirectUrl ||
-                    (data.transaction && data.transaction.paymentUrl) ||
-                    null;
-
-                if (!paymentUrl) {
-                    throw new Error('Backend nie zwrócił adresu płatności.');
-                }
-
-                showAlert('Transakcja utworzona. Przekierowanie do Tpay...');
-                window.location.href = paymentUrl;
-            } catch (error) {
-                const msg = error && error.message ? error.message : 'Nie udało się utworzyć transakcji.';
-                showAlert(`Błąd płatności: ${msg}`);
-                validateCheckout();
-            } finally {
-                btn.removeAttribute('aria-busy');
-            }
+            document.getElementById('transferAmount').textContent = `${priceVal} zł`;
+            document.getElementById('transferTitle').textContent = transferTitle;
+            transferInfo.hidden = false;
+            transferInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            showAlert('Dane do przelewu zostały wyświetlone poniżej.');
         }
 
         document.querySelectorAll('.faq-question').forEach(q => {

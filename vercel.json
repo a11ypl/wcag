@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "echo \"Skip install for static landing\"",
-  "buildCommand": "mkdir -p public && cp index.html success.html error.html regulamin.html polityka-prywatnosci.html public/",
+  "buildCommand": "mkdir -p public/assets && cp index.html success.html error.html regulamin.html polityka-prywatnosci.html public/ && cp -R assets/. public/assets/",
   "outputDirectory": "public",
   "cleanUrls": true,
   "rewrites": [
