@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "echo \"Skip install for static landing\"",
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/sukces",
+      "destination": "/success.html"
+    },
+    {
+      "source": "/blad",
+      "destination": "/error.html"
+    },
+    {
+      "source": "/regulamin",
+      "destination": "/regulamin.html"
+    },
+    {
+      "source": "/polityka-prywatnosci",
+      "destination": "/polityka-prywatnosci.html"
+    }
+  ]
+}
