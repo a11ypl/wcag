@@ -55,12 +55,13 @@
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
         
         .logo { font-size: 1.5rem; font-weight: bold; }
         
-        nav a { color: white; text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; }
-        nav a:hover { text-decoration: underline; }
+        header nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.75rem 1.5rem; }
+        header nav a { color: white; text-decoration: none; margin-left: 0; font-size: 0.95rem; font-weight: 500; }
+        header nav a:hover { text-decoration: underline; }
         
         /* Removed specific nav focus to inherit global tricolor style */
         
@@ -94,7 +95,7 @@
             text-align: center;
         }
         
-        .hero-cta { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
+        .hero-cta { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
         
         .hero-stats { 
             display: flex; 
@@ -404,6 +405,111 @@
             border-radius: 16px; border: 2px dashed var(--gray-light);
             max-width: 900px; margin-left: auto; margin-right: auto; 
         }
+        .checkout-summary h3 { text-align: center; }
+        .checkout-overview {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        .checkout-step {
+            margin: 2rem auto 0;
+            max-width: 700px;
+            text-align: left;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            background: white;
+            padding: 1.5rem;
+        }
+        .checkout-step[hidden] { display: none; }
+        .checkout-step-title {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+        .checkout-step-note {
+            color: var(--gray);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .checkout-actions {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .checkout-helper {
+            color: var(--gray);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        .checkout-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .checkout-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .checkout-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .confirmation-selection {
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .transfer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        .transfer-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: flex-start;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        .transfer-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .transfer-value {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: right;
+        }
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 999px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
         .summary-flex { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin: 2rem 0; }
         .summary-item { text-align: center; }
         .summary-label { color: black; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; }
@@ -445,10 +551,38 @@
         @keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         @media (max-width: 992px) {
+            .container { padding: 0 1.25rem; }
+            .header-content { flex-direction: column; }
+            header nav { justify-content: center; }
             .instructors-grid { grid-template-columns: 1fr; max-width: 450px; }
             .days-container { grid-template-columns: 1fr; max-width: 500px; margin: 3rem auto; }
             .hero h1 { font-size: 2.5rem; }
+            .hero-stats { gap: 2rem; flex-wrap: wrap; }
             .price-card--featured { transform: scale(1); }
+        }
+
+        @media (max-width: 640px) {
+            header { position: static; }
+            .container { padding: 0 1rem; }
+            .hero { padding: 4rem 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1.1rem; }
+            .hero-cta { flex-direction: column; }
+            .hero-cta .btn { width: 100%; }
+            .hero-stats { flex-direction: column; gap: 1.25rem; }
+            .section-title { font-size: 2rem; }
+            .pricing { padding: 4rem 1rem; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .price-card { padding: 2rem 1.25rem; }
+            .price { font-size: 2.75rem; }
+            .checkout-summary { padding: 1.5rem 1rem; }
+            .checkout-overview { gap: 1rem; }
+            .checkout-form-grid { grid-template-columns: 1fr; }
+            .transfer-row { flex-direction: column; }
+            .transfer-value { justify-content: flex-start; text-align: left; }
+            .checkout-actions .btn,
+            #orderConfirmation .btn { width: 100%; }
+            .aria-alert-region { left: 1rem; right: 1rem; bottom: 1rem; }
         }
     </style>
 </head>
@@ -581,7 +715,7 @@
                 </div>
 <div class="checkout-summary" aria-live="polite" aria-atomic="true">
     <h3>Twój wybór:</h3>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: center;">
+    <div class="checkout-overview">
         <div>
             <p style="color: var(--gray); margin-bottom: 0.5rem; text-align: center;">Wybrane dni:</p>
             <output id="selectedDays" style="font-weight: bold; color: var(--dark); display:block;">Brak wyboru</output>
@@ -592,54 +726,90 @@
         </div>
     </div>
 
-    <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
-        <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-            <div style="display: flex; flex-direction: column;">
-                <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
-                <input type="text" id="payer-fname" name="fname" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+    <div class="checkout-actions">
+        <button class="btn btn-primary btn-full-width" id="confirmOrderBtn" type="button" onclick="openOrderConfirmation()" aria-disabled="true" style="opacity: 0.5; cursor: not-allowed;">Przejdź do potwierdzenia zamówienia</button>
+        <p id="confirmOrderHelp" class="checkout-helper">Najpierw wybierz co najmniej jeden dzień kursu.</p>
+    </div>
+
+    <section id="orderConfirmation" class="checkout-step" hidden>
+        <h4 class="checkout-step-title">Potwierdzenie zamówienia</h4>
+        <p id="confirmationSelection" class="confirmation-selection">Wybierz dni kursu, aby przejść dalej.</p>
+
+        <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
+            <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
+            
+            <div class="checkout-form-grid">
+                <div class="checkout-field">
+                    <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
+                    <input type="text" id="payer-fname" name="fname" class="checkout-input" aria-required="true" required oninput="validateCheckout()">
+                </div>
+                <div class="checkout-field">
+                    <label for="payer-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span aria-hidden="true" style="color: red;">*</span></label>
+                    <input type="text" id="payer-lname" name="lname" class="checkout-input" aria-required="true" required oninput="validateCheckout()">
+                </div>
             </div>
-            <div style="display: flex; flex-direction: column;">
-                <label for="payer-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span aria-hidden="true" style="color: red;">*</span></label>
-                <input type="text" id="payer-lname" name="lname" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+
+            <div class="checkout-field" style="margin-bottom: 1rem;">
+                <label for="payer-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span aria-hidden="true" style="color: red;">*</span></label>
+                <input type="email" id="payer-email" name="email" class="checkout-input" aria-required="true" required oninput="validateCheckout()">
+            </div>
+
+            <div class="checkout-field">
+                <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
+                <input type="text" id="payer-nip" name="nip" class="checkout-input" aria-required="false">
+            </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0 auto; max-width: 600px; text-align: left;">
+            <legend class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Zgody formalne niezbędne do realizacji zamówienia</legend>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <label style="display: flex; gap: 0.8rem; align-items: flex-start; cursor: pointer;">
+                    <input type="checkbox" id="consent-tos" class="checkout-checkbox" aria-required="true" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" onchange="validateCheckout()">
+                    <span style="font-size: 0.95rem; color: var(--dark); line-height: 1.4;">
+                        Akceptuję <a href="regulamin.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin kursu</a> oraz zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Polityką Prywatności</a>. (Wymagane)
+                    </span>
+                </label>
+            </div>
+        </fieldset>
+
+        <button class="btn btn-primary" id="proceedBtn" type="button" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Pokaż dane do przelewu</button>
+        <p class="checkout-step-note">Po potwierdzeniu pokażemy dane do przelewu tradycyjnego.</p>
+    </section>
+
+    <section id="bankTransferInfo" class="checkout-step" hidden aria-live="polite">
+        <h4 class="checkout-step-title">Dane do przelewu</h4>
+        <div class="transfer-list">
+            <div class="transfer-row">
+                <strong>Odbiorca:</strong>
+                <div class="transfer-value">
+                    <span id="transferRecipient">Włącz Wizję sp. z o.o.</span>
+                    <button class="copy-btn" type="button" onclick="copyTransferValue('transferRecipient', 'Odbiorca')">Kopiuj</button>
+                </div>
+            </div>
+            <div class="transfer-row">
+                <strong>Numer rachunku:</strong>
+                <div class="transfer-value">
+                    <span id="transferAccount">43 1870 1045 2078 1086 1525 0001</span>
+                    <button class="copy-btn" type="button" onclick="copyTransferValue('transferAccount', 'Numer rachunku')">Kopiuj</button>
+                </div>
+            </div>
+            <div class="transfer-row">
+                <strong>Kwota:</strong>
+                <div class="transfer-value">
+                    <span id="transferAmount">0 zł</span>
+                    <button class="copy-btn" type="button" onclick="copyTransferValue('transferAmount', 'Kwota')">Kopiuj</button>
+                </div>
+            </div>
+            <div class="transfer-row">
+                <strong>Tytuł przelewu:</strong>
+                <div class="transfer-value">
+                    <span id="transferTitle">Wybierz wariant kursu.</span>
+                    <button class="copy-btn" type="button" onclick="copyTransferValue('transferTitle', 'Tytuł przelewu')">Kopiuj</button>
+                </div>
             </div>
         </div>
-
-        <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
-            <label for="payer-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span aria-hidden="true" style="color: red;">*</span></label>
-            <input type="email" id="payer-email" name="email" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
-        </div>
-
-        <div style="display: flex; flex-direction: column;">
-            <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
-            <input type="text" id="payer-nip" name="nip" aria-required="false" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;">
-        </div>
-    </fieldset>
-
-    <fieldset style="border: none; padding: 0; margin: 2rem auto; max-width: 600px; text-align: left;">
-        <legend class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Zgody formalne niezbędne do realizacji zamówienia</legend>
-        
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <label style="display: flex; gap: 0.8rem; align-items: flex-start; cursor: pointer;">
-                <input type="checkbox" id="consent-tos" class="checkout-checkbox" aria-required="true" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" onchange="validateCheckout()">
-                <span style="font-size: 0.95rem; color: var(--dark); line-height: 1.4;">
-                    Akceptuję <a href="regulamin.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin kursu</a> oraz zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Polityką Prywatności</a>. (Wymagane)
-                </span>
-            </label>
-        </div>
-    </fieldset>
-
-    <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Pokaż dane do przelewu</button>
-    <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem; text-align: center;">Po potwierdzeniu pokażemy dane do przelewu tradycyjnego.</p>
-
-    <section id="bankTransferInfo" hidden aria-live="polite" style="margin: 2rem auto 0; max-width: 700px; text-align: left; border: 2px solid var(--gray-light); border-radius: 12px; background: var(--light); padding: 1.5rem;">
-        <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.2rem;">Dane do przelewu</h4>
-        <p><strong>Odbiorca:</strong> <span id="transferRecipient">Włącz Wizję sp. z o.o.</span></p>
-        <p><strong>Numer rachunku:</strong> <span id="transferAccount">43 1870 1045 2078 1086 1525 0001</span></p>
-        <p><strong>Kwota:</strong> <span id="transferAmount">0 zł</span></p>
-        <p><strong>Tytuł przelewu:</strong> <span id="transferTitle">Wybierz wariant kursu.</span></p>
-        <p style="margin-bottom: 0; color: var(--gray); font-size: 0.95rem;">Po wykonaniu przelewu wyślij potwierdzenie na adres <a href="mailto:biuro@wlaczwizje.pl" style="color: var(--primary); font-weight: 600;">biuro@wlaczwizje.pl</a>.</p>
+        <p style="margin-top: 1rem; margin-bottom: 0; color: var(--gray); font-size: 0.95rem;">Po wykonaniu przelewu wyślij potwierdzenie na adres <a href="mailto:biuro@wlaczwizje.pl" style="color: var(--primary); font-weight: 600;">biuro@wlaczwizje.pl</a>.</p>
     </section>
 </div>
 
@@ -798,7 +968,86 @@
             }
         ];
 
-        const state = { selectedDays: [], prices: { single: 699, full: 1599 } };
+        const state = {
+            selectedDays: [],
+            prices: { single: 699, full: 1599 },
+            confirmationOpen: false
+        };
+
+        function setButtonState(button, enabled) {
+            button.setAttribute('aria-disabled', String(!enabled));
+            button.style.opacity = enabled ? '1' : '0.5';
+            button.style.cursor = enabled ? 'pointer' : 'not-allowed';
+        }
+
+        function hideTransferInfo() {
+            document.getElementById('bankTransferInfo').hidden = true;
+        }
+
+        function updateConfirmationSelection() {
+            const selectionLabel = document.getElementById('confirmationSelection');
+            const sortedDays = [...state.selectedDays].sort();
+            const isFull = sortedDays.length === 3;
+            const total = isFull ? state.prices.full : sortedDays.length * state.prices.single;
+
+            if (!sortedDays.length) {
+                selectionLabel.textContent = 'Wybierz dni kursu, aby przejść dalej.';
+                return;
+            }
+
+            selectionLabel.textContent = isFull
+                ? `Potwierdzasz pełny kurs (3 dni) za ${total} zł.`
+                : `Potwierdzasz wybór dni: ${sortedDays.join(', ')}. Razem do zapłaty: ${total} zł.`;
+        }
+
+        function updateConfirmationButton() {
+            const confirmBtn = document.getElementById('confirmOrderBtn');
+            const confirmHelp = document.getElementById('confirmOrderHelp');
+            const hasDays = state.selectedDays.length > 0;
+
+            setButtonState(confirmBtn, hasDays);
+            confirmHelp.textContent = hasDays
+                ? 'Przejdziesz dalej do formularza potwierdzenia zamówienia.'
+                : 'Najpierw wybierz co najmniej jeden dzień kursu.';
+        }
+
+        function openOrderConfirmation() {
+            if (!state.selectedDays.length) {
+                showAlert('Wybierz co najmniej jeden dzień kursu.');
+                return;
+            }
+
+            state.confirmationOpen = true;
+            updateConfirmationSelection();
+            hideTransferInfo();
+            document.getElementById('orderConfirmation').hidden = false;
+            validateCheckout();
+            document.getElementById('orderConfirmation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            showAlert('Otworzono potwierdzenie zamówienia.');
+        }
+
+        async function copyTransferValue(fieldId, label) {
+            const text = document.getElementById(fieldId).textContent.trim();
+
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    const temp = document.createElement('textarea');
+                    temp.value = text;
+                    temp.setAttribute('readonly', '');
+                    temp.style.position = 'absolute';
+                    temp.style.left = '-9999px';
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                }
+                showAlert(`${label} skopiowano.`);
+            } catch (error) {
+                showAlert(`Nie udało się skopiować pola: ${label}.`);
+            }
+        }
 
         function renderCards() {
             document.getElementById('daysContainer').innerHTML = daysData.map(d => createFlipCard('day', d)).join('');
@@ -949,8 +1198,20 @@
             const isFull = checkedValues.length === 3;
             const total = isFull ? state.prices.full : checkedValues.length * state.prices.single;
             
-            document.getElementById('selectedDays').textContent = isFull ? "Pełny kurs (3 dni)" : (checkedValues.length ? `Dni: ${checkedValues.sort().join(', ')}` : "Brak");
+            document.getElementById('selectedDays').textContent = isFull ? "Pełny kurs (3 dni)" : (checkedValues.length ? `Dni: ${[...checkedValues].sort().join(', ')}` : "Brak");
             document.getElementById('totalPrice').textContent = `${total} zł`;
+            updateConfirmationButton();
+            updateConfirmationSelection();
+
+            if (!checkedValues.length) {
+                state.confirmationOpen = false;
+                document.getElementById('orderConfirmation').hidden = true;
+            }
+
+            if (state.confirmationOpen) {
+                hideTransferInfo();
+            }
+
             validateCheckout();
 
             const msg = checkedValues.length > 0 
@@ -972,16 +1233,9 @@
             const lname = document.getElementById('payer-lname').value.trim();
             const email = document.getElementById('payer-email').value.trim();
             const isFormValid = fname !== '' && lname !== '' && isValidEmail(email);
-            const isValid = hasDays && hasConsent && isFormValid;
+            const isValid = state.confirmationOpen && hasDays && hasConsent && isFormValid;
 
-            btn.setAttribute('aria-disabled', String(!isValid));
-            if (isValid) {
-                btn.style.opacity = '1';
-                btn.style.cursor = 'pointer';
-            } else {
-                btn.style.opacity = '0.5';
-                btn.style.cursor = 'not-allowed';
-            }
+            setButtonState(btn, isValid);
         }
 
         function selectAllDays() {
@@ -1038,6 +1292,8 @@
 
         window.onload = () => {
             renderCards();
+            updateConfirmationButton();
+            updateConfirmationSelection();
             validateCheckout();
         };
     </script>
