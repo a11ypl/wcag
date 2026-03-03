@@ -473,6 +473,22 @@
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
+        .checkout-error-summary {
+            border: 2px solid #b00020;
+            border-radius: 8px;
+            background: #fff4f6;
+            color: #7a0018;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .checkout-error-summary[hidden] { display: none; }
+        .field-error {
+            display: none;
+            color: #b00020;
+            font-size: 0.9rem;
+            margin-top: 0.35rem;
+        }
+        .field-error.active { display: block; }
         .transfer-list {
             display: flex;
             flex-direction: column;
@@ -740,6 +756,7 @@
         <h4 class="checkout-step-title">Potwierdzenie zamówienia</h4>
         <p id="confirmationSelection" class="confirmation-selection">Wybierz dni kursu, aby przejść dalej.</p>
         <p class="required-note"><span aria-hidden="true">*</span> - pole wymagane</p>
+        <div id="checkoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
 
         <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
             <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
@@ -747,27 +764,32 @@
             <div class="checkout-form-grid">
                 <div class="checkout-field">
                     <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
-                    <input type="text" id="payer-fname" name="fname" class="checkout-input" required autocomplete="given-name" oninput="validateCheckout()">
+                    <input type="text" id="payer-fname" name="fname" class="checkout-input" required autocomplete="given-name" aria-describedby="payer-fname-error" oninput="validateCheckout()">
+                    <p id="payer-fname-error" class="field-error"></p>
                 </div>
                 <div class="checkout-field">
                     <label for="payer-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span aria-hidden="true" style="color: red;">*</span></label>
-                    <input type="text" id="payer-lname" name="lname" class="checkout-input" required autocomplete="family-name" oninput="validateCheckout()">
+                    <input type="text" id="payer-lname" name="lname" class="checkout-input" required autocomplete="family-name" aria-describedby="payer-lname-error" oninput="validateCheckout()">
+                    <p id="payer-lname-error" class="field-error"></p>
                 </div>
             </div>
 
             <div class="checkout-field" style="margin-bottom: 1rem;">
                 <label for="payer-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span aria-hidden="true" style="color: red;">*</span></label>
-                <input type="email" id="payer-email" name="email" class="checkout-input" required autocomplete="email" oninput="validateCheckout()">
+                <input type="email" id="payer-email" name="email" class="checkout-input" required autocomplete="email" aria-describedby="payer-email-error" oninput="validateCheckout()">
+                <p id="payer-email-error" class="field-error"></p>
             </div>
 
             <div class="checkout-field" style="margin-bottom: 1rem;">
                 <label for="payer-phone" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Numer telefonu</label>
-                <input type="tel" id="payer-phone" name="phone" class="checkout-input" inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" oninput="sanitizeDigits(this, 15)">
+                <input type="tel" id="payer-phone" name="phone" class="checkout-input" inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" aria-describedby="payer-phone-error" oninput="sanitizeDigits(this, 15)">
+                <p id="payer-phone-error" class="field-error"></p>
             </div>
 
             <div class="checkout-field">
                 <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
-                <input type="text" id="payer-nip" name="nip" class="checkout-input" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="on" oninput="sanitizeDigits(this, 10)">
+                <input type="text" id="payer-nip" name="nip" class="checkout-input" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="on" aria-describedby="payer-nip-error" oninput="sanitizeDigits(this, 10)">
+                <p id="payer-nip-error" class="field-error"></p>
             </div>
         </fieldset>
 
@@ -776,16 +798,16 @@
             
             <div style="display: flex; flex-direction: column; gap: 1rem;">
                 <label style="display: flex; gap: 0.8rem; align-items: flex-start; cursor: pointer;">
-                    <input type="checkbox" id="consent-tos" class="checkout-checkbox" required style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" onchange="validateCheckout()">
+                    <input type="checkbox" id="consent-tos" class="checkout-checkbox" required style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" aria-describedby="consent-tos-error" onchange="validateCheckout()">
                     <span style="font-size: 0.95rem; color: var(--dark); line-height: 1.4;">
                         Akceptuję <a href="regulamin.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin kursu</a> oraz zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Polityką Prywatności</a>. (Wymagane)
                     </span>
                 </label>
+                <p id="consent-tos-error" class="field-error"></p>
             </div>
         </fieldset>
 
         <button class="btn btn-primary" id="proceedBtn" type="button" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Wyślij zamówienie i pokaż dane do przelewu</button>
-        <p class="checkout-step-note">Po wysłaniu zamówienia na adres <strong>damian@wlaczwizje.pl</strong> pokażemy dane do przelewu tradycyjnego.</p>
     </section>
 
     <section id="bankTransferInfo" class="checkout-step" hidden aria-live="polite">
@@ -1255,7 +1277,25 @@
             return nip === '' || /^[0-9]{10}$/.test(nip);
         }
 
-        function validateCheckout() {
+        function setFieldError(inputId, errorId, message) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+
+            if (!input || !error) return;
+
+            if (message) {
+                input.setAttribute('aria-invalid', 'true');
+                error.textContent = message;
+                error.classList.add('active');
+            } else {
+                input.removeAttribute('aria-invalid');
+                error.textContent = '';
+                error.classList.remove('active');
+            }
+        }
+
+        function validateCheckout(options = {}) {
+            const { showSummary = false } = options;
             const btn = document.getElementById('proceedBtn');
             const hasDays = state.selectedDays.length > 0;
             const consent = document.getElementById('consent-tos');
@@ -1265,15 +1305,60 @@
             const email = document.getElementById('payer-email').value.trim();
             const phone = document.getElementById('payer-phone').value.trim();
             const nip = document.getElementById('payer-nip').value.trim();
-            const isFormValid =
-                fname !== '' &&
-                lname !== '' &&
-                isValidEmail(email) &&
-                isValidPhone(phone) &&
-                isValidNip(nip);
+            const summary = document.getElementById('checkoutErrorSummary');
+            const errors = [];
+
+            const fnameError = fname === '' ? 'Podaj imię.' : '';
+            const lnameError = lname === '' ? 'Podaj nazwisko.' : '';
+            const emailError = email === ''
+                ? 'Podaj adres e-mail.'
+                : (!isValidEmail(email) ? 'Wpisz poprawny adres e-mail, np. imie@domena.pl.' : '');
+            const phoneError = !isValidPhone(phone)
+                ? 'Numer telefonu może zawierać tylko cyfry i powinien mieć od 9 do 15 cyfr.'
+                : '';
+            const nipError = !isValidNip(nip)
+                ? 'NIP powinien składać się z 10 cyfr.'
+                : '';
+            const consentError = hasConsent ? '' : 'Zaakceptuj regulamin i politykę prywatności.';
+
+            setFieldError('payer-fname', 'payer-fname-error', fnameError);
+            setFieldError('payer-lname', 'payer-lname-error', lnameError);
+            setFieldError('payer-email', 'payer-email-error', emailError);
+            setFieldError('payer-phone', 'payer-phone-error', phoneError);
+            setFieldError('payer-nip', 'payer-nip-error', nipError);
+            setFieldError('consent-tos', 'consent-tos-error', consentError);
+
+            if (fnameError) errors.push(fnameError);
+            if (lnameError) errors.push(lnameError);
+            if (emailError) errors.push(emailError);
+            if (phoneError) errors.push(phoneError);
+            if (nipError) errors.push(nipError);
+            if (consentError) errors.push(consentError);
+
+            const isFormValid = errors.length === 0;
             const isValid = state.confirmationOpen && hasDays && hasConsent && isFormValid;
 
             setButtonState(btn, isValid);
+            if (summary) {
+                if (showSummary && errors.length) {
+                    summary.hidden = false;
+                    summary.textContent = 'Formularz zawiera błędy. Popraw oznaczone pola.';
+                } else {
+                    summary.hidden = true;
+                    summary.textContent = '';
+                }
+            }
+
+            return {
+                isValid,
+                firstInvalidFieldId: fnameError ? 'payer-fname'
+                    : lnameError ? 'payer-lname'
+                    : emailError ? 'payer-email'
+                    : phoneError ? 'payer-phone'
+                    : nipError ? 'payer-nip'
+                    : consentError ? 'consent-tos'
+                    : null
+            };
         }
 
         function selectAllDays() {
@@ -1301,8 +1386,11 @@
 
         async function proceedToPayment() {
             const btn = document.getElementById('proceedBtn');
-            if (btn.getAttribute('aria-disabled') === 'true') {
-                showAlert('Wypełnij poprawnie wszystkie wymagane pola, wybierz dni kursu i zaakceptuj zgody.');
+            const validation = validateCheckout({ showSummary: true });
+            if (!validation.isValid) {
+                if (validation.firstInvalidFieldId) {
+                    document.getElementById(validation.firstInvalidFieldId).focus();
+                }
                 return;
             }
 
