@@ -800,12 +800,17 @@
                 <label style="display: flex; gap: 0.8rem; align-items: flex-start; cursor: pointer;">
                     <input type="checkbox" id="consent-tos" class="checkout-checkbox" required style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" aria-describedby="consent-tos-error" onchange="validateCheckout()">
                     <span style="font-size: 0.95rem; color: var(--dark); line-height: 1.4;">
-                        Akceptuję <a href="regulamin.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin kursu</a> oraz zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Polityką Prywatności</a>. (Wymagane)
+                        Akceptuję <a href="regulamin.html" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin kursu</a> oraz zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Polityką Prywatności</a>. (Wymagane)
                     </span>
                 </label>
                 <p id="consent-tos-error" class="field-error"></p>
             </div>
         </fieldset>
+
+        <div id="captchaContainer" class="checkout-field" style="margin: 1.5rem auto 0 auto; max-width: 600px; text-align: left;" tabindex="-1">
+            <div class="h-captcha" data-captcha="true" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2" data-callback="handleCaptchaSuccess" data-expired-callback="handleCaptchaExpired"></div>
+            <p id="captcha-error" class="field-error"></p>
+        </div>
 
         <button class="btn btn-primary" id="proceedBtn" type="button" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Wyślij zamówienie i pokaż dane do przelewu</button>
     </section>
@@ -982,9 +987,9 @@
                         <li>Szkoleniowiec z 4000h doświadczenia</li>
                         <li>Audytor stron internetowych i aplikacji mobilnych</li>
                         <li>Ekspert w projekcie "AI DC - sztuczna inteligencja wspierająca dostępność cyfrową"</li>
-                        <li>Lider <a href="https://www.gov.pl/web/dostepnosc-cyfrowa/sklad-sieci-dostepnosci-cyfrowej" target="_blank" style="color:white; text-decoration: underline;" aria-label="Sieć Dostępności Cyfrowej - link otworzy się w nowym oknie">Sieci Dostępności Cyfrowej</a></li>
+                        <li>Lider <a href="https://www.gov.pl/web/dostepnosc-cyfrowa/sklad-sieci-dostepnosci-cyfrowej" target="_blank" rel="noopener noreferrer" style="color:white; text-decoration: underline;" aria-label="Sieć Dostępności Cyfrowej - link otworzy się w nowym oknie">Sieci Dostępności Cyfrowej</a></li>
                     </ul>
-                    <a href="https://linktr.ee/bergivision" target="_blank" class="instructor-cta-link">Poznaj Damiana</a>
+                    <a href="https://linktr.ee/bergivision" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">Poznaj Damiana</a>
                 `
             },
             { 
@@ -1277,6 +1282,35 @@
             return nip === '' || /^[0-9]{10}$/.test(nip);
         }
 
+        function getCaptchaResponse() {
+            const captchaField = document.querySelector('textarea[name="h-captcha-response"]');
+            return captchaField ? captchaField.value.trim() : '';
+        }
+
+        function setCaptchaError(message) {
+            const error = document.getElementById('captcha-error');
+            if (!error) return;
+
+            error.textContent = message;
+            error.classList.toggle('active', Boolean(message));
+        }
+
+        function resetCaptcha() {
+            if (window.hcaptcha && typeof window.hcaptcha.reset === 'function') {
+                window.hcaptcha.reset();
+            }
+        }
+
+        function handleCaptchaSuccess() {
+            setCaptchaError('');
+            validateCheckout();
+        }
+
+        function handleCaptchaExpired() {
+            setCaptchaError('Potwierdź ponownie, że nie jesteś botem.');
+            validateCheckout();
+        }
+
         function setFieldError(inputId, errorId, message) {
             const input = document.getElementById(inputId);
             const error = document.getElementById(errorId);
@@ -1306,6 +1340,7 @@
             const phone = document.getElementById('payer-phone').value.trim();
             const nip = document.getElementById('payer-nip').value.trim();
             const summary = document.getElementById('checkoutErrorSummary');
+            const captchaResponse = getCaptchaResponse();
             const errors = [];
 
             const fnameError = fname === '' ? 'Podaj imię.' : '';
@@ -1320,6 +1355,7 @@
                 ? 'NIP powinien składać się z 10 cyfr.'
                 : '';
             const consentError = hasConsent ? '' : 'Zaakceptuj regulamin i politykę prywatności.';
+            const captchaError = captchaResponse ? '' : 'Potwierdź, że nie jesteś botem.';
 
             setFieldError('payer-fname', 'payer-fname-error', fnameError);
             setFieldError('payer-lname', 'payer-lname-error', lnameError);
@@ -1327,6 +1363,7 @@
             setFieldError('payer-phone', 'payer-phone-error', phoneError);
             setFieldError('payer-nip', 'payer-nip-error', nipError);
             setFieldError('consent-tos', 'consent-tos-error', consentError);
+            setCaptchaError(captchaError);
 
             if (fnameError) errors.push(fnameError);
             if (lnameError) errors.push(lnameError);
@@ -1334,6 +1371,7 @@
             if (phoneError) errors.push(phoneError);
             if (nipError) errors.push(nipError);
             if (consentError) errors.push(consentError);
+            if (captchaError) errors.push(captchaError);
 
             const isFormValid = errors.length === 0;
             const isValid = state.confirmationOpen && hasDays && hasConsent && isFormValid;
@@ -1357,6 +1395,7 @@
                     : phoneError ? 'payer-phone'
                     : nipError ? 'payer-nip'
                     : consentError ? 'consent-tos'
+                    : captchaError ? 'captchaContainer'
                     : null
             };
         }
@@ -1453,10 +1492,12 @@
                 document.getElementById('transferTitle').textContent = transferTitle;
                 transferInfo.hidden = false;
                 transferInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                resetCaptcha();
                 showAlert('Zamówienie zostało wysłane. Dane do przelewu są dostępne poniżej.');
             } catch (error) {
                 const message = error && error.message ? error.message : 'Nie udało się wysłać zamówienia.';
                 hideTransferInfo();
+                resetCaptcha();
                 showAlert(`Błąd wysyłki zamówienia: ${message}`);
             } finally {
                 btn.removeAttribute('aria-busy');
@@ -1495,5 +1536,6 @@
             validateCheckout();
         };
     </script>
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
