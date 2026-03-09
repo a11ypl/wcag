@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Włącz Wizję</title>
+    <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Accessibility First</title>
     <style>
         :root { 
             --primary: #5F28B4; 
@@ -29,11 +29,14 @@
 
         p { margin-bottom: 1rem; }
         
-        /* C40: Two-color focus indicator (W3C/WAI) */
+        /* Global tricolor focus indicator */
         *:focus-visible { 
-            outline: 2px #F9F9F9 solid;
-            outline-offset: 0;
-            box-shadow: 0 0 0 4px #193146;
+            outline: 4px solid #FF00FF;
+            outline-offset: 4px;
+            box-shadow:
+                0 0 0 4px #CCFF00,
+                inset 0 0 0 4px #000000;
+            z-index: 100;
         }
         
         /* HEADER & HERO */
@@ -605,7 +608,7 @@
 
     <header>
         <div class="container header-content">
-            <div class="logo" aria-label="a11yfirst - Strona główna">a11yfirst</div>
+            <div class="logo" aria-label="Accessibility First - Strona główna">Accessibility First</div>
             <nav aria-label="Menu główne">
                 <a href="#instructors">Instruktorzy</a>
                 <a href="#program">Program</a>
@@ -878,6 +881,13 @@
                             <span class="faq-icon">▼</span>
                         </button>
                         <div class="faq-answer">Limit wynosi 16 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Czym jest Accessibility First?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Accessibility First to projekt Włącz Wizję skoncentrowany na wdrożeniach dostępności cyfrowej, audytach oraz szkoleniach z tego zakresu.</div>
                     </div>
                 </div>
             </div>
