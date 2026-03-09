@@ -122,7 +122,9 @@
             cursor: pointer; 
             font-size: 1.1rem; 
             text-align: center; 
+            position: relative;
         }
+        .btn:focus-visible { z-index: 3; }
         
         .btn-primary { background: var(--accent); color: var(--text-on-accent); }
         .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
@@ -330,11 +332,11 @@
 
         /* PRICING */
         .pricing { padding: 5rem 2rem; background: white; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto; overflow: visible; }
         .price-card { 
             background: white; border: 2px solid var(--gray-light); border-radius: 16px; 
             padding: 3rem 2rem; text-align: center; position: relative; display: flex; flex-direction: column; 
-            transition: 0.3s;
+            transition: 0.3s; overflow: visible; scroll-margin-top: 120px;
         }
         .price-card--featured { border: 4px solid var(--primary); transform: scale(1.05); box-shadow: 0 20px 40px rgba(95, 40, 180, 0.12); }
         .price-card__badge { 
@@ -1384,6 +1386,24 @@
             document.getElementById('program').scrollIntoView({ behavior: 'smooth' });
         }
 
+        function ensureVisibleBelowHeader(element) {
+            if (!element) return;
+
+            const header = document.querySelector('header');
+            const isStickyHeader = header && window.getComputedStyle(header).position === 'sticky';
+            const offset = isStickyHeader ? header.offsetHeight + 16 : 16;
+            const rect = element.getBoundingClientRect();
+            const viewportBottom = window.innerHeight - 16;
+
+            if (rect.top < offset || rect.bottom > viewportBottom) {
+                const targetTop = window.scrollY + rect.top - offset;
+                window.scrollTo({
+                    top: Math.max(0, targetTop),
+                    behavior: 'smooth'
+                });
+            }
+        }
+
         function showAriaAlert(msg) {
             const region = document.getElementById('alertRegion');
             region.textContent = msg;
@@ -1500,6 +1520,12 @@
                 event.preventDefault();
                 link.click();
             }
+        });
+
+        document.addEventListener('focusin', event => {
+            if (!event.target || event.target.id !== 'toggleDaysBtn') return;
+            const card = event.target.closest('.price-card') || event.target;
+            ensureVisibleBelowHeader(card);
         });
 
         window.onload = () => {
