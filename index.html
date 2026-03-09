@@ -14,8 +14,6 @@
             --gray-light: #e9ecef; 
             --accent-hover: #e68a1c; 
             --text-on-accent: #000000; 
-            --focus-color: #FFD700; 
-            --focus-strong: #000000; /* New variable for strong focus */
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.1); 
             --shadow-md: 0 8px 24px rgba(0,0,0,0.12); 
         }
@@ -31,15 +29,11 @@
 
         p { margin-bottom: 1rem; }
         
-        /* AAA Accessibility: Global TRICOLOR Focus States (Pink-Lime-Black) */
-        /* HEAVY THICKNESS: 4px Inner Black + 4px Lime Gap + 4px Outer Pink = 12px Total Visual Weight */
+        /* C40: Two-color focus indicator (W3C/WAI) */
         *:focus-visible { 
-            outline: 4px solid #FF00FF; /* Outer Pink (Magenta) */
-            outline-offset: 4px;        /* Spacing for Lime */
-            box-shadow: 
-                0 0 0 4px #CCFF00,      /* Middle Lime Spacer */
-                inset 0 0 0 4px #000000; /* Inner Black Border */
-            z-index: 100; /* Ensure visibility on top */
+            outline: 2px #F9F9F9 solid;
+            outline-offset: 0;
+            box-shadow: 0 0 0 4px #193146;
         }
         
         /* HEADER & HERO */
@@ -139,12 +133,6 @@
         .btn-checkout { background: var(--primary); color: white; }
         .btn-checkout:hover { background: #4a1f8f; transform: translateY(-2px); }
         .btn-checkout:disabled { background: var(--gray); transform: none; cursor: not-allowed; }
-        input[type="text"]:focus-visible, input[type="email"]:focus-visible {
-            outline: 3px solid var(--focus-color);
-            outline-offset: 2px;
-            border-color: var(--primary);
-        }
-
         /* FEATURES */
         .features { padding: 5rem 2rem; background: var(--light); }
         .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3.5rem; color: var(--dark); font-weight: 800; }
@@ -617,7 +605,7 @@
 
     <header>
         <div class="container header-content">
-            <div class="logo" aria-label="Włącz Wizję - Strona główna">Włącz Wizję</div>
+            <div class="logo" aria-label="a11yfirst - Strona główna">a11yfirst</div>
             <nav aria-label="Menu główne">
                 <a href="#instructors">Instruktorzy</a>
                 <a href="#program">Program</a>
@@ -886,7 +874,7 @@
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
-                            <span>Ile uczestników może wziąć udział?</span>
+                            <span>Ilu uczestników może wziąć udział?</span>
                             <span class="faq-icon">▼</span>
                         </button>
                         <div class="faq-answer">Limit wynosi 16 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.</div>
