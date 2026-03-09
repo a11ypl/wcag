@@ -277,23 +277,25 @@
         .instructors { padding: 5rem 2rem; background: white; }
         .instructors-grid { 
             display: grid; 
-            grid-template-columns: repeat(2, 400px); 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
             justify-content: center;
             gap: 2.5rem; 
-            margin: 3rem auto 0; 
+            margin: 3rem auto 0;
+            max-width: 980px;
         }
         
         .program { padding: 5rem 2rem; background: var(--light); }
         .days-container { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); 
             gap: 2rem; 
-            margin-top: 3rem; 
+            margin: 3rem auto 0;
+            max-width: 1100px;
         }
 
         /* FLIP CARDS CORE */
-        .instructor-flip-card { height: 460px; perspective: 1200px; position: relative; }
-        .day-card { height: 420px; perspective: 1200px; position: relative; }
+        .instructor-flip-card { height: 460px; perspective: 1200px; position: relative; width: 100%; min-width: 0; }
+        .day-card { height: 420px; perspective: 1200px; position: relative; width: 100%; min-width: 0; }
         
         .instructor-flip-card-inner, .day-card-inner { 
             position: relative; 
@@ -363,6 +365,23 @@
             padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; 
             font-weight: 700; margin-top: 1rem; transition: 0.3s; text-align: center; 
         }
+
+        #instructors, #program, #pricing, #faq { scroll-margin-top: 140px; }
+
+        body.high-zoom header { position: static; }
+        body.high-zoom .header-content { flex-direction: column; }
+        body.high-zoom header nav { justify-content: center; }
+        body.high-zoom .instructors-grid,
+        body.high-zoom .days-container,
+        body.high-zoom .pricing-grid {
+            grid-template-columns: 1fr;
+            max-width: 560px;
+        }
+        body.high-zoom .price-card--featured { transform: scale(1); }
+        body.high-zoom #instructors,
+        body.high-zoom #program,
+        body.high-zoom #pricing,
+        body.high-zoom #faq { scroll-margin-top: 24px; }
 
         /* DAYS STYLE */
         button.day-card-front { 
@@ -683,14 +702,16 @@
         @keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         @media (max-width: 992px) {
+            header { position: static; }
             .container { padding: 0 1.25rem; }
             .header-content { flex-direction: column; }
             header nav { justify-content: center; }
-            .instructors-grid { grid-template-columns: 1fr; max-width: 450px; }
-            .days-container { grid-template-columns: 1fr; max-width: 500px; margin: 3rem auto; }
+            .instructors-grid { max-width: 560px; }
+            .days-container { max-width: 560px; }
             .hero h1 { font-size: 2.5rem; }
             .hero-stats { gap: 2rem; flex-wrap: wrap; }
             .price-card--featured { transform: scale(1); }
+            #instructors, #program, #pricing, #faq { scroll-margin-top: 24px; }
         }
 
         @media (max-width: 640px) {
@@ -842,7 +863,7 @@
                             <li>Zgoda na użytek komercyjny</li>
                             <li>Dostęp do zamkniętej grupy</li>
                         </ul>
-                        <button class="btn btn-primary btn-full-width" onclick="selectAllDays()">🚀 Kupuję pełny kurs</button>
+                        <button class="btn btn-primary btn-full-width" id="fullCourseBtn" onclick="selectAllDays()">🚀 Kupuję pełny kurs</button>
                     </div>
                 </div>
 <div class="checkout-summary" aria-live="polite" aria-atomic="true">
@@ -1227,18 +1248,27 @@
         }
 
         // Helpers for dropdown interaction
-        function toggleDaysList() {
+        function setDaysListExpanded(expanded) {
             const list = document.getElementById('single-day-list');
             const btn = document.getElementById('toggleDaysBtn');
-            const isHidden = list.hasAttribute('hidden');
-            
-            if (isHidden) {
+
+            if (expanded) {
                 list.removeAttribute('hidden');
                 btn.setAttribute('aria-expanded', 'true');
             } else {
                 list.setAttribute('hidden', '');
                 btn.setAttribute('aria-expanded', 'false');
             }
+        }
+
+        function toggleDaysList() {
+            const list = document.getElementById('single-day-list');
+            const isHidden = list.hasAttribute('hidden');
+            setDaysListExpanded(isHidden);
+        }
+
+        function closeDaysList() {
+            setDaysListExpanded(false);
         }
 
         // Main synchronization handler
@@ -1492,6 +1522,7 @@
 
         function selectAllDays() {
             // Logic updated to check all boxes, then sync
+            closeDaysList();
             const allBoxes = document.querySelectorAll('.day-checkbox');
             allBoxes.forEach(c => c.checked = true);
             updateSelection();
@@ -1518,6 +1549,14 @@
                     behavior: 'smooth'
                 });
             }
+        }
+
+        function isHighZoomActive() {
+            return Boolean(window.visualViewport && window.visualViewport.scale >= 1.5);
+        }
+
+        function updateHighZoomLayout() {
+            document.body.classList.toggle('high-zoom', isHighZoomActive());
         }
 
         function showAriaAlert(msg) {
@@ -1639,17 +1678,38 @@
         });
 
         document.addEventListener('focusin', event => {
-            if (!event.target || event.target.id !== 'toggleDaysBtn') return;
-            const card = event.target.closest('.price-card') || event.target;
-            ensureVisibleBelowHeader(card);
+            if (!event.target) return;
+
+            const priceCard = event.target.closest('.price-card');
+            if (priceCard) {
+                ensureVisibleBelowHeader(priceCard);
+            }
+
+            if (event.target.id === 'toggleDaysBtn') {
+                const card = event.target.closest('.price-card') || event.target;
+                ensureVisibleBelowHeader(card);
+                return;
+            }
+
+            if (event.target.id === 'fullCourseBtn') {
+                closeDaysList();
+                const card = event.target.closest('.price-card') || event.target;
+                requestAnimationFrame(() => ensureVisibleBelowHeader(card));
+            }
         });
 
         window.onload = () => {
             renderCards();
+            updateHighZoomLayout();
             updateConfirmationButton();
             updateConfirmationSelection();
             validateCheckout();
         };
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', updateHighZoomLayout);
+        }
+        window.addEventListener('resize', updateHighZoomLayout);
     </script>
 </body>
 </html>
