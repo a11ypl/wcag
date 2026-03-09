@@ -611,7 +611,7 @@
     <a href="#pricing" class="skip-link">Przejdź bezpośrednio do cennika</a>
     
     <!-- ARIA Live Region for AAA Compliance -->
-    <div class="aria-alert-region" role="alert" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
+    <div class="aria-alert-region" role="status" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
 
     <header>
         <div class="container header-content">
@@ -705,7 +705,7 @@
                     <div class="price-card">
                         <h3>Pojedynczy dzień</h3>
                         <div class="price">699 <span style="font-size: 1.5rem">zł</span></div>
-                        <p class="price-period">netto za moduł</p>
+                        <p class="price-period">brutto za moduł (FV 0%)</p>
                         <ul class="price-features">
                             <li>Intensywne 8h warsztatów</li>
                             <li>Imienny certyfikat</li>
@@ -724,7 +724,7 @@
                         <span class="price-card__badge">Najlepsza wartość</span>
                         <h3>Pełny kurs (3 dni)</h3>
                         <div class="price">1599 <span style="font-size: 1.5rem">zł</span></div>
-                        <p class="price-period">netto za całość (oszczędzasz 498 zł)</p>
+                        <p class="price-period">brutto za całość (FV 0%, oszczędzasz 498 zł)</p>
                         <ul class="price-features">
                             <li>Kompletna ścieżka audytora</li>
                             <li>Wszystkie materiały i checklisty</li>
@@ -806,11 +806,6 @@
                 <p id="consent-tos-error" class="field-error"></p>
             </div>
         </fieldset>
-
-        <div id="captchaContainer" class="checkout-field" style="margin: 1.5rem auto 0 auto; max-width: 600px; text-align: left;" tabindex="-1">
-            <div class="h-captcha" data-captcha="true" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2" data-callback="handleCaptchaSuccess" data-expired-callback="handleCaptchaExpired"></div>
-            <p id="captcha-error" class="field-error"></p>
-        </div>
 
         <button class="btn btn-primary" id="proceedBtn" type="button" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Wyślij zamówienie i pokaż dane do przelewu</button>
     </section>
@@ -909,7 +904,7 @@
                 <a href="polityka-prywatnosci.html" style="color: var(--accent); text-decoration: underline;">Polityka prywatności i Cookies</a>
             </nav>
             <div class="footer-social">
-                <a href="https://linktr.ee/bergivision" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Social media</a>
+                <a href="https://linktr.ee/bergivision" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Social Media Włącz Wizję</a>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
@@ -938,7 +933,7 @@
                 title: 'Fundamenty i walidacja WCAG', 
                 subtitle: 'ZBUDUJ SOLIDNĄ BAZĘ AUDYTU',
                 items: [
-                    'Jak <strong>czytać i interpretować WCAG 2.2</strong> , bez zgadywania', 
+                    'Jak <strong>czytać i interpretować WCAG 2.2</strong>, bez zgadywania', 
                     'Gdzie automatyzacja pomaga, a gdzie <strong>fałszuje wyniki</strong>', 
                     'Jak sprawdzać <strong>strukturę dokumentu i semantykę</strong>', 
                     'Narzędzia, które realnie przyspieszają audyt'
@@ -1003,7 +998,7 @@
                     <h3>Aleksandra Migus</h3>
                     <p style="margin-bottom:0.5rem; font-weight:bold; color:var(--accent)">Specjalizacja:</p>
                     <p>Aleksandra specjalizuje się w dostępności UI/UX oraz audytach kodu frontendowego.</p>
-                    <a href="#" class="instructor-cta-link">Profil LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/aleksandra-migus/" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">Profil LinkedIn</a>
                 ` 
             }
         ];
@@ -1051,6 +1046,14 @@
                 : 'Najpierw wybierz co najmniej jeden dzień kursu.';
         }
 
+        function focusStepTitle(stepId) {
+            const title = document.querySelector(`#${stepId} .checkout-step-title`);
+            if (!title) return;
+
+            title.setAttribute('tabindex', '-1');
+            title.focus({ preventScroll: true });
+        }
+
         function openOrderConfirmation() {
             if (!state.selectedDays.length) {
                 showAlert('Wybierz co najmniej jeden dzień kursu.');
@@ -1063,6 +1066,7 @@
             document.getElementById('orderConfirmation').hidden = false;
             validateCheckout();
             document.getElementById('orderConfirmation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            focusStepTitle('orderConfirmation');
             showAlert('Otworzono potwierdzenie zamówienia.');
         }
 
@@ -1207,8 +1211,10 @@
             if (open) {
                 inner.classList.add('flipped');
                 front.setAttribute('inert', '');
+                front.setAttribute('aria-hidden', 'true');
                 front.classList.replace('card-side-visible', 'card-side-hidden');
                 back.removeAttribute('inert');
+                back.removeAttribute('aria-hidden');
                 back.setAttribute('tabindex', '0'); // FIX HERE
                 back.classList.replace('card-side-hidden', 'card-side-visible');
                 setTimeout(() => back.focus(), 100);
@@ -1282,35 +1288,6 @@
             return nip === '' || /^[0-9]{10}$/.test(nip);
         }
 
-        function getCaptchaResponse() {
-            const captchaField = document.querySelector('textarea[name="h-captcha-response"]');
-            return captchaField ? captchaField.value.trim() : '';
-        }
-
-        function setCaptchaError(message) {
-            const error = document.getElementById('captcha-error');
-            if (!error) return;
-
-            error.textContent = message;
-            error.classList.toggle('active', Boolean(message));
-        }
-
-        function resetCaptcha() {
-            if (window.hcaptcha && typeof window.hcaptcha.reset === 'function') {
-                window.hcaptcha.reset();
-            }
-        }
-
-        function handleCaptchaSuccess() {
-            setCaptchaError('');
-            validateCheckout();
-        }
-
-        function handleCaptchaExpired() {
-            setCaptchaError('Potwierdź ponownie, że nie jesteś botem.');
-            validateCheckout();
-        }
-
         function setFieldError(inputId, errorId, message) {
             const input = document.getElementById(inputId);
             const error = document.getElementById(errorId);
@@ -1340,7 +1317,6 @@
             const phone = document.getElementById('payer-phone').value.trim();
             const nip = document.getElementById('payer-nip').value.trim();
             const summary = document.getElementById('checkoutErrorSummary');
-            const captchaResponse = getCaptchaResponse();
             const errors = [];
 
             const fnameError = fname === '' ? 'Podaj imię.' : '';
@@ -1355,7 +1331,6 @@
                 ? 'NIP powinien składać się z 10 cyfr.'
                 : '';
             const consentError = hasConsent ? '' : 'Zaakceptuj regulamin i politykę prywatności.';
-            const captchaError = captchaResponse ? '' : 'Potwierdź, że nie jesteś botem.';
 
             setFieldError('payer-fname', 'payer-fname-error', fnameError);
             setFieldError('payer-lname', 'payer-lname-error', lnameError);
@@ -1363,7 +1338,6 @@
             setFieldError('payer-phone', 'payer-phone-error', phoneError);
             setFieldError('payer-nip', 'payer-nip-error', nipError);
             setFieldError('consent-tos', 'consent-tos-error', consentError);
-            setCaptchaError(captchaError);
 
             if (fnameError) errors.push(fnameError);
             if (lnameError) errors.push(lnameError);
@@ -1371,7 +1345,6 @@
             if (phoneError) errors.push(phoneError);
             if (nipError) errors.push(nipError);
             if (consentError) errors.push(consentError);
-            if (captchaError) errors.push(captchaError);
 
             const isFormValid = errors.length === 0;
             const isValid = state.confirmationOpen && hasDays && hasConsent && isFormValid;
@@ -1395,7 +1368,6 @@
                     : phoneError ? 'payer-phone'
                     : nipError ? 'payer-nip'
                     : consentError ? 'consent-tos'
-                    : captchaError ? 'captchaContainer'
                     : null
             };
         }
@@ -1492,12 +1464,11 @@
                 document.getElementById('transferTitle').textContent = transferTitle;
                 transferInfo.hidden = false;
                 transferInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                resetCaptcha();
+                focusStepTitle('bankTransferInfo');
                 showAlert('Zamówienie zostało wysłane. Dane do przelewu są dostępne poniżej.');
             } catch (error) {
                 const message = error && error.message ? error.message : 'Nie udało się wysłać zamówienia.';
                 hideTransferInfo();
-                resetCaptcha();
                 showAlert(`Błąd wysyłki zamówienia: ${message}`);
             } finally {
                 btn.removeAttribute('aria-busy');
@@ -1514,19 +1485,21 @@
             });
         });
 
-        document.querySelectorAll('a.btn, a.instructor-cta-link').forEach(link => {
-            link.addEventListener('keydown', event => {
-                if (event.key === ' ') {
-                    event.preventDefault();
-                }
-            });
+        document.addEventListener('keydown', event => {
+            const link = event.target.closest('a.btn, a.instructor-cta-link');
+            if (!link) return;
+            if (event.key === ' ') {
+                event.preventDefault();
+            }
+        });
 
-            link.addEventListener('keyup', event => {
-                if (event.key === ' ') {
-                    event.preventDefault();
-                    link.click();
-                }
-            });
+        document.addEventListener('keyup', event => {
+            const link = event.target.closest('a.btn, a.instructor-cta-link');
+            if (!link) return;
+            if (event.key === ' ') {
+                event.preventDefault();
+                link.click();
+            }
         });
 
         window.onload = () => {
@@ -1536,6 +1509,5 @@
             validateCheckout();
         };
     </script>
-    <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
