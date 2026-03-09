@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /sukces
+Disallow: /blad
+
+Sitemap: https://a11yfirst.pl/sitemap.xml
