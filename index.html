@@ -1706,9 +1706,8 @@
             }
 
             if (event.target.id === 'fullCourseBtn') {
-                closeDaysList();
                 const card = event.target.closest('.price-card') || event.target;
-                requestAnimationFrame(() => ensureVisibleBelowHeader(card));
+                ensureVisibleBelowHeader(card);
                 return;
             }
 
