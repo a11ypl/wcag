@@ -714,6 +714,10 @@
             #instructors, #program, #pricing, #faq { scroll-margin-top: 24px; }
         }
 
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 560px; }
+        }
+
         @media (max-width: 640px) {
             header { position: static; }
             .container { padding: 0 1rem; }
@@ -1533,7 +1537,7 @@
             document.getElementById('program').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function ensureVisibleBelowHeader(element) {
+        function ensureVisibleBelowHeader(element, behavior = 'auto') {
             if (!element) return;
 
             const header = document.querySelector('header');
@@ -1546,7 +1550,7 @@
                 const targetTop = window.scrollY + rect.top - offset;
                 window.scrollTo({
                     top: Math.max(0, targetTop),
-                    behavior: 'smooth'
+                    behavior
                 });
             }
         }
@@ -1680,11 +1684,6 @@
         document.addEventListener('focusin', event => {
             if (!event.target) return;
 
-            const priceCard = event.target.closest('.price-card');
-            if (priceCard) {
-                ensureVisibleBelowHeader(priceCard);
-            }
-
             if (event.target.id === 'toggleDaysBtn') {
                 const card = event.target.closest('.price-card') || event.target;
                 ensureVisibleBelowHeader(card);
@@ -1695,6 +1694,12 @@
                 closeDaysList();
                 const card = event.target.closest('.price-card') || event.target;
                 requestAnimationFrame(() => ensureVisibleBelowHeader(card));
+                return;
+            }
+
+            const priceCard = event.target.closest('.price-card');
+            if (priceCard) {
+                ensureVisibleBelowHeader(priceCard);
             }
         });
 
