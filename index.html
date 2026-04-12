@@ -53,7 +53,7 @@
             {
               "@type": "Offer",
               "category": "Pojedynczy dzień",
-              "price": "699",
+              "price": "799",
               "priceCurrency": "PLN",
               "availability": "https://schema.org/InStock",
               "url": "https://a11yfirst.pl/#pricing"
@@ -61,7 +61,7 @@
             {
               "@type": "Offer",
               "category": "Pełny kurs",
-              "price": "1599",
+              "price": "1699",
               "priceCurrency": "PLN",
               "availability": "https://schema.org/InStock",
               "url": "https://a11yfirst.pl/#pricing"
@@ -71,6 +71,14 @@
         {
           "@type": "FAQPage",
           "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Czym jest Accessibility First?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Accessibility First to projekt Włącz Wizję skoncentrowany na wdrożeniach dostępności cyfrowej, audytach oraz szkoleniach z tego zakresu."
+              }
+            },
             {
               "@type": "Question",
               "name": "Jaki jest warunek wstępny do udziału?",
@@ -84,7 +92,7 @@
               "name": "Czy mogę wziąć udział tylko w jednym dniu?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Tak, możesz wybrać pojedynczy dzień kursu za 699 zł."
+                "text": "Tak, możesz wybrać pojedynczy dzień kursu za 799 zł."
               }
             },
             {
@@ -110,649 +118,13 @@
                 "@type": "Answer",
                 "text": "Limit wynosi 16 uczestników. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs."
               }
-            },
-            {
-              "@type": "Question",
-              "name": "Czym jest Accessibility First?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Accessibility First to projekt Włącz Wizję skoncentrowany na wdrożeniach dostępności cyfrowej, audytach oraz szkoleniach z tego zakresu."
-              }
             }
           ]
         }
       ]
     }
     </script>
-    <style>
-        :root { 
-            --primary: #5F28B4; 
-            --accent: #fa9632; 
-            --dark: #1a1a1a; 
-            --light: #f8f9fa; 
-            --gray: #6c757d; 
-            --gray-light: #e9ecef; 
-            --accent-hover: #e68a1c; 
-            --text-on-accent: #000000; 
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1); 
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.12); 
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: #fff; 
-        }
-
-        p { margin-bottom: 1rem; }
-        
-        /* Global tricolor focus indicator */
-        *:focus-visible { 
-            outline: 4px solid #FF00FF;
-            outline-offset: 4px;
-            box-shadow:
-                0 0 0 4px #CCFF00,
-                inset 0 0 0 4px #000000;
-            z-index: 100;
-        }
-        
-        /* HEADER & HERO */
-        header { 
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
-            color: white; 
-            padding: 1rem 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            box-shadow: var(--shadow-sm); 
-        }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        
-        .header-content { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
-        
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        
-        header nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.75rem 1.5rem; }
-        header nav a { color: white; text-decoration: none; margin-left: 0; font-size: 0.95rem; font-weight: 500; }
-        header nav a:hover { text-decoration: underline; }
-        
-        /* Removed specific nav focus to inherit global tricolor style */
-        
-        .hero { 
-            background: linear-gradient(135deg, var(--primary) 0%, #4a1f8f 100%); 
-            color: white; 
-            padding: 6rem 2rem; 
-            text-align: center; 
-        }
-        
-        .hero h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 1.5rem; 
-            line-height: 1.2; 
-            text-align: center; 
-        }
-        
-        .hero .subtitle { 
-            font-size: 1.4rem; 
-            opacity: 0.95; 
-            max-width: 750px; 
-            margin: 0 auto 1.5rem; 
-            text-align: center;
-        }
-        
-        .hero .course-dates { 
-            font-size: 1.2rem; 
-            font-weight: 700; 
-            margin-bottom: 2.5rem; 
-            color: var(--accent); 
-            text-align: center;
-        }
-        
-        .hero-cta { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
-        
-        .hero-stats { 
-            display: flex; 
-            justify-content: center; 
-            gap: 4rem; 
-            margin-top: 3rem; 
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 2rem;
-        }
-        
-        .stat { text-align: center; } 
-        .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--accent); display: block; }
-        .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* BUTTONS */
-        .btn { 
-            display: inline-block; 
-            padding: 1rem 2rem; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            text-decoration: none; 
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            border: none; 
-            cursor: pointer; 
-            font-size: 1.1rem; 
-            text-align: center; 
-            position: relative;
-        }
-        .btn:focus-visible { z-index: 3; }
-        
-        .btn-primary { background: var(--accent); color: var(--text-on-accent); }
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
-        .btn-primary:disabled { background: var(--gray); transform: none; cursor: not-allowed; }
-        
-        .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 2px solid white; }
-        .btn-secondary:hover { background: white; color: var(--primary); }
-        
-        .btn-full-width { width: 100%; }
-
-        /* Custom checkout button style (Purple) */
-        .btn-checkout { background: var(--primary); color: white; }
-        .btn-checkout:hover { background: #4a1f8f; transform: translateY(-2px); }
-        .btn-checkout:disabled { background: var(--gray); transform: none; cursor: not-allowed; }
-        /* FEATURES */
-        .features { padding: 5rem 2rem; background: var(--light); }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3.5rem; color: var(--dark); font-weight: 800; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        
-        .feature-card { 
-            background: white; 
-            padding: 2.5rem; 
-            border-radius: 12px; 
-            border-left: 5px solid var(--accent); 
-            box-shadow: var(--shadow-sm); 
-            transition: 0.3s; 
-        }
-        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
-        .feature-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary); }
-        /* UPDATED: Changed from var(--gray) to black */
-        .feature-card p { color: black; line-height: 1.7; margin-bottom: 0; }
-
-        /* FLIP CARDS LAYOUT */
-        .instructors { padding: 5rem 2rem; background: white; }
-        .instructors-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
-            justify-content: center;
-            gap: 2.5rem; 
-            margin: 3rem auto 0;
-            max-width: 980px;
-        }
-        
-        .program { padding: 5rem 2rem; background: var(--light); }
-        .days-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); 
-            gap: 2rem; 
-            margin: 3rem auto 0;
-            max-width: 1100px;
-        }
-
-        /* FLIP CARDS CORE */
-        .instructor-flip-card { height: 460px; perspective: 1200px; position: relative; width: 100%; min-width: 0; }
-        .day-card { height: 420px; perspective: 1200px; position: relative; width: 100%; min-width: 0; }
-        
-        .instructor-flip-card-inner, .day-card-inner { 
-            position: relative; 
-            width: 100%; 
-            height: 100%; 
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
-            transform-style: preserve-3d; 
-        }
-        
-        .instructor-flip-card-inner.flipped, .day-card-inner.flipped { transform: rotateY(180deg); }
-        
-        .card-side-hidden { 
-            visibility: hidden; 
-            pointer-events: none; 
-            transition: visibility 0s linear 0.7s; 
-        }
-        .card-side-visible { 
-            visibility: visible; 
-            transition: visibility 0s linear 0s; 
-        }
-
-        /* FLIP CARDS FACES - RESET */
-        button.instructor-front, button.day-card-front {
-            appearance: none; border: none; background: none; padding: 0; margin: 0;
-            font-family: inherit; font-size: inherit; width: 100%; height: 100%;
-            position: absolute; backface-visibility: hidden; border-radius: 12px; 
-            display: flex; flex-direction: column; cursor: pointer;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .instructor-back, .day-card-back {
-            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
-            border-radius: 12px; display: flex; flex-direction: column; 
-            transform: rotateY(180deg); box-shadow: var(--shadow-md);
-        }
-
-        /* INSTRUCTORS STYLE */
-        button.instructor-front { 
-            background: white; 
-            border: 3px solid var(--accent); 
-            border-top: 5px solid var(--primary); 
-            overflow: hidden; 
-        }
-        .instructor-image { 
-            width: 100%; 
-            height: 60%; 
-            object-fit: contain; 
-            object-position: center; 
-            display: block; 
-            background: var(--accent); 
-            border-bottom: 3px solid var(--accent); 
-        }
-        .instructor-info-front { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .instructor-info-front h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 0.3rem; font-weight: 700; }
-        .instructor-company { color: var(--primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; }
-        /* UPDATED: Changed from var(--gray) to black */
-        .instructor-bio { font-size: 0.95rem; color: black; line-height: 1.5; }
-        
-        .instructor-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
-        .instructor-credentials { list-style: none; text-align: left; }
-        .instructor-credentials li { padding: 0.6rem 0; font-size: 0.95rem; display: flex; gap: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .instructor-credentials li:last-child { border-bottom: none; }
-        .instructor-credentials li::before { content: '✓'; color: var(--accent); font-weight: bold; }
-        
-        .instructor-cta-link { 
-            display: block; background: var(--accent); color: var(--text-on-accent); 
-            padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; 
-            font-weight: 700; margin-top: 1rem; transition: 0.3s; text-align: center; 
-        }
-
-        #instructors, #program, #pricing, #faq { scroll-margin-top: 140px; }
-
-        body.high-zoom header { position: static; }
-        body.high-zoom .header-content { flex-direction: column; }
-        body.high-zoom header nav { justify-content: center; }
-        body.high-zoom .instructors-grid,
-        body.high-zoom .days-container,
-        body.high-zoom .pricing-grid {
-            grid-template-columns: 1fr;
-            max-width: 560px;
-        }
-        body.high-zoom .price-card--featured { transform: scale(1); }
-        body.high-zoom #instructors,
-        body.high-zoom #program,
-        body.high-zoom #pricing,
-        body.high-zoom #faq { scroll-margin-top: 24px; }
-
-        /* DAYS STYLE */
-        button.day-card-front { 
-            background: white; 
-            border: 3px solid var(--primary); 
-            border-top: 5px solid var(--primary); 
-            padding: 2.2rem 2.2rem 5rem 2.2rem; 
-        }
-
-        .day-card-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2.5rem; justify-content: space-between; }
-        
-        .day-number { 
-            display: flex; align-items: center; justify-content: center; 
-            background: var(--primary); color: white; width: 45px; height: 45px; 
-            border-radius: 50%; font-size: 1.2rem; font-weight: bold; margin-bottom: 0.8rem; 
-        }
-        
-        .day-card-front h3 { font-size: 1.25rem; margin-bottom: 0.2rem; color: var(--dark); text-align: left; font-weight: 800; }
-        
-        .day-subtitle {
-            color: var(--primary); 
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            text-align: left;
-            letter-spacing: 0.5px;
-        }
-
-        .day-card-front ul { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-        
-        .day-card-front li { 
-            font-size: 0.9rem; 
-            color: #000000; 
-            display: flex; 
-            gap: 0.5rem; 
-            text-align: left;
-            align-items: flex-start; 
-        }
-        
-        .day-card-front li span {
-            flex: 1; 
-        }
-
-        .day-card-front li strong {
-            color: inherit; 
-        }
-
-        .day-card-front li::before { 
-            content: '•'; 
-            color: var(--primary); 
-            font-weight: bold; 
-            font-size: 1.5em; 
-            line-height: 1;   
-            flex-shrink: 0;   
-            margin-top: -3px; 
-        }
-        
-        .card-footer-info {
-            position: absolute;
-            bottom: 2rem;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-            pointer-events: none;
-        }
-
-        .day-price { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin: 0.5rem 0; }
-        
-        .checkbox-wrapper { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; transition: 0.2s; }
-        .checkbox-wrapper:hover { background: rgba(255,255,255,0.2); }
-        .day-checkbox { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; }
-
-        /* PRICING */
-        .pricing { padding: 5rem 2rem; background: white; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto; overflow: visible; }
-        .price-card { 
-            background: white; border: 2px solid var(--gray-light); border-radius: 16px; 
-            padding: 3rem 2rem; text-align: center; position: relative; display: flex; flex-direction: column; 
-            transition: 0.3s; overflow: visible; scroll-margin-top: 120px;
-        }
-        .price-card--featured { border: 4px solid var(--primary); transform: scale(1.05); box-shadow: 0 20px 40px rgba(95, 40, 180, 0.12); }
-        .price-card__badge { 
-            position: absolute; top: -18px; left: 50%; transform: translateX(-50%); 
-            background: var(--accent); color: black; padding: 0.6rem 1.5rem; 
-            border-radius: 30px; font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
-        }
-        .price { font-size: 3.5rem; font-weight: 900; color: var(--primary); margin: 1rem 0; }
-        
-        /* UPDATED: Explicitly set price-period to black */
-        .price-period { font-size: 0.95rem; color: black; margin-bottom: 1.5rem; }
-
-        .price-features { list-style: none; margin: 1.5rem 0 2.5rem 0; text-align: left; flex: 1; }
-        .price-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-light); color: black; font-size: 1rem; }
-        .price-features li:last-child { border-bottom: none; }
-        .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; margin-right: 0.8rem; }
-
-        /* DROPDOWN IN PRICING */
-        .pricing-dropdown {
-            margin-top: 1rem;
-            background: var(--light);
-            border: 1px solid var(--gray-light);
-            border-radius: 8px;
-            text-align: left;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        /* UPDATED: Removed padding from item, now on label */
-        .pricing-dropdown-item {
-            padding: 0;
-            border-bottom: 1px solid var(--gray-light);
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .pricing-dropdown-item:last-child { border-bottom: none; }
-        
-        .pricing-dropdown-item:hover {
-            background: #f0f0f0;
-        }
-        .pricing-dropdown-item:focus-within {
-            background: #fff;
-            box-shadow: inset 0 0 0 3px #193146, inset 0 0 0 6px #F9F9F9;
-        }
-        
-        /* UPDATED: Label fills the entire row, larger hit area */
-        .pricing-dropdown-item label {
-            width: 100%;
-            height: 100%;
-            padding: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
-            color: black;
-            font-weight: 500;
-        }
-        
-        .pricing-dropdown-item input {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--accent);
-            margin-right: 12px;
-            cursor: pointer;
-        }
-        .pricing-dropdown-item input:focus-visible {
-            outline: 2px #F9F9F9 solid;
-            outline-offset: 2px;
-            box-shadow: 0 0 0 4px #193146;
-        }
-
-        .checkout-summary { 
-            margin-top: 4rem; padding: 2.5rem; background: var(--light); 
-            border-radius: 16px; border: 2px dashed var(--gray-light);
-            max-width: 900px; margin-left: auto; margin-right: auto; 
-        }
-        .checkout-summary h3 { text-align: center; }
-        .checkout-overview {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-            align-items: center;
-        }
-        .checkout-step {
-            margin: 2rem auto 0;
-            max-width: 700px;
-            text-align: left;
-            border: 2px solid var(--gray-light);
-            border-radius: 12px;
-            background: white;
-            padding: 1.5rem;
-        }
-        .checkout-step[hidden] { display: none; }
-        .checkout-step-title {
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-            font-size: 1.2rem;
-        }
-        .checkout-step-note {
-            color: var(--gray);
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        .checkout-actions {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .checkout-helper {
-            color: var(--gray);
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-        .checkout-form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .checkout-field {
-            display: flex;
-            flex-direction: column;
-        }
-        .checkout-input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--gray);
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        .confirmation-selection {
-            color: var(--dark);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-        .required-note {
-            color: var(--dark);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-        .checkout-error-summary {
-            border: 2px solid #b00020;
-            border-radius: 8px;
-            background: #fff4f6;
-            color: #7a0018;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1rem;
-        }
-        .checkout-error-summary[hidden] { display: none; }
-        .field-error {
-            display: none;
-            color: #b00020;
-            font-size: 0.9rem;
-            margin-top: 0.35rem;
-        }
-        .field-error.active { display: block; }
-        .transfer-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-        }
-        .transfer-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            align-items: flex-start;
-            padding-bottom: 0.9rem;
-            border-bottom: 1px solid var(--gray-light);
-        }
-        .transfer-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .transfer-value {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            align-items: center;
-            justify-content: flex-end;
-            text-align: right;
-        }
-        .copy-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--primary);
-            background: white;
-            color: var(--primary);
-            border-radius: 999px;
-            padding: 0.35rem 0.8rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .copy-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        .summary-flex { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin: 2rem 0; }
-        .summary-item { text-align: center; }
-        .summary-label { color: black; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .summary-value { font-size: 1.8rem; font-weight: 800; color: var(--dark); }
-
-        /* FAQ */
-        .faq { padding: 5rem 2rem; background: var(--light); }
-        .faq-container { max-width: 850px; margin: 3rem auto 0; }
-        .faq-item { background: white; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-light); }
-        .faq-question { 
-            width: 100%; padding: 1.5rem 2rem; text-align: left; background: none; border: none; 
-            font-weight: 700; display: flex; justify-content: space-between; align-items: center; 
-            cursor: pointer; color: var(--dark); font-size: 1.1rem; 
-        }
-        .faq-question:hover { color: var(--primary); }
-        
-        /* UPDATED: Changed from var(--gray) to black */
-        .faq-answer { padding: 0 2rem 2rem 2rem; display: none; line-height: 1.8; color: black; border-top: 1px solid var(--gray-light); padding-top: 1.5rem; }
-        .faq-answer.active { display: block; }
-        .faq-icon { transition: 0.3s; color: var(--accent); font-size: 0.8rem; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); }
-
-        /* FOOTER */
-        footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
-        .footer-contact a { color: var(--accent); text-decoration: none; font-weight: 700; }
-        .footer-bottom { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
-
-        /* ACCESSIBILITY UTILS */
-        .skip-link { position: absolute; top: -100px; left: 0; background: var(--accent); color: black; padding: 1rem; z-index: 1000; font-weight: bold; }
-        .skip-link:focus { top: 0; }
-        
-        .aria-alert-region { 
-            position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; 
-            padding: 1.2rem 2rem; border-radius: 12px; z-index: 1000; box-shadow: var(--shadow-md);
-            display: none; border-left: 5px solid var(--accent);
-        }
-        .aria-alert-region.show { display: block; animation: slideIn 0.4s ease-out; }
-        
-        @keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        @media (max-width: 992px) {
-            header { position: static; }
-            .container { padding: 0 1.25rem; }
-            .header-content { flex-direction: column; }
-            header nav { justify-content: center; }
-            .instructors-grid { max-width: 560px; }
-            .days-container { max-width: 560px; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero-stats { gap: 2rem; flex-wrap: wrap; }
-            .price-card--featured { transform: scale(1); }
-            #instructors, #program, #pricing, #faq { scroll-margin-top: 24px; }
-        }
-
-        @media (max-width: 900px) {
-            .pricing-grid { grid-template-columns: 1fr; max-width: 560px; }
-        }
-
-        @media (max-width: 640px) {
-            header { position: static; }
-            .container { padding: 0 1rem; }
-            .hero { padding: 4rem 1rem; }
-            .hero h1 { font-size: 2rem; }
-            .hero .subtitle { font-size: 1.1rem; }
-            .hero-cta { flex-direction: column; }
-            .hero-cta .btn { width: 100%; }
-            .hero-stats { flex-direction: column; gap: 1.25rem; }
-            .section-title { font-size: 2rem; }
-            .pricing { padding: 4rem 1rem; }
-            .pricing-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .price-card { padding: 2rem 1.25rem; }
-            .price { font-size: 2.75rem; }
-            .checkout-summary { padding: 1.5rem 1rem; }
-            .checkout-overview { gap: 1rem; }
-            .checkout-form-grid { grid-template-columns: 1fr; }
-            .transfer-row { flex-direction: column; }
-            .transfer-value { justify-content: flex-start; text-align: left; }
-            .checkout-actions .btn,
-            #orderConfirmation .btn { width: 100%; }
-            .aria-alert-region { left: 1rem; right: 1rem; bottom: 1rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
     <a href="#pricing" class="skip-link">Przejdź bezpośrednio do cennika</a>
@@ -777,7 +149,7 @@
             <div class="container">
                 <h1>Zostań ekspertem audytu WCAG</h1>
                 <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
-                <p class="course-dates"><span aria-hidden="true">📅</span> Dołącz do Nas podczas 2 edycji! 18.05.2026 - 20.05.2026 | 9:00 - 17:00 (Online Live)</p>
+                <p class="course-dates"><span aria-hidden="true">📅</span> Dołącz do Nas podczas 2 edycji!<br>18.05.2026 - 20.05.2026 | 9:00 - 17:00 (Online Live)</p>
                 
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
@@ -851,7 +223,7 @@
                 <div class="pricing-grid">
                     <div class="price-card">
                         <h3>Pojedynczy dzień</h3>
-                        <div class="price">699 <span style="font-size: 1.5rem">zł</span></div>
+                        <div class="price">799 <span style="font-size: 1.5rem">zł</span></div>
                         <p class="price-period">brutto za moduł (FV 0%)</p>
                         <ul class="price-features">
                             <li>Intensywne 8h warsztatów</li>
@@ -870,8 +242,8 @@
                     <div class="price-card price-card--featured">
                         <span class="price-card__badge">Najlepsza wartość</span>
                         <h3>Pełny kurs (3 dni)</h3>
-                        <div class="price">1599 <span style="font-size: 1.5rem">zł</span></div>
-                        <p class="price-period">brutto za całość (FV 0%, oszczędzasz 498 zł)</p>
+                        <div class="price">1699 <span style="font-size: 1.5rem">zł</span></div>
+                        <p class="price-period">brutto za całość (FV 0%, oszczędzasz 698 zł)</p>
                         <ul class="price-features">
                             <li>Kompletna ścieżka audytora</li>
                             <li>Wszystkie materiały i checklisty</li>
@@ -890,7 +262,7 @@
         </div>
         <div>
             <p style="color: var(--dark); margin-bottom: 0.5rem; text-align: center;">Razem do zapłaty:</p>
-            <output id="totalPrice" style="font-weight: bold; color: var(--accent); display:block;">0 zł</output>
+            <output id="totalPrice" style="font-weight: bold; color: var(--primary); display:block;">0 zł</output>
         </div>
     </div>
 
@@ -1003,6 +375,13 @@
                 <div class="faq-container" id="faqAccordion">
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
+                            <span>Czym jest Accessibility First?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Accessibility First to projekt Włącz Wizję skoncentrowany na wdrożeniach dostępności cyfrowej, audytach oraz szkoleniach z tego zakresu.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
                             <span>Jaki jest warunek wstępny do udziału?</span>
                             <span class="faq-icon">▼</span>
                         </button>
@@ -1013,7 +392,7 @@
                             <span>Czy mogę wziąć udział tylko w jednym dniu?</span>
                             <span class="faq-icon">▼</span>
                         </button>
-                        <div class="faq-answer">Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 699 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
+                        <div class="faq-answer">Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 799 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
@@ -1035,13 +414,6 @@
                             <span class="faq-icon">▼</span>
                         </button>
                         <div class="faq-answer">Limit wynosi 16 uczestników na edycję, aby zapewnić wysoką jakość warsztatu i indywidualny feedback od instruktorów. Kurs uruchamiany jest przy minimum 4 osobach zapisanych na pełny kurs.</div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Czym jest Accessibility First?</span>
-                            <span class="faq-icon">▼</span>
-                        </button>
-                        <div class="faq-answer">Accessibility First to projekt Włącz Wizję skoncentrowany na wdrożeniach dostępności cyfrowej, audytach oraz szkoleniach z tego zakresu.</div>
                     </div>
                 </div>
             </div>
@@ -1159,7 +531,7 @@
 
         const state = {
             selectedDays: [],
-            prices: { single: 699, full: 1599 },
+            prices: { single: 799, full: 1699 },
             confirmationOpen: false
         };
 
@@ -1256,7 +628,7 @@
                 <div class="pricing-dropdown-item">
                     <label>
                         <input type="checkbox" class="day-checkbox" value="${d.id}" onchange="handleCheckboxChange(this)">
-                        Dzień ${d.id}: ${d.title} (699 zł)
+                        Dzień ${d.id}: ${d.title} (${state.prices.single} zł)
                     </label>
                 </div>
             `).join('');
@@ -1597,7 +969,7 @@
 
             const sortedDays = state.selectedDays.map(Number).sort((a, b) => a - b);
             const key = sortedDays.join(',');
-            const priceVal = sortedDays.length === 3 ? state.prices.full : sortedDays.length * 699;
+            const priceVal = sortedDays.length === 3 ? state.prices.full : sortedDays.length * state.prices.single;
             const transferInfo = document.getElementById('bankTransferInfo');
             const transferTitle = transferTitles[key] || 'Wybierz wariant kursu.';
             const participant = {

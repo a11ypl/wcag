@@ -475,7 +475,7 @@
             <div class="container">
                 <h1>Zostań ekspertem audytu WCAG</h1>
                 <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
-                <p class="course-dates"><span aria-hidden="true">📅</span> Dołącz do Nas podczas 2 edycji! 18.05.2026 - 20.05.2026 | 9:00 - 17:00 (Online Live)</p>
+                <p class="course-dates"><span aria-hidden="true">📅</span> Dołącz do Nas podczas 2 edycji!<br>18.05.2026 - 20.05.2026 | 9:00 - 17:00 (Online Live)</p>
                 
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
@@ -549,7 +549,7 @@
                 <div class="pricing-grid">
                     <div class="price-card">
                         <h3>Pojedynczy dzień</h3>
-                        <div class="price">699 <span style="font-size: 1.5rem">zł</span></div>
+                        <div class="price">799 <span style="font-size: 1.5rem">zł</span></div>
                         <p class="price-period">netto za moduł</p>
                         <ul class="price-features">
                             <li>Intensywne 8h warsztatów</li>
@@ -568,8 +568,8 @@
                     <div class="price-card price-card--featured">
                         <span class="price-card__badge">Najlepsza wartość</span>
                         <h3>Pełny kurs (3 dni)</h3>
-                        <div class="price">1599 <span style="font-size: 1.5rem">zł</span></div>
-                        <p class="price-period">netto za całość (oszczędzasz 498 zł)</p>
+                        <div class="price">1699 <span style="font-size: 1.5rem">zł</span></div>
+                        <p class="price-period">netto za całość (oszczędzasz 698 zł)</p>
                         <ul class="price-features">
                             <li>Kompletna ścieżka audytora</li>
                             <li>Wszystkie materiały i checklisty</li>
@@ -588,7 +588,7 @@
         </div>
         <div>
             <p style="color: var(--gray); margin-bottom: 0.5rem; text-align: center;">Razem do zapłaty:</p>
-            <output id="totalPrice" style="font-weight: bold; color: var(--accent); display:block;">0 zł</output>
+            <output id="totalPrice" style="font-weight: bold; color: var(--primary); display:block;">0 zł</output>
         </div>
     </div>
 
@@ -653,6 +653,13 @@
                 <div class="faq-container" id="faqAccordion">
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
+                            <span>Czym jest Accessibility First?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">Accessibility First to projekt Włącz Wizję skoncentrowany na wdrożeniach dostępności cyfrowej, audytach oraz szkoleniach z tego zakresu.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
                             <span>Jaki jest warunek wstępny do udziału?</span>
                             <span class="faq-icon">▼</span>
                         </button>
@@ -663,7 +670,7 @@
                             <span>Czy mogę wziąć udział tylko w jednym dniu?</span>
                             <span class="faq-icon">▼</span>
                         </button>
-                        <div class="faq-answer">Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 699 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
+                        <div class="faq-answer">Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 799 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
@@ -798,7 +805,7 @@
             }
         ];
 
-        const state = { selectedDays: [], prices: { single: 699, full: 1599 } };
+        const state = { selectedDays: [], prices: { single: 799, full: 1699 } };
 
         function renderCards() {
             document.getElementById('daysContainer').innerHTML = daysData.map(d => createFlipCard('day', d)).join('');
@@ -809,7 +816,7 @@
                 <div class="pricing-dropdown-item">
                     <label>
                         <input type="checkbox" class="day-checkbox" value="${d.id}" onchange="handleCheckboxChange(this)">
-                        Dzień ${d.id}: ${d.title} (699 zł)
+                        Dzień ${d.id}: ${d.title} (${state.prices.single} zł)
                     </label>
                 </div>
             `).join('');
@@ -1016,7 +1023,7 @@
 
             const sortedDays = state.selectedDays.map(Number).sort((a, b) => a - b);
             const key = sortedDays.join(',');
-            const priceVal = sortedDays.length === 3 ? state.prices.full : sortedDays.length * 699;
+            const priceVal = sortedDays.length === 3 ? state.prices.full : sortedDays.length * state.prices.single;
             const transferInfo = document.getElementById('bankTransferInfo');
             const transferTitle = transferTitles[key] || 'Wybierz wariant kursu.';
 
