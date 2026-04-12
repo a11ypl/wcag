@@ -477,6 +477,10 @@ button.day-card-front {
     border-radius: 4px;
     font-size: 1rem;
 }
+.checkout-textarea {
+    min-height: 8rem;
+    resize: vertical;
+}
 .confirmation-selection {
     color: var(--dark);
     font-weight: 600;

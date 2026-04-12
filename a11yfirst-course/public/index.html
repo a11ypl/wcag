@@ -404,6 +404,29 @@
             border-radius: 16px; border: 2px dashed var(--gray-light);
             max-width: 900px; margin-left: auto; margin-right: auto; 
         }
+        .checkout-helper { color: var(--gray); margin-top: 0.5rem; font-size: 0.95rem; }
+        .checkout-error-summary {
+            border: 2px solid #b00020;
+            border-radius: 8px;
+            background: #fff4f6;
+            color: #7a0018;
+            padding: 1rem 1.25rem;
+            margin: 1.5rem auto 0;
+            max-width: 600px;
+            text-align: left;
+        }
+        .checkout-error-summary[hidden] { display: none; }
+        .field-error {
+            display: none;
+            color: #b00020;
+            font-size: 0.9rem;
+            margin-top: 0.35rem;
+        }
+        .field-error.active { display: block; }
+        .checkout-textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
         .summary-flex { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin: 2rem 0; }
         .summary-item { text-align: center; }
         .summary-label { color: black; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; }
@@ -592,28 +615,41 @@
         </div>
     </div>
 
+    <div id="checkoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
+
     <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
         <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
         
+        <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
+            <label for="payer-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
+            <textarea id="payer-access-needs" name="access_needs" class="checkout-textarea" maxlength="1000" aria-describedby="payer-access-needs-help payer-access-needs-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()"></textarea>
+            <p id="payer-access-needs-help" class="checkout-helper">Pole opcjonalne. Możesz napisać np. o potrzebach związanych z przerwami, tempem pracy, materiałami lub komunikacją.</p>
+            <p id="payer-access-needs-error" class="field-error"></p>
+        </div>
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
             <div style="display: flex; flex-direction: column;">
                 <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
-                <input type="text" id="payer-fname" name="fname" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+                <input type="text" id="payer-fname" name="fname" aria-required="true" required aria-describedby="payer-fname-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+                <p id="payer-fname-error" class="field-error"></p>
             </div>
             <div style="display: flex; flex-direction: column;">
                 <label for="payer-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span aria-hidden="true" style="color: red;">*</span></label>
-                <input type="text" id="payer-lname" name="lname" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+                <input type="text" id="payer-lname" name="lname" aria-required="true" required aria-describedby="payer-lname-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+                <p id="payer-lname-error" class="field-error"></p>
             </div>
         </div>
 
         <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
             <label for="payer-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span aria-hidden="true" style="color: red;">*</span></label>
-            <input type="email" id="payer-email" name="email" aria-required="true" required style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+            <input type="email" id="payer-email" name="email" aria-required="true" required aria-describedby="payer-email-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()">
+            <p id="payer-email-error" class="field-error"></p>
         </div>
 
         <div style="display: flex; flex-direction: column;">
             <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
-            <input type="text" id="payer-nip" name="nip" aria-required="false" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;">
+            <input type="text" id="payer-nip" name="nip" aria-required="false" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" aria-describedby="payer-nip-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="sanitizeDigits(this, 10)">
+            <p id="payer-nip-error" class="field-error"></p>
         </div>
     </fieldset>
 
@@ -621,16 +657,17 @@
         <legend class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">Zgody formalne niezbędne do realizacji zamówienia</legend>
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <label style="display: flex; gap: 0.8rem; align-items: flex-start; cursor: pointer;">
-                <input type="checkbox" id="consent-tos" class="checkout-checkbox" aria-required="true" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" onchange="validateCheckout()">
+            <label for="consent-tos" style="display: flex; gap: 0.8rem; align-items: flex-start; cursor: pointer;">
+                <input type="checkbox" id="consent-tos" name="consent_tos" class="checkout-checkbox" aria-required="true" required aria-describedby="consent-tos-error" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" onchange="validateCheckout()">
                 <span style="font-size: 0.95rem; color: var(--dark); line-height: 1.4;">
                     Akceptuję <a href="regulamin.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin kursu</a> oraz zapoznałem/am się z <a href="polityka-prywatnosci.html" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Polityką Prywatności</a>. (Wymagane)
                 </span>
             </label>
+            <p id="consent-tos-error" class="field-error"></p>
         </div>
     </fieldset>
 
-    <button class="btn btn-primary" id="proceedBtn" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Pokaż dane do przelewu</button>
+    <button class="btn btn-primary" id="proceedBtn" type="button" onclick="proceedToPayment()" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Pokaż dane do przelewu</button>
     <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem; text-align: center;">Po potwierdzeniu pokażemy dane do przelewu tradycyjnego.</p>
 
     <section id="bankTransferInfo" hidden aria-live="polite" style="margin: 2rem auto 0; max-width: 700px; text-align: left; border: 2px solid var(--gray-light); border-radius: 12px; background: var(--light); padding: 1.5rem;">
@@ -814,8 +851,8 @@
             // Render dropdown items in pricing section
             document.getElementById('single-day-list').innerHTML = daysData.map(d => `
                 <div class="pricing-dropdown-item">
-                    <label>
-                        <input type="checkbox" class="day-checkbox" value="${d.id}" onchange="handleCheckboxChange(this)">
+                    <label for="pricing-day-${d.id}">
+                        <input type="checkbox" id="pricing-day-${d.id}" class="day-checkbox" value="${d.id}" onchange="handleCheckboxChange(this)">
                         Dzień ${d.id}: ${d.title} (${state.prices.single} zł)
                     </label>
                 </div>
@@ -879,8 +916,8 @@
                     <div class="day-price">${state.prices.single} zł</div>
                 </div>
                 <div class="checkbox-wrapper" onclick="event.stopPropagation()">
-                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer">
-                        <input type="checkbox" class="day-checkbox" value="${id}" onchange="handleCheckboxChange(this)">
+                    <label for="day-card-choice-${id}" style="display:flex; align-items:center; gap:10px; cursor:pointer">
+                        <input type="checkbox" id="day-card-choice-${id}" class="day-checkbox" value="${id}" onchange="handleCheckboxChange(this)">
                         <span style="font-weight:bold">Wybieram ten dzień</span>
                     </label>
                 </div>
@@ -970,7 +1007,43 @@
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        function validateCheckout() {
+        function isValidNip(nip) {
+            if (nip === '') return true;
+            if (!/^[0-9]{10}$/.test(nip)) return false;
+
+            const weights = [6, 5, 7, 2, 3, 4, 5, 6, 7];
+            const checksum = weights.reduce((sum, weight, index) => sum + weight * Number(nip[index]), 0) % 11;
+            return checksum !== 10 && checksum === Number(nip[9]);
+        }
+
+        function sanitizeDigits(input, maxLength) {
+            input.value = input.value.replace(/\D+/g, '').slice(0, maxLength);
+            validateCheckout();
+        }
+
+        function createFieldError(field, message) {
+            return message ? { ...field, message } : null;
+        }
+
+        function setFieldError(inputId, errorId, message) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+
+            if (!input || !error) return;
+
+            if (message) {
+                input.setAttribute('aria-invalid', 'true');
+                error.textContent = message;
+                error.classList.add('active');
+            } else {
+                input.removeAttribute('aria-invalid');
+                error.textContent = '';
+                error.classList.remove('active');
+            }
+        }
+
+        function validateCheckout(options = {}) {
+            const { showSummary = false } = options;
             const btn = document.getElementById('proceedBtn');
             const hasDays = state.selectedDays.length > 0;
             const consent = document.getElementById('consent-tos');
@@ -978,7 +1051,49 @@
             const fname = document.getElementById('payer-fname').value.trim();
             const lname = document.getElementById('payer-lname').value.trim();
             const email = document.getElementById('payer-email').value.trim();
-            const isFormValid = fname !== '' && lname !== '' && isValidEmail(email);
+            const nip = document.getElementById('payer-nip').value.trim();
+            const accessNeeds = document.getElementById('payer-access-needs').value.trim();
+            const summary = document.getElementById('checkoutErrorSummary');
+            const fields = [
+                { fieldId: 'toggleDaysBtn', errorId: null, label: 'Wybór dni kursu' },
+                { fieldId: 'payer-access-needs', errorId: 'payer-access-needs-error', label: 'W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?' },
+                { fieldId: 'payer-fname', errorId: 'payer-fname-error', label: 'Imię' },
+                { fieldId: 'payer-lname', errorId: 'payer-lname-error', label: 'Nazwisko' },
+                { fieldId: 'payer-email', errorId: 'payer-email-error', label: 'Adres e-mail' },
+                { fieldId: 'payer-nip', errorId: 'payer-nip-error', label: 'NIP' },
+                { fieldId: 'consent-tos', errorId: 'consent-tos-error', label: 'Akceptacja regulaminu i polityki prywatności' }
+            ];
+            const fieldMap = Object.fromEntries(fields.map(field => [field.fieldId, field]));
+            const errors = [
+                createFieldError(fieldMap['toggleDaysBtn'], hasDays ? '' : 'Wybierz co najmniej jeden dzień kursu.'),
+                createFieldError(
+                    fieldMap['payer-access-needs'],
+                    accessNeeds.length > 1000 ? 'Opisz potrzeby w maksymalnie 1000 znakach.' : ''
+                ),
+                createFieldError(fieldMap['payer-fname'], fname === '' ? 'Podaj imię.' : ''),
+                createFieldError(fieldMap['payer-lname'], lname === '' ? 'Podaj nazwisko.' : ''),
+                createFieldError(
+                    fieldMap['payer-email'],
+                    email === ''
+                        ? 'Podaj adres e-mail.'
+                        : (!isValidEmail(email) ? 'Wpisz poprawny adres e-mail, np. imie@domena.pl.' : '')
+                ),
+                createFieldError(
+                    fieldMap['payer-nip'],
+                    !isValidNip(nip)
+                        ? 'Wpisz poprawny NIP: 10 cyfr i poprawna suma kontrolna.'
+                        : ''
+                ),
+                createFieldError(
+                    fieldMap['consent-tos'],
+                    hasConsent ? '' : 'Zaakceptuj regulamin i politykę prywatności.'
+                )
+            ].filter(Boolean);
+
+            fields.forEach(field => setFieldError(field.fieldId, field.errorId, ''));
+            errors.forEach(error => setFieldError(error.fieldId, error.errorId, error.message));
+
+            const isFormValid = errors.length === 0;
             const isValid = hasDays && hasConsent && isFormValid;
 
             btn.setAttribute('aria-disabled', String(!isValid));
@@ -989,6 +1104,21 @@
                 btn.style.opacity = '0.5';
                 btn.style.cursor = 'not-allowed';
             }
+
+            if (summary) {
+                if (showSummary && errors.length) {
+                    summary.hidden = false;
+                    summary.textContent = `Formularz zawiera błędy. Sprawdź pola: ${errors.map(error => error.label).join(', ')}.`;
+                } else {
+                    summary.hidden = true;
+                    summary.textContent = '';
+                }
+            }
+
+            return {
+                isValid,
+                firstInvalidFieldId: errors[0] ? errors[0].fieldId : null
+            };
         }
 
         function selectAllDays() {
@@ -1015,9 +1145,11 @@
         }
 
         function proceedToPayment() {
-            const btn = document.getElementById('proceedBtn');
-            if (btn.getAttribute('aria-disabled') === 'true') {
-                showAlert('Wypełnij poprawnie wszystkie wymagane pola, wybierz dni kursu i zaakceptuj zgody.');
+            const validation = validateCheckout({ showSummary: true });
+            if (!validation.isValid) {
+                if (validation.firstInvalidFieldId) {
+                    document.getElementById(validation.firstInvalidFieldId).focus();
+                }
                 return;
             }
 
