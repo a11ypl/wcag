@@ -280,13 +280,6 @@
         <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
             <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
             
-            <div class="checkout-field" style="margin-bottom: 1rem;">
-                <label for="payer-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
-                <textarea id="payer-access-needs" name="access_needs" class="checkout-input checkout-textarea" maxlength="1000" aria-describedby="payer-access-needs-help payer-access-needs-error" oninput="validateCheckout()"></textarea>
-                <p id="payer-access-needs-help" class="checkout-helper">Pole opcjonalne. Możesz napisać np. o potrzebach związanych z przerwami, tempem pracy, materiałami lub komunikacją.</p>
-                <p id="payer-access-needs-error" class="field-error"></p>
-            </div>
-
             <div class="checkout-form-grid">
                 <div class="checkout-field">
                     <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
@@ -316,6 +309,13 @@
                 <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
                 <input type="text" id="payer-nip" name="nip" class="checkout-input" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="on" aria-describedby="payer-nip-error" oninput="sanitizeDigits(this, 10)">
                 <p id="payer-nip-error" class="field-error"></p>
+            </div>
+
+            <div class="checkout-field" style="margin-top: 1rem;">
+                <label for="payer-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
+                <textarea id="payer-access-needs" name="access_needs" class="checkout-input checkout-textarea" maxlength="1000" aria-describedby="payer-access-needs-help payer-access-needs-error" oninput="validateCheckout()"></textarea>
+                <p id="payer-access-needs-help" class="checkout-helper">Pole opcjonalne. Możesz napisać np. o potrzebach związanych z przerwami, tempem pracy, materiałami lub komunikacją.</p>
+                <p id="payer-access-needs-error" class="field-error"></p>
             </div>
         </fieldset>
 

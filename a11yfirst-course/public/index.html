@@ -620,13 +620,6 @@
     <fieldset id="payer-details" style="border: 2px solid var(--gray-light); padding: 1.5rem; margin: 2rem auto; max-width: 600px; text-align: left; border-radius: 8px;">
         <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / Nabywcy</legend>
         
-        <div style="display: flex; flex-direction: column; margin-bottom: 1rem;">
-            <label for="payer-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
-            <textarea id="payer-access-needs" name="access_needs" class="checkout-textarea" maxlength="1000" aria-describedby="payer-access-needs-help payer-access-needs-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()"></textarea>
-            <p id="payer-access-needs-help" class="checkout-helper">Pole opcjonalne. Możesz napisać np. o potrzebach związanych z przerwami, tempem pracy, materiałami lub komunikacją.</p>
-            <p id="payer-access-needs-error" class="field-error"></p>
-        </div>
-
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
             <div style="display: flex; flex-direction: column;">
                 <label for="payer-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span aria-hidden="true" style="color: red;">*</span></label>
@@ -650,6 +643,13 @@
             <label for="payer-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (Opcjonalnie - dla firm)</label>
             <input type="text" id="payer-nip" name="nip" aria-required="false" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" aria-describedby="payer-nip-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="sanitizeDigits(this, 10)">
             <p id="payer-nip-error" class="field-error"></p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin-top: 1rem;">
+            <label for="payer-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
+            <textarea id="payer-access-needs" name="access_needs" class="checkout-textarea" maxlength="1000" aria-describedby="payer-access-needs-help payer-access-needs-error" style="padding: 0.8rem; border: 1px solid var(--gray); border-radius: 4px; font-size: 1rem;" oninput="validateCheckout()"></textarea>
+            <p id="payer-access-needs-help" class="checkout-helper">Pole opcjonalne. Możesz napisać np. o potrzebach związanych z przerwami, tempem pracy, materiałami lub komunikacją.</p>
+            <p id="payer-access-needs-error" class="field-error"></p>
         </div>
     </fieldset>
 
