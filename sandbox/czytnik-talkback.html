@@ -88,7 +88,7 @@
                     </article>
 
                     <article class="knowledge-panel">
-                        <h3>Na co zwrócić uwagę</h3>
+                        <h3>Co trzeba sprawdzić?</h3>
                         <ul class="detail-list">
                             <li>Czy elementy dotykowe mają jasne etykiety i nie są odczytywane jako same ikony.</li>
                             <li>Czy kolejność przesuwania w prawo jest zgodna z logiką widoku.</li>
@@ -96,6 +96,16 @@
                             <li>Czy użytkownik słyszy stan: zaznaczone, wybrane, rozwinięte, niedostępne.</li>
                             <li>Czy komunikaty błędów i sukcesu są ogłaszane bez ręcznego szukania.</li>
                             <li>Czy niestandardowe komponenty dają się obsłużyć bez wzroku.</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-panel">
+                        <h3>Notatka do raportu</h3>
+                        <ul class="detail-list">
+                            <li>Model urządzenia, wersja Androida, wersja TalkBack i przeglądarka.</li>
+                            <li>Kroki odtworzenia opisane gestami, nie tylko „kliknięciami”.</li>
+                            <li>Rzeczywisty odczyt TalkBack i oczekiwany komunikat.</li>
+                            <li>Skutek dla użytkownika oraz powiązane kryterium WCAG.</li>
+                            <li>Informacja, czy problem wynika z etykiety, roli, stanu, kolejności fokusu albo komunikatu po akcji.</li>
                         </ul>
                     </article>
                 </div>
@@ -117,6 +127,30 @@
                             <tr><td>Przesunięcie dwoma palcami</td><td>Przewijanie treści, gdy TalkBack jest włączony.</td></tr>
                             <tr><td>Przesunięcie w dół, potem w prawo</td><td>Otwarcie menu TalkBack na urządzeniach bez gestów wielopalczastych.</td></tr>
                             <tr><td>Stuknięcie trzema palcami</td><td>Otwarcie menu TalkBack na urządzeniach z gestami wielopalczastymi.</td></tr>
+                            <tr><td>Przesunięcie w górę, potem w dół</td><td>Przejście do następnego trybu czytania, na przykład nagłówków, linków albo kontrolek.</td></tr>
+                            <tr><td>Przesunięcie w dół, potem w górę</td><td>Powrót do poprzedniego trybu czytania.</td></tr>
+                            <tr><td>Przesunięcie w dół</td><td>Przejście dalej w wybranym trybie czytania.</td></tr>
+                            <tr><td>Przesunięcie w górę</td><td>Przejście wstecz w wybranym trybie czytania.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela zastosowań TalkBack w Chrome i na stronach WWW">
+                    <table class="knowledge-table">
+                        <caption>TalkBack w Chrome i na stronach WWW</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Obszar</th>
+                                <th scope="col">Co sprawdzić podczas audytu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Nagłówki</td><td>Ustaw tryb czytania na nagłówki i sprawdź, czy struktura strony prowadzi użytkownika.</td></tr>
+                            <tr><td>Linki</td><td>Sprawdź, czy nazwy linków mają sens poza kontekstem i nie powtarzają „kliknij tutaj”.</td></tr>
+                            <tr><td>Kontrolki</td><td>Przejdź po przyciskach, polach i przełącznikach. Każdy element powinien mieć nazwę, rolę i stan.</td></tr>
+                            <tr><td>Tabele</td><td>Dodaj tabele do elementów sterujących i sprawdź, czy użytkownik rozumie nagłówki oraz relacje komórek.</td></tr>
+                            <tr><td>Wyszukiwanie ekranu</td><td>Użyj wyszukiwania ekranu, żeby szybko znaleźć etykietę, przycisk, komunikat błędu albo fragment treści.</td></tr>
+                            <tr><td>Klawiatura zewnętrzna</td><td>Jeżeli testujesz z klawiaturą Bluetooth, zapisz użyty klawisz TalkBack i różnice względem gestów dotykowych.</td></tr>
                         </tbody>
                     </table>
                 </div>
