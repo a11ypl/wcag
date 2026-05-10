@@ -315,7 +315,7 @@ window.A11yFirstCheckout = (() => {
             fillTransferInfo(form, products, participant);
             showStatus(form, 'Formularz został wysłany. Dane do przelewu są dostępne poniżej.');
         } catch (error) {
-            showStatus(form, 'Nie udało się wysłać formularza. Spróbuj ponownie za chwilę albo napisz na biuro@wlaczwizje.pl.');
+            showStatus(form, 'Nie udało się wysłać formularza. Spróbuj ponownie za chwilę albo napisz na a11y@wlaczwizje.pl.');
         } finally {
             setButtonBusy(submitButton, false);
         }
