@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "echo \"Skip install for static landing\"",
-  "buildCommand": "mkdir -p public/assets && cp index.html success.html error.html regulamin.html polityka-prywatnosci.html robots.txt sitemap.xml public/ && cp -R assets/. public/assets/",
+  "installCommand": "echo \"Skip install for static site\"",
+  "buildCommand": "python3 scripts/build_sandbox.py",
   "outputDirectory": "public",
   "cleanUrls": true,
   "headers": [
@@ -11,7 +11,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; form-action 'self' mailto: https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
         },
         {
           "key": "Referrer-Policy",
@@ -36,26 +36,5 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/sukces",
-      "destination": "/success.html"
-    },
-    {
-      "source": "/blad",
-      "destination": "/error.html"
-    },
-    {
-      "source": "/regulamin",
-      "destination": "/regulamin.html"
-    },
-    {
-      "source": "/polityka-prywatnosci",
-      "destination": "/polityka-prywatnosci.html"
-    }
-  ]
+  "rewrites": []
 }

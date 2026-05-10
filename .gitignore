@@ -3,6 +3,8 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
+/public/
+__pycache__/
 .DS_Store
 dist
 .next

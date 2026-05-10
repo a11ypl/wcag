@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkBack dla audytorów - Accessibility First</title>
+    <meta name="description" content="Praktyczna instrukcja testowania z TalkBack podczas audytu dostępności mobilnej na Androidzie.">
+    <link rel="canonical" href="https://a11yfirst.pl/czytnik-talkback">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="TalkBack dla audytorów - Accessibility First">
+    <meta property="og:description" content="Praktyczna instrukcja testowania z TalkBack podczas audytu dostępności mobilnej na Androidzie.">
+    <meta property="og:url" content="https://a11yfirst.pl/czytnik-talkback">
+    <meta property="og:image" content="https://a11yfirst.pl/assets/accessibility-first-logo-transparent.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TalkBack dla audytorów - Accessibility First">
+    <meta name="twitter:description" content="Praktyczna instrukcja testowania z TalkBack podczas audytu dostępności mobilnej na Androidzie.">
+    <meta name="twitter:image" content="https://a11yfirst.pl/assets/accessibility-first-logo-transparent.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "TalkBack",
+      "headline": "TalkBack",
+      "description": "Praktyczna instrukcja testowania z TalkBack podczas audytu dostępności mobilnej na Androidzie.",
+      "url": "https://a11yfirst.pl/czytnik-talkback",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Accessibility First",
+        "url": "https://a11yfirst.pl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css?v=12">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/baza-wiedzy">Baza wiedzy</a></li><li><a href="/czytniki-ekranu">Czytniki ekranu</a></li><li aria-current="page">TalkBack</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <h1>TalkBack</h1>
+                <p class="subtitle">Instrukcja testowania stron i aplikacji mobilnych z czytnikiem ekranu Androida.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article" aria-labelledby="talkback-title">
+            <div class="container">
+                <p class="eyebrow">Czytnik ekranu: Android</p>
+                <h2 class="section-title" id="talkback-title">Instrukcja TalkBack</h2>
+
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel">
+                        <h3>Start testu</h3>
+                        <ol class="detail-list">
+                            <li>Włącz TalkBack w ustawieniach dostępności Androida albo skonfigurowanym skrótem.</li>
+                            <li>Sprawdź, czy urządzenie obsługuje gesty wielopalczaste, ponieważ zależy to od wersji Androida i TalkBack.</li>
+                            <li>Przejdź ekran gestami w prawo i w lewo, element po elemencie.</li>
+                            <li>Sprawdź formularze, przyciski ikonowe, listy, dolne paski nawigacji, modale i komunikaty.</li>
+                            <li>Przetestuj przewijanie i elementy, które pojawiają się dopiero po interakcji.</li>
+                            <li>Zapisz gest, element, odczyt TalkBack, oczekiwane zachowanie i wpływ na użytkownika.</li>
+                        </ol>
+                    </article>
+
+                    <article class="knowledge-panel">
+                        <h3>Na co zwrócić uwagę</h3>
+                        <ul class="detail-list">
+                            <li>Czy elementy dotykowe mają jasne etykiety i nie są odczytywane jako same ikony.</li>
+                            <li>Czy kolejność przesuwania w prawo jest zgodna z logiką widoku.</li>
+                            <li>Czy przy zmianie ekranu fokus nie zostaje w starym miejscu.</li>
+                            <li>Czy użytkownik słyszy stan: zaznaczone, wybrane, rozwinięte, niedostępne.</li>
+                            <li>Czy komunikaty błędów i sukcesu są ogłaszane bez ręcznego szukania.</li>
+                            <li>Czy niestandardowe komponenty dają się obsłużyć bez wzroku.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela gestów TalkBack dla audytora">
+                    <table class="knowledge-table">
+                        <caption>Podstawowe gesty TalkBack</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Gest</th>
+                                <th scope="col">Zastosowanie w audycie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Przeciągnięcie palcem po ekranie</td><td>Eksploracja elementów pod palcem.</td></tr>
+                            <tr><td>Przesunięcie jednym palcem w prawo</td><td>Przejście do następnego elementu.</td></tr>
+                            <tr><td>Przesunięcie jednym palcem w lewo</td><td>Przejście do poprzedniego elementu.</td></tr>
+                            <tr><td>Podwójne stuknięcie</td><td>Aktywacja aktualnego elementu.</td></tr>
+                            <tr><td>Przesunięcie dwoma palcami</td><td>Przewijanie treści, gdy TalkBack jest włączony.</td></tr>
+                            <tr><td>Przesunięcie w dół, potem w prawo</td><td>Otwarcie menu TalkBack na urządzeniach bez gestów wielopalczastych.</td></tr>
+                            <tr><td>Stuknięcie trzema palcami</td><td>Otwarcie menu TalkBack na urządzeniach z gestami wielopalczastymi.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <article class="knowledge-panel">
+                    <h3>Polecane zasoby</h3>
+                    <ol class="recommended-resources">
+                        <li><a href="https://support.google.com/accessibility/android/answer/6006598?hl=en" target="_blank" rel="noopener noreferrer">Sprawdź, jak poruszać się po urządzeniu z TalkBack<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://support.google.com/accessibility/android/answer/6151827?hl=en" target="_blank" rel="noopener noreferrer">Przejdź do listy gestów TalkBack w pomocy Android Accessibility<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/header.js"></script>
+</body>
+</html>

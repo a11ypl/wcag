@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility First</title>
+  <meta name="description" content="Accessibility First: dostępność cyfrowa, szkolenia, audyty, wiedza i wdrożenia.">
+  <link rel="canonical" href="https://a11yfirst.pl/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="Accessibility First">
+    <meta property="og:description" content="Accessibility First: dostępność cyfrowa, szkolenia, audyty, wiedza i wdrożenia.">
+    <meta property="og:url" content="https://a11yfirst.pl/">
+    <meta property="og:image" content="https://a11yfirst.pl/assets/accessibility-first-logo-transparent.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Accessibility First">
+    <meta name="twitter:description" content="Accessibility First: dostępność cyfrowa, szkolenia, audyty, wiedza i wdrożenia.">
+    <meta name="twitter:image" content="https://a11yfirst.pl/assets/accessibility-first-logo-transparent.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Dostępność jest naszą misją",
+      "headline": "Dostępność jest naszą misją",
+      "description": "Accessibility First: dostępność cyfrowa, szkolenia, audyty, wiedza i wdrożenia.",
+      "url": "https://a11yfirst.pl/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Accessibility First",
+        "url": "https://a11yfirst.pl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #151515;
+      --surface-hover: #5f28b4;
+      --primary: #5f28b4;
+      --text: #ffffff;
+      --muted: #d6d6d6;
+      --accent: #fa9632;
+      --line: #6f6f6f;
+      --focus-inner: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    body,
+    main {
+      display: grid;
+    }
+
+    body {
+      align-items: center;
+    }
+
+    main {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      gap: 28px;
+    }
+
+    h1,
+    p,
+    ul {
+      margin: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #000000;
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-140%);
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      outline: 4px solid var(--focus-inner);
+      outline-offset: 3px;
+    }
+
+    .logo {
+      margin: 0;
+    }
+
+    .site-banner {
+      display: inline-flex;
+      width: min(100%, 520px);
+      height: auto;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .site-banner img {
+      display: block;
+      object-fit: contain;
+    }
+
+    .site-banner-full {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .site-banner-icon {
+      display: none !important;
+      width: 52px;
+      height: 52px;
+      padding: 6px;
+      border: 2px solid #ffcc00;
+      border-radius: 8px;
+      background: var(--primary);
+    }
+
+    body.header-compact .site-banner {
+      width: 52px;
+      height: 52px;
+    }
+
+    body.header-compact .site-banner-full {
+      display: none !important;
+    }
+
+    body.header-compact .site-banner-icon {
+      display: block !important;
+    }
+
+    body:not(.header-compact) .site-banner-full {
+      display: block !important;
+    }
+
+    body:not(.header-compact) .site-banner-icon {
+      display: none !important;
+    }
+
+    .site-banner:focus-visible {
+      outline: 4px solid var(--accent);
+      outline-offset: 6px;
+      box-shadow: 0 0 0 10px var(--focus-inner);
+    }
+
+    .intro {
+      max-width: 440px;
+      color: var(--text);
+      font-size: 1.75rem;
+      line-height: 1.2;
+    }
+
+    nav ul {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 60px;
+      padding: 16px 18px;
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 0 0 2px rgba(95, 40, 180, 0.45);
+    }
+
+    nav a:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent);
+    }
+
+    nav a:focus-visible {
+      background: var(--surface-hover);
+      outline: 4px solid var(--accent);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 8px var(--focus-inner);
+    }
+
+    .link-arrow {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    nav a:hover .link-arrow,
+    nav a:focus-visible .link-arrow {
+      color: var(--text);
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 18px;
+      }
+
+      nav a {
+        min-height: 56px;
+        padding: 14px 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+
+  <main id="main">
+    <header>
+      <div class="logo">
+        <a href="/" class="site-banner" aria-label="Accessibility First - strona główna">
+          <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+        </a>
+      </div>
+    </header>
+
+    <h1 id="opis" class="intro">Dostępność jest naszą misją</h1>
+
+    <nav aria-label="Menu główne">
+      <ul>
+        <li>
+          <a href="/o-nas">
+            <span>O nas</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/szkolenia">
+            <span>Szkolenia</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/audyty">
+            <span>Audyty dostępności</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/sklep">
+            <span>Sklep</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/baza-wiedzy">
+            <span>Baza wiedzy</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/deklaracja">
+            <span>Deklaracja dostępności</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/kontakt">
+            <span>Kontakt</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      Accessibility First / Włącz Wizję
+    </footer>
+  </main>
+    <script src="assets/header.js"></script>
+</body>
+</html>
