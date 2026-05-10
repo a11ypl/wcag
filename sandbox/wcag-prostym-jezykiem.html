@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAG prostym językiem - Accessibility First</title>
+    <meta name="description" content="WCAG prostym językiem: zasady, poziomy zgodności i najważniejsze kryteria sukcesu wyjaśnione po polsku, praktycznie i bez żargonu.">
+    <link rel="canonical" href="https://a11yfirst.pl/wcag-prostym-jezykiem">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="WCAG prostym językiem - Accessibility First">
+    <meta property="og:description" content="Zasady, poziomy zgodności i najważniejsze kryteria sukcesu WCAG wyjaśnione po polsku, praktycznie i bez żargonu.">
+    <meta property="og:url" content="https://a11yfirst.pl/wcag-prostym-jezykiem">
+    <meta property="og:image" content="https://a11yfirst.pl/assets/accessibility-first-logo-transparent.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WCAG prostym językiem - Accessibility First">
+    <meta name="twitter:description" content="Zasady, poziomy zgodności i najważniejsze kryteria sukcesu WCAG wyjaśnione po polsku, praktycznie i bez żargonu.">
+    <meta name="twitter:image" content="https://a11yfirst.pl/assets/accessibility-first-logo-transparent.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "WCAG prostym językiem",
+      "headline": "WCAG prostym językiem",
+      "description": "Zasady, poziomy zgodności i najważniejsze kryteria sukcesu WCAG wyjaśnione po polsku, praktycznie i bez żargonu.",
+      "url": "https://a11yfirst.pl/wcag-prostym-jezykiem",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Accessibility First",
+        "url": "https://a11yfirst.pl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css?v=12">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li aria-current="page">WCAG prostym językiem</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <h1>WCAG prostym językiem</h1>
+                <p class="subtitle">Praktyczne wyjaśnienie standardu WCAG po polsku: co oznacza, co sprawdzić i jak myśleć o dostępności bez żargonu.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article" aria-labelledby="intro-title">
+            <div class="container">
+                <p class="eyebrow">Przewodnik praktyczny</p>
+                <h2 class="section-title" id="intro-title">Po co jest WCAG?</h2>
+                <article class="knowledge-panel">
+                    <p>WCAG to zestaw zasad, które pomagają tworzyć strony, aplikacje i treści cyfrowe dostępne dla różnych osób. Chodzi między innymi o osoby niewidome, słabowidzące, Głuche, z niepełnosprawnością ruchową, poznawczą albo o osoby korzystające z telefonu, klawiatury, czytnika ekranu, powiększenia lub napisów.</p>
+                    <p>Ten przewodnik nie jest oficjalnym tłumaczeniem standardu. To robocza mapa dla osób, które chcą zrozumieć sens WCAG i szybciej przejść od przepisu do praktycznego działania.</p>
+                </article>
+
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel">
+                        <h3>Postrzegalność</h3>
+                        <p>Użytkownik musi móc odebrać informację co najmniej jednym zmysłem. Jeżeli ktoś nie widzi obrazu, potrzebuje tekstu alternatywnego. Jeżeli ktoś nie słyszy filmu, potrzebuje napisów.</p>
+                    </article>
+                    <article class="knowledge-panel">
+                        <h3>Funkcjonalność</h3>
+                        <p>Użytkownik musi móc obsłużyć interfejs. Strona ma działać klawiaturą, fokus ma być widoczny, a elementy nie mogą blokować drogi dalej.</p>
+                    </article>
+                    <article class="knowledge-panel">
+                        <h3>Zrozumiałość</h3>
+                        <p>Treść i działanie strony mają być przewidywalne. Formularz powinien mówić, czego wymaga, gdzie jest błąd i co zrobić, żeby go poprawić.</p>
+                    </article>
+                    <article class="knowledge-panel">
+                        <h3>Solidność</h3>
+                        <p>Kod powinien być napisany tak, żeby dobrze współpracował z przeglądarkami i technologiami wspomagającymi. Przycisk ma być przyciskiem, a pole formularza ma mieć nazwę.</p>
+                    </article>
+                </div>
+
+                <article class="knowledge-panel">
+                    <h3>Poziomy A, AA i AAA</h3>
+                    <ul class="detail-list">
+                        <li>Poziom A obejmuje podstawowe wymagania. Bez nich część osób może w ogóle nie skorzystać z treści lub funkcji.</li>
+                        <li>Poziom AA jest najczęściej używanym poziomem docelowym w projektach, audytach i wymaganiach prawnych.</li>
+                        <li>Poziom AAA jest bardziej wymagający. Nie zawsze da się go spełnić dla wszystkich typów treści, ale może być dobrym kierunkiem jakościowym.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="knowledge-article" aria-labelledby="criteria-title">
+            <div class="container">
+                <h2 class="section-title" id="criteria-title">Kryteria, od których warto zacząć</h2>
+                <p class="section-lead knowledge-lead">To nie jest pełna lista WCAG. To praktyczny start dla osób, które chcą szybko zrozumieć najczęstsze wymagania i błędy.</p>
+
+                <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela wybranych kryteriów WCAG wyjaśnionych prostym językiem">
+                    <table class="knowledge-table">
+                        <caption>WCAG prostym językiem: pierwsze kryteria do nauki i audytu</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Kryterium</th>
+                                <th scope="col">Co to znaczy po ludzku?</th>
+                                <th scope="col">Co sprawdzić?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.1.1 Treść nietekstowa</td>
+                                <td>Obrazy, ikony i inne elementy wizualne muszą mieć tekstową alternatywę, jeśli przekazują informację.</td>
+                                <td>Sprawdź alt obrazów, nazwy ikon-przycisków, wykresy i grafiki informacyjne.</td>
+                            </tr>
+                            <tr>
+                                <td>1.2.2 Napisy</td>
+                                <td>Film z mową powinien mieć napisy, żeby osoby niesłyszące lub oglądające bez dźwięku rozumiały treść.</td>
+                                <td>Sprawdź, czy nagrania mają napisy zsynchronizowane z wypowiedziami i ważnymi dźwiękami.</td>
+                            </tr>
+                            <tr>
+                                <td>1.3.1 Informacje i relacje</td>
+                                <td>Struktura widoczna na ekranie powinna być zapisana w kodzie.</td>
+                                <td>Sprawdź nagłówki, listy, tabele, etykiety pól i relacje między treściami.</td>
+                            </tr>
+                            <tr>
+                                <td>1.4.3 Kontrast tekstu</td>
+                                <td>Tekst musi być czytelny na tle, także dla osób słabowidzących.</td>
+                                <td>Zmierz kontrast tekstu, linków, przycisków i tekstów na kolorowym tle.</td>
+                            </tr>
+                            <tr>
+                                <td>1.4.10 Dopasowanie do ekranu</td>
+                                <td>Po powiększeniu strona nie może wymagać przewijania w dwóch kierunkach przy zwykłej treści.</td>
+                                <td>Sprawdź widok przy 320 px szerokości i przy powiększeniu do 200%.</td>
+                            </tr>
+                            <tr>
+                                <td>1.4.11 Kontrast elementów interfejsu</td>
+                                <td>Granice pól, ikony i stany elementów muszą być widoczne.</td>
+                                <td>Sprawdź obramowania pól, checkboxy, radio buttony, fokus i ikony funkcyjne.</td>
+                            </tr>
+                            <tr>
+                                <td>2.1.1 Klawiatura</td>
+                                <td>Wszystko, co da się zrobić myszą, powinno dać się zrobić klawiaturą.</td>
+                                <td>Przejdź przez stronę klawiszem Tab, Enter, Spacja, strzałkami i Escape tam, gdzie ma to sens.</td>
+                            </tr>
+                            <tr>
+                                <td>2.1.2 Brak pułapki klawiaturowej</td>
+                                <td>Fokus nie może utknąć w elemencie, modalu, menu albo widżecie.</td>
+                                <td>Sprawdź, czy da się wejść i wyjść z każdego interaktywnego obszaru.</td>
+                            </tr>
+                            <tr>
+                                <td>2.4.3 Kolejność fokusu</td>
+                                <td>Fokus powinien iść w kolejności, która ma sens dla użytkownika.</td>
+                                <td>Sprawdź, czy kolejność tabulacji odpowiada układowi i logice strony.</td>
+                            </tr>
+                            <tr>
+                                <td>2.4.7 Widoczny fokus</td>
+                                <td>Użytkownik klawiatury musi widzieć, gdzie aktualnie jest.</td>
+                                <td>Sprawdź każdy link, przycisk, pole formularza, kartę, menu i element rozwijany.</td>
+                            </tr>
+                            <tr>
+                                <td>2.5.3 Etykieta w nazwie</td>
+                                <td>Jeżeli na przycisku widać tekst, technologia wspomagająca powinna mieć w nazwie ten sam tekst.</td>
+                                <td>Porównaj tekst widoczny na ekranie z nazwą dostępną dla czytnika ekranu.</td>
+                            </tr>
+                            <tr>
+                                <td>3.1.1 Język strony</td>
+                                <td>Strona powinna informować przeglądarkę i czytnik ekranu, w jakim języku jest napisana.</td>
+                                <td>Sprawdź atrybut lang w elemencie html.</td>
+                            </tr>
+                            <tr>
+                                <td>3.3.1 Identyfikacja błędu</td>
+                                <td>Jeżeli użytkownik popełni błąd w formularzu, strona musi jasno powiedzieć, gdzie jest problem.</td>
+                                <td>Wyślij formularz z pustymi lub błędnymi danymi i sprawdź komunikaty.</td>
+                            </tr>
+                            <tr>
+                                <td>3.3.2 Etykiety i instrukcje</td>
+                                <td>Formularz powinien mówić, co wpisać i które pola są wymagane.</td>
+                                <td>Sprawdź label, opis pola, wymagany format i informację o polach wymaganych.</td>
+                            </tr>
+                            <tr>
+                                <td>4.1.2 Nazwa, rola, wartość</td>
+                                <td>Element interaktywny musi mieć zrozumiałą nazwę, właściwy typ i aktualny stan.</td>
+                                <td>Sprawdź przyciski, linki, pola, menu, zakładki i komponenty niestandardowe.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <article class="knowledge-panel">
+                    <h3>Jak opisywać problem w raporcie?</h3>
+                    <ul class="detail-list">
+                        <li>Napisz, co nie działa i gdzie występuje problem.</li>
+                        <li>Opisz wpływ na użytkownika, nie tylko błąd techniczny.</li>
+                        <li>Podaj kryterium WCAG, jeżeli potrafisz je ustalić.</li>
+                        <li>Dodaj rekomendację: co trzeba zmienić w treści, projekcie albo kodzie.</li>
+                        <li>Jeżeli wynik pochodzi z narzędzia, potwierdź go ręcznie.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h3>Polecane zasoby</h3>
+                    <ol class="recommended-resources">
+                        <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener noreferrer">Przejdź do oficjalnego przeglądu WCAG przygotowanego przez W3C WAI<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">Otwórz pełny standard WCAG 2.2 na stronie W3C<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer">Sprawdź oficjalny szybki przewodnik How to Meet WCAG 2.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:biuro@wlaczwizje.pl">biuro@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/header.js"></script>
+</body>
+</html>
