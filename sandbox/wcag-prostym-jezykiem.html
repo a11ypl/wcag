@@ -117,98 +117,101 @@
 
         <section class="knowledge-article" aria-labelledby="criteria-title">
             <div class="container">
-                <h2 class="section-title" id="criteria-title">Kryteria, od których warto zacząć</h2>
-                <p class="section-lead knowledge-lead">To nie jest pełna lista WCAG. To praktyczny start dla osób, które chcą szybko zrozumieć najczęstsze wymagania i błędy.</p>
+                <h2 class="section-title" id="criteria-title">Kryteria sukcesu WCAG 2.2 na poziomie A i AA</h2>
+                <p class="section-lead knowledge-lead">Poniżej znajdziesz wszystkie kryteria A i AA z WCAG 2.2 opisane prostym językiem. To nie jest oficjalne tłumaczenie standardu, tylko praktyczne wyjaśnienie do nauki, audytu i rozmowy z zespołem.</p>
 
-                <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela wybranych kryteriów WCAG wyjaśnionych prostym językiem">
-                    <table class="knowledge-table">
-                        <caption>WCAG prostym językiem: pierwsze kryteria do nauki i audytu</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">Kryterium</th>
-                                <th scope="col">Co to znaczy po ludzku?</th>
-                                <th scope="col">Co sprawdzić?</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1.1.1 Treść nietekstowa</td>
-                                <td>Obrazy, ikony i inne elementy wizualne muszą mieć tekstową alternatywę, jeśli przekazują informację.</td>
-                                <td>Sprawdź alt obrazów, nazwy ikon-przycisków, wykresy i grafiki informacyjne.</td>
-                            </tr>
-                            <tr>
-                                <td>1.2.2 Napisy</td>
-                                <td>Film z mową powinien mieć napisy, żeby osoby niesłyszące lub oglądające bez dźwięku rozumiały treść.</td>
-                                <td>Sprawdź, czy nagrania mają napisy zsynchronizowane z wypowiedziami i ważnymi dźwiękami.</td>
-                            </tr>
-                            <tr>
-                                <td>1.3.1 Informacje i relacje</td>
-                                <td>Struktura widoczna na ekranie powinna być zapisana w kodzie.</td>
-                                <td>Sprawdź nagłówki, listy, tabele, etykiety pól i relacje między treściami.</td>
-                            </tr>
-                            <tr>
-                                <td>1.4.3 Kontrast tekstu</td>
-                                <td>Tekst musi być czytelny na tle, także dla osób słabowidzących.</td>
-                                <td>Zmierz kontrast tekstu, linków, przycisków i tekstów na kolorowym tle.</td>
-                            </tr>
-                            <tr>
-                                <td>1.4.10 Dopasowanie do ekranu</td>
-                                <td>Po powiększeniu strona nie może wymagać przewijania w dwóch kierunkach przy zwykłej treści.</td>
-                                <td>Sprawdź widok przy 320 px szerokości i przy powiększeniu do 200%.</td>
-                            </tr>
-                            <tr>
-                                <td>1.4.11 Kontrast elementów interfejsu</td>
-                                <td>Granice pól, ikony i stany elementów muszą być widoczne.</td>
-                                <td>Sprawdź obramowania pól, checkboxy, radio buttony, fokus i ikony funkcyjne.</td>
-                            </tr>
-                            <tr>
-                                <td>2.1.1 Klawiatura</td>
-                                <td>Wszystko, co da się zrobić myszą, powinno dać się zrobić klawiaturą.</td>
-                                <td>Przejdź przez stronę klawiszem Tab, Enter, Spacja, strzałkami i Escape tam, gdzie ma to sens.</td>
-                            </tr>
-                            <tr>
-                                <td>2.1.2 Brak pułapki klawiaturowej</td>
-                                <td>Fokus nie może utknąć w elemencie, modalu, menu albo widżecie.</td>
-                                <td>Sprawdź, czy da się wejść i wyjść z każdego interaktywnego obszaru.</td>
-                            </tr>
-                            <tr>
-                                <td>2.4.3 Kolejność fokusu</td>
-                                <td>Fokus powinien iść w kolejności, która ma sens dla użytkownika.</td>
-                                <td>Sprawdź, czy kolejność tabulacji odpowiada układowi i logice strony.</td>
-                            </tr>
-                            <tr>
-                                <td>2.4.7 Widoczny fokus</td>
-                                <td>Użytkownik klawiatury musi widzieć, gdzie aktualnie jest.</td>
-                                <td>Sprawdź każdy link, przycisk, pole formularza, kartę, menu i element rozwijany.</td>
-                            </tr>
-                            <tr>
-                                <td>2.5.3 Etykieta w nazwie</td>
-                                <td>Jeżeli na przycisku widać tekst, technologia wspomagająca powinna mieć w nazwie ten sam tekst.</td>
-                                <td>Porównaj tekst widoczny na ekranie z nazwą dostępną dla czytnika ekranu.</td>
-                            </tr>
-                            <tr>
-                                <td>3.1.1 Język strony</td>
-                                <td>Strona powinna informować przeglądarkę i czytnik ekranu, w jakim języku jest napisana.</td>
-                                <td>Sprawdź atrybut lang w elemencie html.</td>
-                            </tr>
-                            <tr>
-                                <td>3.3.1 Identyfikacja błędu</td>
-                                <td>Jeżeli użytkownik popełni błąd w formularzu, strona musi jasno powiedzieć, gdzie jest problem.</td>
-                                <td>Wyślij formularz z pustymi lub błędnymi danymi i sprawdź komunikaty.</td>
-                            </tr>
-                            <tr>
-                                <td>3.3.2 Etykiety i instrukcje</td>
-                                <td>Formularz powinien mówić, co wpisać i które pola są wymagane.</td>
-                                <td>Sprawdź label, opis pola, wymagany format i informację o polach wymaganych.</td>
-                            </tr>
-                            <tr>
-                                <td>4.1.2 Nazwa, rola, wartość</td>
-                                <td>Element interaktywny musi mieć zrozumiałą nazwę, właściwy typ i aktualny stan.</td>
-                                <td>Sprawdź przyciski, linki, pola, menu, zakładki i komponenty niestandardowe.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <article class="knowledge-panel">
+                    <h3>Jak czytać te opisy?</h3>
+                    <ul class="detail-list">
+                        <li><strong>Poziom A</strong> oznacza wymaganie podstawowe. Bez niego część osób może nie skorzystać z treści lub funkcji.</li>
+                        <li><strong>Poziom AA</strong> oznacza standard, do którego najczęściej dążymy w audytach i wdrożeniach.</li>
+                        <li>Opis „po ludzku” mówi, jaki problem kryterium rozwiązuje.</li>
+                        <li>„Co sprawdzić?” pomaga przełożyć kryterium na realny test.</li>
+                    </ul>
+                </article>
+
+                <nav class="knowledge-tabs" aria-label="Grupy kryteriów WCAG">
+                    <a href="#postrzegalnosc">Postrzegalność</a>
+                    <a href="#funkcjonalnosc">Funkcjonalność</a>
+                    <a href="#zrozumialosc">Zrozumiałość</a>
+                    <a href="#solidnosc">Solidność</a>
+                </nav>
+
+                <h3 class="section-title" id="postrzegalnosc">Postrzegalność</h3>
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel" id="sc-1-1-1"><h4>1.1.1 Treść nietekstowa <span>Poziom A</span></h4><p>Jeżeli coś nie jest tekstem, a przekazuje informację, musi mieć tekstową alternatywę.</p><p><strong>Co sprawdzić?</strong> Alt obrazów, nazwy ikon, przyciski graficzne, wykresy, CAPTCHA i elementy dekoracyjne.</p></article>
+                    <article class="knowledge-panel" id="sc-1-2-1"><h4>1.2.1 Tylko audio lub tylko wideo (nagranie) <span>Poziom A</span></h4><p>Jeżeli publikujesz samo nagranie audio albo samo wideo bez dźwięku, użytkownik potrzebuje alternatywy w innym formacie.</p><p><strong>Co sprawdzić?</strong> Transkrypcję dla audio i opis tekstowy albo ścieżkę audio dla samego obrazu.</p></article>
+                    <article class="knowledge-panel" id="sc-1-2-2"><h4>1.2.2 Napisy rozszerzone (nagranie) <span>Poziom A</span></h4><p>Nagranie z dźwiękiem musi mieć napisy. To nie jest tylko zapis wypowiedzi. Napisy powinny obejmować też ważne dźwięki, na przykład śmiech, alarm, muzykę albo dźwięk telefonu, jeśli wpływają na zrozumienie treści.</p><p><strong>Co sprawdzić?</strong> Czy napisy są zsynchronizowane, kompletne i opisują istotne dźwięki, a nie tylko dialog.</p></article>
+                    <article class="knowledge-panel" id="sc-1-2-3"><h4>1.2.3 Audiodeskrypcja lub alternatywa dla mediów (nagranie) <span>Poziom A</span></h4><p>Jeżeli ważna informacja jest widoczna tylko w obrazie filmu, osoba niewidoma musi dostać ją w audiodeskrypcji albo w pełnej alternatywie tekstowej.</p><p><strong>Co sprawdzić?</strong> Czy opisano ważne działania, napisy na ekranie, zmianę miejsca, gesty i inne informacje widoczne w filmie.</p></article>
+                    <article class="knowledge-panel" id="sc-1-2-4"><h4>1.2.4 Napisy rozszerzone (na żywo) <span>Poziom AA</span></h4><p>Transmisje na żywo z dźwiękiem powinny mieć napisy na żywo, żeby osoby niesłyszące mogły śledzić wydarzenie.</p><p><strong>Co sprawdzić?</strong> Czy webinar, konferencja albo streaming ma napisy na żywo i czy są czytelne oraz wystarczająco aktualne.</p></article>
+                    <article class="knowledge-panel" id="sc-1-2-5"><h4>1.2.5 Audiodeskrypcja (nagranie) <span>Poziom AA</span></h4><p>Nagrania wideo powinny mieć audiodeskrypcję, jeżeli bez obrazu nie da się zrozumieć ważnych informacji.</p><p><strong>Co sprawdzić?</strong> Czy osoba słuchająca filmu bez patrzenia na ekran wie, co się dzieje i co jest pokazywane.</p></article>
+                    <article class="knowledge-panel" id="sc-1-3-1"><h4>1.3.1 Informacje i relacje <span>Poziom A</span></h4><p>To, co widać jako strukturę, powinno być zapisane w kodzie. Nagłówek ma być nagłówkiem, lista listą, a etykieta pola etykietą.</p><p><strong>Co sprawdzić?</strong> Nagłówki, listy, tabele, grupy pól, etykiety, komunikaty i relacje między elementami.</p></article>
+                    <article class="knowledge-panel" id="sc-1-3-2"><h4>1.3.2 Zrozumiała kolejność <span>Poziom A</span></h4><p>Jeżeli kolejność treści ma znaczenie, powinna być logiczna także w kodzie i przy odczycie przez technologie wspomagające.</p><p><strong>Co sprawdzić?</strong> Kolejność DOM, odczyt czytnikiem ekranu, formularze, karty, układy wielokolumnowe i komponenty po zmianie CSS.</p></article>
+                    <article class="knowledge-panel" id="sc-1-3-3"><h4>1.3.3 Właściwości zmysłowe <span>Poziom A</span></h4><p>Instrukcja nie może zależeć wyłącznie od koloru, kształtu, położenia, dźwięku albo wielkości.</p><p><strong>Co sprawdzić?</strong> Polecenia typu „kliknij zielony przycisk”, „wybierz element po prawej” albo „po usłyszeniu sygnału”.</p></article>
+                    <article class="knowledge-panel" id="sc-1-3-4"><h4>1.3.4 Orientacja <span>Poziom AA</span></h4><p>Strona lub aplikacja nie powinna wymuszać pionowego albo poziomego ułożenia ekranu, jeśli nie jest to konieczne.</p><p><strong>Co sprawdzić?</strong> Widok na telefonie i tablecie po obróceniu urządzenia.</p></article>
+                    <article class="knowledge-panel" id="sc-1-3-5"><h4>1.3.5 Określenie celu danych wejściowych <span>Poziom AA</span></h4><p>Pola zbierające dane osobowe powinny mieć określony cel, żeby przeglądarka i technologie wspomagające mogły pomagać użytkownikowi.</p><p><strong>Co sprawdzić?</strong> Atrybuty autocomplete przy polach takich jak imię, e-mail, telefon, adres i kod pocztowy.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-1"><h4>1.4.1 Użycie koloru <span>Poziom A</span></h4><p>Kolor nie może być jedynym sposobem przekazania informacji.</p><p><strong>Co sprawdzić?</strong> Błędy formularza, statusy, wykresy, linki w tekście i oznaczenia aktywnych elementów.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-2"><h4>1.4.2 Kontrola odtwarzania dźwięku <span>Poziom A</span></h4><p>Jeżeli dźwięk startuje automatycznie i trwa dłużej niż 3 sekundy, użytkownik musi móc go zatrzymać albo wyciszyć.</p><p><strong>Co sprawdzić?</strong> Autoodtwarzanie audio, wideo z dźwiękiem, reklamy, tła muzyczne i komunikaty głosowe.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-3"><h4>1.4.3 Kontrast (minimum) <span>Poziom AA</span></h4><p>Tekst musi mieć wystarczający kontrast względem tła, żeby był czytelny dla osób słabowidzących.</p><p><strong>Co sprawdzić?</strong> Tekst zwykły, tekst duży, linki, przyciski, placeholdery i tekst na zdjęciach lub gradientach.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-4"><h4>1.4.4 Zmiana rozmiaru tekstu <span>Poziom AA</span></h4><p>Użytkownik może powiększyć tekst do 200%, a treść nadal powinna być dostępna i czytelna.</p><p><strong>Co sprawdzić?</strong> Powiększenie w przeglądarce, ucinanie tekstu, nachodzenie elementów i znikające funkcje.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-5"><h4>1.4.5 Obrazy tekstu <span>Poziom AA</span></h4><p>Tekst powinien być prawdziwym tekstem, a nie obrazkiem, chyba że jest to konieczne.</p><p><strong>Co sprawdzić?</strong> Banery, grafiki promocyjne, przyciski, infografiki i zrzuty ekranu z tekstem.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-10"><h4>1.4.10 Dopasowanie do ekranu <span>Poziom AA</span></h4><p>Po powiększeniu albo na wąskim ekranie użytkownik nie powinien przewijać zwykłej treści w dwóch kierunkach.</p><p><strong>Co sprawdzić?</strong> Widok 320 px szerokości, zoom 200%, menu, tabele, formularze i karty.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-11"><h4>1.4.11 Kontrast elementów nietekstowych <span>Poziom AA</span></h4><p>Ważne elementy interfejsu i grafiki informacyjne muszą być widoczne także bez idealnego wzroku.</p><p><strong>Co sprawdzić?</strong> Obramowania pól, fokus, ikony, checkboxy, radio buttony, wykresy i stany elementów.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-12"><h4>1.4.12 Odstępy w tekście <span>Poziom AA</span></h4><p>Użytkownik może zwiększyć odstępy w tekście, a treść nadal nie powinna się rozsypać.</p><p><strong>Co sprawdzić?</strong> Wysokość linii, odstępy akapitów, odstępy liter i wyrazów przy nadpisaniu CSS.</p></article>
+                    <article class="knowledge-panel" id="sc-1-4-13"><h4>1.4.13 Treść po najechaniu lub fokusie <span>Poziom AA</span></h4><p>Dymki, podpowiedzi i rozwijane treści muszą dać się zobaczyć, utrzymać i zamknąć bez pułapek.</p><p><strong>Co sprawdzić?</strong> Tooltipy, menu, podpowiedzi formularzy i treści pojawiające się po hoverze lub fokusie.</p></article>
                 </div>
+
+                <h3 class="section-title" id="funkcjonalnosc">Funkcjonalność</h3>
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel" id="sc-2-1-1"><h4>2.1.1 Klawiatura <span>Poziom A</span></h4><p>Wszystko, co da się zrobić myszą, powinno dać się zrobić klawiaturą.</p><p><strong>Co sprawdzić?</strong> Tab, Shift+Tab, Enter, Spacja, strzałki i Escape w menu, formularzach, modalach i komponentach.</p></article>
+                    <article class="knowledge-panel" id="sc-2-1-2"><h4>2.1.2 Brak pułapki na klawiaturę <span>Poziom A</span></h4><p>Użytkownik nie może utknąć fokusem w żadnym miejscu strony.</p><p><strong>Co sprawdzić?</strong> Czy da się wejść i wyjść z menu, okien, odtwarzaczy, kalendarzy i osadzonych widżetów.</p></article>
+                    <article class="knowledge-panel" id="sc-2-1-4"><h4>2.1.4 Jednoznakowe skróty klawiaturowe <span>Poziom A</span></h4><p>Skrót uruchamiany jednym znakiem może przeszkadzać osobom używającym mowy, klawiatur alternatywnych albo przypadkowych naciśnięć.</p><p><strong>Co sprawdzić?</strong> Czy skrót można wyłączyć, zmienić albo uruchamiać tylko po fokusie na konkretnym elemencie.</p></article>
+                    <article class="knowledge-panel" id="sc-2-2-1"><h4>2.2.1 Możliwość dostosowania czasu <span>Poziom A</span></h4><p>Jeżeli użytkownik ma limit czasu, powinien móc go wyłączyć, wydłużyć albo dostać ostrzeżenie.</p><p><strong>Co sprawdzić?</strong> Sesje, testy, koszyki, formularze, rezerwacje i automatyczne wylogowanie.</p></article>
+                    <article class="knowledge-panel" id="sc-2-2-2"><h4>2.2.2 Pauza, zatrzymanie, ukrycie <span>Poziom A</span></h4><p>Ruchome, migające lub automatycznie aktualizowane treści nie mogą odbierać kontroli użytkownikowi.</p><p><strong>Co sprawdzić?</strong> Slajdery, karuzele, animacje, paski wiadomości, liczniki i automatyczne odświeżanie.</p></article>
+                    <article class="knowledge-panel" id="sc-2-3-1"><h4>2.3.1 Trzy błyski lub wartości poniżej progu <span>Poziom A</span></h4><p>Treści nie powinny błyskać w sposób, który może wywołać napad fotogenny.</p><p><strong>Co sprawdzić?</strong> Animacje, reklamy, efekty świetlne, wideo i gry.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-1"><h4>2.4.1 Możliwość pominięcia bloków <span>Poziom A</span></h4><p>Użytkownik powinien móc ominąć powtarzające się elementy, na przykład menu, i przejść do głównej treści.</p><p><strong>Co sprawdzić?</strong> Skip-link, punkty orientacyjne, strukturę nagłówków i kolejność fokusu.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-2"><h4>2.4.2 Tytuł strony <span>Poziom A</span></h4><p>Każda strona powinna mieć tytuł, który mówi, gdzie użytkownik jest.</p><p><strong>Co sprawdzić?</strong> Element title, unikalność tytułów i sens tytułu po otwarciu wielu kart.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-3"><h4>2.4.3 Kolejność fokusu <span>Poziom A</span></h4><p>Fokus powinien przechodzić przez stronę w kolejności, która jest logiczna i przewidywalna.</p><p><strong>Co sprawdzić?</strong> Kolejność tabulacji, modale, menu, formularze, sticky header i elementy ukrywane CSS-em.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-4"><h4>2.4.4 Cel linku (w kontekście) <span>Poziom A</span></h4><p>Użytkownik powinien rozumieć, dokąd prowadzi link, z samego tekstu linku albo z jego najbliższego kontekstu.</p><p><strong>Co sprawdzić?</strong> Linki „więcej”, „tutaj”, „czytaj dalej”, ikony-linki i powtarzalne linki w kartach.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-5"><h4>2.4.5 Wiele dróg <span>Poziom AA</span></h4><p>Do strony w serwisie powinno dać się dojść więcej niż jedną drogą.</p><p><strong>Co sprawdzić?</strong> Menu, wyszukiwarkę, mapę strony, listy kategorii, linki wewnętrzne i stopkę.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-6"><h4>2.4.6 Nagłówki i etykiety <span>Poziom AA</span></h4><p>Nagłówki i etykiety powinny jasno opisywać treść albo funkcję.</p><p><strong>Co sprawdzić?</strong> H1-H6, label formularzy, nazwy sekcji, przyciski i powtarzalne komponenty.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-7"><h4>2.4.7 Widoczny fokus <span>Poziom AA</span></h4><p>Osoba korzystająca z klawiatury musi widzieć, który element jest aktualnie aktywny.</p><p><strong>Co sprawdzić?</strong> Linki, przyciski, pola, checkboxy, menu, karty, skip-link i elementy niestandardowe.</p></article>
+                    <article class="knowledge-panel" id="sc-2-4-11"><h4>2.4.11 Fokus niezakryty (minimum) <span>Poziom AA</span></h4><p>Element z fokusem nie może być całkowicie zasłonięty przez sticky header, baner, modal albo pasek cookie.</p><p><strong>Co sprawdzić?</strong> Przechodzenie klawiaturą po stronie, zwłaszcza przy przyklejonym menu i automatycznym przewijaniu do fokusu.</p></article>
+                    <article class="knowledge-panel" id="sc-2-5-1"><h4>2.5.1 Gesty wskazujące <span>Poziom A</span></h4><p>Funkcja obsługiwana gestem złożonym powinna mieć prostszą alternatywę.</p><p><strong>Co sprawdzić?</strong> Przeciąganie, szczypanie, rysowanie ścieżki i gesty wielopunktowe.</p></article>
+                    <article class="knowledge-panel" id="sc-2-5-2"><h4>2.5.2 Anulowanie akcji wskaźnikiem <span>Poziom A</span></h4><p>Użytkownik powinien mieć szansę uniknąć przypadkowego uruchomienia akcji po dotknięciu albo kliknięciu.</p><p><strong>Co sprawdzić?</strong> Czy akcja uruchamia się dopiero po puszczeniu przycisku, albo czy da się ją anulować lub cofnąć.</p></article>
+                    <article class="knowledge-panel" id="sc-2-5-3"><h4>2.5.3 Etykieta w nazwie <span>Poziom A</span></h4><p>Widoczny tekst elementu powinien być częścią jego nazwy dostępnej.</p><p><strong>Co sprawdzić?</strong> Przyciski i linki z aria-label, ikonami, skróconymi nazwami albo tekstem ukrytym.</p></article>
+                    <article class="knowledge-panel" id="sc-2-5-4"><h4>2.5.4 Aktywowanie ruchem <span>Poziom A</span></h4><p>Funkcja uruchamiana ruchem urządzenia albo gestem użytkownika musi mieć alternatywę i możliwość wyłączenia.</p><p><strong>Co sprawdzić?</strong> Potrząsanie telefonem, obracanie, machanie i inne akcje zależne od ruchu.</p></article>
+                    <article class="knowledge-panel" id="sc-2-5-7"><h4>2.5.7 Ruch przeciągania <span>Poziom AA</span></h4><p>Jeżeli coś wymaga przeciągania, powinno dać się wykonać prostszym kliknięciem, dotknięciem albo kontrolką.</p><p><strong>Co sprawdzić?</strong> Suwaki, sortowanie kart, przeciąganie plików, mapy i elementy typu drag and drop.</p></article>
+                    <article class="knowledge-panel" id="sc-2-5-8"><h4>2.5.8 Rozmiar celu (minimum) <span>Poziom AA</span></h4><p>Elementy klikalne powinny być wystarczająco duże albo mieć wystarczająco dużo wolnej przestrzeni wokół.</p><p><strong>Co sprawdzić?</strong> Małe ikony, linki obok siebie, przyciski w tabelach, kontrolki mobilne i elementy w nagłówku.</p></article>
+                </div>
+
+                <h3 class="section-title" id="zrozumialosc">Zrozumiałość</h3>
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel" id="sc-3-1-1"><h4>3.1.1 Język strony <span>Poziom A</span></h4><p>Strona powinna informować technologie, w jakim języku jest napisana.</p><p><strong>Co sprawdzić?</strong> Atrybut lang w html i zgodność języka z realną treścią strony.</p></article>
+                    <article class="knowledge-panel" id="sc-3-1-2"><h4>3.1.2 Język części <span>Poziom AA</span></h4><p>Fragment w innym języku powinien być oznaczony, żeby czytnik ekranu poprawnie go wymówił.</p><p><strong>Co sprawdzić?</strong> Cytaty, nazwy, dłuższe fragmenty po angielsku i przełączniki językowe.</p></article>
+                    <article class="knowledge-panel" id="sc-3-2-1"><h4>3.2.1 Po otrzymaniu fokusu <span>Poziom A</span></h4><p>Samo wejście fokusem na element nie powinno nagle zmieniać kontekstu.</p><p><strong>Co sprawdzić?</strong> Czy fokus nie wysyła formularza, nie otwiera nowej strony, nie zmienia widoku bez decyzji użytkownika.</p></article>
+                    <article class="knowledge-panel" id="sc-3-2-2"><h4>3.2.2 Podczas wprowadzania danych <span>Poziom A</span></h4><p>Zmiana wartości pola nie powinna zaskakiwać użytkownika zmianą strony, chyba że został o tym uprzedzony.</p><p><strong>Co sprawdzić?</strong> Selecty, checkboxy, filtry, formularze wieloetapowe i automatyczne przekierowania.</p></article>
+                    <article class="knowledge-panel" id="sc-3-2-3"><h4>3.2.3 Spójna nawigacja <span>Poziom AA</span></h4><p>Powtarzające się menu i nawigacja powinny działać w tej samej kolejności na różnych stronach.</p><p><strong>Co sprawdzić?</strong> Header, stopkę, menu boczne, kolejność linków i wersje mobilne.</p></article>
+                    <article class="knowledge-panel" id="sc-3-2-4"><h4>3.2.4 Spójna identyfikacja <span>Poziom AA</span></h4><p>Ta sama funkcja powinna być nazywana i oznaczana tak samo w całym serwisie.</p><p><strong>Co sprawdzić?</strong> Przyciski, ikony, etykiety, komunikaty, linki do tych samych działań i komponenty powtarzalne.</p></article>
+                    <article class="knowledge-panel" id="sc-3-2-6"><h4>3.2.6 Spójna pomoc <span>Poziom AA</span></h4><p>Jeżeli serwis ma pomoc kontaktową, powinna być dostępna w przewidywalnym miejscu.</p><p><strong>Co sprawdzić?</strong> Link kontaktowy, formularz pomocy, czat, dane telefonu i sekcję pomocy na różnych stronach.</p></article>
+                    <article class="knowledge-panel" id="sc-3-3-1"><h4>3.3.1 Identyfikacja błędu <span>Poziom A</span></h4><p>Jeżeli użytkownik popełni błąd, strona musi jasno wskazać, gdzie jest problem.</p><p><strong>Co sprawdzić?</strong> Puste pola wymagane, błędny e-mail, za krótki tekst, format telefonu i błędy po wysłaniu formularza.</p></article>
+                    <article class="knowledge-panel" id="sc-3-3-2"><h4>3.3.2 Etykiety lub instrukcje <span>Poziom A</span></h4><p>Użytkownik powinien wiedzieć, co wpisać, w jakim formacie i które pola są wymagane.</p><p><strong>Co sprawdzić?</strong> Label, legend, opis pola, instrukcje, oznaczenie wymaganych pól i przykłady formatów.</p></article>
+                    <article class="knowledge-panel" id="sc-3-3-3"><h4>3.3.3 Sugestie korekty błędów <span>Poziom AA</span></h4><p>Jeżeli da się podpowiedzieć poprawkę błędu, formularz powinien to zrobić.</p><p><strong>Co sprawdzić?</strong> Komunikaty typu „wpisz adres e-mail w formacie nazwa@example.com” zamiast samego „błąd”.</p></article>
+                    <article class="knowledge-panel" id="sc-3-3-4"><h4>3.3.4 Zapobieganie błędom <span>Poziom AA</span></h4><p>Przy ważnych danych, decyzjach prawnych albo finansowych użytkownik powinien móc sprawdzić, poprawić albo potwierdzić działanie.</p><p><strong>Co sprawdzić?</strong> Zamówienia, płatności, deklaracje, dane urzędowe, usuwanie konta i operacje nieodwracalne.</p></article>
+                    <article class="knowledge-panel" id="sc-3-3-7"><h4>3.3.7 Powtarzające się wpisy <span>Poziom A</span></h4><p>Użytkownik nie powinien przepisywać tych samych informacji w tym samym procesie, jeśli system już je zna.</p><p><strong>Co sprawdzić?</strong> Formularze wieloetapowe, dane kontaktowe, adresy, logowanie i pola powtarzane po błędzie.</p></article>
+                    <article class="knowledge-panel" id="sc-3-3-8"><h4>3.3.8 Dostępne uwierzytelnianie (minimum) <span>Poziom AA</span></h4><p>Logowanie nie powinno wymagać zadania poznawczego, którego użytkownik nie może wykonać, na przykład zapamiętywania hasła bez wsparcia.</p><p><strong>Co sprawdzić?</strong> Możliwość wklejenia hasła, menedżery haseł, alternatywy dla CAPTCHA i logowanie bez łamigłówek.</p></article>
+                </div>
+
+                <h3 class="section-title" id="solidnosc">Solidność</h3>
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel" id="sc-4-1-2"><h4>4.1.2 Nazwa, rola, wartość <span>Poziom A</span></h4><p>Element interaktywny musi mówić technologiom wspomagającym, jak się nazywa, czym jest i jaki ma stan.</p><p><strong>Co sprawdzić?</strong> Przyciski, linki, pola, listy rozwijane, przełączniki, zakładki, modale i komponenty niestandardowe.</p></article>
+                    <article class="knowledge-panel" id="sc-4-1-3"><h4>4.1.3 Komunikaty o stanie <span>Poziom AA</span></h4><p>Ważne komunikaty po akcji powinny być przekazane czytnikowi ekranu bez przenoszenia fokusu.</p><p><strong>Co sprawdzić?</strong> Komunikaty „dodano do koszyka”, wyniki filtrowania, błędy, sukcesy, liczniki i status wysyłki formularza.</p></article>
+                </div>
+
+                <article class="knowledge-panel">
+                    <h3>Co z kryterium 4.1.1?</h3>
+                    <p>W WCAG 2.2 kryterium 4.1.1 Parsowanie zostało usunięte. Nadal warto pisać poprawny HTML, ale w audytach WCAG 2.2 nie traktujemy 4.1.1 jako aktywnego kryterium sukcesu.</p>
+                </article>
 
                 <article class="knowledge-panel">
                     <h3>Jak opisywać problem w raporcie?</h3>
