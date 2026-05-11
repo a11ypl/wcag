@@ -86,9 +86,12 @@
     }
 
     main {
-      width: min(760px, 100%);
+      width: min(1180px, 100%);
       margin: 0 auto;
-      gap: clamp(12px, 2vh, 22px);
+      display: grid;
+      gap: clamp(18px, 3vh, 34px);
+      grid-template-columns: minmax(300px, 0.82fr) minmax(520px, 1.18fr);
+      align-items: center;
     }
 
     h1,
@@ -117,6 +120,17 @@
       outline-offset: 3px;
     }
 
+    header,
+    .home-intro,
+    footer {
+      grid-column: 1;
+    }
+
+    nav {
+      grid-column: 2;
+      grid-row: 1 / span 3;
+    }
+
     .logo {
       justify-self: start;
       margin: 0;
@@ -125,7 +139,7 @@
 
     .site-banner {
       display: inline-flex;
-      width: min(100%, 520px, 54vh);
+      width: min(100%, 520px);
       height: auto;
       align-items: center;
       justify-content: flex-start;
@@ -180,33 +194,50 @@
       box-shadow: 0 0 0 10px var(--focus-inner);
     }
 
+    .home-intro {
+      display: grid;
+      gap: clamp(12px, 2vh, 20px);
+    }
+
     .intro {
       max-width: 100%;
       color: var(--text);
-      font-size: clamp(1.8rem, 3.4vh, 2.35rem);
-      line-height: 1.2;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 1;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 46ch;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+      line-height: 1.45;
     }
 
     nav ul {
       display: grid;
-      gap: clamp(6px, 1vh, 10px);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(10px, 1.6vh, 16px);
       padding: 0;
       list-style: none;
     }
 
+    nav li:last-child {
+      grid-column: 1 / -1;
+    }
+
     nav a {
-      display: flex;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
       justify-content: space-between;
       gap: 16px;
-      min-height: clamp(52px, 7vh, 66px);
-      padding: clamp(12px, 1.8vh, 17px) 22px;
+      min-height: clamp(112px, 13vh, 132px);
+      padding: clamp(16px, 2.2vh, 22px);
       border: 2px solid var(--primary);
       border-radius: 8px;
       background: var(--surface);
       color: var(--text);
-      font-size: clamp(1.1rem, 2.2vh, 1.35rem);
-      font-weight: 800;
       text-decoration: none;
       box-shadow: 0 0 0 2px rgba(95, 40, 180, 0.45);
     }
@@ -226,12 +257,34 @@
     .link-arrow {
       flex: 0 0 auto;
       color: var(--accent);
-      font-size: 1.2rem;
+      font-size: 1.45rem;
       line-height: 1;
+    }
+
+    .link-title {
+      display: block;
+      color: var(--text);
+      font-size: clamp(1.25rem, 2.2vh, 1.55rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .link-desc {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: clamp(0.9rem, 1.45vh, 1rem);
+      font-weight: 600;
+      line-height: 1.35;
     }
 
     nav a:hover .link-arrow,
     nav a:focus-visible .link-arrow {
+      color: var(--text);
+    }
+
+    nav a:hover .link-desc,
+    nav a:focus-visible .link-desc {
       color: var(--text);
     }
 
@@ -246,27 +299,60 @@
       }
 
       main {
-        gap: 8px;
+        gap: 14px;
       }
 
       .site-banner {
-        width: min(100%, 430px, 48vh);
+        width: min(100%, 420px);
       }
 
       nav a {
-        min-height: 44px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        min-height: 96px;
+        padding-top: 14px;
+        padding-bottom: 14px;
       }
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 980px) {
+      body {
+        align-items: start;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      header,
+      .home-intro,
+      nav,
+      footer {
+        grid-column: 1;
+      }
+
+      nav {
+        grid-row: auto;
+      }
+
+      .intro {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+      }
+    }
+
+    @media (max-width: 620px) {
       body {
         padding: 12px;
       }
 
+      nav ul {
+        grid-template-columns: 1fr;
+      }
+
+      nav li:last-child {
+        grid-column: auto;
+      }
+
       nav a {
-        min-height: 46px;
+        min-height: auto;
         padding: 10px 14px;
       }
     }
@@ -296,49 +382,73 @@
       </div>
     </header>
 
-    <h1 id="opis" class="intro">Dostępność jest naszą misją</h1>
+    <div class="home-intro">
+      <h1 id="opis" class="intro">Dostępność jest naszą misją</h1>
+      <p class="lead">Szkolimy, audytujemy i porządkujemy wiedzę o dostępności cyfrowej. Wybierz obszar, którego teraz potrzebujesz.</p>
+    </div>
 
     <nav aria-label="Menu główne">
       <ul>
         <li>
           <a href="/o-nas">
-            <span>O nas</span>
+            <span>
+              <span class="link-title">O nas</span>
+              <span class="link-desc">Kim jesteśmy i jak pracujemy z dostępnością.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="/szkolenia">
-            <span>Szkolenia</span>
+            <span>
+              <span class="link-title">Szkolenia</span>
+              <span class="link-desc">Terminy, programy i zapisy na kursy oraz webinary.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="/audyty">
-            <span>Audyty dostępności</span>
+            <span>
+              <span class="link-title">Audyty dostępności</span>
+              <span class="link-desc">Badanie stron, aplikacji, dokumentów i produktów cyfrowych.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="/sklep">
-            <span>Sklep</span>
+            <span>
+              <span class="link-title">Sklep</span>
+              <span class="link-desc">Webinary i materiały do samodzielnej pracy.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="/baza-wiedzy">
-            <span>Baza wiedzy</span>
+            <span>
+              <span class="link-title">Baza wiedzy</span>
+              <span class="link-desc">Instrukcje, czytniki ekranu i WCAG prostym językiem.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="/deklaracja">
-            <span>Deklaracja dostępności</span>
+            <span>
+              <span class="link-title">Deklaracja dostępności</span>
+              <span class="link-desc">Informacje o dostępności tej strony i zgłaszaniu problemów.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
         <li>
           <a href="/kontakt">
-            <span>Kontakt</span>
+            <span>
+              <span class="link-title">Kontakt</span>
+              <span class="link-desc">Napisz do nas w sprawie szkolenia, audytu albo współpracy.</span>
+            </span>
             <span class="link-arrow" aria-hidden="true">→</span>
           </a>
         </li>
