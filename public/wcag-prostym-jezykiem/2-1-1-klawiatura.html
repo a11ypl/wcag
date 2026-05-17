@@ -132,8 +132,8 @@
                         </div>
                         <p class="wcag-code-example__description">Natywny <code>button</code> działa z klawiatury bez dodatkowego JavaScriptu.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>&lt;button type="button"&gt;
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;button type="button"&gt;
   Pokaż szczegóły
 &lt;/button&gt;</code></pre>
                         </div>
@@ -145,8 +145,8 @@
                         </div>
                         <p class="wcag-code-example__description">Taki element nie jest domyślnie dostępny z klawiatury i nie ma semantyki przycisku.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>&lt;div onclick="showDetails()"&gt;
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;div onclick="showDetails()"&gt;
   Pokaż szczegóły
 &lt;/div&gt;</code></pre>
                         </div>
@@ -158,8 +158,8 @@
                         </div>
                         <p class="wcag-code-example__description">Jeśli element prowadzi do innego adresu, użyj linku. Jeśli wykonuje akcję na stronie, użyj przycisku.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>&lt;a href="/kontakt"&gt;
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;a href="/kontakt"&gt;
   Kontakt
 &lt;/a&gt;</code></pre>
                         </div>
@@ -168,19 +168,23 @@
 
                 <article class="knowledge-panel">
                     <h2>Przykład graficzny</h2>
-                    <p>To jest statyczna makieta edukacyjna. Pokazuje różnicę między elementem wyglądającym jak przycisk a natywnymi kontrolkami.</p>
+                    <p>To demo edukacyjne pokazuje różnicę między atrapą wyglądającą jak przycisk a natywnymi kontrolkami HTML. Przycisk jest przykładem natywnej kontrolki. W tym demo nie uruchamia dodatkowej akcji.</p>
                     <figure class="wcag-keyboard-demo">
                         <div class="wcag-keyboard-demo__grid">
                             <section class="wcag-keyboard-demo__item wcag-keyboard-demo__item--bad">
                                 <h3>Źle</h3>
-                                <p class="wcag-keyboard-demo__control">Klikany div</p>
-                                <p class="wcag-keyboard-demo__note">Wygląda jak przycisk, ale nie ma natywnej obsługi klawiaturą.</p>
+                                <div class="wcag-keyboard-demo__fake-control">Klikany div</div>
+                                <p class="wcag-keyboard-demo__note">Wygląda jak przycisk, ale nie jest natywną kontrolką. Bez dodatkowej obsługi nie będzie działał poprawnie z klawiaturą.</p>
                             </section>
                             <section class="wcag-keyboard-demo__item wcag-keyboard-demo__item--good">
                                 <h3>Dobrze</h3>
-                                <p class="wcag-keyboard-demo__control">Prawdziwy button</p>
-                                <p class="wcag-keyboard-demo__control">Prawdziwy link</p>
-                                <p class="wcag-keyboard-demo__note">Natywne elementy mają domyślne role i obsługę klawiaturą.</p>
+                                <button type="button" class="wcag-keyboard-demo__control">
+                                    Prawdziwy button
+                                </button>
+                                <a class="wcag-keyboard-demo__control" href="#keyboard-demo-note">
+                                    Prawdziwy link
+                                </a>
+                                <p id="keyboard-demo-note" class="wcag-keyboard-demo__note">To demo pozwala sprawdzić różnicę klawiaturą: użyj Tab, Shift+Tab, Enter i Space. Przycisk i link są natywnymi elementami HTML.</p>
                             </section>
                             <section class="wcag-keyboard-demo__item">
                                 <h3>Sprawdź</h3>

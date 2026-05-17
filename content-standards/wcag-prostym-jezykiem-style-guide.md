@@ -41,6 +41,10 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - Jeśli demo nie jest działającym modalem, formularzem, tooltipem albo widgetem, nie wolno go tak przedstawiać.
 - Dla złożonych zachowań, takich jak pułapka fokusu, lepszy jest schemat ścieżki fokusu niż makieta udająca komponent.
 - Statyczne demo musi jasno informować, że jest schematem albo makietą edukacyjną.
+- Jeśli demo pokazuje różnicę między atrapą a natywną kontrolką, dobry przykład może używać prawdziwych elementów HTML, np. `button` i `a`.
+- Prawdziwe kontrolki w demo muszą być bezpieczne, lokalne i zrozumiale opisane.
+- Nie pokazuj jako dobrego przykładu elementu `div` z `tabindex` albo `role`, jeśli wystarczy natywny `button` lub link.
+- Przy kryteriach klawiaturowych można użyć natywnych kontrolek, żeby użytkownik mógł realnie sprawdzić fokus i obsługę klawiaturą.
 
 ## Docelowa struktura podstrony
 

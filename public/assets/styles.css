@@ -1179,19 +1179,41 @@ header nav a:hover { color: white; }
 }
 
 .wcag-keyboard-demo__control {
-    background: #fffaf5;
-    border: 2px solid var(--primary);
+    align-items: center;
+    background: #fff;
+    border: 3px solid var(--primary);
     border-radius: 8px;
+    box-sizing: border-box;
     color: black;
-    display: block;
-    font-weight: 800;
+    display: inline-flex;
+    font: inherit;
+    font-weight: 700;
+    justify-content: center;
     margin: 1rem 0;
-    padding: 0.75rem 0.9rem;
+    padding: 0.9rem 1rem;
     text-align: center;
+    text-decoration: none;
+    width: 100%;
 }
 
-.wcag-keyboard-demo__item--bad .wcag-keyboard-demo__control {
-    border-style: dashed;
+.wcag-keyboard-demo__control:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.wcag-keyboard-demo__fake-control {
+    background: #fffaf5;
+    border: 3px dashed var(--primary);
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: black;
+    display: block;
+    font: inherit;
+    font-weight: 700;
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    text-align: center;
+    width: 100%;
 }
 
 .wcag-keyboard-demo__note,
