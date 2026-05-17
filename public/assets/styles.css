@@ -944,6 +944,100 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-hover-focus-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-hover-focus-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-hover-focus-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-hover-focus-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-hover-focus-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-hover-focus-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-hover-focus-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-hover-focus-demo__stage {
+    background: #f7f4fb;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    min-height: 9rem;
+    padding: 1rem;
+}
+
+.wcag-hover-focus-demo__trigger {
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    display: inline-block;
+    font-weight: 800;
+    justify-self: start;
+    padding: 0.65rem 0.8rem;
+}
+
+.wcag-hover-focus-demo__tooltip {
+    background: #111;
+    border-radius: 8px;
+    color: white;
+    display: block;
+    font-weight: 700;
+    line-height: 1.45;
+    max-width: 18rem;
+    padding: 0.85rem 1rem;
+}
+
+.wcag-hover-focus-demo__item--bad .wcag-hover-focus-demo__tooltip {
+    border: 3px dashed #d33131;
+}
+
+.wcag-hover-focus-demo__item--risky .wcag-hover-focus-demo__tooltip {
+    box-shadow: 0 0 0 6px rgba(250, 150, 50, 0.32);
+    transform: translateY(-0.5rem);
+}
+
+.wcag-hover-focus-demo__item--good .wcag-hover-focus-demo__tooltip {
+    border: 3px solid var(--accent);
+}
+
+.wcag-hover-focus-demo__note {
+    background: #faf7ff;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    color: black;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.wcag-hover-focus-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .criterion-navigation {
     display: grid;
     gap: 1rem;
