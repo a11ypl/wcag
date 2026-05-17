@@ -45,6 +45,10 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - Prawdziwe kontrolki w demo muszą być bezpieczne, lokalne i zrozumiale opisane.
 - Nie pokazuj jako dobrego przykładu elementu `div` z `tabindex` albo `role`, jeśli wystarczy natywny `button` lub link.
 - Przy kryteriach klawiaturowych można użyć natywnych kontrolek, żeby użytkownik mógł realnie sprawdzić fokus i obsługę klawiaturą.
+- W przykładach edukacyjnych nie styluj linku jak przycisku, jeśli celem jest nauczenie różnicy między linkiem a buttonem.
+- Button pokazuje akcję, a link pokazuje przejście.
+- Link stylowany jak przycisk może być poprawny w interfejsie jako CTA, ale w tutorialu o klawiaturze lepiej rozdzielić role wizualnie.
+- Jeśli demo klawiaturowe używa prawdziwego buttona, powinno dawać prosty, zrozumiały efekt działania albo jasno informować, że pokazuje tylko fokus.
 
 ## Docelowa struktura podstrony
 

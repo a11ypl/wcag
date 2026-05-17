@@ -1178,13 +1178,14 @@ header nav a:hover { color: white; }
     border-color: var(--primary);
 }
 
-.wcag-keyboard-demo__control {
+.wcag-keyboard-demo__button {
     align-items: center;
-    background: #fff;
+    background: var(--primary);
     border: 3px solid var(--primary);
     border-radius: 8px;
     box-sizing: border-box;
-    color: black;
+    color: white;
+    cursor: pointer;
     display: inline-flex;
     font: inherit;
     font-weight: 700;
@@ -1196,9 +1197,40 @@ header nav a:hover { color: white; }
     width: 100%;
 }
 
-.wcag-keyboard-demo__control:focus-visible {
+.wcag-keyboard-demo__button:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 3px;
+}
+
+.wcag-keyboard-demo__button:active {
+    transform: translateY(1px);
+}
+
+.wcag-keyboard-demo__link {
+    color: var(--primary);
+    display: inline-block;
+    font-weight: 700;
+    margin: 1rem 0;
+    text-decoration-color: currentColor;
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+}
+
+.wcag-keyboard-demo__link:focus-visible {
+    border-radius: 0.2rem;
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.wcag-keyboard-demo__status {
+    background: #faf7ff;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+    padding: 1rem;
 }
 
 .wcag-keyboard-demo__fake-control {
