@@ -131,8 +131,8 @@
                         </div>
                         <p class="wcag-code-example__description">Escape daje użytkownikowi przewidywalny sposób wyjścia z komponentu.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>document.addEventListener("keydown", function (event) {
+                            <p class="wcag-code-example__label">Kod — JavaScript</p>
+                            <pre><code class="language-javascript">document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     closeDialog();
   }
@@ -146,8 +146,8 @@
                         </div>
                         <p class="wcag-code-example__description">Po zamknięciu użytkownik wraca do miejsca, z którego otworzył komponent.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>const trigger = document.querySelector("#open-dialog");
+                            <p class="wcag-code-example__label">Kod — JavaScript</p>
+                            <pre><code class="language-javascript">const trigger = document.querySelector("#open-dialog");
 
 function closeDialog() {
   dialog.close();
@@ -162,8 +162,8 @@ function closeDialog() {
                         </div>
                         <p class="wcag-code-example__description">Blokowanie Tab bez alternatywnej ścieżki może stworzyć pułapkę na klawiaturę.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>document.addEventListener("keydown", function (event) {
+                            <p class="wcag-code-example__label">Kod — JavaScript</p>
+                            <pre><code class="language-javascript">document.addEventListener("keydown", function (event) {
   if (event.key === "Tab") {
     event.preventDefault();
   }
@@ -174,18 +174,52 @@ function closeDialog() {
 
                 <article class="knowledge-panel">
                     <h2>Przykład graficzny</h2>
-                    <p>To jest statyczna makieta edukacyjna. Nie pokazuje działającego modala, tylko różnicę między pułapką a przewidywalnym wyjściem.</p>
+                    <p>To jest statyczny schemat edukacyjny. Pokazuje różnicę między pułapką fokusu a komponentem, z którego można przewidywalnie wyjść klawiaturą. Nie jest działającym modalem.</p>
                     <figure class="wcag-keyboard-trap-demo">
                         <div class="wcag-keyboard-trap-demo__grid">
                             <section class="wcag-keyboard-trap-demo__item wcag-keyboard-trap-demo__item--bad">
                                 <h3>Źle</h3>
-                                <div class="wcag-keyboard-trap-demo__stage">Modal bez informacji, jak wyjść</div>
-                                <p class="wcag-keyboard-trap-demo__note">Użytkownik może wejść fokusem do komponentu, ale nie ma jasnej drogi wyjścia.</p>
+                                <ol class="wcag-keyboard-trap-demo__path">
+                                    <li class="wcag-keyboard-trap-demo__step">
+                                        <span class="wcag-keyboard-trap-demo__step-number">1</span>
+                                        Wejście do widgetu
+                                    </li>
+                                    <li class="wcag-keyboard-trap-demo__step">
+                                        <span class="wcag-keyboard-trap-demo__step-number">2</span>
+                                        Kontrolka w środku
+                                    </li>
+                                    <li class="wcag-keyboard-trap-demo__step">
+                                        <span class="wcag-keyboard-trap-demo__step-number">3</span>
+                                        Kolejna kontrolka
+                                    </li>
+                                    <li class="wcag-keyboard-trap-demo__step wcag-keyboard-trap-demo__loop">
+                                        <span class="wcag-keyboard-trap-demo__step-number">4</span>
+                                        Powrót do początku widgetu
+                                    </li>
+                                </ol>
+                                <p class="wcag-keyboard-trap-demo__note">Brak drogi dalej. Fokus krąży w komponencie i użytkownik nie może wrócić do reszty strony.</p>
                             </section>
                             <section class="wcag-keyboard-trap-demo__item wcag-keyboard-trap-demo__item--good">
                                 <h3>Dobrze</h3>
-                                <div class="wcag-keyboard-trap-demo__stage">Esc — zamknij. Fokus wróci do przycisku otwierającego.</div>
-                                <p class="wcag-keyboard-trap-demo__note">Komponent ma przewidywalne wyjście i logiczny powrót fokusu.</p>
+                                <ol class="wcag-keyboard-trap-demo__path">
+                                    <li class="wcag-keyboard-trap-demo__step">
+                                        <span class="wcag-keyboard-trap-demo__step-number">1</span>
+                                        Wejście do komponentu
+                                    </li>
+                                    <li class="wcag-keyboard-trap-demo__step">
+                                        <span class="wcag-keyboard-trap-demo__step-number">2</span>
+                                        Kontrolki w środku
+                                    </li>
+                                    <li class="wcag-keyboard-trap-demo__step wcag-keyboard-trap-demo__exit">
+                                        <span class="wcag-keyboard-trap-demo__step-number">3</span>
+                                        Esc — zamknij / Tab — przejdź dalej
+                                    </li>
+                                    <li class="wcag-keyboard-trap-demo__step">
+                                        <span class="wcag-keyboard-trap-demo__step-number">4</span>
+                                        Fokus wraca logicznie albo przechodzi dalej
+                                    </li>
+                                </ol>
+                                <p class="wcag-keyboard-trap-demo__note">Użytkownik ma przewidywalne wyjście i nie zostaje uwięziony w komponencie.</p>
                             </section>
                             <section class="wcag-keyboard-trap-demo__item">
                                 <h3>Sprawdź</h3>

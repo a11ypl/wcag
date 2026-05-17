@@ -30,9 +30,17 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - Nie obniżaj czytelności metadanych hero przez niskie `opacity`.
 - Estetyczna subtelność nie może pogarszać czytelności informacji w hero.
 - Bloki kodu edukacyjnego w `.wcag-code-example` mają zawijać długie linie i nie mogą wymagać poziomego przewijania na mobile.
+- Każdy blok kodu musi mieć widoczną etykietę języka, np. „Kod — HTML”, „Kod — CSS” albo „Kod — JavaScript”.
+- Sama etykieta „Kod” jest niewystarczająca.
+- Jeśli to możliwe, element `code` powinien mieć klasę `language-html`, `language-css` albo `language-javascript`.
+- Nie dodawaj biblioteki do kolorowania składni tylko po to, żeby oznaczyć język przykładu.
+- Etykieta języka ma pomagać użytkownikowi szybko zrozumieć, na jaki rodzaj kodu patrzy.
 - Przed rozbudową kryterium zapisz jego granicę merytoryczną: czego dotyczy i z czym łatwo je pomylić.
 - Kryteria powiązane można wskazywać w sekcji „Powiązane kryteria”, ale nie wolno opisywać ich wymagań jako wymagań aktualnego kryterium.
 - Jeśli pokazujesz zachowanie dynamiczne w statycznym demo, podpis albo opis musi jasno mówić, że to makieta edukacyjna, nie działający komponent.
+- Jeśli demo nie jest działającym modalem, formularzem, tooltipem albo widgetem, nie wolno go tak przedstawiać.
+- Dla złożonych zachowań, takich jak pułapka fokusu, lepszy jest schemat ścieżki fokusu niż makieta udająca komponent.
+- Statyczne demo musi jasno informować, że jest schematem albo makietą edukacyjną.
 
 ## Docelowa struktura podstrony
 

@@ -1205,19 +1205,54 @@ header nav a:hover { color: white; }
     padding: 1rem;
 }
 
-.wcag-keyboard-trap-demo__stage {
+.wcag-keyboard-trap-demo__path {
+    display: grid;
+    gap: 0.65rem;
+    margin: 1rem 0;
+    padding-left: 0;
+}
+
+.wcag-keyboard-trap-demo__step {
+    align-items: center;
     background: #faf7ff;
     border: 2px solid var(--primary);
     border-radius: 8px;
     color: black;
-    display: grid;
-    gap: 0.75rem;
-    margin: 1rem 0;
-    padding: 1rem;
+    display: flex;
+    gap: 0.65rem;
+    font-weight: 700;
+    padding: 0.75rem;
 }
 
-.wcag-keyboard-trap-demo__item--bad .wcag-keyboard-trap-demo__stage {
-    border-color: #d33131;
+.wcag-keyboard-trap-demo__step-number {
+    align-items: center;
+    background: var(--primary);
+    border-radius: 999px;
+    color: white;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 900;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+.wcag-keyboard-trap-demo__loop {
+    border-style: dashed;
+    border-color: #9b1c1c;
+}
+
+.wcag-keyboard-trap-demo__loop .wcag-keyboard-trap-demo__step-number {
+    background: #9b1c1c;
+}
+
+.wcag-keyboard-trap-demo__exit {
+    border-color: var(--accent);
+}
+
+.wcag-keyboard-trap-demo__exit .wcag-keyboard-trap-demo__step-number {
+    background: var(--accent);
+    color: black;
 }
 
 .wcag-meaningful-sequence-demo__flow {
