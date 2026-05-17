@@ -844,6 +844,106 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-nontext-contrast-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-nontext-contrast-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.wcag-nontext-contrast-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-nontext-contrast-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-nontext-contrast-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-nontext-contrast-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-nontext-contrast-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-nontext-contrast-demo__sample {
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    min-height: 5rem;
+    padding: 1rem;
+}
+
+.wcag-nontext-contrast-demo__field {
+    border: 2px solid #eeeeee;
+    border-radius: 8px;
+    color: #666;
+    display: block;
+    padding: 0.8rem 1rem;
+    width: 100%;
+}
+
+.wcag-nontext-contrast-demo__button {
+    background: #fffaf5;
+    border: 3px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: 0 0 0 5px rgba(250, 150, 50, 0.45);
+    color: var(--primary);
+    display: inline-block;
+    font-weight: 800;
+    padding: 0.8rem 1rem;
+}
+
+.wcag-nontext-contrast-demo__icon {
+    align-items: center;
+    border: 2px solid #dedede;
+    border-radius: 999px;
+    color: #cfcfcf;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 900;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+.wcag-nontext-contrast-demo__chart-line {
+    background: #dddddd;
+    border-radius: 999px;
+    display: block;
+    height: 3px;
+    width: 100%;
+}
+
+.wcag-nontext-contrast-demo__note {
+    background: #faf7ff;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    color: black;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.wcag-nontext-contrast-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .criterion-navigation {
     display: grid;
     gap: 1rem;
