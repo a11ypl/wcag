@@ -977,7 +977,7 @@ header nav a:hover { color: white; }
     padding: 5rem 2rem;
 }
 
-.wcag-criterion-hero .eyebrow {
+.breadcrumbs + .page-hero .eyebrow {
     color: #fff;
     font-weight: 700;
     letter-spacing: 0.08em;
