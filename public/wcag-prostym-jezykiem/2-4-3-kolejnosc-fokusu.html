@@ -135,8 +135,8 @@
                         </div>
                         <p class="wcag-code-example__description">Kolejność linków w kodzie odpowiada kolejności, w jakiej użytkownik powinien je odwiedzać klawiaturą.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>&lt;nav aria-label="Główna nawigacja"&gt;
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;nav aria-label="Główna nawigacja"&gt;
   &lt;a href="/szkolenia"&gt;Szkolenia&lt;/a&gt;
   &lt;a href="/audyt"&gt;Audyt dostępności&lt;/a&gt;
   &lt;a href="/kontakt"&gt;Kontakt&lt;/a&gt;
@@ -154,8 +154,8 @@
                         </div>
                         <p class="wcag-code-example__description">Dodatnie wartości <code>tabindex</code> tworzą sztuczną kolejność fokusu i szybko prowadzą do chaosu. Zwykle należy ich unikać.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>&lt;a href="/kontakt" tabindex="3"&gt;Kontakt&lt;/a&gt;
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;a href="/kontakt" tabindex="3"&gt;Kontakt&lt;/a&gt;
 &lt;a href="/szkolenia" tabindex="1"&gt;Szkolenia&lt;/a&gt;
 &lt;a href="/audyt" tabindex="2"&gt;Audyt dostępności&lt;/a&gt;</code></pre>
                         </div>
@@ -171,8 +171,8 @@
                         </div>
                         <p class="wcag-code-example__description">Po otwarciu modala fokus trafia do jego zawartości. Po zamknięciu wraca do elementu, który otworzył modal.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>const openButton = document.querySelector("#open-modal");
+                            <p class="wcag-code-example__label">Kod — JavaScript</p>
+                            <pre><code class="language-javascript">const openButton = document.querySelector("#open-modal");
 const modal = document.querySelector("#dialog");
 const closeButton = document.querySelector("#close-modal");
 

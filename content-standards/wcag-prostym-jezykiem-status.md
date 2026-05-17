@@ -60,3 +60,12 @@ Te trzy kryteria tworzą bazę redakcyjną i techniczną dla dalszej rozbudowy:
 | 2.1.1 | Klawiatura | rozbudowane - gotowe do przeglądu | wzorzec dla ogólnej obsługi funkcji klawiaturą i wyboru natywnych kontrolek HTML |
 | 2.1.2 | Brak pułapki na klawiaturę | rozbudowane - gotowe do przeglądu | wzorzec dla wychodzenia z komponentów klawiaturą, Escape i logicznego powrotu fokusu |
 | 1.3.2 | Zrozumiała kolejność | rozbudowane - gotowe do przeglądu | wzorzec dla kolejności treści, DOM i relacji między układem wizualnym a kolejnością odczytu |
+
+## Audyt etykiet kodu i źródeł
+
+Mini-checkpoint po poprawkach `2.1.1`:
+
+- Komplet etykiet języka kodu mają teraz strony: `1.1.1`, `1.3.2`, `1.4.1`, `1.4.3`, `1.4.11`, `1.4.13`, `2.1.1`, `2.1.2`, `2.4.3`, `2.4.7`, `3.3.1`.
+- `1.3.1 Informacje i relacje` nie ma jeszcze bloków `.wcag-code-example`; wymaga osobnej rozbudowy i audytu źródeł.
+- Dalszego audytu źródeł W3C wymagają wszystkie rozbudowane strony w zakresie technik i failures. Technik W3C nie wolno dopisywać bez potwierdzenia w How to Meet / Quick Reference.
+- Szczegółowy raport znajduje się w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

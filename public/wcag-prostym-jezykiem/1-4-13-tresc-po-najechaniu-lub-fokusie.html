@@ -144,8 +144,8 @@
                         </div>
                         <p class="wcag-code-example__description">Treść pojawia się nie tylko po najechaniu myszą, ale też po fokusie klawiatury. Dodatkowo użytkownik może przesunąć kursor na tooltip.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>.help-trigger:hover + .tooltip,
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.help-trigger:hover + .tooltip,
 .help-trigger:focus-visible + .tooltip,
 .tooltip:hover {
   display: block;
@@ -163,8 +163,8 @@
                         </div>
                         <p class="wcag-code-example__description">Osoba korzystająca z klawiatury może nigdy nie zobaczyć tej treści.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>.help-trigger:hover + .tooltip {
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.help-trigger:hover + .tooltip {
   display: block;
 }</code></pre>
                         </div>
@@ -180,8 +180,8 @@
                         </div>
                         <p class="wcag-code-example__description">Jeśli dodatkowa treść zasłania inne elementy albo działa jak mały popup, użytkownik powinien mieć przewidywalny sposób zamknięcia jej, na przykład Escape.</p>
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>document.addEventListener("keydown", function (event) {
+                            <p class="wcag-code-example__label">Kod — JavaScript</p>
+                            <pre><code class="language-javascript">document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     closeTooltip();
   }

@@ -133,8 +133,8 @@
                         <p class="wcag-code-example__description">Użyj widocznego obrysu dla elementów, które mogą dostać fokus z klawiatury. <code>:focus-visible</code> pomaga pokazać wskaźnik wtedy, gdy jest najbardziej potrzebny.</p>
 
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>:where(a, button, input, select, textarea):focus-visible {
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">:where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid #FA9632;
   outline-offset: 3px;
 }</code></pre>
@@ -154,8 +154,8 @@
                         <p class="wcag-code-example__description">Usunięcie domyślnego obrysu bez zapewnienia widocznego zamiennika tworzy barierę dla osób korzystających z klawiatury.</p>
 
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>button:focus {
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">button:focus {
   outline: none;
 }</code></pre>
                         </div>
@@ -174,8 +174,8 @@
                         <p class="wcag-code-example__description">W komponentach, np. kartach-linkach, warto połączyć obrys z dodatkowym cieniem. Wskaźnik jest wtedy czytelny także na bardziej złożonym tle.</p>
 
                         <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod</p>
-                            <pre><code>.card-link:focus-visible {
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.card-link:focus-visible {
   outline: 3px solid #FA9632;
   outline-offset: 4px;
   box-shadow: 0 0 0 6px rgba(95, 40, 180, 0.18);
