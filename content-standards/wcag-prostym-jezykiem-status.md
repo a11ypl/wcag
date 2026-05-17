@@ -34,7 +34,7 @@ Te trzy kryteria tworzą bazę redakcyjną i techniczną dla dalszej rozbudowy:
 | 1.4.3 | Kontrast minimum | rozbudowane - gotowe do przeglądu | kolejne kryterium po wzorcach; wzorzec dla kontrastu tekstu i obrazów tekstu |
 | 1.4.11 | Kontrast elementów nietekstowych | rozbudowane - gotowe do przeglądu | kolejne kryterium po wzorcach; wzorzec dla ikon, kontrolek, fokusu i informacji graficznych |
 | 1.4.13 | Treść po najechaniu lub fokusie | rozbudowane - gotowe do przeglądu | kolejne kryterium po wzorcach; wzorzec dla tooltipów, dymków i treści pojawiających się po hover/focus |
-| 2.4.3 | Kolejność fokusu | proponowane | rozwija wzorzec klawiatury i kolejności interakcji |
+| 2.4.3 | Kolejność fokusu | rozbudowane - gotowe do przeglądu | kolejne kryterium po wzorcach; wzorzec dla kolejności fokusu, DOM, modali i interakcji klawiaturą |
 
 ## Kolejność pracy
 
