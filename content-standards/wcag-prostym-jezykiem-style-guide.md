@@ -29,6 +29,10 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - Metadane w hero muszą być czytelne i spełniać wymagania kontrastu tekstu.
 - Nie obniżaj czytelności metadanych hero przez niskie `opacity`.
 - Estetyczna subtelność nie może pogarszać czytelności informacji w hero.
+- Bloki kodu edukacyjnego w `.wcag-code-example` mają zawijać długie linie i nie mogą wymagać poziomego przewijania na mobile.
+- Przed rozbudową kryterium zapisz jego granicę merytoryczną: czego dotyczy i z czym łatwo je pomylić.
+- Kryteria powiązane można wskazywać w sekcji „Powiązane kryteria”, ale nie wolno opisywać ich wymagań jako wymagań aktualnego kryterium.
+- Jeśli pokazujesz zachowanie dynamiczne w statycznym demo, podpis albo opis musi jasno mówić, że to makieta edukacyjna, nie działający komponent.
 
 ## Docelowa struktura podstrony
 

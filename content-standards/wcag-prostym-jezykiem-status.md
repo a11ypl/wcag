@@ -42,3 +42,13 @@ Te trzy kryteria tworzą bazę redakcyjną i techniczną dla dalszej rozbudowy:
 2. Rozbudowywać po jednym kryterium, bez masowej edycji wszystkich podstron.
 3. Po każdym kryterium sprawdzać strukturę nagłówków, linki powiązanych kryteriów, przykłady kodu, demo edukacyjne i źródła.
 4. Po batchu zdecydować, czy dalsza rozbudowa nadal idzie ręcznie, czy potrzebny jest mały generator treści WCAG.
+
+## Rekomendowany kolejny batch
+
+| Kryterium | Dlaczego teraz | Wzorzec bazowy | Kod | Demo wizualne | Ryzyko pomieszania zakresu |
+|---|---|---|---|---|---|
+| 2.1.1 Klawiatura | Domyka fundament obsługi bez myszy po wzorcach 2.4.7 i 2.4.3. | 2.4.7 Widoczny fokus oraz 2.4.3 Kolejność fokusu | Tak, przykłady natywnych kontrolek i obsługi klawiaturą. | Tak, statyczny przepływ klawiatury przez komponent. | Wysokie: nie mieszać z widocznością fokusu 2.4.7 ani kolejnością fokusu 2.4.3. |
+| 2.1.2 Brak pułapki na klawiaturę | Naturalna kontynuacja tematów modalnych, popupów i menu. | 2.4.3 Kolejność fokusu oraz 1.4.13 Treść po najechaniu lub fokusie | Tak, przykład wyjścia z modala lub widgetu. | Tak, demo „wejście, obsługa, wyjście”. | Wysokie: nie mieszać z samą obsługą klawiaturą 2.1.1 ani kolejnością fokusu 2.4.3. |
+| 1.3.1 Informacje i relacje | Potrzebne jako baza dla semantyki formularzy, tabel, list i struktur treści. | 1.1.1 Treść nietekstowa oraz 3.3.1 Identyfikacja błędu | Tak, semantyczny HTML, label, fieldset, listy i tabele. | Tak, porównanie struktury wizualnej i semantycznej. | Wysokie: nie mieszać z kolejnością czytania 1.3.2 ani etykietami 3.3.2. |
+| 1.3.2 Zrozumiała kolejność | Bezpośrednio łączy się z 2.4.3, ale dotyczy kolejności treści, nie fokusu. | 2.4.3 Kolejność fokusu | Tak, przykład DOM i układu CSS. | Tak, numerowana kolejność czytania. | Wysokie: łatwo pomylić z kolejnością fokusu 2.4.3. |
+| 3.3.2 Etykiety lub instrukcje | Rozszerza wzorzec formularzy po 3.3.1 i przygotowuje kolejne tematy walidacji. | 3.3.1 Identyfikacja błędu | Tak, label, instrukcje, aria-describedby tylko gdy potrzebne. | Tak, statyczne demo formularza z etykietą i instrukcją. | Średnie: nie mieszać z identyfikacją błędu 3.3.1 ani sugestiami korekty 3.3.3. |
