@@ -49,6 +49,12 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - Button pokazuje akcję, a link pokazuje przejście.
 - Link stylowany jak przycisk może być poprawny w interfejsie jako CTA, ale w tutorialu o klawiaturze lepiej rozdzielić role wizualnie.
 - Jeśli demo klawiaturowe używa prawdziwego buttona, powinno dawać prosty, zrozumiały efekt działania albo jasno informować, że pokazuje tylko fokus.
+- Jeśli pokazujesz zły wzorzec typu `div` z `onclick`, nie twórz na stronie realnie działającej niedostępnej funkcji.
+- Zły wzorzec interakcji pokazuj jako fragment kodu i/lub statyczną makietę.
+- Wyjaśnij, że `onclick` obsługuje kliknięcie myszą, ale nie zapewnia semantyki, fokusu ani obsługi klawiatury.
+- `role="button"` nie dodaje automatycznie obsługi klawiatury.
+- `tabindex="0"` dodaje możliwość fokusu, ale nie dodaje zachowania przycisku.
+- Jeśli element ma działać jak przycisk, preferuj natywny `<button>`.
 
 ## Docelowa struktura podstrony
 

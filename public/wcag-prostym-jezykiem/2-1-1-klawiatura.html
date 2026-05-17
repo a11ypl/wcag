@@ -141,14 +141,63 @@
 
                     <section class="wcag-code-example">
                         <div class="wcag-code-example__header">
-                            <h3>Zły przykład: klikany div</h3>
+                            <h3>Zły przykład: div z onclick udający przycisk</h3>
                         </div>
-                        <p class="wcag-code-example__description">Taki element nie jest domyślnie dostępny z klawiatury i nie ma semantyki przycisku.</p>
+                        <p class="wcag-code-example__description">To wygląda jak przycisk i reaguje na kliknięcie myszą, ale nadal jest zwykłym divem. Nie jest domyślnie fokusowalny i nie ma natywnej obsługi Enterem ani Spacją.</p>
                         <div class="wcag-code-example__code">
                             <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;div onclick="showDetails()"&gt;
+                            <pre><code class="language-html">&lt;div
+  class="button-like"
+  onclick="showDetails()"
+&gt;
   Pokaż szczegóły
 &lt;/div&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Dlaczego to problem</p>
+                            <p>Użytkownik klawiatury może nie mieć dostępu do tej funkcji, bo sam <code>div</code> nie trafia domyślnie do kolejności fokusu.</p>
+                        </div>
+                    </section>
+
+                    <h3>Dlaczego ARIA nie wystarczy?</h3>
+                    <p>Czasem ktoś próbuje naprawić taki element przez dodanie roli przycisku i możliwości fokusu. To może przybliżyć element do poprawnego wzorca, ale nadal wymaga ręcznego odtworzenia zachowania natywnego przycisku.</p>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Ryzykowny kierunek: ręczne naprawianie diva</h3>
+                        </div>
+                        <p class="wcag-code-example__description"><code>role="button"</code> mówi technologiom wspomagającym, że element ma być traktowany jak przycisk. <code>tabindex="0"</code> pozwala wejść na element Tabem. Ale to nadal nie dodaje automatycznie obsługi Spacji i Entera tak jak natywny <code>button</code>.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;div
+  role="button"
+  tabindex="0"
+  onclick="showDetails()"
+  onkeydown="handleButtonKeydown(event)"
+&gt;
+  Pokaż szczegóły
+&lt;/div&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Dlaczego to ryzykowne</p>
+                            <p>Da się to naprawiać ręcznie, ale łatwo popełnić błąd. Trzeba pamiętać o roli, fokusie, obsłudze Entera i Spacji oraz stanie komponentu.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Najbezpieczniej: natywny button</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Jeśli element ma działać jak przycisk, najprościej i najbezpieczniej użyć <code>&lt;button&gt;</code>.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;button type="button"&gt;
+  Pokaż szczegóły
+&lt;/button&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Dlaczego to dobre</p>
+                            <p>Natywny button ma właściwą rolę, trafia do kolejności fokusu i obsługuje klawiaturę bez ręcznego odtwarzania zachowania przycisku.</p>
                         </div>
                     </section>
 
@@ -173,8 +222,11 @@
                         <div class="wcag-keyboard-demo__grid">
                             <section class="wcag-keyboard-demo__item wcag-keyboard-demo__item--bad">
                                 <h3>Źle</h3>
-                                <div class="wcag-keyboard-demo__fake-control">Klikany div</div>
-                                <p class="wcag-keyboard-demo__note">Wygląda jak przycisk, ale nie jest natywną kontrolką. Bez dodatkowej obsługi nie będzie działał poprawnie z klawiaturą.</p>
+                                <div class="wcag-keyboard-demo__fake-button">
+                                    <span>Pokaż szczegóły</span>
+                                    <span class="wcag-keyboard-demo__fake-button-note">div z onclick, bez fokusu klawiatury</span>
+                                </div>
+                                <p class="wcag-keyboard-demo__note">To makieta złego wzorca. Ten element wizualnie udaje przycisk i ma obsługę kliknięcia myszą w kodzie, ale jako zwykły div nie trafia domyślnie do kolejności fokusu. Użytkownik klawiatury może go nie osiągnąć Tabem.</p>
                             </section>
                             <section class="wcag-keyboard-demo__item wcag-keyboard-demo__item--good">
                                 <h3>Dobrze</h3>
