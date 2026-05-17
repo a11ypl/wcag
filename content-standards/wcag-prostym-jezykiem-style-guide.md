@@ -15,6 +15,12 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - Pisz tak, żeby treść była zrozumiała dla osoby nietechnicznej, ale użyteczna także dla dewelopera.
 - Przy linkach zewnętrznych dodawaj informację dla czytnika ekranu: `<span class="sr-only"> (otwiera się w nowym oknie)</span>`.
 - Przy grafikach używaj stabilnych lokalnych assetów, nie linków z CDN ani mediów społecznościowych.
+- W podstawowych przykładach 1.1.1 preferuj obrazy jpg/png, żeby nie sugerować, że SVG jako format „ma alt”.
+- Jeśli SVG jest użyty w elemencie `img`, tekst alternatywny należy do elementu `img`, nie do pliku SVG.
+- Inline SVG nie używa atrybutu `alt`.
+- Dla inline SVG trzeba rozważyć `title`, `desc`, `aria-labelledby`, `aria-label` albo `role="img"` zależnie od funkcji grafiki.
+- Nie sugeruj, że SVG jako format ma `alt`.
+- Dekoracyjne elementy graficzne najlepiej realizować CSS-em, jeśli nie są treścią.
 - Linki w treści tutoriali mają być zgodne z identyfikacją marki: fioletowe, pogrubione i podkreślone.
 - Linki muszą mieć widoczny stan `focus-visible`.
 - Nie wolno polegać wyłącznie na kolorze jako sposobie oznaczania linku.

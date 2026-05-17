@@ -155,14 +155,14 @@
                         <div class="wcag-code-example__code">
                             <p class="wcag-code-example__label">Kod — HTML</p>
                             <pre><code class="language-html">&lt;img
-  src="/images/fala-dekoracyjna.svg"
+  src="/images/separator-dekoracyjny.png"
   alt=""
 &gt;</code></pre>
                         </div>
 
                         <div class="wcag-code-example__preview">
                             <p class="wcag-code-example__label">Jak to działa</p>
-                            <p>Technologia wspomagająca pomija taki obraz, więc użytkownik nie słyszy niepotrzebnej informacji o dekoracji.</p>
+                            <p>Pusty <code>alt</code> oznacza, że obraz jest dekoracyjny i technologia wspomagająca może go pominąć. Jeśli dekoracja nie jest treścią, często lepiej zrobić ją w CSS jako tło albo ozdobnik, zamiast wstawiać ją jako <code>img</code>.</p>
                         </div>
                     </section>
 
@@ -177,7 +177,7 @@
                             <p class="wcag-code-example__label">Kod — HTML</p>
                             <pre><code class="language-html">&lt;a href="/kontakt"&gt;
   &lt;img
-    src="/images/ikona-kontaktu.svg"
+    src="/images/ikona-kontaktu.png"
     alt="Kontakt z zespołem Accessibility First"
   &gt;
 &lt;/a&gt;</code></pre>
@@ -185,9 +185,17 @@
 
                         <div class="wcag-code-example__preview">
                             <p class="wcag-code-example__label">Jak to działa</p>
-                            <p>Użytkownik czytnika ekranu rozumie, dokąd prowadzi link. Nie słyszy samego komunikatu typu „grafika, link”.</p>
+                            <p>W tym przypadku <code>alt</code> opisuje cel linku, bo obraz jest jedyną treścią linku. Użytkownik czytnika ekranu rozumie, dokąd prowadzi link, zamiast słyszeć sam komunikat typu „grafika, link”.</p>
                         </div>
                     </section>
+
+                    <h3>A co z SVG?</h3>
+                    <p>SVG trzeba rozróżnić według sposobu osadzenia. Nie mówimy: „SVG ma alt”. Mówimy: „element <code>img</code> ma <code>alt</code>” albo „inline SVG wymaga osobnego sposobu nadania nazwy lub opisu”.</p>
+                    <ol class="detail-list">
+                        <li><strong>SVG jako plik w <code>img</code>:</strong> gdy używasz kodu typu <code>&lt;img src="ikona.svg" alt="..."&gt;</code>, tekst alternatywny nadal jest na elemencie <code>img</code>, nie w samym pliku SVG.</li>
+                        <li><strong>SVG jako dekoracja:</strong> jeśli jest osadzony przez <code>img</code> i nie przekazuje treści, może mieć <code>alt=""</code>. Jeśli jest czysto dekoracyjny, często lepiej użyć CSS.</li>
+                        <li><strong>Inline SVG:</strong> jeśli SVG jest wpisany bezpośrednio w HTML jako <code>&lt;svg&gt;</code>, nie używa się atrybutu <code>alt</code>. Dostępna nazwa albo opis mogą wymagać <code>title</code>, <code>desc</code>, <code>aria-labelledby</code>, <code>aria-label</code> albo <code>role="img"</code>, zależnie od funkcji grafiki.</li>
+                    </ol>
                 </article>
 
                 <article class="knowledge-panel">
@@ -263,8 +271,10 @@
                         <li><a href="https://www.w3.org/TR/WCAG22/#non-text-content" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.1.1 Non-text Content<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.1.1 Non-text Content<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#non-text-content" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.1.1 Non-text Content<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/tutorials/images/decorative/" target="_blank" rel="noopener noreferrer">WAI Images Tutorial: Decorative Images<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H37" target="_blank" rel="noopener noreferrer">Technika H37: alt dla elementów img<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H67" target="_blank" rel="noopener noreferrer">Technika H67: pusty alt dla obrazów ignorowanych przez technologie wspomagające<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/TR/SVG/access" target="_blank" rel="noopener noreferrer">W3C SVG Accessibility Support<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G94" target="_blank" rel="noopener noreferrer">Technika G94: krótka alternatywa tekstowa o tym samym celu i informacji<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G95" target="_blank" rel="noopener noreferrer">Technika G95: krótki opis treści nietekstowej<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                         <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G73" target="_blank" rel="noopener noreferrer">Technika G73: długi opis w sąsiednim miejscu z linkiem<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
