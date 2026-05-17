@@ -31,7 +31,7 @@ Te trzy kryteria tworzą bazę redakcyjną i techniczną dla dalszej rozbudowy:
 | Kryterium | Tytuł | Status | Uwagi |
 |---|---|---|---|
 | 1.4.1 | Użycie koloru | rozbudowane - gotowe do przeglądu | pierwsze kryterium po trzech wzorcach; korzysta ze wzorców formularzy, fokusu i treści wizualnych |
-| 1.4.3 | Kontrast minimum | proponowane | kolejny temat wizualny, ale osobny od zakazu polegania wyłącznie na kolorze |
+| 1.4.3 | Kontrast minimum | rozbudowane - gotowe do przeglądu | kolejne kryterium po wzorcach; wzorzec dla kontrastu tekstu i obrazów tekstu |
 | 1.4.11 | Kontrast elementów nietekstowych | proponowane | naturalne rozwinięcie tematów fokusu, kontrolek i ikon |
 | 1.4.13 | Treść po najechaniu lub fokusie | proponowane | wymaga ostrożnego przykładu hover/focus bez nowej architektury |
 | 2.4.3 | Kolejność fokusu | proponowane | rozwija wzorzec klawiatury i kolejności interakcji |
