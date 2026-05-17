@@ -155,7 +155,7 @@
                         </div>
                         <div class="wcag-code-example__preview">
                             <p class="wcag-code-example__label">Dlaczego to problem</p>
-                            <p>Użytkownik klawiatury może nie mieć dostępu do tej funkcji, bo sam <code>div</code> nie trafia domyślnie do kolejności fokusu.</p>
+                            <p>Ten element może wyglądać jak przycisk i reagować na kliknięcie myszą, ale nadal jest zwykłym divem. Nie trafia domyślnie do kolejności fokusu i nie ma natywnej obsługi Enterem ani Spacją. Użytkownik klawiatury może nie mieć dostępu do tej funkcji.</p>
                         </div>
                     </section>
 
@@ -222,11 +222,8 @@
                         <div class="wcag-keyboard-demo__grid">
                             <section class="wcag-keyboard-demo__item wcag-keyboard-demo__item--bad">
                                 <h3>Źle</h3>
-                                <div class="wcag-keyboard-demo__fake-button">
-                                    <span>Pokaż szczegóły</span>
-                                    <span class="wcag-keyboard-demo__fake-button-note">div z onclick, bez fokusu klawiatury</span>
-                                </div>
-                                <p class="wcag-keyboard-demo__note">To makieta złego wzorca. Ten element wizualnie udaje przycisk i ma obsługę kliknięcia myszą w kodzie, ale jako zwykły div nie trafia domyślnie do kolejności fokusu. Użytkownik klawiatury może go nie osiągnąć Tabem.</p>
+                                <div class="wcag-keyboard-demo__fake-button">Pokaż szczegóły</div>
+                                <p class="wcag-keyboard-demo__note">To makieta złego wzorca. Wizualnie wygląda jak przycisk i w kodzie może mieć <code>onclick</code>, ale jako zwykły div nie trafia domyślnie do kolejności fokusu. Użytkownik klawiatury może nie osiągnąć go Tabem.</p>
                             </section>
                             <section class="wcag-keyboard-demo__item wcag-keyboard-demo__item--good">
                                 <h3>Dobrze</h3>
@@ -256,7 +253,7 @@
                                 </ul>
                             </section>
                         </div>
-                        <figcaption>To proste demo nie jest pełnym komponentem aplikacji. Pokazuje, że wygląd przycisku nie zastępuje natywnej semantyki i obsługi klawiaturą.</figcaption>
+                        <figcaption>To proste demo nie jest pełnym komponentem aplikacji. W złym przykładzie problem nie polega na wyglądzie. Problem polega na tym, że element wygląda jak przycisk, ale w kodzie nie jest natywną kontrolką.</figcaption>
                     </figure>
                     <script>
                     (() => {

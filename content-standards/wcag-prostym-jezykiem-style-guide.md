@@ -55,6 +55,10 @@ Cel: tworzyć praktyczne, polskie tutoriale, które pomagają redaktorom, projek
 - `role="button"` nie dodaje automatycznie obsługi klawiatury.
 - `tabindex="0"` dodaje możliwość fokusu, ale nie dodaje zachowania przycisku.
 - Jeśli element ma działać jak przycisk, preferuj natywny `<button>`.
+- Jeśli celem jest pokazanie błędu semantycznego, zły przykład może wyglądać wizualnie poprawnie.
+- Nie rób złego przykładu celowo „brzydszego”, jeśli błąd polega na kodzie, a nie na wyglądzie.
+- Przy przykładzie „div udający przycisk” element powinien wyglądać jak przycisk, a problem wyjaśnij przez opis i fragment kodu.
+- Realna strona tutoriala nie powinna zawierać działającej niedostępnej funkcji.
 
 ## Docelowa struktura podstrony
 

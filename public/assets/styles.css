@@ -1235,26 +1235,19 @@ header nav a:hover { color: white; }
 
 .wcag-keyboard-demo__fake-button {
     align-items: center;
-    background: #fffaf5;
-    border: 3px dashed var(--primary);
+    background: var(--primary);
+    border: 3px solid var(--primary);
     border-radius: 8px;
     box-sizing: border-box;
-    color: black;
-    display: grid;
-    gap: 0.35rem;
+    color: white;
+    display: inline-flex;
     font: inherit;
     font-weight: 700;
+    justify-content: center;
     margin: 1rem 0;
     padding: 0.9rem 1rem;
     text-align: center;
     width: 100%;
-}
-
-.wcag-keyboard-demo__fake-button-note {
-    color: black;
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 700;
 }
 
 .wcag-keyboard-demo__note,
