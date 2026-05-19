@@ -1415,6 +1415,103 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-error-prevention-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-error-prevention-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-error-prevention-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-error-prevention-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-error-prevention-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-error-prevention-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-error-prevention-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-error-prevention-demo__label,
+.wcag-error-prevention-demo__note {
+    color: black;
+    font-weight: 700;
+}
+
+.wcag-error-prevention-demo__label {
+    margin-bottom: 0.4rem;
+}
+
+.wcag-error-prevention-demo__summary {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.wcag-error-prevention-demo__summary p {
+    margin: 0 0 0.45rem;
+}
+
+.wcag-error-prevention-demo__summary p:last-child {
+    margin-bottom: 0;
+}
+
+.wcag-error-prevention-demo__mock-action {
+    align-items: center;
+    background: var(--primary);
+    border-radius: 8px;
+    color: white;
+    display: inline-flex;
+    font-weight: 700;
+    justify-content: center;
+    margin: 0.25rem 0 0.75rem;
+    min-height: 2.75rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.wcag-error-prevention-demo__item--bad .wcag-error-prevention-demo__mock-action {
+    background: #d33131;
+}
+
+.wcag-error-prevention-demo__item--risky .wcag-error-prevention-demo__mock-action {
+    background: #5c4500;
+}
+
+.wcag-error-prevention-demo__item--good .wcag-error-prevention-demo__summary {
+    border-color: var(--primary);
+}
+
+.wcag-error-prevention-demo__note {
+    margin-bottom: 0;
+}
+
+.wcag-error-prevention-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-keyboard-trap-demo__path {
     display: grid;
     gap: 0.65rem;

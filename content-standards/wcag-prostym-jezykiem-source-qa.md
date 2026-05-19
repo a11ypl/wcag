@@ -47,3 +47,31 @@ Uwagi zakresowe:
 
 - 3.3.3 dotyczy sugestii po wykryciu błędu, jeśli sugestia jest znana i nie zagraża bezpieczeństwu ani celowi treści.
 - Nie mieszać z 3.3.1, 3.3.2, 3.3.4 ani 4.1.3.
+
+## Source QA 2026-05-20: 3.3.4 Zapobieganie błędom (prawne, finansowe, dane)
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.4 Error Prevention (Legal, Financial, Data) - `https://www.w3.org/TR/WCAG22/#error-prevention-legal-financial-data`
+- Understanding WCAG 3.3.4 Error Prevention (Legal, Financial, Data) - `https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html`
+- How to Meet WCAG 3.3.4 - `https://www.w3.org/WAI/WCAG22/quickref/#error-prevention-legal-financial-data`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G164: Providing a stated time within which an online request (or transaction) may be amended or canceled by the user after making the request.
+- G98: Providing the ability for the user to review and correct answers before submitting.
+- G155: Providing a checkbox in addition to a submit button.
+- G99: Providing the ability to recover deleted information.
+- G168: Requesting confirmation to continue with selected action.
+
+Failures:
+
+- Quick Reference dla 3.3.4 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.3.4 dotyczy stron, które powodują zobowiązania prawne, transakcje finansowe, modyfikację lub usunięcie danych kontrolowanych przez użytkownika albo wysłanie odpowiedzi testowych.
+- Kryterium wymaga co najmniej jednego z mechanizmów: odwrócenie, sprawdzenie danych z możliwością poprawy albo przegląd/potwierdzenie/korekta przed finalizacją.
+- Nie mieszać z 3.3.1, 3.3.2, 3.3.3, 3.3.6 ani 4.1.3.

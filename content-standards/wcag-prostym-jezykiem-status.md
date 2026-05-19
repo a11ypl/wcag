@@ -89,3 +89,12 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki W3C dla `3.3.3` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.3.
 - Zweryfikowane techniki: ARIA18, G85, G177, PDF22, G84. Quick Reference dla `3.3.3` nie wskazuje osobnej listy failures.
 - Raport źródeł dla `3.3.3` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-20: 3.3.4 Zapobieganie błędom (prawne, finansowe, dane)
+
+- `3.3.4 Zapobieganie błędom (prawne, finansowe, dane)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Jeden z trzech mechanizmów, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-error-prevention-demo` bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.4` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.4.
+- Zweryfikowane techniki: G164, G98, G155, G99, G168. Quick Reference dla `3.3.4` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.4` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
