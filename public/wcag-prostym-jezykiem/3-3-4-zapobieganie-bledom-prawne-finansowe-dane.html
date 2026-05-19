@@ -212,42 +212,52 @@
 
                 <article class="knowledge-panel">
                     <h2>Przykład graficzny</h2>
-                    <p>To statyczne demo edukacyjne. Elementy wyglądają jak fragmenty formularza, ale nie są działającymi polami ani przyciskami.</p>
+                    <p>To jest statyczny schemat procesu. Pokazuje, czy użytkownik ma szansę sprawdzić, poprawić, potwierdzić albo cofnąć operację przed poważnym skutkiem.</p>
                     <figure class="wcag-error-prevention-demo">
                         <div class="wcag-error-prevention-demo__grid">
                             <section class="wcag-error-prevention-demo__item wcag-error-prevention-demo__item--bad">
                                 <h3>Źle</h3>
-                                <p class="wcag-error-prevention-demo__label">Przelew</p>
-                                <div class="wcag-error-prevention-demo__summary">
-                                    <p>Kwota: 2 900,00 zł</p>
-                                    <p>Odbiorca: Administracja osiedla</p>
+                                <p class="wcag-error-prevention-demo__label">Wykonanie płatności</p>
+                                <div class="wcag-error-prevention-demo__process">
+                                    <div class="wcag-error-prevention-demo__step">Formularz płatności</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step">Wyślij</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step wcag-error-prevention-demo__step--impact">Skutek natychmiastowy</div>
                                 </div>
-                                <div class="wcag-error-prevention-demo__mock-action">Wyślij</div>
-                                <p class="wcag-error-prevention-demo__note">Działanie finalizuje przelew bez sprawdzenia, korekty i jasnego potwierdzenia.</p>
+                                <p class="wcag-error-prevention-demo__examples">Przykłady: wykonanie płatności, usunięcie konta.</p>
+                                <p class="wcag-error-prevention-demo__note">Użytkownik nie ma podsumowania, potwierdzenia ani możliwości poprawy.</p>
                             </section>
                             <section class="wcag-error-prevention-demo__item wcag-error-prevention-demo__item--risky">
                                 <h3>Ryzykownie</h3>
-                                <p class="wcag-error-prevention-demo__label">Usuwanie danych</p>
-                                <div class="wcag-error-prevention-demo__summary">
-                                    <p>Usuwasz: historię dokumentów</p>
-                                    <p>Przycisk: Kontynuuj</p>
+                                <p class="wcag-error-prevention-demo__label">Złożenie wniosku</p>
+                                <div class="wcag-error-prevention-demo__process">
+                                    <div class="wcag-error-prevention-demo__step">Formularz wniosku</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step">Podsumowanie</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step wcag-error-prevention-demo__step--impact">Wyślij</div>
                                 </div>
-                                <div class="wcag-error-prevention-demo__mock-action">Kontynuuj</div>
-                                <p class="wcag-error-prevention-demo__note">Jest dodatkowy krok, ale etykieta nie mówi jasno, czy to już finalna decyzja.</p>
+                                <p class="wcag-error-prevention-demo__examples">Przykłady: złożenie wniosku, zmiana danych osobowych.</p>
+                                <p class="wcag-error-prevention-demo__note">Użytkownik widzi dane, ale nie ma jasnej możliwości edycji/anulowania.</p>
                             </section>
                             <section class="wcag-error-prevention-demo__item wcag-error-prevention-demo__item--good">
                                 <h3>Dobrze</h3>
-                                <p class="wcag-error-prevention-demo__label">Zamówienie</p>
-                                <div class="wcag-error-prevention-demo__summary">
-                                    <p>Kwota: 249,00 zł</p>
-                                    <p>Adres: ul. Prosta 10</p>
-                                    <p>Możesz zmienić adres przed zakupem.</p>
+                                <p class="wcag-error-prevention-demo__label">Zmiana danych osobowych</p>
+                                <div class="wcag-error-prevention-demo__process">
+                                    <div class="wcag-error-prevention-demo__step">Formularz zmiany danych</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step">Podsumowanie</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step wcag-error-prevention-demo__step--choice">Edytuj dane / Potwierdź</div>
+                                    <div class="wcag-error-prevention-demo__arrow">→</div>
+                                    <div class="wcag-error-prevention-demo__step wcag-error-prevention-demo__step--impact">Skutek</div>
                                 </div>
-                                <div class="wcag-error-prevention-demo__mock-action">Potwierdzam i kupuję</div>
-                                <p class="wcag-error-prevention-demo__note">Użytkownik widzi konsekwencję, może poprawić dane i dopiero potem finalizuje działanie.</p>
+                                <p class="wcag-error-prevention-demo__examples">Przykłady: zmiana danych osobowych, usunięcie konta, złożenie wniosku.</p>
+                                <p class="wcag-error-prevention-demo__note">Użytkownik może sprawdzić dane, wrócić do edycji albo świadomie potwierdzić operację.</p>
                             </section>
                         </div>
-                        <figcaption>Statyczne demo pokazuje różnicę między natychmiastową operacją a procesem, który daje zabezpieczenie przed poważnym błędem.</figcaption>
+                        <figcaption>Statyczny schemat pokazuje zabezpieczenia procesu: przegląd danych, edycję, potwierdzenie albo możliwość cofnięcia przed poważnym skutkiem.</figcaption>
                     </figure>
                 </article>
 
