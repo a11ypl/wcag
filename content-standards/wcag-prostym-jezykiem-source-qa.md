@@ -20,3 +20,30 @@ Nie dopisywano nowych technik W3C ani failures bez niezależnego potwierdzenia w
 | 2.4.3 | Kolejność fokusu | Tak | Tak | Nie w tym checkpoincie - 4 linków obecnych, wymagają potwierdzenia w Quick Reference | Nie - wymaga audytu, jeśli failure jest istotny dla przykładów | zweryfikować techniki/failures przed kolejną rozbudową źródeł |
 | 2.4.7 | Widoczny fokus | Tak | Tak | Nie w tym checkpoincie - 5 linków obecnych, wymagają potwierdzenia w Quick Reference | Nie - wymaga audytu, jeśli failure jest istotny dla przykładów | zweryfikować techniki/failures przed kolejną rozbudową źródeł |
 | 3.3.1 | Identyfikacja błędu | Tak | Tak | Nie w tym checkpoincie - 5 linków obecnych, wymagają potwierdzenia w Quick Reference | Nie - wymaga audytu, jeśli failure jest istotny dla przykładów | zweryfikować techniki/failures przed kolejną rozbudową źródeł |
+
+## Source QA 2026-05-19: 3.3.3 Sugestie korekty błędów
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.3 Error Suggestion - `https://www.w3.org/TR/WCAG22/#error-suggestion`
+- Understanding WCAG 3.3.3 Error Suggestion - `https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html`
+- How to Meet WCAG 3.3.3 - `https://www.w3.org/WAI/WCAG22/quickref/#error-suggestion`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- ARIA18: Using aria-alertdialog to Identify Errors.
+- G85: Providing a text description when user input falls outside the required format or values.
+- G177: Providing suggested correction text.
+- PDF22: Indicating when user input falls outside the required format or values in PDF forms.
+- G84: Providing a text description when the user provides information that is not in the list of allowed values.
+
+Failures:
+
+- Quick Reference dla 3.3.3 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.3.3 dotyczy sugestii po wykryciu błędu, jeśli sugestia jest znana i nie zagraża bezpieczeństwu ani celowi treści.
+- Nie mieszać z 3.3.1, 3.3.2, 3.3.4 ani 4.1.3.

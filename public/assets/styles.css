@@ -1338,6 +1338,83 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-error-suggestion-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-error-suggestion-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-error-suggestion-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-error-suggestion-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-error-suggestion-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-error-suggestion-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-error-suggestion-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-error-suggestion-demo__label,
+.wcag-error-suggestion-demo__error,
+.wcag-error-suggestion-demo__note {
+    color: black;
+    font-weight: 700;
+}
+
+.wcag-error-suggestion-demo__label {
+    margin-bottom: 0.4rem;
+}
+
+.wcag-error-suggestion-demo__mock-field {
+    background: white;
+    border: 2px solid var(--gray);
+    border-radius: 8px;
+    color: #595959;
+    font: inherit;
+    min-height: 3rem;
+    padding: 0.8rem 0.9rem;
+}
+
+.wcag-error-suggestion-demo__error {
+    background: #fff5f5;
+    border-left: 4px solid #d33131;
+    border-radius: 8px;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.wcag-error-suggestion-demo__item--good .wcag-error-suggestion-demo__error {
+    background: #f3fff6;
+    border-left-color: var(--primary);
+}
+
+.wcag-error-suggestion-demo__note {
+    margin-bottom: 0;
+}
+
+.wcag-error-suggestion-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-keyboard-trap-demo__path {
     display: grid;
     gap: 0.65rem;

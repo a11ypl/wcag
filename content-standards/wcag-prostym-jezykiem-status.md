@@ -80,3 +80,12 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Powiązane kryteria w `3.3.2` linkują do istniejących podstron.
 - Techniki i failure dla `3.3.2` dopisano po weryfikacji w oficjalnych źródłach W3C: WCAG 2.2, Understanding WCAG 3.3.2 i How to Meet WCAG 3.3.2.
 - Zweryfikowane techniki/failure: H44, H71, G89, G184, ARIA1, H90, F82.
+
+## Status 2026-05-19: 3.3.3 Sugestie korekty błędów
+
+- `3.3.3 Sugestie korekty błędów`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Kiedy sugestia nie jest możliwa albo niebezpieczna, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-error-suggestion-demo` bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.3` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.3.
+- Zweryfikowane techniki: ARIA18, G85, G177, PDF22, G84. Quick Reference dla `3.3.3` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.3` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
