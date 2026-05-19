@@ -240,6 +240,11 @@ Opcjonalne źródła:
 Wytyczne:
 
 - Linkuj do oryginalnych, stabilnych źródeł.
+- Sekcja „Źródła” w tutorialu zawiera źródła merytoryczne dla danego kryterium.
+- Sekcja „Źródła” nie zawiera roboczych notatek o procesie tworzenia.
+- Sekcja „Źródła” nie zawiera komentarzy typu „Quick Reference nie wskazuje failures”.
+- Sekcja „Źródła” nie zawiera ogólnych informacji licencyjnych projektu.
+- Informacje o inspiracji, licencji i atrybucji projektu powinny być umieszczone globalnie, np. na stronie „O projekcie”, w stopce albo w osobnym dokumencie, a nie w źródłach każdego kryterium.
 - Technik W3C nie wolno dopisywać bez weryfikacji w How to Meet / Quick Reference dla konkretnego kryterium.
 - Failures W3C nie wolno dopisywać bez weryfikacji w How to Meet / Quick Reference albo w dokumencie Understanding dla konkretnego kryterium.
 - Nie dopisuj technik z pamięci, nawet jeśli pasują do tematu.
