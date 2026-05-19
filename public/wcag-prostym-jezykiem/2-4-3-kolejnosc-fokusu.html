@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.4.3 Kolejność fokusu - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="2.4.3 Kolejność fokusu prostym językiem: Fokus musi poruszać się w logicznej i znaczącej kolejności, która zachowuje relacje i odpowiada naturalnemu czytaniu strony, niezależnie od układu albo kierunku języka.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="2.4.3 Kolejność fokusu - WCAG prostym językiem">
+    <meta property="og:description" content="2.4.3 Kolejność fokusu prostym językiem: Fokus musi poruszać się w logicznej i znaczącej kolejności, która zachowuje relacje i odpowiada naturalnemu czytaniu strony, niezależnie od układu albo kierunku języka.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2.4.3 Kolejność fokusu - WCAG prostym językiem">
+    <meta name="twitter:description" content="2.4.3 Kolejność fokusu prostym językiem: Fokus musi poruszać się w logicznej i znaczącej kolejności, która zachowuje relacje i odpowiada naturalnemu czytaniu strony, niezależnie od układu albo kierunku języka.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "2.4.3 Kolejność fokusu",
+      "headline": "2.4.3 Kolejność fokusu",
+      "description": "2.4.3 Kolejność fokusu prostym językiem: Fokus musi poruszać się w logicznej i znaczącej kolejności, która zachowuje relacje i odpowiada naturalnemu czytaniu strony, niezależnie od układu albo kierunku języka.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Funkcjonalność",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">2.4.3 Kolejność fokusu</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Funkcjonalność · Poziom A</p>
+                <h1>2.4.3 Kolejność fokusu</h1>
+                <p class="subtitle">Gdy użytkownik przechodzi po stronie klawiaturą, fokus powinien iść w logicznej kolejności zgodnej ze znaczeniem i obsługą strony.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Gdy użytkownik przechodzi po stronie klawiaturą, fokus powinien iść w logicznej kolejności zgodnej ze znaczeniem i obsługą strony.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik naciska Tab i spodziewa się przechodzić przez stronę od góry do dołu oraz od lewej do prawej, zgodnie z układem i treścią. Jeśli fokus skacze przypadkowo, omija ważne elementy, wpada do stopki przed formularzem albo przechodzi za otwarty modal, użytkownik traci orientację.</p>
+                    <p>W takiej sytuacji osoba korzystająca z klawiatury może nie wiedzieć, gdzie jest, co może aktywować i jak wrócić do zadania. 2.4.3 nie mówi o tym, czy fokus jest widoczny, tylko czy jego kolejność ma sens.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list">
+                        <li>Osób korzystających z klawiatury zamiast myszy.</li>
+                        <li>Osób niewidomych korzystających z czytników ekranu.</li>
+                        <li>Osób słabowidzących korzystających z powiększenia, które widzą tylko fragment strony naraz.</li>
+                        <li>Osób z niepełnosprawnościami ruchowymi.</li>
+                        <li>Osób korzystających z przełączników albo alternatywnych urządzeń wejścia.</li>
+                        <li>Użytkowników zaawansowanych, którzy szybko poruszają się po formularzach i aplikacjach klawiaturą.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Fokus przechodzi po elementach w kolejności zgodnej z wizualnym układem strony.</li>
+                        <li>Po otwarciu modala fokus trafia do modala.</li>
+                        <li>Po zamknięciu modala fokus wraca do przycisku, który go otworzył.</li>
+                        <li>W formularzu fokus przechodzi od pola do kolejnego pola i przycisku wysłania.</li>
+                        <li>Elementy ukryte wizualnie nie są dostępne w kolejności fokusu.</li>
+                        <li>Menu rozwijane nie wprowadza użytkownika w nieoczekiwane miejsce.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Fokus najpierw trafia do stopki, potem do menu, potem do formularza.</li>
+                        <li>Kolejność fokusu nie zgadza się z układem wizualnym.</li>
+                        <li>Po otwarciu modala fokus zostaje na stronie pod spodem.</li>
+                        <li>Po zamknięciu modala fokus znika albo wraca na początek strony.</li>
+                        <li>Dodatni <code>tabindex</code>, na przykład <code>tabindex="1"</code> i <code>tabindex="2"</code>, tworzy sztuczną kolejność.</li>
+                        <li>Elementy niewidoczne albo schowane poza ekranem są nadal dostępne przez Tab.</li>
+                        <li>CSS zmienia kolejność wizualną, ale DOM zostaje w innej kolejności.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobry przykład: naturalna kolejność DOM</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Kolejność linków w kodzie odpowiada kolejności, w jakiej użytkownik powinien je odwiedzać klawiaturą.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;nav aria-label="Główna nawigacja"&gt;
+  &lt;a href="/szkolenia"&gt;Szkolenia&lt;/a&gt;
+  &lt;a href="/audyt"&gt;Audyt dostępności&lt;/a&gt;
+  &lt;a href="/kontakt"&gt;Kontakt&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Przeglądarka przechodzi po linkach w naturalnej kolejności dokumentu, bez sztucznego sterowania fokusem.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Zły przykład: dodatni tabindex</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Dodatnie wartości <code>tabindex</code> tworzą sztuczną kolejność fokusu i szybko prowadzą do chaosu. Zwykle należy ich unikać.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;a href="/kontakt" tabindex="3"&gt;Kontakt&lt;/a&gt;
+&lt;a href="/szkolenia" tabindex="1"&gt;Szkolenia&lt;/a&gt;
+&lt;a href="/audyt" tabindex="2"&gt;Audyt dostępności&lt;/a&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Użytkownik klawiatury idzie według numerów, a nie według widocznej lub logicznej kolejności treści.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobry kierunek: modal i powrót fokusu</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Po otwarciu modala fokus trafia do jego zawartości. Po zamknięciu wraca do elementu, który otworzył modal.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — JavaScript</p>
+                            <pre><code class="language-javascript">const openButton = document.querySelector("#open-modal");
+const modal = document.querySelector("#dialog");
+const closeButton = document.querySelector("#close-modal");
+
+openButton.addEventListener("click", function () {
+  modal.showModal();
+  closeButton.focus();
+});
+
+closeButton.addEventListener("click", function () {
+  modal.close();
+  openButton.focus();
+});</code></pre>
+                        </div>
+                        <div class="wcag-code-example__note">
+                            <p class="wcag-code-example__label">Uwaga</p>
+                            <p>To przykład edukacyjny pokazujący zasadę zarządzania fokusem, a nie pełna biblioteka modalna.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <p>To jest statyczne demo edukacyjne. Numery pokazują kolejność przechodzenia fokusem, a nie działające elementy interfejsu.</p>
+                    <figure class="wcag-focus-order-demo">
+                        <div class="wcag-focus-order-demo__grid">
+                            <section class="wcag-focus-order-demo__item wcag-focus-order-demo__item--bad">
+                                <h3>Źle</h3>
+                                <ol class="wcag-focus-order-demo__flow">
+                                    <li><span class="wcag-focus-order-demo__number">1</span><span class="wcag-focus-order-demo__control">Stopka</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">2</span><span class="wcag-focus-order-demo__control">Menu</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">3</span><span class="wcag-focus-order-demo__control">Pole e-mail</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">4</span><span class="wcag-focus-order-demo__control">Wyślij</span></li>
+                                </ol>
+                                <p class="wcag-focus-order-demo__note">Problem: fokus zaczyna od miejsca, którego użytkownik się nie spodziewa.</p>
+                            </section>
+
+                            <section class="wcag-focus-order-demo__item wcag-focus-order-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <ol class="wcag-focus-order-demo__flow">
+                                    <li><span class="wcag-focus-order-demo__number">1</span><span class="wcag-focus-order-demo__control">Karta B</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">2</span><span class="wcag-focus-order-demo__control">Karta A</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">3</span><span class="wcag-focus-order-demo__control">Karta C</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">4</span><span class="wcag-focus-order-demo__control">Szczegóły</span></li>
+                                </ol>
+                                <p class="wcag-focus-order-demo__note">Ryzyko: CSS może pokazywać elementy w innej kolejności niż DOM.</p>
+                            </section>
+
+                            <section class="wcag-focus-order-demo__item wcag-focus-order-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <ol class="wcag-focus-order-demo__flow">
+                                    <li><span class="wcag-focus-order-demo__number">1</span><span class="wcag-focus-order-demo__control">Menu</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">2</span><span class="wcag-focus-order-demo__control">Pole e-mail</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">3</span><span class="wcag-focus-order-demo__control">Zgoda</span></li>
+                                    <li><span class="wcag-focus-order-demo__number">4</span><span class="wcag-focus-order-demo__control">Wyślij</span></li>
+                                </ol>
+                                <p class="wcag-focus-order-demo__note">Kolejność wspiera zadanie: użytkownik idzie przez treść i formularz przewidywalnie.</p>
+                            </section>
+                        </div>
+                        <figcaption>Porównanie trzech wariantów kolejności fokusu. Demo pokazuje zasadę numerami i opisem, nie działającą interakcję.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Otwórz stronę w przeglądarce.</li>
+                        <li>Odłóż mysz.</li>
+                        <li>Naciskaj Tab i obserwuj kolejność przechodzenia fokusu.</li>
+                        <li>Użyj Shift+Tab, żeby sprawdzić kolejność wsteczną.</li>
+                        <li>Sprawdź, czy kolejność fokusu odpowiada kolejności treści i układowi strony.</li>
+                        <li>Sprawdź menu, formularze, modale, popupy, cookie bannery, karuzele i komponenty rozwijane.</li>
+                        <li>Sprawdź, czy fokus nie trafia do elementów ukrytych lub niedostępnych wizualnie.</li>
+                        <li>Sprawdź, czy po zamknięciu modala, menu albo popupu fokus wraca w logiczne miejsce.</li>
+                        <li>Sprawdź, czy CSS nie zmienia kolejności wizualnej inaczej niż DOM.</li>
+                        <li>Nie oceniaj wyłącznie automatem. To kryterium wymaga testu manualnego.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>Część problemów z elementami interaktywnymi.</li>
+                        <li>Niektóre przypadki dodatniego <code>tabindex</code>.</li>
+                        <li>Część problemów z ukrytymi elementami.</li>
+                        <li>Niektóre błędy struktury komponentów.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>Czy kolejność fokusu jest logiczna dla konkretnego zadania.</li>
+                        <li>Czy użytkownik zachowuje orientację po otwarciu i zamknięciu modala.</li>
+                        <li>Czy kolejność DOM odpowiada układowi wizualnemu.</li>
+                        <li>Czy kolejność fokusu ma sens w złożonym formularzu.</li>
+                        <li>Czy komponent dynamiczny zachowuje się przewidywalnie.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Używanie dodatnich wartości <code>tabindex</code>.</li>
+                        <li>Ukryte elementy dostępne przez Tab.</li>
+                        <li>Kolejność fokusu inna niż kolejność wizualna.</li>
+                        <li>Modal, który nie przejmuje fokusu.</li>
+                        <li>Fokus uciekający za modal.</li>
+                        <li>Brak powrotu fokusu po zamknięciu popupu.</li>
+                        <li>Formularze z chaotyczną kolejnością pól.</li>
+                        <li>Zmiana kolejności elementów przez CSS bez zmiany kolejności DOM.</li>
+                        <li>Komponenty SPA, które po zmianie widoku nie ustawiają fokusu w logicznym miejscu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-3-2-zrozumiala-kolejnosc">1.3.2 Zrozumiała kolejność</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-1-1-klawiatura">2.1.1 Klawiatura</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-1-2-brak-pulapki-na-klawiature">2.1.2 Brak pułapki na klawiaturę</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow">2.4.1 Możliwość pominięcia bloków</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum">2.4.11 Fokus niezakryty minimum</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu">3.2.1 Po otrzymaniu fokusu</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc">4.1.2 Nazwa, rola, wartość</a></li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#focus-order" target="_blank" rel="noopener noreferrer">WCAG 2.2: 2.4.3 Focus Order<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 2.4.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#focus-order" target="_blank" rel="noopener noreferrer">How to Meet WCAG 2.4.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G59" target="_blank" rel="noopener noreferrer">Technika G59<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G90" target="_blank" rel="noopener noreferrer">Technika G90<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C27" target="_blank" rel="noopener noreferrer">Technika C27<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/client-side-script/SCR26" target="_blank" rel="noopener noreferrer">Technika SCR26<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/2-4-2-tytul-strony">Poprzednie: 2.4.2 Tytuł strony</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/2-4-4-cel-linku-w-kontekscie">Następne: 2.4.4 Cel linku (w kontekście)</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

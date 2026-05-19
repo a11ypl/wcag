@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.4.7 Widoczny fokus - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="2.4.7 Widoczny fokus prostym językiem: Widoczny wskaźnik musi pokazywać, który element ma aktualnie fokus podczas nawigacji klawiaturą.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="2.4.7 Widoczny fokus - WCAG prostym językiem">
+    <meta property="og:description" content="2.4.7 Widoczny fokus prostym językiem: Widoczny wskaźnik musi pokazywać, który element ma aktualnie fokus podczas nawigacji klawiaturą.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2.4.7 Widoczny fokus - WCAG prostym językiem">
+    <meta name="twitter:description" content="2.4.7 Widoczny fokus prostym językiem: Widoczny wskaźnik musi pokazywać, który element ma aktualnie fokus podczas nawigacji klawiaturą.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "2.4.7 Widoczny fokus",
+      "headline": "2.4.7 Widoczny fokus",
+      "description": "2.4.7 Widoczny fokus prostym językiem: Widoczny wskaźnik musi pokazywać, który element ma aktualnie fokus podczas nawigacji klawiaturą.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/2-4-7-widoczny-fokus",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Funkcjonalność",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">2.4.7 Widoczny fokus</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Funkcjonalność · Poziom AA</p>
+                <h1>2.4.7 Widoczny fokus</h1>
+                <p class="subtitle">Widoczny wskaźnik musi pokazywać, który element ma aktualnie fokus podczas nawigacji klawiaturą.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Gdy użytkownik porusza się po stronie klawiaturą, musi widzieć, który element jest aktualnie aktywny.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik naciska <kbd>Tab</kbd> i przechodzi przez linki, przyciski, pola formularza oraz elementy menu. Jeśli nie widzi fokusu, nie wie, gdzie jest, co może aktywować i czy nie zgubił się na stronie.</p>
+                    <p>To szczególnie trudne w długich formularzach, menu mobilnych, koszykach zakupowych i stronach z wieloma linkami. Strona może technicznie działać z klawiatury, ale bez widocznego fokusu korzystanie z niej przypomina poruszanie się po omacku.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy?</h2>
+                    <ul class="detail-list">
+                        <li>Osób korzystających z klawiatury zamiast myszy.</li>
+                        <li>Osób z niepełnosprawnościami ruchowymi, dla których mysz albo touchpad są niewygodne lub niedostępne.</li>
+                        <li>Osób korzystających z przełączników, alternatywnych klawiatur albo innych technologii wspomagających.</li>
+                        <li>Osób słabowidzących, które potrzebują wyraźnego sygnału, gdzie aktualnie znajduje się fokus.</li>
+                        <li>Użytkowników zaawansowanych, którzy poruszają się po stronie szybciej klawiaturą.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Link dostaje wyraźny obrys po fokusie, widoczny na jasnym i ciemnym tle.</li>
+                        <li>Przycisk ma ramkę i zmianę tła, więc stan fokusu nie opiera się wyłącznie na kolorze.</li>
+                        <li>Pole formularza ma mocny stan aktywny, np. obrys, cień i czytelną etykietę.</li>
+                        <li>Element menu pokazuje fokus niezależnie od stanu hover, czyli działa także bez myszy.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li><code>outline: none</code> bez widocznego zamiennika.</li>
+                        <li>Fokus widoczny tylko przez bardzo subtelną zmianę koloru.</li>
+                        <li>Styl hover wygląda dobrze, ale element nie ma osobnego stanu dla klawiatury.</li>
+                        <li>Fokus jest zasłonięty przez sticky header, popup albo pasek cookies.</li>
+                        <li>Wskaźnik fokusu znika na ciemnym, wzorzystym albo kolorowym tle.</li>
+                        <li>Elementy interaktywne działają myszą, ale przy klawiaturze nie pokazują, gdzie jest użytkownik.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example" aria-labelledby="code-example-basic-focus">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-basic-focus">Dobry fokus dla linków i przycisków</h3>
+                        </div>
+
+                        <p class="wcag-code-example__description">Użyj widocznego obrysu dla elementów, które mogą dostać fokus z klawiatury. <code>:focus-visible</code> pomaga pokazać wskaźnik wtedy, gdy jest najbardziej potrzebny.</p>
+
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #FA9632;
+  outline-offset: 3px;
+}</code></pre>
+                        </div>
+
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Po przejściu klawiaturą użytkownik widzi wyraźny obrys wokół aktywnego linku, przycisku albo pola formularza.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example" aria-labelledby="code-example-removed-focus">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-removed-focus">Zły przykład: usunięty outline</h3>
+                        </div>
+
+                        <p class="wcag-code-example__description">Usunięcie domyślnego obrysu bez zapewnienia widocznego zamiennika tworzy barierę dla osób korzystających z klawiatury.</p>
+
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">button:focus {
+  outline: none;
+}</code></pre>
+                        </div>
+
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Przycisk nadal może mieć fokus technicznie, ale użytkownik nie widzi, który element jest aktywny. To nie spełnia celu kryterium 2.4.7.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example" aria-labelledby="code-example-component-focus">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-component-focus">Fokus dopasowany do komponentu</h3>
+                        </div>
+
+                        <p class="wcag-code-example__description">W komponentach, np. kartach-linkach, warto połączyć obrys z dodatkowym cieniem. Wskaźnik jest wtedy czytelny także na bardziej złożonym tle.</p>
+
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.card-link:focus-visible {
+  outline: 3px solid #FA9632;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(95, 40, 180, 0.18);
+}</code></pre>
+                        </div>
+
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Obrys pokazuje granicę aktywnego elementu, a cień zwiększa widoczność bez zmiany układu strony.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-focus-demo">
+                        <div class="wcag-focus-demo__grid">
+                            <div class="wcag-focus-demo__item wcag-focus-demo__item--bad">
+                                <h3>Źle</h3>
+                                <button class="wcag-focus-demo__control wcag-focus-demo__control--bad" type="button">Wyślij formularz</button>
+                                <p>Symulacja: fokus jest prawie niewidoczny i łatwo go przeoczyć.</p>
+                            </div>
+                            <div class="wcag-focus-demo__item wcag-focus-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <button class="wcag-focus-demo__control wcag-focus-demo__control--good" type="button">Wyślij formularz</button>
+                                <p>Symulacja: aktywny element ma wyraźny obrys, odsunięcie i dodatkowy cień.</p>
+                            </div>
+                        </div>
+                        <figcaption>Porównanie symulowanych stanów fokusu. Informacja jest opisana tekstem i nie opiera się wyłącznie na kolorze.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić?</h2>
+                    <ol class="detail-list">
+                        <li>Otwórz stronę w przeglądarce.</li>
+                        <li>Odłóż mysz.</li>
+                        <li>Naciskaj <kbd>Tab</kbd>, <kbd>Shift</kbd> + <kbd>Tab</kbd>, <kbd>Enter</kbd> i <kbd>Space</kbd>.</li>
+                        <li>Sprawdź, czy na każdym linku, przycisku, polu formularza i elemencie menu widać fokus.</li>
+                        <li>Sprawdź, czy fokus nie znika na żadnym etapie.</li>
+                        <li>Sprawdź, czy fokus jest widoczny na różnych tłach.</li>
+                        <li>Sprawdź, czy kolejność fokusu jest logiczna.</li>
+                        <li>Sprawdź, czy fokus nie jest zasłaniany przez sticky header, popup, cookie banner albo inny element.</li>
+                        <li>Przetestuj stronę przy powiększeniu 200%.</li>
+                        <li>Nie oceniaj wyłącznie automatem. To kryterium wymaga testu manualnego.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie?</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>Część przypadków <code>outline: none</code>.</li>
+                        <li>Elementy interaktywne bez dostępnej nazwy.</li>
+                        <li>Niektóre problemy z kontrastem elementów interfejsu.</li>
+                        <li>Część problemów z kolejnością DOM.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>Czy fokus jest realnie dobrze widoczny.</li>
+                        <li>Czy użytkownik łatwo zauważa zmianę miejsca.</li>
+                        <li>Czy fokus nie ginie w złożonym layoucie.</li>
+                        <li>Czy fokus jest wystarczająco czytelny na wszystkich tłach.</li>
+                        <li>Czy projekt graficzny nie maskuje wskaźnika fokusu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Usuwanie <code>outline</code> w CSS, bo „brzydko wygląda”.</li>
+                        <li>Projektowanie tylko stanu hover, bez stanu focus.</li>
+                        <li>Brak testów klawiaturą.</li>
+                        <li>Fokus widoczny na desktopie, ale niewidoczny w menu mobilnym.</li>
+                        <li>Fokus przykryty przez elementy <code>fixed</code> albo <code>sticky</code>.</li>
+                        <li>Zbyt delikatna zmiana koloru.</li>
+                        <li>Brak widocznego fokusu w komponentach niestandardowych.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/2-1-1-klawiatura">2.1.1 Klawiatura</a>: wszystkie funkcje muszą być dostępne z klawiatury.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a>: przechodzenie fokusem powinno mieć logiczną kolejność.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum">2.4.11 Fokus niezakryty (minimum)</a>: fokus nie powinien być zasłonięty inną treścią.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu">2.4.13 Wygląd fokusu</a>: opisuje bardziej szczegółowe wymagania dotyczące wyglądu wskaźnika fokusu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a>: dotyczy m.in. widoczności elementów interfejsu i ich stanów.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-13-tresc-po-najechaniu-lub-fokusie">1.4.13 Treść po najechaniu lub fokusie</a>: dotyczy treści, która pojawia się po hoverze albo fokusie.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="recommended-resources">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#focus-visible" target="_blank" rel="noopener noreferrer">WCAG 2.2: 2.4.7 Focus Visible<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 2.4.7 Focus Visible<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#focus-visible" target="_blank" rel="noopener noreferrer">How to Meet WCAG 2.4.7 Focus Visible<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G149" target="_blank" rel="noopener noreferrer">Technika G149: komponenty wyróżniane przez przeglądarkę po fokusie<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G165" target="_blank" rel="noopener noreferrer">Technika G165: domyślny wskaźnik fokusu platformy<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G195" target="_blank" rel="noopener noreferrer">Technika G195: autorski, widoczny wskaźnik fokusu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C15" target="_blank" rel="noopener noreferrer">Technika C15: CSS zmieniający prezentację komponentu po fokusie<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C40" target="_blank" rel="noopener noreferrer">Technika C40: dwukolorowy wskaźnik fokusu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety">Poprzednie: 2.4.6 Nagłówki i etykiety</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/2-4-8-lokalizacja">Następne: 2.4.8 Lokalizacja</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

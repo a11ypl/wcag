@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.2 Etykiety lub instrukcje - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="3.3.2 Etykiety lub instrukcje prostym językiem: Pola formularza muszą mieć jasne etykiety albo instrukcje, które zapobiegają dezorientacji i pomagają poprawnie uzupełnić dane.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="3.3.2 Etykiety lub instrukcje - WCAG prostym językiem">
+    <meta property="og:description" content="3.3.2 Etykiety lub instrukcje prostym językiem: Pola formularza muszą mieć jasne etykiety albo instrukcje, które zapobiegają dezorientacji i pomagają poprawnie uzupełnić dane.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3.3.2 Etykiety lub instrukcje - WCAG prostym językiem">
+    <meta name="twitter:description" content="3.3.2 Etykiety lub instrukcje prostym językiem: Pola formularza muszą mieć jasne etykiety albo instrukcje, które zapobiegają dezorientacji i pomagają poprawnie uzupełnić dane.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "3.3.2 Etykiety lub instrukcje",
+      "headline": "3.3.2 Etykiety lub instrukcje",
+      "description": "3.3.2 Etykiety lub instrukcje prostym językiem: Pola formularza muszą mieć jasne etykiety albo instrukcje, które zapobiegają dezorientacji i pomagają poprawnie uzupełnić dane.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Zrozumiałość",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">3.3.2</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Zrozumiałość · Poziom A</p>
+                <h1>3.3.2 Etykiety lub instrukcje</h1>
+                <p class="subtitle">Pola formularza muszą mieć jasne etykiety albo instrukcje, które zapobiegają dezorientacji i pomagają poprawnie uzupełnić dane.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Użytkownik musi wiedzieć, co ma wpisać lub wybrać w formularzu, zanim popełni błąd.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Formularz ma pola bez etykiet, same placeholdery, niejasne instrukcje albo wymagany format danych, którego użytkownik musi się domyślać. Użytkownik nie wie, co wpisać, jaki format jest poprawny ani które pola są wymagane.</p>
+                    <p>To kryterium dotyczy informacji potrzebnych przed wpisaniem danych. Nie dotyczy jeszcze błędów po walidacji, sugestii naprawy błędów ani technicznego powiązania etykiety z polem.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list">
+                        <li>Osób niewidomych korzystających z czytników ekranu.</li>
+                        <li>Osób słabowidzących, które powiększają stronę albo widzą tylko fragment formularza.</li>
+                        <li>Osób z trudnościami poznawczymi, które potrzebują jasnych i stałych wskazówek.</li>
+                        <li>Osób korzystających z klawiatury, które przechodzą po polach w kolejności fokusu.</li>
+                        <li>Osób używających autouzupełniania, menedżerów haseł i zapisanych danych.</li>
+                        <li>Wszystkich użytkowników w długich, urzędowych, finansowych albo stresujących formularzach.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Pole ma widoczną etykietę, na przykład „Adres e-mail”, „Data urodzenia” albo „Numer telefonu”.</li>
+                        <li>Format danych jest podany przed wysłaniem formularza, na przykład „RRRR-MM-DD”.</li>
+                        <li>Pola wymagane są jasno oznaczone tekstem, a nie samym kolorem.</li>
+                        <li>Instrukcja jest blisko pola, którego dotyczy.</li>
+                        <li>Placeholder może pomagać, ale nie jest jedyną etykietą.</li>
+                        <li>Grupa pól, na przykład radio albo checkbox, ma pytanie lub legendę.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Pole nie ma widocznej etykiety ani innej jasnej instrukcji.</li>
+                        <li>Placeholder jest jedyną informacją o przeznaczeniu pola.</li>
+                        <li>Formularz pokazuje etykietę „Data”, ale nie podaje wymaganego formatu.</li>
+                        <li>Pola wymagane są oznaczone tylko kolorem albo samą gwiazdką bez wyjaśnienia.</li>
+                        <li>Instrukcja pojawia się dopiero po błędzie, choć użytkownik potrzebował jej wcześniej.</li>
+                        <li>Grupa radio ma opcje „E-mail” i „Telefon”, ale nie ma pytania, czego ten wybór dotyczy.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobra etykieta pola</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Widoczna etykieta mówi użytkownikowi, jakiej informacji oczekuje pole.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;label for="email"&gt;
+  Adres e-mail
+&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobra instrukcja formatu</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Instrukcja jest widoczna przed wpisaniem danych. <code>aria-describedby</code> łączy pole z instrukcją dla technologii wspomagających, ale widoczna instrukcja nadal jest potrzebna wszystkim użytkownikom.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;label for="birth-date"&gt;
+  Data urodzenia
+&lt;/label&gt;
+&lt;p id="birth-date-hint"&gt;
+  Wpisz datę w formacie RRRR-MM-DD, np. 1990-04-27.
+&lt;/p&gt;
+&lt;input
+  id="birth-date"
+  name="birth-date"
+  type="text"
+  aria-describedby="birth-date-hint"
+&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Zły przykład: sam placeholder</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Placeholder znika podczas pisania i nie powinien być jedyną etykietą pola.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;input
+  name="email"
+  type="email"
+  placeholder="Adres e-mail"
+&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobra grupa pól</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Legenda mówi, czego dotyczy grupa opcji. Same etykiety „E-mail” i „Telefon” nie wystarczą, jeśli użytkownik nie zna pytania.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;fieldset&gt;
+  &lt;legend&gt;
+    Wybierz sposób kontaktu
+  &lt;/legend&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="radio"
+      name="contact-method"
+      value="email"
+    &gt;
+    E-mail
+  &lt;/label&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="radio"
+      name="contact-method"
+      value="phone"
+    &gt;
+    Telefon
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobre oznaczenie pola wymaganego</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Użytkownik wie przed wysłaniem formularza, które pola są wymagane. Gwiazdka ma tekstowe wyjaśnienie.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;p&gt;Pola oznaczone gwiazdką (*) są wymagane.&lt;/p&gt;
+
+&lt;label for="given-name"&gt;
+  Imię *
+&lt;/label&gt;
+&lt;input
+  id="given-name"
+  name="given-name"
+  type="text"
+  required
+&gt;</code></pre>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <p>To statyczne demo edukacyjne. Pola są makietami, nie działającym formularzem.</p>
+                    <figure class="wcag-labels-demo">
+                        <div class="wcag-labels-demo__grid">
+                            <section class="wcag-labels-demo__item wcag-labels-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-labels-demo__mock-field">Adres e-mail</div>
+                                <p class="wcag-labels-demo__note">Pole wygląda prosto, ale widoczny jest tylko tekst wewnątrz pola. Po rozpoczęciu pisania użytkownik traci wskazówkę.</p>
+                            </section>
+                            <section class="wcag-labels-demo__item wcag-labels-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <p class="wcag-labels-demo__label">Data urodzenia</p>
+                                <div class="wcag-labels-demo__mock-field">Data</div>
+                                <p class="wcag-labels-demo__note">Etykieta jest widoczna, ale użytkownik nadal nie wie, czy ma wpisać dzień, miesiąc i rok, ani w jakiej kolejności.</p>
+                            </section>
+                            <section class="wcag-labels-demo__item wcag-labels-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <p class="wcag-labels-demo__label">Data urodzenia</p>
+                                <p class="wcag-labels-demo__hint">Wpisz datę w formacie RRRR-MM-DD, np. 1990-04-27.</p>
+                                <div class="wcag-labels-demo__mock-field">1990-04-27</div>
+                                <p class="wcag-labels-demo__note">Użytkownik widzi etykietę i format, zanim zacznie wpisywać dane.</p>
+                            </section>
+                        </div>
+                        <figcaption>W tym kryterium problemem jest brak potrzebnej informacji przed wpisaniem danych, a nie sam wygląd pola.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Znajdź wszystkie formularze i pola.</li>
+                        <li>Sprawdź, czy każde pole ma widoczną etykietę.</li>
+                        <li>Sprawdź, czy instrukcje są dostępne przed wysłaniem formularza.</li>
+                        <li>Sprawdź, czy format danych jest podany tam, gdzie jest wymagany.</li>
+                        <li>Sprawdź, czy placeholder nie jest jedyną etykietą.</li>
+                        <li>Sprawdź grupy checkbox i radio.</li>
+                        <li>Uruchom czytnik ekranu.</li>
+                        <li>Przejdź po formularzu klawiaturą.</li>
+                        <li>Sprawdź, czy użytkownik rozumie, co ma wpisać, zanim popełni błąd.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>Część pól bez <code>label</code>.</li>
+                        <li>Część błędnych relacji <code>aria-describedby</code>.</li>
+                        <li>Część problemów z grupami pól.</li>
+                        <li>Część problemów struktury formularzy.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>Czy etykieta jest zrozumiała.</li>
+                        <li>Czy instrukcja wystarcza.</li>
+                        <li>Czy format danych jest jasny.</li>
+                        <li>Czy użytkownik wie, które pola są wymagane.</li>
+                        <li>Czy placeholder nie zastępuje etykiety w praktyce.</li>
+                        <li>Czy instrukcja pojawia się we właściwym momencie.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Same placeholdery zamiast widocznych etykiet.</li>
+                        <li>Etykiety typu „Dane” albo „Informacja”.</li>
+                        <li>Brak informacji o formacie daty, NIP, PESEL albo telefonu.</li>
+                        <li>Gwiazdka bez wyjaśnienia, co oznacza.</li>
+                        <li>Instrukcje pokazane dopiero po błędzie.</li>
+                        <li>Grupy radio bez pytania lub legendy.</li>
+                        <li>Ukryte etykiety tam, gdzie widoczna etykieta byłaby potrzebna.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">1.3.1 Informacje i relacje</a>: programistyczne powiązanie etykiet, instrukcji i grup pól.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">3.3.1 Identyfikacja błędu</a>: wskazanie błędu po walidacji.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-3-sugestie-korekty-bledow">3.3.3 Sugestie korekty błędów</a>: podpowiedzi naprawy błędów po ich wykryciu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc">4.1.2 Nazwa, rola, wartość</a>: dostępna nazwa i stan komponentu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety">2.4.6 Nagłówki i etykiety</a>: jasność i opisowość etykiet.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#labels-or-instructions" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.3.2 Labels or Instructions<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.3.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#labels-or-instructions" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.3.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H44" target="_blank" rel="noopener noreferrer">Technika H44: użycie elementów label do powiązania etykiet tekstowych z kontrolkami formularza<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H71" target="_blank" rel="noopener noreferrer">Technika H71: opis grup kontrolek formularza przez fieldset i legend<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G89" target="_blank" rel="noopener noreferrer">Technika G89: podanie oczekiwanego formatu danych i przykładu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G184" target="_blank" rel="noopener noreferrer">Technika G184: instrukcje tekstowe na początku formularza lub zestawu pól<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA1" target="_blank" rel="noopener noreferrer">Technika ARIA1: aria-describedby jako opis kontrolki interfejsu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H90" target="_blank" rel="noopener noreferrer">Technika H90: oznaczanie wymaganych kontrolek formularza przez label lub legend<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F82" target="_blank" rel="noopener noreferrer">Failure F82: wizualny format pól telefonu bez tekstowej etykiety<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">Poprzednie: 3.3.1 Identyfikacja błędu</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/3-3-3-sugestie-korekty-bledow">Następne: 3.3.3 Sugestie korekty błędów</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

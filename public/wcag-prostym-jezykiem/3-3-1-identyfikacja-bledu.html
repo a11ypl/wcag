@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.1 Identyfikacja błędu - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="3.3.1 Identyfikacja błędu prostym językiem: Błędy i walidacja muszą być jasno wskazane i opisane tekstem, a nie tylko wizualnie, na przykład kolorem albo podświetleniem.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="3.3.1 Identyfikacja błędu - WCAG prostym językiem">
+    <meta property="og:description" content="3.3.1 Identyfikacja błędu prostym językiem: Błędy i walidacja muszą być jasno wskazane i opisane tekstem, a nie tylko wizualnie, na przykład kolorem albo podświetleniem.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3.3.1 Identyfikacja błędu - WCAG prostym językiem">
+    <meta name="twitter:description" content="3.3.1 Identyfikacja błędu prostym językiem: Błędy i walidacja muszą być jasno wskazane i opisane tekstem, a nie tylko wizualnie, na przykład kolorem albo podświetleniem.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "3.3.1 Identyfikacja błędu",
+      "headline": "3.3.1 Identyfikacja błędu",
+      "description": "3.3.1 Identyfikacja błędu prostym językiem: Błędy i walidacja muszą być jasno wskazane i opisane tekstem, a nie tylko wizualnie, na przykład kolorem albo podświetleniem.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Zrozumiałość",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">3.3.1 Identyfikacja błędu</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Zrozumiałość · Poziom A</p>
+                <h1>3.3.1 Identyfikacja błędu</h1>
+                <p class="subtitle">Błędy i walidacja muszą być jasno wskazane i opisane tekstem, a nie tylko wizualnie, na przykład kolorem albo podświetleniem.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Jeśli użytkownik popełni błąd w formularzu, strona musi jasno wskazać, gdzie jest błąd i na czym polega.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik wysyła formularz, ale coś jest nie tak. Jeśli strona pokazuje tylko komunikat „formularz zawiera błędy” albo zaznacza pole samym kolorem, użytkownik może nie wiedzieć, które pole poprawić i co dokładnie jest błędne.</p>
+                    <p>W praktyce osoba może wrócić na formularz po wysłaniu i nie zauważyć błędu, zwłaszcza gdy komunikat jest poza aktualnym widokiem, znika po chwili albo nie jest powiązany z polem.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy?</h2>
+                    <ul class="detail-list">
+                        <li>Osób niewidomych korzystających z czytników ekranu, które potrzebują tekstowej informacji o błędzie.</li>
+                        <li>Osób słabowidzących, dla których sam kolor albo cienkie obramowanie może być niewystarczające.</li>
+                        <li>Osób z trudnościami poznawczymi, które potrzebują jasnego wskazania problemu.</li>
+                        <li>Osób korzystających z klawiatury, które przechodzą przez formularz pole po polu.</li>
+                        <li>Osób w stresie, pośpiechu albo na urządzeniach mobilnych, gdzie łatwo przeoczyć komunikat.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Przy polu e-mail pojawia się tekst „Wpisz adres e-mail w formacie nazwa@example.com”.</li>
+                        <li>Przy wymaganym polu pojawia się tekst „To pole jest wymagane”.</li>
+                        <li>Na początku formularza pojawia się podsumowanie błędów z linkami do pól.</li>
+                        <li>Błędne pole ma komunikat tekstowy połączony z polem.</li>
+                        <li>Błąd nie jest sygnalizowany wyłącznie kolorem.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Komunikat „Błąd formularza” bez wskazania pola.</li>
+                        <li>Czerwone obramowanie bez tekstu.</li>
+                        <li>Komunikat znika po chwili.</li>
+                        <li>Błąd pojawia się tylko jako placeholder.</li>
+                        <li>Czytnik ekranu nie ma informacji, które pole jest błędne.</li>
+                        <li>Użytkownik trafia z powrotem na formularz, ale nie wie, co poprawić.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example" aria-labelledby="code-example-error-field">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-error-field">Pole z komunikatem błędu po walidacji</h3>
+                        </div>
+
+                        <p class="wcag-code-example__description">Pole ma etykietę, tekstowy komunikat błędu i relację między polem a komunikatem.</p>
+
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;label for="email"&gt;Adres e-mail&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+  aria-describedby="email-error"
+  aria-invalid="true"
+&gt;
+&lt;p id="email-error"&gt;
+  Wpisz adres e-mail w formacie nazwa@example.com.
+&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p><code>label</code> identyfikuje pole. <code>aria-describedby</code> łączy pole z komunikatem błędu. <code>aria-invalid="true"</code> oznacza, że wartość jest błędna, ale sam atrybut nie wystarczy: użytkownik potrzebuje jeszcze tekstu błędu.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example" aria-labelledby="code-example-error-summary">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-error-summary">Podsumowanie błędów nad formularzem</h3>
+                        </div>
+
+                        <p class="wcag-code-example__description">W dłuższych formularzach podsumowanie pomaga szybko znaleźć błędy i przejść do konkretnych pól.</p>
+
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;div class="form-error-summary"&gt;
+  &lt;h2&gt;Popraw błędy w formularzu&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;a href="#email"&gt;Adres e-mail: wpisz adres w formacie nazwa@example.com.&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href="#phone"&gt;Telefon: wpisz 9 cyfr bez spacji.&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Podsumowanie wskazuje, które pola są błędne. Linki prowadzą do konkretnych pól, co jest szczególnie przydatne w długich formularzach.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example" aria-labelledby="code-example-color-only-error">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-color-only-error">Zły przykład: sam kolor</h3>
+                        </div>
+
+                        <p class="wcag-code-example__description">Samo czerwone obramowanie nie wystarcza. Użytkownik musi dostać tekstową informację, że pole zawiera błąd i jaki to błąd.</p>
+
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;label for="name"&gt;Imię&lt;/label&gt;
+&lt;input
+  id="name"
+  name="name"
+  class="error"
+&gt;</code></pre>
+                        </div>
+
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Kolor może wspierać komunikat, ale nie może być jedyną informacją o błędzie.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-form-demo">
+                        <p class="wcag-form-demo__note">To jest statyczna makieta edukacyjna, a nie działający formularz. Pokazuje różnicę między błędnym i poprawnym sposobem prezentowania błędów.</p>
+                        <div class="wcag-form-demo__grid">
+                            <section class="wcag-form-demo__item wcag-form-demo__item--bad">
+                                <h3>Źle</h3>
+                                <p class="wcag-form-demo__field">
+                                    <span class="wcag-form-demo__label">Adres e-mail</span>
+                                    <span class="wcag-form-demo__mock-field wcag-form-demo__mock-field--error">anna.example.com</span>
+                                </p>
+                                <p>Widać tylko czerwone obramowanie. Brakuje tekstu, który mówi, na czym polega błąd.</p>
+                            </section>
+
+                            <section class="wcag-form-demo__item wcag-form-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-form-demo__summary">
+                                    <p><strong>Popraw błędy w formularzu</strong></p>
+                                    <ul>
+                                        <li><a href="#demo-good-email">Adres e-mail: wpisz adres w formacie nazwa@example.com.</a></li>
+                                    </ul>
+                                </div>
+                                <p class="wcag-form-demo__field">
+                                    <span class="wcag-form-demo__label">Adres e-mail</span>
+                                    <span class="wcag-form-demo__mock-field wcag-form-demo__mock-field--error">anna.example.com</span>
+                                    <span class="wcag-form-demo__error">Wpisz adres e-mail w formacie nazwa@example.com.</span>
+                                </p>
+                            </section>
+                        </div>
+                        <figcaption>Statyczne demo pokazuje różnicę między samym kolorem a tekstowym wskazaniem błędu przy konkretnym polu.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić?</h2>
+                    <ol class="detail-list">
+                        <li>Wypełnij formularz błędnymi danymi albo zostaw wymagane pola puste.</li>
+                        <li>Wyślij formularz.</li>
+                        <li>Sprawdź, czy strona wskazuje konkretne pola z błędami.</li>
+                        <li>Sprawdź, czy każdy błąd ma tekstowy opis.</li>
+                        <li>Sprawdź, czy informacja o błędzie nie jest przekazana wyłącznie kolorem.</li>
+                        <li>Sprawdź, czy komunikat błędu jest blisko pola albo połączony z polem programistycznie.</li>
+                        <li>Przejdź po formularzu klawiaturą.</li>
+                        <li>Uruchom czytnik ekranu, np. NVDA albo VoiceOver.</li>
+                        <li>Sprawdź, czy użytkownik słyszy etykietę pola i komunikat błędu.</li>
+                        <li>W dłuższym formularzu sprawdź, czy jest podsumowanie błędów z linkami do pól.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie?</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>Pola bez etykiet.</li>
+                        <li>Część niepoprawnych relacji <code>aria-describedby</code>.</li>
+                        <li>Niektóre problemy z <code>aria-invalid</code>.</li>
+                        <li>Część problemów kontrastu komunikatów.</li>
+                        <li>Niektóre błędy struktury formularza.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>Czy komunikat błędu jest zrozumiały.</li>
+                        <li>Czy wskazuje dokładnie problem.</li>
+                        <li>Czy użytkownik wie, co poprawić.</li>
+                        <li>Czy błąd jest pokazany w dobrym momencie.</li>
+                        <li>Czy cały proces walidacji jest logiczny.</li>
+                        <li>Czy osoba korzystająca z czytnika ekranu faktycznie zrozumie sytuację.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Komunikat „Wystąpił błąd” bez wskazania pola.</li>
+                        <li>Czerwony kolor jako jedyna informacja o błędzie.</li>
+                        <li>Brak powiązania komunikatu z polem formularza.</li>
+                        <li>Błędy widoczne tylko po najechaniu myszą.</li>
+                        <li>Błędy ukryte poza aktualnym widokiem.</li>
+                        <li>Brak podsumowania błędów w długich formularzach.</li>
+                        <li>Placeholder używany jako jedyna instrukcja.</li>
+                        <li>Komunikaty techniczne, np. „invalid input” albo „wrong value”.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">1.3.1 Informacje i relacje</a>: etykiety, komunikaty i relacje muszą być dostępne programowo.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-1-uzycie-koloru">1.4.1 Użycie koloru</a>: błąd nie może być przekazany wyłącznie kolorem.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a>: po błędzie użytkownik powinien móc logicznie przejść przez formularz.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a>: formularz powinien mieć jasne etykiety i instrukcje.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-3-sugestie-korekty-bledow">3.3.3 Sugestie korekty błędów</a>: może pomóc podpowiedzieć, jak naprawić błąd, ale nie jest wymaganiem 3.3.1.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-4-zapobieganie-bledom-prawne-finansowe-dane">3.3.4 Zapobieganie błędom (prawne, finansowe, dane)</a>: dotyczy ważnych działań, które wymagają dodatkowego zabezpieczenia przed skutkami błędów.</li>
+                        <li><a href="/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie">4.1.3 Komunikaty o stanie</a>: dotyczy komunikatów, które powinny być przekazane technologiom wspomagającym bez przenoszenia fokusu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="recommended-resources">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#error-identification" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.3.1 Error Identification<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.3.1 Error Identification<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#error-identification" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.3.1 Error Identification<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G83" target="_blank" rel="noopener noreferrer">Technika G83: tekstowe wskazanie wymaganych pól, których nie wypełniono<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G84" target="_blank" rel="noopener noreferrer">Technika G84: tekstowy opis błędu, gdy użytkownik poda niedozwoloną wartość<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G85" target="_blank" rel="noopener noreferrer">Technika G85: tekstowy opis błędu, gdy dane mają zły format albo wartość<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H90" target="_blank" rel="noopener noreferrer">Technika H90: wskazywanie wymaganych pól przez label lub legend<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA21" target="_blank" rel="noopener noreferrer">Technika ARIA21: użycie aria-invalid przy błędnym polu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/3-2-6-spojna-pomoc">Poprzednie: 3.2.6 Spójna pomoc</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">Następne: 3.3.2 Etykiety lub instrukcje</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>
