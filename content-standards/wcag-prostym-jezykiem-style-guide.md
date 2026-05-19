@@ -240,6 +240,9 @@ Opcjonalne źródła:
 Wytyczne:
 
 - Linkuj do oryginalnych, stabilnych źródeł.
+- Technik W3C nie wolno dopisywać bez weryfikacji w How to Meet / Quick Reference dla konkretnego kryterium.
+- Failures W3C nie wolno dopisywać bez weryfikacji w How to Meet / Quick Reference albo w dokumencie Understanding dla konkretnego kryterium.
+- Nie dopisuj technik z pamięci, nawet jeśli pasują do tematu.
 - Nie cytuj długich fragmentów.
 - Parafrazuj i dopowiadaj praktyczny kontekst.
 - Jeśli źródło jest po angielsku, nie udawaj, że to polskie tłumaczenie oficjalne.

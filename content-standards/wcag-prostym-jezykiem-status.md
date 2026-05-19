@@ -69,3 +69,14 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - `1.3.1 Informacje i relacje` nie ma jeszcze bloków `.wcag-code-example`; wymaga osobnej rozbudowy i audytu źródeł.
 - Dalszego audytu źródeł W3C wymagają wszystkie rozbudowane strony w zakresie technik i failures. Technik W3C nie wolno dopisywać bez potwierdzenia w How to Meet / Quick Reference.
 - Szczegółowy raport znajduje się w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Checkpoint 2026-05-19: 1.1.1, 2.1.1 i rozbudowa 3.3.2
+
+- `1.1.1 Treść nietekstowa`: OK. Główne przykłady `img` + `alt` używają prostych formatów JPG/PNG. SVG jest opisany osobno w sekcji „A co z SVG?” i nie sugeruje, że plik SVG sam ma `alt`.
+- `2.1.1 Klawiatura`: OK. Zły przykład kodu pokazuje `div` z `onclick`, a zły przykład w demo jest statyczną makietą bez `onclick`, `tabindex`, `role`, ARIA, focus styles i `cursor: pointer`. Dobry przykład używa natywnego `button`, a link wygląda jak link.
+- `3.3.2 Etykiety lub instrukcje`: rozbudowane do pełnego tutoriala zgodnego ze standardem „WCAG prostym językiem”.
+- Dodano statyczne demo `wcag-labels-demo` bez prawdziwych pól formularza.
+- Bloki kodu w sprawdzanych stronach mają etykiety języka i klasy `language-html`.
+- Powiązane kryteria w `3.3.2` linkują do istniejących podstron.
+- Techniki i failure dla `3.3.2` dopisano po weryfikacji w oficjalnych źródłach W3C: WCAG 2.2, Understanding WCAG 3.3.2 i How to Meet WCAG 3.3.2.
+- Zweryfikowane techniki/failure: H44, H71, G89, G184, ARIA1, H90, F82.
