@@ -131,21 +131,45 @@
 
                     <section class="wcag-code-example">
                         <div class="wcag-code-example__header">
-                            <h3>Krok podsumowania przed wysłaniem</h3>
+                            <h3>Potwierdzenie zapisu do newslettera</h3>
                         </div>
-                        <p class="wcag-code-example__description">Podsumowanie pomaga zauważyć pomyłkę przed finalnym wysłaniem formularza.</p>
+                        <p class="wcag-code-example__description">Użytkownik ma szansę sprawdzić adres e-mail i poprawić go przed zapisem.</p>
                         <div class="wcag-code-example__code">
                             <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;h2&gt;Sprawdź zgłoszenie&lt;/h2&gt;
-&lt;dl&gt;
-  &lt;dt&gt;Adres e-mail&lt;/dt&gt;
-  &lt;dd&gt;anna@example.com&lt;/dd&gt;
-  &lt;dt&gt;Temat&lt;/dt&gt;
-  &lt;dd&gt;Problem z dostępem do kursu&lt;/dd&gt;
-  &lt;dt&gt;Treść&lt;/dt&gt;
-  &lt;dd&gt;Nie mogę otworzyć lekcji drugiej.&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
+                            <pre><code class="language-html">&lt;form action="/newsletter/potwierdz" method="post"&gt;
+  &lt;section aria-labelledby="newsletter-review-heading"&gt;
+    &lt;h2 id="newsletter-review-heading"&gt;
+      Sprawdź dane przed zapisem
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+      Włącz Wizję wyśle newsletter na podany adres.
+    &lt;/p&gt;
+
+    &lt;dl&gt;
+      &lt;dt&gt;Adres e-mail&lt;/dt&gt;
+      &lt;dd&gt;a11y@wlaczwizje.pl&lt;/dd&gt;
+
+      &lt;dt&gt;Usługa&lt;/dt&gt;
+      &lt;dd&gt;Newsletter Włącz Wizję&lt;/dd&gt;
+    &lt;/dl&gt;
+
+    &lt;p&gt;
+      Sprawdź dane. Możesz wrócić do edycji
+      albo potwierdzić zapis.
+    &lt;/p&gt;
+
+    &lt;a href="/newsletter?step=edit"&gt;
+      Wróć do edycji
+    &lt;/a&gt;
+
+    &lt;button type="submit"&gt;
+      Potwierdzam zapis do newslettera
+    &lt;/button&gt;
+  &lt;/section&gt;
+&lt;/form&gt;</code></pre>
                         </div>
+                        <p class="wcag-code-example__description">Ten przykład nie pokazuje tylko danych. Pokazuje mechanizm zapobiegania błędom: użytkownik może sprawdzić treść, wrócić do edycji albo świadomie potwierdzić wysłanie.</p>
                     </section>
 
                     <section class="wcag-code-example">
@@ -155,10 +179,26 @@
                         <p class="wcag-code-example__description">Użytkownik ma jasną drogę do poprawy danych i osobną decyzję o wysłaniu.</p>
                         <div class="wcag-code-example__code">
                             <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;a href="/zgloszenie/edycja"&gt;Wróć do edycji&lt;/a&gt;
-&lt;button type="submit"&gt;
-  Potwierdzam i wysyłam zgłoszenie
-&lt;/button&gt;</code></pre>
+                            <pre><code class="language-html">&lt;section aria-labelledby="confirm-report-heading"&gt;
+  &lt;h2 id="confirm-report-heading"&gt;
+    Potwierdź wysłanie zgłoszenia
+  &lt;/h2&gt;
+
+  &lt;p&gt;
+    Sprawdź podsumowanie zgłoszenia.
+    Jeśli coś jest nie tak, wróć do edycji.
+  &lt;/p&gt;
+
+  &lt;a href="/zgloszenie/edycja"&gt;
+    Wróć do edycji zgłoszenia
+  &lt;/a&gt;
+
+  &lt;form action="/zgloszenie/wyslij" method="post"&gt;
+    &lt;button type="submit"&gt;
+      Potwierdzam i wysyłam zgłoszenie
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;</code></pre>
                         </div>
                     </section>
 
