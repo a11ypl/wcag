@@ -98,3 +98,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki W3C dla `3.3.4` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.4.
 - Zweryfikowane techniki: G164, G98, G155, G99, G168. Quick Reference dla `3.3.4` nie wskazuje osobnej listy failures.
 - Raport źródeł dla `3.3.4` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-22: 3.3.6 Zapobieganie błędom (wszystkie)
+
+- `3.3.6 Zapobieganie błędom (wszystkie)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-error-prevention-all-demo` jako schemat procesu, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.6` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.6.
+- Zweryfikowano, że How to Meet dla `3.3.6` odsyła do technik wystarczających dla `3.3.4`, stosowanych do wszystkich formularzy wymagających wysłania informacji.
+- Zweryfikowane techniki: G164, G98, G155, G99, G168. Quick Reference dla `3.3.6` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.6` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

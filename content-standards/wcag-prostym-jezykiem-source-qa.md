@@ -75,3 +75,34 @@ Uwagi zakresowe:
 - 3.3.4 dotyczy stron, które powodują zobowiązania prawne, transakcje finansowe, modyfikację lub usunięcie danych kontrolowanych przez użytkownika albo wysłanie odpowiedzi testowych.
 - Kryterium wymaga co najmniej jednego z mechanizmów: odwrócenie, sprawdzenie danych z możliwością poprawy albo przegląd/potwierdzenie/korekta przed finalizacją.
 - Nie mieszać z 3.3.1, 3.3.2, 3.3.3, 3.3.6 ani 4.1.3.
+
+## Source QA 2026-05-22: 3.3.6 Zapobieganie błędom (wszystkie)
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.6 Error Prevention (All) - `https://www.w3.org/TR/WCAG22/#error-prevention-all`
+- Understanding WCAG 3.3.6 Error Prevention (All) - `https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html`
+- How to Meet WCAG 3.3.6 - `https://www.w3.org/WAI/WCAG22/quickref/#error-prevention-all`
+- How to Meet WCAG 3.3.4 - `https://www.w3.org/WAI/WCAG22/quickref/#error-prevention-legal-financial-data`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- How to Meet dla 3.3.6 wskazuje: following the sufficient techniques for Success Criterion 3.3.4 for all forms that require the user to submit information.
+- G164: Providing a stated time within which an online request (or transaction) may be amended or canceled by the user after making the request.
+- G98: Providing the ability for the user to review and correct answers before submitting.
+- G155: Providing a checkbox in addition to a submit button.
+- G99: Providing the ability to recover deleted information.
+- G168: Requesting confirmation to continue with selected action.
+
+Failures:
+
+- Quick Reference dla 3.3.6 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.3.6 jest kryterium poziomu AAA.
+- 3.3.6 rozszerza 3.3.4 na wszystkie formularze i strony, które wymagają wysłania informacji przez użytkownika.
+- Kryterium wymaga co najmniej jednego z mechanizmów: odwrócenie, sprawdzenie danych z możliwością poprawy albo przegląd/potwierdzenie/korekta przed finalizacją.
+- Nie mieszać z 3.3.1, 3.3.2, 3.3.3, 3.3.4 ani 4.1.3.
