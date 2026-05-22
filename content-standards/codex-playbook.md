@@ -11,6 +11,13 @@ Stałe zasady pracy przy tutorialach w sekcji `WCAG prostym językiem`.
 - Jeśli `public/` jest ignorowany przez git, dodawaj zmieniane pliki publiczne jawnie przez `git add -f`.
 - Nie commituj `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif` ani innych plików spoza zakresu.
 
+## Priorytet roadmapy
+
+- Najpierw rozbudowujemy kryteria poziomu `A` i `AA`.
+- Kryteria poziomu `AAA` odkładamy na później i wykonujemy tylko po wyraźnej decyzji.
+- Jeśli task dotyczy kryterium `AAA`, przed rozpoczęciem upewnij się, że użytkownik świadomie wybrał ten poziom.
+- Nie planuj kolejnych tasków `AAA`, dopóki lista istotnych kryteriów `A` i `AA` nie jest gotowa do przeglądu.
+
 ## Standard tutoriala
 
 - Każdy rozbudowany tutorial ma być praktycznym, polskim opracowaniem kryterium WCAG.
