@@ -1,4 +1,4 @@
-# Current task: 1.3.1 Informacje i relacje
+# Current task: 1.3.5 Określenie celu danych wejściowych
 
 ## Polecenie dla Codexa
 
@@ -17,11 +17,11 @@ Najpierw wciągnij najnowszy remote, bo `current-task.md` został zaktualizowany
 
 Nie commituj nieśledzonych plików: `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`.
 
-Znajdź realny plik HTML dla kryterium `1.3.1 Informacje i relacje` w `public/wcag-prostym-jezykiem/`.
+Znajdź realny plik HTML dla kryterium `1.3.5 Określenie celu danych wejściowych` w `public/wcag-prostym-jezykiem/`.
 
 Oczekiwany slug to prawdopodobnie:
 
-- `public/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje.html`
+- `public/wcag-prostym-jezykiem/1-3-5-okreslenie-celu-danych-wejsciowych.html`
 
 Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się i opisz problem — nie twórz nowej strony bez potwierdzenia.
 
@@ -29,9 +29,9 @@ Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się
 
 Rozbuduj kryterium:
 
-- Numer i tytuł: `1.3.1 Informacje i relacje`
-- Poziom: `A`
-- Plik HTML: realny plik 1.3.1 znaleziony w `public/wcag-prostym-jezykiem/`
+- Numer i tytuł: `1.3.5 Określenie celu danych wejściowych`
+- Poziom: `AA`
+- Plik HTML: realny plik 1.3.5 znaleziony w `public/wcag-prostym-jezykiem/`
 - Możliwy CSS: `public/assets/styles.css` tylko dla scoped demo CSS, jeśli potrzebne
 - Status: `content-standards/wcag-prostym-jezykiem-status.md`
 - Source QA: `content-standards/wcag-prostym-jezykiem-source-qa.md`
@@ -40,7 +40,7 @@ Rozbuduj kryterium:
 
 Można zmieniać tylko:
 
-- stronę kryterium `1.3.1`,
+- stronę kryterium `1.3.5`,
 - scoped CSS dla demo edukacyjnego,
 - status,
 - source QA.
@@ -51,30 +51,30 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 Sprawdź przed pisaniem:
 
-- WCAG 2.2: `1.3.1 Info and Relationships`
-- Understanding WCAG 1.3.1
-- How to Meet / Quick Reference dla 1.3.1
+- WCAG 2.2: `1.3.5 Identify Input Purpose`
+- Understanding WCAG 1.3.5
+- How to Meet / Quick Reference dla 1.3.5
 - techniki W3C i failures tylko po weryfikacji w W3C
 
 Nie dopisuj technik ani failures z pamięci.
 
 ## Granice kryterium
 
-1.3.1 dotyczy tego, żeby informacje, struktura i relacje widoczne wizualnie były możliwe do odczytania programowo albo dostępne w tekście.
+1.3.5 dotyczy pól zbierających dane o użytkowniku, dla których cel można określić programowo, zwykle przez poprawny atrybut `autocomplete` z listy HTML.
 
 Nie mieszaj z:
 
-- `4.1.2 Nazwa, rola, wartość` — nazwy, role i stany komponentów interfejsu,
-- `2.4.6 Nagłówki i etykiety` — opisowość nagłówków i etykiet,
-- `1.3.2 Zrozumiała kolejność` — sensowna kolejność odczytu,
-- `3.3.2 Etykiety lub instrukcje` — instrukcje dla pól formularzy,
-- `1.4.1 Użycie koloru` — informacja przekazana wyłącznie kolorem.
+- `3.3.2 Etykiety lub instrukcje` — widoczne etykiety i instrukcje formularza,
+- `1.3.1 Informacje i relacje` — ogólne relacje w kodzie,
+- `4.1.2 Nazwa, rola, wartość` — dostępna nazwa i rola komponentu,
+- `3.3.8 Dostępne uwierzytelnianie — minimum` — proces logowania,
+- walidacją poprawności danych.
 
-Powiązane kryteria możesz wskazać, ale nie opisuj ich wymagań jako wymagań 1.3.1.
+Nie opisuj 1.3.5 jako wymagania, że każde pole musi mieć `autocomplete`. Kryterium dotyczy tylko określonych danych wejściowych o użytkowniku, gdy cel pola odpowiada wartościom z listy autocomplete.
 
 ## Sens prostym językiem
 
-Jeśli coś wygląda jak struktura, relacja albo znaczenie, powinno być zapisane w kodzie. Nagłówek ma być nagłówkiem, lista listą, tabela tabelą danych, a etykieta pola prawdziwą etykietą.
+Jeśli formularz pyta o typowe dane użytkownika, takie jak imię, e-mail, telefon albo adres, kod powinien jasno mówić, jaki jest cel pola. Dzięki temu przeglądarka i technologie wspomagające mogą pomóc użytkownikowi szybciej i pewniej uzupełnić formularz.
 
 ## Wymagana struktura
 
@@ -97,32 +97,32 @@ Zbuduj pełny tutorial z sekcjami:
 
 Uwzględnij sytuacje:
 
-- tekst wizualnie wygląda jak nagłówek, ale jest zwykłym `div` albo `p`,
-- lista wygląda jak lista, ale jest zrobiona z osobnych akapitów albo `br`,
-- tabela danych nie ma nagłówków komórek,
-- etykieta pola formularza nie jest połączona z polem,
-- grupa checkboxów albo radio nie ma wspólnego pytania,
-- wymagane pola są oznaczone wizualnie, ale bez informacji programowej lub tekstowej,
-- układ kart albo sekcji opiera się na wyglądzie, ale nie ma sensownej struktury w HTML.
+- pole e-mail bez `autocomplete="email"`,
+- pole imienia bez `autocomplete="given-name"`,
+- pole nazwiska bez `autocomplete="family-name"`,
+- pole telefonu bez `autocomplete="tel"`,
+- pola adresu bez odpowiednich wartości autocomplete,
+- błędne wartości autocomplete albo użycie własnych nazw,
+- kilka pól o podobnej etykiecie, ale różnym celu.
 
 Dobre wzorce:
 
-- nagłówki `h1`-`h6` zgodne ze strukturą treści,
-- listy `ul`, `ol`, `li`,
-- tabele danych z `th`, `scope` i sensownymi nagłówkami,
-- pola formularzy z `label for` i `id`,
-- grupy pól z `fieldset` i `legend`,
-- użycie natywnego HTML przed ARIA,
-- tekstowe wyjaśnienie relacji, jeśli relacji nie da się wyrazić w kodzie.
+- `autocomplete="given-name"` dla imienia,
+- `autocomplete="family-name"` dla nazwiska,
+- `autocomplete="email"` dla adresu e-mail,
+- `autocomplete="tel"` dla telefonu,
+- `autocomplete="street-address"`, `address-level2`, `postal-code`, `country-name` dla danych adresowych,
+- oddzielne wartości dla danych rozliczeniowych i wysyłkowych, jeśli są potrzebne, np. `billing` i `shipping`, po weryfikacji w źródłach HTML/W3C,
+- widoczna etykieta nadal pozostaje potrzebna.
 
 Złe wzorce:
 
-- `div` udający nagłówek tylko przez wielkość i pogrubienie,
-- lista zrobiona z punktorów wpisanych jako znaki tekstowe,
-- tabela układowa udająca tabelę danych albo tabela danych bez `th`,
-- placeholder jako jedyna etykieta pola,
-- grupa radio bez `fieldset` i `legend`,
-- relacje przekazane tylko położeniem na ekranie.
+- brak `autocomplete` przy polach danych osobowych,
+- `autocomplete="name"` użyte tam, gdzie pole zbiera tylko imię albo tylko nazwisko,
+- wymyślone wartości, np. `autocomplete="user-email"`,
+- placeholder jako jedyna informacja o celu pola,
+- to samo `autocomplete` na polach o różnych celach,
+- wyłączanie autouzupełniania bez uzasadnienia.
 
 ## Przykłady kodu
 
@@ -131,39 +131,39 @@ Każdy blok ma mieć etykietę języka i właściwą klasę języka.
 
 Preferowane przykłady:
 
-1. Dobry nagłówek i lista — `Kod — HTML`.
-2. Zły przykład: wizualny nagłówek i lista zrobione z `div`/`br` — `Kod — HTML`.
-3. Dobra tabela danych z `th` i `scope` — `Kod — HTML`.
-4. Dobre pole formularza z `label` oraz grupa pól z `fieldset` i `legend` — `Kod — HTML`.
+1. Formularz kontaktowy z poprawnym `autocomplete` dla imienia, e-maila i telefonu — `Kod — HTML`.
+2. Formularz adresowy z poprawnymi wartościami `autocomplete` — `Kod — HTML`.
+3. Zły przykład: pola danych osobowych bez `autocomplete` albo z wymyślonymi wartościami — `Kod — HTML`.
+4. Przykład rozróżnienia adresu dostawy i adresu rozliczeniowego, jeśli można to poprawnie potwierdzić w źródłach — `Kod — HTML`.
 
-Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu. Nie dodawaj ARIA, jeśli natywny HTML wystarcza.
+Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu. Nie dodawaj ARIA, jeśli wystarczy natywny HTML.
 
 ## Demo edukacyjne
 
-Zrób statyczne demo jako porównanie wyglądu i semantyki.
+Zrób statyczne demo jako porównanie formularza bez określonego celu pól i formularza z poprawnym celem pól.
 
 Demo ma pokazywać:
 
-- `Źle`: elementy wyglądają jak nagłówek, lista albo tabela, ale w kodzie są tylko neutralnymi kontenerami,
-- `Ryzykownie`: część struktury jest semantyczna, ale ważna relacja nadal jest tylko wizualna,
-- `Dobrze`: struktura widoczna na ekranie ma odpowiednik w kodzie, np. nagłówek, lista, tabela albo połączona etykieta.
+- `Źle`: pola wyglądają poprawnie, ale kod nie mówi, czy to imię, e-mail, telefon albo adres,
+- `Ryzykownie`: część pól ma autocomplete, ale wartości są zbyt ogólne albo nie pasują do celu,
+- `Dobrze`: pola mają widoczne etykiety oraz poprawne wartości autocomplete, dzięki czemu autouzupełnianie i technologie wspomagające mogą działać lepiej.
 
 To ma być statyczny schemat.
-Nie dodawaj JS. Nie dodawaj prawdziwych formularzy, jeśli demo nie jest działające. Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby. Nie przekazuj oceny tylko kolorem.
+Nie dodawaj JS. Nie dodawaj prawdziwego formularza, jeśli demo nie jest działające. Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby. Nie przekazuj oceny tylko kolorem.
 
 Możliwe klasy CSS:
 
-- `.wcag-info-relations-demo`
-- `.wcag-info-relations-demo__grid`
-- `.wcag-info-relations-demo__item`
-- `.wcag-info-relations-demo__item--bad`
-- `.wcag-info-relations-demo__item--risky`
-- `.wcag-info-relations-demo__item--good`
-- `.wcag-info-relations-demo__visual`
-- `.wcag-info-relations-demo__code-label`
-- `.wcag-info-relations-demo__note`
+- `.wcag-input-purpose-demo`
+- `.wcag-input-purpose-demo__grid`
+- `.wcag-input-purpose-demo__item`
+- `.wcag-input-purpose-demo__item--bad`
+- `.wcag-input-purpose-demo__item--risky`
+- `.wcag-input-purpose-demo__item--good`
+- `.wcag-input-purpose-demo__field`
+- `.wcag-input-purpose-demo__code-label`
+- `.wcag-input-purpose-demo__note`
 
-Style muszą być scoped do `.wcag-info-relations-demo`.
+Style muszą być scoped do `.wcag-input-purpose-demo`.
 
 ## Powiązane kryteria
 
@@ -171,24 +171,23 @@ Dodaj tylko jako linki do istniejących podstron. Sprawdź rzeczywiste slugi.
 
 Rozważ:
 
-- `1.3.2 Zrozumiała kolejność`
-- `1.3.5 Określenie celu danych wejściowych`
-- `2.4.6 Nagłówki i etykiety`
+- `1.3.1 Informacje i relacje`
 - `3.3.2 Etykiety lub instrukcje`
+- `3.3.7 Powtarzające się wpisy`
+- `3.3.8 Dostępne uwierzytelnianie — minimum`
 - `4.1.2 Nazwa, rola, wartość`
-- `1.4.1 Użycie koloru`
 
 Jeśli strona powiązanego kryterium nie istnieje, nie linkuj do niej.
 
 ## Weryfikacja przed zakończeniem
 
-- [ ] Znaleziono realny plik HTML 1.3.1.
-- [ ] 1.3.1 ma pełną strukturę tutorialową.
-- [ ] 1.3.1 ma jeden `h1`.
+- [ ] Znaleziono realny plik HTML 1.3.5.
+- [ ] 1.3.5 ma pełną strukturę tutorialową.
+- [ ] 1.3.5 ma jeden `h1`.
 - [ ] Przykłady kodu mają etykiety języka.
 - [ ] `code` ma klasy `language-*`.
-- [ ] Demo pokazuje różnicę między wyglądem a semantyką.
-- [ ] Demo nie udaje działającego komponentu.
+- [ ] Demo pokazuje różnicę między etykietą wizualną a programowo określonym celem pola.
+- [ ] Demo nie udaje działającego formularza.
 - [ ] Powiązane kryteria są linkami.
 - [ ] Brak martwych linków lokalnych.
 - [ ] Style demo są scoped.
@@ -203,4 +202,4 @@ Jeśli strona powiązanego kryterium nie istnieje, nie linkuj do niej.
 
 Commit message po wykonaniu rozbudowy:
 
-`Expand WCAG 1.3.1 info and relationships tutorial`
+`Expand WCAG 1.3.5 identify input purpose tutorial`
