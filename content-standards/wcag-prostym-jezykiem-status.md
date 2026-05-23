@@ -108,3 +108,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowano, że How to Meet dla `3.3.6` odsyła do technik wystarczających dla `3.3.4`, stosowanych do wszystkich formularzy wymagających wysłania informacji.
 - Zweryfikowane techniki: G164, G98, G155, G99, G168. Quick Reference dla `3.3.6` nie wskazuje osobnej listy failures.
 - Raport źródeł dla `3.3.6` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-22: 3.3.7 Powtarzające się wpisy
+
+- `3.3.7 Powtarzające się wpisy`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-redundant-entry-demo` jako schemat procesu, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.7` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.7.
+- Zweryfikowana technika: G221. Potencjalnej przyszłej techniki z Quick Reference nie dodano do publicznych źródeł jako techniki.
+- Quick Reference dla `3.3.7` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.7` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

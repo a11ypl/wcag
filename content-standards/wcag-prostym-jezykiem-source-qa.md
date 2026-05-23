@@ -106,3 +106,32 @@ Uwagi zakresowe:
 - 3.3.6 rozszerza 3.3.4 na wszystkie formularze i strony, które wymagają wysłania informacji przez użytkownika.
 - Kryterium wymaga co najmniej jednego z mechanizmów: odwrócenie, sprawdzenie danych z możliwością poprawy albo przegląd/potwierdzenie/korekta przed finalizacją.
 - Nie mieszać z 3.3.1, 3.3.2, 3.3.3, 3.3.4 ani 4.1.3.
+
+## Source QA 2026-05-22: 3.3.7 Powtarzające się wpisy
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.7 Redundant Entry - `https://www.w3.org/TR/WCAG22/#redundant-entry`
+- Understanding WCAG 3.3.7 Redundant Entry - `https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html`
+- How to Meet WCAG 3.3.7 - `https://www.w3.org/WAI/WCAG22/quickref/#redundant-entry`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G221: Provide data from a previous step in a process.
+
+Nie dodano jako techniki publicznej:
+
+- `Not requesting the same information twice` - Quick Reference oznacza to jako potencjalną przyszłą technikę.
+
+Failures:
+
+- Quick Reference dla 3.3.7 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.3.7 dotyczy ponownego wpisywania tej samej informacji w tym samym procesie.
+- Wcześniej podana informacja powinna być automatycznie uzupełniona albo dostępna do wyboru.
+- Wyjątki: ponowne wpisanie jest niezbędne, wymagane dla bezpieczeństwa albo wcześniejsza informacja nie jest już ważna.
+- Nie mieszać z 1.3.5, 3.3.2, 3.3.4, 3.3.6 ani 1.3.1.
