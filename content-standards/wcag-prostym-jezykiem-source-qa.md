@@ -192,3 +192,27 @@ Uwagi zakresowe:
 - Częściowe zasłonięcie opisano jako ryzyko i powiązanie z wyższymi wymaganiami, nie jako automatyczne naruszenie 2.4.11.
 - Nie mieszać z 2.4.7, 2.4.12, 2.4.3, 1.4.11 ani 2.4.13.
 - 2.4.12 jest poziomem AAA i nie jest rozwijane w tym tasku.
+
+## Source QA 2026-05-23: 2.5.7 Ruch przeciągania
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.7 Dragging Movements - `https://www.w3.org/TR/WCAG22/#dragging-movements`
+- Understanding WCAG 2.5.7 Dragging Movements - `https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html`
+- How to Meet WCAG 2.5.7 - `https://www.w3.org/WAI/WCAG22/quickref/#dragging-movements`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G219: Ensuring that an alternative is available for dragging movements that operate on content.
+
+Failures:
+
+- F108: Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method that does not require a dragging movement.
+
+Uwagi zakresowe:
+
+- 2.5.7 dotyczy funkcji, które wymagają ruchu przeciągania.
+- Kryterium nie zakazuje przeciągania. Wymaga alternatywnej drogi wykonania tej samej funkcji bez przeciągania, chyba że przeciąganie jest istotą funkcji albo funkcja należy do wyjątków WCAG.
+- Nie mieszać z 2.5.1, 2.1.1, 2.5.8, 2.5.2 ani 1.4.10.

@@ -138,3 +138,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowana technika: C43. Zweryfikowany failure: F110.
 - W treści zachowano granicę: 2.4.11 dotyczy całkowitego zasłonięcia elementu z fokusem; częściowe zasłonięcie opisano jako ryzyko i powiązanie z wyższymi wymaganiami.
 - Raport źródeł dla `2.4.11` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 2.5.7 Ruch przeciągania
+
+- `2.5.7 Ruch przeciągania`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-dragging-demo` jako schemat funkcji wymagającej przeciągania i alternatywnej drogi bez drag and drop, bez JavaScriptu, `tabindex`, `role` i ARIA.
+- Technikę i failure W3C dla `2.5.7` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 2.5.7.
+- Zweryfikowana technika: G219. Zweryfikowany failure: F108.
+- W treści zachowano granicę: 2.5.7 nie zakazuje przeciągania, tylko wymaga alternatywy dla tej samej funkcji bez ruchu przeciągania.
+- Raport źródeł dla `2.5.7` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
