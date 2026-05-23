@@ -1,4 +1,4 @@
-# Current task: 3.3.8 Dostępne uwierzytelnianie — minimum
+# Current task: 2.4.11 Fokus niezakryty — minimum
 
 ## Polecenie dla Codexa
 
@@ -15,13 +15,18 @@ Na końcu zrób bezpieczny commit tylko z plikami z zakresu zadania.
 
 Najpierw wciągnij najnowszy remote, bo `current-task.md` został zaktualizowany na GitHubie.
 
-Uwaga: lokalnie mogą istnieć nieśledzone pliki `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`. Nie commituj ich.
+Nie commituj nieśledzonych plików:
 
-Następnie znajdź realny plik HTML dla kryterium `3.3.8 Dostępne uwierzytelnianie — minimum` w `public/wcag-prostym-jezykiem/`.
+- `.vercel/`
+- `Czytniki ekranu/`
+- `cms/`
+- `ola.jfif`
+
+Następnie znajdź realny plik HTML dla kryterium `2.4.11 Fokus niezakryty — minimum` w `public/wcag-prostym-jezykiem/`.
 
 Oczekiwany slug to prawdopodobnie:
 
-- `public/wcag-prostym-jezykiem/3-3-8-dostepne-uwierzytelnianie-minimum.html`
+- `public/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum.html`
 
 Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się i opisz problem — nie twórz nowej strony bez potwierdzenia.
 
@@ -29,9 +34,9 @@ Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się
 
 Rozbuduj kryterium:
 
-- Numer i tytuł: `3.3.8 Dostępne uwierzytelnianie — minimum`
+- Numer i tytuł: `2.4.11 Fokus niezakryty — minimum`
 - Poziom: `AA`
-- Plik HTML: realny plik 3.3.8 znaleziony w `public/wcag-prostym-jezykiem/`
+- Plik HTML: realny plik 2.4.11 znaleziony w `public/wcag-prostym-jezykiem/`
 - Możliwy CSS: `public/assets/styles.css` tylko dla scoped demo CSS, jeśli potrzebne
 - Status: `content-standards/wcag-prostym-jezykiem-status.md`
 - Source QA: `content-standards/wcag-prostym-jezykiem-source-qa.md`
@@ -40,7 +45,7 @@ Rozbuduj kryterium:
 
 Można zmieniać:
 
-- stronę kryterium `3.3.8`,
+- stronę kryterium `2.4.11`,
 - scoped CSS dla demo edukacyjnego,
 - status,
 - source QA.
@@ -56,21 +61,13 @@ Nie zmieniać:
 - globalnej architektury strony,
 - plików spoza zakresu.
 
-Nie commitować:
-
-- `.vercel/`,
-- `Czytniki ekranu/`,
-- `cms/`,
-- `ola.jfif`,
-- innych plików pobocznych.
-
 ## Podstawa źródłowa do sprawdzenia
 
 Sprawdź przed pisaniem:
 
-- WCAG 2.2: `3.3.8 Accessible Authentication (Minimum)`
-- Understanding WCAG 3.3.8
-- How to Meet / Quick Reference dla 3.3.8
+- WCAG 2.2: `2.4.11 Focus Not Obscured (Minimum)`
+- Understanding WCAG 2.4.11
+- How to Meet / Quick Reference dla 2.4.11
 - techniki W3C i failures tylko po weryfikacji w W3C
 
 Nie dopisuj technik ani failures z pamięci.
@@ -78,23 +75,21 @@ Jeśli nie możesz potwierdzić techniki/failure, nie wpisuj jej do publicznego 
 
 ## Granice kryterium
 
-3.3.8 dotyczy logowania i uwierzytelniania, które nie powinno wymagać testu funkcji poznawczych, chyba że dostępny jest mechanizm alternatywny albo wspierający.
+2.4.11 dotyczy sytuacji, w której element ma fokus klawiatury, ale zostaje całkowicie zasłonięty przez inny element interfejsu, np. sticky header, baner cookie, pasek dolny, czat, modal albo przyklejony panel.
 
 Nie mieszaj z:
 
-- `3.3.9 Dostępne uwierzytelnianie — rozszerzone` — poziom AAA, odkładamy na później,
-- `1.3.5 Określenie celu danych wejściowych` — autocomplete i cel pól danych osobowych,
-- `3.3.2 Etykiety lub instrukcje` — instrukcje formularzy,
-- `4.1.2 Nazwa, rola, wartość` — nazwy i role komponentów,
-- ogólnymi poradami cyberbezpieczeństwa.
+- `2.4.7 Widoczny fokus` — czy w ogóle widać wskaźnik fokusu,
+- `2.4.12 Fokus niezakryty — rozszerzony` — poziom AAA, odkładamy na później,
+- `2.4.3 Kolejność fokusu` — logiczna kolejność przechodzenia fokusu,
+- `1.4.11 Kontrast elementów nietekstowych` — kontrast wskaźnika fokusu,
+- `2.4.13 Wygląd fokusu` — parametry wyglądu fokusu.
 
-Opisuj wymóg dostępnościowy, nie projektuj pełnej polityki bezpieczeństwa.
+Pamiętaj: w 2.4.11 minimum problemem jest całkowite zasłonięcie elementu z fokusem przez treść utworzoną przez autora. Częściowe zasłonięcie należy omówić ostrożnie jako ryzyko i powiązanie z wyższym poziomem, nie jako pewne naruszenie 2.4.11.
 
 ## Sens kryterium prostym językiem
 
-Logowanie nie powinno zmuszać użytkownika do zapamiętywania, przepisywania, rozwiązywania zagadek albo wykonywania testów poznawczych, jeśli nie ma dostępnej pomocy albo alternatywy.
-
-Kryterium nie zakazuje haseł, kodów ani zabezpieczeń. Chodzi o to, żeby użytkownik mógł skorzystać z pomocy, np. menedżera haseł, wklejania kodu, linku logowania, passkey albo innego mechanizmu, który nie wymaga samodzielnego zapamiętywania i przepisywania.
+Jeśli użytkownik przechodzi po stronie klawiaturą, aktualnie aktywny element nie może zniknąć całkowicie pod przyklejonym nagłówkiem, banerem, oknem albo inną warstwą interfejsu.
 
 ## Oczekiwana struktura tutoriala
 
@@ -117,89 +112,82 @@ Zbuduj pełny tutorial z sekcjami:
 
 ### Krótko
 
-Użytkownik powinien móc zalogować się bez obowiązku samodzielnego zapamiętywania, przepisywania albo rozwiązywania testu poznawczego, jeśli dostępna jest pomoc lub alternatywa.
+Element z fokusem nie może być całkowicie zasłonięty przez przyklejone lub nachodzące elementy strony.
 
 ### Problem w praktyce
 
 Uwzględnij przykłady:
 
-- blokowanie wklejania hasła lub kodu,
-- wymuszanie przepisywania znaków z obrazka,
-- pytania typu „wybierz wszystkie zdjęcia z sygnalizacją”,
-- wymaganie zapamiętania hasła bez wsparcia menedżera haseł,
-- zbyt krótkie limity czasu na kod bez sensownego ponowienia,
-- logowanie, które nie działa z menedżerami haseł albo passkey.
-
-Problem: użytkownik może znać swoje dane i mieć prawo dostępu, ale nie przejść procesu logowania przez wymaganie pamięci, przepisywania albo rozpoznawania obrazów.
+- sticky header zasłania link po przejściu do sekcji,
+- pasek cookie zasłania przycisk z fokusem,
+- przyklejony chat zasłania dolny przycisk,
+- modal albo panel boczny zakrywa element, który nadal dostaje fokus,
+- automatyczne przewinięcie ustawia fokus pod nagłówkiem.
 
 ### Dobry przykład
 
 Uwzględnij:
 
-- pola logowania zgodne z menedżerami haseł,
-- możliwość wklejenia hasła i kodu jednorazowego,
-- link logowania wysłany e-mailem,
-- passkey / WebAuthn jako dostępna alternatywa,
-- kod jednorazowy możliwy do skopiowania i wklejenia,
-- CAPTCHA z dostępną alternatywą, jeśli musi wystąpić.
+- odpowiednie odstępy przy sticky headerze,
+- `scroll-margin-top` lub analogiczne rozwiązanie dla kotwic/sekcji,
+- testowanie Tabem przy przyklejonych elementach,
+- brak fokusu na elementach zakrytych przez modal/panel,
+- banery i paski, które nie zasłaniają aktywnego elementu.
 
 ### Zły przykład
 
 Uwzględnij:
 
-- blokowanie paste w polu hasła albo kodu,
-- CAPTCHA wyłącznie obrazkowa,
-- przepisywanie trudnych znaków z obrazka,
-- pytania wymagające pamięci albo obliczeń bez alternatywy,
-- logowanie zależne wyłącznie od rozpoznawania obiektów na zdjęciach,
-- proces, który nie pozwala używać menedżera haseł.
+- fokus całkowicie ukryty pod sticky headerem,
+- fokus trafia do elementu pod modalem,
+- dolny pasek zasłania aktywny przycisk,
+- chat widget zasłania link/przycisk,
+- przewinięcie do kotwicy chowa nagłówek albo kontrolkę pod przyklejonym menu.
 
 ## Przykłady kodu
 
 Dodaj przykłady w `.wcag-code-example`.
-Każdy blok ma mieć etykietę języka i `class="language-html"` albo właściwą klasę języka.
+Każdy blok ma mieć etykietę języka i właściwą klasę języka.
 
 Preferowane przykłady:
 
-1. Pole logowania przyjazne dla menedżera haseł — `Kod — HTML`.
-2. Pole kodu jednorazowego z możliwością wklejenia i `autocomplete="one-time-code"` — `Kod — HTML`.
-3. Zły przykład: blokowanie wklejania w polu hasła/kodu — `Kod — JavaScript`.
-4. Alternatywny sposób logowania, np. link e-mail albo passkey — `Kod — HTML`.
+1. Dobry przykład CSS z `scroll-margin-top` dla sekcji/kotwic — `Kod — CSS`.
+2. Dobry wzorzec HTML/CSS: przyklejony header i zachowany odstęp dla treści — `Kod — HTML` lub `Kod — CSS`.
+3. Zły przykład CSS: sticky header bez uwzględnienia przewijania do kotwic — `Kod — CSS`.
+4. Dobry wzorzec dla modala/panelu: nie zostawiaj fokusu na treści przykrytej warstwą — `Kod — HTML` albo krótki przykład koncepcyjny.
 
-Uwaga:
-- Nie projektuj kompletnego systemu logowania.
-- Nie dodawaj działającego JS do tutoriala.
-- Jeśli pokazujesz zły JS, ma być tylko fragmentem kodu w przykładzie, nie działającą funkcją strony.
+Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu. Jeżeli pokazujesz zachowanie dynamiczne, opisz je jako wzorzec, a nie działającą funkcję strony.
 
 ## Demo edukacyjne
 
-Zrób statyczne demo jako schemat procesu logowania, nie działający formularz.
+Zrób statyczne demo jako schemat zasłonięcia fokusu, nie działający komponent.
 
 Demo ma pokazywać:
 
-- `Źle`: Hasło → przepisz kod z obrazka → brak alternatywy,
-- `Ryzykownie`: Kod SMS/e-mail → krótki czas → brak wklejania lub słabe wsparcie,
-- `Dobrze`: Menedżer haseł / wklej kod / link logowania / passkey → dostępna alternatywa.
+- `Źle`: Fokus znajduje się pod przyklejonym nagłówkiem / banerem i nie widać aktywnego elementu,
+- `Ryzykownie`: Fokus jest widoczny tylko częściowo albo bardzo blisko zasłaniającej warstwy,
+- `Dobrze`: Fokusowany element ma zachowany odstęp i jest widoczny w całości.
 
-To ma być statyczny schemat procesu.
-Nie używaj prawdziwych inputów.
-Nie udawaj działającego logowania.
-Nie dodawaj JS do demo.
-Nie dodawaj ARIA bez potrzeby.
+To ma być statyczny schemat.
+Nie dodawaj JS.
+Nie dodawaj prawdziwych kontrolek, jeśli demo nie jest działające.
+Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby.
+Nie przekazuj oceny tylko kolorem — użyj tekstowych etykiet i opisów.
 
 Możliwe klasy CSS:
 
-- `.wcag-auth-demo`
-- `.wcag-auth-demo__grid`
-- `.wcag-auth-demo__item`
-- `.wcag-auth-demo__item--bad`
-- `.wcag-auth-demo__item--risky`
-- `.wcag-auth-demo__item--good`
-- `.wcag-auth-demo__flow`
-- `.wcag-auth-demo__step`
-- `.wcag-auth-demo__note`
+- `.wcag-focus-obscured-demo`
+- `.wcag-focus-obscured-demo__grid`
+- `.wcag-focus-obscured-demo__item`
+- `.wcag-focus-obscured-demo__item--bad`
+- `.wcag-focus-obscured-demo__item--risky`
+- `.wcag-focus-obscured-demo__item--good`
+- `.wcag-focus-obscured-demo__viewport`
+- `.wcag-focus-obscured-demo__sticky`
+- `.wcag-focus-obscured-demo__focus-target`
+- `.wcag-focus-obscured-demo__note`
 
-Style muszą być scoped do `.wcag-auth-demo`.
+Style muszą być scoped do `.wcag-focus-obscured-demo`.
 
 ## Powiązane kryteria
 
@@ -207,24 +195,23 @@ Dodaj tylko jako linki do istniejących podstron. Sprawdź rzeczywiste slugi.
 
 Rozważ:
 
-- `1.3.5 Określenie celu danych wejściowych`
-- `3.3.2 Etykiety lub instrukcje`
-- `3.3.7 Powtarzające się wpisy`
-- `4.1.2 Nazwa, rola, wartość`
-- `4.1.3 Komunikaty o stanie`
+- `2.4.3 Kolejność fokusu`
+- `2.4.7 Widoczny fokus`
+- `2.4.13 Wygląd fokusu`
+- `1.4.11 Kontrast elementów nietekstowych`
+- `2.4.1 Możliwość pominięcia bloków`
 
-Nie linkuj do `3.3.9`, jeśli nie istnieje albo jeśli nie chcemy wchodzić teraz w AAA.
+Nie linkuj do `2.4.12`, jeśli nie istnieje albo jeśli nie chcemy wchodzić teraz w AAA.
 
 ## Weryfikacja przed zakończeniem
 
-- [ ] Znaleziono realny plik HTML 3.3.8.
-- [ ] 3.3.8 ma pełną strukturę tutorialową.
-- [ ] 3.3.8 ma jeden `h1`.
+- [ ] Znaleziono realny plik HTML 2.4.11.
+- [ ] 2.4.11 ma pełną strukturę tutorialową.
+- [ ] 2.4.11 ma jeden `h1`.
 - [ ] Przykłady kodu mają etykiety języka.
 - [ ] `code` ma klasy `language-*`.
-- [ ] Demo jest statycznym schematem procesu logowania.
-- [ ] Demo nie udaje działającego formularza ani procesu logowania.
-- [ ] Zły JavaScript występuje tylko jako przykład kodu, nie jako działanie strony.
+- [ ] Demo jest statycznym schematem zasłonięcia fokusu.
+- [ ] Demo nie udaje działającego komponentu.
 - [ ] Powiązane kryteria są linkami.
 - [ ] Brak martwych linków lokalnych.
 - [ ] Style demo są scoped.
@@ -239,4 +226,4 @@ Nie linkuj do `3.3.9`, jeśli nie istnieje albo jeśli nie chcemy wchodzić tera
 
 Commit message po wykonaniu rozbudowy:
 
-`Expand WCAG 3.3.8 accessible authentication tutorial`
+`Expand WCAG 2.4.11 focus not obscured tutorial`
