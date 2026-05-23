@@ -1729,6 +1729,100 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-auth-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-auth-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-auth-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-auth-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-auth-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-auth-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-auth-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-auth-demo__flow {
+    align-items: stretch;
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    display: grid;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.wcag-auth-demo__step {
+    align-items: center;
+    background: white;
+    border: 2px solid var(--gray);
+    border-radius: 8px;
+    display: flex;
+    font-weight: 700;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.65rem;
+    text-align: center;
+}
+
+.wcag-auth-demo__step--choice {
+    border-color: var(--primary);
+}
+
+.wcag-auth-demo__step--impact {
+    border-color: currentColor;
+}
+
+.wcag-auth-demo__item--bad .wcag-auth-demo__step--impact {
+    color: #d33131;
+}
+
+.wcag-auth-demo__item--risky .wcag-auth-demo__step--impact {
+    color: #5c4500;
+}
+
+.wcag-auth-demo__arrow {
+    color: black;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+}
+
+.wcag-auth-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-auth-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-keyboard-trap-demo__path {
     display: grid;
     gap: 0.65rem;

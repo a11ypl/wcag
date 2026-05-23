@@ -135,3 +135,35 @@ Uwagi zakresowe:
 - Wcześniej podana informacja powinna być automatycznie uzupełniona albo dostępna do wyboru.
 - Wyjątki: ponowne wpisanie jest niezbędne, wymagane dla bezpieczeństwa albo wcześniejsza informacja nie jest już ważna.
 - Nie mieszać z 1.3.5, 3.3.2, 3.3.4, 3.3.6 ani 1.3.1.
+
+## Source QA 2026-05-23: 3.3.8 Dostępne uwierzytelnianie (minimum)
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.8 Accessible Authentication (Minimum) - `https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum`
+- Understanding WCAG 3.3.8 Accessible Authentication (Minimum) - `https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html`
+- How to Meet WCAG 3.3.8 - `https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-minimum`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G218: Email link authentication.
+- H100: Providing properly marked up email and password inputs.
+
+Nie dodano jako technik publicznych:
+
+- `Providing WebAuthn as an alternative to username/password` - Quick Reference oznacza to jako potencjalną przyszłą technikę.
+- `Providing a third-party login using OAuth` - Quick Reference oznacza to jako potencjalną przyszłą technikę.
+- `Using two techniques to provide two-factor authentication` - Quick Reference oznacza to jako potencjalną przyszłą technikę.
+
+Failures:
+
+- F109: Failure of Success Criterion 3.3.8 and 3.3.9 due to preventing password or code re-entry in the same format.
+
+Uwagi zakresowe:
+
+- 3.3.8 dotyczy uwierzytelniania istniejących użytkowników i testów funkcji poznawczych w procesie logowania.
+- Kryterium dopuszcza hasła, kody i zabezpieczenia, jeśli dostępny jest mechanizm pomocy albo alternatywna metoda.
+- Na poziomie AA wyjątki obejmują rozpoznawanie obiektów i identyfikację własnych treści nietekstowych użytkownika; rozszerzone wymaganie 3.3.9 jest poziomem AAA i nie jest rozwijane w tym tasku.
+- Nie mieszać z 3.3.9, 1.3.5, 3.3.2, 4.1.2 ani ogólną polityką cyberbezpieczeństwa.

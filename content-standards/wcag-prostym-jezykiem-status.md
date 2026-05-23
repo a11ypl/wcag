@@ -118,3 +118,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowana technika: G221. Potencjalnej przyszłej techniki z Quick Reference nie dodano do publicznych źródeł jako techniki.
 - Quick Reference dla `3.3.7` nie wskazuje osobnej listy failures.
 - Raport źródeł dla `3.3.7` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 3.3.8 Dostępne uwierzytelnianie (minimum)
+
+- `3.3.8 Dostępne uwierzytelnianie (minimum)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-auth-demo` jako schemat procesu logowania, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i zbędnego ARIA.
+- Techniki i failure W3C dla `3.3.8` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.8.
+- Zweryfikowane techniki: G218, H100. Zweryfikowany failure: F109.
+- Potencjalnych przyszłych technik z Quick Reference, takich jak WebAuthn, OAuth i łączenie technik dla 2FA, nie dodano do publicznych źródeł jako zweryfikowanych technik.
+- Raport źródeł dla `3.3.8` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
