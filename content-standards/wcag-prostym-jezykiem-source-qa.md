@@ -216,3 +216,28 @@ Uwagi zakresowe:
 - 2.5.7 dotyczy funkcji, które wymagają ruchu przeciągania.
 - Kryterium nie zakazuje przeciągania. Wymaga alternatywnej drogi wykonania tej samej funkcji bez przeciągania, chyba że przeciąganie jest istotą funkcji albo funkcja należy do wyjątków WCAG.
 - Nie mieszać z 2.5.1, 2.1.1, 2.5.8, 2.5.2 ani 1.4.10.
+
+## Source QA 2026-05-23: 2.5.8 Rozmiar celu (minimum)
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.8 Target Size (Minimum) - `https://www.w3.org/TR/WCAG22/#target-size-minimum`
+- Understanding WCAG 2.5.8 Target Size (Minimum) - `https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html`
+- How to Meet WCAG 2.5.8 - `https://www.w3.org/WAI/WCAG22/quickref/#target-size-minimum`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C42: Using min-height and min-width on target container to ensure sufficient target spacing.
+
+Failures:
+
+- Quick Reference dla 2.5.8 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.5.8 dotyczy celu dla wejścia wskaźnikiem, np. myszą, dotykiem albo rysikiem.
+- Cel powinien mieć co najmniej 24 na 24 CSS px albo mieć wystarczający odstęp od innych celów zgodnie z warunkami kryterium.
+- Wyjątki obejmują między innymi spacing, równoważny większy cel, linki inline, kontrolki przeglądarki i prezentację istotną lub wymaganą prawnie.
+- Nie mieszać z 2.5.5, 2.5.7, 2.5.2, 1.4.11 ani 2.4.7.
