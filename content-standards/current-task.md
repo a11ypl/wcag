@@ -1,4 +1,4 @@
-# Current task: 2.5.7 Ruch przeciągania
+# Current task: 2.5.8 Rozmiar celu — minimum
 
 ## Polecenie dla Codexa
 
@@ -17,11 +17,11 @@ Najpierw wciągnij najnowszy remote, bo `current-task.md` został zaktualizowany
 
 Nie commituj nieśledzonych plików: `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`.
 
-Znajdź realny plik HTML dla kryterium `2.5.7 Ruch przeciągania` w `public/wcag-prostym-jezykiem/`.
+Znajdź realny plik HTML dla kryterium `2.5.8 Rozmiar celu — minimum` w `public/wcag-prostym-jezykiem/`.
 
 Oczekiwany slug to prawdopodobnie:
 
-- `public/wcag-prostym-jezykiem/2-5-7-ruch-przeciagania.html`
+- `public/wcag-prostym-jezykiem/2-5-8-rozmiar-celu-minimum.html`
 
 Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się i opisz problem — nie twórz nowej strony bez potwierdzenia.
 
@@ -29,9 +29,9 @@ Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się
 
 Rozbuduj kryterium:
 
-- Numer i tytuł: `2.5.7 Ruch przeciągania`
+- Numer i tytuł: `2.5.8 Rozmiar celu — minimum`
 - Poziom: `AA`
-- Plik HTML: realny plik 2.5.7 znaleziony w `public/wcag-prostym-jezykiem/`
+- Plik HTML: realny plik 2.5.8 znaleziony w `public/wcag-prostym-jezykiem/`
 - Możliwy CSS: `public/assets/styles.css` tylko dla scoped demo CSS, jeśli potrzebne
 - Status: `content-standards/wcag-prostym-jezykiem-status.md`
 - Source QA: `content-standards/wcag-prostym-jezykiem-source-qa.md`
@@ -40,7 +40,7 @@ Rozbuduj kryterium:
 
 Można zmieniać tylko:
 
-- stronę kryterium `2.5.7`,
+- stronę kryterium `2.5.8`,
 - scoped CSS dla demo edukacyjnego,
 - status,
 - source QA.
@@ -51,30 +51,30 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 Sprawdź przed pisaniem:
 
-- WCAG 2.2: `2.5.7 Dragging Movements`
-- Understanding WCAG 2.5.7
-- How to Meet / Quick Reference dla 2.5.7
+- WCAG 2.2: `2.5.8 Target Size (Minimum)`
+- Understanding WCAG 2.5.8
+- How to Meet / Quick Reference dla 2.5.8
 - techniki W3C i failures tylko po weryfikacji w W3C
 
 Nie dopisuj technik ani failures z pamięci.
 
 ## Granice kryterium
 
-2.5.7 dotyczy funkcji, które wymagają ruchu przeciągania. Jeśli funkcję można wykonać przeciąganiem, użytkownik powinien dostać alternatywny sposób wykonania tej samej funkcji bez przeciągania, chyba że przeciąganie jest istotą funkcji albo kryterium ma zastosowanie zgodnie z wyjątkami WCAG.
+2.5.8 dotyczy minimalnego rozmiaru celu dla działań wskaźnikiem, np. myszą, dotykiem albo rysikiem. Cel powinien mieć co najmniej 24 na 24 piksele CSS albo mieć wystarczający odstęp od innych celów, zgodnie z warunkami kryterium.
 
 Nie mieszaj z:
 
-- `2.5.1 Gesty wskazujące`,
-- `2.1.1 Klawiatura`,
-- `2.5.8 Rozmiar celu — minimum`,
-- `2.5.2 Anulowanie akcji wskaźnikiem`,
-- `1.4.10 Dopasowanie do ekranu`.
+- `2.5.5 Rozmiar celu` — poziom AAA, większy wymóg 44 na 44 CSS px,
+- `2.5.7 Ruch przeciągania` — alternatywa dla przeciągania,
+- `2.5.2 Anulowanie akcji wskaźnikiem` — anulowanie kliknięcia/dotknięcia,
+- `1.4.11 Kontrast elementów nietekstowych` — widoczność granic i stanów,
+- `2.4.7 Widoczny fokus` — widoczność fokusu klawiatury.
 
-Nie opisuj 2.5.7 jako zakazu przeciągania. Przeciąganie może zostać, ale musi istnieć alternatywna droga.
+Nie opisuj 2.5.8 jako wymagania, że każdy widoczny przycisk musi mieć fizyczny prostokąt 24 na 24. Liczy się cel aktywny oraz odstępy/warunki kryterium. Uwzględnij wyjątki ostrożnie i tylko po sprawdzeniu źródeł W3C.
 
 ## Sens prostym językiem
 
-Jeśli użytkownik ma coś przeciągnąć, powinien dostać prostszy sposób wykonania tej samej czynności, np. przyciski, listę wyboru, menu akcji albo pole wartości.
+Elementy, które użytkownik klika albo dotyka, nie mogą być zbyt małe ani upchane tak blisko siebie, że łatwo trafić w zły element.
 
 ## Wymagana struktura
 
@@ -97,28 +97,29 @@ Zbuduj pełny tutorial z sekcjami:
 
 Uwzględnij sytuacje:
 
-- sortowanie elementów tylko przez drag and drop,
-- zmiana kolejności kart tylko przeciąganiem,
-- suwak bez alternatywy w postaci pola lub przycisków,
-- wybór zakresu tylko przez przesuwanie uchwytów,
-- ustawianie lokalizacji na mapie tylko przez przesuwanie pinezki,
-- dodawanie pliku tylko przez przeciągnięcie do strefy.
+- małe ikonki akcji w tabeli,
+- linki lub przyciski ustawione bardzo blisko siebie,
+- małe przyciski zamykania i rozwijania,
+- paginacja z małymi numerami stron,
+- małe kontrolki w mapie, kalendarzu albo filtrach,
+- ikony w kartach produktów albo listach wyników.
 
 Dobre wzorce:
 
-- sortowanie przez przyciski `Przenieś w górę` i `Przenieś w dół`,
-- suwak z polem liczbowym albo przyciskami zwiększ/zmniejsz,
-- wybór pliku zwykłym przyciskiem jako alternatywa dla przeciągania,
-- mapa z polem adresu albo listą lokalizacji,
-- zmiana kolejności przez menu akcji,
-- jasna informacja, że przeciąganie jest opcjonalne.
+- cel aktywny co najmniej 24 na 24 px CSS,
+- powiększenie obszaru klikalnego bez zmiany wyglądu ikony,
+- odstępy między małymi celami,
+- większy padding w przyciskach i linkach ikonowych,
+- czytelne grupowanie akcji,
+- rezygnacja z ciasnych ikon w tabelach na rzecz menu akcji albo większych kontrolek.
 
 Złe wzorce:
 
-- komunikat `Przeciągnij elementy, aby ustawić kolejność` bez alternatywy,
-- komponent drag and drop bez przycisków albo menu akcji,
-- suwak bez pola wartości i bez obsługi klawiatury,
-- mapa wymagająca przesuwania pinezki bez pola adresu.
+- ikony 16 na 16 px jako jedyny obszar kliknięcia,
+- kilka małych ikon obok siebie bez odstępu,
+- ciasna paginacja,
+- mały przycisk `x` bez większego obszaru aktywnego,
+- linki w tekście albo na liście tak blisko siebie, że trudno trafić w poprawny.
 
 ## Przykłady kodu
 
@@ -127,39 +128,40 @@ Każdy blok ma mieć etykietę języka i właściwą klasę języka.
 
 Preferowane przykłady:
 
-1. Sortowanie z przyciskami `Przenieś w górę` / `Przenieś w dół` — `Kod — HTML`.
-2. Strefa przeciągania pliku z alternatywnym przyciskiem `Wybierz plik` — `Kod — HTML`.
-3. Suwak z polem liczbowym jako alternatywą — `Kod — HTML`.
-4. Zły przykład: instrukcja przeciągania bez alternatywy — `Kod — HTML`.
+1. Przycisk ikonowy z większym obszarem aktywnym — `Kod — HTML` i/lub `Kod — CSS`.
+2. Lista akcji z zachowanym odstępem między celami — `Kod — HTML` i/lub `Kod — CSS`.
+3. Zły przykład: małe ikonki akcji bez paddingu i odstępu — `Kod — HTML` albo `Kod — CSS`.
+4. Dobre rozwiązanie dla paginacji albo menu akcji — `Kod — HTML`.
 
-Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu. Jeśli pokazujesz zachowanie dynamiczne, opisz je jako wzorzec, a nie działającą funkcję strony.
+Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu.
 
 ## Demo edukacyjne
 
-Zrób statyczne demo jako schemat funkcji wymagającej przeciągania i jej alternatywy.
+Zrób statyczne demo jako porównanie małych/cieśnych celów i poprawionych celów.
 
 Demo ma pokazywać:
 
-- `Źle`: tylko przeciągnij element / brak innej drogi,
-- `Ryzykownie`: przeciąganie jest główną drogą, a alternatywa jest ukryta albo niejasna,
-- `Dobrze`: przeciąganie jest opcjonalne, a obok są jasne przyciski, lista wyboru albo pole wartości.
+- `Źle`: kilka małych ikon bardzo blisko siebie, łatwo trafić w złą akcję,
+- `Ryzykownie`: ikony są nieco większe, ale odstęp nadal jest mały albo cel aktywny jest niejasny,
+- `Dobrze`: obszary aktywne mają co najmniej 24 na 24 px CSS albo mają wyraźny odstęp i czytelną strukturę.
 
-Nie dodawaj JS. Nie rób prawdziwego drag and drop. Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby. Nie przekazuj oceny tylko kolorem.
+To ma być statyczny schemat.
+Nie dodawaj JS. Nie dodawaj prawdziwych kontrolek, jeśli demo nie jest działające. Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby. Nie przekazuj oceny tylko kolorem.
 
 Możliwe klasy CSS:
 
-- `.wcag-dragging-demo`
-- `.wcag-dragging-demo__grid`
-- `.wcag-dragging-demo__item`
-- `.wcag-dragging-demo__item--bad`
-- `.wcag-dragging-demo__item--risky`
-- `.wcag-dragging-demo__item--good`
-- `.wcag-dragging-demo__flow`
-- `.wcag-dragging-demo__drag-item`
-- `.wcag-dragging-demo__alternative`
-- `.wcag-dragging-demo__note`
+- `.wcag-target-size-demo`
+- `.wcag-target-size-demo__grid`
+- `.wcag-target-size-demo__item`
+- `.wcag-target-size-demo__item--bad`
+- `.wcag-target-size-demo__item--risky`
+- `.wcag-target-size-demo__item--good`
+- `.wcag-target-size-demo__targets`
+- `.wcag-target-size-demo__target`
+- `.wcag-target-size-demo__target-area`
+- `.wcag-target-size-demo__note`
 
-Style muszą być scoped do `.wcag-dragging-demo`.
+Style muszą być scoped do `.wcag-target-size-demo`.
 
 ## Powiązane kryteria
 
@@ -167,24 +169,24 @@ Dodaj tylko jako linki do istniejących podstron. Sprawdź rzeczywiste slugi.
 
 Rozważ:
 
-- `2.1.1 Klawiatura`
-- `2.5.1 Gesty wskazujące`
+- `2.5.7 Ruch przeciągania`
 - `2.5.2 Anulowanie akcji wskaźnikiem`
-- `2.5.8 Rozmiar celu — minimum`
 - `2.4.7 Widoczny fokus`
-- `4.1.2 Nazwa, rola, wartość`
+- `1.4.11 Kontrast elementów nietekstowych`
+- `2.4.13 Wygląd fokusu`
+- `1.4.10 Dopasowanie do ekranu`
 
-Jeśli strona powiązanego kryterium nie istnieje, nie linkuj do niej.
+Nie linkuj do `2.5.5`, jeśli nie istnieje albo jeśli nie chcemy wchodzić teraz w AAA.
 
 ## Weryfikacja przed zakończeniem
 
-- [ ] Znaleziono realny plik HTML 2.5.7.
-- [ ] 2.5.7 ma pełną strukturę tutorialową.
-- [ ] 2.5.7 ma jeden `h1`.
+- [ ] Znaleziono realny plik HTML 2.5.8.
+- [ ] 2.5.8 ma pełną strukturę tutorialową.
+- [ ] 2.5.8 ma jeden `h1`.
 - [ ] Przykłady kodu mają etykiety języka.
 - [ ] `code` ma klasy `language-*`.
-- [ ] Demo jest statycznym schematem przeciągania i alternatywy.
-- [ ] Demo nie udaje działającego komponentu drag and drop.
+- [ ] Demo jest statycznym porównaniem małych/cieśnych celów i poprawionych celów.
+- [ ] Demo nie udaje działającego komponentu.
 - [ ] Powiązane kryteria są linkami.
 - [ ] Brak martwych linków lokalnych.
 - [ ] Style demo są scoped.
@@ -199,4 +201,4 @@ Jeśli strona powiązanego kryterium nie istnieje, nie linkuj do niej.
 
 Commit message po wykonaniu rozbudowy:
 
-`Expand WCAG 2.5.7 dragging movements tutorial`
+`Expand WCAG 2.5.8 target size tutorial`
