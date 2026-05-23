@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3.1 Informacje i relacje - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="1.3.1 Informacje i relacje prostym językiem: Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele, etykiety i grupy pól, musi być dostępna także w kodzie albo w tekście.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="1.3.1 Informacje i relacje - WCAG prostym językiem">
+    <meta property="og:description" content="1.3.1 Informacje i relacje prostym językiem: Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele, etykiety i grupy pól, musi być dostępna także w kodzie albo w tekście.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="1.3.1 Informacje i relacje - WCAG prostym językiem">
+    <meta name="twitter:description" content="1.3.1 Informacje i relacje prostym językiem: Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele, etykiety i grupy pól, musi być dostępna także w kodzie albo w tekście.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "1.3.1 Informacje i relacje",
+      "headline": "1.3.1 Informacje i relacje",
+      "description": "1.3.1 Informacje i relacje prostym językiem: Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele, etykiety i grupy pól, musi być dostępna także w kodzie albo w tekście.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Postrzegalność",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">1.3.1</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Postrzegalność · Poziom A</p>
+                <h1>1.3.1 Informacje i relacje</h1>
+                <p class="subtitle">Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele, etykiety i grupy pól, musi być dostępna także w kodzie albo w tekście.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Jeśli coś na stronie wygląda jak struktura albo relacja, ta sama informacja musi być dostępna w kodzie albo w tekście.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Strona wygląda porządnie dla osoby widzącej: jest duży tytuł, lista punktów, tabela, etykiety pól i grupa odpowiedzi. W kodzie te elementy są jednak zwykłymi `div`, tekstem rozdzielonym przez `br` albo tabelą bez nagłówków.</p>
+                    <p>Wtedy czytnik ekranu, tryb czytania, narzędzie do zmiany prezentacji albo inna technologia wspomagająca nie dostaje tej samej struktury. Użytkownik słyszy tekst, ale traci informację, co jest nagłówkiem, co jest listą, które komórki należą do którego nagłówka i które pola tworzą jedną grupę.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list">
+                        <li>Osób niewidomych korzystających z czytników ekranu.</li>
+                        <li>Osób słabowidzących, które zmieniają wygląd strony, powiększają tekst albo korzystają z trybów uproszczonych.</li>
+                        <li>Osób głuchoniewidomych korzystających z linijek brajlowskich.</li>
+                        <li>Osób z trudnościami poznawczymi, dla których jasna struktura zmniejsza obciążenie.</li>
+                        <li>Osób korzystających z klawiatury i technologii wspomagających do nawigowania po nagłówkach, listach, tabelach i formularzach.</li>
+                        <li>Wszystkich użytkowników, gdy treść jest długa, formularz jest złożony albo tabela zawiera wiele danych.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <p>Dobre rozwiązanie używa natywnego HTML do tego, co HTML już umie opisać. Wygląd może być dowolny, ale znaczenie musi wynikać z kodu albo z tekstu.</p>
+                    <ul class="detail-list">
+                        <li>Nagłówek jest oznaczony jako `h1`, `h2`, `h3` i tak dalej, a nie tylko powiększony CSS-em.</li>
+                        <li>Lista jest oznaczona jako `ul`, `ol` i `li`, a nie jako tekst z ręcznie wpisanymi kropkami i `br`.</li>
+                        <li>Tabela danych ma `caption`, komórki nagłówkowe `th` i odpowiedni `scope`.</li>
+                        <li>Pole formularza ma widoczną etykietę połączoną z polem przez `label` i `for`.</li>
+                        <li>Grupa pól, na przykład radio albo checkbox, ma `fieldset` i `legend` z pytaniem grupy.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <p>Zły wzorzec opiera się na tym, że coś tylko wygląda jak struktura. Dla osoby widzącej układ może być czytelny, ale w kodzie relacje nie istnieją.</p>
+                    <ul class="detail-list">
+                        <li>`div` z dużą czcionką udaje nagłówek.</li>
+                        <li>Lista jest zrobiona jako tekst z kropkami i przełamaniami linii.</li>
+                        <li>Tabela danych ma same komórki `td`, bez `th` i relacji nagłówków z danymi.</li>
+                        <li>Placeholder jest jedyną etykietą pola.</li>
+                        <li>Grupa radio ma kilka opcji, ale nie ma wspólnego pytania w `legend`.</li>
+                        <li>Kolor, położenie albo pogrubienie przekazuje znaczenie, którego nie ma w kodzie ani w tekście.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;section&gt;
+  &lt;h2&gt;Dokumenty do pobrania&lt;/h2&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Regulamin&lt;/li&gt;
+    &lt;li&gt;Polityka prywatności&lt;/li&gt;
+    &lt;li&gt;Deklaracja dostępności&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                    <p>Nagłówek i lista są strukturą w kodzie. Czytnik ekranu może przejść po nagłówkach i powiedzieć, że użytkownik jest na liście z trzema elementami.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;div class="big-title"&gt;
+  Dokumenty do pobrania
+&lt;/div&gt;
+
+&lt;div&gt;
+  • Regulamin&lt;br&gt;
+  • Polityka prywatności&lt;br&gt;
+  • Deklaracja dostępności
+&lt;/div&gt;</code></pre>
+                    </div>
+                    <p>To zły przykład. Tekst wygląda jak nagłówek i lista, ale w kodzie nie ma ani nagłówka, ani listy.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;table&gt;
+  &lt;caption&gt;Terminy szkoleń&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Data&lt;/th&gt;
+      &lt;th scope="col"&gt;Miasto&lt;/th&gt;
+      &lt;th scope="col"&gt;Miejsca&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;12 czerwca&lt;/td&gt;
+      &lt;td&gt;Warszawa&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                    </div>
+                    <p>Tabela danych ma tytuł i nagłówki kolumn. Dzięki temu relacja między komórką „8” a nagłówkiem „Miejsca” jest możliwa do ustalenia programowo.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;label for="email"&gt;
+  Adres e-mail
+&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+&gt;</code></pre>
+                    </div>
+                    <p>Widoczna etykieta jest połączona z konkretnym polem. To jest relacja, której nie zapewnia sam placeholder.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;fieldset&gt;
+  &lt;legend&gt;
+    Wybierz sposób kontaktu
+  &lt;/legend&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="radio"
+      name="contact-method"
+      value="email"
+    &gt;
+    E-mail
+  &lt;/label&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="radio"
+      name="contact-method"
+      value="phone"
+    &gt;
+    Telefon
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                    </div>
+                    <p>`fieldset` i `legend` pokazują, że opcje należą do jednej grupy i odpowiadają na wspólne pytanie.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-info-relations-demo">
+                        <div class="wcag-info-relations-demo__grid">
+                            <div class="wcag-info-relations-demo__item wcag-info-relations-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-info-relations-demo__visual">
+                                    <span class="wcag-info-relations-demo__mock-heading">Duży tytuł</span>
+                                    <span class="wcag-info-relations-demo__mock-line">• Pierwszy punkt</span>
+                                    <span class="wcag-info-relations-demo__mock-line">• Drugi punkt</span>
+                                    <span class="wcag-info-relations-demo__mock-row">Data | Miasto | Miejsca</span>
+                                </div>
+                                <p class="wcag-info-relations-demo__code-label">W kodzie: `div`, `br`, zwykły tekst.</p>
+                                <p class="wcag-info-relations-demo__note">Wygląda jak struktura, ale nie jest strukturą w kodzie.</p>
+                            </div>
+
+                            <div class="wcag-info-relations-demo__item wcag-info-relations-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <div class="wcag-info-relations-demo__visual">
+                                    <span class="wcag-info-relations-demo__mock-heading">Nagłówek jest poprawny</span>
+                                    <span class="wcag-info-relations-demo__mock-row">Tabela ma układ, ale nie ma nagłówków komórek</span>
+                                    <span class="wcag-info-relations-demo__mock-line">Pole ma tylko tekst w środku</span>
+                                </div>
+                                <p class="wcag-info-relations-demo__code-label">W kodzie: część relacji istnieje, część jest tylko wizualna.</p>
+                                <p class="wcag-info-relations-demo__note">Użytkownik dostaje fragment struktury, ale nadal może stracić ważne relacje.</p>
+                            </div>
+
+                            <div class="wcag-info-relations-demo__item wcag-info-relations-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-info-relations-demo__visual">
+                                    <span class="wcag-info-relations-demo__mock-heading">h2: Dokumenty</span>
+                                    <span class="wcag-info-relations-demo__mock-line">ul/li: lista punktów</span>
+                                    <span class="wcag-info-relations-demo__mock-row">table + th/scope: tabela danych</span>
+                                    <span class="wcag-info-relations-demo__mock-line">label + input, fieldset + legend</span>
+                                </div>
+                                <p class="wcag-info-relations-demo__code-label">W kodzie: znaczenie wynika z natywnego HTML.</p>
+                                <p class="wcag-info-relations-demo__note">Wygląd i semantyka mówią użytkownikowi to samo.</p>
+                            </div>
+                        </div>
+                        <figcaption>To jest statyczne demo edukacyjne. Pokazuje różnicę między elementem, który tylko wygląda jak struktura, a elementem, który jest strukturą w kodzie.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Przejdź po stronie i wypisz elementy, które wizualnie tworzą strukturę: nagłówki, listy, tabele, grupy pól, etykiety i wyróżnienia.</li>
+                        <li>Sprawdź w kodzie, czy nagłówki są prawdziwymi elementami `h1`-`h6`.</li>
+                        <li>Sprawdź, czy listy są oznaczone jako `ul`, `ol` i `li`, a nie jako tekst z kropkami.</li>
+                        <li>Sprawdź tabele danych: czy mają nagłówki `th`, właściwy `scope` albo inne poprawne powiązanie nagłówków z komórkami.</li>
+                        <li>Sprawdź formularze: czy pola mają widoczne etykiety połączone z polami.</li>
+                        <li>Sprawdź grupy checkbox i radio: czy mają wspólne pytanie w `legend`.</li>
+                        <li>Wyłącz CSS albo użyj narzędzia do inspekcji dostępności i zobacz, czy struktura nadal jest rozpoznawalna.</li>
+                        <li>Przejdź po stronie czytnikiem ekranu, skrótami po nagłówkach, listach, tabelach i polach formularza.</li>
+                        <li>Upewnij się, że informacje nie są przekazane wyłącznie przez wygląd, kolor, położenie albo wielkość tekstu.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>część pól formularza bez powiązanej etykiety,</li>
+                        <li>część tabel danych bez nagłówków,</li>
+                        <li>część niepoprawnych relacji `headers` i `id` w tabelach,</li>
+                        <li>część problemów z kolejnością lub poziomami nagłówków,</li>
+                        <li>część użyć semantyki w sposób niezgodny z treścią.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>czy duży tekst powinien być nagłówkiem, czy tylko wyróżnieniem,</li>
+                        <li>czy dana grupa pól naprawdę potrzebuje wspólnego pytania,</li>
+                        <li>czy tabela jest tabelą danych, czy tylko układem wizualnym,</li>
+                        <li>czy relacje widoczne na ekranie są kompletne w kodzie,</li>
+                        <li>czy tekstowa alternatywa rzeczywiście przekazuje tę samą informację co prezentacja.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Nagłówki zrobione przez `div`, `span`, pogrubienie albo większą czcionkę.</li>
+                        <li>Listy zapisane jako zwykły tekst z kropkami, myślnikami i `br`.</li>
+                        <li>Tabele danych bez `th`, `caption`, `scope` albo poprawnych relacji nagłówków z komórkami.</li>
+                        <li>Używanie tabeli układowej i jednocześnie oznaczanie jej jak tabeli danych.</li>
+                        <li>Placeholder jako jedyna etykieta pola formularza.</li>
+                        <li>Grupa radio albo checkbox bez `fieldset` i `legend`.</li>
+                        <li>Wymagane pola oznaczone tylko kolorem, bez tekstu albo programowo dostępnej informacji.</li>
+                        <li>Usuwanie semantyki z treści, która niesie znaczenie, na przykład przez `role="presentation"`.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-3-2-zrozumiala-kolejnosc">1.3.2 Zrozumiała kolejność</a>: gdy znaczenie zależy od kolejności treści.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-3-5-okreslenie-celu-danych-wejsciowych">1.3.5 Określenie celu danych wejściowych</a>: gdy pola danych osobowych powinny mieć rozpoznawalny cel.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety">2.4.6 Nagłówki i etykiety</a>: gdy trzeba ocenić, czy nagłówki i etykiety są opisowe.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a>: gdy użytkownik potrzebuje informacji przed wpisaniem danych.</li>
+                        <li><a href="/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc">4.1.2 Nazwa, rola, wartość</a>: gdy trzeba sprawdzić nazwę, rolę, stan i wartość komponentu interfejsu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-1-uzycie-koloru">1.4.1 Użycie koloru</a>: gdy informacja jest przekazana wyłącznie kolorem.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#info-and-relationships" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.3.1 Info and Relationships<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.3.1: Info and Relationships<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#info-and-relationships" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.3.1: Info and Relationships<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H42" target="_blank" rel="noopener noreferrer">H42: Using h1-h6 to identify headings<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H48" target="_blank" rel="noopener noreferrer">H48: Using ol, ul and dl for lists or groups of links<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H51" target="_blank" rel="noopener noreferrer">H51: Using table markup to present tabular information<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H63" target="_blank" rel="noopener noreferrer">H63: Using the scope attribute to associate header cells with data cells in data tables<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H44" target="_blank" rel="noopener noreferrer">H44: Using label elements to associate text labels with form controls<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H71" target="_blank" rel="noopener noreferrer">H71: Providing a description for groups of form controls using fieldset and legend elements<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F91" target="_blank" rel="noopener noreferrer">F91: Failure for not correctly marking up table headers<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/1-2-9-tylko-audio-na-zywo">Poprzednie: 1.2.9 Tylko audio (na żywo)</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/1-3-2-zrozumiala-kolejnosc">Następne: 1.3.2 Zrozumiała kolejność</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

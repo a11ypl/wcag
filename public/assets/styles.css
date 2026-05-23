@@ -679,6 +679,103 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-info-relations-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-info-relations-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-info-relations-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-info-relations-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-info-relations-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-info-relations-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-info-relations-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-info-relations-demo__visual {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    display: grid;
+    gap: 0.55rem;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.wcag-info-relations-demo__mock-heading,
+.wcag-info-relations-demo__mock-line,
+.wcag-info-relations-demo__mock-row {
+    background: white;
+    border: 2px solid var(--gray);
+    border-radius: 8px;
+    color: black;
+    display: block;
+    padding: 0.65rem;
+}
+
+.wcag-info-relations-demo__mock-heading {
+    font-size: 1.1rem;
+    font-weight: 900;
+}
+
+.wcag-info-relations-demo__mock-row {
+    font-weight: 700;
+}
+
+.wcag-info-relations-demo__item--bad .wcag-info-relations-demo__mock-heading,
+.wcag-info-relations-demo__item--bad .wcag-info-relations-demo__mock-line,
+.wcag-info-relations-demo__item--bad .wcag-info-relations-demo__mock-row {
+    border-color: #d33131;
+}
+
+.wcag-info-relations-demo__item--risky .wcag-info-relations-demo__mock-row,
+.wcag-info-relations-demo__item--risky .wcag-info-relations-demo__mock-line {
+    border-style: dashed;
+}
+
+.wcag-info-relations-demo__item--good .wcag-info-relations-demo__mock-heading,
+.wcag-info-relations-demo__item--good .wcag-info-relations-demo__mock-line,
+.wcag-info-relations-demo__item--good .wcag-info-relations-demo__mock-row {
+    border-color: var(--primary);
+}
+
+.wcag-info-relations-demo__code-label,
+.wcag-info-relations-demo__note {
+    color: black;
+    font-weight: 700;
+}
+
+.wcag-info-relations-demo__note {
+    margin-bottom: 0;
+}
+
+.wcag-info-relations-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-color-demo {
     margin: 1.5rem 0 0;
 }

@@ -158,3 +158,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowana technika: C42. Quick Reference dla `2.5.8` nie wskazuje osobnej listy failures.
 - W treści zachowano granicę: 2.5.8 dotyczy minimalnego rozmiaru celu albo wystarczającego odstępu, a nie wymaga, żeby każdy widoczny symbol miał fizycznie 24 na 24 px.
 - Raport źródeł dla `2.5.8` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 1.3.1 Informacje i relacje
+
+- `1.3.1 Informacje i relacje`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-info-relations-demo` jako porównanie „wygląda jak struktura” i „jest strukturą w kodzie”, bez JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` i ARIA.
+- Techniki i failure W3C dla `1.3.1` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.3.1.
+- Zweryfikowane techniki: H42, H48, H51, H63, H44, H71. Zweryfikowany failure: F91.
+- W treści zachowano granicę: 1.3.1 dotyczy informacji, struktury i relacji widocznych wizualnie, które muszą być dostępne programowo albo tekstowo; nie rozwija wymagań 4.1.2 dotyczących nazwy, roli i wartości komponentów.
+- Raport źródeł dla `1.3.1` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

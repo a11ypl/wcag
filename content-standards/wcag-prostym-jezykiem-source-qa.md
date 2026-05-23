@@ -241,3 +241,38 @@ Uwagi zakresowe:
 - Cel powinien mieć co najmniej 24 na 24 CSS px albo mieć wystarczający odstęp od innych celów zgodnie z warunkami kryterium.
 - Wyjątki obejmują między innymi spacing, równoważny większy cel, linki inline, kontrolki przeglądarki i prezentację istotną lub wymaganą prawnie.
 - Nie mieszać z 2.5.5, 2.5.7, 2.5.2, 1.4.11 ani 2.4.7.
+
+## Source QA 2026-05-23: 1.3.1 Informacje i relacje
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.1 Info and Relationships - `https://www.w3.org/TR/WCAG22/#info-and-relationships`
+- Understanding WCAG 1.3.1 Info and Relationships - `https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html`
+- How to Meet WCAG 1.3.1 - `https://www.w3.org/WAI/WCAG22/quickref/#info-and-relationships`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H42: Using h1-h6 to identify headings.
+- H48: Using ol, ul and dl for lists or groups of links.
+- H51: Using table markup to present tabular information.
+- H63: Using the scope attribute to associate header cells with data cells in data tables.
+- H44: Using label elements to associate text labels with form controls.
+- H71: Providing a description for groups of form controls using fieldset and legend elements.
+
+Failures:
+
+- F91: Failure of Success Criterion 1.3.1 for not correctly marking up table headers.
+
+Zweryfikowane, ale nie dodane jako publiczne źródła technik:
+
+- G115, G117, G140, H39, H43, H65, H85, H97, H101 oraz techniki ARIA i PDF z Quick Reference. Nie były potrzebne do przykładów w tym tutorialu.
+- Pozostałe failures z Quick Reference: F2, F33, F34, F42, F43, F46, F48, F90, F92, F111.
+
+Uwagi zakresowe:
+
+- 1.3.1 dotyczy informacji, struktury i relacji przekazanych przez prezentację, które muszą być programowo możliwe do ustalenia albo dostępne w tekście.
+- W tutorialu użyto przede wszystkim natywnego HTML: nagłówków, list, tabel, etykiet i grupowania formularzy.
+- Nie mieszać z 4.1.2: nazwa, rola, stan i wartość komponentu są powiązane, ale nie są głównym zakresem tego materiału.
+- Nie mieszać z 1.3.2: kolejność treści jest osobnym kryterium, choć korzysta z poprawnej struktury.
