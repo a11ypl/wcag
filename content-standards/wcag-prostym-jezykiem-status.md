@@ -168,3 +168,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowane techniki: H42, H48, H51, H63, H44, H71. Zweryfikowany failure: F91.
 - W treści zachowano granicę: 1.3.1 dotyczy informacji, struktury i relacji widocznych wizualnie, które muszą być dostępne programowo albo tekstowo; nie rozwija wymagań 4.1.2 dotyczących nazwy, roli i wartości komponentów.
 - Raport źródeł dla `1.3.1` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 1.3.5 Określenie celu danych wejściowych
+
+- `1.3.5 Określenie celu danych wejściowych`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-input-purpose-demo` jako porównanie samej etykiety wizualnej z programowo określonym celem pola, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Technikę i failure W3C dla `1.3.5` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.3.5.
+- Zweryfikowana technika: H98. Zweryfikowany failure: F107.
+- W treści zachowano granicę: 1.3.5 dotyczy określonych danych o użytkowniku, których cel można programowo określić, zwykle przez poprawne wartości `autocomplete`; nie wymaga `autocomplete` dla każdego pola formularza.
+- Raport źródeł dla `1.3.5` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

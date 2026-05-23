@@ -276,3 +276,34 @@ Uwagi zakresowe:
 - W tutorialu użyto przede wszystkim natywnego HTML: nagłówków, list, tabel, etykiet i grupowania formularzy.
 - Nie mieszać z 4.1.2: nazwa, rola, stan i wartość komponentu są powiązane, ale nie są głównym zakresem tego materiału.
 - Nie mieszać z 1.3.2: kolejność treści jest osobnym kryterium, choć korzysta z poprawnej struktury.
+
+## Source QA 2026-05-23: 1.3.5 Określenie celu danych wejściowych
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.5 Identify Input Purpose - `https://www.w3.org/TR/WCAG22/#identify-input-purpose`
+- Understanding WCAG 1.3.5 Identify Input Purpose - `https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html`
+- How to Meet WCAG 1.3.5 - `https://www.w3.org/WAI/WCAG22/quickref/#identify-input-purpose`
+- HTML Standard: Autofill - `https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H98: Using HTML autocomplete attributes.
+
+Failures:
+
+- F107: Failure of Success Criterion 1.3.5 due to incorrect autocomplete attribute values.
+
+Zweryfikowane tokeny użyte w tutorialu:
+
+- `given-name`, `family-name`, `email`, `tel`, `street-address`, `address-level2`, `postal-code`, `country-name`.
+- `shipping` i `billing` jako opcjonalne tokeny rozróżniające adres albo dane kontaktowe wysyłki i rozliczeń.
+
+Uwagi zakresowe:
+
+- 1.3.5 dotyczy pól zbierających informacje o użytkowniku, gdy cel pola odpowiada liście input purposes i technologia pozwala określić ten cel programowo.
+- Widoczna etykieta nadal jest potrzebna; `autocomplete` nie zastępuje wymagań z 3.3.2 ani dostępnej nazwy z 4.1.2.
+- `type="email"` i `type="tel"` opisują typ danych, ale nie zawsze precyzyjny cel pola w sensie 1.3.5.
+- Nie każde pole formularza wymaga `autocomplete`; kryterium dotyczy tylko pasujących danych o użytkowniku.
