@@ -1823,6 +1823,113 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-focus-obscured-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-focus-obscured-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-focus-obscured-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-focus-obscured-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-focus-obscured-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-focus-obscured-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-focus-obscured-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-focus-obscured-demo__viewport {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    min-height: 12rem;
+    overflow: hidden;
+    padding: 0.75rem;
+    position: relative;
+}
+
+.wcag-focus-obscured-demo__sticky {
+    background: #2b154f;
+    border-radius: 6px;
+    color: white;
+    font-weight: 800;
+    left: 0.75rem;
+    padding: 0.75rem;
+    position: absolute;
+    right: 0.75rem;
+    text-align: center;
+    top: 0.75rem;
+    z-index: 2;
+}
+
+.wcag-focus-obscured-demo__focus-target {
+    background: white;
+    border: 4px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: 0 0 0 3px white;
+    color: black;
+    font-weight: 800;
+    left: 1.25rem;
+    padding: 0.6rem;
+    position: absolute;
+    right: 1.25rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.wcag-focus-obscured-demo__focus-target--hidden {
+    top: 1.05rem;
+}
+
+.wcag-focus-obscured-demo__focus-target--partial {
+    top: 3.75rem;
+}
+
+.wcag-focus-obscured-demo__focus-target--clear {
+    top: 5.35rem;
+}
+
+.wcag-focus-obscured-demo__content {
+    background: white;
+    border: 2px dashed var(--gray);
+    border-radius: 8px;
+    color: black;
+    margin-top: 6.75rem;
+    padding: 1.3rem 0.75rem 0.75rem;
+    text-align: center;
+}
+
+.wcag-focus-obscured-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-focus-obscured-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-keyboard-trap-demo__path {
     display: grid;
     gap: 0.65rem;

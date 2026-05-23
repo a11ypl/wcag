@@ -167,3 +167,28 @@ Uwagi zakresowe:
 - Kryterium dopuszcza hasła, kody i zabezpieczenia, jeśli dostępny jest mechanizm pomocy albo alternatywna metoda.
 - Na poziomie AA wyjątki obejmują rozpoznawanie obiektów i identyfikację własnych treści nietekstowych użytkownika; rozszerzone wymaganie 3.3.9 jest poziomem AAA i nie jest rozwijane w tym tasku.
 - Nie mieszać z 3.3.9, 1.3.5, 3.3.2, 4.1.2 ani ogólną polityką cyberbezpieczeństwa.
+
+## Source QA 2026-05-23: 2.4.11 Fokus niezakryty (minimum)
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.11 Focus Not Obscured (Minimum) - `https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum`
+- Understanding WCAG 2.4.11 Focus Not Obscured (Minimum) - `https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html`
+- How to Meet WCAG 2.4.11 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-not-obscured-minimum`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C43: Using CSS margin and scroll-margin to un-obscure content.
+
+Failures:
+
+- F110: Failure of Success Criterion 2.4.11 due to opening a dialog or menu which obscures focused content.
+
+Uwagi zakresowe:
+
+- 2.4.11 dotyczy sytuacji, gdy element z fokusem jest całkowicie zasłonięty przez treść utworzoną przez autora strony.
+- Częściowe zasłonięcie opisano jako ryzyko i powiązanie z wyższymi wymaganiami, nie jako automatyczne naruszenie 2.4.11.
+- Nie mieszać z 2.4.7, 2.4.12, 2.4.3, 1.4.11 ani 2.4.13.
+- 2.4.12 jest poziomem AAA i nie jest rozwijane w tym tasku.

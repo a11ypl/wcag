@@ -128,3 +128,13 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowane techniki: G218, H100. Zweryfikowany failure: F109.
 - Potencjalnych przyszłych technik z Quick Reference, takich jak WebAuthn, OAuth i łączenie technik dla 2FA, nie dodano do publicznych źródeł jako zweryfikowanych technik.
 - Raport źródeł dla `3.3.8` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 2.4.11 Fokus niezakryty (minimum)
+
+- `2.4.11 Fokus niezakryty (minimum)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-focus-obscured-demo` jako schemat zasłonięcia fokusu, bez JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` i ARIA.
+- Technika i failure W3C dla `2.4.11` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 2.4.11.
+- Zweryfikowana technika: C43. Zweryfikowany failure: F110.
+- W treści zachowano granicę: 2.4.11 dotyczy całkowitego zasłonięcia elementu z fokusem; częściowe zasłonięcie opisano jako ryzyko i powiązanie z wyższymi wymaganiami.
+- Raport źródeł dla `2.4.11` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
