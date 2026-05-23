@@ -1,4 +1,4 @@
-# Current task: 2.4.11 Fokus niezakryty — minimum
+# Current task: 2.5.7 Ruch przeciągania
 
 ## Polecenie dla Codexa
 
@@ -15,18 +15,13 @@ Na końcu zrób bezpieczny commit tylko z plikami z zakresu zadania.
 
 Najpierw wciągnij najnowszy remote, bo `current-task.md` został zaktualizowany na GitHubie.
 
-Nie commituj nieśledzonych plików:
+Nie commituj nieśledzonych plików: `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`.
 
-- `.vercel/`
-- `Czytniki ekranu/`
-- `cms/`
-- `ola.jfif`
-
-Następnie znajdź realny plik HTML dla kryterium `2.4.11 Fokus niezakryty — minimum` w `public/wcag-prostym-jezykiem/`.
+Znajdź realny plik HTML dla kryterium `2.5.7 Ruch przeciągania` w `public/wcag-prostym-jezykiem/`.
 
 Oczekiwany slug to prawdopodobnie:
 
-- `public/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum.html`
+- `public/wcag-prostym-jezykiem/2-5-7-ruch-przeciagania.html`
 
 Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się i opisz problem — nie twórz nowej strony bez potwierdzenia.
 
@@ -34,64 +29,54 @@ Jeśli slug jest inny, użyj realnego pliku. Jeśli pliku nie ma, zatrzymaj się
 
 Rozbuduj kryterium:
 
-- Numer i tytuł: `2.4.11 Fokus niezakryty — minimum`
+- Numer i tytuł: `2.5.7 Ruch przeciągania`
 - Poziom: `AA`
-- Plik HTML: realny plik 2.4.11 znaleziony w `public/wcag-prostym-jezykiem/`
+- Plik HTML: realny plik 2.5.7 znaleziony w `public/wcag-prostym-jezykiem/`
 - Możliwy CSS: `public/assets/styles.css` tylko dla scoped demo CSS, jeśli potrzebne
 - Status: `content-standards/wcag-prostym-jezykiem-status.md`
 - Source QA: `content-standards/wcag-prostym-jezykiem-source-qa.md`
 
 ## Zakres
 
-Można zmieniać:
+Można zmieniać tylko:
 
-- stronę kryterium `2.4.11`,
+- stronę kryterium `2.5.7`,
 - scoped CSS dla demo edukacyjnego,
 - status,
 - source QA.
 
-Nie zmieniać:
+Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej architektury ani innych kryteriów.
 
-- innych kryteriów,
-- listy kryteriów,
-- routingu,
-- headera,
-- footera,
-- canonicali,
-- globalnej architektury strony,
-- plików spoza zakresu.
-
-## Podstawa źródłowa do sprawdzenia
+## Źródła do sprawdzenia
 
 Sprawdź przed pisaniem:
 
-- WCAG 2.2: `2.4.11 Focus Not Obscured (Minimum)`
-- Understanding WCAG 2.4.11
-- How to Meet / Quick Reference dla 2.4.11
+- WCAG 2.2: `2.5.7 Dragging Movements`
+- Understanding WCAG 2.5.7
+- How to Meet / Quick Reference dla 2.5.7
 - techniki W3C i failures tylko po weryfikacji w W3C
 
 Nie dopisuj technik ani failures z pamięci.
-Jeśli nie możesz potwierdzić techniki/failure, nie wpisuj jej do publicznego tutoriala. Zapisz uwagę w `source-qa`.
 
 ## Granice kryterium
 
-2.4.11 dotyczy sytuacji, w której element ma fokus klawiatury, ale zostaje całkowicie zasłonięty przez inny element interfejsu, np. sticky header, baner cookie, pasek dolny, czat, modal albo przyklejony panel.
+2.5.7 dotyczy funkcji, które wymagają ruchu przeciągania. Jeśli funkcję można wykonać przeciąganiem, użytkownik powinien dostać alternatywny sposób wykonania tej samej funkcji bez przeciągania, chyba że przeciąganie jest istotą funkcji albo kryterium ma zastosowanie zgodnie z wyjątkami WCAG.
 
 Nie mieszaj z:
 
-- `2.4.7 Widoczny fokus` — czy w ogóle widać wskaźnik fokusu,
-- `2.4.12 Fokus niezakryty — rozszerzony` — poziom AAA, odkładamy na później,
-- `2.4.3 Kolejność fokusu` — logiczna kolejność przechodzenia fokusu,
-- `1.4.11 Kontrast elementów nietekstowych` — kontrast wskaźnika fokusu,
-- `2.4.13 Wygląd fokusu` — parametry wyglądu fokusu.
+- `2.5.1 Gesty wskazujące`,
+- `2.1.1 Klawiatura`,
+- `2.5.8 Rozmiar celu — minimum`,
+- `2.5.2 Anulowanie akcji wskaźnikiem`,
+- `1.4.10 Dopasowanie do ekranu`.
 
-Pamiętaj: w 2.4.11 minimum problemem jest całkowite zasłonięcie elementu z fokusem przez treść utworzoną przez autora. Częściowe zasłonięcie należy omówić ostrożnie jako ryzyko i powiązanie z wyższym poziomem, nie jako pewne naruszenie 2.4.11.
+Nie opisuj 2.5.7 jako zakazu przeciągania. Przeciąganie może zostać, ale musi istnieć alternatywna droga.
 
-## Sens kryterium prostym językiem
+## Sens prostym językiem
 
-Jeśli użytkownik przechodzi po stronie klawiaturą, aktualnie aktywny element nie może zniknąć całkowicie pod przyklejonym nagłówkiem, banerem, oknem albo inną warstwą interfejsu.
+Jeśli użytkownik ma coś przeciągnąć, powinien dostać prostszy sposób wykonania tej samej czynności, np. przyciski, listę wyboru, menu akcji albo pole wartości.
 
-## Oczekiwana struktura tutoriala
+## Wymagana struktura
 
 Zbuduj pełny tutorial z sekcjami:
 
@@ -108,41 +93,32 @@ Zbuduj pełny tutorial z sekcjami:
 - `Powiązane kryteria`
 - `Źródła`
 
-## Treść, którą trzeba ująć
+## Treść do ujęcia
 
-### Krótko
+Uwzględnij sytuacje:
 
-Element z fokusem nie może być całkowicie zasłonięty przez przyklejone lub nachodzące elementy strony.
+- sortowanie elementów tylko przez drag and drop,
+- zmiana kolejności kart tylko przeciąganiem,
+- suwak bez alternatywy w postaci pola lub przycisków,
+- wybór zakresu tylko przez przesuwanie uchwytów,
+- ustawianie lokalizacji na mapie tylko przez przesuwanie pinezki,
+- dodawanie pliku tylko przez przeciągnięcie do strefy.
 
-### Problem w praktyce
+Dobre wzorce:
 
-Uwzględnij przykłady:
+- sortowanie przez przyciski `Przenieś w górę` i `Przenieś w dół`,
+- suwak z polem liczbowym albo przyciskami zwiększ/zmniejsz,
+- wybór pliku zwykłym przyciskiem jako alternatywa dla przeciągania,
+- mapa z polem adresu albo listą lokalizacji,
+- zmiana kolejności przez menu akcji,
+- jasna informacja, że przeciąganie jest opcjonalne.
 
-- sticky header zasłania link po przejściu do sekcji,
-- pasek cookie zasłania przycisk z fokusem,
-- przyklejony chat zasłania dolny przycisk,
-- modal albo panel boczny zakrywa element, który nadal dostaje fokus,
-- automatyczne przewinięcie ustawia fokus pod nagłówkiem.
+Złe wzorce:
 
-### Dobry przykład
-
-Uwzględnij:
-
-- odpowiednie odstępy przy sticky headerze,
-- `scroll-margin-top` lub analogiczne rozwiązanie dla kotwic/sekcji,
-- testowanie Tabem przy przyklejonych elementach,
-- brak fokusu na elementach zakrytych przez modal/panel,
-- banery i paski, które nie zasłaniają aktywnego elementu.
-
-### Zły przykład
-
-Uwzględnij:
-
-- fokus całkowicie ukryty pod sticky headerem,
-- fokus trafia do elementu pod modalem,
-- dolny pasek zasłania aktywny przycisk,
-- chat widget zasłania link/przycisk,
-- przewinięcie do kotwicy chowa nagłówek albo kontrolkę pod przyklejonym menu.
+- komunikat `Przeciągnij elementy, aby ustawić kolejność` bez alternatywy,
+- komponent drag and drop bez przycisków albo menu akcji,
+- suwak bez pola wartości i bez obsługi klawiatury,
+- mapa wymagająca przesuwania pinezki bez pola adresu.
 
 ## Przykłady kodu
 
@@ -151,43 +127,39 @@ Każdy blok ma mieć etykietę języka i właściwą klasę języka.
 
 Preferowane przykłady:
 
-1. Dobry przykład CSS z `scroll-margin-top` dla sekcji/kotwic — `Kod — CSS`.
-2. Dobry wzorzec HTML/CSS: przyklejony header i zachowany odstęp dla treści — `Kod — HTML` lub `Kod — CSS`.
-3. Zły przykład CSS: sticky header bez uwzględnienia przewijania do kotwic — `Kod — CSS`.
-4. Dobry wzorzec dla modala/panelu: nie zostawiaj fokusu na treści przykrytej warstwą — `Kod — HTML` albo krótki przykład koncepcyjny.
+1. Sortowanie z przyciskami `Przenieś w górę` / `Przenieś w dół` — `Kod — HTML`.
+2. Strefa przeciągania pliku z alternatywnym przyciskiem `Wybierz plik` — `Kod — HTML`.
+3. Suwak z polem liczbowym jako alternatywą — `Kod — HTML`.
+4. Zły przykład: instrukcja przeciągania bez alternatywy — `Kod — HTML`.
 
-Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu. Jeżeli pokazujesz zachowanie dynamiczne, opisz je jako wzorzec, a nie działającą funkcję strony.
+Nie twórz pełnej aplikacji ani ciężkiego JavaScriptu. Jeśli pokazujesz zachowanie dynamiczne, opisz je jako wzorzec, a nie działającą funkcję strony.
 
 ## Demo edukacyjne
 
-Zrób statyczne demo jako schemat zasłonięcia fokusu, nie działający komponent.
+Zrób statyczne demo jako schemat funkcji wymagającej przeciągania i jej alternatywy.
 
 Demo ma pokazywać:
 
-- `Źle`: Fokus znajduje się pod przyklejonym nagłówkiem / banerem i nie widać aktywnego elementu,
-- `Ryzykownie`: Fokus jest widoczny tylko częściowo albo bardzo blisko zasłaniającej warstwy,
-- `Dobrze`: Fokusowany element ma zachowany odstęp i jest widoczny w całości.
+- `Źle`: tylko przeciągnij element / brak innej drogi,
+- `Ryzykownie`: przeciąganie jest główną drogą, a alternatywa jest ukryta albo niejasna,
+- `Dobrze`: przeciąganie jest opcjonalne, a obok są jasne przyciski, lista wyboru albo pole wartości.
 
-To ma być statyczny schemat.
-Nie dodawaj JS.
-Nie dodawaj prawdziwych kontrolek, jeśli demo nie jest działające.
-Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby.
-Nie przekazuj oceny tylko kolorem — użyj tekstowych etykiet i opisów.
+Nie dodawaj JS. Nie rób prawdziwego drag and drop. Nie dodawaj `tabindex`, `role` ani ARIA bez potrzeby. Nie przekazuj oceny tylko kolorem.
 
 Możliwe klasy CSS:
 
-- `.wcag-focus-obscured-demo`
-- `.wcag-focus-obscured-demo__grid`
-- `.wcag-focus-obscured-demo__item`
-- `.wcag-focus-obscured-demo__item--bad`
-- `.wcag-focus-obscured-demo__item--risky`
-- `.wcag-focus-obscured-demo__item--good`
-- `.wcag-focus-obscured-demo__viewport`
-- `.wcag-focus-obscured-demo__sticky`
-- `.wcag-focus-obscured-demo__focus-target`
-- `.wcag-focus-obscured-demo__note`
+- `.wcag-dragging-demo`
+- `.wcag-dragging-demo__grid`
+- `.wcag-dragging-demo__item`
+- `.wcag-dragging-demo__item--bad`
+- `.wcag-dragging-demo__item--risky`
+- `.wcag-dragging-demo__item--good`
+- `.wcag-dragging-demo__flow`
+- `.wcag-dragging-demo__drag-item`
+- `.wcag-dragging-demo__alternative`
+- `.wcag-dragging-demo__note`
 
-Style muszą być scoped do `.wcag-focus-obscured-demo`.
+Style muszą być scoped do `.wcag-dragging-demo`.
 
 ## Powiązane kryteria
 
@@ -195,23 +167,24 @@ Dodaj tylko jako linki do istniejących podstron. Sprawdź rzeczywiste slugi.
 
 Rozważ:
 
-- `2.4.3 Kolejność fokusu`
+- `2.1.1 Klawiatura`
+- `2.5.1 Gesty wskazujące`
+- `2.5.2 Anulowanie akcji wskaźnikiem`
+- `2.5.8 Rozmiar celu — minimum`
 - `2.4.7 Widoczny fokus`
-- `2.4.13 Wygląd fokusu`
-- `1.4.11 Kontrast elementów nietekstowych`
-- `2.4.1 Możliwość pominięcia bloków`
+- `4.1.2 Nazwa, rola, wartość`
 
-Nie linkuj do `2.4.12`, jeśli nie istnieje albo jeśli nie chcemy wchodzić teraz w AAA.
+Jeśli strona powiązanego kryterium nie istnieje, nie linkuj do niej.
 
 ## Weryfikacja przed zakończeniem
 
-- [ ] Znaleziono realny plik HTML 2.4.11.
-- [ ] 2.4.11 ma pełną strukturę tutorialową.
-- [ ] 2.4.11 ma jeden `h1`.
+- [ ] Znaleziono realny plik HTML 2.5.7.
+- [ ] 2.5.7 ma pełną strukturę tutorialową.
+- [ ] 2.5.7 ma jeden `h1`.
 - [ ] Przykłady kodu mają etykiety języka.
 - [ ] `code` ma klasy `language-*`.
-- [ ] Demo jest statycznym schematem zasłonięcia fokusu.
-- [ ] Demo nie udaje działającego komponentu.
+- [ ] Demo jest statycznym schematem przeciągania i alternatywy.
+- [ ] Demo nie udaje działającego komponentu drag and drop.
 - [ ] Powiązane kryteria są linkami.
 - [ ] Brak martwych linków lokalnych.
 - [ ] Style demo są scoped.
@@ -226,4 +199,4 @@ Nie linkuj do `2.4.12`, jeśli nie istnieje albo jeśli nie chcemy wchodzić ter
 
 Commit message po wykonaniu rozbudowy:
 
-`Expand WCAG 2.4.11 focus not obscured tutorial`
+`Expand WCAG 2.5.7 dragging movements tutorial`
