@@ -413,6 +413,89 @@ header nav a:hover { color: white; }
     color: black;
 }
 
+.knowledge-sources h4 {
+    margin-top: 2rem;
+}
+
+.knowledge-sources h4:first-of-type {
+    margin-top: 0;
+}
+
+.knowledge-sources .recommended-resources {
+    margin-bottom: 1.5rem;
+}
+
+.knowledge-sources .recommended-resources:last-child {
+    margin-bottom: 0;
+}
+
+.exercise-bank > p {
+    margin-bottom: 1.5rem;
+}
+
+.exercise-bank__group {
+    border-top: 1px solid var(--gray-light);
+    padding-top: 1.25rem;
+}
+
+.exercise-bank__group + .exercise-bank__group {
+    margin-top: 1.25rem;
+}
+
+.exercise-bank__type {
+    margin-top: 0.75rem;
+}
+
+.exercise-bank__type > summary,
+.exercise-bank__answer > summary {
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.exercise-bank__list {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0 0 1.25rem;
+}
+
+.exercise-bank__item {
+    background: #faf7ff;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.exercise-bank__item p:last-of-type {
+    margin-bottom: 0.75rem;
+}
+
+.exercise-bank__answer {
+    border-top: 1px solid var(--gray-light);
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+}
+
+.exercise-bank__answer-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.exercise-bank__answer-list div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.exercise-bank__answer-list dt {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.exercise-bank__answer-list dd {
+    margin: 0;
+}
+
 .wcag-criterion-card {
     margin-bottom: 1.25rem;
 }
