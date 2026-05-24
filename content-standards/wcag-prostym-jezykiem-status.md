@@ -89,3 +89,92 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki W3C dla `3.3.3` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.3.
 - Zweryfikowane techniki: ARIA18, G85, G177, PDF22, G84. Quick Reference dla `3.3.3` nie wskazuje osobnej listy failures.
 - Raport źródeł dla `3.3.3` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-20: 3.3.4 Zapobieganie błędom (prawne, finansowe, dane)
+
+- `3.3.4 Zapobieganie błędom (prawne, finansowe, dane)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Jeden z trzech mechanizmów, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-error-prevention-demo` bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.4` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.4.
+- Zweryfikowane techniki: G164, G98, G155, G99, G168. Quick Reference dla `3.3.4` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.4` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-22: 3.3.6 Zapobieganie błędom (wszystkie)
+
+- `3.3.6 Zapobieganie błędom (wszystkie)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-error-prevention-all-demo` jako schemat procesu, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.6` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.6.
+- Zweryfikowano, że How to Meet dla `3.3.6` odsyła do technik wystarczających dla `3.3.4`, stosowanych do wszystkich formularzy wymagających wysłania informacji.
+- Zweryfikowane techniki: G164, G98, G155, G99, G168. Quick Reference dla `3.3.6` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.6` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-22: 3.3.7 Powtarzające się wpisy
+
+- `3.3.7 Powtarzające się wpisy`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-redundant-entry-demo` jako schemat procesu, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Techniki W3C dla `3.3.7` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.7.
+- Zweryfikowana technika: G221. Potencjalnej przyszłej techniki z Quick Reference nie dodano do publicznych źródeł jako techniki.
+- Quick Reference dla `3.3.7` nie wskazuje osobnej listy failures.
+- Raport źródeł dla `3.3.7` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 3.3.8 Dostępne uwierzytelnianie (minimum)
+
+- `3.3.8 Dostępne uwierzytelnianie (minimum)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-auth-demo` jako schemat procesu logowania, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i zbędnego ARIA.
+- Techniki i failure W3C dla `3.3.8` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 3.3.8.
+- Zweryfikowane techniki: G218, H100. Zweryfikowany failure: F109.
+- Potencjalnych przyszłych technik z Quick Reference, takich jak WebAuthn, OAuth i łączenie technik dla 2FA, nie dodano do publicznych źródeł jako zweryfikowanych technik.
+- Raport źródeł dla `3.3.8` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 2.4.11 Fokus niezakryty (minimum)
+
+- `2.4.11 Fokus niezakryty (minimum)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-focus-obscured-demo` jako schemat zasłonięcia fokusu, bez JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` i ARIA.
+- Technika i failure W3C dla `2.4.11` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 2.4.11.
+- Zweryfikowana technika: C43. Zweryfikowany failure: F110.
+- W treści zachowano granicę: 2.4.11 dotyczy całkowitego zasłonięcia elementu z fokusem; częściowe zasłonięcie opisano jako ryzyko i powiązanie z wyższymi wymaganiami.
+- Raport źródeł dla `2.4.11` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 2.5.7 Ruch przeciągania
+
+- `2.5.7 Ruch przeciągania`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-dragging-demo` jako schemat funkcji wymagającej przeciągania i alternatywnej drogi bez drag and drop, bez JavaScriptu, `tabindex`, `role` i ARIA.
+- Technikę i failure W3C dla `2.5.7` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 2.5.7.
+- Zweryfikowana technika: G219. Zweryfikowany failure: F108.
+- W treści zachowano granicę: 2.5.7 nie zakazuje przeciągania, tylko wymaga alternatywy dla tej samej funkcji bez ruchu przeciągania.
+- Raport źródeł dla `2.5.7` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 2.5.8 Rozmiar celu (minimum)
+
+- `2.5.8 Rozmiar celu (minimum)`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-target-size-demo` jako porównanie małych/cieśnych celów i poprawionych celów, bez JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` i ARIA.
+- Technikę W3C dla `2.5.8` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 2.5.8.
+- Zweryfikowana technika: C42. Quick Reference dla `2.5.8` nie wskazuje osobnej listy failures.
+- W treści zachowano granicę: 2.5.8 dotyczy minimalnego rozmiaru celu albo wystarczającego odstępu, a nie wymaga, żeby każdy widoczny symbol miał fizycznie 24 na 24 px.
+- Raport źródeł dla `2.5.8` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 1.3.1 Informacje i relacje
+
+- `1.3.1 Informacje i relacje`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-info-relations-demo` jako porównanie „wygląda jak struktura” i „jest strukturą w kodzie”, bez JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` i ARIA.
+- Techniki i failure W3C dla `1.3.1` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.3.1.
+- Zweryfikowane techniki: H42, H48, H51, H63, H44, H71. Zweryfikowany failure: F91.
+- W treści zachowano granicę: 1.3.1 dotyczy informacji, struktury i relacji widocznych wizualnie, które muszą być dostępne programowo albo tekstowo; nie rozwija wymagań 4.1.2 dotyczących nazwy, roli i wartości komponentów.
+- Raport źródeł dla `1.3.1` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-23: 1.3.5 Określenie celu danych wejściowych
+
+- `1.3.5 Określenie celu danych wejściowych`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano statyczne demo `wcag-input-purpose-demo` jako porównanie samej etykiety wizualnej z programowo określonym celem pola, bez JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` i ARIA.
+- Technikę i failure W3C dla `1.3.5` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.3.5.
+- Zweryfikowana technika: H98. Zweryfikowany failure: F107.
+- W treści zachowano granicę: 1.3.5 dotyczy określonych danych o użytkowniku, których cel można programowo określić, zwykle przez poprawne wartości `autocomplete`; nie wymaga `autocomplete` dla każdego pola formularza.
+- Raport źródeł dla `1.3.5` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

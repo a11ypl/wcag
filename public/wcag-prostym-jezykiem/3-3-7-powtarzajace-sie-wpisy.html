@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.7 Powtarzające się wpisy - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="3.3.7 Powtarzające się wpisy prostym językiem: Nie pytaj o te same informacje dwa razy w tym samym procesie. Zapewnij wstępnie wypełnione pola albo opcje wyboru, jeśli informacje zostały już podane.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-7-powtarzajace-sie-wpisy">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="3.3.7 Powtarzające się wpisy - WCAG prostym językiem">
+    <meta property="og:description" content="3.3.7 Powtarzające się wpisy prostym językiem: Nie pytaj o te same informacje dwa razy w tym samym procesie. Zapewnij wstępnie wypełnione pola albo opcje wyboru, jeśli informacje zostały już podane.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-7-powtarzajace-sie-wpisy">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3.3.7 Powtarzające się wpisy - WCAG prostym językiem">
+    <meta name="twitter:description" content="3.3.7 Powtarzające się wpisy prostym językiem: Nie pytaj o te same informacje dwa razy w tym samym procesie. Zapewnij wstępnie wypełnione pola albo opcje wyboru, jeśli informacje zostały już podane.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "3.3.7 Powtarzające się wpisy",
+      "headline": "3.3.7 Powtarzające się wpisy",
+      "description": "3.3.7 Powtarzające się wpisy prostym językiem: Nie pytaj o te same informacje dwa razy w tym samym procesie. Zapewnij wstępnie wypełnione pola albo opcje wyboru, jeśli informacje zostały już podane.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-3-7-powtarzajace-sie-wpisy",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Zrozumiałość",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">3.3.7</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Zrozumiałość · Poziom A</p>
+                <h1>3.3.7 Powtarzające się wpisy</h1>
+                <p class="subtitle">Nie pytaj o te same informacje dwa razy w tym samym procesie. Zapewnij wstępnie wypełnione pola albo opcje wyboru, jeśli informacje zostały już podane.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Nie każ użytkownikowi ponownie wpisywać tej samej informacji, jeśli system już ją zna i może bezpiecznie użyć jej ponownie.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik wypełnia proces zakupowy, zgłoszenie albo formularz w kilku krokach. Najpierw podaje adres dostawy, dane kontaktowe, numer sprawy albo adres e-mail, a po chwili system pyta o to samo jeszcze raz.</p>
+                    <p>Powtarzanie danych zwiększa ryzyko pomyłki i niepotrzebnie obciąża użytkownika. Problem widać szczególnie wtedy, gdy użytkownik musi kopiować adres między krokami, ponownie wpisywać numer sprawy, powtarzać e-mail w kilku sekcjach albo uzupełniać te same dane osoby kontaktowej w tym samym procesie.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list">
+                        <li>Osób z trudnościami poznawczymi i pamięciowymi, które mogą nie pamiętać dokładnie wcześniej wpisanej informacji.</li>
+                        <li>Osób z dysleksją, które mogą popełnić literówkę przy przepisywaniu.</li>
+                        <li>Osób z niepełnosprawnością ruchową, dla których każde dodatkowe pole oznacza więcej pracy.</li>
+                        <li>Osób korzystających z czytników ekranu, które muszą przechodzić przez kolejne kroki liniowo.</li>
+                        <li>Osób korzystających ze sterowania głosem, przełączników albo klawiatury.</li>
+                        <li>Wszystkich użytkowników w długich formularzach, procesach zakupowych, zgłoszeniach i panelach klienta.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Przy fakturze użytkownik może zaznaczyć „Adres do faktury taki sam jak adres dostawy”.</li>
+                        <li>Dane kontaktowe podane w pierwszym kroku są przeniesione do kolejnego kroku.</li>
+                        <li>Użytkownik może wybrać wcześniej podany adres z listy.</li>
+                        <li>Skopiowane dane można edytować, jeśli różnią się od poprzednich.</li>
+                        <li>Interfejs jasno mówi, skąd pochodzą dane, na przykład „Używamy adresu dostawy z kroku 1”.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Formularz każe ponownie ręcznie wpisać adres do faktury, mimo że adres dostawy jest taki sam.</li>
+                        <li>Nie ma opcji użycia wcześniej podanych danych.</li>
+                        <li>Użytkownik musi ponownie wpisać numer sprawy w dalszym kroku procesu.</li>
+                        <li>W jednym procesie pojawia się kilka takich samych pól e-mail, telefonu albo adresu.</li>
+                        <li>System oczekuje, że użytkownik sam skopiuje dane z poprzedniego kroku.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Adres do faktury taki sam jak adres dostawy</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Checkbox daje użytkownikowi prosty sposób użycia danych podanych wcześniej w tym samym procesie.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;section aria-labelledby="billing-address-heading"&gt;
+  &lt;h2 id="billing-address-heading"&gt;
+    Adres do faktury
+  &lt;/h2&gt;
+
+  &lt;p&gt;
+    Adres dostawy z poprzedniego kroku:
+    ul. Prosta 10, 00-001 Warszawa.
+  &lt;/p&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="checkbox"
+      name="use-delivery-address"
+      checked
+    &gt;
+    Adres do faktury taki sam jak adres dostawy
+  &lt;/label&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Wybór wcześniej podanego adresu</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Użytkownik nie musi przepisywać adresu. Może wybrać dane dostępne z wcześniejszego kroku albo dodać inny adres.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;fieldset&gt;
+  &lt;legend&gt;Wybierz adres do faktury&lt;/legend&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="radio"
+      name="billing-address"
+      value="delivery-address"
+      checked
+    &gt;
+    Użyj adresu dostawy: ul. Prosta 10, Warszawa
+  &lt;/label&gt;
+
+  &lt;label&gt;
+    &lt;input
+      type="radio"
+      name="billing-address"
+      value="new-address"
+    &gt;
+    Wpisz inny adres do faktury
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Zły przykład: ponowne wpisywanie tych samych danych</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Ten formularz wymaga ręcznego przepisania adresu, choć system zna już adres dostawy z wcześniejszego kroku.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;h2&gt;Adres do faktury&lt;/h2&gt;
+&lt;label for="billing-street"&gt;
+  Ulica i numer
+&lt;/label&gt;
+&lt;input
+  id="billing-street"
+  name="billing-street"
+  autocomplete="street-address"
+&gt;
+
+&lt;label for="billing-city"&gt;
+  Miasto
+&lt;/label&gt;
+&lt;input
+  id="billing-city"
+  name="billing-city"
+  autocomplete="address-level2"
+&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Informacja o przeniesionych danych</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Użytkownik widzi, że dane zostały przeniesione, i ma jasną możliwość ich edycji.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;section aria-labelledby="contact-summary-heading"&gt;
+  &lt;h2 id="contact-summary-heading"&gt;
+    Dane kontaktowe
+  &lt;/h2&gt;
+
+  &lt;p&gt;
+    Przenieśliśmy dane kontaktowe z kroku 1.
+    Możesz je sprawdzić i edytować.
+  &lt;/p&gt;
+
+  &lt;dl&gt;
+    &lt;dt&gt;Adres e-mail&lt;/dt&gt;
+    &lt;dd&gt;anna@example.com&lt;/dd&gt;
+
+    &lt;dt&gt;Telefon&lt;/dt&gt;
+    &lt;dd&gt;500 100 200&lt;/dd&gt;
+  &lt;/dl&gt;
+
+  &lt;a href="/zamowienie/kontakt"&gt;
+    Edytuj dane kontaktowe
+  &lt;/a&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <p>To statyczny schemat procesu. Pokazuje, czy użytkownik musi ponownie wpisać te same dane, czy może użyć informacji podanych wcześniej.</p>
+                    <figure class="wcag-redundant-entry-demo">
+                        <div class="wcag-redundant-entry-demo__grid">
+                            <section class="wcag-redundant-entry-demo__item wcag-redundant-entry-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-redundant-entry-demo__flow">
+                                    <div class="wcag-redundant-entry-demo__step">Krok 1: wpisz adres</div>
+                                    <div class="wcag-redundant-entry-demo__arrow">↓</div>
+                                    <div class="wcag-redundant-entry-demo__step wcag-redundant-entry-demo__step--impact">Krok 2: wpisz ten sam adres ponownie</div>
+                                </div>
+                                <p class="wcag-redundant-entry-demo__note">Użytkownik musi przepisać dane bez powodu.</p>
+                            </section>
+                            <section class="wcag-redundant-entry-demo__item wcag-redundant-entry-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <div class="wcag-redundant-entry-demo__flow">
+                                    <div class="wcag-redundant-entry-demo__step">Krok 1: wpisz adres</div>
+                                    <div class="wcag-redundant-entry-demo__arrow">↓</div>
+                                    <div class="wcag-redundant-entry-demo__step">Krok 2: adres skopiowany</div>
+                                </div>
+                                <p class="wcag-redundant-entry-demo__note">Dane są przeniesione, ale interfejs nie wyjaśnia skąd pochodzą ani jak je zmienić.</p>
+                            </section>
+                            <section class="wcag-redundant-entry-demo__item wcag-redundant-entry-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-redundant-entry-demo__flow">
+                                    <div class="wcag-redundant-entry-demo__step">Krok 1: wpisz adres</div>
+                                    <div class="wcag-redundant-entry-demo__arrow">↓</div>
+                                    <div class="wcag-redundant-entry-demo__step wcag-redundant-entry-demo__step--choice">Krok 2: użyj tego samego adresu / wybierz / edytuj</div>
+                                </div>
+                                <p class="wcag-redundant-entry-demo__note">Użytkownik może użyć wcześniejszych danych i nadal ma kontrolę nad ich zmianą.</p>
+                            </section>
+                        </div>
+                        <figcaption>Statyczny schemat pokazuje różnicę między powtarzaniem wpisywania a ponownym użyciem danych w tym samym procesie.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Przejdź cały proces krok po kroku, na przykład zakup, zgłoszenie albo rejestrację.</li>
+                        <li>Zapisz informacje, które użytkownik podaje w kolejnych krokach.</li>
+                        <li>Sprawdź, czy ta sama informacja jest wymagana ponownie w tym samym procesie.</li>
+                        <li>Jeśli tak, sprawdź, czy system automatycznie ją uzupełnia albo udostępnia do wyboru.</li>
+                        <li>Sprawdź, czy użytkownik może edytować dane przeniesione z wcześniejszego kroku.</li>
+                        <li>Sprawdź, czy interfejs jasno mówi, skąd pochodzą przeniesione dane.</li>
+                        <li>Oceń, czy ponowne wpisanie mieści się w wyjątku: jest niezbędne, wymagane dla bezpieczeństwa albo wcześniejsza informacja straciła ważność.</li>
+                        <li>Przejdź proces klawiaturą i czytnikiem ekranu.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <p>Automat może wykryć część powtarzających się pól, podobne etykiety albo brak poprawnej struktury formularza. Może też pomóc znaleźć pola z podobnymi nazwami technicznymi.</p>
+                    <p>Automat zwykle nie oceni, czy dwa pola naprawdę proszą o tę samą informację, czy są częścią tego samego procesu, czy ponowne wpisanie jest uzasadnione bezpieczeństwem i czy użytkownik ma praktyczną możliwość wyboru wcześniej podanych danych.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Oddzielne ręczne wpisywanie adresu dostawy i identycznego adresu faktury.</li>
+                        <li>Powtarzanie adresu e-mail w kilku krokach procesu.</li>
+                        <li>Wymaganie numeru sprawy w każdym formularzu w tym samym zgłoszeniu.</li>
+                        <li>Brak checkboxa lub wyboru „użyj wcześniej podanych danych”.</li>
+                        <li>Automatyczne skopiowanie danych bez informacji, że można je zmienić.</li>
+                        <li>Kasowanie danych po błędzie i wymaganie wpisania ich od początku.</li>
+                        <li>Mylenie tego kryterium z samym `autocomplete`; przeglądarka może pomagać, ale to strona ma uniknąć niepotrzebnego powtarzania.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-3-5-okreslenie-celu-danych-wejsciowych">1.3.5 Określenie celu danych wejściowych</a> - gdy pola danych osobowych powinny mieć rozpoznawalny cel, na przykład dla autouzupełniania.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a> - gdy użytkownik musi wiedzieć, co wpisać w polu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-4-zapobieganie-bledom-prawne-finansowe-dane">3.3.4 Zapobieganie błędom (prawne, finansowe, dane)</a> - gdy ważne działanie wymaga zabezpieczenia przed skutkiem błędu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-6-zapobieganie-bledom-wszystkie">3.3.6 Zapobieganie błędom (wszystkie)</a> - szersze zabezpieczanie formularzy przed błędnym wysłaniem danych.</li>
+                        <li><a href="/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie">4.1.3 Komunikaty o stanie</a> - gdy użytkownik powinien dostać informację o przeniesieniu, zapisaniu albo zmianie danych bez utraty kontekstu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#redundant-entry" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.3.7 Redundant Entry<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.3.7: Redundant Entry<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#redundant-entry" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.3.7: Redundant Entry<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G221" target="_blank" rel="noopener noreferrer">G221: Provide data from a previous step in a process<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/3-3-6-zapobieganie-bledom-wszystkie">Poprzednie: 3.3.6 Zapobieganie błędom (wszystkie)</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/3-3-8-dostepne-uwierzytelnianie-minimum">Następne: 3.3.8 Dostępne uwierzytelnianie (minimum)</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

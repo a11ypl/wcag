@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="Praktyczne opracowanie kryteriów WCAG prostym językiem: wyjaśnienia, przykłady, kod, grafiki i checklisty dla audytorów, projektantów, redaktorów i developerów.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="WCAG prostym językiem">
+    <meta property="og:description" content="Praktyczne opracowanie kryteriów WCAG prostym językiem: wyjaśnienia, przykłady, kod, grafiki i checklisty dla audytorów, projektantów, redaktorów i developerów.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WCAG prostym językiem">
+    <meta name="twitter:description" content="Praktyczne opracowanie kryteriów WCAG prostym językiem: wyjaśnienia, przykłady, kod, grafiki i checklisty dla audytorów, projektantów, redaktorów i developerów.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "WCAG prostym językiem",
+      "description": "Praktyczne opracowanie kryteriów WCAG prostym językiem: wyjaśnienia, przykłady, kod, grafiki i checklisty dla audytorów, projektantów, redaktorów i developerów.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li aria-current="page">WCAG prostym językiem</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Baza wiedzy</p>
+                <h1>WCAG prostym językiem</h1>
+                <p class="subtitle">Praktyczne opracowanie kryteriów WCAG: po co istnieją, kogo chronią, jak je testować i jak rozumieć typowe błędy w audycie dostępności cyfrowej.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail" aria-labelledby="wcag-index-title">
+            <div class="container">
+                <article class="knowledge-panel knowledge-lead">
+                    <h2 id="wcag-index-title">Lista opracowanych kryteriów</h2>
+                    <p>Każda podstrona zawiera krótkie wyjaśnienie, problem w praktyce, przykłady, fragmenty kodu, wskazówki testowe, typowe błędy, powiązane kryteria i źródła.</p>
+                    <p>To materiał edukacyjny dla osób, które projektują, tworzą, redagują i audytują serwisy internetowe. Nie zastępuje oficjalnej specyfikacji WCAG, ale pomaga szybciej zrozumieć jej praktyczne znaczenie.</p>
+                </article>
+
+                <section class="knowledge-panel" aria-labelledby="perceivable-title">
+                    <h2 id="perceivable-title">Postrzegalność</h2>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-1-1-tresc-nietekstowa">1.1.1 Treść nietekstowa</a> <span>Poziom A</span></h3>
+                        <p>Obrazy, ikony, wykresy i inne treści nietekstowe muszą mieć równoważną informację tekstową, jeśli niosą znaczenie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">1.3.1 Informacje i relacje</a> <span>Poziom A</span></h3>
+                        <p>Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele i relacje formularzy, musi być dostępna także w kodzie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-3-2-zrozumiala-kolejnosc">1.3.2 Zrozumiała kolejność</a> <span>Poziom A</span></h3>
+                        <p>Treść musi mieć sensowną kolejność także wtedy, gdy użytkownik czyta ją bez układu wizualnego strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-3-5-okreslenie-celu-danych-wejsciowych">1.3.5 Określenie celu danych wejściowych</a> <span>Poziom AA</span></h3>
+                        <p>Pola zbierające typowe dane użytkownika powinny mieć określony cel w kodzie, żeby przeglądarki i technologie wspomagające mogły pomagać przy uzupełnianiu formularzy.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-1-uzycie-koloru">1.4.1 Użycie koloru</a> <span>Poziom A</span></h3>
+                        <p>Kolor nie może być jedynym sposobem przekazania informacji, wskazania działania albo odróżnienia elementu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-3-kontrast-minimum">1.4.3 Kontrast minimum</a> <span>Poziom AA</span></h3>
+                        <p>Tekst i tekst w obrazach muszą mieć wystarczający kontrast względem tła.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a> <span>Poziom AA</span></h3>
+                        <p>Ważne elementy interfejsu i części grafik potrzebne do zrozumienia treści muszą mieć odpowiedni kontrast.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-13-tresc-po-najechaniu-lub-fokusie">1.4.13 Treść po najechaniu lub fokusie</a> <span>Poziom AA</span></h3>
+                        <p>Dodatkowa treść pokazana po najechaniu kursorem albo fokusie musi być możliwa do zauważenia, obsłużenia i zamknięcia.</p>
+                    </article>
+                </section>
+
+                <section class="knowledge-panel" aria-labelledby="operable-title">
+                    <h2 id="operable-title">Funkcjonalność</h2>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-1-1-klawiatura">2.1.1 Klawiatura</a> <span>Poziom A</span></h3>
+                        <p>Wszystko, co można zrobić myszą albo dotykiem, powinno dać się obsłużyć także klawiaturą, jeśli technologia nie wymaga innego wejścia.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-1-2-brak-pulapki-na-klawiature">2.1.2 Brak pułapki na klawiaturę</a> <span>Poziom A</span></h3>
+                        <p>Użytkownik klawiatury musi móc wejść do każdego komponentu i wyjść z niego bez utknięcia.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a> <span>Poziom A</span></h3>
+                        <p>Fokus klawiatury powinien przechodzić przez stronę w kolejności, która zachowuje sens i obsługę interfejsu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a> <span>Poziom AA</span></h3>
+                        <p>Osoba korzystająca z klawiatury musi widzieć, który element jest aktualnie aktywny.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum">2.4.11 Fokus niezakryty minimum</a> <span>Poziom AA</span></h3>
+                        <p>Element z fokusem nie może być całkowicie zasłonięty przez nagłówek, baner, modal, pasek cookie albo inny element strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-7-ruch-przeciagania">2.5.7 Ruch przeciągania</a> <span>Poziom AA</span></h3>
+                        <p>Jeśli działanie wymaga przeciągania, użytkownik powinien mieć prostszą alternatywę, na przykład kliknięcie albo wybór kontrolki.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-8-rozmiar-celu-minimum">2.5.8 Rozmiar celu minimum</a> <span>Poziom AA</span></h3>
+                        <p>Elementy klikalne powinny być wystarczająco duże albo mieć wystarczająco dużo wolnej przestrzeni wokół.</p>
+                    </article>
+                </section>
+
+                <section class="knowledge-panel" aria-labelledby="understandable-title">
+                    <h2 id="understandable-title">Zrozumiałość</h2>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">3.3.1 Identyfikacja błędu</a> <span>Poziom A</span></h3>
+                        <p>Gdy użytkownik popełni błąd, strona powinna jasno wskazać, gdzie jest problem i co jest nieprawidłowe.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a> <span>Poziom A</span></h3>
+                        <p>Pola formularzy i podobne komponenty powinny mieć etykiety lub instrukcje, które pomagają poprawnie wykonać działanie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-3-sugestie-korekty-bledow">3.3.3 Sugestie korekty błędów</a> <span>Poziom AA</span></h3>
+                        <p>Jeśli system zna sposób poprawienia błędu, powinien podać użytkownikowi zrozumiałą sugestię.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-4-zapobieganie-bledom-prawne-finansowe-dane">3.3.4 Zapobieganie błędom</a> <span>Poziom AA</span></h3>
+                        <p>Przy działaniach prawnych, finansowych lub związanych z danymi użytkownik powinien móc sprawdzić, poprawić albo potwierdzić dane przed wysłaniem.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-7-powtarzajace-sie-wpisy">3.3.7 Powtarzające się wpisy</a> <span>Poziom A</span></h3>
+                        <p>Użytkownik nie powinien ponownie wpisywać tych samych informacji w jednym procesie, jeśli system już je zna.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-8-dostepne-uwierzytelnianie-minimum">3.3.8 Dostępne uwierzytelnianie minimum</a> <span>Poziom AA</span></h3>
+                        <p>Logowanie nie powinno wymagać zadania poznawczego bez dostępnej alternatywy albo wsparcia.</p>
+                    </article>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/header.js"></script>
+</body>
+</html>
