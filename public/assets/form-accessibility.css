@@ -1,0 +1,41 @@
+.required-indicator {
+    color: #d00000;
+    display: inline-block;
+    font-size: 1em;
+    margin-left: 0.25rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.required-note,
+.form-required-note {
+    color: var(--dark, #193146);
+}
+
+.form-field--checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field--checkbox-control {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+}
+
+.form-field--checkbox-control label {
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.form-field--checkbox .checkout-helper {
+    margin: 0 0 0 2.8rem;
+    text-align: left;
+}
+
+.form-field--checkbox .field-error,
+.form-field--checkbox + .field-error {
+    margin-left: 2.8rem;
+}
