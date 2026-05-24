@@ -219,8 +219,9 @@
       list-style: none;
     }
 
-    nav li:last-child {
-      grid-column: 1 / -1;
+    nav li {
+      display: flex;
+      min-width: 0;
     }
 
     nav a {
@@ -229,6 +230,7 @@
       align-items: start;
       justify-content: space-between;
       gap: 16px;
+      width: 100%;
       min-height: clamp(112px, 13vh, 132px);
       padding: clamp(16px, 2.2vh, 22px);
       border: 2px solid var(--primary);
@@ -336,10 +338,6 @@
 
       nav ul {
         grid-template-columns: 1fr;
-      }
-
-      nav li:last-child {
-        grid-column: auto;
       }
 
       nav a {
