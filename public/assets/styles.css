@@ -413,6 +413,22 @@ header nav a:hover { color: white; }
     color: black;
 }
 
+.knowledge-sources h4 {
+    margin-top: 2rem;
+}
+
+.knowledge-sources h4:first-of-type {
+    margin-top: 0;
+}
+
+.knowledge-sources .recommended-resources {
+    margin-bottom: 1.5rem;
+}
+
+.knowledge-sources .recommended-resources:last-child {
+    margin-bottom: 0;
+}
+
 .wcag-criterion-card {
     margin-bottom: 1.25rem;
 }
