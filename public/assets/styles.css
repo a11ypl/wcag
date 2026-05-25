@@ -417,6 +417,28 @@ header nav a:hover { color: white; }
     margin-bottom: 1.25rem;
 }
 
+.wcag-criterion-card h3 a,
+.wcag-criterion-card h4 a {
+    color: var(--primary);
+    font-weight: 900;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.18em;
+}
+
+.wcag-criterion-card h3 a:visited,
+.wcag-criterion-card h4 a:visited {
+    color: var(--primary);
+}
+
+.wcag-criterion-card h3 a:hover,
+.wcag-criterion-card h4 a:hover {
+    color: #4A1F8F;
+    text-decoration-thickness: 0.15em;
+}
+
+.wcag-criterion-card h3 span,
 .wcag-criterion-card h4 span {
     background: var(--accent);
     border-radius: 999px;
