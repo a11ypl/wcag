@@ -377,7 +377,7 @@ header nav a:hover { color: white; }
 
 .knowledge-panel h3 {
     color: var(--primary);
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     line-height: 1.25;
     margin-bottom: 1rem;
 }
@@ -449,9 +449,19 @@ header nav a:hover { color: white; }
     padding: 0.2rem 0.6rem;
 }
 
+.wcag-criterion-card h3 .wcag-version-badge {
+    background: var(--primary);
+    color: white;
+}
+
+.wcag-criterion-card h3 .wcag-version-badge--removed {
+    background: var(--dark);
+    color: white;
+}
+
 .wcag-detail .knowledge-panel h2 {
     color: var(--primary);
-    font-size: 1.45rem;
+    font-size: 1.75rem;
     line-height: 1.25;
     margin-bottom: 1rem;
 }
@@ -3827,8 +3837,26 @@ footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: 
 .footer-bottom { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
 
 /* ACCESSIBILITY UTILS */
-.skip-link { position: absolute; top: -100px; left: 1rem; background: var(--accent); color: black; padding: 1rem; z-index: 1000; font-weight: bold; border-radius: 8px; }
-.skip-link:focus { top: 1rem; }
+.skip-link {
+    background: var(--accent);
+    border: 3px solid black;
+    border-radius: 8px;
+    color: black;
+    font-weight: 800;
+    left: 1rem;
+    padding: 1rem 1.25rem;
+    position: fixed;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    top: 1rem;
+    transform: translateY(calc(-100% - 2rem));
+    z-index: 10000;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
 
 .aria-alert-region {
     position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white;
