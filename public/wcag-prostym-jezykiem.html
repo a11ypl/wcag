@@ -72,104 +72,379 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="wcag-index-title">
             <div class="container">
                 <article class="knowledge-panel knowledge-lead">
-                    <h2 id="wcag-index-title">Lista opracowanych kryteriów</h2>
-                    <p>Każda podstrona zawiera krótkie wyjaśnienie kryterium, informację o tym, kogo dotyczy, i podstawowe wskazówki wdrożeniowe.</p>
-                    <p>To materiał edukacyjny dla osób, które projektują, tworzą, redagują i audytują serwisy internetowe. Nie zastępuje oficjalnej specyfikacji WCAG, ale pomaga szybciej zrozumieć jej sens w praktyce.</p>
+                    <h2 id="wcag-index-title">Kryteria WCAG po polsku</h2>
+                    <p>To indeks polskiej wersji WCAG in Plain English: krótkich interpretacji kryteriów sukcesu rozbitych na osobne podstrony.</p>
+                    <p>Lista obejmuje wszystkie przygotowane podstrony kryteriów, także te z poziomu AAA. Materiał jest edukacyjny i nie zastępuje oficjalnej specyfikacji WCAG.</p>
                 </article>
 
-                <section class="knowledge-panel" aria-labelledby="perceivable-title">
-                    <h2 id="perceivable-title">Postrzegalność</h2>
+                <nav class="knowledge-tabs" aria-label="Grupy kryteriów WCAG">
+                    <a href="#postrzegalnosc">Postrzegalność</a>
+                    <a href="#funkcjonalnosc">Funkcjonalność</a>
+                    <a href="#zrozumialosc">Zrozumiałość</a>
+                    <a href="#solidnosc">Solidność</a>
+                </nav>
+
+                <section class="knowledge-panel" aria-labelledby="postrzegalnosc-title">
+                    <h2 id="postrzegalnosc-title">Postrzegalność</h2>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-1-1-tresc-nietekstowa">1.1.1 Treść nietekstowa</a> <span>Poziom A</span></h3>
-                        <p>Obrazy, ikony, wykresy i inne treści nietekstowe muszą mieć równoważną informację tekstową, jeśli niosą znaczenie.</p>
+                        <p>Wszystkie obrazy i inne treści nietekstowe, takie jak ikony, wykresy, audio, CAPTCHA albo kontrolki, muszą mieć opisową alternatywę tekstową, która przekazuje ich znaczenie. Treści czysto dekoracyjne można ukryć przed technologiami wspomagającymi, na przykład pustym atrybutem alt.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-1-tylko-audio-i-tylko-wideo-nagranie">1.2.1 Tylko audio i tylko wideo (nagranie)</a> <span>Poziom A</span></h3>
+                        <p>Nagrana treść tylko audio musi mieć transkrypcję tekstową. Nagrana treść tylko wideo musi mieć opis tekstowy albo opis audio.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-2-napisy-rozszerzone-nagranie">1.2.2 Napisy rozszerzone (nagranie)</a> <span>Poziom A</span></h3>
+                        <p>Nagrane filmy z dźwiękiem muszą mieć zsynchronizowane napisy obejmujące całą mowę oraz istotne efekty dźwiękowe, takie jak muzyka, alarmy albo śmiech.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-3-audiodeskrypcja-lub-alternatywa-dla-mediow-nagranie">1.2.3 Audiodeskrypcja lub alternatywa dla mediów (nagranie)</a> <span>Poziom A</span></h3>
+                        <p>Ważne treści wizualne w nagranych filmach muszą być opisane za pomocą audiodeskrypcji albo alternatywy tekstowej.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-4-napisy-rozszerzone-na-zywo">1.2.4 Napisy rozszerzone (na żywo)</a> <span>Poziom AA</span></h3>
+                        <p>Wideo na żywo z dźwiękiem musi mieć napisy w czasie rzeczywistym obejmujące mowę oraz ważne efekty dźwiękowe, takie jak muzyka, alarmy albo śmiech.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-5-audiodeskrypcja-nagranie">1.2.5 Audiodeskrypcja (nagranie)</a> <span>Poziom AA</span></h3>
+                        <p>Ważne treści wizualne w nagranych filmach z dźwiękiem muszą być opisane audiodeskrypcją, chyba że są już wyjaśnione w głównej ścieżce dźwiękowej.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-6-jezyk-migowy-nagranie">1.2.6 Język migowy (nagranie)</a> <span>Poziom AAA</span></h3>
+                        <p>Wszystkie nagrane filmy z dźwiękiem muszą zawierać tłumaczenie na język migowy.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-7-rozszerzona-audiodeskrypcja-nagranie">1.2.7 Rozszerzona audiodeskrypcja (nagranie)</a> <span>Poziom AAA</span></h3>
+                        <p>Nagrane filmy muszą mieć rozszerzoną audiodeskrypcję, jeśli ważnych treści wizualnych nie da się opisać podczas zwykłego odtwarzania, na przykład ważnych szczegółów obrazu, tekstu na ekranie niewypowiedzianego na głos albo scen bez naturalnych przerw w dźwięku.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-8-alternatywa-dla-mediow-nagranie">1.2.8 Alternatywa dla mediów (nagranie)</a> <span>Poziom AAA</span></h3>
+                        <p>Nagrane filmy muszą mieć pełną alternatywę tekstową, nawet jeśli dostępne są już napisy i audiodeskrypcja. Alternatywa musi obejmować całą mowę, istotne efekty dźwiękowe i ważną treść wizualną.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-2-9-tylko-audio-na-zywo">1.2.9 Tylko audio (na żywo)</a> <span>Poziom AAA</span></h3>
+                        <p>Treść audio na żywo musi mieć tekstową alternatywę w czasie rzeczywistym, na przykład napisy albo transkrypcję na żywo.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">1.3.1 Informacje i relacje</a> <span>Poziom A</span></h3>
-                        <p>Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele i relacje formularzy, musi być dostępna także w kodzie.</p>
+                        <p>Struktura widoczna na ekranie, na przykład nagłówki, listy, tabele, etykiety i grupy pól, musi być dostępna także w kodzie albo w tekście.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-3-2-zrozumiala-kolejnosc">1.3.2 Zrozumiała kolejność</a> <span>Poziom A</span></h3>
-                        <p>Treść musi mieć sensowną kolejność także wtedy, gdy użytkownik czyta ją bez układu wizualnego strony.</p>
+                        <p>Treść powinna być ułożona w takiej kolejności, żeby po odczytaniu bez układu wizualnego nadal miała sens.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-3-3-wlasciwosci-zmyslowe">1.3.3 Właściwości zmysłowe</a> <span>Poziom A</span></h3>
+                        <p>Instrukcje i opisy nie mogą opierać się wyłącznie na cechach zmysłowych, takich jak kolor, kształt, rozmiar, położenie wizualne albo dźwięk. Zawsze trzeba dodać tekst wyjaśniający znaczenie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-3-4-orientacja">1.3.4 Orientacja</a> <span>Poziom AA</span></h3>
+                        <p>Treść musi pozostać czytelna i użyteczna zarówno w orientacji pionowej, jak i poziomej, chyba że konkretna orientacja jest niezbędna, na przykład w aplikacji pianina wymagającej widoku poziomego całej klawiatury.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-3-5-okreslenie-celu-danych-wejsciowych">1.3.5 Określenie celu danych wejściowych</a> <span>Poziom AA</span></h3>
-                        <p>Pola zbierające typowe dane użytkownika powinny mieć określony cel w kodzie, żeby przeglądarki i technologie wspomagające mogły pomagać przy uzupełnianiu formularzy.</p>
+                        <p>Cel typowych pól formularzy, takich jak imię, e-mail albo adres, musi być określony w kodzie, żeby przeglądarki i technologie wspomagające mogły oferować wsparcie, na przykład autouzupełnianie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-3-6-okreslenie-celu">1.3.6 Określenie celu</a> <span>Poziom AAA</span></h3>
+                        <p>Cel regionów i typowych elementów musi być określony w kodzie za pomocą semantycznego HTML albo ARIA, żeby technologie wspomagające mogły przekazać ich znaczenie, a przeglądarki mogły dostosować lub uprościć interfejs.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-4-1-uzycie-koloru">1.4.1 Użycie koloru</a> <span>Poziom A</span></h3>
-                        <p>Kolor nie może być jedynym sposobem przekazania informacji, wskazania działania albo odróżnienia elementu.</p>
+                        <p>Kolor nie może być jedynym sposobem przekazania informacji. Trzeba dodać inny sygnał wizualny, na przykład ikonę, etykietę tekstową, podkreślenie, kształt albo wzór.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-2-kontrola-dzwieku">1.4.2 Kontrola dźwięku</a> <span>Poziom A</span></h3>
+                        <p>Jeśli dźwięk odtwarza się automatycznie dłużej niż 3 sekundy, musi dać się go wstrzymać, zatrzymać albo zmienić głośność bez używania ustawień całego systemu.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-4-3-kontrast-minimum">1.4.3 Kontrast minimum</a> <span>Poziom AA</span></h3>
-                        <p>Tekst i tekst w obrazach muszą mieć wystarczający kontrast względem tła.</p>
+                        <p>Tekst i obrazy tekstu muszą mieć wystarczający kontrast względem tła, żeby dało się je wygodnie przeczytać.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu">1.4.4 Zmiana rozmiaru tekstu</a> <span>Poziom AA</span></h3>
+                        <p>Tekst pozostaje czytelny i użyteczny po powiększeniu do 200%.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu">1.4.5 Obrazy tekstu</a> <span>Poziom AA</span></h3>
+                        <p>Tekst musi być prawdziwym tekstem, a nie obrazem tekstu, chyba że konkretna prezentacja wizualna jest absolutnie konieczna, na przykład w logo.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-6-kontrast-podwyzszony">1.4.6 Kontrast (podwyższony)</a> <span>Poziom AAA</span></h3>
+                        <p>Kontrast tekstu względem tła musi wynosić co najmniej 7:1 dla zwykłego tekstu albo 4.5:1 dla dużego tekstu, czyli powyżej 24 px albo pogrubionego powyżej 19 px.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-7-cichy-lub-brak-tla-dzwiekowego">1.4.7 Cichy lub brak tła dźwiękowego</a> <span>Poziom AAA</span></h3>
+                        <p>W nagranym audio z mową każdy dźwięk w tle musi być co najmniej 20 dB cichszy od mowy albo musi istnieć sposób jego wyłączenia.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-8-prezentacja-wizualna">1.4.8 Prezentacja wizualna</a> <span>Poziom AAA</span></h3>
+                        <p>Bloki tekstu, takie jak akapity, muszą mieć wysokość linii co najmniej 1.5, nie mogą być justowane i powinny mieścić się w 80 znakach na linię albo 40 dla pism CJK. Użytkownik powinien móc dostosować odstępy i kolory własnymi stylami.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-9-obrazy-tekstu-bez-wyjatku">1.4.9 Obrazy tekstu (bez wyjątku)</a> <span>Poziom AAA</span></h3>
+                        <p>Tekst musi być prawdziwym tekstem, a nie obrazem tekstu, bez wyjątku, także ze względów projektowych albo estetycznych.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu">1.4.10 Dopasowanie do ekranu</a> <span>Poziom AA</span></h3>
+                        <p>Treść pozostaje funkcjonalna i łatwa do czytania po powiększeniu do 400% albo przy szerokości 320 px, bez konieczności przewijania w dwóch kierunkach, z wyjątkiem tabel, map i podobnych treści.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a> <span>Poziom AA</span></h3>
-                        <p>Ważne elementy interfejsu i części grafik potrzebne do zrozumienia treści muszą mieć odpowiedni kontrast.</p>
+                        <p>Ważne elementy nietekstowe, na przykład ikony, pola formularzy, przyciski, wykresy i wskaźniki fokusu, muszą być wystarczająco widoczne.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/1-4-12-odstepy-w-tekscie">1.4.12 Odstępy w tekście</a> <span>Poziom AA</span></h3>
+                        <p>Tekst pozostaje czytelny i użyteczny, gdy użytkownik zmieni odstępy własnymi stylami co najmniej do: 1.5 wysokości linii, 2 razy odstępu po akapitach, 0.12 odstępu między literami i 0.16 odstępu między wyrazami, bez ukrywania, obcinania albo psucia treści.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/1-4-13-tresc-po-najechaniu-lub-fokusie">1.4.13 Treść po najechaniu lub fokusie</a> <span>Poziom AA</span></h3>
-                        <p>Dodatkowa treść pokazana po najechaniu kursorem albo fokusie musi być możliwa do zauważenia, obsłużenia i zamknięcia.</p>
+                        <p>Dodatkowa treść, która pojawia się po hoverze albo fokusie, musi dać się przeczytać, zamknąć i utrzymać bez przypadkowego znikania.</p>
                     </article>
                 </section>
 
-                <section class="knowledge-panel" aria-labelledby="operable-title">
-                    <h2 id="operable-title">Funkcjonalność</h2>
+                <section class="knowledge-panel" aria-labelledby="funkcjonalnosc-title">
+                    <h2 id="funkcjonalnosc-title">Funkcjonalność</h2>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/2-1-1-klawiatura">2.1.1 Klawiatura</a> <span>Poziom A</span></h3>
-                        <p>Wszystko, co można zrobić myszą albo dotykiem, powinno dać się obsłużyć także klawiaturą, jeśli technologia nie wymaga innego wejścia.</p>
+                        <p>Wszystko, co da się zrobić myszą, powinno dać się obsłużyć także klawiaturą.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/2-1-2-brak-pulapki-na-klawiature">2.1.2 Brak pułapki na klawiaturę</a> <span>Poziom A</span></h3>
-                        <p>Użytkownik klawiatury musi móc wejść do każdego komponentu i wyjść z niego bez utknięcia.</p>
+                        <p>Jeśli użytkownik może wejść klawiaturą do komponentu, musi też móc z niego wyjść klawiaturą.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-1-3-klawiatura-bez-wyjatku">2.1.3 Klawiatura (bez wyjątku)</a> <span>Poziom AAA</span></h3>
+                        <p>Wszystkie funkcje muszą dać się obsłużyć samą klawiaturą, bez wyjątku, nawet przy zadaniach obejmujących gesty, przeciąganie albo interakcję wskaźnikiem.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-1-4-jednoznakowe-skroty-klawiaturowe">2.1.4 Jednoznakowe skróty klawiaturowe</a> <span>Poziom A</span></h3>
+                        <p>Skróty klawiaturowe powinny używać klawiszy modyfikujących, takich jak Ctrl, Cmd albo Alt/Option. Jeśli używane są skróty jednoznakowe, na przykład S do zapisu, musi dać się je wyłączyć, zmienić na skrót z modyfikatorem albo ograniczyć do sytuacji, gdy odpowiedni element ma fokus.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-2-1-mozliwosc-dostosowania-czasu">2.2.1 Możliwość dostosowania czasu</a> <span>Poziom A</span></h3>
+                        <p>Limitów czasu należy unikać, chyba że są niezbędne dla zadania, na przykład przy egzaminach albo aukcjach. Jeśli limity czasu są używane, musi dać się je wyłączyć, dostosować do co najmniej 10 razy wartości domyślnej albo przedłużyć co najmniej 10 razy.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-2-2-pauza-zatrzymanie-ukrycie">2.2.2 Pauza, zatrzymanie, ukrycie</a> <span>Poziom A</span></h3>
+                        <p>Jeśli treść porusza się, przewija, miga albo aktualizuje automatycznie dłużej niż 5 sekund, musi dać się ją wstrzymać, zatrzymać albo ukryć.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-2-3-brak-limitow-czasu">2.2.3 Brak limitów czasu</a> <span>Poziom AAA</span></h3>
+                        <p>Treść nie może zawierać limitów czasu na czytanie albo interakcję, chyba że jest częścią wydarzenia na żywo albo aktywności zależnej od czasu, na przykład aukcji lub transmisji.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-2-4-przerwania">2.2.4 Przerwania</a> <span>Poziom AAA</span></h3>
+                        <p>Przerwania, takie jak okna wyskakujące, alerty albo powiadomienia, muszą dać się opóźnić, wyciszyć i kontrolować, z wyjątkiem sytuacji awaryjnych, na przykład krytycznych ostrzeżeń systemowych.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-2-5-ponowne-uwierzytelnianie">2.2.5 Ponowne uwierzytelnianie</a> <span>Poziom AAA</span></h3>
+                        <p>Gdy wymagane jest ponowne uwierzytelnienie, na przykład po upływie sesji, wszystkie wcześniej wpisane dane muszą zostać zachowane, żeby zadanie można było kontynuować bez zaczynania od nowa.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-2-6-limity-czasu">2.2.6 Limity czasu</a> <span>Poziom AAA</span></h3>
+                        <p>Jeśli brak aktywności może doprowadzić do utraty danych, przed upływem czasu musi pojawić się jasne ostrzeżenie z wystarczającym czasem na reakcję i opcją przedłużenia sesji.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-3-1-trzy-blyski-lub-ponizej-progu">2.3.1 Trzy błyski lub poniżej progu</a> <span>Poziom A</span></h3>
+                        <p>Treść nie może błyskać, migać ani migotać częściej niż trzy razy na sekundę, chyba że mieści się w limitach bezpieczeństwa zaprojektowanych tak, aby zmniejszać ryzyko przeciążenia wzrokowego i napadów.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-3-2-trzy-blyski">2.3.2 Trzy błyski</a> <span>Poziom AAA</span></h3>
+                        <p>Treść nie może błyskać, migać ani migotać częściej niż trzy razy na sekundę, bez wyjątku, nawet jeśli mieści się w progach bezpieczeństwa.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-3-3-animacja-po-interakcji">2.3.3 Animacja po interakcji</a> <span>Poziom AAA</span></h3>
+                        <p>Animacje uruchamiane przez interakcję, na przykład kliknięcie, najechanie albo dotknięcie, muszą dać się wyłączyć przez ustawienia systemowe, takie jak redukcja ruchu, albo przez opcję na stronie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow">2.4.1 Możliwość pominięcia bloków</a> <span>Poziom A</span></h3>
+                        <p>Musi dać się pominąć powtarzające się bloki treści, takie jak nawigacja albo nagłówek, i przejść bezpośrednio do głównej części strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-2-tytul-strony">2.4.2 Tytuł strony</a> <span>Poziom A</span></h3>
+                        <p>Każda strona musi mieć unikalny i opisowy tytuł, który odzwierciedla jej temat albo cel.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a> <span>Poziom A</span></h3>
-                        <p>Fokus klawiatury powinien przechodzić przez stronę w kolejności, która zachowuje sens i obsługę interfejsu.</p>
+                        <p>Gdy użytkownik przechodzi po stronie klawiaturą, fokus powinien iść w logicznej kolejności zgodnej ze znaczeniem i obsługą strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-4-cel-linku-w-kontekscie">2.4.4 Cel linku (w kontekście)</a> <span>Poziom A</span></h3>
+                        <p>Cel każdego linku musi być jasny z samego tekstu linku albo z najbliższego kontekstu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-5-wiele-drog">2.4.5 Wiele dróg</a> <span>Poziom AA</span></h3>
+                        <p>Muszą istnieć co najmniej dwa różne sposoby znalezienia stron albo treści, na przykład menu nawigacyjne, linki na stronie, wyszukiwarka albo mapa strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety">2.4.6 Nagłówki i etykiety</a> <span>Poziom AA</span></h3>
+                        <p>Nagłówki muszą opisywać treść, która po nich następuje. Etykiety i przyciski muszą jasno komunikować, jaka informacja jest potrzebna albo jaka akcja nastąpi.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a> <span>Poziom AA</span></h3>
-                        <p>Osoba korzystająca z klawiatury musi widzieć, który element jest aktualnie aktywny.</p>
+                        <p>Widoczny wskaźnik musi pokazywać, który element ma aktualnie fokus podczas nawigacji klawiaturą.</p>
                     </article>
                     <article class="wcag-criterion-card">
-                        <h3><a href="/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum">2.4.11 Fokus niezakryty minimum</a> <span>Poziom AA</span></h3>
-                        <p>Element z fokusem nie może być całkowicie zasłonięty przez nagłówek, baner, modal, pasek cookie albo inny element strony.</p>
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-8-lokalizacja">2.4.8 Lokalizacja</a> <span>Poziom AAA</span></h3>
+                        <p>Musi być jasne, gdzie użytkownik znajduje się w zestawie stron, na przykład dzięki ścieżce okruszków, wyróżnionym elementom menu albo nagłówkom.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-9-cel-linku-sam-link">2.4.9 Cel linku (sam link)</a> <span>Poziom AAA</span></h3>
+                        <p>Cel każdego linku musi być jasny z samego tekstu linku, bez polegania na otaczającym kontekście.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-10-naglowki-sekcji">2.4.10 Nagłówki sekcji</a> <span>Poziom AAA</span></h3>
+                        <p>Powiązana treść musi być zorganizowana w jasne sekcje za pomocą nagłówków.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum">2.4.11 Fokus niezakryty (minimum)</a> <span>Poziom AA</span></h3>
+                        <p>Element z fokusem nie może być całkowicie zasłonięty przez przyklejone lub nachodzące elementy strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-12-fokus-niezakryty-rozszerzony">2.4.12 Fokus niezakryty (rozszerzony)</a> <span>Poziom AAA</span></h3>
+                        <p>Gdy element otrzymuje fokus, musi być w pełni widoczny i nie może być przykryty inną treścią.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu">2.4.13 Wygląd fokusu</a> <span>Poziom AAA</span></h3>
+                        <p>Widoczny wskaźnik fokusu musi mieć co najmniej 2 px grubości, kontrast 3:1 względem stanu bez fokusu i musi być wyraźnie powiązany z elementem, który ma fokus.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-1-gesty-wskazujace">2.5.1 Gesty wskazujące</a> <span>Poziom A</span></h3>
+                        <p>Akcje zależne od gestów, takich jak przesunięcie albo szczypanie, muszą dać się wykonać także jednym dotknięciem, kliknięciem albo przyciskiem.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-2-anulowanie-akcji-wskaznikiem">2.5.2 Anulowanie akcji wskaźnikiem</a> <span>Poziom A</span></h3>
+                        <p>Akcje nie mogą uruchamiać się w momencie naciśnięcia albo dotknięcia. Muszą uruchamiać się dopiero po zwolnieniu, na przykład po mouse-up albo podniesieniu palca.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-3-etykieta-w-nazwie">2.5.3 Etykieta w nazwie</a> <span>Poziom A</span></h3>
+                        <p>Widoczny tekst przycisku, linku albo pola formularza musi być także częścią jego dostępnej, programowej nazwy.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-4-aktywowanie-ruchem">2.5.4 Aktywowanie ruchem</a> <span>Poziom A</span></h3>
+                        <p>Jeśli akcję można uruchomić ruchem, na przykład potrząśnięciem albo przechyleniem urządzenia, musi działać także bez ruchu i musi dać się wyłączyć wprowadzanie oparte na ruchu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-5-rozmiar-celu-rozszerzony">2.5.5 Rozmiar celu (rozszerzony)</a> <span>Poziom AAA</span></h3>
+                        <p>Cele dotykowe albo obsługiwane myszą muszą mieć co najmniej 44 x 44 px, chyba że są częścią zdania albo bloku tekstu, znajdują się blisko innego celu o tej samej funkcji spełniającego wymaganie albo są w kontekście, w którym rozmiaru nie da się zwiększyć.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-6-rownoczesne-mechanizmy-wejscia">2.5.6 Równoczesne mechanizmy wejścia</a> <span>Poziom AAA</span></h3>
+                        <p>Musi dać się przełączać między typami wejścia, takimi jak mysz, klawiatura, dotyk albo głos, bez utraty dostępu do jakiejkolwiek funkcji.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/2-5-7-ruch-przeciagania">2.5.7 Ruch przeciągania</a> <span>Poziom AA</span></h3>
-                        <p>Jeśli działanie wymaga przeciągania, użytkownik powinien mieć prostszą alternatywę, na przykład kliknięcie albo wybór kontrolki.</p>
+                        <p>Akcje wymagające przeciągania, na przykład zmiany kolejności, muszą dać się wykonać także przyciskami albo inną metodą niewymagającą przeciągania.</p>
                     </article>
                     <article class="wcag-criterion-card">
-                        <h3><a href="/wcag-prostym-jezykiem/2-5-8-rozmiar-celu-minimum">2.5.8 Rozmiar celu minimum</a> <span>Poziom AA</span></h3>
-                        <p>Elementy klikalne powinny być wystarczająco duże albo mieć wystarczająco dużo wolnej przestrzeni wokół.</p>
+                        <h3><a href="/wcag-prostym-jezykiem/2-5-8-rozmiar-celu-minimum">2.5.8 Rozmiar celu (minimum)</a> <span>Poziom AA</span></h3>
+                        <p>Elementy, które użytkownik klika albo dotyka, nie mogą być zbyt małe ani upchane tak blisko siebie, że łatwo trafić w zły element.</p>
                     </article>
                 </section>
 
-                <section class="knowledge-panel" aria-labelledby="understandable-title">
-                    <h2 id="understandable-title">Zrozumiałość</h2>
+                <section class="knowledge-panel" aria-labelledby="zrozumialosc-title">
+                    <h2 id="zrozumialosc-title">Zrozumiałość</h2>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-1-1-jezyk-strony">3.1.1 Język strony</a> <span>Poziom A</span></h3>
+                        <p>Każda strona musi mieć atrybut html lang, który odpowiada głównemu językowi strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-1-2-jezyk-czesci">3.1.2 Język części</a> <span>Poziom AA</span></h3>
+                        <p>Każda część treści w innym języku musi być oznaczona poprawnym atrybutem lang. Wyrażenia zapożyczone z innego języka, takie jak déjà vu w języku angielskim, nie wymagają tego, chyba że wpłynęłoby to na wymowę albo zrozumienie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-1-3-nietypowe-slowa">3.1.3 Nietypowe słowa</a> <span>Poziom AAA</span></h3>
+                        <p>Należy unikać nietypowych terminów, żargonu i języka przenośnego, gdy to możliwe, albo wyjaśniać je przy pierwszym wystąpieniu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-1-4-skroty">3.1.4 Skróty</a> <span>Poziom AAA</span></h3>
+                        <p>Należy unikać skrótów i akronimów, gdy to możliwe, albo wyjaśniać je przy pierwszym wystąpieniu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-1-5-poziom-czytania">3.1.5 Poziom czytania</a> <span>Poziom AAA</span></h3>
+                        <p>Jeśli treść wymaga umiejętności czytania powyżej poziomu niższego wykształcenia średniego, około 9 klasy, należy zapewnić prostszą wersję, streszczenie, pomoc wizualną albo wersję mówioną, aby pomóc w zrozumieniu.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-1-6-wymowa">3.1.6 Wymowa</a> <span>Poziom AAA</span></h3>
+                        <p>Jeśli słowo można wymówić na różne sposoby i ma przez to różne znaczenia, zamierzone znaczenie musi być wyjaśnione, aby uniknąć niejasności.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu">3.2.1 Po otrzymaniu fokusu</a> <span>Poziom A</span></h3>
+                        <p>Po otrzymaniu fokusu przez element nie mogą następować nieoczekiwane zmiany, takie jak otwarcie okna, przeniesienie fokusu albo wysłanie formularza.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych">3.2.2 Podczas wprowadzania danych</a> <span>Poziom A</span></h3>
+                        <p>Po zmianie wartości pola nie mogą następować nieoczekiwane zmiany, takie jak automatyczne wysłanie, przeładowanie albo otwarcie nowej strony.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-2-3-spojna-nawigacja">3.2.3 Spójna nawigacja</a> <span>Poziom AA</span></h3>
+                        <p>Elementy nawigacji, takie jak menu, linki i wyszukiwarka, muszą pojawiać się w tym samym miejscu i w tej samej kolejności na stronach.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-2-4-spojna-identyfikacja">3.2.4 Spójna identyfikacja</a> <span>Poziom AA</span></h3>
+                        <p>Elementy o tej samej funkcji muszą wyglądać, działać i być nazwane tak samo na stronach.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-2-5-zmiana-na-zadanie">3.2.5 Zmiana na żądanie</a> <span>Poziom AAA</span></h3>
+                        <p>Duże zmiany, takie jak otwarcie okna dialogowego, przejście na inną stronę albo wysłanie formularza, mogą następować tylko wtedy, gdy użytkownik wyraźnie o nie poprosi.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-2-6-spojna-pomoc">3.2.6 Spójna pomoc</a> <span>Poziom A</span></h3>
+                        <p>Opcje pomocy, takie jak link kontaktowy albo widżet wsparcia, muszą pojawiać się w tym samym miejscu na stronach.</p>
+                    </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">3.3.1 Identyfikacja błędu</a> <span>Poziom A</span></h3>
-                        <p>Gdy użytkownik popełni błąd, strona powinna jasno wskazać, gdzie jest problem i co jest nieprawidłowe.</p>
+                        <p>Błędy i walidacja muszą być jasno wskazane i opisane tekstem, a nie tylko wizualnie, na przykład kolorem albo podświetleniem.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a> <span>Poziom A</span></h3>
-                        <p>Pola formularzy i podobne komponenty powinny mieć etykiety lub instrukcje, które pomagają poprawnie wykonać działanie.</p>
+                        <p>Pola formularza muszą mieć jasne etykiety albo instrukcje, które zapobiegają dezorientacji i pomagają poprawnie uzupełnić dane.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/3-3-3-sugestie-korekty-bledow">3.3.3 Sugestie korekty błędów</a> <span>Poziom AA</span></h3>
-                        <p>Jeśli system zna sposób poprawienia błędu, powinien podać użytkownikowi zrozumiałą sugestię.</p>
+                        <p>Błędy i komunikaty walidacyjne muszą pokazywać tekst wyjaśniający problem i sugerujący, jak go naprawić, na przykład „wpisz co najmniej 8 znaków”.</p>
                     </article>
                     <article class="wcag-criterion-card">
-                        <h3><a href="/wcag-prostym-jezykiem/3-3-4-zapobieganie-bledom-prawne-finansowe-dane">3.3.4 Zapobieganie błędom</a> <span>Poziom AA</span></h3>
-                        <p>Przy działaniach prawnych, finansowych lub związanych z danymi użytkownik powinien móc sprawdzić, poprawić albo potwierdzić dane przed wysłaniem.</p>
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-4-zapobieganie-bledom-prawne-finansowe-dane">3.3.4 Zapobieganie błędom (prawne, finansowe, dane)</a> <span>Poziom AA</span></h3>
+                        <p>Przed wysłaniem ważnych działań, takich jak płatności albo formularze prawne, formularz musi pozwolić sprawdzić dane, poprawić błędy albo potwierdzić wysłanie.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-5-pomoc">3.3.5 Pomoc</a> <span>Poziom AAA</span></h3>
+                        <p>Należy zapewnić dodatkową pomoc, taką jak instrukcje tekstowe, linki pomocy albo podpowiedzi, gdy sama etykieta może być niejednoznaczna albo myląca.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-6-zapobieganie-bledom-wszystkie">3.3.6 Zapobieganie błędom (wszystkie)</a> <span>Poziom AAA</span></h3>
+                        <p>Gdy użytkownik wysyła dane, powinien móc sprawdzić, poprawić, potwierdzić albo cofnąć działanie.</p>
                     </article>
                     <article class="wcag-criterion-card">
                         <h3><a href="/wcag-prostym-jezykiem/3-3-7-powtarzajace-sie-wpisy">3.3.7 Powtarzające się wpisy</a> <span>Poziom A</span></h3>
-                        <p>Użytkownik nie powinien ponownie wpisywać tych samych informacji w jednym procesie, jeśli system już je zna.</p>
+                        <p>Nie pytaj o te same informacje dwa razy w tym samym procesie. Zapewnij wstępnie wypełnione pola albo opcje wyboru, jeśli informacje zostały już podane.</p>
                     </article>
                     <article class="wcag-criterion-card">
-                        <h3><a href="/wcag-prostym-jezykiem/3-3-8-dostepne-uwierzytelnianie-minimum">3.3.8 Dostępne uwierzytelnianie minimum</a> <span>Poziom AA</span></h3>
-                        <p>Logowanie nie powinno wymagać zadania poznawczego bez dostępnej alternatywy albo wsparcia.</p>
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-8-dostepne-uwierzytelnianie-minimum">3.3.8 Dostępne uwierzytelnianie (minimum)</a> <span>Poziom AA</span></h3>
+                        <p>Uwierzytelnianie nie może opierać się wyłącznie na pamięci. Pozwól na kopiowanie i wklejanie, menedżery haseł albo inne opcje, na przykład weryfikację e-mailem.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/3-3-9-dostepne-uwierzytelnianie-rozszerzone">3.3.9 Dostępne uwierzytelnianie (rozszerzone)</a> <span>Poziom AAA</span></h3>
+                        <p>Uwierzytelnianie nie może opierać się na pamięci ani rozpoznawaniu, na przykład rozwiązywaniu zagadek, zapamiętywaniu obrazków albo CAPTCHA.</p>
+                    </article>
+                </section>
+
+                <section class="knowledge-panel" aria-labelledby="solidnosc-title">
+                    <h2 id="solidnosc-title">Solidność</h2>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/4-1-1-parsowanie">4.1.1 Parsowanie</a> <span>Poziom A w WCAG 2.0 i 2.1</span></h3>
+                        <p>To wymaganie kiedyś dotyczyło HTML z poprawną strukturą i bez krytycznych błędów znaczników, takich jak brakujące tagi albo zduplikowane identyfikatory. Wymaganie zostało usunięte, ale nadal pomaga w kompatybilności.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc">4.1.2 Nazwa, rola, wartość</a> <span>Poziom A</span></h3>
+                        <p>Elementy interaktywne muszą mieć jasną nazwę, czyli czym są, poprawną rolę, czyli co robią, oraz aktualną wartość albo stan, żeby technologie wspomagające mogły je interpretować i obsługiwać.</p>
+                    </article>
+                    <article class="wcag-criterion-card">
+                        <h3><a href="/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie">4.1.3 Komunikaty o stanie</a> <span>Poziom AA</span></h3>
+                        <p>Aktualizacje stanu, takie jak „formularz wysłany” albo „5 elementów w koszyku”, muszą być zakodowane odpowiednimi rolami, takimi jak role=status albo role=alert, być wykrywalne przez technologie wspomagające i nie wymagać przenoszenia fokusu.</p>
                     </article>
                 </section>
             </div>
