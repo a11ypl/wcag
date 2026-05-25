@@ -79,255 +79,33 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Krótko</h2>
-                    <p>Jeśli formularz wykryje błąd i wiadomo, jak go poprawić, użytkownik powinien dostać konkretną podpowiedź naprawy.</p>
+                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
+                    <p>To kryterium należy do zasady zrozumiałości: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
+                    <p>W praktyce oznacza to: Błędy i komunikaty walidacyjne muszą pokazywać tekst wyjaśniający problem i sugerujący, jak go naprawić, na przykład „wpisz co najmniej 8 znaków”.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Problem w praktyce</h2>
-                    <p>Użytkownik wpisuje dane w formularzu. Po wysłaniu widzi komunikat „Nieprawidłowa wartość” albo „Błąd formularza”. Wie, że coś jest źle, ale nie wie, jak to naprawić.</p>
-                    <p>Musi zgadywać format daty, liczbę cyfr telefonu, wymagany układ hasła albo sposób wpisania numeru dokumentu. W długim formularzu taka zgadywanka szybko zamienia prosty błąd w porzucone zadanie.</p>
-                    <p>To kryterium dotyczy sugestii po wykryciu błędu. Nie zastępuje etykiet i instrukcji przed wpisaniem danych ani samego wskazania, gdzie jest błąd.</p>
+                    <h2>Dlaczego to ważne?</h2>
+                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo to dotyczy</h2>
+                    <h2>Kogo dotyczy?</h2>
+                    <p>Najbardziej pomaga osobom z trudnościami poznawczymi, osobom używającym czytników ekranu, osobom w stresie oraz wszystkim, którzy muszą bezpiecznie przejść przez formularz lub proces.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak wdrożyć 3.3.3?</h2>
                     <ul class="detail-list">
-                        <li>Osób z trudnościami poznawczymi, które potrzebują jasnego następnego kroku.</li>
-                        <li>Osób niewidomych korzystających z czytników ekranu.</li>
-                        <li>Osób słabowidzących, które mogą widzieć tylko część formularza lub komunikatu.</li>
-                        <li>Osób korzystających z klawiatury, które przechodzą między polami i komunikatami bez myszy.</li>
-                        <li>Osób starszych.</li>
-                        <li>Osób w stresie lub pośpiechu.</li>
-                        <li>Użytkowników formularzy urzędowych, rekrutacyjnych, medycznych, finansowych i zakupowych.</li>
+                        <li>Sprawdź, czy użytkownik rozumie etykiety, instrukcje, błędy i konsekwencje działania.</li>
+                        <li>Pisz komunikaty konkretnie: wskaż problem, miejsce problemu i możliwy następny krok.</li>
+                        <li>Przetestuj formularze i procesy z błędnymi danymi, powtórzeniami oraz zmianami stanu.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dobry przykład</h2>
-                    <ul class="detail-list">
-                        <li>Zamiast „Błędny e-mail” komunikat mówi: „Wpisz adres e-mail w formacie nazwa@example.com”.</li>
-                        <li>Zamiast „Niepoprawna data” komunikat mówi: „Wpisz datę w formacie RRRR-MM-DD, np. 1990-04-27”.</li>
-                        <li>Przy haśle komunikat mówi: „Hasło musi mieć co najmniej 12 znaków, jedną cyfrę i jeden znak specjalny”.</li>
-                        <li>Przy telefonie komunikat mówi: „Wpisz 9 cyfr, bez spacji i prefiksu kraju”.</li>
-                        <li>Sugestia nie ujawnia danych wrażliwych i nie obniża bezpieczeństwa.</li>
-                        <li>Sugestia jest blisko pola albo połączona z polem przez <code>aria-describedby</code>.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Zły przykład</h2>
-                    <ul class="detail-list">
-                        <li>„Nieprawidłowa wartość” bez instrukcji.</li>
-                        <li>„Błąd” bez wskazania poprawnego formatu.</li>
-                        <li>Komunikat techniczny typu „invalid input”.</li>
-                        <li>Podpowiedź dostępna dopiero w dokumentacji poza formularzem.</li>
-                        <li>Komunikat, który tylko powtarza etykietę pola.</li>
-                        <li>Sugestia nieadekwatna do błędu, na przykład instrukcja dla PESEL przy polu telefonu.</li>
-                        <li>Sugestia zdradzająca za dużo informacji w polu związanym z bezpieczeństwem.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Kiedy sugestia nie jest możliwa albo niebezpieczna</h2>
-                    <p>Nie zawsze można podać pełną sugestię korekty. 3.3.3 wymaga sugestii wtedy, gdy błąd został wykryty i można bezpiecznie podać pomocną podpowiedź.</p>
-                    <ul class="detail-list">
-                        <li><strong>Logowanie:</strong> nie mówimy, czy błędny jest login czy hasło, jeśli mogłoby to obniżyć bezpieczeństwo.</li>
-                        <li><strong>Dane wrażliwe:</strong> nie podpowiadamy informacji, które mogłyby ujawnić prywatne dane.</li>
-                        <li><strong>Testy i quizy:</strong> nie podajemy poprawnej odpowiedzi, jeśli celem jest sprawdzenie wiedzy.</li>
-                        <li><strong>Wartości zależne od użytkownika:</strong> system nie zawsze może znać poprawną wartość, więc powinien wskazać regułę, format albo bezpieczny następny krok.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykłady kodu</h2>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Dobra sugestia dla adresu e-mail</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Komunikat nie tylko mówi, że jest błąd. Pokazuje też, jak poprawić wartość.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;label for="email"&gt;
-  Adres e-mail
-&lt;/label&gt;
-&lt;input
-  id="email"
-  name="email"
-  type="email"
-  aria-invalid="true"
-  aria-describedby="email-error"
-&gt;
-&lt;p id="email-error"&gt;
-  Wpisz adres e-mail w formacie nazwa@example.com.
-&lt;/p&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Dobra sugestia dla daty</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Użytkownik nie musi zgadywać formatu daty.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;label for="birth-date"&gt;
-  Data urodzenia
-&lt;/label&gt;
-&lt;input
-  id="birth-date"
-  name="birth-date"
-  type="text"
-  aria-invalid="true"
-  aria-describedby="birth-date-error"
-&gt;
-&lt;p id="birth-date-error"&gt;
-  Wpisz datę w formacie RRRR-MM-DD, np. 1990-04-27.
-&lt;/p&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Zły przykład: komunikat zbyt ogólny</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Użytkownik wie, że jest błąd, ale nie wie, jak go poprawić. Brakuje sugestii.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;label for="phone"&gt;
-  Telefon
-&lt;/label&gt;
-&lt;input
-  id="phone"
-  name="phone"
-  type="tel"
-  aria-invalid="true"
-&gt;
-&lt;p&gt;
-  Nieprawidłowa wartość.
-&lt;/p&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Bezpieczny komunikat logowania</h3>
-                        </div>
-                        <p class="wcag-code-example__description">W logowaniu nie zawsze należy podawać, która część danych jest błędna. Sugestia ma pomagać, ale nie może obniżać bezpieczeństwa.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;p id="login-error"&gt;
-  Nie udało się zalogować. Sprawdź login i hasło.
-&lt;/p&gt;</code></pre>
-                        </div>
-                    </section>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykład graficzny</h2>
-                    <p>To statyczne demo edukacyjne. Pola i komunikaty są makietami, nie działającym formularzem.</p>
-                    <figure class="wcag-error-suggestion-demo">
-                        <div class="wcag-error-suggestion-demo__grid">
-                            <section class="wcag-error-suggestion-demo__item wcag-error-suggestion-demo__item--bad">
-                                <h3>Źle</h3>
-                                <p class="wcag-error-suggestion-demo__label">Telefon</p>
-                                <div class="wcag-error-suggestion-demo__mock-field">123 45</div>
-                                <p class="wcag-error-suggestion-demo__error">Nieprawidłowa wartość.</p>
-                                <p class="wcag-error-suggestion-demo__note">Komunikat wskazuje problem, ale nie mówi, co trzeba zmienić.</p>
-                            </section>
-                            <section class="wcag-error-suggestion-demo__item wcag-error-suggestion-demo__item--risky">
-                                <h3>Ryzykownie</h3>
-                                <p class="wcag-error-suggestion-demo__label">Data urodzenia</p>
-                                <div class="wcag-error-suggestion-demo__mock-field">27.04.90</div>
-                                <p class="wcag-error-suggestion-demo__error">Wpisz poprawną datę.</p>
-                                <p class="wcag-error-suggestion-demo__note">Sugestia jest nadal za ogólna. Użytkownik nie zna oczekiwanego formatu.</p>
-                            </section>
-                            <section class="wcag-error-suggestion-demo__item wcag-error-suggestion-demo__item--good">
-                                <h3>Dobrze</h3>
-                                <p class="wcag-error-suggestion-demo__label">Data urodzenia</p>
-                                <div class="wcag-error-suggestion-demo__mock-field">27.04.90</div>
-                                <p class="wcag-error-suggestion-demo__error">Wpisz datę w formacie RRRR-MM-DD, np. 1990-04-27.</p>
-                                <p class="wcag-error-suggestion-demo__note">Komunikat daje konkretną, bezpieczną podpowiedź naprawy.</p>
-                            </section>
-                        </div>
-                        <figcaption>Statyczne demo pokazuje różnicę między samą informacją o błędzie a sugestią, która pomaga go poprawić.</figcaption>
-                    </figure>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak sprawdzić</h2>
-                    <ol class="detail-list">
-                        <li>Wypełnij formularz błędnymi danymi.</li>
-                        <li>Sprawdź, czy błąd jest zidentyfikowany.</li>
-                        <li>Sprawdź, czy komunikat mówi, jak poprawić błąd.</li>
-                        <li>Sprawdź, czy sugestia jest konkretna, na przykład podaje format albo przykład.</li>
-                        <li>Sprawdź, czy sugestia jest blisko pola albo połączona programistycznie z polem.</li>
-                        <li>Sprawdź, czy sugestia jest bezpieczna i nie ujawnia danych wrażliwych.</li>
-                        <li>Sprawdź formularz klawiaturą.</li>
-                        <li>Sprawdź formularz czytnikiem ekranu.</li>
-                        <li>Nie oceniaj wyłącznie automatem.</li>
-                    </ol>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Co sprawdzi automat, a czego nie</h2>
-                    <h3>Automat może wykryć</h3>
-                    <ul class="detail-list">
-                        <li>Część pól bez etykiet.</li>
-                        <li>Część błędnych relacji <code>aria-describedby</code>.</li>
-                        <li>Część problemów z <code>aria-invalid</code>.</li>
-                        <li>Niektóre problemy z komunikatami błędów.</li>
-                    </ul>
-                    <h3>Automat nie oceni pewnie</h3>
-                    <ul class="detail-list">
-                        <li>Czy sugestia jest pomocna.</li>
-                        <li>Czy sugestia jest wystarczająco konkretna.</li>
-                        <li>Czy sugestia jest bezpieczna.</li>
-                        <li>Czy użytkownik rzeczywiście wie, jak poprawić błąd.</li>
-                        <li>Czy system powinien podać sugestię w danym kontekście.</li>
-                        <li>Czy komunikat nie ujawnia zbyt wielu informacji.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Typowe błędy</h2>
-                    <ul class="detail-list">
-                        <li>Komunikat „Nieprawidłowa wartość”.</li>
-                        <li>Komunikat „Błąd formularza” bez sugestii.</li>
-                        <li>Brak przykładu poprawnego formatu.</li>
-                        <li>Sugestia schowana w placeholderze.</li>
-                        <li>Informacja dopiero po kilku nieudanych próbach.</li>
-                        <li>Techniczne komunikaty walidatora.</li>
-                        <li>Brak rozróżnienia między formularzem zwykłym a formularzem związanym z bezpieczeństwem.</li>
-                        <li>Zbyt szczegółowe podpowiedzi w logowaniu.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Powiązane kryteria</h2>
-                    <ul class="detail-list">
-                        <li><a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">3.3.1 Identyfikacja błędu</a>: wskazanie, gdzie jest błąd i jaki to błąd.</li>
-                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a>: informacje potrzebne przed wpisaniem danych.</li>
-                        <li><a href="/wcag-prostym-jezykiem/3-3-4-zapobieganie-bledom-prawne-finansowe-dane">3.3.4 Zapobieganie błędom</a>: potwierdzanie, sprawdzanie lub odwracanie ważnych operacji.</li>
-                        <li><a href="/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie">4.1.3 Komunikaty o stanie</a>: programistyczne ogłaszanie komunikatów bez przenoszenia fokusu.</li>
-                        <li><a href="/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">1.3.1 Informacje i relacje</a>: programistyczne relacje między polem, błędem i instrukcją.</li>
-                        <li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a>: logiczne przechodzenie przez formularz i komunikaty.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Źródła</h2>
-                    <ul class="detail-list">
-                        <li><a href="https://www.w3.org/TR/WCAG22/#error-suggestion" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.3.3 Error Suggestion<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.3.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#error-suggestion" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.3.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G85" target="_blank" rel="noopener noreferrer">Technika G85: tekstowy opis błędu, gdy dane mają zły format albo wartość<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G177" target="_blank" rel="noopener noreferrer">Technika G177: podanie tekstu sugerującego korektę<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G84" target="_blank" rel="noopener noreferrer">Technika G84: tekstowy opis błędu, gdy wartość nie należy do dozwolonego zestawu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA18" target="_blank" rel="noopener noreferrer">Technika ARIA18: użycie aria-alertdialog do identyfikowania błędów<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF22" target="_blank" rel="noopener noreferrer">Technika PDF22: wskazanie, gdy dane w formularzu PDF mają zły format albo wartość<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                    </ul>
+                    <h2>Źródło i licencja</h2>
+                    <p>To przewodnik dla początkujących. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">oficjalny standard WCAG 2.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</p>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">

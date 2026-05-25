@@ -79,227 +79,33 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Krótko</h2>
-                    <p>Jeśli po najechaniu myszą albo po fokusie pojawia się dodatkowa treść, użytkownik musi móc ją przeczytać, zamknąć i nie stracić jej przypadkowo.</p>
+                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
+                    <p>To kryterium należy do zasady postrzegalności: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
+                    <p>W praktyce oznacza to: Dodatkowa treść, która pojawia się po hoverze albo fokusie, musi dać się przeczytać, zamknąć i utrzymać bez przypadkowego znikania.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Problem w praktyce</h2>
-                    <p>Użytkownik najeżdża kursorem na ikonę pomocy albo przechodzi klawiaturą do pola formularza. Pojawia się dymek z ważną informacją, ale zasłania inne treści, znika przy próbie przesunięcia kursora albo nie da się go zamknąć bez utraty fokusu.</p>
-                    <p>Osoba korzystająca z powiększenia, klawiatury lub czytnika ekranu może nie mieć realnej możliwości skorzystania z tej informacji. To kryterium dotyczy dodatkowej treści pojawiającej się po hoverze albo fokusie, a nie samego wyglądu fokusu czy kolejności nawigacji.</p>
+                    <h2>Dlaczego to ważne?</h2>
+                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo to dotyczy</h2>
+                    <h2>Kogo dotyczy?</h2>
+                    <p>Najbardziej pomaga osobom niewidomym, słabowidzącym, głuchym, niedosłyszącym oraz wszystkim, którzy odbierają treść w trudnych warunkach albo innym kanałem niż zakładał projekt.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak wdrożyć 1.4.13?</h2>
                     <ul class="detail-list">
-                        <li>Osób słabowidzących korzystających z powiększenia ekranu, dla których dymek może zasłonić dużą część widoku.</li>
-                        <li>Osób korzystających z klawiatury, które muszą dostać tę samą treść bez myszy.</li>
-                        <li>Osób z niepełnosprawnościami ruchowymi, które mogą wolniej przesuwać wskaźnik albo fokus.</li>
-                        <li>Osób korzystających z alternatywnych urządzeń wskazujących.</li>
-                        <li>Osób z trudnościami poznawczymi, które potrzebują więcej czasu na przeczytanie podpowiedzi.</li>
-                        <li>Użytkowników mobilnych i osób pracujących na małych ekranach.</li>
+                        <li>Sprawdź, czy informacja nie zależy wyłącznie od jednego zmysłu albo jednego sposobu odbioru.</li>
+                        <li>Dodaj tekst, strukturę, kontrast, napisy, transkrypcję albo inną alternatywę odpowiednią do treści.</li>
+                        <li>Przetestuj stronę bez obrazu, bez dźwięku, przy powiększeniu i przy użyciu technologii wspomagających.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dobry przykład</h2>
-                    <ul class="detail-list">
-                        <li>Tooltip można zamknąć klawiszem Escape.</li>
-                        <li>Tooltip nie znika, gdy użytkownik przesuwa kursor z elementu na treść tooltipa.</li>
-                        <li>Tooltip nie zasłania krytycznej treści.</li>
-                        <li>Dodatkowa treść jest dostępna po fokusie klawiatury, nie tylko po hoverze.</li>
-                        <li>Ważna instrukcja formularza jest widoczna stale albo dostępna w sposób przewidywalny.</li>
-                        <li>Użytkownik ma czas, żeby przeczytać treść.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Zły przykład</h2>
-                    <ul class="detail-list">
-                        <li>Tooltip pojawia się tylko po hoverze, ale nie po fokusie.</li>
-                        <li>Dymek znika, gdy użytkownik próbuje na niego najechać.</li>
-                        <li>Dymek zasłania pole formularza albo ważną informację.</li>
-                        <li>Dymka nie da się zamknąć bez przesunięcia myszy.</li>
-                        <li>Dodatkowa treść pojawia się automatycznie i przykrywa inne elementy.</li>
-                        <li>Podpowiedź zawiera ważną instrukcję, ale nie jest dostępna dla klawiatury.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Trzy warunki z WCAG</h2>
-                    <h3>Odrzucalna</h3>
-                    <p>Użytkownik może zamknąć dodatkową treść bez przesuwania kursora albo fokusu, na przykład klawiszem Escape. Wyjątkiem jest sytuacja, w której treść nie zasłania ani nie zastępuje niczego ważnego.</p>
-                    <h3>Wskazywalna</h3>
-                    <p>Jeśli treść pojawia się po hoverze, użytkownik może przesunąć kursor na tę treść bez jej zniknięcia.</p>
-                    <h3>Trwała</h3>
-                    <p>Treść pozostaje widoczna, dopóki użytkownik nie zabierze kursora lub fokusu, nie zamknie jej albo treść nie przestanie być potrzebna.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykłady kodu</h2>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Dobry kierunek CSS: hover i focus</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Treść pojawia się nie tylko po najechaniu myszą, ale też po fokusie klawiatury. Dodatkowo użytkownik może przesunąć kursor na tooltip.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — CSS</p>
-                            <pre><code class="language-css">.help-trigger:hover + .tooltip,
-.help-trigger:focus-visible + .tooltip,
-.tooltip:hover {
-  display: block;
-}</code></pre>
-                        </div>
-                        <div class="wcag-code-example__preview">
-                            <p class="wcag-code-example__label">Jak to działa</p>
-                            <p>Podpowiedź jest dostępna dla myszy i klawiatury, a hover na samej podpowiedzi nie powoduje jej natychmiastowego zniknięcia.</p>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Zły przykład: tylko hover</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Osoba korzystająca z klawiatury może nigdy nie zobaczyć tej treści.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — CSS</p>
-                            <pre><code class="language-css">.help-trigger:hover + .tooltip {
-  display: block;
-}</code></pre>
-                        </div>
-                        <div class="wcag-code-example__preview">
-                            <p class="wcag-code-example__label">Jak to działa</p>
-                            <p>Ten wzorzec zakłada mysz. Nie zapewnia dostępu do treści osobie, która porusza się po stronie klawiaturą.</p>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example">
-                        <div class="wcag-code-example__header">
-                            <h3>Dobry kierunek JS: zamknięcie Escape</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Jeśli dodatkowa treść zasłania inne elementy albo działa jak mały popup, użytkownik powinien mieć przewidywalny sposób zamknięcia jej, na przykład Escape.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — JavaScript</p>
-                            <pre><code class="language-javascript">document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    closeTooltip();
-  }
-});</code></pre>
-                        </div>
-                        <div class="wcag-code-example__note">
-                            <p class="wcag-code-example__label">Uwaga</p>
-                            <p>To jest przykład edukacyjny, nie gotowa biblioteka tooltipów. Pełny komponent wymaga jeszcze obsługi stanu, położenia, fokusu i testów w konkretnym interfejsie.</p>
-                        </div>
-                    </section>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykład graficzny</h2>
-                    <p>To jest statyczna makieta edukacyjna, a nie działający tooltip. Pokazuje różnicę między problematycznym i przewidywalnym zachowaniem dodatkowej treści.</p>
-                    <figure class="wcag-hover-focus-demo">
-                        <div class="wcag-hover-focus-demo__grid">
-                            <section class="wcag-hover-focus-demo__item wcag-hover-focus-demo__item--bad">
-                                <h3>Źle</h3>
-                                <div class="wcag-hover-focus-demo__stage">
-                                    <span class="wcag-hover-focus-demo__trigger">Ikona pomocy</span>
-                                    <span class="wcag-hover-focus-demo__tooltip">Tylko hover. Znika przy przejściu na dymek.</span>
-                                </div>
-                                <p class="wcag-hover-focus-demo__note">Problem: treść jest projektowana tylko pod mysz i nie da się jej spokojnie przeczytać.</p>
-                            </section>
-
-                            <section class="wcag-hover-focus-demo__item wcag-hover-focus-demo__item--risky">
-                                <h3>Ryzykownie</h3>
-                                <div class="wcag-hover-focus-demo__stage">
-                                    <span class="wcag-hover-focus-demo__trigger">Pole: PESEL</span>
-                                    <span class="wcag-hover-focus-demo__tooltip">Podpowiedź zasłania przykład formatu i nie pokazuje sposobu zamknięcia.</span>
-                                </div>
-                                <p class="wcag-hover-focus-demo__note">Problem: dymek może przykryć treść, której użytkownik właśnie potrzebuje.</p>
-                            </section>
-
-                            <section class="wcag-hover-focus-demo__item wcag-hover-focus-demo__item--good">
-                                <h3>Dobrze</h3>
-                                <div class="wcag-hover-focus-demo__stage">
-                                    <span class="wcag-hover-focus-demo__trigger">Pole: e-mail</span>
-                                    <span class="wcag-hover-focus-demo__tooltip">Widoczne po fokusie. Esc — zamknij.</span>
-                                </div>
-                                <p class="wcag-hover-focus-demo__note">Dobra praktyka: treść jest dostępna dla klawiatury, nie znika od razu i ma opisany sposób zamknięcia.</p>
-                            </section>
-                        </div>
-                        <figcaption>Porównanie trzech wariantów treści pojawiającej się po hoverze albo fokusie. To statyczna ilustracja, nie interaktywny komponent.</figcaption>
-                    </figure>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak sprawdzić</h2>
-                    <ol class="detail-list">
-                        <li>Znajdź elementy, które pokazują dodatkową treść po hoverze albo fokusie.</li>
-                        <li>Sprawdź tooltipy, dymki pomocy, menu, podglądy kart, opisy ikon i podpowiedzi formularzy.</li>
-                        <li>Przejdź stronę myszą i klawiaturą.</li>
-                        <li>Sprawdź, czy treść pojawia się także po fokusie klawiatury, jeśli jest potrzebna użytkownikom klawiatury.</li>
-                        <li>Sprawdź, czy dodatkową treść da się zamknąć bez przesuwania myszy albo fokusu, jeśli zasłania inne elementy.</li>
-                        <li>Sprawdź, czy można przesunąć kursor na dodatkową treść bez jej zniknięcia.</li>
-                        <li>Sprawdź, czy treść pozostaje widoczna wystarczająco długo.</li>
-                        <li>Sprawdź stronę przy powiększeniu 200% i 400%.</li>
-                        <li>Sprawdź, czy tooltip nie zasłania pola, którego dotyczy.</li>
-                        <li>Nie oceniaj wyłącznie automatem. To kryterium wymaga testu manualnego.</li>
-                    </ol>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Co sprawdzi automat, a czego nie</h2>
-                    <h3>Automat może wykryć</h3>
-                    <ul class="detail-list">
-                        <li>Część problemów z elementami interaktywnymi bez nazwy.</li>
-                        <li>Część problemów z fokusem.</li>
-                        <li>Niektóre błędy struktury komponentów.</li>
-                        <li>Czasem elementy ukrywane lub pokazywane w CSS.</li>
-                    </ul>
-                    <h3>Automat nie oceni pewnie</h3>
-                    <ul class="detail-list">
-                        <li>Czy tooltip da się zamknąć.</li>
-                        <li>Czy znika przy próbie najechania.</li>
-                        <li>Czy zasłania ważną treść.</li>
-                        <li>Czy działa dla użytkownika klawiatury.</li>
-                        <li>Czy jest wystarczająco trwały.</li>
-                        <li>Czy zachowanie jest przewidywalne przy powiększeniu.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Typowe błędy</h2>
-                    <ul class="detail-list">
-                        <li>Tooltipy dostępne tylko na hover.</li>
-                        <li>Ważne instrukcje ukryte w dymkach.</li>
-                        <li>Podpowiedzi formularza znikające za szybko.</li>
-                        <li>Dymki zasłaniające pole formularza.</li>
-                        <li>Tooltipy niemożliwe do odczytania przy powiększeniu.</li>
-                        <li>Brak obsługi Escape.</li>
-                        <li>Tooltipy ukrywane natychmiast po przesunięciu kursora.</li>
-                        <li>Dymki projektowane tylko pod mysz, bez klawiatury.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Powiązane kryteria</h2>
-                    <ul class="detail-list">
-                        <li><a href="/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu">1.4.10 Dopasowanie do ekranu</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-1-1-klawiatura">2.1.1 Klawiatura</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-1-2-brak-pulapki-na-klawiature">2.1.2 Brak pułapki na klawiaturę</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a></li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Źródła</h2>
-                    <ul class="detail-list">
-                        <li><a href="https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.4.13 Content on Hover or Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.4.13<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#content-on-hover-or-focus" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.4.13<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                    </ul>
+                    <h2>Źródło i licencja</h2>
+                    <p>To przewodnik dla początkujących. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">oficjalny standard WCAG 2.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</p>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">

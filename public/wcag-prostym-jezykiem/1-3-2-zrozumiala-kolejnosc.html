@@ -79,221 +79,33 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Krótko</h2>
-                    <p>Treść powinna być ułożona w takiej kolejności, żeby po odczytaniu bez układu wizualnego nadal miała sens.</p>
+                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
+                    <p>To kryterium należy do zasady postrzegalności: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
+                    <p>W praktyce oznacza to: Treść powinna być ułożona w takiej kolejności, żeby po odczytaniu bez układu wizualnego nadal miała sens.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Problem w praktyce</h2>
-                    <p>Strona może wyglądać poprawnie wizualnie, ale w kodzie najpierw znajduje się przycisk, potem opis, potem nagłówek, a dopiero później właściwa treść. Czytnik ekranu, tryb czytania albo widok po wyłączeniu CSS mogą wtedy pokazać informacje w kolejności, która gubi sens.</p>
-                    <p>To kryterium nie dotyczy samej kolejności fokusu. Chodzi o kolejność treści wtedy, gdy ta kolejność wpływa na znaczenie.</p>
+                    <h2>Dlaczego to ważne?</h2>
+                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo to dotyczy</h2>
+                    <h2>Kogo dotyczy?</h2>
+                    <p>Najbardziej pomaga osobom niewidomym, słabowidzącym, głuchym, niedosłyszącym oraz wszystkim, którzy odbierają treść w trudnych warunkach albo innym kanałem niż zakładał projekt.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak wdrożyć 1.3.2?</h2>
                     <ul class="detail-list">
-                        <li>Osób niewidomych korzystających z czytników ekranu, które odbierają treść liniowo.</li>
-                        <li>Osób słabowidzących korzystających z powiększenia, reflow albo uproszczonych widoków treści.</li>
-                        <li>Użytkowników technologii asystujących, które korzystają ze struktury dokumentu.</li>
-                        <li>Osób z trudnościami poznawczymi, które potrzebują przewidywalnej kolejności informacji.</li>
-                        <li>Wszystkich użytkowników, gdy CSS, grafiki albo złożony układ nie załadują się poprawnie.</li>
+                        <li>Sprawdź, czy informacja nie zależy wyłącznie od jednego zmysłu albo jednego sposobu odbioru.</li>
+                        <li>Dodaj tekst, strukturę, kontrast, napisy, transkrypcję albo inną alternatywę odpowiednią do treści.</li>
+                        <li>Przetestuj stronę bez obrazu, bez dźwięku, przy powiększeniu i przy użyciu technologii wspomagających.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dobry przykład</h2>
-                    <ul class="detail-list">
-                        <li>Nagłówek znajduje się przed treścią, której dotyczy.</li>
-                        <li>Pytanie pojawia się przed odpowiedzią.</li>
-                        <li>Instrukcja formularza znajduje się przed miejscem, w którym trzeba wykonać zadanie.</li>
-                        <li>Etykieta i pole formularza są ułożone w logicznej kolejności i powiązane semantycznie.</li>
-                        <li>Kolejność DOM odpowiada kolejności czytania, nawet jeśli CSS zmienia układ wizualny na większych ekranach.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Zły przykład</h2>
-                    <ul class="detail-list">
-                        <li>CSS ustawia elementy wizualnie poprawnie, ale DOM ma chaotyczną kolejność.</li>
-                        <li>Cena produktu jest odczytywana przed nazwą produktu.</li>
-                        <li>Link „Kup” albo „Zobacz szczegóły” pojawia się przed opisem, który nadaje mu sens.</li>
-                        <li>Komunikat błędu jest daleko od pola i jest odczytywany w złym momencie.</li>
-                        <li>Układ kafli wymaga czytania kolumnami, ale DOM układa treść rzędami w sposób, który zmienia znaczenie.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykłady kodu</h2>
-
-                    <section class="wcag-code-example" aria-labelledby="code-example-sequence-article">
-                        <div class="wcag-code-example__header">
-                            <h3 id="code-example-sequence-article">Dobry przykład artykułu</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Najpierw pojawia się nazwa, potem opis, a na końcu akcja.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;article&gt;
-  &lt;h2&gt;Szkolenie WCAG dla specjalistów&lt;/h2&gt;
-  &lt;p&gt;Trzydniowe szkolenie z audytowania dostępności cyfrowej.&lt;/p&gt;
-  &lt;a href="/szkolenia/wcag-dla-specjalistow"&gt;
-    Zobacz szczegóły
-  &lt;/a&gt;
-&lt;/article&gt;</code></pre>
-                        </div>
-                        <div class="wcag-code-example__preview">
-                            <p class="wcag-code-example__label">Jak to działa</p>
-                            <p>Taka kolejność ma sens także bez układu wizualnego: użytkownik wie, czego dotyczy opis i dokąd prowadzi link.</p>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example" aria-labelledby="code-example-sequence-bad">
-                        <div class="wcag-code-example__header">
-                            <h3 id="code-example-sequence-bad">Zły przykład: akcja przed kontekstem</h3>
-                        </div>
-                        <p class="wcag-code-example__description">Link pojawia się przed nagłówkiem i opisem, więc użytkownik najpierw słyszy akcję bez kontekstu.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — HTML</p>
-                            <pre><code class="language-html">&lt;article&gt;
-  &lt;a href="/szkolenia/wcag-dla-specjalistow"&gt;
-    Zobacz szczegóły
-  &lt;/a&gt;
-  &lt;p&gt;Trzydniowe szkolenie z audytowania dostępności cyfrowej.&lt;/p&gt;
-  &lt;h2&gt;Szkolenie WCAG dla specjalistów&lt;/h2&gt;
-&lt;/article&gt;</code></pre>
-                        </div>
-                        <div class="wcag-code-example__preview">
-                            <p class="wcag-code-example__label">Dlaczego to problem</p>
-                            <p>Użytkownik najpierw trafia na link, ale nie zna jeszcze nazwy ani znaczenia elementu, którego link dotyczy.</p>
-                        </div>
-                    </section>
-
-                    <section class="wcag-code-example" aria-labelledby="code-example-sequence-css-order">
-                        <div class="wcag-code-example__header">
-                            <h3 id="code-example-sequence-css-order">Ryzykowny przykład: CSS order</h3>
-                        </div>
-                        <p class="wcag-code-example__description">CSS może zmienić kolejność wizualną, ale nie zmienia kolejności odczytu w DOM.</p>
-                        <div class="wcag-code-example__code">
-                            <p class="wcag-code-example__label">Kod — CSS</p>
-                            <pre><code class="language-css">.card {
-  display: flex;
-}
-
-.card__title {
-  order: 2;
-}
-
-.card__action {
-  order: 1;
-}</code></pre>
-                        </div>
-                        <div class="wcag-code-example__preview">
-                            <p class="wcag-code-example__label">Jak to sprawdzić</p>
-                            <p>Jeśli kolejność wizualna i programowa się rozjeżdżają, trzeba sprawdzić, czy treść nadal jest zrozumiała po odczytaniu bez układu wizualnego.</p>
-                        </div>
-                    </section>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykład graficzny</h2>
-                    <figure class="wcag-meaningful-sequence-demo">
-                        <div class="wcag-meaningful-sequence-demo__grid">
-                            <section class="wcag-meaningful-sequence-demo__item wcag-meaningful-sequence-demo__item--bad">
-                                <h3>Źle</h3>
-                                <ol class="wcag-meaningful-sequence-demo__flow">
-                                    <li><span class="wcag-meaningful-sequence-demo__number">1</span> Zobacz szczegóły</li>
-                                    <li><span class="wcag-meaningful-sequence-demo__number">2</span> Trzydniowe szkolenie z audytu</li>
-                                    <li><span class="wcag-meaningful-sequence-demo__number">3</span> Szkolenie WCAG dla specjalistów</li>
-                                </ol>
-                                <p class="wcag-meaningful-sequence-demo__note">Akcja pojawia się przed kontekstem, więc kolejność odczytu może dezorientować.</p>
-                            </section>
-
-                            <section class="wcag-meaningful-sequence-demo__item wcag-meaningful-sequence-demo__item--risky">
-                                <h3>Ryzykownie</h3>
-                                <ol class="wcag-meaningful-sequence-demo__flow">
-                                    <li><span class="wcag-meaningful-sequence-demo__number">1</span> DOM: opis</li>
-                                    <li><span class="wcag-meaningful-sequence-demo__number">2</span> DOM: link</li>
-                                    <li><span class="wcag-meaningful-sequence-demo__number">3</span> Wizualnie: nagłówek przesunięty CSS-em</li>
-                                </ol>
-                                <p class="wcag-meaningful-sequence-demo__note">Układ wizualny różni się od kolejności w kodzie. Trzeba sprawdzić, czy sens nadal jest jasny.</p>
-                            </section>
-
-                            <section class="wcag-meaningful-sequence-demo__item wcag-meaningful-sequence-demo__item--good">
-                                <h3>Dobrze</h3>
-                                <ol class="wcag-meaningful-sequence-demo__flow">
-                                    <li><span class="wcag-meaningful-sequence-demo__number">1</span> Szkolenie WCAG dla specjalistów</li>
-                                    <li><span class="wcag-meaningful-sequence-demo__number">2</span> Trzydniowe szkolenie z audytu</li>
-                                    <li><span class="wcag-meaningful-sequence-demo__number">3</span> Zobacz szczegóły</li>
-                                </ol>
-                                <p class="wcag-meaningful-sequence-demo__note">Nagłówek, opis i akcja są w kolejności, która działa także bez stylów CSS.</p>
-                            </section>
-                        </div>
-                        <figcaption>Statyczne demo pokazuje, że znaczenie treści zależy od kolejności odczytu, a nie tylko od wyglądu strony.</figcaption>
-                    </figure>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak sprawdzić</h2>
-                    <ol class="detail-list">
-                        <li>Sprawdź kolejność treści w DOM, na przykład w DevTools.</li>
-                        <li>Przejdź stronę czytnikiem ekranu i oceń, czy informacje pojawiają się w logicznej kolejności.</li>
-                        <li>Użyj klawiatury i sprawdź, czy przechodzenie przez stronę nie ujawnia chaotycznego układu treści.</li>
-                        <li>Wyłącz CSS albo sprawdź uproszczoną strukturę dokumentu.</li>
-                        <li>Przejrzyj karty, tabele, formularze, listy, kafle oraz sekcje łączące obraz i tekst.</li>
-                        <li>Sprawdź, czy treść nadal jest zrozumiała bez układu wizualnego.</li>
-                        <li>Nie oceniaj wyłącznie po wyglądzie strony.</li>
-                    </ol>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Co sprawdzi automat, a czego nie</h2>
-                    <h3>Automat może wykryć</h3>
-                    <ul class="detail-list">
-                        <li>część problemów ze strukturą nagłówków, list, tabel i formularzy,</li>
-                        <li>część elementów interaktywnych w nietypowej kolejności,</li>
-                        <li>niektóre problemy z ukrywaniem treści,</li>
-                        <li>wybrane błędy semantyczne w HTML.</li>
-                    </ul>
-                    <h3>Automat nie oceni pewnie</h3>
-                    <ul class="detail-list">
-                        <li>czy kolejność treści faktycznie zachowuje znaczenie,</li>
-                        <li>czy opis, nagłówek i akcja są zrozumiałe po odczytaniu liniowym,</li>
-                        <li>czy zmiana kolejności przez CSS gubi sens,</li>
-                        <li>czy układ kafli, produktów albo formularza jest logiczny dla użytkownika,</li>
-                        <li>czy uproszczony widok treści nadal prowadzi użytkownika przez zadanie.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Typowe błędy</h2>
-                    <ul class="detail-list">
-                        <li>Projektowanie kolejności wyłącznie w CSS, bez sprawdzenia kolejności DOM.</li>
-                        <li>Karty produktów, w których cena albo przycisk pojawiają się przed nazwą produktu.</li>
-                        <li>Układy dwukolumnowe, które po odczycie liniowym mieszają dwie niezależne treści.</li>
-                        <li>Formularze, w których instrukcja pojawia się dopiero po polu.</li>
-                        <li>Komunikaty błędów odczytywane daleko od pola, którego dotyczą.</li>
-                        <li>Elementy przesuwane przez flexbox albo grid w sposób, który zmienia sens treści.</li>
-                        <li>Kafle i porównania, które wizualnie są czytelne, ale w kodzie tworzą przypadkową sekwencję.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Powiązane kryteria</h2>
-                    <ul class="detail-list">
-                        <li><a href="/wcag-prostym-jezykiem/1-3-1-informacje-i-relacje">1.3.1 Informacje i relacje</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety">2.4.6 Nagłówki i etykiety</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/2-4-10-naglowki-sekcji">2.4.10 Nagłówki sekcji</a></li>
-                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a></li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Źródła</h2>
-                    <ul class="detail-list">
-                        <li><a href="https://www.w3.org/TR/WCAG22/#meaningful-sequence" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.3.2 Meaningful Sequence<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.3.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#meaningful-sequence" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.3.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                    </ul>
+                    <h2>Źródło i licencja</h2>
+                    <p>To przewodnik dla początkujących. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">oficjalny standard WCAG 2.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</p>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">

@@ -55,7 +55,7 @@
             {
               "@type": "Offer",
               "category": "Pojedynczy dzień",
-              "price": "849.15",
+              "price": "999",
               "priceCurrency": "PLN",
               "availability": "https://schema.org/InStock",
               "url": "https://www.a11yfirst.pl/wcag-dla-specjalistow#pricing"
@@ -63,7 +63,7 @@
             {
               "@type": "Offer",
               "category": "Pełny kurs",
-              "price": "2039.15",
+              "price": "2399",
               "priceCurrency": "PLN",
               "availability": "https://schema.org/InStock",
               "url": "https://www.a11yfirst.pl/wcag-dla-specjalistow#pricing"
@@ -94,7 +94,7 @@
               "name": "Czy mogę wziąć udział tylko w jednym dniu?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Tak, możesz wybrać pojedynczy dzień kursu za 849,15 zł z rabatem na Światowy Dzień Świadomości Dostępności obowiązującym do 22 maja 2026."
+                "text": "Tak, możesz wybrać pojedynczy dzień kursu za 999 zł."
               }
             },
             {
@@ -159,7 +159,6 @@
                 <h1>Naucz się prowadzić audyt WCAG od analizy do raportu</h1>
                 <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
                 <p class="course-dates">Dołącz do drugiej edycji:<br>22-24 czerwca 2026 | 9:00-17:00 (online live)</p>
-                <p class="promotion-note">Rabat -15% na Światowy Dzień Świadomości Dostępności obowiązuje do 22 maja 2026.</p>
                 
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
@@ -233,8 +232,7 @@
                 <div class="pricing-grid">
                     <div class="price-card">
                         <h3>Pojedynczy dzień</h3>
-                        <div class="price">849,15 <span style="font-size: 1.5rem">zł</span><span class="price-old">999 zł</span></div>
-                        <p class="promotion-note">Rabat -15% na Światowy Dzień Świadomości Dostępności obowiązuje do 22 maja 2026.</p>
+                        <div class="price">999 <span style="font-size: 1.5rem">zł</span></div>
                         <p class="price-period">brutto za moduł. Faktura bez VAT.</p>
                         <ul class="price-features">
                             <li>Intensywne 8h warsztatów</li>
@@ -253,9 +251,8 @@
                     <div class="price-card price-card--featured">
                         <span class="price-card__badge">Najlepsza wartość</span>
                         <h3>Pełny kurs (3 dni)</h3>
-                        <div class="price">2039,15 <span style="font-size: 1.5rem">zł</span><span class="price-old">2399 zł</span></div>
-                        <p class="promotion-note">Rabat -15% na Światowy Dzień Świadomości Dostępności obowiązuje do 22 maja 2026.</p>
-                        <p class="price-period">brutto za całość. Faktura bez VAT. Oszczędzasz 508,30 zł względem trzech dni z rabatem.</p>
+                        <div class="price">2399 <span style="font-size: 1.5rem">zł</span></div>
+                        <p class="price-period">brutto za całość. Faktura bez VAT. Oszczędzasz 598 zł względem trzech pojedynczych dni.</p>
                         <ul class="price-features">
                             <li>Kompletna ścieżka audytora</li>
                             <li>Wszystkie materiały i checklisty</li>
@@ -414,7 +411,7 @@
                             <span>Czy mogę wziąć udział tylko w jednym dniu?</span>
                             <span class="faq-icon" aria-hidden="true">▼</span>
                         </button>
-                        <div class="faq-answer" id="faq-answer-one-day" hidden>Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 849,15 zł z rabatem na Światowy Dzień Świadomości Dostępności obowiązującym do 22 maja 2026. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
+                        <div class="faq-answer" id="faq-answer-one-day" hidden>Oczywiście! Kurs ma modułową strukturę. Możesz wybrać pojedynczy dzień za 999 zł. Każdy dzień stanowi kompletną jednostkę, choć zalecamy uczestnictwo w całym kursie dla pełnego obrazu audytu WCAG.</div>
                     </div>
                     <div class="faq-item">
                         <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-materials">
@@ -555,7 +552,7 @@
 
         const state = {
             selectedDays: [],
-            prices: { single: 849.15, full: 2039.15 },
+            prices: { single: 999, full: 2399 },
             confirmationOpen: false
         };
 

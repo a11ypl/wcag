@@ -79,256 +79,33 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Krótko</h2>
-                    <p>Użytkownik powinien móc zalogować się bez obowiązku samodzielnego zapamiętywania, przepisywania albo rozwiązywania testu poznawczego, jeśli dostępna jest pomoc lub alternatywa.</p>
+                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
+                    <p>To kryterium należy do zasady zrozumiałości: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
+                    <p>W praktyce oznacza to: Uwierzytelnianie nie może opierać się wyłącznie na pamięci. Pozwól na kopiowanie i wklejanie, menedżery haseł albo inne opcje, na przykład weryfikację e-mailem.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Problem w praktyce</h2>
-                    <p>Użytkownik zna swoje dane i ma prawo dostępu do konta, ale proces logowania wymaga od niego dodatkowego wysiłku poznawczego: zapamiętania hasła, przepisania kodu, rozwiązania zagadki albo rozpoznania obiektów na zdjęciach.</p>
-                    <p>Problem pojawia się na przykład wtedy, gdy strona blokuje wklejanie hasła lub kodu, wymusza przepisywanie znaków z obrazka, każe wybrać wszystkie zdjęcia z sygnalizacją, nie działa z menedżerem haseł albo passkey, albo daje bardzo krótki czas na wpisanie kodu bez sensownego ponowienia.</p>
-                    <p>3.3.8 nie zakazuje haseł, kodów ani zabezpieczeń. Wymaga, żeby przy teście funkcji poznawczych istniała pomoc, mechanizm wspierający albo dostępna alternatywa.</p>
+                    <h2>Dlaczego to ważne?</h2>
+                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo to dotyczy</h2>
+                    <h2>Kogo dotyczy?</h2>
+                    <p>Najbardziej pomaga osobom z trudnościami poznawczymi, osobom używającym czytników ekranu, osobom w stresie oraz wszystkim, którzy muszą bezpiecznie przejść przez formularz lub proces.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak wdrożyć 3.3.8?</h2>
                     <ul class="detail-list">
-                        <li>Osób z trudnościami poznawczymi, dla których zapamiętywanie haseł, kodów i instrukcji może być barierą.</li>
-                        <li>Osób z dysleksją, które mogą popełniać błędy przy przepisywaniu krótkich kodów albo zniekształconych znaków.</li>
-                        <li>Osób niewidomych i słabowidzących, gdy proces opiera się na obrazkowej CAPTCHA bez dostępnej alternatywy.</li>
-                        <li>Osób z ograniczeniami motorycznymi, dla których szybkie przepisywanie kodu z innego urządzenia jest trudne.</li>
-                        <li>Osób starszych, osób w stresie i użytkowników logujących się w pośpiechu.</li>
-                        <li>Wszystkich, którzy korzystają z menedżerów haseł, wklejania kodów, passkey albo linków logowania.</li>
+                        <li>Sprawdź, czy użytkownik rozumie etykiety, instrukcje, błędy i konsekwencje działania.</li>
+                        <li>Pisz komunikaty konkretnie: wskaż problem, miejsce problemu i możliwy następny krok.</li>
+                        <li>Przetestuj formularze i procesy z błędnymi danymi, powtórzeniami oraz zmianami stanu.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dobry przykład</h2>
-                    <p>Dostępny proces logowania nie zmusza użytkownika do samodzielnego zapamiętywania i przepisywania danych, jeśli można mu pomóc. Dobre rozwiązania to na przykład:</p>
-                    <ul class="detail-list">
-                        <li>pola logowania zgodne z menedżerami haseł, z etykietami i właściwym `autocomplete`,</li>
-                        <li>możliwość wklejenia hasła i kodu jednorazowego,</li>
-                        <li>kod jednorazowy możliwy do skopiowania i wklejenia w całości,</li>
-                        <li>link logowania wysłany e-mailem,</li>
-                        <li>passkey albo WebAuthn jako dodatkowa dostępna alternatywa,</li>
-                        <li>CAPTCHA z dostępną alternatywą, jeśli musi wystąpić.</li>
-                    </ul>
-                    <p>Ważne: passkey, WebAuthn albo logowanie zewnętrznym dostawcą mogą pomagać, ale nie należy ich opisywać jako zweryfikowanej techniki W3C dla 3.3.8, jeśli Quick Reference oznacza je tylko jako potencjalne przyszłe techniki.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Zły przykład</h2>
-                    <p>Niedostępne logowanie wymaga od użytkownika rozwiązania testu poznawczego i nie daje mu realnej pomocy ani alternatywy.</p>
-                    <ul class="detail-list">
-                        <li>Strona blokuje wklejanie w polu hasła albo kodu jednorazowego.</li>
-                        <li>CAPTCHA jest wyłącznie obrazkowa i wymaga przepisania zniekształconych znaków.</li>
-                        <li>Użytkownik musi rozpoznać obiekty na zdjęciach, a nie ma innej ścieżki logowania.</li>
-                        <li>Formularz wymaga wpisania wybranych znaków hasła, np. drugiego, szóstego i ostatniego.</li>
-                        <li>Kod jednorazowy trzeba przepisać do kilku pól, a wklejenie całego kodu nie działa.</li>
-                        <li>Proces nie pozwala używać menedżera haseł.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykłady kodu</h2>
-
-                    <div class="wcag-code-example">
-                        <p class="wcag-code-example__label">Kod — HTML</p>
-                        <pre><code class="language-html">&lt;form method="post" action="/login"&gt;
-  &lt;label for="login-email"&gt;
-    Adres e-mail
-  &lt;/label&gt;
-  &lt;input
-    id="login-email"
-    name="email"
-    type="email"
-    autocomplete="email"
-  &gt;
-
-  &lt;label for="login-password"&gt;
-    Hasło
-  &lt;/label&gt;
-  &lt;input
-    id="login-password"
-    name="password"
-    type="password"
-    autocomplete="current-password"
-  &gt;
-
-  &lt;button type="submit"&gt;
-    Zaloguj się
-  &lt;/button&gt;
-&lt;/form&gt;</code></pre>
-                    </div>
-                    <p>Pola mają widoczne etykiety i atrybuty `autocomplete`, które pomagają przeglądarce oraz menedżerowi haseł rozpoznać dane logowania. Strona nie powinna blokować wklejania ani automatycznego uzupełniania.</p>
-
-                    <div class="wcag-code-example">
-                        <p class="wcag-code-example__label">Kod — HTML</p>
-                        <pre><code class="language-html">&lt;label for="one-time-code"&gt;
-  Kod jednorazowy
-&lt;/label&gt;
-&lt;p id="one-time-code-hint"&gt;
-  Możesz wkleić cały kod z wiadomości SMS albo e-mail.
-&lt;/p&gt;
-&lt;input
-  id="one-time-code"
-  name="one-time-code"
-  type="text"
-  inputmode="numeric"
-  autocomplete="one-time-code"
-  aria-describedby="one-time-code-hint"
-&gt;</code></pre>
-                    </div>
-                    <p>Użytkownik może wkleić cały kod w takim formacie, w jakim go otrzymał. `aria-describedby` łączy pole z instrukcją, ale sama instrukcja pozostaje widoczna.</p>
-
-                    <div class="wcag-code-example">
-                        <p class="wcag-code-example__label">Kod — JavaScript</p>
-                        <pre><code class="language-javascript">passwordInput.addEventListener("paste", function (event) {
-  event.preventDefault();
-});
-
-codeInput.addEventListener("paste", function (event) {
-  event.preventDefault();
-});</code></pre>
-                    </div>
-                    <p>To zły przykład. Blokowanie wklejania utrudnia użycie menedżera haseł i zmusza użytkownika do przepisywania hasła albo kodu. Taki JavaScript jest pokazany tylko jako fragment edukacyjny, nie działa na tej stronie.</p>
-
-                    <div class="wcag-code-example">
-                        <p class="wcag-code-example__label">Kod — HTML</p>
-                        <pre><code class="language-html">&lt;form method="post" action="/login-link"&gt;
-  &lt;label for="login-link-email"&gt;
-    Adres e-mail
-  &lt;/label&gt;
-  &lt;input
-    id="login-link-email"
-    name="email"
-    type="email"
-    autocomplete="email"
-  &gt;
-
-  &lt;button type="submit"&gt;
-    Wyślij link do logowania
-  &lt;/button&gt;
-&lt;/form&gt;</code></pre>
-                    </div>
-                    <p>Link logowania wysłany e-mailem może być alternatywną ścieżką, która nie wymaga pamiętania hasła. Trzeba go zaprojektować bezpiecznie, ale polityka bezpieczeństwa nie jest głównym tematem tego kryterium.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Przykład graficzny</h2>
-                    <figure class="wcag-auth-demo">
-                        <div class="wcag-auth-demo__grid">
-                            <div class="wcag-auth-demo__item wcag-auth-demo__item--bad">
-                                <h3>Źle</h3>
-                                <div class="wcag-auth-demo__flow">
-                                    <div class="wcag-auth-demo__step">Hasło z pamięci</div>
-                                    <div class="wcag-auth-demo__arrow">↓</div>
-                                    <div class="wcag-auth-demo__step">Przepisz kod z obrazka</div>
-                                    <div class="wcag-auth-demo__arrow">↓</div>
-                                    <div class="wcag-auth-demo__step wcag-auth-demo__step--impact">Brak alternatywy</div>
-                                </div>
-                                <p class="wcag-auth-demo__note">Użytkownik musi pamiętać, przepisywać i rozwiązać test poznawczy.</p>
-                            </div>
-
-                            <div class="wcag-auth-demo__item wcag-auth-demo__item--risky">
-                                <h3>Ryzykownie</h3>
-                                <div class="wcag-auth-demo__flow">
-                                    <div class="wcag-auth-demo__step">Kod SMS albo e-mail</div>
-                                    <div class="wcag-auth-demo__arrow">↓</div>
-                                    <div class="wcag-auth-demo__step">Krótki czas</div>
-                                    <div class="wcag-auth-demo__arrow">↓</div>
-                                    <div class="wcag-auth-demo__step wcag-auth-demo__step--impact">Brak wklejania</div>
-                                </div>
-                                <p class="wcag-auth-demo__note">Zabezpieczenie istnieje, ale proces nadal wymusza szybkie przepisywanie.</p>
-                            </div>
-
-                            <div class="wcag-auth-demo__item wcag-auth-demo__item--good">
-                                <h3>Dobrze</h3>
-                                <div class="wcag-auth-demo__flow">
-                                    <div class="wcag-auth-demo__step">Menedżer haseł</div>
-                                    <div class="wcag-auth-demo__arrow">↓</div>
-                                    <div class="wcag-auth-demo__step">Wklej kod / użyj linku</div>
-                                    <div class="wcag-auth-demo__arrow">↓</div>
-                                    <div class="wcag-auth-demo__step wcag-auth-demo__step--choice">Passkey albo inna alternatywa</div>
-                                </div>
-                                <p class="wcag-auth-demo__note">Użytkownik ma pomoc albo alternatywną ścieżkę logowania.</p>
-                            </div>
-                        </div>
-                        <figcaption>To jest statyczny schemat procesu logowania. Pokazuje, czy użytkownik musi zdać test poznawczy, czy ma mechanizm pomocy albo dostępną alternatywę.</figcaption>
-                    </figure>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak sprawdzić</h2>
-                    <ol class="detail-list">
-                        <li>Znajdź wszystkie kroki logowania i ponownego uwierzytelniania.</li>
-                        <li>Sprawdź, czy którykolwiek krok wymaga pamiętania, przepisywania, liczenia, rozwiązywania zagadki albo rozpoznawania treści.</li>
-                        <li>Jeśli tak, sprawdź, czy istnieje mechanizm pomocy, np. menedżer haseł, wklejanie kodu, autouzupełnianie albo link logowania.</li>
-                        <li>Sprawdź, czy pola logowania mają widoczne etykiety i nie blokują menedżera haseł.</li>
-                        <li>Wklej hasło i kod jednorazowy. Test nie przechodzi, jeśli strona blokuje wklejanie bez alternatywy.</li>
-                        <li>Sprawdź, czy kod jednorazowy można wpisać albo wkleić w formacie, w którym został dostarczony.</li>
-                        <li>Jeśli występuje CAPTCHA, sprawdź, czy istnieje dostępna alternatywa.</li>
-                        <li>Przejdź proces klawiaturą i z czytnikiem ekranu.</li>
-                        <li>Nie oceniaj wyłącznie automatem. Najważniejsze jest, czy użytkownik może przejść proces bez niepotrzebnego testu poznawczego.</li>
-                    </ol>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Co sprawdzi automat, a czego nie</h2>
-                    <p>Automat może wykryć część problemów technicznych, ale nie oceni całego procesu uwierzytelniania.</p>
-                    <h3>Automat może wykryć</h3>
-                    <ul class="detail-list">
-                        <li>część pól bez etykiet,</li>
-                        <li>część błędów w atrybutach `autocomplete`,</li>
-                        <li>część problemów z relacją instrukcji i pola,</li>
-                        <li>część kodu blokującego zdarzenia użytkownika, jeśli jest objęty testem statycznym.</li>
-                    </ul>
-                    <h3>Automat nie oceni pewnie</h3>
-                    <ul class="detail-list">
-                        <li>czy proces wymaga testu funkcji poznawczych,</li>
-                        <li>czy alternatywa logowania jest rzeczywiście dostępna,</li>
-                        <li>czy kod można wkleić w praktyce na wszystkich krokach,</li>
-                        <li>czy limit czasu daje użytkownikowi realną możliwość ponowienia,</li>
-                        <li>czy CAPTCHA ma użyteczną alternatywę,</li>
-                        <li>czy menedżer haseł działa w konkretnym formularzu.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Typowe błędy</h2>
-                    <ul class="detail-list">
-                        <li>Blokowanie wklejania hasła albo kodu jednorazowego.</li>
-                        <li>Dzielenie kodu na kilka pól bez obsługi wklejenia całego kodu.</li>
-                        <li>Prośba o wpisanie wybranych znaków hasła.</li>
-                        <li>Obrazkowa CAPTCHA bez dostępnej alternatywy.</li>
-                        <li>Logowanie zależne wyłącznie od rozpoznawania obiektów na zdjęciach.</li>
-                        <li>Krótki limit czasu na kod bez jasnej możliwości ponownego wysłania.</li>
-                        <li>Pola logowania bez etykiet albo z nazwami, których menedżer haseł nie rozpoznaje.</li>
-                        <li>Zakładanie, że każdy użytkownik może zapamiętać silne hasło i przepisać je ręcznie.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Powiązane kryteria</h2>
-                    <ul class="detail-list">
-                        <li><a href="/wcag-prostym-jezykiem/1-3-5-okreslenie-celu-danych-wejsciowych">1.3.5 Określenie celu danych wejściowych</a>: gdy pola danych osobowych powinny mieć możliwy do rozpoznania cel.</li>
-                        <li><a href="/wcag-prostym-jezykiem/3-3-2-etykiety-lub-instrukcje">3.3.2 Etykiety lub instrukcje</a>: gdy użytkownik potrzebuje jasnych informacji przed wpisaniem danych.</li>
-                        <li><a href="/wcag-prostym-jezykiem/3-3-7-powtarzajace-sie-wpisy">3.3.7 Powtarzające się wpisy</a>: gdy użytkownik nie powinien ponownie wpisywać tej samej informacji w jednym procesie.</li>
-                        <li><a href="/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc">4.1.2 Nazwa, rola, wartość</a>: gdy komponenty logowania muszą mieć poprawną nazwę, rolę i stan.</li>
-                        <li><a href="/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie">4.1.3 Komunikaty o stanie</a>: gdy komunikaty po wysłaniu kodu albo zmianie stanu powinny być dostępne bez przenoszenia fokusu.</li>
-                    </ul>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Źródła</h2>
-                    <ul class="detail-list">
-                        <li><a href="https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.3.8 Accessible Authentication (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.3.8: Accessible Authentication (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#accessible-authentication-minimum" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.3.8: Accessible Authentication (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G218" target="_blank" rel="noopener noreferrer">G218: Email link authentication<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H100" target="_blank" rel="noopener noreferrer">H100: Providing properly marked up email and password inputs<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F109" target="_blank" rel="noopener noreferrer">F109: Failure due to preventing password or code re-entry in the same format<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
-                    </ul>
+                    <h2>Źródło i licencja</h2>
+                    <p>To przewodnik dla początkujących. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">oficjalny standard WCAG 2.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</p>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
