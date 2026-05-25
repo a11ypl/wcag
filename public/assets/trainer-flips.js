@@ -24,8 +24,8 @@ window.A11yFirstTrainerFlip = (() => {
             name: 'Aleksandra Migus',
             company: 'SOFTIQ',
             bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.',
-            image: 'assets/social-preview.png',
-            alt: 'Grafika Accessibility First.',
+            image: 'assets/aleksandra-migus.jpg',
+            alt: 'Portret Aleksandry Migus.',
             backContent: `
                 <h3>Aleksandra Migus</h3>
                 <p class="trainer-flip-label">Specjalizacja:</p>

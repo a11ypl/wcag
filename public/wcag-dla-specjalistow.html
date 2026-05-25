@@ -6,7 +6,7 @@
     <title>WCAG dla specjalistów - Praktyczny kurs audytu dostępności | Accessibility First</title>
     <meta name="description" content="Praktyczny kurs audytu WCAG od Accessibility First: 3 dni warsztatów online na żywo, wybór modułów lub pełnego kursu, certyfikat i materiały.">
     <link rel="canonical" href="https://www.a11yfirst.pl/wcag-dla-specjalistow">
-    <link rel="icon" href="assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
@@ -126,7 +126,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="assets/styles.css?v=16">
+    <link rel="stylesheet" href="assets/styles.css?v=17">
     <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
 </head>
 <body class="course-page">
@@ -138,7 +138,7 @@
     <header>
         <div class="container header-content">
             <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
-                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
             </a>
             <nav aria-label="Menu główne">
                 <a href="/o-nas">O nas</a>
@@ -458,7 +458,7 @@
         </div>
     </footer>
 
-    <script src="assets/trainer-flips.js?v=5"></script>
+    <script src="assets/trainer-flips.js?v=6"></script>
     <script>
         const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
 
@@ -539,8 +539,8 @@
                 name: 'Aleksandra Migus', 
                 company: 'SOFTIQ', 
                 bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.', 
-                image: 'assets/social-preview.png',
-                alt: 'Grafika Accessibility First.',
+                image: 'assets/aleksandra-migus.jpg',
+                alt: 'Portret Aleksandry Migus.',
                 backContent: `
                     <h3>Aleksandra Migus</h3>
                     <p style="margin-bottom:0.5rem; font-weight:bold; color:var(--accent)">Specjalizacja:</p>
@@ -1139,33 +1139,6 @@
                 proceedToPayment();
             });
         }
-
-        document.addEventListener('focusin', event => {
-            if (!event.target) return;
-
-            if (event.target.matches('.pricing-dropdown .day-checkbox')) {
-                const item = event.target.closest('.pricing-dropdown-item') || event.target;
-                ensureVisibleBelowHeader(item, 'auto', 56);
-                return;
-            }
-
-            if (event.target.id === 'toggleDaysBtn') {
-                const card = event.target.closest('.price-card') || event.target;
-                ensureVisibleBelowHeader(card);
-                return;
-            }
-
-            if (event.target.id === 'fullCourseBtn') {
-                const card = event.target.closest('.price-card') || event.target;
-                ensureVisibleBelowHeader(card);
-                return;
-            }
-
-            const priceCard = event.target.closest('.price-card');
-            if (priceCard) {
-                ensureVisibleBelowHeader(priceCard);
-            }
-        });
 
         window.onload = () => {
             renderCards();
