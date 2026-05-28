@@ -865,6 +865,86 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-sensory-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-sensory-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-sensory-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-sensory-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-sensory-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-sensory-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-sensory-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-sensory-demo__instruction {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 800;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.wcag-sensory-demo__targets {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+}
+
+.wcag-sensory-demo__target {
+    border: 2px solid var(--gray);
+    border-radius: 8px;
+    color: black;
+    display: block;
+    font-weight: 900;
+    padding: 0.65rem 0.75rem;
+    text-align: center;
+}
+
+.wcag-sensory-demo__target--muted {
+    background: white;
+}
+
+.wcag-sensory-demo__target--primary {
+    background: var(--accent);
+    border-color: var(--primary);
+}
+
+.wcag-sensory-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-sensory-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-color-demo {
     margin: 1.5rem 0 0;
 }

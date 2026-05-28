@@ -178,3 +178,14 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowana technika: H98. Zweryfikowany failure: F107.
 - W treści zachowano granicę: 1.3.5 dotyczy określonych danych o użytkowniku, których cel można programowo określić, zwykle przez poprawne wartości `autocomplete`; nie wymaga `autocomplete` dla każdego pola formularza.
 - Raport źródeł dla `1.3.5` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: 1.3.3 Właściwości zmysłowe
+
+- `1.3.3 Właściwości zmysłowe`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nową stronę `public/wcag-prostym-jezykiem/1-3-3-wlasciwosci-zmyslowe.html`, zgodną ze slugiem wskazywanym przez nawigację z `1.3.2`.
+- Dodano statyczne demo `wcag-sensory-demo` jako porównanie instrukcji zależnej od cech zmysłowych, instrukcji ryzykownej i instrukcji wskazującej nazwę albo etykietę elementu. Demo nie ma JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` ani ARIA.
+- Technikę i failures W3C dla `1.3.3` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.3.3.
+- Zweryfikowana technika: G96. Zweryfikowane failures: F14, F26.
+- W treści zachowano granicę: 1.3.3 dotyczy instrukcji opartych wyłącznie na kolorze, kształcie, rozmiarze, położeniu, orientacji albo dźwięku; nie zastępuje 1.4.1, 1.3.1, 1.3.2 ani 3.3.2.
+- Raport źródeł dla `1.3.3` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

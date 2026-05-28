@@ -307,3 +307,29 @@ Uwagi zakresowe:
 - Widoczna etykieta nadal jest potrzebna; `autocomplete` nie zastępuje wymagań z 3.3.2 ani dostępnej nazwy z 4.1.2.
 - `type="email"` i `type="tel"` opisują typ danych, ale nie zawsze precyzyjny cel pola w sensie 1.3.5.
 - Nie każde pole formularza wymaga `autocomplete`; kryterium dotyczy tylko pasujących danych o użytkowniku.
+
+## Source QA 2026-05-28: 1.3.3 Właściwości zmysłowe
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.3 Sensory Characteristics - `https://www.w3.org/TR/WCAG22/#sensory-characteristics`
+- Understanding WCAG 1.3.3 Sensory Characteristics - `https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html`
+- How to Meet WCAG 1.3.3 - `https://www.w3.org/WAI/WCAG22/quickref/#sensory-characteristics`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G96: Providing textual identification of items that otherwise rely only on sensory information to be understood.
+
+Failures:
+
+- F14: Failure of Success Criterion 1.3.3 due to identifying content only by its shape or location.
+- F26: Failure of Success Criterion 1.3.3 due to using a graphical symbol alone to convey information.
+
+Uwagi zakresowe:
+
+- 1.3.3 dotyczy instrukcji, które do zrozumienia wymagają wyłącznie cech zmysłowych: koloru, kształtu, rozmiaru, położenia, orientacji albo dźwięku.
+- Kryterium nie zakazuje używania cech zmysłowych. Wymaga dodatkowego tekstowego lub programowego sposobu identyfikacji elementu, jeśli instrukcja wskazuje użytkownikowi, co ma zrobić.
+- Nie mieszać z 1.4.1: informacja przekazana wyłącznie kolorem jest powiązana, ale 1.3.3 dotyczy instrukcji zależnych od cech zmysłowych.
+- Nie mieszać z 1.3.1, 1.3.2 ani 3.3.2: struktura, kolejność oraz kompletność etykiet i instrukcji mogą wspierać poprawkę, ale nie są głównym zakresem tego kryterium.
