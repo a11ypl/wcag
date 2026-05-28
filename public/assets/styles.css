@@ -1352,6 +1352,96 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-bypass-demo,
+.wcag-page-title-demo,
+.wcag-link-purpose-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-bypass-demo__grid,
+.wcag-page-title-demo__grid,
+.wcag-link-purpose-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-bypass-demo__item,
+.wcag-page-title-demo__item,
+.wcag-link-purpose-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-bypass-demo__item h3,
+.wcag-page-title-demo__item h3,
+.wcag-link-purpose-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-bypass-demo__item--bad,
+.wcag-page-title-demo__item--bad,
+.wcag-link-purpose-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-bypass-demo__item--good,
+.wcag-page-title-demo__item--good,
+.wcag-link-purpose-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-bypass-demo__path,
+.wcag-page-title-demo__tabs,
+.wcag-link-purpose-demo__links {
+    display: grid;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0.75rem 0;
+    padding: 0;
+}
+
+.wcag-bypass-demo__path li,
+.wcag-page-title-demo__tabs li,
+.wcag-link-purpose-demo__links li {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+    padding: 0.65rem 0.75rem;
+}
+
+.wcag-bypass-demo__item--good .wcag-bypass-demo__path li:first-child,
+.wcag-page-title-demo__item--good .wcag-page-title-demo__tabs li,
+.wcag-link-purpose-demo__item--good .wcag-link-purpose-demo__links li {
+    border-color: var(--primary);
+}
+
+.wcag-bypass-demo__item--bad .wcag-bypass-demo__path li,
+.wcag-page-title-demo__item--bad .wcag-page-title-demo__tabs li,
+.wcag-link-purpose-demo__item--bad .wcag-link-purpose-demo__links li {
+    border-color: #d33131;
+}
+
+.wcag-bypass-demo__note,
+.wcag-page-title-demo__note,
+.wcag-link-purpose-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-bypass-demo figcaption,
+.wcag-page-title-demo figcaption,
+.wcag-link-purpose-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }

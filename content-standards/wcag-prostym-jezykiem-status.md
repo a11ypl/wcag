@@ -212,3 +212,15 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 1.4.5 nie zastępuje 1.1.1, 1.4.10 nie jest ogólną oceną RWD, a 1.4.12 nie zastępuje 1.4.4.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: batch 2.4.1, 2.4.2, 2.4.4
+
+- `2.4.1 Możliwość pominięcia bloków`: rozbudowane - gotowe do przeglądu.
+- `2.4.2 Tytuł strony`: rozbudowane - gotowe do przeglądu.
+- `2.4.4 Cel linku w kontekście`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow.html`, `public/wcag-prostym-jezykiem/2-4-2-tytul-strony.html`, `public/wcag-prostym-jezykiem/2-4-4-cel-linku-w-kontekscie.html`.
+- Dodano statyczne demo `wcag-bypass-demo`, `wcag-page-title-demo` i `wcag-link-purpose-demo`. Dema nie mają JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.4.1 nie zastępuje ogólnej struktury nagłówków, 2.4.2 nie zastępuje `h1`, a 2.4.4 nie dotyczy wyglądu linków ani kontrastu.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

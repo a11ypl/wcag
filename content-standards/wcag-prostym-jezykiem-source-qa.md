@@ -441,3 +441,80 @@ Uwagi zakresowe:
 - 1.4.12 dotyczy braku utraty treści lub funkcjonalności po ustawieniu: line-height co najmniej 1.5, odstępu po akapitach co najmniej 2 razy rozmiar fontu, letter-spacing co najmniej 0.12 razy rozmiar fontu i word-spacing co najmniej 0.16 razy rozmiar fontu.
 - Kryterium nie wymaga, żeby autor domyślnie używał tych wartości. Wymaga odporności treści, gdy użytkownik nadpisze odstępy.
 - Nie mieszać z 1.4.4: powiększenie tekstu do 200% jest osobnym wymaganiem.
+
+## Source QA 2026-05-28: 2.4.1 Możliwość pominięcia bloków
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.1 Bypass Blocks - `https://www.w3.org/TR/WCAG22/#bypass-blocks`
+- Understanding WCAG 2.4.1 Bypass Blocks - `https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html`
+- How to Meet WCAG 2.4.1 - `https://www.w3.org/WAI/WCAG22/quickref/#bypass-blocks`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G1: Adding a link at the top of each page that goes directly to the main content area.
+- G123: Adding a link at the beginning of a block of repeated content to go to the end of the block.
+- G124: Adding links at the top of the page to each area of the content.
+- H69: Providing heading elements at the beginning of each section of content.
+
+Failures:
+
+- Quick Reference dla 2.4.1 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.4.1 dotyczy mechanizmu pominięcia bloków treści powtarzanych na wielu stronach, takich jak menu, nagłówek, lista linków albo rozbudowane filtry.
+- Nagłówki i landmarki mogą pomagać, ale tutorial nie opisuje ogólnej poprawności struktury nagłówków jako głównego wymagania 2.4.1.
+
+## Source QA 2026-05-28: 2.4.2 Tytuł strony
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.2 Page Titled - `https://www.w3.org/TR/WCAG22/#page-titled`
+- Understanding WCAG 2.4.2 Page Titled - `https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html`
+- How to Meet WCAG 2.4.2 - `https://www.w3.org/WAI/WCAG22/quickref/#page-titled`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G88: Providing descriptive titles for Web pages.
+- H25: Providing a title using the title element.
+
+Failures:
+
+- F25: Failure of Success Criterion 2.4.2 due to the title of a Web page not identifying the contents.
+
+Uwagi zakresowe:
+
+- 2.4.2 dotyczy tytułu strony w elemencie `title`.
+- Nie mieszać z `h1`: nagłówek główny może być podobny do tytułu, ale jest osobnym elementem i pełni inną funkcję.
+
+## Source QA 2026-05-28: 2.4.4 Cel linku w kontekście
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.4 Link Purpose (In Context) - `https://www.w3.org/TR/WCAG22/#link-purpose-in-context`
+- Understanding WCAG 2.4.4 Link Purpose (In Context) - `https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html`
+- How to Meet WCAG 2.4.4 - `https://www.w3.org/WAI/WCAG22/quickref/#link-purpose-in-context`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G91: Providing link text that describes the purpose of a link.
+- H30: Providing link text that describes the purpose of a link for anchor elements.
+- G53: Identifying the purpose of a link using link text combined with the text of the enclosing sentence.
+- H79: Identifying the purpose of a link using link text combined with its enclosing table row and table headings.
+
+Failures:
+
+- F63: Failure of Success Criterion 2.4.4 due to providing link context only in content that is not related to the link.
+- F89: Failure of Success Criteria 2.4.4, 2.4.9 and 4.1.2 due to using null alt on an image where the image is the only content in a link.
+
+Uwagi zakresowe:
+
+- 2.4.4 dotyczy celu linku rozumianego z samego tekstu linku albo z programowo dostępnego kontekstu.
+- Nie mieszać z wyglądem linków, kolorem ani kontrastem. To kryterium ocenia znaczenie linku, nie jego prezentację wizualną.

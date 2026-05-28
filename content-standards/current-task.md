@@ -1,4 +1,4 @@
-# Current task: batch 1.4.5, 1.4.10, 1.4.12
+# Current task: batch 2.4.1, 2.4.2, 2.4.4
 
 ## Polecenie dla Codexa
 
@@ -17,21 +17,21 @@ Najpierw wciągnij najnowszy remote.
 
 Nie commituj nieśledzonych plików: `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`.
 
-Nie ruszaj stashu pobocznego.
+Nie ruszaj stashy pobocznych.
 
 ## Zadanie
 
 Rozbuduj kryteria:
 
-- `1.4.5 Obrazy tekstu` - poziom AA
-- `1.4.10 Dopasowanie do ekranu` - poziom AA
-- `1.4.12 Odstępy w tekście` - poziom AA
+- `2.4.1 Możliwość pominięcia bloków` - poziom A
+- `2.4.2 Tytuł strony` - poziom A
+- `2.4.4 Cel linku w kontekście` - poziom A
 
 Oczekiwane pliki:
 
-- `public/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu.html`
-- `public/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu.html`
-- `public/wcag-prostym-jezykiem/1-4-12-odstepy-w-tekscie.html`
+- `public/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow.html`
+- `public/wcag-prostym-jezykiem/2-4-2-tytul-strony.html`
+- `public/wcag-prostym-jezykiem/2-4-4-cel-linku-w-kontekscie.html`
 
 Jeśli pliki nie istnieją, utwórz je pod slugami już używanymi w nawigacji i powiązanych kryteriach.
 
@@ -39,7 +39,7 @@ Jeśli pliki nie istnieją, utwórz je pod slugami już używanymi w nawigacji i
 
 Można zmieniać tylko:
 
-- strony kryteriów `1.4.5`, `1.4.10`, `1.4.12`,
+- strony kryteriów `2.4.1`, `2.4.2`, `2.4.4`,
 - scoped CSS dla demo edukacyjnych tych stron,
 - status,
 - source QA,
@@ -49,15 +49,15 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 ## Granice
 
-- `1.4.5` dotyczy unikania obrazów tekstu, gdy tekst może być prawdziwym tekstem.
-- `1.4.10` dotyczy dopasowania treści do ekranu bez przewijania w dwóch kierunkach.
-- `1.4.12` dotyczy działania treści po zmianie odstępów w tekście.
+- `2.4.1` dotyczy możliwości pominięcia powtarzalnych bloków, np. menu, nagłówka, filtrów.
+- `2.4.2` dotyczy sensownego tytułu strony w `title`.
+- `2.4.4` dotyczy tego, czy cel linku da się zrozumieć z samego linku albo z kontekstu.
 
 Nie mieszaj:
 
-- `1.4.5` z tekstem alternatywnym z `1.1.1`,
-- `1.4.10` z samym RWD jako ogólną jakością UI,
-- `1.4.12` z `1.4.4 Zmiana rozmiaru tekstu`.
+- `2.4.1` z ogólną strukturą nagłówków,
+- `2.4.2` z `h1`,
+- `2.4.4` z wyglądem linków albo kontrastem.
 
 ## Wymagana struktura dla każdego kryterium
 
@@ -90,4 +90,4 @@ Nie mieszaj:
 
 Commit message po wykonaniu batcha:
 
-`Expand WCAG visual text and layout tutorials`
+`Expand WCAG navigation basics tutorials`
