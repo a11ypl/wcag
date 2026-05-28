@@ -224,3 +224,16 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 2.4.1 nie zastępuje ogólnej struktury nagłówków, 2.4.2 nie zastępuje `h1`, a 2.4.4 nie dotyczy wyglądu linków ani kontrastu.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: batch 2.4.5, 2.4.6, 3.1.1, 3.1.2
+
+- `2.4.5 Wiele sposobów`: rozbudowane - gotowe do przeglądu.
+- `2.4.6 Nagłówki i etykiety`: rozbudowane - gotowe do przeglądu.
+- `3.1.1 Język strony`: rozbudowane - gotowe do przeglądu.
+- `3.1.2 Język części`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-4-5-wiele-sposobow.html`, `public/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety.html`, `public/wcag-prostym-jezykiem/3-1-1-jezyk-strony.html`, `public/wcag-prostym-jezykiem/3-1-2-jezyk-czesci.html`.
+- Dodano statyczne demo `wcag-multiple-ways-demo`, `wcag-headings-labels-demo`, `wcag-language-page-demo` i `wcag-language-parts-demo`. Dema nie mają JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.4.5 nie opisuje samej kolejności menu, 2.4.6 nie zastępuje hierarchii nagłówków z 1.3.1, 3.1.1 nie ocenia jakości tłumaczenia, a 3.1.2 nie wymaga oznaczania pojedynczych nazw własnych.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

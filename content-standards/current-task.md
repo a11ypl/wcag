@@ -1,4 +1,4 @@
-# Current task: batch 2.4.1, 2.4.2, 2.4.4
+# Current task: batch 2.4.5, 2.4.6, 3.1.1, 3.1.2
 
 ## Polecenie dla Codexa
 
@@ -23,23 +23,23 @@ Nie ruszaj stashy pobocznych.
 
 Rozbuduj kryteria:
 
-- `2.4.1 Możliwość pominięcia bloków` - poziom A
-- `2.4.2 Tytuł strony` - poziom A
-- `2.4.4 Cel linku w kontekście` - poziom A
+- `2.4.5 Wiele sposobów` - poziom AA
+- `2.4.6 Nagłówki i etykiety` - poziom AA
+- `3.1.1 Język strony` - poziom A
+- `3.1.2 Język części` - poziom AA
 
 Oczekiwane pliki:
 
-- `public/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow.html`
-- `public/wcag-prostym-jezykiem/2-4-2-tytul-strony.html`
-- `public/wcag-prostym-jezykiem/2-4-4-cel-linku-w-kontekscie.html`
-
-Jeśli pliki nie istnieją, utwórz je pod slugami już używanymi w nawigacji i powiązanych kryteriach.
+- `public/wcag-prostym-jezykiem/2-4-5-wiele-sposobow.html`
+- `public/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety.html`
+- `public/wcag-prostym-jezykiem/3-1-1-jezyk-strony.html`
+- `public/wcag-prostym-jezykiem/3-1-2-jezyk-czesci.html`
 
 ## Zakres
 
 Można zmieniać tylko:
 
-- strony kryteriów `2.4.1`, `2.4.2`, `2.4.4`,
+- strony kryteriów `2.4.5`, `2.4.6`, `3.1.1`, `3.1.2`,
 - scoped CSS dla demo edukacyjnych tych stron,
 - status,
 - source QA,
@@ -49,15 +49,17 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 ## Granice
 
-- `2.4.1` dotyczy możliwości pominięcia powtarzalnych bloków, np. menu, nagłówka, filtrów.
-- `2.4.2` dotyczy sensownego tytułu strony w `title`.
-- `2.4.4` dotyczy tego, czy cel linku da się zrozumieć z samego linku albo z kontekstu.
+- `2.4.5` dotyczy zapewnienia więcej niż jednego sposobu dotarcia do strony, np. menu, wyszukiwarka, mapa strony, lista linków.
+- `2.4.6` dotyczy tego, żeby nagłówki i etykiety opisywały temat albo cel.
+- `3.1.1` dotyczy ustawienia głównego języka strony.
+- `3.1.2` dotyczy oznaczania fragmentów w innym języku.
 
 Nie mieszaj:
 
-- `2.4.1` z ogólną strukturą nagłówków,
-- `2.4.2` z `h1`,
-- `2.4.4` z wyglądem linków albo kontrastem.
+- `2.4.5` z samą kolejnością menu,
+- `2.4.6` z hierarchią nagłówków z `1.3.1`,
+- `3.1.1` z jakością tłumaczenia,
+- `3.1.2` z pojedynczymi nazwami własnymi, które nie wymagają oznaczania.
 
 ## Wymagana struktura dla każdego kryterium
 
@@ -67,7 +69,7 @@ Nie mieszaj:
 - `Dobry przykład`
 - `Zły przykład`
 - `Przykłady kodu`
-- `Przykład graficzny` albo demo edukacyjne, jeśli ma sens
+- `Przykład graficzny` albo demo edukacyjne
 - `Jak sprawdzić`
 - `Co sprawdzi automat, a czego nie`
 - `Typowe błędy`
@@ -90,4 +92,4 @@ Nie mieszaj:
 
 Commit message po wykonaniu batcha:
 
-`Expand WCAG navigation basics tutorials`
+`Expand WCAG navigation and language tutorials`

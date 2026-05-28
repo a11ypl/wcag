@@ -518,3 +518,100 @@ Uwagi zakresowe:
 
 - 2.4.4 dotyczy celu linku rozumianego z samego tekstu linku albo z programowo dostępnego kontekstu.
 - Nie mieszać z wyglądem linków, kolorem ani kontrastem. To kryterium ocenia znaczenie linku, nie jego prezentację wizualną.
+
+## Source QA 2026-05-28: 2.4.5 Wiele sposobów
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.5 Multiple Ways - `https://www.w3.org/TR/WCAG22/#multiple-ways`
+- Understanding WCAG 2.4.5 Multiple Ways - `https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html`
+- How to Meet WCAG 2.4.5 - `https://www.w3.org/WAI/WCAG22/quickref/#multiple-ways`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G125: Providing links to navigate to related Web pages.
+- G64: Providing a Table of Contents.
+- G63: Providing a site map.
+- G161: Providing a search function to help users find content.
+
+Failures:
+
+- Quick Reference dla 2.4.5 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.4.5 dotyczy więcej niż jednego sposobu znalezienia strony w zestawie stron.
+- Wyjątek dotyczy stron, które są wynikiem albo krokiem procesu.
+- Nie mieszać z samą kolejnością menu ani jakością etykiet nawigacji.
+
+## Source QA 2026-05-28: 2.4.6 Nagłówki i etykiety
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.6 Headings and Labels - `https://www.w3.org/TR/WCAG22/#headings-and-labels`
+- Understanding WCAG 2.4.6 Headings and Labels - `https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html`
+- How to Meet WCAG 2.4.6 - `https://www.w3.org/WAI/WCAG22/quickref/#headings-and-labels`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G130: Providing descriptive headings.
+- G131: Providing descriptive labels.
+
+Failures:
+
+- Quick Reference dla 2.4.6 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.4.6 dotyczy opisowości nagłówków i etykiet: czy mówią o temacie lub celu.
+- Nie mieszać z 1.3.1: techniczna struktura nagłówków i relacji jest osobnym zakresem.
+
+## Source QA 2026-05-28: 3.1.1 Język strony
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.1.1 Language of Page - `https://www.w3.org/TR/WCAG22/#language-of-page`
+- Understanding WCAG 3.1.1 Language of Page - `https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html`
+- How to Meet WCAG 3.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#language-of-page`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H57: Using language attributes on the html element.
+
+Failures:
+
+- Quick Reference dla 3.1.1 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.1.1 dotyczy programowego określenia domyślnego języka strony.
+- Nie mieszać z jakością tłumaczenia ani prostym językiem.
+
+## Source QA 2026-05-28: 3.1.2 Język części
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.1.2 Language of Parts - `https://www.w3.org/TR/WCAG22/#language-of-parts`
+- Understanding WCAG 3.1.2 Language of Parts - `https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html`
+- How to Meet WCAG 3.1.2 - `https://www.w3.org/WAI/WCAG22/quickref/#language-of-parts`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H58: Using language attributes to identify changes in the human language.
+
+Failures:
+
+- Quick Reference dla 3.1.2 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.1.2 dotyczy fragmentów w innym języku niż główny język strony, gdy język można programowo określić.
+- Wyjątki obejmują nazwy własne, terminy techniczne, słowa o nieokreślonym języku oraz słowa lub wyrażenia, które stały się częścią języka otaczającego tekst.

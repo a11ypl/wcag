@@ -1442,6 +1442,110 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-multiple-ways-demo,
+.wcag-headings-labels-demo,
+.wcag-language-page-demo,
+.wcag-language-parts-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-multiple-ways-demo__grid,
+.wcag-headings-labels-demo__grid,
+.wcag-language-page-demo__grid,
+.wcag-language-parts-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-multiple-ways-demo__item,
+.wcag-headings-labels-demo__item,
+.wcag-language-page-demo__item,
+.wcag-language-parts-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-multiple-ways-demo__item h3,
+.wcag-headings-labels-demo__item h3,
+.wcag-language-page-demo__item h3,
+.wcag-language-parts-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-multiple-ways-demo__item--bad,
+.wcag-headings-labels-demo__item--bad,
+.wcag-language-page-demo__item--bad,
+.wcag-language-parts-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-multiple-ways-demo__item--good,
+.wcag-headings-labels-demo__item--good,
+.wcag-language-page-demo__item--good,
+.wcag-language-parts-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-multiple-ways-demo__paths {
+    display: grid;
+    gap: 0.5rem;
+    list-style-position: inside;
+    margin: 0.75rem 0;
+    padding: 0;
+}
+
+.wcag-multiple-ways-demo__paths li,
+.wcag-headings-labels-demo__label,
+.wcag-headings-labels-demo__field,
+.wcag-language-page-demo__code,
+.wcag-language-parts-demo__line {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+    margin: 0.5rem 0;
+    overflow-wrap: anywhere;
+    padding: 0.65rem 0.75rem;
+}
+
+.wcag-multiple-ways-demo__item--bad .wcag-multiple-ways-demo__paths li,
+.wcag-headings-labels-demo__item--bad .wcag-headings-labels-demo__label,
+.wcag-headings-labels-demo__item--bad .wcag-headings-labels-demo__field,
+.wcag-language-page-demo__item--bad .wcag-language-page-demo__code,
+.wcag-language-parts-demo__item--bad .wcag-language-parts-demo__line {
+    border-color: #d33131;
+}
+
+.wcag-multiple-ways-demo__item--good .wcag-multiple-ways-demo__paths li,
+.wcag-headings-labels-demo__item--good .wcag-headings-labels-demo__label,
+.wcag-headings-labels-demo__item--good .wcag-headings-labels-demo__field,
+.wcag-language-page-demo__item--good .wcag-language-page-demo__code,
+.wcag-language-parts-demo__item--good .wcag-language-parts-demo__line {
+    border-color: var(--primary);
+}
+
+.wcag-multiple-ways-demo__note,
+.wcag-headings-labels-demo__note,
+.wcag-language-page-demo__note,
+.wcag-language-parts-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-multiple-ways-demo figcaption,
+.wcag-headings-labels-demo figcaption,
+.wcag-language-page-demo figcaption,
+.wcag-language-parts-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }
