@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.4.5 Obrazy tekstu - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="1.4.5 Obrazy tekstu prostym językiem: Jeśli ten sam wygląd można osiągnąć prawdziwym tekstem i CSS, nie używaj grafiki z tekstem do przekazywania informacji.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="1.4.5 Obrazy tekstu - WCAG prostym językiem">
+    <meta property="og:description" content="1.4.5 Obrazy tekstu prostym językiem: Jeśli ten sam wygląd można osiągnąć prawdziwym tekstem i CSS, nie używaj grafiki z tekstem do przekazywania informacji.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="1.4.5 Obrazy tekstu - WCAG prostym językiem">
+    <meta name="twitter:description" content="1.4.5 Obrazy tekstu prostym językiem: Jeśli ten sam wygląd można osiągnąć prawdziwym tekstem i CSS, nie używaj grafiki z tekstem do przekazywania informacji.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "1.4.5 Obrazy tekstu",
+      "headline": "1.4.5 Obrazy tekstu",
+      "description": "1.4.5 Obrazy tekstu prostym językiem: Jeśli ten sam wygląd można osiągnąć prawdziwym tekstem i CSS, nie używaj grafiki z tekstem do przekazywania informacji.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Postrzegalność",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">1.4.5 Obrazy tekstu</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Postrzegalność · Poziom AA</p>
+                <h1>1.4.5 Obrazy tekstu</h1>
+                <p class="subtitle">Gdy tekst może być prawdziwym tekstem, nie zamieniaj go w grafikę.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title">Krótko</h2>
+                    <p>Jeśli baner, przycisk, kafel albo nagłówek zawiera ważny tekst, zrób go jako tekst HTML i ostyluj CSS-em. Grafika z tekstem jest dopuszczalna głównie wtedy, gdy wygląd tekstu jest istotą informacji, na przykład w logo.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Grafika z napisem „Promocja tylko dziś” wygląda ładnie, ale użytkownik nie może łatwo zmienić jej rozmiaru, koloru, fontu ani odstępów. Tekst w grafice może też stać się rozmazany przy powiększeniu.</p>
+                    <p>To kryterium nie mówi o samym tekście alternatywnym. Tekst alternatywny może pomóc zrozumieć obraz, ale nie daje użytkownikowi kontroli nad wyglądem tekstu w grafice.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list">
+                        <li>Osób słabowidzących, które powiększają tekst albo zmieniają kolory.</li>
+                        <li>Osób korzystających z trybów wysokiego kontrastu lub własnych arkuszy stylów.</li>
+                        <li>Osób z dysleksją, które potrzebują innego fontu, odstępów albo koloru tła.</li>
+                        <li>Użytkowników urządzeń mobilnych, gdzie obraz tekstu może być za mały lub niewyraźny.</li>
+                        <li>Osób korzystających z tłumaczenia, kopiowania albo wyszukiwania tekstu na stronie.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Nagłówek promocji jest prawdziwym tekstem HTML na tle graficznym.</li>
+                        <li>Przycisk ma tekst w elemencie `button` albo linku, a nie w pliku PNG.</li>
+                        <li>Infografika ma tekstowe dane obok grafiki, jeśli dane są kluczowe.</li>
+                        <li>CSS odpowiada za font, cień, kolor, tło i układ.</li>
+                        <li>Logo pozostaje obrazem, jeśli specyficzny zapis nazwy jest częścią identyfikacji marki.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Baner z tekstem „Zapisz się na szkolenie” jest jednym obrazem.</li>
+                        <li>Przycisk „Kup teraz” jest obrazkiem bez prawdziwego tekstu w komponencie.</li>
+                        <li>Karta produktu ma cenę i nazwę produktu wpisane w grafikę.</li>
+                        <li>Komunikat administracyjny jest skanem albo obrazem zamiast treścią HTML.</li>
+                        <li>Tekst alternatywny opisuje grafikę, ale użytkownik nadal nie może dostosować wyglądu tekstu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-image-text-bad">Zły przykład: baner jako obraz tekstu</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Cały komunikat jest w pliku graficznym.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;img
+  src="/assets/promocja-szkolenia.png"
+  alt="Promocja: szkolenie WCAG 20% taniej tylko dziś"
+&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Dlaczego to problem</p>
+                            <p>Tekst jest ważną informacją, ale jest zamknięty w obrazie. Użytkownik nie może go wygodnie dostosować.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-image-text-good">Dobry przykład: tekst HTML na tle graficznym</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Obraz jest tłem, a informacja jest prawdziwym tekstem.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;section class="promo"&gt;
+  &lt;h2&gt;Szkolenie WCAG 20% taniej&lt;/h2&gt;
+  &lt;p&gt;Promocja trwa tylko do końca dnia.&lt;/p&gt;
+  &lt;a href="/szkolenia"&gt;Zapisz się na szkolenie&lt;/a&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.promo {
+  background-image: url("/assets/promo-background.jpg");
+  background-size: cover;
+  color: white;
+  padding: 2rem;
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-image-text-logo">Wyjątek: logo</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Logo może być obrazem, bo specyficzny wygląd napisu jest częścią marki.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — HTML</p>
+                            <pre><code class="language-html">&lt;img
+  src="/assets/logo-firmy.svg"
+  alt="Accessibility First"
+&gt;</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Uwaga</p>
+                            <p>To nie znaczy, że każdy baner reklamowy może być obrazem tekstu. Wyjątek dotyczy sytuacji, w których wygląd tekstu jest istotny.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-images-text-demo">
+                        <div class="wcag-images-text-demo__grid">
+                            <section class="wcag-images-text-demo__item wcag-images-text-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-images-text-demo__fake-image">Promocja tylko dziś</div>
+                                <p class="wcag-images-text-demo__note">Tekst wygląda jak treść, ale jest częścią obrazu. Nie skaluje się i nie dopasuje do ustawień użytkownika tak jak prawdziwy tekst.</p>
+                            </section>
+
+                            <section class="wcag-images-text-demo__item wcag-images-text-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-images-text-demo__real-text">
+                                    <p class="wcag-images-text-demo__headline">Promocja tylko dziś</p>
+                                    <p>Tekst jest HTML-em. CSS odpowiada za wygląd.</p>
+                                </div>
+                                <p class="wcag-images-text-demo__note">Użytkownik może powiększyć, skopiować, przetłumaczyć i ostylować tekst.</p>
+                            </section>
+                        </div>
+                        <figcaption>Statyczne demo pokazuje różnicę między tekstem zamkniętym w obrazie a prawdziwym tekstem ostylowanym CSS-em.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Znajdź obrazy, banery, kafle, przyciski i infografiki, które zawierają tekst.</li>
+                        <li>Oceń, czy tekst przekazuje informację, instrukcję, nazwę, cenę, datę albo wezwanie do działania.</li>
+                        <li>Sprawdź, czy ten sam efekt można osiągnąć tekstem HTML i CSS.</li>
+                        <li>Jeśli tak, rekomenduj zamianę obrazu tekstu na prawdziwy tekst.</li>
+                        <li>Sprawdź, czy przypadek nie jest wyjątkiem: logo, próbka kroju pisma albo sytuacja, w której wygląd tekstu jest istotą informacji.</li>
+                        <li>Nie uznawaj samego tekstu alternatywnego za pełną poprawkę 1.4.5.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>obrazy z tekstem alternatywnym sugerującym, że obraz zawiera tekst,</li>
+                        <li>część przypadków tekstu wykrytego OCR-em, jeśli narzędzie ma taką funkcję,</li>
+                        <li>brak tekstu alternatywnego, ale to jest głównie temat 1.1.1.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>czy tekst w obrazie jest ważny, dekoracyjny czy istotny dla marki,</li>
+                        <li>czy efekt wizualny da się rozsądnie odtworzyć CSS-em,</li>
+                        <li>czy dany przypadek mieści się w wyjątku „essential”,</li>
+                        <li>czy tekst alternatywny nie przykrywa realnego problemu z obrazem tekstu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Projektowanie banerów z całym tekstem w PNG albo JPG.</li>
+                        <li>Używanie obrazów jako przycisków z napisami.</li>
+                        <li>Publikowanie skanów komunikatów, tabel albo instrukcji zamiast treści HTML.</li>
+                        <li>Zakładanie, że `alt` rozwiązuje problem obrazów tekstu.</li>
+                        <li>Wrzucanie tekstu do grafiki, bo „font wygląda dokładniej”.</li>
+                        <li>Brak procesu redakcyjnego: grafika z tekstem trafia na stronę bez pytania, czy tekst może być HTML-em.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-1-1-tresc-nietekstowa">1.1.1 Treść nietekstowa</a>: gdy obraz wymaga tekstu alternatywnego.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-3-kontrast-minimum">1.4.3 Kontrast minimum</a>: gdy oceniasz kontrast tekstu i obrazów tekstu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu">1.4.4 Zmiana rozmiaru tekstu</a>: gdy prawdziwy tekst musi dać się powiększyć do 200%.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#images-of-text" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.4.5 Images of Text<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.4.5: Images of Text<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#images-of-text" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.4.5: Images of Text<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C22" target="_blank" rel="noopener noreferrer">C22: Using CSS to control visual presentation of text<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu">Poprzednie: 1.4.4 Zmiana rozmiaru tekstu</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu">Następne opracowane: 1.4.10 Dopasowanie do ekranu</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

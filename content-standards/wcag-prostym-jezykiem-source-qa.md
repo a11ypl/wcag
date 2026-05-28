@@ -364,3 +364,80 @@ Uwagi zakresowe:
 - Nie mieszać z 1.4.10: reflow przy 320 CSS px / 400% jest osobnym wymaganiem.
 - Nie mieszać z 1.4.12: odstępy w tekście są osobnym wymaganiem.
 - Nie mieszać z 1.4.3 ani 2.4.7: kontrast tekstu i widoczność fokusu mogą być testowane równolegle, ale nie są głównym zakresem tego kryterium.
+
+## Source QA 2026-05-28: 1.4.5 Obrazy tekstu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.5 Images of Text - `https://www.w3.org/TR/WCAG22/#images-of-text`
+- Understanding WCAG 1.4.5 Images of Text - `https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html`
+- How to Meet WCAG 1.4.5 - `https://www.w3.org/WAI/WCAG22/quickref/#images-of-text`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C22: Using CSS to control visual presentation of text.
+
+Failures:
+
+- Quick Reference dla 1.4.5 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 1.4.5 dotyczy używania prawdziwego tekstu zamiast obrazów tekstu, jeśli technologia pozwala osiągnąć oczekiwany wygląd.
+- Wyjątki obejmują obrazy tekstu, które można wizualnie dostosować do wymagań użytkownika, oraz przypadki, w których konkretna prezentacja tekstu jest istotna dla informacji.
+- Logotypy są w WCAG traktowane jako istotne.
+- Nie mieszać z 1.1.1: tekst alternatywny nie zastępuje wymogu użycia prawdziwego tekstu tam, gdzie jest to możliwe.
+
+## Source QA 2026-05-28: 1.4.10 Dopasowanie do ekranu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.10 Reflow - `https://www.w3.org/TR/WCAG22/#reflow`
+- Understanding WCAG 1.4.10 Reflow - `https://www.w3.org/WAI/WCAG22/Understanding/reflow.html`
+- How to Meet WCAG 1.4.10 - `https://www.w3.org/WAI/WCAG22/quickref/#reflow`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C32: Using media queries and grid CSS to reflow columns.
+- C31: Using CSS Flexbox to reflow content.
+- C33: Allowing for Reflow with Long URLs and Strings of Text.
+- C38: Using CSS width, max-width and flexbox to fit labels and inputs.
+
+Failures:
+
+- F102: Failure of Success Criterion 1.4.10 due to content disappearing and not being available when content has reflowed.
+
+Uwagi zakresowe:
+
+- 1.4.10 dotyczy prezentacji treści bez utraty informacji lub funkcjonalności i bez przewijania w dwóch kierunkach dla treści przewijanej pionowo przy szerokości równoważnej 320 CSS px oraz dla treści przewijanej poziomo przy wysokości równoważnej 256 CSS px.
+- Wyjątki obejmują części treści, które wymagają układu dwuwymiarowego do użycia albo zrozumienia, na przykład mapy, diagramy, wideo, gry, prezentacje, tabele danych i niektóre interfejsy edycyjne.
+- Nie mieszać z ogólną jakością responsywnego UI: błąd 1.4.10 wymaga utraty informacji/funkcjonalności albo konieczności przewijania w dwóch kierunkach poza wyjątkami.
+
+## Source QA 2026-05-28: 1.4.12 Odstępy w tekście
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.12 Text Spacing - `https://www.w3.org/TR/WCAG22/#text-spacing`
+- Understanding WCAG 1.4.12 Text Spacing - `https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html`
+- How to Meet WCAG 1.4.12 - `https://www.w3.org/WAI/WCAG22/quickref/#text-spacing`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C36: Allowing for text spacing override.
+- C35: Allowing for text spacing without wrapping.
+
+Failures:
+
+- F104: Failure of Success Criterion 1.4.12 due to clipped or overlapped content when text spacing is adjusted.
+
+Uwagi zakresowe:
+
+- 1.4.12 dotyczy braku utraty treści lub funkcjonalności po ustawieniu: line-height co najmniej 1.5, odstępu po akapitach co najmniej 2 razy rozmiar fontu, letter-spacing co najmniej 0.12 razy rozmiar fontu i word-spacing co najmniej 0.16 razy rozmiar fontu.
+- Kryterium nie wymaga, żeby autor domyślnie używał tych wartości. Wymaga odporności treści, gdy użytkownik nadpisze odstępy.
+- Nie mieszać z 1.4.4: powiększenie tekstu do 200% jest osobnym wymaganiem.

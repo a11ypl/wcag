@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.4.10 Dopasowanie do ekranu - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="1.4.10 Dopasowanie do ekranu prostym językiem: Treść powinna dopasować się do wąskiego widoku albo dużego zoomu bez utraty informacji i bez przewijania w dwóch kierunkach.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="1.4.10 Dopasowanie do ekranu - WCAG prostym językiem">
+    <meta property="og:description" content="1.4.10 Dopasowanie do ekranu prostym językiem: Treść powinna dopasować się do wąskiego widoku albo dużego zoomu bez utraty informacji i bez przewijania w dwóch kierunkach.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="1.4.10 Dopasowanie do ekranu - WCAG prostym językiem">
+    <meta name="twitter:description" content="1.4.10 Dopasowanie do ekranu prostym językiem: Treść powinna dopasować się do wąskiego widoku albo dużego zoomu bez utraty informacji i bez przewijania w dwóch kierunkach.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "1.4.10 Dopasowanie do ekranu",
+      "headline": "1.4.10 Dopasowanie do ekranu",
+      "description": "1.4.10 Dopasowanie do ekranu prostym językiem: Treść powinna dopasować się do wąskiego widoku albo dużego zoomu bez utraty informacji i bez przewijania w dwóch kierunkach.",
+      "url": "https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu",
+      "isBasedOn": "https://aaardvarkaccessibility.com/wcag-plain-english/",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "articleSection": "Postrzegalność",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+            <ol>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+                <li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+                <li aria-current="page">1.4.10 Dopasowanie do ekranu</li>
+            </ol>
+        </nav>
+
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Postrzegalność · Poziom AA · Dodane w WCAG 2.1</p>
+                <h1>1.4.10 Dopasowanie do ekranu</h1>
+                <p class="subtitle">Treść powinna mieścić się w wąskim widoku albo przy dużym zoomie bez przewijania w dwóch kierunkach.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article wcag-detail">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title">Krótko</h2>
+                    <p>Przy szerokości odpowiadającej 320 CSS px użytkownik powinien czytać stronę przewijając głównie w jednym kierunku. Nie powinien przesuwać ekranu raz w prawo, raz w lewo, żeby przeczytać każdą linię.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik powiększa stronę do 400% albo korzysta z małego ekranu. Treść nie zawija się, a strona wymaga przewijania poziomego i pionowego jednocześnie. Każdą linię trzeba czytać przez przesuwanie widoku w bok.</p>
+                    <p>1.4.10 nie jest ogólną oceną „czy strona jest ładnie responsywna”. Chodzi o konkretny efekt: brak utraty informacji i funkcji oraz brak konieczności przewijania w dwóch kierunkach dla typowej treści.</p>
+                    <p>Są wyjątki, na przykład mapy, diagramy, filmy, gry, prezentacje, tabele danych i edytory, jeśli układ dwuwymiarowy jest potrzebny do użycia albo zrozumienia.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list">
+                        <li>Osób słabowidzących korzystających z dużego zoomu.</li>
+                        <li>Osób, które widzą tylko mały fragment ekranu naraz.</li>
+                        <li>Użytkowników urządzeń mobilnych i wąskich okien przeglądarki.</li>
+                        <li>Osób z ograniczeniami ruchowymi, dla których ciągłe przewijanie w dwóch osiach jest męczące.</li>
+                        <li>Osób z trudnościami poznawczymi, które gubią miejsce przy czytaniu linii wymagających przesuwania w bok.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Układ wielokolumnowy zmienia się w jedną kolumnę.</li>
+                        <li>Karty przechodzą jedna pod drugą.</li>
+                        <li>Długie linki i ciągi znaków zawijają się zamiast wypychać stronę poza ekran.</li>
+                        <li>Etykiety formularza przechodzą nad pola albo układają się w prostą kolumnę.</li>
+                        <li>Tabela danych może mieć własny przewijany obszar, jeśli dwuwymiarowy układ jest potrzebny do zrozumienia tabeli.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Kontener ma stałą szerokość 1200 px i wypycha stronę poza ekran.</li>
+                        <li>Trzy kolumny pozostają obok siebie przy szerokości 320 CSS px.</li>
+                        <li>Menu lub panel boczny zasłania treść i nie da się do niej dotrzeć.</li>
+                        <li>Długi URL w karcie wymusza poziome przewijanie całej strony.</li>
+                        <li>Po reflow część treści znika i nie jest dostępna w innym miejscu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-reflow-bad-fixed">Zły przykład: sztywna szerokość</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Treść nie ma jak dopasować się do wąskiego widoku.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.layout {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 300px 600px 300px;
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-reflow-good-grid">Dobry przykład: kolumny przechodzą w jeden układ</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Grid używa elastycznych kolumn i mieści się w dostępnym obszarze.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.layout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  max-width: 100%;
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-reflow-long-url">Dobry przykład: długie ciągi nie wypychają strony</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Długie adresy, numery spraw i identyfikatory mogą się zawijać.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.content,
+.content a,
+.case-number {
+  overflow-wrap: anywhere;
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3 id="code-example-reflow-form">Dobry przykład: formularz dopasowuje etykiety i pola</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Etykiety i pola mogą przejść do jednej kolumny.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.form-row label {
+  flex: 1 1 12rem;
+}
+
+.form-row input {
+  flex: 2 1 16rem;
+  max-width: 100%;
+}</code></pre>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-reflow-demo">
+                        <div class="wcag-reflow-demo__grid">
+                            <section class="wcag-reflow-demo__item wcag-reflow-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-reflow-demo__viewport">
+                                    <div class="wcag-reflow-demo__wide">Menu | Treść artykułu | Panel boczny | Reklama</div>
+                                </div>
+                                <p class="wcag-reflow-demo__note">Treść jest szersza niż widok. Użytkownik musi przewijać poziomo i pionowo.</p>
+                            </section>
+
+                            <section class="wcag-reflow-demo__item wcag-reflow-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-reflow-demo__viewport">
+                                    <div class="wcag-reflow-demo__stack">
+                                        <span>Menu</span>
+                                        <span>Treść artykułu</span>
+                                        <span>Panel dodatkowy</span>
+                                    </div>
+                                </div>
+                                <p class="wcag-reflow-demo__note">Elementy przechodzą jeden pod drugi. Treść pozostaje dostępna w jednym kierunku przewijania.</p>
+                            </section>
+                        </div>
+                        <figcaption>Statyczne demo pokazuje różnicę między sztywnym układem a reflow, który dopasowuje treść do wąskiego widoku.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Ustaw widok odpowiadający szerokości 320 CSS px albo powiększ stronę do 400% przy szerokości startowej 1280 CSS px.</li>
+                        <li>Przejdź główne widoki, formularze, listy, karty, menu, panele i tabele.</li>
+                        <li>Sprawdź, czy zwykła treść nie wymaga przewijania w dwóch kierunkach.</li>
+                        <li>Sprawdź, czy żaden element nie znika po zmianie układu.</li>
+                        <li>Sprawdź długie linki, identyfikatory, nazwy produktów i komunikaty błędów.</li>
+                        <li>Oddziel wyjątki: mapa, diagram, wideo, gra, prezentacja albo tabela danych mogą potrzebować układu dwuwymiarowego.</li>
+                        <li>Nie oceniaj tylko breakpointów. Sprawdź realne zadania użytkownika po reflow.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>poziome przewijanie całej strony przy wąskim widoku,</li>
+                        <li>elementy szersze niż viewport,</li>
+                        <li>część stałych szerokości i problemów z overflow,</li>
+                        <li>część treści ukrytej po zmianie breakpointu.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>czy dwuwymiarowy układ jest wyjątkiem potrzebnym do zrozumienia treści,</li>
+                        <li>czy użytkownik nadal może ukończyć cały proces,</li>
+                        <li>czy przewijany obszar tabeli jest sensowny i nie ukrywa funkcji,</li>
+                        <li>czy treść zniknęła, czy została przeniesiona w inne dostępne miejsce.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Stały layout desktopowy bez elastycznych kolumn.</li>
+                        <li>Ukrywanie panelu bocznego razem z ważną treścią.</li>
+                        <li>Menu, które wypada poza ekran i nie ma alternatywnego dostępu.</li>
+                        <li>Długie linki bez zawijania.</li>
+                        <li>Formularze z etykietą i polem zamkniętymi w sztywnej siatce.</li>
+                        <li>Traktowanie tabeli jako wymówki dla całej strony, choć tylko sama tabela potrzebuje przewijania poziomego.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu">1.4.4 Zmiana rozmiaru tekstu</a>: gdy tekst ma działać po powiększeniu do 200%.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a>: gdy po reflow kontrolki i granice elementów nadal muszą być rozpoznawalne.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-5-8-rozmiar-celu-minimum">2.5.8 Rozmiar celu (minimum)</a>: gdy małe cele w ciasnym układzie utrudniają obsługę wskaźnikiem.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#reflow" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.4.10 Reflow<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.4.10: Reflow<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#reflow" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.4.10: Reflow<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C32" target="_blank" rel="noopener noreferrer">C32: Using media queries and grid CSS to reflow columns<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C31" target="_blank" rel="noopener noreferrer">C31: Using CSS Flexbox to reflow content<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C33" target="_blank" rel="noopener noreferrer">C33: Allowing for Reflow with Long URLs and Strings of Text<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C38" target="_blank" rel="noopener noreferrer">C38: Using CSS width, max-width and flexbox to fit labels and inputs<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F102" target="_blank" rel="noopener noreferrer">F102: Failure due to content disappearing when content has reflowed<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
+                </article>
+
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
+                    <a href="/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu">Poprzednie opracowane: 1.4.5 Obrazy tekstu</a>
+                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
+                    <a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">Następne: 1.4.11 Kontrast elementów nietekstowych</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

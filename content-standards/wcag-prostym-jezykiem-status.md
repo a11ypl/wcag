@@ -200,3 +200,15 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowane techniki: G142, C28, G179. Zweryfikowane failures: F69, F80, F94.
 - W treści zachowano granicę: 1.4.4 dotyczy powiększenia tekstu do 200% bez utraty treści lub funkcjonalności; nie zastępuje 1.4.10, 1.4.12, 1.4.3 ani 2.4.7.
 - Raport źródeł dla `1.4.4` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: batch 1.4.5, 1.4.10, 1.4.12
+
+- `1.4.5 Obrazy tekstu`: rozbudowane - gotowe do przeglądu.
+- `1.4.10 Dopasowanie do ekranu`: rozbudowane - gotowe do przeglądu.
+- `1.4.12 Odstępy w tekście`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu.html`, `public/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu.html`, `public/wcag-prostym-jezykiem/1-4-12-odstepy-w-tekscie.html`.
+- Dodano statyczne demo `wcag-images-text-demo`, `wcag-reflow-demo` i `wcag-text-spacing-demo`. Dema nie mają JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 1.4.5 nie zastępuje 1.1.1, 1.4.10 nie jest ogólną oceną RWD, a 1.4.12 nie zastępuje 1.4.4.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
