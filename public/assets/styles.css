@@ -1110,6 +1110,97 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-resize-text-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-resize-text-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-resize-text-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-resize-text-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-resize-text-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-resize-text-demo__item--risky {
+    border-color: var(--accent);
+}
+
+.wcag-resize-text-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-resize-text-demo__mock {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    display: grid;
+    gap: 0.6rem;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.wcag-resize-text-demo__mock--clipped {
+    max-height: 7.5rem;
+    overflow: hidden;
+}
+
+.wcag-resize-text-demo__mock--tight {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.wcag-resize-text-demo__mock--flexible {
+    align-content: start;
+}
+
+.wcag-resize-text-demo__line {
+    font-size: 1.35rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.wcag-resize-text-demo__button {
+    background: var(--accent);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    color: black;
+    display: inline-block;
+    font-weight: 900;
+    justify-self: start;
+    line-height: 1.25;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding: 0.65em 0.85em;
+}
+
+.wcag-resize-text-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-resize-text-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }

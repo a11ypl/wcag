@@ -189,3 +189,14 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowana technika: G96. Zweryfikowane failures: F14, F26.
 - W treści zachowano granicę: 1.3.3 dotyczy instrukcji opartych wyłącznie na kolorze, kształcie, rozmiarze, położeniu, orientacji albo dźwięku; nie zastępuje 1.4.1, 1.3.1, 1.3.2 ani 3.3.2.
 - Raport źródeł dla `1.3.3` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: 1.4.4 Zmiana rozmiaru tekstu
+
+- `1.4.4 Zmiana rozmiaru tekstu`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nową stronę `public/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu.html`, zgodną ze slugiem wskazywanym przez nawigację z `1.4.3`.
+- Dodano statyczne demo `wcag-resize-text-demo` jako porównanie przyciętego tekstu, ryzykownego sztywnego układu i poprawnego układu, który rośnie oraz zawija treść. Demo nie ma JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla `1.4.4` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.4.4.
+- Zweryfikowane techniki: G142, C28, G179. Zweryfikowane failures: F69, F80, F94.
+- W treści zachowano granicę: 1.4.4 dotyczy powiększenia tekstu do 200% bez utraty treści lub funkcjonalności; nie zastępuje 1.4.10, 1.4.12, 1.4.3 ani 2.4.7.
+- Raport źródeł dla `1.4.4` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

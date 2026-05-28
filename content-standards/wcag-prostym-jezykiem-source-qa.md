@@ -333,3 +333,34 @@ Uwagi zakresowe:
 - Kryterium nie zakazuje używania cech zmysłowych. Wymaga dodatkowego tekstowego lub programowego sposobu identyfikacji elementu, jeśli instrukcja wskazuje użytkownikowi, co ma zrobić.
 - Nie mieszać z 1.4.1: informacja przekazana wyłącznie kolorem jest powiązana, ale 1.3.3 dotyczy instrukcji zależnych od cech zmysłowych.
 - Nie mieszać z 1.3.1, 1.3.2 ani 3.3.2: struktura, kolejność oraz kompletność etykiet i instrukcji mogą wspierać poprawkę, ale nie są głównym zakresem tego kryterium.
+
+## Source QA 2026-05-28: 1.4.4 Zmiana rozmiaru tekstu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.4 Resize Text - `https://www.w3.org/TR/WCAG22/#resize-text`
+- Understanding WCAG 1.4.4 Resize Text - `https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html`
+- How to Meet WCAG 1.4.4 - `https://www.w3.org/WAI/WCAG22/quickref/#resize-text`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G142: Using a technology that has commonly-available user agents that support zoom.
+- C28: Specifying the size of text containers using `em` units.
+- G179: Ensuring that there is no loss of content or functionality when the text resizes and text containers do not change their width.
+
+Failures:
+
+- F69: Failure of Success Criterion 1.4.4 when resizing visually rendered text up to 200 percent causes the text, image or controls to be clipped, truncated or obscured.
+- F80: Failure of Success Criterion 1.4.4 when text-based form controls do not resize when visually rendered text is resized up to 200%.
+- F94: Failure of Success Criterion 1.4.4 due to incorrect use of viewport units to resize text.
+
+Uwagi zakresowe:
+
+- 1.4.4 dotyczy powiększenia tekstu do 200% bez technologii wspomagającej, bez utraty treści lub funkcjonalności.
+- Kryterium nie wymaga zachowania identycznego układu po powiększeniu; układ może się zawijać, wydłużać, rozszerzać albo przewijać, jeśli treść i funkcje pozostają dostępne.
+- Wyjątki w kryterium obejmują napisy i obrazy tekstu.
+- Nie mieszać z 1.4.10: reflow przy 320 CSS px / 400% jest osobnym wymaganiem.
+- Nie mieszać z 1.4.12: odstępy w tekście są osobnym wymaganiem.
+- Nie mieszać z 1.4.3 ani 2.4.7: kontrast tekstu i widoczność fokusu mogą być testowane równolegle, ale nie są głównym zakresem tego kryterium.
