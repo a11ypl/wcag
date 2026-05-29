@@ -1,4 +1,4 @@
-# Current task: batch multimedia 1.2.1, 1.2.2, 1.2.3, 1.2.4, 1.2.5
+# Current task: batch interakcje 2.1.4, 2.5.1, 2.5.2, 2.5.3, 2.5.4
 
 ## Polecenie dla Codexa
 
@@ -23,25 +23,25 @@ Nie ruszaj stashy pobocznych.
 
 Rozbuduj kryteria:
 
-- `1.2.1 Tylko audio oraz tylko wideo` - poziom A
-- `1.2.2 Napisy rozszerzone` - poziom A
-- `1.2.3 Audiodeskrypcja lub alternatywa dla mediów` - poziom A
-- `1.2.4 Napisy rozszerzone na żywo` - poziom AA
-- `1.2.5 Audiodeskrypcja` - poziom AA
+- `2.1.4 Skróty klawiszowe znakowe` - poziom A
+- `2.5.1 Gesty wskaźnika` - poziom A
+- `2.5.2 Anulowanie wskazania` - poziom A
+- `2.5.3 Etykieta w nazwie` - poziom A
+- `2.5.4 Aktywowanie ruchem` - poziom A
 
 Oczekiwane pliki:
 
-- `public/wcag-prostym-jezykiem/1-2-1-tylko-audio-oraz-tylko-wideo.html`
-- `public/wcag-prostym-jezykiem/1-2-2-napisy-rozszerzone.html`
-- `public/wcag-prostym-jezykiem/1-2-3-audiodeskrypcja-lub-alternatywa-dla-mediow.html`
-- `public/wcag-prostym-jezykiem/1-2-4-napisy-rozszerzone-na-zywo.html`
-- `public/wcag-prostym-jezykiem/1-2-5-audiodeskrypcja.html`
+- `public/wcag-prostym-jezykiem/2-1-4-skroty-klawiszowe-znakowe.html`
+- `public/wcag-prostym-jezykiem/2-5-1-gesty-wskaznika.html`
+- `public/wcag-prostym-jezykiem/2-5-2-anulowanie-wskazania.html`
+- `public/wcag-prostym-jezykiem/2-5-3-etykieta-w-nazwie.html`
+- `public/wcag-prostym-jezykiem/2-5-4-aktywowanie-ruchem.html`
 
 ## Zakres
 
 Można zmieniać tylko:
 
-- strony kryteriów `1.2.1`, `1.2.2`, `1.2.3`, `1.2.4`, `1.2.5`,
+- strony kryteriów `2.1.4`, `2.5.1`, `2.5.2`, `2.5.3`, `2.5.4`,
 - scoped CSS dla demo edukacyjnych tych stron,
 - status,
 - source QA,
@@ -51,19 +51,19 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 ## Granice
 
-- `1.2.1` dotyczy alternatyw dla nagrań tylko audio albo tylko wideo.
-- `1.2.2` dotyczy napisów rozszerzonych dla nagrań z dźwiękiem.
-- `1.2.3` dotyczy audiodeskrypcji albo alternatywy tekstowej dla nagrania wideo.
-- `1.2.4` dotyczy napisów rozszerzonych na żywo.
-- `1.2.5` dotyczy audiodeskrypcji dla nagrań wideo.
+- `2.1.4` dotyczy jednoliterowych/jednoznakowych skrótów klawiaturowych, które mogą przeszkadzać użytkownikom.
+- `2.5.1` dotyczy gestów wielopunktowych albo opartych na ścieżce, dla których trzeba dać prostszą alternatywę.
+- `2.5.2` dotyczy tego, żeby użytkownik mógł anulować przypadkowe kliknięcie/dotknięcie albo żeby akcja nie wykonywała się za wcześnie.
+- `2.5.3` dotyczy zgodności widocznej etykiety z dostępną nazwą elementu.
+- `2.5.4` dotyczy funkcji uruchamianych ruchem urządzenia lub użytkownika, dla których musi być alternatywa i możliwość wyłączenia.
 
-Pilnuj różnic:
+Nie mieszaj:
 
-- napisy to nie transkrypcja,
-- transkrypcja to nie audiodeskrypcja,
-- audiodeskrypcja opisuje ważne informacje wizualne,
-- alternatywa dla mediów musi przekazywać sens całego nagrania,
-- kryteria dla nagrań i transmisji na żywo mają różne wymagania.
+- `2.1.4` z ogólną obsługą klawiaturą,
+- `2.5.1` z ruchem przeciągania `2.5.7`,
+- `2.5.2` z potwierdzeniem błędów formularzy,
+- `2.5.3` z samą widocznością tekstu,
+- `2.5.4` z animacjami na stronie.
 
 ## Wymagana struktura dla każdego kryterium
 
@@ -84,11 +84,11 @@ Pilnuj różnic:
 
 - jeden `h1` na stronie,
 - logiczna hierarchia nagłówków,
-- przykłady kodu z etykietami języka, jeśli mają sens,
+- przykłady kodu z etykietami języka,
 - `code` z klasami `language-*`,
 - powiązane kryteria jako linki tylko do istniejących stron,
 - źródła W3C po weryfikacji,
-- brak JavaScriptu,
+- brak JavaScriptu dodawanego dla demo,
 - brak ARIA bez potrzeby,
 - style demo tylko scoped do konkretnego demo.
 
@@ -96,4 +96,4 @@ Pilnuj różnic:
 
 Commit message po wykonaniu batcha:
 
-`Expand WCAG multimedia tutorials`
+`Expand WCAG input interaction tutorials`

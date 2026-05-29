@@ -264,3 +264,17 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: napisy nie są transkrypcją, transkrypcja nie jest audiodeskrypcją, alternatywa dla mediów ma przekazywać sens całego nagrania, a kryteria dla nagrań i transmisji na żywo mają różne wymagania.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch interakcje 2.1.4, 2.5.1, 2.5.2, 2.5.3, 2.5.4
+
+- `2.1.4 Skróty klawiszowe znakowe`: rozbudowane - gotowe do przeglądu.
+- `2.5.1 Gesty wskaźnika`: rozbudowane - gotowe do przeglądu.
+- `2.5.2 Anulowanie wskazania`: rozbudowane - gotowe do przeglądu.
+- `2.5.3 Etykieta w nazwie`: rozbudowane - gotowe do przeglądu.
+- `2.5.4 Aktywowanie ruchem`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-1-4-skroty-klawiszowe-znakowe.html`, `public/wcag-prostym-jezykiem/2-5-1-gesty-wskaznika.html`, `public/wcag-prostym-jezykiem/2-5-2-anulowanie-wskazania.html`, `public/wcag-prostym-jezykiem/2-5-3-etykieta-w-nazwie.html`, `public/wcag-prostym-jezykiem/2-5-4-aktywowanie-ruchem.html`.
+- Dodano statyczne demo `wcag-character-shortcuts-demo`, `wcag-pointer-gestures-demo`, `wcag-pointer-cancel-demo`, `wcag-label-name-demo` i `wcag-motion-actuation-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.1.4 nie jest ogólną obsługą klawiaturą, 2.5.1 nie zastępuje 2.5.7, 2.5.2 nie dotyczy potwierdzeń błędów formularzy, 2.5.3 nie ocenia samej widoczności tekstu, a 2.5.4 nie dotyczy animacji na stronie.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

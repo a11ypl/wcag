@@ -1750,6 +1750,113 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-character-shortcuts-demo,
+.wcag-pointer-gestures-demo,
+.wcag-pointer-cancel-demo,
+.wcag-label-name-demo,
+.wcag-motion-actuation-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-character-shortcuts-demo__grid,
+.wcag-pointer-gestures-demo__grid,
+.wcag-pointer-cancel-demo__grid,
+.wcag-label-name-demo__grid,
+.wcag-motion-actuation-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-character-shortcuts-demo__item,
+.wcag-pointer-gestures-demo__item,
+.wcag-pointer-cancel-demo__item,
+.wcag-label-name-demo__item,
+.wcag-motion-actuation-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-character-shortcuts-demo__item h3,
+.wcag-pointer-gestures-demo__item h3,
+.wcag-pointer-cancel-demo__item h3,
+.wcag-label-name-demo__item h3,
+.wcag-motion-actuation-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-character-shortcuts-demo__item--bad,
+.wcag-pointer-gestures-demo__item--bad,
+.wcag-pointer-cancel-demo__item--bad,
+.wcag-label-name-demo__item--bad,
+.wcag-motion-actuation-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-character-shortcuts-demo__item--good,
+.wcag-pointer-gestures-demo__item--good,
+.wcag-pointer-cancel-demo__item--good,
+.wcag-label-name-demo__item--good,
+.wcag-motion-actuation-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-character-shortcuts-demo__key,
+.wcag-pointer-gestures-demo__gesture,
+.wcag-pointer-cancel-demo__event,
+.wcag-label-name-demo__label,
+.wcag-label-name-demo__name,
+.wcag-motion-actuation-demo__motion {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+    margin: 0.5rem 0;
+    overflow-wrap: anywhere;
+    padding: 0.65rem 0.75rem;
+}
+
+.wcag-character-shortcuts-demo__item--bad .wcag-character-shortcuts-demo__key,
+.wcag-pointer-gestures-demo__item--bad .wcag-pointer-gestures-demo__gesture,
+.wcag-pointer-cancel-demo__item--bad .wcag-pointer-cancel-demo__event,
+.wcag-label-name-demo__item--bad .wcag-label-name-demo__label,
+.wcag-label-name-demo__item--bad .wcag-label-name-demo__name,
+.wcag-motion-actuation-demo__item--bad .wcag-motion-actuation-demo__motion {
+    border-color: #d33131;
+}
+
+.wcag-character-shortcuts-demo__item--good .wcag-character-shortcuts-demo__key,
+.wcag-pointer-gestures-demo__item--good .wcag-pointer-gestures-demo__gesture,
+.wcag-pointer-cancel-demo__item--good .wcag-pointer-cancel-demo__event,
+.wcag-label-name-demo__item--good .wcag-label-name-demo__label,
+.wcag-label-name-demo__item--good .wcag-label-name-demo__name,
+.wcag-motion-actuation-demo__item--good .wcag-motion-actuation-demo__motion {
+    border-color: var(--primary);
+}
+
+.wcag-character-shortcuts-demo__note,
+.wcag-pointer-gestures-demo__note,
+.wcag-pointer-cancel-demo__note,
+.wcag-label-name-demo__note,
+.wcag-motion-actuation-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-character-shortcuts-demo figcaption,
+.wcag-pointer-gestures-demo figcaption,
+.wcag-pointer-cancel-demo figcaption,
+.wcag-label-name-demo figcaption,
+.wcag-motion-actuation-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }

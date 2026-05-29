@@ -841,3 +841,122 @@ Uwagi zakresowe:
 
 - 1.2.5 dotyczy audiodeskrypcji dla nagranych materiałów wideo.
 - Na poziomie AA sama alternatywa tekstowa nie zastępuje audiodeskrypcji, inaczej niż w dopuszczalnej opcji z 1.2.3 na poziomie A.
+
+## Source QA 2026-05-29: 2.1.4 Skróty klawiszowe znakowe
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.1.4 Character Key Shortcuts - `https://www.w3.org/TR/WCAG22/#character-key-shortcuts`
+- Understanding WCAG 2.1.4 Character Key Shortcuts - `https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html`
+- How to Meet WCAG 2.1.4 - `https://www.w3.org/WAI/WCAG22/quickref/#character-key-shortcuts`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G217: Providing a mechanism to allow users to remap or turn off character key shortcuts.
+
+Failures:
+
+- F99: Failure of Success Criterion 2.1.4 due to implementing character key shortcuts that cannot be turned off or remapped.
+
+Uwagi zakresowe:
+
+- 2.1.4 dotyczy skrótów z samych znaków drukowalnych, aktywnych w treści.
+- Nie mieszać z ogólną obsługą klawiaturą z 2.1.1 ani z widocznością fokusu.
+
+## Source QA 2026-05-29: 2.5.1 Gesty wskaźnika
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.1 Pointer Gestures - `https://www.w3.org/TR/WCAG22/#pointer-gestures`
+- Understanding WCAG 2.5.1 Pointer Gestures - `https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html`
+- How to Meet WCAG 2.5.1 - `https://www.w3.org/WAI/WCAG22/quickref/#pointer-gestures`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G215: Providing controls to achieve the same result as path based or multipoint gestures.
+- G216: Providing single point activation for a control slider.
+
+Failures:
+
+- F105: Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer alternative.
+
+Uwagi zakresowe:
+
+- 2.5.1 dotyczy gestów wielopunktowych oraz gestów opartych na ścieżce.
+- Nie mieszać z 2.5.7: ruch przeciągania ma osobne kryterium.
+
+## Source QA 2026-05-29: 2.5.2 Anulowanie wskazania
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.2 Pointer Cancellation - `https://www.w3.org/TR/WCAG22/#pointer-cancellation`
+- Understanding WCAG 2.5.2 Pointer Cancellation - `https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html`
+- How to Meet WCAG 2.5.2 - `https://www.w3.org/WAI/WCAG22/quickref/#pointer-cancellation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G210: Ensuring that drag-and-drop actions can be cancelled.
+- G212: Using native controls to ensure functionality is triggered on the up-event.
+
+Failures:
+
+- F101: Failure of Success Criterion 2.5.2 due to activating a control on the down-event.
+
+Uwagi zakresowe:
+
+- 2.5.2 dotyczy mechaniki wskaźnika: down-event, up-event, anulowanie i cofnięcie.
+- Nie mieszać z potwierdzeniem błędów formularzy ani z prawnymi/finansowymi mechanizmami zapobiegania błędom.
+
+## Source QA 2026-05-29: 2.5.3 Etykieta w nazwie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.3 Label in Name - `https://www.w3.org/TR/WCAG22/#label-in-name`
+- Understanding WCAG 2.5.3 Label in Name - `https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html`
+- How to Meet WCAG 2.5.3 - `https://www.w3.org/WAI/WCAG22/quickref/#label-in-name`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G208: Including the text of the visible label as part of the accessible name.
+- G211: Matching the accessible name to the visible label.
+
+Failures:
+
+- F96: Failure due to the accessible name not containing the visible label text.
+- F111: Failure due to a control with visible label text but no accessible name.
+
+Uwagi zakresowe:
+
+- 2.5.3 dotyczy zgodności widocznej etykiety kontrolki z jej dostępną nazwą.
+- Nie mieszać z samą widocznością tekstu ani z oceną opisowości etykiety z 2.4.6.
+
+## Source QA 2026-05-29: 2.5.4 Aktywowanie ruchem
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.4 Motion Actuation - `https://www.w3.org/TR/WCAG22/#motion-actuation`
+- Understanding WCAG 2.5.4 Motion Actuation - `https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation.html`
+- How to Meet WCAG 2.5.4 - `https://www.w3.org/WAI/WCAG22/quickref/#motion-actuation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G213: Provide conventional controls and an application setting for motion activated input.
+
+Failures:
+
+- F106: Failure due to inability to deactivate motion actuation.
+
+Uwagi zakresowe:
+
+- 2.5.4 dotyczy funkcji aktywowanych ruchem urządzenia albo ruchem użytkownika wykrywanym przez czujniki.
+- Nie mieszać z animacjami na stronie ani z ruchem wskaźnika.
