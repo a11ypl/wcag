@@ -237,3 +237,16 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 2.4.5 nie opisuje samej kolejności menu, 2.4.6 nie zastępuje hierarchii nagłówków z 1.3.1, 3.1.1 nie ocenia jakości tłumaczenia, a 3.1.2 nie wymaga oznaczania pojedynczych nazw własnych.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 3.2.1, 3.2.2, 3.2.3, 3.2.4
+
+- `3.2.1 Po otrzymaniu fokusu`: rozbudowane - gotowe do przeglądu.
+- `3.2.2 Podczas wprowadzania danych`: rozbudowane - gotowe do przeglądu.
+- `3.2.3 Spójna nawigacja`: rozbudowane - gotowe do przeglądu.
+- `3.2.4 Spójna identyfikacja`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu.html`, `public/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych.html`, `public/wcag-prostym-jezykiem/3-2-3-spojna-nawigacja.html`, `public/wcag-prostym-jezykiem/3-2-4-spojna-identyfikacja.html`.
+- Dodano statyczne demo `wcag-on-focus-demo`, `wcag-on-input-demo`, `wcag-consistent-nav-demo` i `wcag-consistent-id-demo`. Dema nie mają własnego JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 3.2.1 nie opisuje samej widoczności fokusu, 3.2.2 nie zastępuje walidacji formularza, 3.2.3 nie jest ogólną oceną jakości menu, a 3.2.4 nie wymaga identycznego wyglądu graficznego każdego elementu.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

@@ -615,3 +615,98 @@ Uwagi zakresowe:
 
 - 3.1.2 dotyczy fragmentów w innym języku niż główny język strony, gdy język można programowo określić.
 - Wyjątki obejmują nazwy własne, terminy techniczne, słowa o nieokreślonym języku oraz słowa lub wyrażenia, które stały się częścią języka otaczającego tekst.
+
+## Source QA 2026-05-29: 3.2.1 Po otrzymaniu fokusu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.1 On Focus - `https://www.w3.org/TR/WCAG22/#on-focus`
+- Understanding WCAG 3.2.1 On Focus - `https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html`
+- How to Meet WCAG 3.2.1 - `https://www.w3.org/WAI/WCAG22/quickref/#on-focus`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G107: Using "activate" rather than "focus" as a trigger for changes of context.
+
+Failures:
+
+- F55: Failure of Success Criteria 2.1.1, 2.4.7, 2.4.13, and 3.2.1 due to using script to remove focus when focus is received.
+
+Uwagi zakresowe:
+
+- 3.2.1 dotyczy zmiany kontekstu wywołanej samym otrzymaniem fokusu.
+- Nie mieszać z 2.4.7: widoczność fokusu jest osobnym wymaganiem.
+
+## Source QA 2026-05-29: 3.2.2 Podczas wprowadzania danych
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.2 On Input - `https://www.w3.org/TR/WCAG22/#on-input`
+- Understanding WCAG 3.2.2 On Input - `https://www.w3.org/WAI/WCAG22/Understanding/on-input.html`
+- How to Meet WCAG 3.2.2 - `https://www.w3.org/WAI/WCAG22/quickref/#on-input`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G80: Providing a submit button to initiate a change of context.
+- G13: Describing what will happen before a change to a form control that causes a change of context to occur is made.
+- SCR19: Using an onchange event on a select element without causing a change of context.
+
+Failures:
+
+- F36: Failure of Success Criterion 3.2.2 due to automatically submitting a form and presenting new content without prior warning when the last field in the form is given a value.
+- F37: Failure of Success Criterion 3.2.2 due to launching a new window without prior warning when the selection of a radio button, check box or select list is changed.
+
+Uwagi zakresowe:
+
+- 3.2.2 dotyczy zmiany kontekstu po zmianie ustawienia komponentu interfejsu.
+- Nie mieszać z walidacją formularza: samo wskazanie błędów i treść komunikatów są oceniane w innych kryteriach.
+
+## Source QA 2026-05-29: 3.2.3 Spójna nawigacja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.3 Consistent Navigation - `https://www.w3.org/TR/WCAG22/#consistent-navigation`
+- Understanding WCAG 3.2.3 Consistent Navigation - `https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html`
+- How to Meet WCAG 3.2.3 - `https://www.w3.org/WAI/WCAG22/quickref/#consistent-navigation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G61: Presenting repeated components in the same relative order each time they appear.
+
+Failures:
+
+- Quick Reference dla 3.2.3 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.2.3 dotyczy względnej kolejności powtarzanych mechanizmów nawigacji w zestawie stron.
+- Nie mieszać z ogólną jakością menu ani z tym, czy menu ma najlepsze etykiety.
+
+## Source QA 2026-05-29: 3.2.4 Spójna identyfikacja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.4 Consistent Identification - `https://www.w3.org/TR/WCAG22/#consistent-identification`
+- Understanding WCAG 3.2.4 Consistent Identification - `https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html`
+- How to Meet WCAG 3.2.4 - `https://www.w3.org/WAI/WCAG22/quickref/#consistent-identification`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G197: Using labels, names, and text alternatives consistently for content that has the same functionality.
+
+Failures:
+
+- F31: Failure of Success Criterion 3.2.4 due to using two different labels for the same function on different Web pages within a set of Web pages.
+
+Uwagi zakresowe:
+
+- 3.2.4 dotyczy spójnego identyfikowania elementów o tej samej funkcji.
+- Nie wymaga identycznego wyglądu graficznego każdego elementu i nie zastępuje oceny celu linku ani opisowości etykiet.

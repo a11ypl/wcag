@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem | Accessibility First</title>
+    <meta name="description" content="3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem">
+    <meta property="og:description" content="3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem">
+    <meta name="twitter:description" content="3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Article","name":"3.2.1 Po otrzymaniu fokusu","headline":"3.2.1 Po otrzymaniu fokusu","description":"3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.","url":"https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu","isBasedOn":"https://aaardvarkaccessibility.com/wcag-plain-english/","license":"https://creativecommons.org/licenses/by-sa/4.0/","articleSection":"Zrozumiałość","publisher":{"@type":"Organization","name":"Włącz Wizję sp. z o.o.","url":"https://wlaczwizje.pl"}}
+    </script>
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header><div class="container header-content"><a class="site-banner" href="/" aria-label="Accessibility First - strona główna"><img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true"></a><nav aria-label="Menu główne"><a href="/o-nas">O nas</a><a href="/szkolenia">Szkolenia</a><a href="/audyty">Audyty</a><a href="/sklep">Sklep</a><a href="/baza-wiedzy">Baza wiedzy</a><a href="/deklaracja">Deklaracja dostępności</a><a href="/kontakt">Kontakt</a></nav></div></header>
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/baza-wiedzy">Baza wiedzy</a></li><li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li><li aria-current="page">3.2.1 Po otrzymaniu fokusu</li></ol></nav>
+        <section class="hero page-hero"><div class="container"><p class="eyebrow">Zrozumiałość · Poziom A</p><h1>3.2.1 Po otrzymaniu fokusu</h1><p class="subtitle">Fokus ma pomagać w nawigacji, a nie zaskakiwać zmianą strony.</p></div></section>
+        <section class="knowledge-article wcag-detail">
+            <div class="container">
+                <article class="knowledge-panel">
+                    <h2 class="section-title">Krótko</h2>
+                    <p>Gdy element tylko otrzyma fokus, strona nie może automatycznie przenosić użytkownika, otwierać okna, wysyłać formularza ani przesuwać fokusu w inne miejsce.</p>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Problem w praktyce</h2>
+                    <p>Osoba używa klawiatury i przechodzi tabulatorem przez formularz. Po wejściu fokusu w pole „Kod pocztowy” otwiera się modal z pomocą i fokus trafia do modala. Użytkownik nie wybrał tej akcji, a strona zmieniła kontekst.</p>
+                    <p>To kryterium nie ocenia, czy fokus jest dobrze widoczny. Chodzi o przewidywalność: samo otrzymanie fokusu nie może uruchamiać dużej zmiany.</p>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Kogo to dotyczy</h2>
+                    <ul class="detail-list"><li>Osób korzystających z klawiatury, przełączników albo alternatywnych urządzeń wskazujących.</li><li>Osób niewidomych i słabowidzących, które mogą nie zauważyć, że strona nagle się zmieniła.</li><li>Osób z trudnościami poznawczymi, dla których nieoczekiwany skok utrudnia wykonanie zadania.</li><li>Użytkowników powiększenia ekranu, którzy widzą tylko fragment strony.</li></ul>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list"><li>Po wejściu fokusu w pole formularza pokazuje się krótka podpowiedź obok pola, ale fokus zostaje w tym samym miejscu.</li><li>Lista rozwijana nie przenosi na inną stronę, dopóki użytkownik nie wybierze opcji i nie aktywuje przycisku.</li><li>Link otwiera nową stronę dopiero po aktywacji linku, nie po samym fokusie.</li><li>Fokus na zakładce nie przełącza automatycznie całego widoku, jeśli interfejs wymaga aktywacji Enterem albo Spacją.</li></ul>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list"><li>Fokus na polu formularza automatycznie otwiera nowe okno pomocy.</li><li>Fokus na elemencie menu od razu przenosi użytkownika na inną podstronę.</li><li>Fokus na ostatnim polu formularza automatycznie wysyła formularz.</li><li>Skrypt usuwa fokus z elementu natychmiast po jego otrzymaniu.</li></ul>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+                    <section class="wcag-code-example"><div class="wcag-code-example__header"><h3 id="code-example-on-focus-good">Dobry przykład: zmiana po aktywacji</h3></div><p class="wcag-code-example__description">Użytkownik sam uruchamia akcję przyciskiem.</p><div class="wcag-code-example__code"><p class="wcag-code-example__label">Kod — HTML</p><pre><code class="language-html">&lt;label for="destination"&gt;Wybierz dział&lt;/label&gt;
+&lt;select id="destination" name="destination"&gt;
+  &lt;option value="kontakt"&gt;Kontakt&lt;/option&gt;
+  &lt;option value="reklamacje"&gt;Reklamacje&lt;/option&gt;
+&lt;/select&gt;
+&lt;button type="submit"&gt;Przejdź&lt;/button&gt;</code></pre></div></section>
+                    <section class="wcag-code-example"><div class="wcag-code-example__header"><h3 id="code-example-on-focus-bad">Zły przykład: przekierowanie po fokusie</h3></div><p class="wcag-code-example__description">Samo przejście tabulatorem do linku zmienia stronę.</p><div class="wcag-code-example__code"><p class="wcag-code-example__label">Kod — JavaScript</p><pre><code class="language-javascript">const helpLink = document.querySelector(".help-link");
+
+helpLink.addEventListener("focus", () =&gt; {
+  window.location.href = "/pomoc";
+});</code></pre></div></section>
+                    <section class="wcag-code-example"><div class="wcag-code-example__header"><h3 id="code-example-on-focus-safe-help">Dobry przykład: podpowiedź bez zmiany kontekstu</h3></div><p class="wcag-code-example__description">Podpowiedź jest widoczna przy polu, ale nie przenosi fokusu i nie otwiera nowego widoku.</p><div class="wcag-code-example__code"><p class="wcag-code-example__label">Kod — HTML</p><pre><code class="language-html">&lt;label for="case-number"&gt;Numer sprawy&lt;/label&gt;
+&lt;input id="case-number" name="case-number" aria-describedby="case-number-help"&gt;
+&lt;p id="case-number-help"&gt;Numer znajdziesz w potwierdzeniu zgłoszenia.&lt;/p&gt;</code></pre></div></section>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-on-focus-demo">
+                        <div class="wcag-on-focus-demo__grid">
+                            <section class="wcag-on-focus-demo__item wcag-on-focus-demo__item--bad"><h3>Źle</h3><p class="wcag-on-focus-demo__step">Tab → pole „E-mail” → otwiera się modal</p><p class="wcag-on-focus-demo__note">Użytkownik chciał tylko przejść do pola, a strona zmieniła kontekst.</p></section>
+                            <section class="wcag-on-focus-demo__item wcag-on-focus-demo__item--good"><h3>Dobrze</h3><p class="wcag-on-focus-demo__step">Tab → pole „E-mail” → fokus zostaje w polu</p><p class="wcag-on-focus-demo__note">Dodatkowa pomoc może się pojawić obok, bez przejęcia kontroli.</p></section>
+                        </div>
+                        <figcaption>Statyczne demo pokazuje różnicę między fokusem jako nawigacją a aktywacją działania.</figcaption>
+                    </figure>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list"><li>Przejdź przez stronę klawiszem Tab.</li><li>Obserwuj, czy samo wejście fokusu w element zmienia stronę, otwiera okno, wysyła formularz albo przenosi fokus.</li><li>Sprawdź pola formularzy, listy rozwijane, linki, menu i elementy pomocy.</li><li>Jeśli pojawia się tylko dodatkowa treść, oceń, czy nie zmienia znaczenia strony i nie zabiera fokusu.</li><li>Sprawdź, czy duża zmiana następuje dopiero po aktywacji elementu przez użytkownika.</li></ol>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list"><li>część podejrzanych skryptów reagujących na fokus,</li><li>nietypowe manipulacje fokusem,</li><li>część błędów z usuwaniem fokusu.</li></ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list"><li>czy zmiana jest zmianą kontekstu,</li><li>czy użytkownik został zaskoczony zachowaniem,</li><li>czy pojawienie się dodatkowej treści nadal jest przewidywalne.</li></ul>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list"><li>Automatyczne przekierowanie po fokusie na pozycji menu.</li><li>Modal pomocy otwierany po wejściu do pola formularza.</li><li>Wysyłka formularza po samym fokusie na ostatnim polu.</li><li>Skrypt, który natychmiast usuwa fokus, bo „psuje wygląd”.</li></ul>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list"><li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a>: gdy sprawdzasz, czy fokus przechodzi w logicznej kolejności.</li><li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a>: gdy oceniasz, czy aktualny fokus jest widoczny.</li><li><a href="/wcag-prostym-jezykiem/1-4-13-tresc-po-najechaniu-lub-fokusie">1.4.13 Treść po najechaniu lub fokusie</a>: gdy pojawia się dodatkowa treść po fokusie.</li></ul>
+                </article>
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list"><li><a href="https://www.w3.org/TR/WCAG22/#on-focus" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.2.1 On Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.2.1: On Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/quickref/#on-focus" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.2.1: On Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G107" target="_blank" rel="noopener noreferrer">G107: Using activate rather than focus as a trigger for changes of context<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F55" target="_blank" rel="noopener noreferrer">F55: Failure due to using script to remove focus when focus is received<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li></ul>
+                </article>
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG"><a href="/wcag-prostym-jezykiem/3-1-2-jezyk-czesci">Poprzednie opracowane: 3.1.2 Język części</a><a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a><a href="/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych">Następne: 3.2.2 Podczas wprowadzania danych</a></nav>
+            </div>
+        </section>
+    </main>
+    <footer><div class="container"><div class="footer-contact"><p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p></div><nav aria-label="Dokumenty prawne" class="footer-nav"><a href="/regulamin">Regulamin świadczenia usług</a><a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a><a href="/deklaracja">Deklaracja dostępności</a></nav><div class="footer-social"><a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a></div><div class="footer-bottom"><p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p></div></div></footer>
+    <script src="../assets/header.js"></script>
+</body>
+</html>

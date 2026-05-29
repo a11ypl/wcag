@@ -1,4 +1,4 @@
-# Current task: batch 2.4.5, 2.4.6, 3.1.1, 3.1.2
+# Current task: batch 3.2.1, 3.2.2, 3.2.3, 3.2.4
 
 ## Polecenie dla Codexa
 
@@ -23,23 +23,23 @@ Nie ruszaj stashy pobocznych.
 
 Rozbuduj kryteria:
 
-- `2.4.5 Wiele sposobów` - poziom AA
-- `2.4.6 Nagłówki i etykiety` - poziom AA
-- `3.1.1 Język strony` - poziom A
-- `3.1.2 Język części` - poziom AA
+- `3.2.1 Po otrzymaniu fokusu` - poziom A
+- `3.2.2 Podczas wprowadzania danych` - poziom A
+- `3.2.3 Spójna nawigacja` - poziom AA
+- `3.2.4 Spójna identyfikacja` - poziom AA
 
 Oczekiwane pliki:
 
-- `public/wcag-prostym-jezykiem/2-4-5-wiele-sposobow.html`
-- `public/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety.html`
-- `public/wcag-prostym-jezykiem/3-1-1-jezyk-strony.html`
-- `public/wcag-prostym-jezykiem/3-1-2-jezyk-czesci.html`
+- `public/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu.html`
+- `public/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych.html`
+- `public/wcag-prostym-jezykiem/3-2-3-spojna-nawigacja.html`
+- `public/wcag-prostym-jezykiem/3-2-4-spojna-identyfikacja.html`
 
 ## Zakres
 
 Można zmieniać tylko:
 
-- strony kryteriów `2.4.5`, `2.4.6`, `3.1.1`, `3.1.2`,
+- strony kryteriów `3.2.1`, `3.2.2`, `3.2.3`, `3.2.4`,
 - scoped CSS dla demo edukacyjnych tych stron,
 - status,
 - source QA,
@@ -49,17 +49,17 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 ## Granice
 
-- `2.4.5` dotyczy zapewnienia więcej niż jednego sposobu dotarcia do strony, np. menu, wyszukiwarka, mapa strony, lista linków.
-- `2.4.6` dotyczy tego, żeby nagłówki i etykiety opisywały temat albo cel.
-- `3.1.1` dotyczy ustawienia głównego języka strony.
-- `3.1.2` dotyczy oznaczania fragmentów w innym języku.
+- `3.2.1` dotyczy tego, że samo otrzymanie fokusu nie może wywołać nieoczekiwanej zmiany kontekstu.
+- `3.2.2` dotyczy tego, że zmiana wartości pola lub formularza nie może automatycznie wywołać nieoczekiwanej zmiany kontekstu bez uprzedzenia.
+- `3.2.3` dotyczy spójnej kolejności powtarzanej nawigacji na wielu stronach, jeśli użytkownik sam jej nie zmieni.
+- `3.2.4` dotyczy spójnego identyfikowania elementów o tej samej funkcji.
 
 Nie mieszaj:
 
-- `2.4.5` z samą kolejnością menu,
-- `2.4.6` z hierarchią nagłówków z `1.3.1`,
-- `3.1.1` z jakością tłumaczenia,
-- `3.1.2` z pojedynczymi nazwami własnymi, które nie wymagają oznaczania.
+- `3.2.1` z samą widocznością fokusu,
+- `3.2.2` z walidacją formularza,
+- `3.2.3` z ogólną jakością menu,
+- `3.2.4` z identycznym wyglądem graficznym każdego elementu.
 
 ## Wymagana struktura dla każdego kryterium
 
@@ -92,4 +92,4 @@ Nie mieszaj:
 
 Commit message po wykonaniu batcha:
 
-`Expand WCAG navigation and language tutorials`
+`Expand WCAG predictable interface tutorials`
