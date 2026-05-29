@@ -960,3 +960,85 @@ Uwagi zakresowe:
 
 - 2.5.4 dotyczy funkcji aktywowanych ruchem urządzenia albo ruchem użytkownika wykrywanym przez czujniki.
 - Nie mieszać z animacjami na stronie ani z ruchem wskaźnika.
+
+## Source QA 2026-05-29: 2.2.1 Możliwość dostosowania czasu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.2.1 Timing Adjustable - `https://www.w3.org/TR/WCAG22/#timing-adjustable`
+- Understanding WCAG 2.2.1 Timing Adjustable - `https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html`
+- How to Meet WCAG 2.2.1 - `https://www.w3.org/WAI/WCAG22/quickref/#timing-adjustable`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G198: Providing a way for the user to turn the time limit off.
+- G180: Providing the user with a means to set the time limit to 10 times the default time limit.
+- SCR16: Providing a script that warns the user a time limit is about to expire.
+- SCR1: Allowing the user to extend the default time limit.
+
+Failures:
+
+- F40: Failure due to using meta redirect with a time limit.
+- F41: Failure due to using meta refresh to reload the page.
+
+Uwagi zakresowe:
+
+- 2.2.1 dotyczy limitów czasu narzuconych przez treść albo aplikację.
+- Nie mieszać z ogólną walidacją formularzy.
+
+## Source QA 2026-05-29: 2.2.2 Pauza, zatrzymanie, ukrycie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.2.2 Pause, Stop, Hide - `https://www.w3.org/TR/WCAG22/#pause-stop-hide`
+- Understanding WCAG 2.2.2 Pause, Stop, Hide - `https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html`
+- How to Meet WCAG 2.2.2 - `https://www.w3.org/WAI/WCAG22/quickref/#pause-stop-hide`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G4: Allowing the content to be paused and restarted from where it was paused.
+- G11: Creating content that blinks for less than 5 seconds.
+- G186: Using a control in the Web page that stops moving, blinking, or auto-updating content.
+- SCR33: Using script to scroll content, and providing a mechanism to pause it.
+- SCR22: Using scripts to control blinking and stop it in five seconds or less.
+
+Failures:
+
+- F16: Failure due to including scrolling content where movement is not essential without a mechanism to pause and restart it.
+- F47: Failure due to using the blink element.
+- F50: Failure due to a script that causes a blink effect without a mechanism to stop it at 5 seconds or less.
+- F7: Failure due to an object or applet for blinking content without a mechanism to pause the blinking for more than 5 seconds.
+
+Uwagi zakresowe:
+
+- 2.2.2 dotyczy ruchu, migania, przewijania i autoaktualizacji.
+- Nie mieszać z animacją uruchamianą ruchem urządzenia z 2.5.4.
+
+## Source QA 2026-05-29: 2.3.1 Trzy błyski lub wartości poniżej progu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.3.1 Three Flashes or Below Threshold - `https://www.w3.org/TR/WCAG22/#three-flashes-or-below-threshold`
+- Understanding WCAG 2.3.1 Three Flashes or Below Threshold - `https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html`
+- How to Meet WCAG 2.3.1 - `https://www.w3.org/WAI/WCAG22/quickref/#three-flashes-or-below-threshold`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G19: Ensuring that no component flashes more than three times in any one-second period.
+- G15: Using a tool to ensure that content does not violate flash thresholds.
+- G176: Keeping the flashing area small enough.
+
+Failures:
+
+- Quick Reference dla 2.3.1 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.3.1 dotyczy ryzyka napadów wywołanych błyskami.
+- Nie mieszać z kontrastem, samym dyskomfortem wizualnym ani zwykłą animacją bez błysków.

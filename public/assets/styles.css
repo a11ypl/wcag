@@ -1857,6 +1857,88 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-timing-adjustable-demo,
+.wcag-pause-stop-hide-demo,
+.wcag-flashing-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-timing-adjustable-demo__grid,
+.wcag-pause-stop-hide-demo__grid,
+.wcag-flashing-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-timing-adjustable-demo__item,
+.wcag-pause-stop-hide-demo__item,
+.wcag-flashing-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-timing-adjustable-demo__item h3,
+.wcag-pause-stop-hide-demo__item h3,
+.wcag-flashing-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-timing-adjustable-demo__item--bad,
+.wcag-pause-stop-hide-demo__item--bad,
+.wcag-flashing-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-timing-adjustable-demo__item--good,
+.wcag-pause-stop-hide-demo__item--good,
+.wcag-flashing-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-timing-adjustable-demo__state,
+.wcag-pause-stop-hide-demo__state,
+.wcag-flashing-demo__state {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+    margin: 0.5rem 0;
+    overflow-wrap: anywhere;
+    padding: 0.65rem 0.75rem;
+}
+
+.wcag-timing-adjustable-demo__item--bad .wcag-timing-adjustable-demo__state,
+.wcag-pause-stop-hide-demo__item--bad .wcag-pause-stop-hide-demo__state,
+.wcag-flashing-demo__item--bad .wcag-flashing-demo__state {
+    border-color: #d33131;
+}
+
+.wcag-timing-adjustable-demo__item--good .wcag-timing-adjustable-demo__state,
+.wcag-pause-stop-hide-demo__item--good .wcag-pause-stop-hide-demo__state,
+.wcag-flashing-demo__item--good .wcag-flashing-demo__state {
+    border-color: var(--primary);
+}
+
+.wcag-timing-adjustable-demo__note,
+.wcag-pause-stop-hide-demo__note,
+.wcag-flashing-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-timing-adjustable-demo figcaption,
+.wcag-pause-stop-hide-demo figcaption,
+.wcag-flashing-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }

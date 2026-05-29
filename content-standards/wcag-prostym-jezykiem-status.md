@@ -278,3 +278,15 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 2.1.4 nie jest ogólną obsługą klawiaturą, 2.5.1 nie zastępuje 2.5.7, 2.5.2 nie dotyczy potwierdzeń błędów formularzy, 2.5.3 nie ocenia samej widoczności tekstu, a 2.5.4 nie dotyczy animacji na stronie.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 2.2.1, 2.2.2, 2.3.1
+
+- `2.2.1 Możliwość dostosowania czasu`: rozbudowane - gotowe do przeglądu.
+- `2.2.2 Pauza, zatrzymanie, ukrycie`: rozbudowane - gotowe do przeglądu.
+- `2.3.1 Trzy błyski lub wartości poniżej progu`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-2-1-mozliwosc-dostosowania-czasu.html`, `public/wcag-prostym-jezykiem/2-2-2-pauza-zatrzymanie-ukrycie.html`, `public/wcag-prostym-jezykiem/2-3-1-trzy-blyski-lub-wartosci-ponizej-progu.html`.
+- Dodano statyczne demo `wcag-timing-adjustable-demo`, `wcag-pause-stop-hide-demo` i `wcag-flashing-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.2.1 dotyczy limitów czasu, 2.2.2 dotyczy ruchu, migania, przewijania i autoaktualizacji, a 2.3.1 dotyczy błysków mogących wywołać napad padaczkowy.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
