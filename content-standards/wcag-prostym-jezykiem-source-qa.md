@@ -710,3 +710,134 @@ Uwagi zakresowe:
 
 - 3.2.4 dotyczy spójnego identyfikowania elementów o tej samej funkcji.
 - Nie wymaga identycznego wyglądu graficznego każdego elementu i nie zastępuje oceny celu linku ani opisowości etykiet.
+
+## Source QA 2026-05-29: 1.2.1 Tylko audio oraz tylko wideo
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.1 Audio-only and Video-only (Prerecorded) - `https://www.w3.org/TR/WCAG22/#audio-only-and-video-only-prerecorded`
+- Understanding WCAG 1.2.1 Audio-only and Video-only (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html`
+- How to Meet WCAG 1.2.1 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-only-and-video-only-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G158: Providing an alternative for time-based media for audio-only content.
+- G159: Providing an alternative for time-based media for video-only content.
+- G166: Providing audio that describes the important video content and describing it as such.
+
+Failures:
+
+- F30: Failure due to using text alternatives that are not alternatives.
+- F67: Failure due to providing long descriptions for non-text content that do not serve the same purpose or do not present the same information.
+
+Uwagi zakresowe:
+
+- 1.2.1 dotyczy nagranych materiałów tylko audio i tylko wideo.
+- Nie mieszać z napisami do filmu z obrazem i dźwiękiem ani z transmisją na żywo.
+
+## Source QA 2026-05-29: 1.2.2 Napisy rozszerzone
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.2 Captions (Prerecorded) - `https://www.w3.org/TR/WCAG22/#captions-prerecorded`
+- Understanding WCAG 1.2.2 Captions (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html`
+- How to Meet WCAG 1.2.2 - `https://www.w3.org/WAI/WCAG22/quickref/#captions-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H95: Using the track element to provide captions.
+- G87: Providing closed captions.
+- G93: Providing open captions.
+
+Failures:
+
+- F8: Failure due to captions omitting some dialogue or important sound effects.
+- F75: Failure due to providing synchronized media without captions when the synchronized media presents more information than is presented on the page.
+- F74: Failure due to not labeling a synchronized media alternative to text as an alternative.
+
+Uwagi zakresowe:
+
+- 1.2.2 dotyczy nagrań z dźwiękiem i zsynchronizowanych napisów rozszerzonych.
+- Napisy to nie transkrypcja; transkrypcja może pomagać, ale nie zastępuje napisów w tym kryterium.
+
+## Source QA 2026-05-29: 1.2.3 Audiodeskrypcja lub alternatywa dla mediów
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.3 Audio Description or Media Alternative (Prerecorded) - `https://www.w3.org/TR/WCAG22/#audio-description-or-media-alternative-prerecorded`
+- Understanding WCAG 1.2.3 Audio Description or Media Alternative (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html`
+- How to Meet WCAG 1.2.3 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-description-or-media-alternative-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G69: Providing an alternative for time based media.
+- G58: Placing a link to the alternative for time-based media immediately next to the non-text content.
+- G78: Providing a second, user-selectable, audio track that includes audio descriptions.
+- G173: Providing a version of a movie with audio descriptions.
+- G203: Using a static text alternative to describe a talking head video.
+
+Failures:
+
+- Quick Reference dla 1.2.3 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 1.2.3 dotyczy nagranego filmu z obrazem i dźwiękiem.
+- Na poziomie A można zapewnić audiodeskrypcję albo alternatywę dla mediów, ale alternatywa musi obejmować sens całego nagrania, nie tylko dialog.
+
+## Source QA 2026-05-29: 1.2.4 Napisy rozszerzone na żywo
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.4 Captions (Live) - `https://www.w3.org/TR/WCAG22/#captions-live`
+- Understanding WCAG 1.2.4 Captions (Live) - `https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html`
+- How to Meet WCAG 1.2.4 - `https://www.w3.org/WAI/WCAG22/quickref/#captions-live`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G9: Creating captions for live synchronized media.
+- G93: Providing open captions.
+- G87: Providing closed captions.
+
+Failures:
+
+- Quick Reference dla 1.2.4 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 1.2.4 dotyczy transmisji na żywo, nie nagrania opublikowanego po wydarzeniu.
+- Transkrypcja po wydarzeniu nie spełnia wymogu dostępności transmisji w czasie rzeczywistym.
+
+## Source QA 2026-05-29: 1.2.5 Audiodeskrypcja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.5 Audio Description (Prerecorded) - `https://www.w3.org/TR/WCAG22/#audio-description-prerecorded`
+- Understanding WCAG 1.2.5 Audio Description (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html`
+- How to Meet WCAG 1.2.5 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-description-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G78: Providing a second, user-selectable, audio track that includes audio descriptions.
+- G173: Providing a version of a movie with audio descriptions.
+- G8: Providing a movie with extended audio descriptions.
+- G203: Using a static text alternative to describe a talking head video.
+
+Failures:
+
+- F113: Failure due to not using available pauses in dialogue to provide audio descriptions of important visual content.
+
+Uwagi zakresowe:
+
+- 1.2.5 dotyczy audiodeskrypcji dla nagranych materiałów wideo.
+- Na poziomie AA sama alternatywa tekstowa nie zastępuje audiodeskrypcji, inaczej niż w dopuszczalnej opcji z 1.2.3 na poziomie A.

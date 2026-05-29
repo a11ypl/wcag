@@ -250,3 +250,17 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 3.2.1 nie opisuje samej widoczności fokusu, 3.2.2 nie zastępuje walidacji formularza, 3.2.3 nie jest ogólną oceną jakości menu, a 3.2.4 nie wymaga identycznego wyglądu graficznego każdego elementu.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch multimedia 1.2.1, 1.2.2, 1.2.3, 1.2.4, 1.2.5
+
+- `1.2.1 Tylko audio oraz tylko wideo`: rozbudowane - gotowe do przeglądu.
+- `1.2.2 Napisy rozszerzone`: rozbudowane - gotowe do przeglądu.
+- `1.2.3 Audiodeskrypcja lub alternatywa dla mediów`: rozbudowane - gotowe do przeglądu.
+- `1.2.4 Napisy rozszerzone na żywo`: rozbudowane - gotowe do przeglądu.
+- `1.2.5 Audiodeskrypcja`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/1-2-1-tylko-audio-oraz-tylko-wideo.html`, `public/wcag-prostym-jezykiem/1-2-2-napisy-rozszerzone.html`, `public/wcag-prostym-jezykiem/1-2-3-audiodeskrypcja-lub-alternatywa-dla-mediow.html`, `public/wcag-prostym-jezykiem/1-2-4-napisy-rozszerzone-na-zywo.html`, `public/wcag-prostym-jezykiem/1-2-5-audiodeskrypcja.html`.
+- Dodano statyczne demo `wcag-media-only-demo`, `wcag-captions-demo`, `wcag-media-alt-demo`, `wcag-live-captions-demo` i `wcag-audio-description-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: napisy nie są transkrypcją, transkrypcja nie jest audiodeskrypcją, alternatywa dla mediów ma przekazywać sens całego nagrania, a kryteria dla nagrań i transmisji na żywo mają różne wymagania.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
