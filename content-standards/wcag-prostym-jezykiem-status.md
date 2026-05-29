@@ -290,3 +290,15 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 2.2.1 dotyczy limitów czasu, 2.2.2 dotyczy ruchu, migania, przewijania i autoaktualizacji, a 2.3.1 dotyczy błysków mogących wywołać napad padaczkowy.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 4.1.1, 4.1.2, 4.1.3
+
+- `4.1.1 Parsowanie`: rozbudowane - gotowe do przeglądu, z jasnym oznaczeniem, że kryterium jest usunięte w WCAG 2.2.
+- `4.1.2 Nazwa, rola, wartość`: rozbudowane - gotowe do przeglądu.
+- `4.1.3 Komunikaty o stanie`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/4-1-1-parsowanie.html`, `public/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc.html`, `public/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie.html`.
+- Dodano statyczne demo `wcag-parsing-demo`, `wcag-name-role-value-demo` i `wcag-status-messages-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex` ani ARIA w renderowanym HTML.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 4.1.1 nie jest ogólną oceną jakości HTML, 4.1.2 nie dotyczy samego tekstu widocznego na ekranie, a 4.1.3 nie zastępuje komunikatów błędów formularza z 3.3.1.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

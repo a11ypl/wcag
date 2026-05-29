@@ -1,4 +1,4 @@
-# Current task: batch 2.2.1, 2.2.2, 2.3.1
+# Current task: batch 4.1.1, 4.1.2, 4.1.3
 
 ## Polecenie dla Codexa
 
@@ -15,7 +15,7 @@ Na końcu zrób bezpieczny commit tylko z plikami z zakresu zadania.
 
 Najpierw wciągnij najnowszy remote.
 
-Upewnij się, że HEAD zawiera commit `49be36c`.
+Upewnij się, że HEAD zawiera commit `6dd6ade`.
 
 Nie commituj nieśledzonych plików: `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`.
 
@@ -25,21 +25,21 @@ Nie ruszaj stashy pobocznych.
 
 Rozbuduj kryteria:
 
-- `2.2.1 Możliwość dostosowania czasu` - poziom A
-- `2.2.2 Pauza, zatrzymanie, ukrycie` - poziom A
-- `2.3.1 Trzy błyski lub wartości poniżej progu` - poziom A
+- `4.1.1 Parsowanie` - poziom A
+- `4.1.2 Nazwa, rola, wartość` - poziom A
+- `4.1.3 Komunikaty o stanie` - poziom AA
 
 Oczekiwane pliki:
 
-- `public/wcag-prostym-jezykiem/2-2-1-mozliwosc-dostosowania-czasu.html`
-- `public/wcag-prostym-jezykiem/2-2-2-pauza-zatrzymanie-ukrycie.html`
-- `public/wcag-prostym-jezykiem/2-3-1-trzy-blyski-lub-wartosci-ponizej-progu.html`
+- `public/wcag-prostym-jezykiem/4-1-1-parsowanie.html`
+- `public/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc.html`
+- `public/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie.html`
 
 ## Zakres
 
 Można zmieniać tylko:
 
-- strony kryteriów `2.2.1`, `2.2.2`, `2.3.1`,
+- strony kryteriów `4.1.1`, `4.1.2`, `4.1.3`,
 - scoped CSS dla demo edukacyjnych tych stron,
 - status,
 - source QA,
@@ -49,15 +49,15 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 ## Granice
 
-- `2.2.1` dotyczy limitów czasu i możliwości ich wyłączenia, wydłużenia albo dostosowania.
-- `2.2.2` dotyczy treści, która się porusza, miga, przewija albo automatycznie aktualizuje.
-- `2.3.1` dotyczy błysków mogących wywołać napad padaczkowy.
+- `4.1.1` dotyczy poprawności kodu i parsowania; w WCAG 2.2 kryterium jest przestarzałe i usunięte.
+- `4.1.2` dotyczy tego, czy elementy interfejsu mają programowo dostępną nazwę, rolę i wartość.
+- `4.1.3` dotyczy komunikatów o stanie przekazywanych bez przenoszenia fokusu.
 
 Nie mieszaj:
 
-- `2.2.1` z ogólną walidacją formularzy,
-- `2.2.2` z animacjami uruchamianymi ruchem urządzenia,
-- `2.3.1` z samym dyskomfortem wizualnym albo kontrastem.
+- `4.1.1` z ogólną jakością HTML,
+- `4.1.2` z samym tekstem widocznym na ekranie,
+- `4.1.3` z komunikatami błędów formularza z `3.3.1`.
 
 ## Wymagana struktura dla każdego kryterium
 
@@ -84,10 +84,11 @@ Nie mieszaj:
 - źródła W3C po weryfikacji,
 - brak JavaScriptu dodawanego dla demo,
 - brak ARIA bez potrzeby,
+- w treści pokazać zasadę: najpierw natywny HTML, ARIA tylko gdy naprawdę potrzebna,
 - style demo tylko scoped do konkretnego demo.
 
 ## Commit
 
 Commit message po wykonaniu batcha:
 
-`Expand WCAG timing and flashing content tutorials`
+`Expand WCAG compatibility tutorials`

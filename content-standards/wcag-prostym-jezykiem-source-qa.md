@@ -1042,3 +1042,85 @@ Uwagi zakresowe:
 
 - 2.3.1 dotyczy ryzyka napadów wywołanych błyskami.
 - Nie mieszać z kontrastem, samym dyskomfortem wizualnym ani zwykłą animacją bez błysków.
+
+## Source QA 2026-05-29: 4.1.1 Parsowanie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 4.1.1 Parsing - `https://www.w3.org/TR/WCAG22/#parsing`
+- Understanding WCAG 4.1.1 Parsing - `https://www.w3.org/WAI/WCAG22/Understanding/parsing.html`
+- How to Meet WCAG 4.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#parsing`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H88: Using HTML according to spec.
+
+Failures:
+
+- W WCAG 2.2 kryterium jest oznaczone jako przestarzałe i usunięte. Zawartość Understanding dla 4.1.1 jest utrzymana głównie historycznie.
+
+Uwagi zakresowe:
+
+- 4.1.1 w WCAG 2.2 ma status usuniętego kryterium.
+- Błędy parsowania traktować jako sygnał diagnostyczny i przypisywać do aktualnych kryteriów tylko wtedy, gdy powodują realny problem dostępności.
+- Nie mieszać z ogólną jakością HTML.
+
+## Source QA 2026-05-29: 4.1.2 Nazwa, rola, wartość
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 4.1.2 Name, Role, Value - `https://www.w3.org/TR/WCAG22/#name-role-value`
+- Understanding WCAG 4.1.2 Name, Role, Value - `https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html`
+- How to Meet WCAG 4.1.2 - `https://www.w3.org/WAI/WCAG22/quickref/#name-role-value`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H91: Using HTML form controls and links.
+- H44: Using label elements to associate text labels with form controls.
+- ARIA14: Using aria-label to provide an accessible name where a visible label cannot be used.
+- ARIA16: Using aria-labelledby to provide a name for user interface controls.
+- G108: Using markup features to expose the name and role, allow user-settable properties to be directly set, and provide notification of changes.
+
+Failures:
+
+- F59: Failure due to using script to make div or span a user interface control in HTML without providing a role for the control.
+- F68: Failure due to a user interface control not having a programmatically determined name.
+- F111: Failure due to a control with visible label text but no accessible name.
+
+Uwagi zakresowe:
+
+- 4.1.2 dotyczy nazwy, roli, stanów, właściwości i wartości komponentów interfejsu.
+- Najpierw stosować natywny HTML; ARIA tylko wtedy, gdy natywny HTML nie wystarcza.
+- Nie mieszać z samym tekstem widocznym na ekranie.
+
+## Source QA 2026-05-29: 4.1.3 Komunikaty o stanie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 4.1.3 Status Messages - `https://www.w3.org/TR/WCAG22/#status-messages`
+- Understanding WCAG 4.1.3 Status Messages - `https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html`
+- How to Meet WCAG 4.1.3 - `https://www.w3.org/WAI/WCAG22/quickref/#status-messages`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- ARIA22: Using role=status to present status messages.
+- ARIA19: Using ARIA role=alert or Live Regions to Identify Errors.
+- ARIA23: Using role=log to identify sequential information updates.
+- ARIA25: Using an ARIA live region to convey the status of a progress bar.
+- G199: Providing success feedback when data is submitted successfully.
+
+Failures:
+
+- F103: Failure due to providing status messages that cannot be programmatically determined through role or properties.
+
+Uwagi zakresowe:
+
+- 4.1.3 dotyczy statusów, wyników, postępu, stanu aplikacji i istnienia błędów, gdy komunikat pojawia się bez zmiany kontekstu.
+- Kryterium nie wymaga tworzenia nowych komunikatów, tylko programowego oznaczenia tych, które są już pokazane.
+- Nie mieszać z treścią komunikatu błędu ocenianą w 3.3.1.

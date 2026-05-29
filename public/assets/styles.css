@@ -1939,6 +1939,88 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-parsing-demo,
+.wcag-name-role-value-demo,
+.wcag-status-messages-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-parsing-demo__grid,
+.wcag-name-role-value-demo__grid,
+.wcag-status-messages-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-parsing-demo__item,
+.wcag-name-role-value-demo__item,
+.wcag-status-messages-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-parsing-demo__item h3,
+.wcag-name-role-value-demo__item h3,
+.wcag-status-messages-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-parsing-demo__item--bad,
+.wcag-name-role-value-demo__item--bad,
+.wcag-status-messages-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-parsing-demo__item--good,
+.wcag-name-role-value-demo__item--good,
+.wcag-status-messages-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-parsing-demo__state,
+.wcag-name-role-value-demo__state,
+.wcag-status-messages-demo__state {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+    margin: 0.5rem 0;
+    overflow-wrap: anywhere;
+    padding: 0.65rem 0.75rem;
+}
+
+.wcag-parsing-demo__item--bad .wcag-parsing-demo__state,
+.wcag-name-role-value-demo__item--bad .wcag-name-role-value-demo__state,
+.wcag-status-messages-demo__item--bad .wcag-status-messages-demo__state {
+    border-color: #d33131;
+}
+
+.wcag-parsing-demo__item--good .wcag-parsing-demo__state,
+.wcag-name-role-value-demo__item--good .wcag-name-role-value-demo__state,
+.wcag-status-messages-demo__item--good .wcag-status-messages-demo__state {
+    border-color: var(--primary);
+}
+
+.wcag-parsing-demo__note,
+.wcag-name-role-value-demo__note,
+.wcag-status-messages-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-parsing-demo figcaption,
+.wcag-name-role-value-demo figcaption,
+.wcag-status-messages-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }
