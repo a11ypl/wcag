@@ -2021,6 +2021,99 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.wcag-orientation-demo,
+.wcag-audio-control-demo,
+.wcag-focus-appearance-demo,
+.wcag-consistent-help-demo {
+    margin: 1.5rem 0 0;
+}
+
+.wcag-orientation-demo__grid,
+.wcag-audio-control-demo__grid,
+.wcag-focus-appearance-demo__grid,
+.wcag-consistent-help-demo__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.wcag-orientation-demo__item,
+.wcag-audio-control-demo__item,
+.wcag-focus-appearance-demo__item,
+.wcag-consistent-help-demo__item {
+    background: white;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.wcag-orientation-demo__item h3,
+.wcag-audio-control-demo__item h3,
+.wcag-focus-appearance-demo__item h3,
+.wcag-consistent-help-demo__item h3 {
+    margin-top: 0;
+}
+
+.wcag-orientation-demo__item--bad,
+.wcag-audio-control-demo__item--bad,
+.wcag-focus-appearance-demo__item--bad,
+.wcag-consistent-help-demo__item--bad {
+    border-color: #d33131;
+}
+
+.wcag-orientation-demo__item--good,
+.wcag-audio-control-demo__item--good,
+.wcag-focus-appearance-demo__item--good,
+.wcag-consistent-help-demo__item--good {
+    border-color: var(--primary);
+}
+
+.wcag-orientation-demo__state,
+.wcag-audio-control-demo__state,
+.wcag-focus-appearance-demo__state,
+.wcag-consistent-help-demo__state {
+    background: #faf7ff;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+    margin: 0.5rem 0;
+    overflow-wrap: anywhere;
+    padding: 0.65rem 0.75rem;
+}
+
+.wcag-orientation-demo__item--bad .wcag-orientation-demo__state,
+.wcag-audio-control-demo__item--bad .wcag-audio-control-demo__state,
+.wcag-focus-appearance-demo__item--bad .wcag-focus-appearance-demo__state,
+.wcag-consistent-help-demo__item--bad .wcag-consistent-help-demo__state {
+    border-color: #d33131;
+}
+
+.wcag-orientation-demo__item--good .wcag-orientation-demo__state,
+.wcag-audio-control-demo__item--good .wcag-audio-control-demo__state,
+.wcag-focus-appearance-demo__item--good .wcag-focus-appearance-demo__state,
+.wcag-consistent-help-demo__item--good .wcag-consistent-help-demo__state {
+    border-color: var(--primary);
+}
+
+.wcag-orientation-demo__note,
+.wcag-audio-control-demo__note,
+.wcag-focus-appearance-demo__note,
+.wcag-consistent-help-demo__note {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.wcag-orientation-demo figcaption,
+.wcag-audio-control-demo figcaption,
+.wcag-focus-appearance-demo figcaption,
+.wcag-consistent-help-demo figcaption {
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
 .wcag-nontext-contrast-demo {
     margin: 1.5rem 0 0;
 }

@@ -1124,3 +1124,107 @@ Uwagi zakresowe:
 - 4.1.3 dotyczy statusów, wyników, postępu, stanu aplikacji i istnienia błędów, gdy komunikat pojawia się bez zmiany kontekstu.
 - Kryterium nie wymaga tworzenia nowych komunikatów, tylko programowego oznaczenia tych, które są już pokazane.
 - Nie mieszać z treścią komunikatu błędu ocenianą w 3.3.1.
+
+## Source QA 2026-05-29: 1.3.4 Orientacja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.4 Orientation - `https://www.w3.org/TR/WCAG22/#orientation`
+- Understanding WCAG 1.3.4 Orientation - `https://www.w3.org/WAI/WCAG22/Understanding/orientation.html`
+- How to Meet WCAG 1.3.4 - `https://www.w3.org/WAI/WCAG22/quickref/#orientation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G214: Using a control to allow access to content in different orientations which is otherwise restricted.
+
+Failures:
+
+- F97: Failure due to locking the orientation to landscape or portrait view.
+- F100: Failure due to showing a message asking to reorient device.
+
+Uwagi zakresowe:
+
+- 1.3.4 dotyczy blokady orientacji pionowej albo poziomej.
+- Nie mieszać z ogólnym RWD ani z dopasowaniem treści do ekranu z 1.4.10.
+
+## Source QA 2026-05-29: 1.4.2 Kontrola odtwarzania dźwięku
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.2 Audio Control - `https://www.w3.org/TR/WCAG22/#audio-control`
+- Understanding WCAG 1.4.2 Audio Control - `https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html`
+- How to Meet WCAG 1.4.2 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-control`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G60: Playing a sound that turns off automatically within three seconds.
+- G170: Providing a control near the beginning of the web page that turns off sounds that play automatically.
+- G171: Playing sounds only on user request.
+
+Failures:
+
+- F23: Failure due to playing a sound longer than 3 seconds where there is no mechanism to turn it off.
+- F93: Failure for absence of a way to pause or stop an HTML5 media element that autoplays.
+
+Uwagi zakresowe:
+
+- 1.4.2 dotyczy automatycznie odtwarzanego dźwięku trwającego dłużej niż 3 sekundy.
+- Nie mieszać z napisami, transkrypcją ani audiodeskrypcją.
+
+## Source QA 2026-05-29: 2.4.13 Wygląd fokusu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.13 Focus Appearance - `https://www.w3.org/TR/WCAG22/#focus-appearance`
+- Understanding WCAG 2.4.13 Focus Appearance - `https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html`
+- How to Meet WCAG 2.4.13 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-appearance`
+
+Poziom:
+
+- Oficjalne źródło W3C oznacza 2.4.13 Focus Appearance jako poziom AAA w WCAG 2.2.
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G195: Using an author-supplied, visible focus indicator.
+- C40: Creating a two-color focus indicator to ensure sufficient contrast with all components.
+- C41: Creating a strong focus indicator within the component.
+
+Failures:
+
+- F55: Failure due to using script to remove focus when focus is received.
+- F78: Failure due to styling outlines and borders in a way that removes or renders non-visible the visual focus indicator.
+
+Uwagi zakresowe:
+
+- 2.4.13 dotyczy minimalnego rozmiaru i kontrastu wskaźnika fokusu.
+- Nie mieszać z samym istnieniem widocznego fokusu z 2.4.7 ani z zasłonięciem fokusu z 2.4.11.
+
+## Source QA 2026-05-29: 3.2.6 Spójna pomoc
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.6 Consistent Help - `https://www.w3.org/TR/WCAG22/#consistent-help`
+- Understanding WCAG 3.2.6 Consistent Help - `https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html`
+- How to Meet WCAG 3.2.6 - `https://www.w3.org/WAI/WCAG22/quickref/#consistent-help`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G220: Provide a contact-us link in a consistent location.
+
+Failures:
+
+- Inconsistent Help Location.
+
+Uwagi zakresowe:
+
+- 3.2.6 dotyczy spójnej kolejności mechanizmów pomocy, jeśli powtarzają się na wielu stronach w zestawie stron.
+- Kryterium nie wymaga zapewnienia pomocy na każdej stronie.
+- Nie mieszać z ogólną jakością kontaktu, supportu albo obsługi klienta.

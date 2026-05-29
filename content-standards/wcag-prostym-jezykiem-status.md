@@ -302,3 +302,16 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 4.1.1 nie jest ogólną oceną jakości HTML, 4.1.2 nie dotyczy samego tekstu widocznego na ekranie, a 4.1.3 nie zastępuje komunikatów błędów formularza z 3.3.1.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 1.3.4, 1.4.2, 2.4.13, 3.2.6
+
+- `1.3.4 Orientacja`: rozbudowane - gotowe do przeglądu.
+- `1.4.2 Kontrola odtwarzania dźwięku`: rozbudowane - gotowe do przeglądu.
+- `2.4.13 Wygląd fokusu`: rozbudowane - gotowe do przeglądu, oznaczone zgodnie z WCAG 2.2 jako poziom AAA.
+- `3.2.6 Spójna pomoc`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/1-3-4-orientacja.html`, `public/wcag-prostym-jezykiem/1-4-2-kontrola-odtwarzania-dzwieku.html`, `public/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu.html`, `public/wcag-prostym-jezykiem/3-2-6-spojna-pomoc.html`.
+- Dodano statyczne demo `wcag-orientation-demo`, `wcag-audio-control-demo`, `wcag-focus-appearance-demo` i `wcag-consistent-help-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 1.3.4 nie zastępuje 1.4.10, 1.4.2 nie dotyczy napisów ani transkrypcji, 2.4.13 nie zastępuje 2.4.7, a 3.2.6 nie ocenia jakości supportu.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.

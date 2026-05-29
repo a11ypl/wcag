@@ -1,4 +1,4 @@
-# Current task: batch 4.1.1, 4.1.2, 4.1.3
+# Current task: batch 1.3.4, 1.4.2, 2.4.13, 3.2.6
 
 ## Polecenie dla Codexa
 
@@ -15,7 +15,7 @@ Na końcu zrób bezpieczny commit tylko z plikami z zakresu zadania.
 
 Najpierw wciągnij najnowszy remote.
 
-Upewnij się, że HEAD zawiera commit `6dd6ade`.
+Upewnij się, że HEAD zawiera commit `526a2ee`.
 
 Nie commituj nieśledzonych plików: `.vercel/`, `Czytniki ekranu/`, `cms/`, `ola.jfif`.
 
@@ -25,21 +25,23 @@ Nie ruszaj stashy pobocznych.
 
 Rozbuduj kryteria:
 
-- `4.1.1 Parsowanie` - poziom A
-- `4.1.2 Nazwa, rola, wartość` - poziom A
-- `4.1.3 Komunikaty o stanie` - poziom AA
+- `1.3.4 Orientacja` - poziom AA
+- `1.4.2 Kontrola odtwarzania dźwięku` - poziom A
+- `2.4.13 Wygląd fokusu` - poziom AAA według WCAG 2.2
+- `3.2.6 Spójna pomoc` - poziom A
 
 Oczekiwane pliki:
 
-- `public/wcag-prostym-jezykiem/4-1-1-parsowanie.html`
-- `public/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc.html`
-- `public/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie.html`
+- `public/wcag-prostym-jezykiem/1-3-4-orientacja.html`
+- `public/wcag-prostym-jezykiem/1-4-2-kontrola-odtwarzania-dzwieku.html`
+- `public/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu.html`
+- `public/wcag-prostym-jezykiem/3-2-6-spojna-pomoc.html`
 
 ## Zakres
 
 Można zmieniać tylko:
 
-- strony kryteriów `4.1.1`, `4.1.2`, `4.1.3`,
+- strony kryteriów `1.3.4`, `1.4.2`, `2.4.13`, `3.2.6`,
 - scoped CSS dla demo edukacyjnych tych stron,
 - status,
 - source QA,
@@ -49,15 +51,17 @@ Nie zmieniaj listy kryteriów, routingu, headera, footera, canonicali, globalnej
 
 ## Granice
 
-- `4.1.1` dotyczy poprawności kodu i parsowania; w WCAG 2.2 kryterium jest przestarzałe i usunięte.
-- `4.1.2` dotyczy tego, czy elementy interfejsu mają programowo dostępną nazwę, rolę i wartość.
-- `4.1.3` dotyczy komunikatów o stanie przekazywanych bez przenoszenia fokusu.
+- `1.3.4` dotyczy tego, że treść nie może wymagać jednej orientacji ekranu, jeśli nie jest to niezbędne.
+- `1.4.2` dotyczy dźwięku odtwarzanego automatycznie dłużej niż 3 sekundy i mechanizmu zatrzymania, wyciszenia albo kontroli głośności niezależnej od systemu.
+- `2.4.13` dotyczy rozmiaru i kontrastu widocznego wskaźnika fokusu; w WCAG 2.2 ma poziom AAA.
+- `3.2.6` dotyczy spójnej lokalizacji lub kolejności mechanizmów pomocy, jeśli występują na wielu stronach.
 
 Nie mieszaj:
 
-- `4.1.1` z ogólną jakością HTML,
-- `4.1.2` z samym tekstem widocznym na ekranie,
-- `4.1.3` z komunikatami błędów formularza z `3.3.1`.
+- `1.3.4` z responsywnością z `1.4.10`,
+- `1.4.2` z napisami albo transkrypcją,
+- `2.4.13` z samym `2.4.7 Widoczny fokus`,
+- `3.2.6` z ogólną jakością kontaktu albo supportu.
 
 ## Wymagana struktura dla każdego kryterium
 
@@ -84,11 +88,10 @@ Nie mieszaj:
 - źródła W3C po weryfikacji,
 - brak JavaScriptu dodawanego dla demo,
 - brak ARIA bez potrzeby,
-- w treści pokazać zasadę: najpierw natywny HTML, ARIA tylko gdy naprawdę potrzebna,
 - style demo tylko scoped do konkretnego demo.
 
 ## Commit
 
 Commit message po wykonaniu batcha:
 
-`Expand WCAG compatibility tutorials`
+`Expand remaining WCAG A and AA support tutorials`
