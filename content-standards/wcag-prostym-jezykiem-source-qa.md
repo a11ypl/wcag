@@ -1228,3 +1228,308 @@ Uwagi zakresowe:
 - 3.2.6 dotyczy spójnej kolejności mechanizmów pomocy, jeśli powtarzają się na wielu stronach w zestawie stron.
 - Kryterium nie wymaga zapewnienia pomocy na każdej stronie.
 - Nie mieszać z ogólną jakością kontaktu, supportu albo obsługi klienta.
+
+## Source QA 2026-05-30: 1.1.1 Treść nietekstowa
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.1.1 Non-text Content - `https://www.w3.org/TR/WCAG22/#non-text-content`
+- Understanding WCAG 1.1.1 Non-text Content - `https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html`
+- How to Meet WCAG 1.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#non-text-content`
+- WAI Images Tutorial: Decorative Images - `https://www.w3.org/WAI/tutorials/images/decorative/`
+- SVG Accessibility Support - `https://www.w3.org/TR/SVG/access`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- H37: Using alt attributes on img elements.
+- H67: Using null alt text and no title attribute on img elements for images that AT should ignore.
+- G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information.
+- G95: Providing short text alternatives that provide a brief description of the non-text content.
+- G73: Providing a long description in another location with a link to it that is immediately adjacent to the non-text content.
+- G92: Providing long description for non-text content that serves the same purpose and presents the same information.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.1.1.
+
+Uwagi zakresowe:
+
+- 1.1.1 dotyczy alternatywy tekstowej dla treści nietekstowej.
+- Nie mieszać z podpisami, transkrypcjami ani opisem audio dla mediów czasowych z grupy 1.2.
+
+## Source QA 2026-05-30: 1.3.2 Zrozumiała kolejność
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.2 Meaningful Sequence - `https://www.w3.org/TR/WCAG22/#meaningful-sequence`
+- Understanding WCAG 1.3.2 Meaningful Sequence - `https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html`
+- How to Meet WCAG 1.3.2 - `https://www.w3.org/WAI/WCAG22/quickref/#meaningful-sequence`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.3.2.
+
+Uwagi zakresowe:
+
+- 1.3.2 dotyczy kolejności treści, gdy kolejność wpływa na znaczenie.
+- Nie mieszać z kolejnością fokusu z 2.4.3.
+
+## Source QA 2026-05-30: 1.4.1 Użycie koloru
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.1 Use of Color - `https://www.w3.org/TR/WCAG22/#use-of-color`
+- Understanding WCAG 1.4.1 Use of Color - `https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html`
+- How to Meet WCAG 1.4.1 - `https://www.w3.org/WAI/WCAG22/quickref/#use-of-color`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G14: Ensuring that information conveyed by color differences is also available in text.
+- G111: Using color and pattern.
+- G182: Ensuring that additional visual cues are available when text color differences are used to convey information.
+- C15: Using CSS to change the presentation of a user interface component when it receives focus.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.1.
+
+Uwagi zakresowe:
+
+- 1.4.1 dotyczy użycia koloru jako jedynego sposobu przekazywania informacji.
+- Nie mieszać z kontrastem tekstu z 1.4.3 ani z kontrastem elementów nietekstowych z 1.4.11.
+
+## Source QA 2026-05-30: 1.4.3 Kontrast minimum
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.3 Contrast (Minimum) - `https://www.w3.org/TR/WCAG22/#contrast-minimum`
+- Understanding WCAG 1.4.3 Contrast (Minimum) - `https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html`
+- How to Meet WCAG 1.4.3 - `https://www.w3.org/WAI/WCAG22/quickref/#contrast-minimum`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G18: Ensuring contrast ratio of at least 4.5:1 for normal text.
+- G145: Ensuring contrast ratio of at least 3:1 for large-scale text.
+- G174: Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.3.
+
+Uwagi zakresowe:
+
+- 1.4.3 dotyczy kontrastu tekstu i obrazów tekstu.
+- Nie mieszać z kontrastem elementów interfejsu z 1.4.11.
+
+## Source QA 2026-05-30: 1.4.11 Kontrast elementów nietekstowych
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.11 Non-text Contrast - `https://www.w3.org/TR/WCAG22/#non-text-contrast`
+- Understanding WCAG 1.4.11 Non-text Contrast - `https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html`
+- How to Meet WCAG 1.4.11 - `https://www.w3.org/WAI/WCAG22/quickref/#non-text-contrast`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G195: Using an author-supplied, visible focus indicator.
+- G207: Ensuring that a contrast ratio of 3:1 is provided for icons.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.11.
+
+Uwagi zakresowe:
+
+- 1.4.11 dotyczy kontrastu istotnych elementów nietekstowych, między innymi kontrolek, ikon i stanów.
+- Nie mieszać z kontrastem tekstu z 1.4.3 ani z samą widocznością fokusu z 2.4.7.
+
+## Source QA 2026-05-30: 1.4.13 Treść po najechaniu lub fokusie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.13 Content on Hover or Focus - `https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus`
+- Understanding WCAG 1.4.13 Content on Hover or Focus - `https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html`
+- How to Meet WCAG 1.4.13 - `https://www.w3.org/WAI/WCAG22/quickref/#content-on-hover-or-focus`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.13.
+
+Uwagi zakresowe:
+
+- 1.4.13 dotyczy dodatkowej treści, która pojawia się po hoverze albo fokusie.
+- Nie mieszać z widocznością fokusu ani z ogólnymi tooltipami, które nie pojawiają się po hoverze/fokusie.
+
+## Source QA 2026-05-30: 2.1.1 Klawiatura
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.1.1 Keyboard - `https://www.w3.org/TR/WCAG22/#keyboard`
+- Understanding WCAG 2.1.1 Keyboard - `https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html`
+- How to Meet WCAG 2.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#keyboard`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.1.1.
+
+Uwagi zakresowe:
+
+- 2.1.1 dotyczy obsługi funkcji z klawiatury.
+- Nie mieszać z pułapką klawiaturową z 2.1.2 ani z widocznością fokusu z 2.4.7.
+
+## Source QA 2026-05-30: 2.1.2 Brak pułapki na klawiaturę
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.1.2 No Keyboard Trap - `https://www.w3.org/TR/WCAG22/#no-keyboard-trap`
+- Understanding WCAG 2.1.2 No Keyboard Trap - `https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html`
+- How to Meet WCAG 2.1.2 - `https://www.w3.org/WAI/WCAG22/quickref/#no-keyboard-trap`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.1.2.
+
+Uwagi zakresowe:
+
+- 2.1.2 dotyczy możliwości wyjścia fokusem z komponentu przy użyciu klawiatury.
+- Nie mieszać z samą obsługą wszystkich funkcji z klawiatury z 2.1.1.
+
+## Source QA 2026-05-30: 2.4.3 Kolejność fokusu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.3 Focus Order - `https://www.w3.org/TR/WCAG22/#focus-order`
+- Understanding WCAG 2.4.3 Focus Order - `https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html`
+- How to Meet WCAG 2.4.3 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-order`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G59: Placing the interactive elements in an order that follows sequences and relationships within the content.
+- G90: Providing keyboard-triggered event handlers.
+- C27: Making the DOM order match the visual order.
+- SCR26: Inserting dynamic content into the Document Object Model immediately following its trigger element.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.4.3.
+
+Uwagi zakresowe:
+
+- 2.4.3 dotyczy sensownej kolejności fokusu.
+- Nie mieszać ze zrozumiałą kolejnością treści z 1.3.2 ani z widocznością fokusu z 2.4.7.
+
+## Source QA 2026-05-30: 2.4.7 Widoczny fokus
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.7 Focus Visible - `https://www.w3.org/TR/WCAG22/#focus-visible`
+- Understanding WCAG 2.4.7 Focus Visible - `https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html`
+- How to Meet WCAG 2.4.7 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-visible`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G149: Using user interface components that are highlighted by the user agent when they receive focus.
+- G165: Using the default focus indicator for the platform.
+- G195: Using an author-supplied, visible focus indicator.
+- C15: Using CSS to change the presentation of a user interface component when it receives focus.
+- C40: Creating a two-color focus indicator to ensure sufficient contrast with all components.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.4.7.
+
+Uwagi zakresowe:
+
+- 2.4.7 dotyczy tego, czy fokus klawiatury jest widoczny.
+- Nie mieszać z 2.4.13, które w WCAG 2.2 jest AAA i dotyczy rozmiaru oraz kontrastu wskaźnika fokusu.
+
+## Source QA 2026-05-30: 3.3.1 Identyfikacja błędu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.1 Error Identification - `https://www.w3.org/TR/WCAG22/#error-identification`
+- Understanding WCAG 3.3.1 Error Identification - `https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html`
+- How to Meet WCAG 3.3.1 - `https://www.w3.org/WAI/WCAG22/quickref/#error-identification`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G83: Providing text descriptions to identify required fields that were not completed.
+- G84: Providing a text description when the user provides information that is not in the list of allowed values.
+- G85: Providing a text description when user input falls outside the required format or values.
+- H90: Indicating required form controls using label or legend.
+- ARIA21: Using aria-invalid to indicate an error field.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 3.3.1.
+
+Uwagi zakresowe:
+
+- 3.3.1 dotyczy identyfikacji błędu tekstem.
+- Nie mieszać z sugestiami naprawy błędów z 3.3.3 ani z komunikatami o stanie z 4.1.3.
+
+## Source QA 2026-05-30: 3.3.2 Etykiety lub instrukcje
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.2 Labels or Instructions - `https://www.w3.org/TR/WCAG22/#labels-or-instructions`
+- Understanding WCAG 3.3.2 Labels or Instructions - `https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html`
+- How to Meet WCAG 3.3.2 - `https://www.w3.org/WAI/WCAG22/quickref/#labels-or-instructions`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- H44: Using label elements to associate text labels with form controls.
+- H71: Providing a description for groups of form controls using fieldset and legend elements.
+- G89: Providing expected data format and example.
+- G184: Providing text instructions at the beginning of a form or set of fields.
+- ARIA1: Using aria-describedby property to provide a descriptive label for user interface controls.
+- H90: Indicating required form controls using label or legend.
+
+Failures:
+
+- F82: Failure due to visually formatting a set of phone number fields but not including a text label.
+
+Uwagi zakresowe:
+
+- 3.3.2 dotyczy obecności etykiet lub instrukcji wtedy, gdy są potrzebne do wprowadzania danych.
+- Nie mieszać z identyfikacją błędu z 3.3.1 ani z opisowością nagłówków i etykiet z 2.4.6.

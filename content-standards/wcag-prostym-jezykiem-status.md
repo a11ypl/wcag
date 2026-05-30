@@ -315,3 +315,15 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
 - W treści zachowano granice: 1.3.4 nie zastępuje 1.4.10, 1.4.2 nie dotyczy napisów ani transkrypcji, 2.4.13 nie zastępuje 2.4.7, a 3.2.6 nie ocenia jakości supportu.
 - Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-30: finalny QA A/AA tracking
+
+- `1.1.1 Treść nietekstowa`: rozbudowane - gotowe do przeglądu.
+- `2.4.7 Widoczny fokus`: rozbudowane - gotowe do przeglądu.
+- `3.3.1 Identyfikacja błędu`: rozbudowane - gotowe do przeglądu.
+- `3.3.2 Etykiety lub instrukcje`: rozbudowane - gotowe do przeglądu.
+- Checkpoint A/AA: aktywne kryteria WCAG 2.2 A/AA mają pełne tutoriale w `public/wcag-prostym-jezykiem/`.
+- Status `gotowe do przeglądu` domknięty dla `55/55` aktywnych kryteriów WCAG 2.2 A/AA.
+- Source QA domknięte w `content-standards/wcag-prostym-jezykiem-source-qa.md` dla `55/55` aktywnych kryteriów WCAG 2.2 A/AA.
+- `2.4.13 Wygląd fokusu` pozostaje oznaczone jako poziom AAA i nie blokuje domknięcia A/AA.
+- `4.1.1 Parsowanie` pozostaje oznaczone jako kryterium usunięte/przestarzałe w WCAG 2.2 i istnieje edukacyjnie.
