@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceOver na Macu dla audytorów - Accessibility First</title>
+    <meta name="description" content="Praktyczna instrukcja pracy z VoiceOver na Macu podczas audytu dostępności cyfrowej.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/czytnik-voiceover-mac">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="VoiceOver na Macu dla audytorów - Accessibility First">
+    <meta property="og:description" content="Praktyczna instrukcja pracy z VoiceOver na Macu podczas audytu dostępności cyfrowej.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/czytnik-voiceover-mac">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VoiceOver na Macu dla audytorów - Accessibility First">
+    <meta name="twitter:description" content="Praktyczna instrukcja pracy z VoiceOver na Macu podczas audytu dostępności cyfrowej.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "VoiceOver na Macu",
+      "headline": "VoiceOver na Macu",
+      "description": "Praktyczna instrukcja pracy z VoiceOver na Macu podczas audytu dostępności cyfrowej.",
+      "url": "https://www.a11yfirst.pl/czytnik-voiceover-mac",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Accessibility First",
+        "url": "https://www.a11yfirst.pl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css?v=17">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/baza-wiedzy">Baza wiedzy</a></li><li><a href="/czytniki-ekranu">Czytniki ekranu</a></li><li aria-current="page">VoiceOver na Macu</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <h1>VoiceOver na Macu</h1>
+                <p class="subtitle">Instrukcja pracy z czytnikiem ekranu w macOS podczas audytu stron i aplikacji webowych.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article" aria-labelledby="voiceover-mac-title">
+            <div class="container">
+                <p class="eyebrow">Czytnik ekranu: macOS</p>
+                <h2 class="section-title" id="voiceover-mac-title">Instrukcja VoiceOver na Macu</h2>
+
+                <div class="knowledge-grid">
+                    <article class="knowledge-panel">
+                        <h3>Start testu</h3>
+                        <ol class="detail-list">
+                            <li>Włącz VoiceOver skrótem Command+F5 albo w ustawieniach dostępności macOS.</li>
+                            <li>Ustal klawisz modyfikatora VoiceOver. Domyślnie używa się Control+Option, często zapisywanego jako VO.</li>
+                            <li>Przejdź stronę klawiaturą: Tab, Shift+Tab, Enter, Spacja, Escape i strzałki.</li>
+                            <li>Sprawdź nagłówki, linki, formularze, tabele i punkty orientacyjne przy użyciu rotora.</li>
+                            <li>Zapisz rzeczywisty odczyt VoiceOver, oczekiwane zachowanie i wpływ na użytkownika.</li>
+                        </ol>
+                    </article>
+
+                    <article class="knowledge-panel">
+                        <h3>Co trzeba sprawdzić?</h3>
+                        <ul class="detail-list">
+                            <li>Czy fokus VoiceOver i fokus klawiatury prowadzą przez widok w logicznej kolejności.</li>
+                            <li>Czy przyciski, linki i pola formularza mają zrozumiałe nazwy.</li>
+                            <li>Czy grupy, regiony i nagłówki pomagają zrozumieć układ strony.</li>
+                            <li>Czy modal po otwarciu przejmuje fokus i po zamknięciu oddaje go w dobre miejsce.</li>
+                            <li>Czy komunikaty błędów i sukcesu są ogłaszane bez ręcznego szukania.</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-panel">
+                        <h3>Notatka do raportu</h3>
+                        <ul class="detail-list">
+                            <li>System macOS, przeglądarka, ustawienia VoiceOver i informacja, czy użyto domyślnego klawisza VO.</li>
+                            <li>Kroki wykonane klawiaturą i kursorem VoiceOver.</li>
+                            <li>Rzeczywisty odczyt VoiceOver oraz oczekiwany komunikat.</li>
+                            <li>Wpływ problemu na użytkownika i powiązane kryterium WCAG.</li>
+                            <li>Informacja, czy wynik potwierdzono analizą HTML, fokusu i zachowania komponentu.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela skrótów VoiceOver na Macu dla audytora">
+                    <table class="knowledge-table">
+                        <caption>Podstawowe skróty VoiceOver na Macu</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Skrót</th>
+                                <th scope="col">Zastosowanie w audycie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Command+F5</td><td>Włączenie lub wyłączenie VoiceOver.</td></tr>
+                            <tr><td>VO+strzałka w prawo / lewo</td><td>Przejście do następnego lub poprzedniego elementu.</td></tr>
+                            <tr><td>VO+Spacja</td><td>Aktywacja elementu wskazanego przez VoiceOver.</td></tr>
+                            <tr><td>VO+U</td><td>Otwarcie rotora webowego z listami elementów.</td></tr>
+                            <tr><td>VO+Command+H</td><td>Przejście do następnego nagłówka.</td></tr>
+                            <tr><td>VO+Command+L</td><td>Przejście do następnego linku.</td></tr>
+                            <tr><td>VO+Command+J</td><td>Przejście do następnego pola formularza.</td></tr>
+                            <tr><td>VO+Command+T</td><td>Przejście do następnej tabeli.</td></tr>
+                            <tr><td>VO+Shift+strzałka w dół</td><td>Wejście w grupę lub obszar interaktywny.</td></tr>
+                            <tr><td>VO+Shift+strzałka w górę</td><td>Wyjście z grupy lub obszaru interaktywnego.</td></tr>
+                            <tr><td>VO+K</td><td>Uruchomienie pomocy klawiatury, żeby sprawdzić skrót bez wykonania akcji.</td></tr>
+                            <tr><td>VO+H+H</td><td>Otwarcie menu poleceń VoiceOver, gdy trzeba odnaleźć rzadziej używaną funkcję.</td></tr>
+                            <tr><td>VO+F</td><td>Wyszukanie tekstu na stronie.</td></tr>
+                            <tr><td>VO+Shift+U</td><td>Odczyt adresu URL linku.</td></tr>
+                            <tr><td>VO+Command+=</td><td>Włączenie lub wyłączenie grupowania w tabeli WWW.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela pracy z tekstem i tabelami w VoiceOver na Macu">
+                    <table class="knowledge-table">
+                        <caption>Tekst, tabele i szczegóły odczytu</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Skrót</th>
+                                <th scope="col">Zastosowanie w audycie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>VO+L</td><td>Odczyt wiersza, przydatny przy kontroli tekstu i komunikatów formularza.</td></tr>
+                            <tr><td>VO+W</td><td>Odczyt słowa; kolejne naciśnięcia pozwalają literować słowo.</td></tr>
+                            <tr><td>VO+C</td><td>Odczyt znaku; przydatny przy błędnych znakach, skrótach i nietypowych symbolach.</td></tr>
+                            <tr><td>VO+Z</td><td>Powtórzenie ostatniego odczytanego zdania.</td></tr>
+                            <tr><td>VO+R</td><td>Odczyt nagłówka wiersza tabeli.</td></tr>
+                            <tr><td>VO+C</td><td>Odczyt nagłówka kolumny tabeli, gdy fokus znajduje się w tabeli.</td></tr>
+                            <tr><td>VO+Command+Y</td><td>Przejście do następnej kolumny tabeli WWW.</td></tr>
+                            <tr><td>VO+Command+Shift+Y</td><td>Przejście do poprzedniej kolumny tabeli WWW.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <article class="knowledge-panel">
+                    <h3>Polecane zasoby</h3>
+                    <ol class="recommended-resources">
+                        <li><a href="https://support.apple.com/en-euro/guide/voiceover/vo4bd3e361be/mac" target="_blank" rel="noopener noreferrer">Otwórz podręcznik VoiceOver na Macu w Apple Support<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://support.apple.com/en-euro/guide/voiceover/vo4be8816d70/mac" target="_blank" rel="noopener noreferrer">Sprawdź instrukcję rozpoczęcia pracy z VoiceOver na Macu<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ol>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/header.js?v=2"></script>
+</body>
+</html>

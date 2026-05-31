@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audyty - Accessibility First</title>
+    <meta name="description" content="Audyty dostępności cyfrowej Accessibility First: diagnoza WCAG, raporty i wsparcie zespołów wdrożeniowych.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/audyty">
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="Audyty - Accessibility First">
+    <meta property="og:description" content="Diagnoza WCAG, raporty i wsparcie zespołów wdrożeniowych.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/audyty">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Audyty - Accessibility First">
+    <meta name="twitter:description" content="Diagnoza WCAG, raporty i wsparcie zespołów wdrożeniowych.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Włącz Wizję sp. z o.o.",
+      "url": "https://www.a11yfirst.pl",
+      "email": "a11y@wlaczwizje.pl",
+      "sameAs": [
+        "https://wlaczwizje.pl",
+        "https://linktr.ee/bergivision"
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="assets/styles.css?v=17">
+    <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li aria-current="page">Audyty</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <h1>Audyty</h1>
+                <p class="subtitle">Diagnoza dostępności cyfrowej, raporty wdrożeniowe i wsparcie zespołów w planowaniu poprawek.</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Formy wsparcia klientów</h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <h3>Audytujemy dostępność cyfrową</h3>
+                        <p>Audytujemy dostępność stron internetowych, aplikacji mobilnych, mediów społecznościowych, multimediów, dokumentów oraz produktów cyfrowych.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Wsparcie na etapie projektowania</h3>
+                        <p>Pomagamy zaplanować dostępność zanim powstaną kosztowne błędy w makietach, design systemie albo backlogu.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Testy z użytkownikami</h3>
+                        <p>Sprawdzamy realne doświadczenie osób korzystających z technologii asystujących i różnych sposobów obsługi interfejsu.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Konsultacje wdrożeniowe</h3>
+                        <p>Wspieramy zespół w interpretacji wymagań, priorytetyzacji poprawek i podejmowaniu decyzji projektowo-technicznych.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Raport dla deweloperów</h3>
+                        <p>Przygotowujemy raport z opisem problemu, wpływem na użytkownika, kryterium WCAG i rekomendacją wdrożeniową.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>Stała obsługa dostępności cyfrowej</h3>
+                        <p>Pomagamy utrzymać dostępność w procesie: konsultacje, przeglądy zmian, wsparcie zespołów i weryfikacja poprawek.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="closed-training audit-order">
+            <div class="container">
+                <h2 class="section-title">Zamów audyt</h2>
+                <p class="section-lead">Opisz, czego potrzebujesz. Odezwiemy się z propozycją zakresu i sposobu pracy.</p>
+
+                <form class="closed-training-form" id="auditOrderForm" action="mailto:a11y@wlaczwizje.pl" method="post" enctype="text/plain" novalidate>
+                    <fieldset>
+                        <legend>Zamówienie audytu</legend>
+                        <p class="form-required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
+                        <div id="auditOrderErrorSummary" class="checkout-error-summary" hidden aria-live="assertive" tabindex="-1"></div>
+
+                        <div class="form-field">
+                            <label for="audit-name">Imię i nazwisko <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                            <input type="text" id="audit-name" name="imie_i_nazwisko" autocomplete="name" required aria-describedby="audit-name-help audit-name-error">
+                            <p id="audit-name-help" class="field-help">Podaj imię i nazwisko osoby kontaktowej.</p>
+                            <p id="audit-name-error" class="field-error"></p>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="audit-institution">Instytucja <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                            <input type="text" id="audit-institution" name="instytucja" autocomplete="organization" required aria-describedby="audit-institution-help audit-institution-error">
+                            <p id="audit-institution-help" class="field-help">Podaj nazwę firmy, instytucji albo zespołu.</p>
+                            <p id="audit-institution-error" class="field-error"></p>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="audit-email">Adres e-mail <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                            <input type="email" id="audit-email" name="mail" autocomplete="email" required aria-describedby="audit-email-help audit-email-error">
+                            <p id="audit-email-help" class="field-help">Podaj adres, na który możemy odpisać w sprawie audytu.</p>
+                            <p id="audit-email-error" class="field-error"></p>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="audit-phone">Numer telefonu <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                            <input type="tel" id="audit-phone" name="numer_telefonu" autocomplete="tel" inputmode="tel" required aria-describedby="audit-phone-help audit-phone-error">
+                            <p id="audit-phone-help" class="field-help">Podaj numer telefonu złożony z 9-15 cyfr. Możesz użyć spacji.</p>
+                            <p id="audit-phone-error" class="field-error"></p>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="audit-need">Opisz, czego dotyczy audyt <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                            <textarea id="audit-need" name="zapotrzebowanie" rows="7" required aria-describedby="audit-need-help audit-need-error"></textarea>
+                            <p id="audit-need-help" class="field-help">Opisz produkt, adres strony lub aplikacji, etap prac i zakres wsparcia, którego potrzebujesz.</p>
+                            <p id="audit-need-error" class="field-error"></p>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Wyślij zapytanie o audyt</button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const auditOrderForm = document.getElementById('auditOrderForm');
+        const auditOrderSummary = document.getElementById('auditOrderErrorSummary');
+        let auditOrderWasSubmitted = false;
+
+        const auditOrderFields = [
+            {
+                id: 'audit-name',
+                errorId: 'audit-name-error',
+                label: 'Imię i nazwisko',
+                validate(value) {
+                    if (!value) return 'Podaj imię i nazwisko.';
+                    if (value.length < 3) return 'Imię i nazwisko powinno mieć co najmniej 3 znaki.';
+                    return '';
+                }
+            },
+            {
+                id: 'audit-institution',
+                errorId: 'audit-institution-error',
+                label: 'Instytucja',
+                validate(value) {
+                    if (!value) return 'Podaj nazwę instytucji, firmy albo zespołu.';
+                    if (value.length < 2) return 'Nazwa instytucji powinna mieć co najmniej 2 znaki.';
+                    return '';
+                }
+            },
+            {
+                id: 'audit-email',
+                errorId: 'audit-email-error',
+                label: 'Adres e-mail',
+                validate(value) {
+                    if (!value) return 'Podaj adres e-mail.';
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Wpisz poprawny adres e-mail, np. imie@domena.pl.';
+                    return '';
+                }
+            },
+            {
+                id: 'audit-phone',
+                errorId: 'audit-phone-error',
+                label: 'Numer telefonu',
+                validate(value) {
+                    const digits = value.replace(/\D/g, '');
+                    if (!digits) return 'Podaj numer telefonu.';
+                    if (digits.length < 9 || digits.length > 15) return 'Numer telefonu powinien mieć od 9 do 15 cyfr.';
+                    return '';
+                }
+            },
+            {
+                id: 'audit-need',
+                errorId: 'audit-need-error',
+                label: 'Opisz, czego dotyczy audyt',
+                validate(value) {
+                    if (!value) return 'Opisz, czego dotyczy audyt.';
+                    if (value.length < 20) return 'Napisz co najmniej 20 znaków, żebyśmy mogli zrozumieć potrzebę.';
+                    return '';
+                }
+            }
+        ];
+
+        function setAuditOrderError(field, message) {
+            const input = document.getElementById(field.id);
+            const error = document.getElementById(field.errorId);
+
+            input.setAttribute('aria-invalid', message ? 'true' : 'false');
+            error.textContent = message;
+            error.classList.toggle('active', Boolean(message));
+        }
+
+        function validateAuditOrderForm(showSummary = false) {
+            const errors = auditOrderFields
+                .map(field => {
+                    const input = document.getElementById(field.id);
+                    const message = field.validate(input.value.trim());
+                    setAuditOrderError(field, message);
+                    return message ? { ...field, message } : null;
+                })
+                .filter(Boolean);
+
+            if ((showSummary || !auditOrderSummary.hidden) && errors.length) {
+                auditOrderSummary.hidden = false;
+                auditOrderSummary.innerHTML = `
+                    <p>Formularz zawiera błędy. Popraw pola:</p>
+                    <ul>
+                        ${errors.map(error => `<li><a href="#${error.id}">${error.label}: ${error.message}</a></li>`).join('')}
+                    </ul>
+                `;
+            } else if (!errors.length) {
+                auditOrderSummary.hidden = true;
+                auditOrderSummary.textContent = '';
+            }
+
+            return {
+                isValid: errors.length === 0,
+                firstInvalidFieldId: errors[0] ? errors[0].id : null
+            };
+        }
+
+        auditOrderForm.addEventListener('submit', event => {
+            auditOrderWasSubmitted = true;
+            const result = validateAuditOrderForm(true);
+
+            if (!result.isValid) {
+                event.preventDefault();
+                document.getElementById(result.firstInvalidFieldId).focus();
+            }
+        });
+
+        auditOrderFields.forEach(field => {
+            document.getElementById(field.id).addEventListener('input', () => {
+                if (auditOrderWasSubmitted) validateAuditOrderForm(false);
+            });
+        });
+    </script>
+    <script src="assets/header.js?v=2"></script>
+</body>
+</html>
