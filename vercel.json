@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "echo \"Skip install for static site\"",
-  "buildCommand": "python3 scripts/build_sandbox.py",
+  "buildCommand": "echo \"Use committed public directory\"",
   "outputDirectory": "public",
   "cleanUrls": true,
   "headers": [

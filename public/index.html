@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility First - szkolenia i audyty dostępności cyfrowej WCAG</title>
+  <meta name="description" content="Accessibility First wspiera organizacje w dostępności cyfrowej: szkolenia WCAG, audyty stron i aplikacji, baza wiedzy oraz WCAG prostym językiem.">
+  <link rel="canonical" href="https://www.a11yfirst.pl/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="Accessibility First - dostępność cyfrowa w praktyce">
+    <meta property="og:description" content="Szkolenia WCAG, audyty dostępności cyfrowej, baza wiedzy i WCAG prostym językiem.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Accessibility First. Dostępność cyfrowa w praktyce. Szkolenia, audyty, WCAG prostym językiem i baza wiedzy.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Accessibility First - dostępność cyfrowa w praktyce">
+    <meta name="twitter:description" content="Szkolenia WCAG, audyty dostępności cyfrowej, baza wiedzy i WCAG prostym językiem.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Dostępność jest naszą misją",
+      "headline": "Dostępność jest naszą misją",
+      "description": "Accessibility First wspiera organizacje w dostępności cyfrowej: szkolenia WCAG, audyty stron i aplikacji, baza wiedzy oraz WCAG prostym językiem.",
+      "url": "https://www.a11yfirst.pl/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Accessibility First",
+        "url": "https://www.a11yfirst.pl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #151515;
+      --surface-hover: #5f28b4;
+      --primary: #5f28b4;
+      --text: #ffffff;
+      --muted: #d6d6d6;
+      --accent: #fa9632;
+      --line: #6f6f6f;
+      --focus-inner: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      padding: clamp(10px, 2vh, 20px);
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.35;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    main {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: clamp(18px, 3vh, 34px);
+      grid-template-columns: minmax(300px, 0.82fr) minmax(520px, 1.18fr);
+      align-items: center;
+    }
+
+    h1,
+    p,
+    ul {
+      margin: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #000000;
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-140%);
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      outline: 4px solid var(--focus-inner);
+      outline-offset: 3px;
+    }
+
+    header,
+    .home-intro,
+    footer {
+      grid-column: 1;
+    }
+
+    nav {
+      grid-column: 2;
+      grid-row: 1 / span 3;
+    }
+
+    .logo {
+      justify-self: start;
+      margin: 0;
+      width: 100%;
+    }
+
+    .site-banner {
+      display: inline-flex;
+      width: min(100%, 520px);
+      height: auto;
+      align-items: center;
+      justify-content: flex-start;
+      border-radius: 8px;
+    }
+
+    .site-banner img {
+      display: block;
+      object-fit: contain;
+    }
+
+    .site-banner-full {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .site-banner-icon {
+      display: none !important;
+      width: 52px;
+      height: 52px;
+      padding: 6px;
+      border: 2px solid #ffcc00;
+      border-radius: 8px;
+      background: var(--primary);
+    }
+
+    body.header-compact .site-banner {
+      width: 52px;
+      height: 52px;
+    }
+
+    body.header-compact .site-banner-full {
+      display: none !important;
+    }
+
+    body.header-compact .site-banner-icon {
+      display: block !important;
+    }
+
+    body:not(.header-compact) .site-banner-full {
+      display: block !important;
+    }
+
+    body:not(.header-compact) .site-banner-icon {
+      display: none !important;
+    }
+
+    .site-banner:focus-visible {
+      outline: 4px solid var(--accent);
+      outline-offset: 6px;
+      box-shadow: 0 0 0 10px var(--focus-inner);
+    }
+
+    .home-intro {
+      display: grid;
+      gap: clamp(12px, 2vh, 20px);
+    }
+
+    .intro {
+      max-width: 100%;
+      color: var(--text);
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 1;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 46ch;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+      line-height: 1.45;
+    }
+
+    nav ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(10px, 1.6vh, 16px);
+      padding: 0;
+      list-style: none;
+    }
+
+    nav li {
+      display: flex;
+      min-width: 0;
+    }
+
+    nav a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      min-height: clamp(112px, 13vh, 132px);
+      padding: clamp(16px, 2.2vh, 22px);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 0 0 2px rgba(95, 40, 180, 0.45);
+    }
+
+    nav a:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent);
+    }
+
+    nav a:focus-visible {
+      background: var(--surface-hover);
+      outline: 4px solid var(--accent);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 8px var(--focus-inner);
+    }
+
+    .link-arrow {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .link-title {
+      display: block;
+      color: var(--text);
+      font-size: clamp(1.25rem, 2.2vh, 1.55rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .link-desc {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: clamp(0.9rem, 1.45vh, 1rem);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    nav a:hover .link-arrow,
+    nav a:focus-visible .link-arrow {
+      color: var(--text);
+    }
+
+    nav a:hover .link-desc,
+    nav a:focus-visible .link-desc {
+      color: var(--text);
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: clamp(0.75rem, 1.6vh, 0.875rem);
+    }
+
+    @media (max-height: 760px) {
+      main {
+        gap: 14px;
+      }
+
+      .site-banner {
+        width: min(100%, 420px);
+      }
+
+      nav a {
+        min-height: 96px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      header,
+      .home-intro,
+      nav,
+      footer {
+        grid-column: 1;
+      }
+
+      nav {
+        grid-row: auto;
+      }
+
+      .intro {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+      }
+    }
+
+    @media (max-width: 620px) {
+      body {
+        align-items: start;
+        justify-content: center;
+        padding: 12px;
+      }
+
+      nav ul {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        min-height: auto;
+        padding: 10px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+
+  <main id="main">
+    <header>
+      <div class="logo">
+        <a href="/" class="site-banner" aria-label="Accessibility First - strona główna">
+          <img class="site-banner-full" src="assets/accessibility-first-logo-cropped.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
+        </a>
+      </div>
+    </header>
+
+    <div class="home-intro">
+      <h1 id="opis" class="intro">Dostępność jest naszą misją</h1>
+      <p class="lead">Szkolimy, audytujemy i porządkujemy wiedzę o dostępności cyfrowej. Wybierz obszar, którego teraz potrzebujesz.</p>
+    </div>
+
+    <nav aria-label="Menu główne">
+      <ul>
+        <li>
+          <a href="/o-nas">
+            <span>
+              <span class="link-title">O nas</span>
+              <span class="link-desc">Kim jesteśmy i jak pracujemy z dostępnością.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/szkolenia">
+            <span>
+              <span class="link-title">Szkolenia</span>
+              <span class="link-desc">Terminy, programy i zapisy na kursy oraz webinary.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/audyty">
+            <span>
+              <span class="link-title">Audyty dostępności</span>
+              <span class="link-desc">Badanie stron, aplikacji, dokumentów i produktów cyfrowych.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/sklep">
+            <span>
+              <span class="link-title">Sklep</span>
+              <span class="link-desc">Webinary i materiały do samodzielnej pracy.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/baza-wiedzy">
+            <span>
+              <span class="link-title">Baza wiedzy</span>
+              <span class="link-desc">Instrukcje, czytniki ekranu i WCAG prostym językiem.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/wcag-prostym-jezykiem">
+            <span>
+              <span class="link-title">WCAG prostym językiem</span>
+              <span class="link-desc">Praktyczne opracowania kryteriów z przykładami i wskazówkami do audytu.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/deklaracja">
+            <span>
+              <span class="link-title">Deklaracja dostępności</span>
+              <span class="link-desc">Informacje o dostępności tej strony i zgłaszaniu problemów.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="/kontakt">
+            <span>
+              <span class="link-title">Kontakt</span>
+              <span class="link-desc">Napisz do nas w sprawie szkolenia, audytu albo współpracy.</span>
+            </span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      Accessibility First / Włącz Wizję
+    </footer>
+  </main>
+    <script src="assets/header.js"></script>
+</body>
+</html>
