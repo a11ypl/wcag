@@ -35,8 +35,8 @@
       }
     }
     </script>
-    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles.css?v=17">
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -44,7 +44,7 @@
         <div class="container header-content">
             <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
                 <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
             </a>
             <nav aria-label="Menu główne">
                 <a href="/o-nas">O nas</a>
@@ -79,33 +79,242 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
-                    <p>To kryterium należy do zasady funkcjonalności: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
-                    <p>W praktyce oznacza to: Elementy, które użytkownik klika albo dotyka, nie mogą być zbyt małe ani upchane tak blisko siebie, że łatwo trafić w zły element.</p>
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Elementy, które użytkownik klika albo dotyka, nie mogą być zbyt małe ani upchane tak blisko siebie, że łatwo trafić w zły element.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dlaczego to ważne?</h2>
-                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik widzi małe ikonki w tabeli, ciasne numery paginacji albo przycisk zamykania w rogu okna. Próbuje stuknąć jedną akcję, ale trafia w sąsiednią. Problem jest szczególnie dotkliwy na ekranach dotykowych, przy powiększeniu, w ruchu albo przy ograniczonej precyzji ruchu.</p>
+                    <p>2.5.8 dotyczy celu aktywnego, czyli obszaru, który reaguje na kliknięcie, dotknięcie albo rysik. Cel powinien mieć co najmniej 24 na 24 piksele CSS albo być tak odsunięty od innych celów, żeby przypadkowe trafienie w sąsiednią akcję było mniej prawdopodobne.</p>
+                    <p>Nie oznacza to, że każda widoczna ikonka musi mieć fizyczny prostokąt 24 na 24 px. Liczy się rzeczywisty obszar aktywny, odstęp od innych celów oraz wyjątki opisane w WCAG, np. linki w zdaniu, kontrolki przeglądarki albo prezentacja istotna dla informacji.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo dotyczy?</h2>
-                    <p>Najbardziej pomaga osobom korzystającym z klawiatury, przełączników, sterowania głosem, czytników ekranu, powiększenia oraz osobom, które nie mogą wykonać precyzyjnego gestu.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak wdrożyć 2.5.8?</h2>
+                    <h2>Kogo to dotyczy</h2>
                     <ul class="detail-list">
-                        <li>Sprawdź, czy funkcję da się obsłużyć klawiaturą i bez precyzyjnych gestów.</li>
-                        <li>Zadbaj o przewidywalną kolejność fokusu, widoczny fokus i możliwość wyjścia z każdego komponentu.</li>
-                        <li>Przetestuj realny proces od początku do końca samą klawiaturą oraz na urządzeniu dotykowym.</li>
+                        <li>Osób korzystających z dotyku, zwłaszcza na telefonach i tabletach.</li>
+                        <li>Osób z drżeniem rąk, spastycznością, bólem albo ograniczoną sprawnością dłoni.</li>
+                        <li>Osób korzystających z myszy, rysika, trackpada albo alternatywnych urządzeń wskazujących.</li>
+                        <li>Osób obsługujących urządzenie jedną ręką, w komunikacji miejskiej albo w ruchu.</li>
+                        <li>Osób słabowidzących, które powiększają interfejs i potrzebują przewidywalnych obszarów aktywnych.</li>
+                        <li>Wszystkich użytkowników, którzy mogą przypadkowo aktywować złą ikonę w ciasnym układzie.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Źródło i licencja</h2>
-                    <p>To materiał pomocniczy. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">specyfikację WCAG 2.1<span class="sr-only"> (otwiera się w nowym oknie)</span></a> oraz normę EN 301 549.</p>
+                    <h2>Dobry przykład</h2>
+                    <p>Dobry interfejs nie musi być wielki i toporny. Wystarczy, że realny obszar aktywny ma co najmniej 24 na 24 px CSS albo mniejsze cele mają wystarczający odstęp od innych celów.</p>
+                    <ul class="detail-list">
+                        <li>Ikona może wyglądać na 16 px, ale przycisk wokół niej ma aktywny obszar co najmniej 24 na 24 px.</li>
+                        <li>Małe cele mają odstęp od innych małych celów zgodny z zasadą 24-pikselowego koła z WCAG.</li>
+                        <li>Paginacja ma większy padding albo kontenery zapewniające odpowiedni odstęp.</li>
+                        <li>Akcje w tabeli są pogrupowane w menu albo mają większe przyciski zamiast ciasnego rzędu ikon.</li>
+                        <li>Przyciski zamykania, rozwijania, filtrowania i usuwania mają realny obszar aktywny, nie tylko małą ikonę.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <p>Zły wzorzec upycha kilka małych akcji obok siebie i zakłada, że użytkownik zawsze trafi idealnie.</p>
+                    <ul class="detail-list">
+                        <li>Ikony 16 na 16 px są jedynym obszarem kliknięcia.</li>
+                        <li>W tabeli obok siebie są małe akcje: edytuj, usuń, pobierz, podgląd.</li>
+                        <li>Paginacja ma ciasne numery stron bez paddingu i odstępów.</li>
+                        <li>Mały przycisk „x” zamyka okno, ale aktywny jest tylko sam znak.</li>
+                        <li>Kontrolki mapy, kalendarza albo filtrów są małe i ustawione jedna przy drugiej.</li>
+                        <li>Linki na liście są tak blisko siebie, że łatwo kliknąć niewłaściwy.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;button class="icon-button" type="button"&gt;
+  &lt;span aria-hidden="true"&gt;×&lt;/span&gt;
+  &lt;span class="sr-only"&gt;Zamknij panel&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                    </div>
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">.icon-button {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 24px;
+  min-width: 24px;
+  padding: 4px;
+}</code></pre>
+                    </div>
+                    <p>Ikona może być mała, ale przycisk ma większy obszar aktywny. Użytkownik nie musi trafić dokładnie w sam znak.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;ul class="row-actions"&gt;
+  &lt;li&gt;&lt;button type="button"&gt;Edytuj&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button type="button"&gt;Pobierz&lt;/button&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;button type="button"&gt;Usuń&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}</code></pre>
+                    </div>
+                    <p>Odstęp między akcjami zmniejsza ryzyko przypadkowego kliknięcia sąsiedniego przycisku.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">.tiny-actions button {
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  width: 16px;
+}</code></pre>
+                    </div>
+                    <p>To zły przykład. Przyciski są mniejsze niż 24 na 24 px i nie mają odstępu. W takim układzie łatwo trafić w złą akcję.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;nav aria-label="Strony wyników"&gt;
+  &lt;ol class="pagination"&gt;
+    &lt;li&gt;&lt;a href="/wyniki?page=1"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/wyniki?page=2" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/wyniki?page=3"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                    </div>
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">.pagination {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.pagination a {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 24px;
+  min-width: 24px;
+}</code></pre>
+                    </div>
+                    <p>Paginacja ma minimalny obszar aktywny i odstęp. Jeśli wizualnie numery mają być drobne, można powiększyć aktywny obszar przez padding albo kontener.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-target-size-demo">
+                        <div class="wcag-target-size-demo__grid">
+                            <div class="wcag-target-size-demo__item wcag-target-size-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-target-size-demo__targets">
+                                    <span class="wcag-target-size-demo__target wcag-target-size-demo__target--small">E</span>
+                                    <span class="wcag-target-size-demo__target wcag-target-size-demo__target--small">U</span>
+                                    <span class="wcag-target-size-demo__target wcag-target-size-demo__target--small">P</span>
+                                </div>
+                                <p class="wcag-target-size-demo__note">Małe cele są bardzo blisko siebie. Łatwo trafić w złą akcję.</p>
+                            </div>
+
+                            <div class="wcag-target-size-demo__item wcag-target-size-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <div class="wcag-target-size-demo__targets">
+                                    <span class="wcag-target-size-demo__target wcag-target-size-demo__target--risky">E</span>
+                                    <span class="wcag-target-size-demo__target wcag-target-size-demo__target--risky">U</span>
+                                    <span class="wcag-target-size-demo__target wcag-target-size-demo__target--risky">P</span>
+                                </div>
+                                <p class="wcag-target-size-demo__note">Cele są trochę większe, ale aktywny obszar i odstęp nadal są niejasne.</p>
+                            </div>
+
+                            <div class="wcag-target-size-demo__item wcag-target-size-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-target-size-demo__targets">
+                                    <span class="wcag-target-size-demo__target-area"><span class="wcag-target-size-demo__target">E</span></span>
+                                    <span class="wcag-target-size-demo__target-area"><span class="wcag-target-size-demo__target">U</span></span>
+                                    <span class="wcag-target-size-demo__target-area"><span class="wcag-target-size-demo__target">P</span></span>
+                                </div>
+                                <p class="wcag-target-size-demo__note">Obszary aktywne mają co najmniej 24 na 24 px albo czytelny odstęp.</p>
+                            </div>
+                        </div>
+                        <figcaption>To jest statyczny schemat. Pokazuje różnicę między ciasnymi małymi celami a większym lub wyraźnie odsuniętym obszarem aktywnym.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Znajdź wszystkie cele aktywne obsługiwane wskaźnikiem: linki, przyciski, ikony, suwaki, elementy mapy, paginację i kontrolki w tabelach.</li>
+                        <li>Sprawdź realny obszar aktywny, nie tylko widoczny rysunek ikony.</li>
+                        <li>Zmierz, czy cel ma co najmniej 24 na 24 px CSS.</li>
+                        <li>Jeśli cel jest mniejszy, sprawdź odstęp od innych celów według zasady 24-pikselowego koła opisanej w WCAG.</li>
+                        <li>Sprawdź, czy istnieje równoważny większy cel dla tej samej funkcji na tej samej stronie.</li>
+                        <li>Oceń wyjątki ostrożnie: link w zdaniu, kontrolka przeglądarki, prezentacja istotna albo prawnie wymagana.</li>
+                        <li>Przetestuj widok na mobile, przy powiększeniu i w miejscach z ciasnymi listami akcji.</li>
+                        <li>Jeśli użytkownik może łatwo trafić w sąsiedni cel, powiększ obszar aktywny albo dodaj odstęp.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>część małych przycisków, linków i kontrolek,</li>
+                        <li>część ciasno ustawionych celów w DOM,</li>
+                        <li>style CSS wskazujące małe wymiary, np. `width: 16px`,</li>
+                        <li>brak etykiet albo nazw dostępnych przy kontrolkach ikonowych.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>rzeczywistego obszaru aktywnego po wszystkich stylach i stanach,</li>
+                        <li>czy mniejszy cel ma wystarczający odstęp według zasady z WCAG,</li>
+                        <li>czy działa wyjątek dla linku w zdaniu albo kontrolki przeglądarki,</li>
+                        <li>czy równoważny większy cel wykonuje dokładnie tę samą funkcję,</li>
+                        <li>czy układ po responsywnym przełamaniu nadal ma bezpieczne odstępy.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Ikony 16 na 16 px jako jedyny obszar kliknięcia.</li>
+                        <li>Kilka małych ikon akcji w tabeli bez odstępu.</li>
+                        <li>Ciasna paginacja z małymi numerami stron.</li>
+                        <li>Mały przycisk `x` bez większego obszaru aktywnego.</li>
+                        <li>Małe kontrolki mapy, kalendarza albo filtrów ustawione jedna przy drugiej.</li>
+                        <li>Linki na liście albo w stopce tak blisko siebie, że łatwo kliknąć niewłaściwy.</li>
+                        <li>Powierzanie bezpieczeństwa tylko powiększeniu przeglądarki, zamiast poprawić obszar aktywny w CSS.</li>
+                        <li>Projektowanie tylko pod mysz, bez sprawdzenia dotyku i rysika.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/2-5-7-ruch-przeciagania">2.5.7 Ruch przeciągania</a>: gdy problem dotyczy funkcji wymagającej drag and drop.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-5-2-anulowanie-wskazania">2.5.2 Anulowanie wskazania</a>: gdy trzeba ocenić, kiedy kliknięcie lub dotknięcie uruchamia akcję.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a>: gdy kontrolki muszą mieć widoczny fokus klawiatury.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a>: gdy granice kontrolek i stanów muszą mieć odpowiedni kontrast.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu">2.4.13 Wygląd fokusu</a>: gdy oceniamy wielkość i widoczność wskaźnika fokusu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu">1.4.10 Dopasowanie do ekranu</a>: gdy układ responsywny nie może zmuszać do problematycznego przewijania i ściskania kontrolek.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#target-size-minimum" target="_blank" rel="noopener noreferrer">WCAG 2.2: 2.5.8 Target Size (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 2.5.8: Target Size (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#target-size-minimum" target="_blank" rel="noopener noreferrer">How to Meet WCAG 2.5.8: Target Size (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C42" target="_blank" rel="noopener noreferrer">C42: Using min-height and min-width on target container to ensure sufficient target spacing<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
@@ -135,6 +344,6 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/header.js?v=2"></script>
+    <script src="../assets/header.js"></script>
 </body>
 </html>

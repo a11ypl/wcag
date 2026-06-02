@@ -35,8 +35,8 @@
       }
     }
     </script>
-    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles.css?v=17">
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -44,7 +44,7 @@
         <div class="container header-content">
             <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
                 <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
             </a>
             <nav aria-label="Menu główne">
                 <a href="/o-nas">O nas</a>
@@ -79,33 +79,228 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
-                    <p>To kryterium należy do zasady postrzegalności: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
-                    <p>W praktyce oznacza to: Ważne elementy nietekstowe, na przykład ikony, pola formularzy, przyciski, wykresy i wskaźniki fokusu, muszą być wystarczająco widoczne.</p>
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Ważne elementy nietekstowe, takie jak ikony, obramowania pól, przyciski, wykresy i wskaźniki fokusu, muszą być wystarczająco widoczne względem tła lub sąsiednich kolorów.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dlaczego to ważne?</h2>
-                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik widzi formularz, ale obramowanie pola jest prawie niewidoczne. Ikona błędu jest bardzo jasna. Fokus klawiatury zlewa się z tłem. Wykres używa subtelnych linii, których trudno odróżnić.</p>
+                    <p>W efekcie użytkownik może nie rozpoznać elementu interaktywnego, stanu błędu albo informacji przedstawionej graficznie. To kryterium dotyczy elementów nietekstowych. Tekst i obrazy tekstu ocenia się przede wszystkim w kryterium 1.4.3.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo dotyczy?</h2>
-                    <p>Najbardziej pomaga osobom niewidomym, słabowidzącym, głuchym, niedosłyszącym oraz wszystkim, którzy odbierają treść w trudnych warunkach albo innym kanałem niż zakładał projekt.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak wdrożyć 1.4.11?</h2>
+                    <h2>Kogo to dotyczy</h2>
                     <ul class="detail-list">
-                        <li>Sprawdź, czy informacja nie zależy wyłącznie od jednego zmysłu albo jednego sposobu odbioru.</li>
-                        <li>Dodaj tekst, strukturę, kontrast, napisy, transkrypcję albo inną alternatywę odpowiednią do treści.</li>
-                        <li>Przetestuj stronę bez obrazu, bez dźwięku, przy powiększeniu i przy użyciu technologii wspomagających.</li>
+                        <li>Osób słabowidzących, które potrzebują wyraźnych granic i kształtów elementów.</li>
+                        <li>Osób z zaburzeniami widzenia barw, dla których subtelne różnice kolorów mogą być niewidoczne.</li>
+                        <li>Osób starszych, u których spada wrażliwość na kontrast.</li>
+                        <li>Osób korzystających z urządzeń mobilnych w słońcu.</li>
+                        <li>Osób korzystających z ekranów niskiej jakości albo z obniżoną jasnością.</li>
+                        <li>Osób korzystających z klawiatury, które muszą widzieć aktualny fokus.</li>
+                        <li>Osób z trudnościami poznawczymi, które potrzebują wyraźnych stanów interfejsu.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Źródło i licencja</h2>
-                    <p>To materiał pomocniczy. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">specyfikację WCAG 2.1<span class="sr-only"> (otwiera się w nowym oknie)</span></a> oraz normę EN 301 549.</p>
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Obramowanie pola formularza jest wyraźnie widoczne.</li>
+                        <li>Ikona błędu ma dobry kontrast i towarzyszy jej tekst.</li>
+                        <li>Wskaźnik fokusu ma kontrast minimum 3:1 względem tła lub sąsiednich kolorów.</li>
+                        <li>Przycisk ma wyraźną granicę albo tło.</li>
+                        <li>Linie na wykresie są wystarczająco widoczne.</li>
+                        <li>Stan aktywny elementu interfejsu nie opiera się na bardzo subtelnej zmianie koloru.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Jasnoszare obramowanie pola na białym tle.</li>
+                        <li>Ikona jako jedyny nośnik błędu i do tego o niskim kontraście.</li>
+                        <li>Fokus jako bardzo cienka, blada linia.</li>
+                        <li>Przycisk bez widocznej granicy na podobnym tle.</li>
+                        <li>Wykres z jasnymi liniami na jasnym tle.</li>
+                        <li>Przełącznik, którego stan aktywny jest ledwo zauważalny.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Wymagane wartości kontrastu</h2>
+                    <ul class="detail-list">
+                        <li>Ważne elementy nietekstowe muszą mieć kontrast co najmniej <strong>3:1</strong>.</li>
+                        <li>Dotyczy to między innymi elementów interfejsu i informacji graficznych.</li>
+                        <li>Nie każdy element ozdobny musi spełniać 1.4.11.</li>
+                        <li>Element dekoracyjny, który nie przekazuje informacji i nie jest potrzebny do obsługi, może być wyjątkiem.</li>
+                        <li>Jeśli element jest potrzebny do zrozumienia treści albo obsługi interfejsu, powinien być dobrze widoczny.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobry kontrast obramowania pola</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Obramowanie pola jest widoczne i pomaga rozpoznać granice kontrolki.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.form-field {
+  border: 2px solid #5F28B4;
+  background-color: #ffffff;
+}</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Wyraźna granica pola pomaga zobaczyć, gdzie zaczyna się kontrolka i gdzie można wprowadzić dane.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Zły przykład obramowania</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Bardzo jasne obramowanie może być niewidoczne dla wielu użytkowników.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.form-field {
+  border: 1px solid #eeeeee;
+  background-color: #ffffff;
+}</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Pole wygląda minimalistycznie, ale jego granica może zniknąć na jasnym tle albo słabszym ekranie.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobry wskaźnik fokusu</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Wskaźnik fokusu jest wyraźny i pomaga użytkownikowi klawiatury zorientować się, gdzie aktualnie jest.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">button:focus-visible {
+  outline: 3px solid #FA9632;
+  outline-offset: 3px;
+}</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Gruby, odsunięty obrys jest łatwiejszy do zauważenia niż delikatna zmiana koloru tła.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <p>To jest statyczne demo edukacyjne. Pokazuje różnicę między subtelnym i wyraźnym kontrastem elementów nietekstowych.</p>
+                    <figure class="wcag-nontext-contrast-demo">
+                        <div class="wcag-nontext-contrast-demo__grid">
+                            <section class="wcag-nontext-contrast-demo__item wcag-nontext-contrast-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-nontext-contrast-demo__sample">
+                                    <span class="wcag-nontext-contrast-demo__field">Pole formularza</span>
+                                </div>
+                                <p class="wcag-nontext-contrast-demo__note">Obramowanie pola jest tak blade, że granica kontrolki może zniknąć.</p>
+                            </section>
+
+                            <section class="wcag-nontext-contrast-demo__item wcag-nontext-contrast-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <div class="wcag-nontext-contrast-demo__sample">
+                                    <span class="wcag-nontext-contrast-demo__icon" aria-hidden="true">!</span>
+                                    <span class="wcag-nontext-contrast-demo__chart-line"></span>
+                                </div>
+                                <p class="wcag-nontext-contrast-demo__note">Subtelna ikona i linia wykresu mogą być trudne do odróżnienia od tła.</p>
+                            </section>
+
+                            <section class="wcag-nontext-contrast-demo__item wcag-nontext-contrast-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-nontext-contrast-demo__sample">
+                                    <span class="wcag-nontext-contrast-demo__button">Aktywny przycisk</span>
+                                </div>
+                                <p class="wcag-nontext-contrast-demo__note">Granica, tło i obrys są wyraźne, więc element łatwo rozpoznać.</p>
+                            </section>
+                        </div>
+                        <figcaption>Porównanie trzech wariantów kontrastu elementów nietekstowych. Ocena jest opisana tekstowo, a nie tylko kolorem.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Znajdź elementy nietekstowe na stronie: ikony, przyciski, pola formularzy, obramowania, linie wykresów, stany aktywne i fokus.</li>
+                        <li>Ustal, które z nich są informacyjne albo potrzebne do obsługi.</li>
+                        <li>Sprawdź kontrast tych elementów względem tła albo sąsiednich kolorów.</li>
+                        <li>Dla ważnych elementów nietekstowych przyjmij minimum 3:1.</li>
+                        <li>Sprawdź różne stany komponentów: normalny, hover, focus, active, disabled i error.</li>
+                        <li>Sprawdź formularze: czy granice pól i komunikaty błędów są widoczne.</li>
+                        <li>Sprawdź fokus klawiatury.</li>
+                        <li>Sprawdź wykresy i infografiki.</li>
+                        <li>Użyj narzędzi: Colour Contrast Analyser, WebAIM Contrast Checker, DevTools, axe DevTools albo WAVE.</li>
+                        <li>Nie kończ oceny na automacie. Wiele przypadków wymaga oceny manualnej.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>Część problemów z kontrastem komponentów.</li>
+                        <li>Niektóre problemy z kontrastem ikon SVG.</li>
+                        <li>Część problemów z obramowaniami i stanami interfejsu.</li>
+                        <li>Niektóre przypadki niskiego kontrastu fokusu.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>Wszystkich ikon jako elementów informacyjnych.</li>
+                        <li>Wykresów i infografik.</li>
+                        <li>Elementów generowanych dynamicznie.</li>
+                        <li>Kontrastu na złożonym tle.</li>
+                        <li>Wszystkich stanów komponentów.</li>
+                        <li>Tego, czy element jest dekoracyjny czy potrzebny do zrozumienia treści.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Bladoszare obramowania pól formularza.</li>
+                        <li>Subtelne ikony bez tekstu.</li>
+                        <li>Fokus widoczny tylko jako cienka, jasna linia.</li>
+                        <li>Przyciski bez wyraźnej granicy.</li>
+                        <li>Przełączniki z nieczytelnym stanem włączony/wyłączony.</li>
+                        <li>Wykresy z liniami o zbyt niskim kontraście.</li>
+                        <li>Komponenty „premium/minimalistyczne”, które są eleganckie, ale niewidoczne.</li>
+                        <li>Stany disabled tak blade, że wyglądają jak brakujące elementy.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-4-1-uzycie-koloru">1.4.1 Użycie koloru</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-3-kontrast-minimum">1.4.3 Kontrast minimum</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-11-fokus-niezakryty-minimum">2.4.11 Fokus niezakryty minimum</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu">2.4.13 Wygląd fokusu</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">3.3.1 Identyfikacja błędu</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc">4.1.2 Nazwa, rola, wartość</a></li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#non-text-contrast" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.4.11 Non-text Contrast<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.4.11<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#non-text-contrast" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.4.11<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G195" target="_blank" rel="noopener noreferrer">Technika G195<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G207" target="_blank" rel="noopener noreferrer">Technika G207<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
@@ -135,6 +330,6 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/header.js?v=2"></script>
+    <script src="../assets/header.js"></script>
 </body>
 </html>

@@ -307,3 +307,1229 @@ Uwagi zakresowe:
 - Widoczna etykieta nadal jest potrzebna; `autocomplete` nie zastępuje wymagań z 3.3.2 ani dostępnej nazwy z 4.1.2.
 - `type="email"` i `type="tel"` opisują typ danych, ale nie zawsze precyzyjny cel pola w sensie 1.3.5.
 - Nie każde pole formularza wymaga `autocomplete`; kryterium dotyczy tylko pasujących danych o użytkowniku.
+
+## Source QA 2026-05-28: 1.3.3 Właściwości zmysłowe
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.3 Sensory Characteristics - `https://www.w3.org/TR/WCAG22/#sensory-characteristics`
+- Understanding WCAG 1.3.3 Sensory Characteristics - `https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html`
+- How to Meet WCAG 1.3.3 - `https://www.w3.org/WAI/WCAG22/quickref/#sensory-characteristics`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G96: Providing textual identification of items that otherwise rely only on sensory information to be understood.
+
+Failures:
+
+- F14: Failure of Success Criterion 1.3.3 due to identifying content only by its shape or location.
+- F26: Failure of Success Criterion 1.3.3 due to using a graphical symbol alone to convey information.
+
+Uwagi zakresowe:
+
+- 1.3.3 dotyczy instrukcji, które do zrozumienia wymagają wyłącznie cech zmysłowych: koloru, kształtu, rozmiaru, położenia, orientacji albo dźwięku.
+- Kryterium nie zakazuje używania cech zmysłowych. Wymaga dodatkowego tekstowego lub programowego sposobu identyfikacji elementu, jeśli instrukcja wskazuje użytkownikowi, co ma zrobić.
+- Nie mieszać z 1.4.1: informacja przekazana wyłącznie kolorem jest powiązana, ale 1.3.3 dotyczy instrukcji zależnych od cech zmysłowych.
+- Nie mieszać z 1.3.1, 1.3.2 ani 3.3.2: struktura, kolejność oraz kompletność etykiet i instrukcji mogą wspierać poprawkę, ale nie są głównym zakresem tego kryterium.
+
+## Source QA 2026-05-28: 1.4.4 Zmiana rozmiaru tekstu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.4 Resize Text - `https://www.w3.org/TR/WCAG22/#resize-text`
+- Understanding WCAG 1.4.4 Resize Text - `https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html`
+- How to Meet WCAG 1.4.4 - `https://www.w3.org/WAI/WCAG22/quickref/#resize-text`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G142: Using a technology that has commonly-available user agents that support zoom.
+- C28: Specifying the size of text containers using `em` units.
+- G179: Ensuring that there is no loss of content or functionality when the text resizes and text containers do not change their width.
+
+Failures:
+
+- F69: Failure of Success Criterion 1.4.4 when resizing visually rendered text up to 200 percent causes the text, image or controls to be clipped, truncated or obscured.
+- F80: Failure of Success Criterion 1.4.4 when text-based form controls do not resize when visually rendered text is resized up to 200%.
+- F94: Failure of Success Criterion 1.4.4 due to incorrect use of viewport units to resize text.
+
+Uwagi zakresowe:
+
+- 1.4.4 dotyczy powiększenia tekstu do 200% bez technologii wspomagającej, bez utraty treści lub funkcjonalności.
+- Kryterium nie wymaga zachowania identycznego układu po powiększeniu; układ może się zawijać, wydłużać, rozszerzać albo przewijać, jeśli treść i funkcje pozostają dostępne.
+- Wyjątki w kryterium obejmują napisy i obrazy tekstu.
+- Nie mieszać z 1.4.10: reflow przy 320 CSS px / 400% jest osobnym wymaganiem.
+- Nie mieszać z 1.4.12: odstępy w tekście są osobnym wymaganiem.
+- Nie mieszać z 1.4.3 ani 2.4.7: kontrast tekstu i widoczność fokusu mogą być testowane równolegle, ale nie są głównym zakresem tego kryterium.
+
+## Source QA 2026-05-28: 1.4.5 Obrazy tekstu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.5 Images of Text - `https://www.w3.org/TR/WCAG22/#images-of-text`
+- Understanding WCAG 1.4.5 Images of Text - `https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html`
+- How to Meet WCAG 1.4.5 - `https://www.w3.org/WAI/WCAG22/quickref/#images-of-text`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C22: Using CSS to control visual presentation of text.
+
+Failures:
+
+- Quick Reference dla 1.4.5 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 1.4.5 dotyczy używania prawdziwego tekstu zamiast obrazów tekstu, jeśli technologia pozwala osiągnąć oczekiwany wygląd.
+- Wyjątki obejmują obrazy tekstu, które można wizualnie dostosować do wymagań użytkownika, oraz przypadki, w których konkretna prezentacja tekstu jest istotna dla informacji.
+- Logotypy są w WCAG traktowane jako istotne.
+- Nie mieszać z 1.1.1: tekst alternatywny nie zastępuje wymogu użycia prawdziwego tekstu tam, gdzie jest to możliwe.
+
+## Source QA 2026-05-28: 1.4.10 Dopasowanie do ekranu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.10 Reflow - `https://www.w3.org/TR/WCAG22/#reflow`
+- Understanding WCAG 1.4.10 Reflow - `https://www.w3.org/WAI/WCAG22/Understanding/reflow.html`
+- How to Meet WCAG 1.4.10 - `https://www.w3.org/WAI/WCAG22/quickref/#reflow`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C32: Using media queries and grid CSS to reflow columns.
+- C31: Using CSS Flexbox to reflow content.
+- C33: Allowing for Reflow with Long URLs and Strings of Text.
+- C38: Using CSS width, max-width and flexbox to fit labels and inputs.
+
+Failures:
+
+- F102: Failure of Success Criterion 1.4.10 due to content disappearing and not being available when content has reflowed.
+
+Uwagi zakresowe:
+
+- 1.4.10 dotyczy prezentacji treści bez utraty informacji lub funkcjonalności i bez przewijania w dwóch kierunkach dla treści przewijanej pionowo przy szerokości równoważnej 320 CSS px oraz dla treści przewijanej poziomo przy wysokości równoważnej 256 CSS px.
+- Wyjątki obejmują części treści, które wymagają układu dwuwymiarowego do użycia albo zrozumienia, na przykład mapy, diagramy, wideo, gry, prezentacje, tabele danych i niektóre interfejsy edycyjne.
+- Nie mieszać z ogólną jakością responsywnego UI: błąd 1.4.10 wymaga utraty informacji/funkcjonalności albo konieczności przewijania w dwóch kierunkach poza wyjątkami.
+
+## Source QA 2026-05-28: 1.4.12 Odstępy w tekście
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.12 Text Spacing - `https://www.w3.org/TR/WCAG22/#text-spacing`
+- Understanding WCAG 1.4.12 Text Spacing - `https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html`
+- How to Meet WCAG 1.4.12 - `https://www.w3.org/WAI/WCAG22/quickref/#text-spacing`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- C36: Allowing for text spacing override.
+- C35: Allowing for text spacing without wrapping.
+
+Failures:
+
+- F104: Failure of Success Criterion 1.4.12 due to clipped or overlapped content when text spacing is adjusted.
+
+Uwagi zakresowe:
+
+- 1.4.12 dotyczy braku utraty treści lub funkcjonalności po ustawieniu: line-height co najmniej 1.5, odstępu po akapitach co najmniej 2 razy rozmiar fontu, letter-spacing co najmniej 0.12 razy rozmiar fontu i word-spacing co najmniej 0.16 razy rozmiar fontu.
+- Kryterium nie wymaga, żeby autor domyślnie używał tych wartości. Wymaga odporności treści, gdy użytkownik nadpisze odstępy.
+- Nie mieszać z 1.4.4: powiększenie tekstu do 200% jest osobnym wymaganiem.
+
+## Source QA 2026-05-28: 2.4.1 Możliwość pominięcia bloków
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.1 Bypass Blocks - `https://www.w3.org/TR/WCAG22/#bypass-blocks`
+- Understanding WCAG 2.4.1 Bypass Blocks - `https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html`
+- How to Meet WCAG 2.4.1 - `https://www.w3.org/WAI/WCAG22/quickref/#bypass-blocks`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G1: Adding a link at the top of each page that goes directly to the main content area.
+- G123: Adding a link at the beginning of a block of repeated content to go to the end of the block.
+- G124: Adding links at the top of the page to each area of the content.
+- H69: Providing heading elements at the beginning of each section of content.
+
+Failures:
+
+- Quick Reference dla 2.4.1 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.4.1 dotyczy mechanizmu pominięcia bloków treści powtarzanych na wielu stronach, takich jak menu, nagłówek, lista linków albo rozbudowane filtry.
+- Nagłówki i landmarki mogą pomagać, ale tutorial nie opisuje ogólnej poprawności struktury nagłówków jako głównego wymagania 2.4.1.
+
+## Source QA 2026-05-28: 2.4.2 Tytuł strony
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.2 Page Titled - `https://www.w3.org/TR/WCAG22/#page-titled`
+- Understanding WCAG 2.4.2 Page Titled - `https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html`
+- How to Meet WCAG 2.4.2 - `https://www.w3.org/WAI/WCAG22/quickref/#page-titled`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G88: Providing descriptive titles for Web pages.
+- H25: Providing a title using the title element.
+
+Failures:
+
+- F25: Failure of Success Criterion 2.4.2 due to the title of a Web page not identifying the contents.
+
+Uwagi zakresowe:
+
+- 2.4.2 dotyczy tytułu strony w elemencie `title`.
+- Nie mieszać z `h1`: nagłówek główny może być podobny do tytułu, ale jest osobnym elementem i pełni inną funkcję.
+
+## Source QA 2026-05-28: 2.4.4 Cel linku w kontekście
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.4 Link Purpose (In Context) - `https://www.w3.org/TR/WCAG22/#link-purpose-in-context`
+- Understanding WCAG 2.4.4 Link Purpose (In Context) - `https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html`
+- How to Meet WCAG 2.4.4 - `https://www.w3.org/WAI/WCAG22/quickref/#link-purpose-in-context`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G91: Providing link text that describes the purpose of a link.
+- H30: Providing link text that describes the purpose of a link for anchor elements.
+- G53: Identifying the purpose of a link using link text combined with the text of the enclosing sentence.
+- H79: Identifying the purpose of a link using link text combined with its enclosing table row and table headings.
+
+Failures:
+
+- F63: Failure of Success Criterion 2.4.4 due to providing link context only in content that is not related to the link.
+- F89: Failure of Success Criteria 2.4.4, 2.4.9 and 4.1.2 due to using null alt on an image where the image is the only content in a link.
+
+Uwagi zakresowe:
+
+- 2.4.4 dotyczy celu linku rozumianego z samego tekstu linku albo z programowo dostępnego kontekstu.
+- Nie mieszać z wyglądem linków, kolorem ani kontrastem. To kryterium ocenia znaczenie linku, nie jego prezentację wizualną.
+
+## Source QA 2026-05-28: 2.4.5 Wiele sposobów
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.5 Multiple Ways - `https://www.w3.org/TR/WCAG22/#multiple-ways`
+- Understanding WCAG 2.4.5 Multiple Ways - `https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html`
+- How to Meet WCAG 2.4.5 - `https://www.w3.org/WAI/WCAG22/quickref/#multiple-ways`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G125: Providing links to navigate to related Web pages.
+- G64: Providing a Table of Contents.
+- G63: Providing a site map.
+- G161: Providing a search function to help users find content.
+
+Failures:
+
+- Quick Reference dla 2.4.5 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.4.5 dotyczy więcej niż jednego sposobu znalezienia strony w zestawie stron.
+- Wyjątek dotyczy stron, które są wynikiem albo krokiem procesu.
+- Nie mieszać z samą kolejnością menu ani jakością etykiet nawigacji.
+
+## Source QA 2026-05-28: 2.4.6 Nagłówki i etykiety
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.6 Headings and Labels - `https://www.w3.org/TR/WCAG22/#headings-and-labels`
+- Understanding WCAG 2.4.6 Headings and Labels - `https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html`
+- How to Meet WCAG 2.4.6 - `https://www.w3.org/WAI/WCAG22/quickref/#headings-and-labels`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G130: Providing descriptive headings.
+- G131: Providing descriptive labels.
+
+Failures:
+
+- Quick Reference dla 2.4.6 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.4.6 dotyczy opisowości nagłówków i etykiet: czy mówią o temacie lub celu.
+- Nie mieszać z 1.3.1: techniczna struktura nagłówków i relacji jest osobnym zakresem.
+
+## Source QA 2026-05-28: 3.1.1 Język strony
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.1.1 Language of Page - `https://www.w3.org/TR/WCAG22/#language-of-page`
+- Understanding WCAG 3.1.1 Language of Page - `https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html`
+- How to Meet WCAG 3.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#language-of-page`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H57: Using language attributes on the html element.
+
+Failures:
+
+- Quick Reference dla 3.1.1 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.1.1 dotyczy programowego określenia domyślnego języka strony.
+- Nie mieszać z jakością tłumaczenia ani prostym językiem.
+
+## Source QA 2026-05-28: 3.1.2 Język części
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.1.2 Language of Parts - `https://www.w3.org/TR/WCAG22/#language-of-parts`
+- Understanding WCAG 3.1.2 Language of Parts - `https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html`
+- How to Meet WCAG 3.1.2 - `https://www.w3.org/WAI/WCAG22/quickref/#language-of-parts`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H58: Using language attributes to identify changes in the human language.
+
+Failures:
+
+- Quick Reference dla 3.1.2 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.1.2 dotyczy fragmentów w innym języku niż główny język strony, gdy język można programowo określić.
+- Wyjątki obejmują nazwy własne, terminy techniczne, słowa o nieokreślonym języku oraz słowa lub wyrażenia, które stały się częścią języka otaczającego tekst.
+
+## Source QA 2026-05-29: 3.2.1 Po otrzymaniu fokusu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.1 On Focus - `https://www.w3.org/TR/WCAG22/#on-focus`
+- Understanding WCAG 3.2.1 On Focus - `https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html`
+- How to Meet WCAG 3.2.1 - `https://www.w3.org/WAI/WCAG22/quickref/#on-focus`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G107: Using "activate" rather than "focus" as a trigger for changes of context.
+
+Failures:
+
+- F55: Failure of Success Criteria 2.1.1, 2.4.7, 2.4.13, and 3.2.1 due to using script to remove focus when focus is received.
+
+Uwagi zakresowe:
+
+- 3.2.1 dotyczy zmiany kontekstu wywołanej samym otrzymaniem fokusu.
+- Nie mieszać z 2.4.7: widoczność fokusu jest osobnym wymaganiem.
+
+## Source QA 2026-05-29: 3.2.2 Podczas wprowadzania danych
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.2 On Input - `https://www.w3.org/TR/WCAG22/#on-input`
+- Understanding WCAG 3.2.2 On Input - `https://www.w3.org/WAI/WCAG22/Understanding/on-input.html`
+- How to Meet WCAG 3.2.2 - `https://www.w3.org/WAI/WCAG22/quickref/#on-input`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G80: Providing a submit button to initiate a change of context.
+- G13: Describing what will happen before a change to a form control that causes a change of context to occur is made.
+- SCR19: Using an onchange event on a select element without causing a change of context.
+
+Failures:
+
+- F36: Failure of Success Criterion 3.2.2 due to automatically submitting a form and presenting new content without prior warning when the last field in the form is given a value.
+- F37: Failure of Success Criterion 3.2.2 due to launching a new window without prior warning when the selection of a radio button, check box or select list is changed.
+
+Uwagi zakresowe:
+
+- 3.2.2 dotyczy zmiany kontekstu po zmianie ustawienia komponentu interfejsu.
+- Nie mieszać z walidacją formularza: samo wskazanie błędów i treść komunikatów są oceniane w innych kryteriach.
+
+## Source QA 2026-05-29: 3.2.3 Spójna nawigacja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.3 Consistent Navigation - `https://www.w3.org/TR/WCAG22/#consistent-navigation`
+- Understanding WCAG 3.2.3 Consistent Navigation - `https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html`
+- How to Meet WCAG 3.2.3 - `https://www.w3.org/WAI/WCAG22/quickref/#consistent-navigation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G61: Presenting repeated components in the same relative order each time they appear.
+
+Failures:
+
+- Quick Reference dla 3.2.3 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 3.2.3 dotyczy względnej kolejności powtarzanych mechanizmów nawigacji w zestawie stron.
+- Nie mieszać z ogólną jakością menu ani z tym, czy menu ma najlepsze etykiety.
+
+## Source QA 2026-05-29: 3.2.4 Spójna identyfikacja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.4 Consistent Identification - `https://www.w3.org/TR/WCAG22/#consistent-identification`
+- Understanding WCAG 3.2.4 Consistent Identification - `https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html`
+- How to Meet WCAG 3.2.4 - `https://www.w3.org/WAI/WCAG22/quickref/#consistent-identification`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G197: Using labels, names, and text alternatives consistently for content that has the same functionality.
+
+Failures:
+
+- F31: Failure of Success Criterion 3.2.4 due to using two different labels for the same function on different Web pages within a set of Web pages.
+
+Uwagi zakresowe:
+
+- 3.2.4 dotyczy spójnego identyfikowania elementów o tej samej funkcji.
+- Nie wymaga identycznego wyglądu graficznego każdego elementu i nie zastępuje oceny celu linku ani opisowości etykiet.
+
+## Source QA 2026-05-29: 1.2.1 Tylko audio oraz tylko wideo
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.1 Audio-only and Video-only (Prerecorded) - `https://www.w3.org/TR/WCAG22/#audio-only-and-video-only-prerecorded`
+- Understanding WCAG 1.2.1 Audio-only and Video-only (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html`
+- How to Meet WCAG 1.2.1 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-only-and-video-only-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G158: Providing an alternative for time-based media for audio-only content.
+- G159: Providing an alternative for time-based media for video-only content.
+- G166: Providing audio that describes the important video content and describing it as such.
+
+Failures:
+
+- F30: Failure due to using text alternatives that are not alternatives.
+- F67: Failure due to providing long descriptions for non-text content that do not serve the same purpose or do not present the same information.
+
+Uwagi zakresowe:
+
+- 1.2.1 dotyczy nagranych materiałów tylko audio i tylko wideo.
+- Nie mieszać z napisami do filmu z obrazem i dźwiękiem ani z transmisją na żywo.
+
+## Source QA 2026-05-29: 1.2.2 Napisy rozszerzone
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.2 Captions (Prerecorded) - `https://www.w3.org/TR/WCAG22/#captions-prerecorded`
+- Understanding WCAG 1.2.2 Captions (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html`
+- How to Meet WCAG 1.2.2 - `https://www.w3.org/WAI/WCAG22/quickref/#captions-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H95: Using the track element to provide captions.
+- G87: Providing closed captions.
+- G93: Providing open captions.
+
+Failures:
+
+- F8: Failure due to captions omitting some dialogue or important sound effects.
+- F75: Failure due to providing synchronized media without captions when the synchronized media presents more information than is presented on the page.
+- F74: Failure due to not labeling a synchronized media alternative to text as an alternative.
+
+Uwagi zakresowe:
+
+- 1.2.2 dotyczy nagrań z dźwiękiem i zsynchronizowanych napisów rozszerzonych.
+- Napisy to nie transkrypcja; transkrypcja może pomagać, ale nie zastępuje napisów w tym kryterium.
+
+## Source QA 2026-05-29: 1.2.3 Audiodeskrypcja lub alternatywa dla mediów
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.3 Audio Description or Media Alternative (Prerecorded) - `https://www.w3.org/TR/WCAG22/#audio-description-or-media-alternative-prerecorded`
+- Understanding WCAG 1.2.3 Audio Description or Media Alternative (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html`
+- How to Meet WCAG 1.2.3 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-description-or-media-alternative-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G69: Providing an alternative for time based media.
+- G58: Placing a link to the alternative for time-based media immediately next to the non-text content.
+- G78: Providing a second, user-selectable, audio track that includes audio descriptions.
+- G173: Providing a version of a movie with audio descriptions.
+- G203: Using a static text alternative to describe a talking head video.
+
+Failures:
+
+- Quick Reference dla 1.2.3 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 1.2.3 dotyczy nagranego filmu z obrazem i dźwiękiem.
+- Na poziomie A można zapewnić audiodeskrypcję albo alternatywę dla mediów, ale alternatywa musi obejmować sens całego nagrania, nie tylko dialog.
+
+## Source QA 2026-05-29: 1.2.4 Napisy rozszerzone na żywo
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.4 Captions (Live) - `https://www.w3.org/TR/WCAG22/#captions-live`
+- Understanding WCAG 1.2.4 Captions (Live) - `https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html`
+- How to Meet WCAG 1.2.4 - `https://www.w3.org/WAI/WCAG22/quickref/#captions-live`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G9: Creating captions for live synchronized media.
+- G93: Providing open captions.
+- G87: Providing closed captions.
+
+Failures:
+
+- Quick Reference dla 1.2.4 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 1.2.4 dotyczy transmisji na żywo, nie nagrania opublikowanego po wydarzeniu.
+- Transkrypcja po wydarzeniu nie spełnia wymogu dostępności transmisji w czasie rzeczywistym.
+
+## Source QA 2026-05-29: 1.2.5 Audiodeskrypcja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.2.5 Audio Description (Prerecorded) - `https://www.w3.org/TR/WCAG22/#audio-description-prerecorded`
+- Understanding WCAG 1.2.5 Audio Description (Prerecorded) - `https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html`
+- How to Meet WCAG 1.2.5 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-description-prerecorded`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G78: Providing a second, user-selectable, audio track that includes audio descriptions.
+- G173: Providing a version of a movie with audio descriptions.
+- G8: Providing a movie with extended audio descriptions.
+- G203: Using a static text alternative to describe a talking head video.
+
+Failures:
+
+- F113: Failure due to not using available pauses in dialogue to provide audio descriptions of important visual content.
+
+Uwagi zakresowe:
+
+- 1.2.5 dotyczy audiodeskrypcji dla nagranych materiałów wideo.
+- Na poziomie AA sama alternatywa tekstowa nie zastępuje audiodeskrypcji, inaczej niż w dopuszczalnej opcji z 1.2.3 na poziomie A.
+
+## Source QA 2026-05-29: 2.1.4 Skróty klawiszowe znakowe
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.1.4 Character Key Shortcuts - `https://www.w3.org/TR/WCAG22/#character-key-shortcuts`
+- Understanding WCAG 2.1.4 Character Key Shortcuts - `https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html`
+- How to Meet WCAG 2.1.4 - `https://www.w3.org/WAI/WCAG22/quickref/#character-key-shortcuts`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G217: Providing a mechanism to allow users to remap or turn off character key shortcuts.
+
+Failures:
+
+- F99: Failure of Success Criterion 2.1.4 due to implementing character key shortcuts that cannot be turned off or remapped.
+
+Uwagi zakresowe:
+
+- 2.1.4 dotyczy skrótów z samych znaków drukowalnych, aktywnych w treści.
+- Nie mieszać z ogólną obsługą klawiaturą z 2.1.1 ani z widocznością fokusu.
+
+## Source QA 2026-05-29: 2.5.1 Gesty wskaźnika
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.1 Pointer Gestures - `https://www.w3.org/TR/WCAG22/#pointer-gestures`
+- Understanding WCAG 2.5.1 Pointer Gestures - `https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html`
+- How to Meet WCAG 2.5.1 - `https://www.w3.org/WAI/WCAG22/quickref/#pointer-gestures`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G215: Providing controls to achieve the same result as path based or multipoint gestures.
+- G216: Providing single point activation for a control slider.
+
+Failures:
+
+- F105: Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer alternative.
+
+Uwagi zakresowe:
+
+- 2.5.1 dotyczy gestów wielopunktowych oraz gestów opartych na ścieżce.
+- Nie mieszać z 2.5.7: ruch przeciągania ma osobne kryterium.
+
+## Source QA 2026-05-29: 2.5.2 Anulowanie wskazania
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.2 Pointer Cancellation - `https://www.w3.org/TR/WCAG22/#pointer-cancellation`
+- Understanding WCAG 2.5.2 Pointer Cancellation - `https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html`
+- How to Meet WCAG 2.5.2 - `https://www.w3.org/WAI/WCAG22/quickref/#pointer-cancellation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G210: Ensuring that drag-and-drop actions can be cancelled.
+- G212: Using native controls to ensure functionality is triggered on the up-event.
+
+Failures:
+
+- F101: Failure of Success Criterion 2.5.2 due to activating a control on the down-event.
+
+Uwagi zakresowe:
+
+- 2.5.2 dotyczy mechaniki wskaźnika: down-event, up-event, anulowanie i cofnięcie.
+- Nie mieszać z potwierdzeniem błędów formularzy ani z prawnymi/finansowymi mechanizmami zapobiegania błędom.
+
+## Source QA 2026-05-29: 2.5.3 Etykieta w nazwie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.3 Label in Name - `https://www.w3.org/TR/WCAG22/#label-in-name`
+- Understanding WCAG 2.5.3 Label in Name - `https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html`
+- How to Meet WCAG 2.5.3 - `https://www.w3.org/WAI/WCAG22/quickref/#label-in-name`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G208: Including the text of the visible label as part of the accessible name.
+- G211: Matching the accessible name to the visible label.
+
+Failures:
+
+- F96: Failure due to the accessible name not containing the visible label text.
+- F111: Failure due to a control with visible label text but no accessible name.
+
+Uwagi zakresowe:
+
+- 2.5.3 dotyczy zgodności widocznej etykiety kontrolki z jej dostępną nazwą.
+- Nie mieszać z samą widocznością tekstu ani z oceną opisowości etykiety z 2.4.6.
+
+## Source QA 2026-05-29: 2.5.4 Aktywowanie ruchem
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.5.4 Motion Actuation - `https://www.w3.org/TR/WCAG22/#motion-actuation`
+- Understanding WCAG 2.5.4 Motion Actuation - `https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation.html`
+- How to Meet WCAG 2.5.4 - `https://www.w3.org/WAI/WCAG22/quickref/#motion-actuation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G213: Provide conventional controls and an application setting for motion activated input.
+
+Failures:
+
+- F106: Failure due to inability to deactivate motion actuation.
+
+Uwagi zakresowe:
+
+- 2.5.4 dotyczy funkcji aktywowanych ruchem urządzenia albo ruchem użytkownika wykrywanym przez czujniki.
+- Nie mieszać z animacjami na stronie ani z ruchem wskaźnika.
+
+## Source QA 2026-05-29: 2.2.1 Możliwość dostosowania czasu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.2.1 Timing Adjustable - `https://www.w3.org/TR/WCAG22/#timing-adjustable`
+- Understanding WCAG 2.2.1 Timing Adjustable - `https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html`
+- How to Meet WCAG 2.2.1 - `https://www.w3.org/WAI/WCAG22/quickref/#timing-adjustable`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G198: Providing a way for the user to turn the time limit off.
+- G180: Providing the user with a means to set the time limit to 10 times the default time limit.
+- SCR16: Providing a script that warns the user a time limit is about to expire.
+- SCR1: Allowing the user to extend the default time limit.
+
+Failures:
+
+- F40: Failure due to using meta redirect with a time limit.
+- F41: Failure due to using meta refresh to reload the page.
+
+Uwagi zakresowe:
+
+- 2.2.1 dotyczy limitów czasu narzuconych przez treść albo aplikację.
+- Nie mieszać z ogólną walidacją formularzy.
+
+## Source QA 2026-05-29: 2.2.2 Pauza, zatrzymanie, ukrycie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.2.2 Pause, Stop, Hide - `https://www.w3.org/TR/WCAG22/#pause-stop-hide`
+- Understanding WCAG 2.2.2 Pause, Stop, Hide - `https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html`
+- How to Meet WCAG 2.2.2 - `https://www.w3.org/WAI/WCAG22/quickref/#pause-stop-hide`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G4: Allowing the content to be paused and restarted from where it was paused.
+- G11: Creating content that blinks for less than 5 seconds.
+- G186: Using a control in the Web page that stops moving, blinking, or auto-updating content.
+- SCR33: Using script to scroll content, and providing a mechanism to pause it.
+- SCR22: Using scripts to control blinking and stop it in five seconds or less.
+
+Failures:
+
+- F16: Failure due to including scrolling content where movement is not essential without a mechanism to pause and restart it.
+- F47: Failure due to using the blink element.
+- F50: Failure due to a script that causes a blink effect without a mechanism to stop it at 5 seconds or less.
+- F7: Failure due to an object or applet for blinking content without a mechanism to pause the blinking for more than 5 seconds.
+
+Uwagi zakresowe:
+
+- 2.2.2 dotyczy ruchu, migania, przewijania i autoaktualizacji.
+- Nie mieszać z animacją uruchamianą ruchem urządzenia z 2.5.4.
+
+## Source QA 2026-05-29: 2.3.1 Trzy błyski lub wartości poniżej progu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.3.1 Three Flashes or Below Threshold - `https://www.w3.org/TR/WCAG22/#three-flashes-or-below-threshold`
+- Understanding WCAG 2.3.1 Three Flashes or Below Threshold - `https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html`
+- How to Meet WCAG 2.3.1 - `https://www.w3.org/WAI/WCAG22/quickref/#three-flashes-or-below-threshold`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G19: Ensuring that no component flashes more than three times in any one-second period.
+- G15: Using a tool to ensure that content does not violate flash thresholds.
+- G176: Keeping the flashing area small enough.
+
+Failures:
+
+- Quick Reference dla 2.3.1 nie wskazuje osobnej listy failures.
+
+Uwagi zakresowe:
+
+- 2.3.1 dotyczy ryzyka napadów wywołanych błyskami.
+- Nie mieszać z kontrastem, samym dyskomfortem wizualnym ani zwykłą animacją bez błysków.
+
+## Source QA 2026-05-29: 4.1.1 Parsowanie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 4.1.1 Parsing - `https://www.w3.org/TR/WCAG22/#parsing`
+- Understanding WCAG 4.1.1 Parsing - `https://www.w3.org/WAI/WCAG22/Understanding/parsing.html`
+- How to Meet WCAG 4.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#parsing`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H88: Using HTML according to spec.
+
+Failures:
+
+- W WCAG 2.2 kryterium jest oznaczone jako przestarzałe i usunięte. Zawartość Understanding dla 4.1.1 jest utrzymana głównie historycznie.
+
+Uwagi zakresowe:
+
+- 4.1.1 w WCAG 2.2 ma status usuniętego kryterium.
+- Błędy parsowania traktować jako sygnał diagnostyczny i przypisywać do aktualnych kryteriów tylko wtedy, gdy powodują realny problem dostępności.
+- Nie mieszać z ogólną jakością HTML.
+
+## Source QA 2026-05-29: 4.1.2 Nazwa, rola, wartość
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 4.1.2 Name, Role, Value - `https://www.w3.org/TR/WCAG22/#name-role-value`
+- Understanding WCAG 4.1.2 Name, Role, Value - `https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html`
+- How to Meet WCAG 4.1.2 - `https://www.w3.org/WAI/WCAG22/quickref/#name-role-value`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- H91: Using HTML form controls and links.
+- H44: Using label elements to associate text labels with form controls.
+- ARIA14: Using aria-label to provide an accessible name where a visible label cannot be used.
+- ARIA16: Using aria-labelledby to provide a name for user interface controls.
+- G108: Using markup features to expose the name and role, allow user-settable properties to be directly set, and provide notification of changes.
+
+Failures:
+
+- F59: Failure due to using script to make div or span a user interface control in HTML without providing a role for the control.
+- F68: Failure due to a user interface control not having a programmatically determined name.
+- F111: Failure due to a control with visible label text but no accessible name.
+
+Uwagi zakresowe:
+
+- 4.1.2 dotyczy nazwy, roli, stanów, właściwości i wartości komponentów interfejsu.
+- Najpierw stosować natywny HTML; ARIA tylko wtedy, gdy natywny HTML nie wystarcza.
+- Nie mieszać z samym tekstem widocznym na ekranie.
+
+## Source QA 2026-05-29: 4.1.3 Komunikaty o stanie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 4.1.3 Status Messages - `https://www.w3.org/TR/WCAG22/#status-messages`
+- Understanding WCAG 4.1.3 Status Messages - `https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html`
+- How to Meet WCAG 4.1.3 - `https://www.w3.org/WAI/WCAG22/quickref/#status-messages`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- ARIA22: Using role=status to present status messages.
+- ARIA19: Using ARIA role=alert or Live Regions to Identify Errors.
+- ARIA23: Using role=log to identify sequential information updates.
+- ARIA25: Using an ARIA live region to convey the status of a progress bar.
+- G199: Providing success feedback when data is submitted successfully.
+
+Failures:
+
+- F103: Failure due to providing status messages that cannot be programmatically determined through role or properties.
+
+Uwagi zakresowe:
+
+- 4.1.3 dotyczy statusów, wyników, postępu, stanu aplikacji i istnienia błędów, gdy komunikat pojawia się bez zmiany kontekstu.
+- Kryterium nie wymaga tworzenia nowych komunikatów, tylko programowego oznaczenia tych, które są już pokazane.
+- Nie mieszać z treścią komunikatu błędu ocenianą w 3.3.1.
+
+## Source QA 2026-05-29: 1.3.4 Orientacja
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.4 Orientation - `https://www.w3.org/TR/WCAG22/#orientation`
+- Understanding WCAG 1.3.4 Orientation - `https://www.w3.org/WAI/WCAG22/Understanding/orientation.html`
+- How to Meet WCAG 1.3.4 - `https://www.w3.org/WAI/WCAG22/quickref/#orientation`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G214: Using a control to allow access to content in different orientations which is otherwise restricted.
+
+Failures:
+
+- F97: Failure due to locking the orientation to landscape or portrait view.
+- F100: Failure due to showing a message asking to reorient device.
+
+Uwagi zakresowe:
+
+- 1.3.4 dotyczy blokady orientacji pionowej albo poziomej.
+- Nie mieszać z ogólnym RWD ani z dopasowaniem treści do ekranu z 1.4.10.
+
+## Source QA 2026-05-29: 1.4.2 Kontrola odtwarzania dźwięku
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.2 Audio Control - `https://www.w3.org/TR/WCAG22/#audio-control`
+- Understanding WCAG 1.4.2 Audio Control - `https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html`
+- How to Meet WCAG 1.4.2 - `https://www.w3.org/WAI/WCAG22/quickref/#audio-control`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G60: Playing a sound that turns off automatically within three seconds.
+- G170: Providing a control near the beginning of the web page that turns off sounds that play automatically.
+- G171: Playing sounds only on user request.
+
+Failures:
+
+- F23: Failure due to playing a sound longer than 3 seconds where there is no mechanism to turn it off.
+- F93: Failure for absence of a way to pause or stop an HTML5 media element that autoplays.
+
+Uwagi zakresowe:
+
+- 1.4.2 dotyczy automatycznie odtwarzanego dźwięku trwającego dłużej niż 3 sekundy.
+- Nie mieszać z napisami, transkrypcją ani audiodeskrypcją.
+
+## Source QA 2026-05-29: 2.4.13 Wygląd fokusu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.13 Focus Appearance - `https://www.w3.org/TR/WCAG22/#focus-appearance`
+- Understanding WCAG 2.4.13 Focus Appearance - `https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html`
+- How to Meet WCAG 2.4.13 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-appearance`
+
+Poziom:
+
+- Oficjalne źródło W3C oznacza 2.4.13 Focus Appearance jako poziom AAA w WCAG 2.2.
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G195: Using an author-supplied, visible focus indicator.
+- C40: Creating a two-color focus indicator to ensure sufficient contrast with all components.
+- C41: Creating a strong focus indicator within the component.
+
+Failures:
+
+- F55: Failure due to using script to remove focus when focus is received.
+- F78: Failure due to styling outlines and borders in a way that removes or renders non-visible the visual focus indicator.
+
+Uwagi zakresowe:
+
+- 2.4.13 dotyczy minimalnego rozmiaru i kontrastu wskaźnika fokusu.
+- Nie mieszać z samym istnieniem widocznego fokusu z 2.4.7 ani z zasłonięciem fokusu z 2.4.11.
+
+## Source QA 2026-05-29: 3.2.6 Spójna pomoc
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.2.6 Consistent Help - `https://www.w3.org/TR/WCAG22/#consistent-help`
+- Understanding WCAG 3.2.6 Consistent Help - `https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html`
+- How to Meet WCAG 3.2.6 - `https://www.w3.org/WAI/WCAG22/quickref/#consistent-help`
+
+Zweryfikowane techniki z How to Meet / Quick Reference:
+
+- G220: Provide a contact-us link in a consistent location.
+
+Failures:
+
+- Inconsistent Help Location.
+
+Uwagi zakresowe:
+
+- 3.2.6 dotyczy spójnej kolejności mechanizmów pomocy, jeśli powtarzają się na wielu stronach w zestawie stron.
+- Kryterium nie wymaga zapewnienia pomocy na każdej stronie.
+- Nie mieszać z ogólną jakością kontaktu, supportu albo obsługi klienta.
+
+## Source QA 2026-05-30: 1.1.1 Treść nietekstowa
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.1.1 Non-text Content - `https://www.w3.org/TR/WCAG22/#non-text-content`
+- Understanding WCAG 1.1.1 Non-text Content - `https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html`
+- How to Meet WCAG 1.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#non-text-content`
+- WAI Images Tutorial: Decorative Images - `https://www.w3.org/WAI/tutorials/images/decorative/`
+- SVG Accessibility Support - `https://www.w3.org/TR/SVG/access`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- H37: Using alt attributes on img elements.
+- H67: Using null alt text and no title attribute on img elements for images that AT should ignore.
+- G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information.
+- G95: Providing short text alternatives that provide a brief description of the non-text content.
+- G73: Providing a long description in another location with a link to it that is immediately adjacent to the non-text content.
+- G92: Providing long description for non-text content that serves the same purpose and presents the same information.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.1.1.
+
+Uwagi zakresowe:
+
+- 1.1.1 dotyczy alternatywy tekstowej dla treści nietekstowej.
+- Nie mieszać z podpisami, transkrypcjami ani opisem audio dla mediów czasowych z grupy 1.2.
+
+## Source QA 2026-05-30: 1.3.2 Zrozumiała kolejność
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.3.2 Meaningful Sequence - `https://www.w3.org/TR/WCAG22/#meaningful-sequence`
+- Understanding WCAG 1.3.2 Meaningful Sequence - `https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html`
+- How to Meet WCAG 1.3.2 - `https://www.w3.org/WAI/WCAG22/quickref/#meaningful-sequence`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.3.2.
+
+Uwagi zakresowe:
+
+- 1.3.2 dotyczy kolejności treści, gdy kolejność wpływa na znaczenie.
+- Nie mieszać z kolejnością fokusu z 2.4.3.
+
+## Source QA 2026-05-30: 1.4.1 Użycie koloru
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.1 Use of Color - `https://www.w3.org/TR/WCAG22/#use-of-color`
+- Understanding WCAG 1.4.1 Use of Color - `https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html`
+- How to Meet WCAG 1.4.1 - `https://www.w3.org/WAI/WCAG22/quickref/#use-of-color`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G14: Ensuring that information conveyed by color differences is also available in text.
+- G111: Using color and pattern.
+- G182: Ensuring that additional visual cues are available when text color differences are used to convey information.
+- C15: Using CSS to change the presentation of a user interface component when it receives focus.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.1.
+
+Uwagi zakresowe:
+
+- 1.4.1 dotyczy użycia koloru jako jedynego sposobu przekazywania informacji.
+- Nie mieszać z kontrastem tekstu z 1.4.3 ani z kontrastem elementów nietekstowych z 1.4.11.
+
+## Source QA 2026-05-30: 1.4.3 Kontrast minimum
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.3 Contrast (Minimum) - `https://www.w3.org/TR/WCAG22/#contrast-minimum`
+- Understanding WCAG 1.4.3 Contrast (Minimum) - `https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html`
+- How to Meet WCAG 1.4.3 - `https://www.w3.org/WAI/WCAG22/quickref/#contrast-minimum`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G18: Ensuring contrast ratio of at least 4.5:1 for normal text.
+- G145: Ensuring contrast ratio of at least 3:1 for large-scale text.
+- G174: Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.3.
+
+Uwagi zakresowe:
+
+- 1.4.3 dotyczy kontrastu tekstu i obrazów tekstu.
+- Nie mieszać z kontrastem elementów interfejsu z 1.4.11.
+
+## Source QA 2026-05-30: 1.4.11 Kontrast elementów nietekstowych
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.11 Non-text Contrast - `https://www.w3.org/TR/WCAG22/#non-text-contrast`
+- Understanding WCAG 1.4.11 Non-text Contrast - `https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html`
+- How to Meet WCAG 1.4.11 - `https://www.w3.org/WAI/WCAG22/quickref/#non-text-contrast`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G195: Using an author-supplied, visible focus indicator.
+- G207: Ensuring that a contrast ratio of 3:1 is provided for icons.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.11.
+
+Uwagi zakresowe:
+
+- 1.4.11 dotyczy kontrastu istotnych elementów nietekstowych, między innymi kontrolek, ikon i stanów.
+- Nie mieszać z kontrastem tekstu z 1.4.3 ani z samą widocznością fokusu z 2.4.7.
+
+## Source QA 2026-05-30: 1.4.13 Treść po najechaniu lub fokusie
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 1.4.13 Content on Hover or Focus - `https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus`
+- Understanding WCAG 1.4.13 Content on Hover or Focus - `https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html`
+- How to Meet WCAG 1.4.13 - `https://www.w3.org/WAI/WCAG22/quickref/#content-on-hover-or-focus`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 1.4.13.
+
+Uwagi zakresowe:
+
+- 1.4.13 dotyczy dodatkowej treści, która pojawia się po hoverze albo fokusie.
+- Nie mieszać z widocznością fokusu ani z ogólnymi tooltipami, które nie pojawiają się po hoverze/fokusie.
+
+## Source QA 2026-05-30: 2.1.1 Klawiatura
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.1.1 Keyboard - `https://www.w3.org/TR/WCAG22/#keyboard`
+- Understanding WCAG 2.1.1 Keyboard - `https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html`
+- How to Meet WCAG 2.1.1 - `https://www.w3.org/WAI/WCAG22/quickref/#keyboard`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.1.1.
+
+Uwagi zakresowe:
+
+- 2.1.1 dotyczy obsługi funkcji z klawiatury.
+- Nie mieszać z pułapką klawiaturową z 2.1.2 ani z widocznością fokusu z 2.4.7.
+
+## Source QA 2026-05-30: 2.1.2 Brak pułapki na klawiaturę
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.1.2 No Keyboard Trap - `https://www.w3.org/TR/WCAG22/#no-keyboard-trap`
+- Understanding WCAG 2.1.2 No Keyboard Trap - `https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html`
+- How to Meet WCAG 2.1.2 - `https://www.w3.org/WAI/WCAG22/quickref/#no-keyboard-trap`
+
+Zweryfikowane techniki:
+
+- Nie dopisano technik w tej rundzie, bo publiczna sekcja źródeł tutoriala wskazuje wyłącznie źródła podstawowe W3C.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.1.2.
+
+Uwagi zakresowe:
+
+- 2.1.2 dotyczy możliwości wyjścia fokusem z komponentu przy użyciu klawiatury.
+- Nie mieszać z samą obsługą wszystkich funkcji z klawiatury z 2.1.1.
+
+## Source QA 2026-05-30: 2.4.3 Kolejność fokusu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.3 Focus Order - `https://www.w3.org/TR/WCAG22/#focus-order`
+- Understanding WCAG 2.4.3 Focus Order - `https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html`
+- How to Meet WCAG 2.4.3 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-order`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G59: Placing the interactive elements in an order that follows sequences and relationships within the content.
+- G90: Providing keyboard-triggered event handlers.
+- C27: Making the DOM order match the visual order.
+- SCR26: Inserting dynamic content into the Document Object Model immediately following its trigger element.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.4.3.
+
+Uwagi zakresowe:
+
+- 2.4.3 dotyczy sensownej kolejności fokusu.
+- Nie mieszać ze zrozumiałą kolejnością treści z 1.3.2 ani z widocznością fokusu z 2.4.7.
+
+## Source QA 2026-05-30: 2.4.7 Widoczny fokus
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 2.4.7 Focus Visible - `https://www.w3.org/TR/WCAG22/#focus-visible`
+- Understanding WCAG 2.4.7 Focus Visible - `https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html`
+- How to Meet WCAG 2.4.7 - `https://www.w3.org/WAI/WCAG22/quickref/#focus-visible`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G149: Using user interface components that are highlighted by the user agent when they receive focus.
+- G165: Using the default focus indicator for the platform.
+- G195: Using an author-supplied, visible focus indicator.
+- C15: Using CSS to change the presentation of a user interface component when it receives focus.
+- C40: Creating a two-color focus indicator to ensure sufficient contrast with all components.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 2.4.7.
+
+Uwagi zakresowe:
+
+- 2.4.7 dotyczy tego, czy fokus klawiatury jest widoczny.
+- Nie mieszać z 2.4.13, które w WCAG 2.2 jest AAA i dotyczy rozmiaru oraz kontrastu wskaźnika fokusu.
+
+## Source QA 2026-05-30: 3.3.1 Identyfikacja błędu
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.1 Error Identification - `https://www.w3.org/TR/WCAG22/#error-identification`
+- Understanding WCAG 3.3.1 Error Identification - `https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html`
+- How to Meet WCAG 3.3.1 - `https://www.w3.org/WAI/WCAG22/quickref/#error-identification`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- G83: Providing text descriptions to identify required fields that were not completed.
+- G84: Providing a text description when the user provides information that is not in the list of allowed values.
+- G85: Providing a text description when user input falls outside the required format or values.
+- H90: Indicating required form controls using label or legend.
+- ARIA21: Using aria-invalid to indicate an error field.
+
+Failures:
+
+- Nie dopisano failure w tej rundzie, bo publiczna sekcja źródeł tutoriala nie wskazuje konkretnego failure W3C dla 3.3.1.
+
+Uwagi zakresowe:
+
+- 3.3.1 dotyczy identyfikacji błędu tekstem.
+- Nie mieszać z sugestiami naprawy błędów z 3.3.3 ani z komunikatami o stanie z 4.1.3.
+
+## Source QA 2026-05-30: 3.3.2 Etykiety lub instrukcje
+
+Status: zweryfikowane.
+
+Zweryfikowane źródła:
+
+- WCAG 2.2: 3.3.2 Labels or Instructions - `https://www.w3.org/TR/WCAG22/#labels-or-instructions`
+- Understanding WCAG 3.3.2 Labels or Instructions - `https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html`
+- How to Meet WCAG 3.3.2 - `https://www.w3.org/WAI/WCAG22/quickref/#labels-or-instructions`
+
+Zweryfikowane techniki z publicznej sekcji źródeł tutoriala:
+
+- H44: Using label elements to associate text labels with form controls.
+- H71: Providing a description for groups of form controls using fieldset and legend elements.
+- G89: Providing expected data format and example.
+- G184: Providing text instructions at the beginning of a form or set of fields.
+- ARIA1: Using aria-describedby property to provide a descriptive label for user interface controls.
+- H90: Indicating required form controls using label or legend.
+
+Failures:
+
+- F82: Failure due to visually formatting a set of phone number fields but not including a text label.
+
+Uwagi zakresowe:
+
+- 3.3.2 dotyczy obecności etykiet lub instrukcji wtedy, gdy są potrzebne do wprowadzania danych.
+- Nie mieszać z identyfikacją błędu z 3.3.1 ani z opisowością nagłówków i etykiet z 2.4.6.

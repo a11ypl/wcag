@@ -178,3 +178,152 @@ Mini-checkpoint po poprawkach `2.1.1`:
 - Zweryfikowana technika: H98. Zweryfikowany failure: F107.
 - W treści zachowano granicę: 1.3.5 dotyczy określonych danych o użytkowniku, których cel można programowo określić, zwykle przez poprawne wartości `autocomplete`; nie wymaga `autocomplete` dla każdego pola formularza.
 - Raport źródeł dla `1.3.5` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: 1.3.3 Właściwości zmysłowe
+
+- `1.3.3 Właściwości zmysłowe`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nową stronę `public/wcag-prostym-jezykiem/1-3-3-wlasciwosci-zmyslowe.html`, zgodną ze slugiem wskazywanym przez nawigację z `1.3.2`.
+- Dodano statyczne demo `wcag-sensory-demo` jako porównanie instrukcji zależnej od cech zmysłowych, instrukcji ryzykownej i instrukcji wskazującej nazwę albo etykietę elementu. Demo nie ma JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` ani ARIA.
+- Technikę i failures W3C dla `1.3.3` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.3.3.
+- Zweryfikowana technika: G96. Zweryfikowane failures: F14, F26.
+- W treści zachowano granicę: 1.3.3 dotyczy instrukcji opartych wyłącznie na kolorze, kształcie, rozmiarze, położeniu, orientacji albo dźwięku; nie zastępuje 1.4.1, 1.3.1, 1.3.2 ani 3.3.2.
+- Raport źródeł dla `1.3.3` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: 1.4.4 Zmiana rozmiaru tekstu
+
+- `1.4.4 Zmiana rozmiaru tekstu`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nową stronę `public/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu.html`, zgodną ze slugiem wskazywanym przez nawigację z `1.4.3`.
+- Dodano statyczne demo `wcag-resize-text-demo` jako porównanie przyciętego tekstu, ryzykownego sztywnego układu i poprawnego układu, który rośnie oraz zawija treść. Demo nie ma JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla `1.4.4` dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG 1.4.4.
+- Zweryfikowane techniki: G142, C28, G179. Zweryfikowane failures: F69, F80, F94.
+- W treści zachowano granicę: 1.4.4 dotyczy powiększenia tekstu do 200% bez utraty treści lub funkcjonalności; nie zastępuje 1.4.10, 1.4.12, 1.4.3 ani 2.4.7.
+- Raport źródeł dla `1.4.4` zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: batch 1.4.5, 1.4.10, 1.4.12
+
+- `1.4.5 Obrazy tekstu`: rozbudowane - gotowe do przeglądu.
+- `1.4.10 Dopasowanie do ekranu`: rozbudowane - gotowe do przeglądu.
+- `1.4.12 Odstępy w tekście`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu.html`, `public/wcag-prostym-jezykiem/1-4-10-dopasowanie-do-ekranu.html`, `public/wcag-prostym-jezykiem/1-4-12-odstepy-w-tekscie.html`.
+- Dodano statyczne demo `wcag-images-text-demo`, `wcag-reflow-demo` i `wcag-text-spacing-demo`. Dema nie mają JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 1.4.5 nie zastępuje 1.1.1, 1.4.10 nie jest ogólną oceną RWD, a 1.4.12 nie zastępuje 1.4.4.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: batch 2.4.1, 2.4.2, 2.4.4
+
+- `2.4.1 Możliwość pominięcia bloków`: rozbudowane - gotowe do przeglądu.
+- `2.4.2 Tytuł strony`: rozbudowane - gotowe do przeglądu.
+- `2.4.4 Cel linku w kontekście`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow.html`, `public/wcag-prostym-jezykiem/2-4-2-tytul-strony.html`, `public/wcag-prostym-jezykiem/2-4-4-cel-linku-w-kontekscie.html`.
+- Dodano statyczne demo `wcag-bypass-demo`, `wcag-page-title-demo` i `wcag-link-purpose-demo`. Dema nie mają JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.4.1 nie zastępuje ogólnej struktury nagłówków, 2.4.2 nie zastępuje `h1`, a 2.4.4 nie dotyczy wyglądu linków ani kontrastu.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-28: batch 2.4.5, 2.4.6, 3.1.1, 3.1.2
+
+- `2.4.5 Wiele sposobów`: rozbudowane - gotowe do przeglądu.
+- `2.4.6 Nagłówki i etykiety`: rozbudowane - gotowe do przeglądu.
+- `3.1.1 Język strony`: rozbudowane - gotowe do przeglądu.
+- `3.1.2 Język części`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-4-5-wiele-sposobow.html`, `public/wcag-prostym-jezykiem/2-4-6-naglowki-i-etykiety.html`, `public/wcag-prostym-jezykiem/3-1-1-jezyk-strony.html`, `public/wcag-prostym-jezykiem/3-1-2-jezyk-czesci.html`.
+- Dodano statyczne demo `wcag-multiple-ways-demo`, `wcag-headings-labels-demo`, `wcag-language-page-demo` i `wcag-language-parts-demo`. Dema nie mają JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.4.5 nie opisuje samej kolejności menu, 2.4.6 nie zastępuje hierarchii nagłówków z 1.3.1, 3.1.1 nie ocenia jakości tłumaczenia, a 3.1.2 nie wymaga oznaczania pojedynczych nazw własnych.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 3.2.1, 3.2.2, 3.2.3, 3.2.4
+
+- `3.2.1 Po otrzymaniu fokusu`: rozbudowane - gotowe do przeglądu.
+- `3.2.2 Podczas wprowadzania danych`: rozbudowane - gotowe do przeglądu.
+- `3.2.3 Spójna nawigacja`: rozbudowane - gotowe do przeglądu.
+- `3.2.4 Spójna identyfikacja`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu.html`, `public/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych.html`, `public/wcag-prostym-jezykiem/3-2-3-spojna-nawigacja.html`, `public/wcag-prostym-jezykiem/3-2-4-spojna-identyfikacja.html`.
+- Dodano statyczne demo `wcag-on-focus-demo`, `wcag-on-input-demo`, `wcag-consistent-nav-demo` i `wcag-consistent-id-demo`. Dema nie mają własnego JavaScriptu, prawdziwych pól formularza, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 3.2.1 nie opisuje samej widoczności fokusu, 3.2.2 nie zastępuje walidacji formularza, 3.2.3 nie jest ogólną oceną jakości menu, a 3.2.4 nie wymaga identycznego wyglądu graficznego każdego elementu.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch multimedia 1.2.1, 1.2.2, 1.2.3, 1.2.4, 1.2.5
+
+- `1.2.1 Tylko audio oraz tylko wideo`: rozbudowane - gotowe do przeglądu.
+- `1.2.2 Napisy rozszerzone`: rozbudowane - gotowe do przeglądu.
+- `1.2.3 Audiodeskrypcja lub alternatywa dla mediów`: rozbudowane - gotowe do przeglądu.
+- `1.2.4 Napisy rozszerzone na żywo`: rozbudowane - gotowe do przeglądu.
+- `1.2.5 Audiodeskrypcja`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/1-2-1-tylko-audio-oraz-tylko-wideo.html`, `public/wcag-prostym-jezykiem/1-2-2-napisy-rozszerzone.html`, `public/wcag-prostym-jezykiem/1-2-3-audiodeskrypcja-lub-alternatywa-dla-mediow.html`, `public/wcag-prostym-jezykiem/1-2-4-napisy-rozszerzone-na-zywo.html`, `public/wcag-prostym-jezykiem/1-2-5-audiodeskrypcja.html`.
+- Dodano statyczne demo `wcag-media-only-demo`, `wcag-captions-demo`, `wcag-media-alt-demo`, `wcag-live-captions-demo` i `wcag-audio-description-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: napisy nie są transkrypcją, transkrypcja nie jest audiodeskrypcją, alternatywa dla mediów ma przekazywać sens całego nagrania, a kryteria dla nagrań i transmisji na żywo mają różne wymagania.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch interakcje 2.1.4, 2.5.1, 2.5.2, 2.5.3, 2.5.4
+
+- `2.1.4 Skróty klawiszowe znakowe`: rozbudowane - gotowe do przeglądu.
+- `2.5.1 Gesty wskaźnika`: rozbudowane - gotowe do przeglądu.
+- `2.5.2 Anulowanie wskazania`: rozbudowane - gotowe do przeglądu.
+- `2.5.3 Etykieta w nazwie`: rozbudowane - gotowe do przeglądu.
+- `2.5.4 Aktywowanie ruchem`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-1-4-skroty-klawiszowe-znakowe.html`, `public/wcag-prostym-jezykiem/2-5-1-gesty-wskaznika.html`, `public/wcag-prostym-jezykiem/2-5-2-anulowanie-wskazania.html`, `public/wcag-prostym-jezykiem/2-5-3-etykieta-w-nazwie.html`, `public/wcag-prostym-jezykiem/2-5-4-aktywowanie-ruchem.html`.
+- Dodano statyczne demo `wcag-character-shortcuts-demo`, `wcag-pointer-gestures-demo`, `wcag-pointer-cancel-demo`, `wcag-label-name-demo` i `wcag-motion-actuation-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.1.4 nie jest ogólną obsługą klawiaturą, 2.5.1 nie zastępuje 2.5.7, 2.5.2 nie dotyczy potwierdzeń błędów formularzy, 2.5.3 nie ocenia samej widoczności tekstu, a 2.5.4 nie dotyczy animacji na stronie.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 2.2.1, 2.2.2, 2.3.1
+
+- `2.2.1 Możliwość dostosowania czasu`: rozbudowane - gotowe do przeglądu.
+- `2.2.2 Pauza, zatrzymanie, ukrycie`: rozbudowane - gotowe do przeglądu.
+- `2.3.1 Trzy błyski lub wartości poniżej progu`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/2-2-1-mozliwosc-dostosowania-czasu.html`, `public/wcag-prostym-jezykiem/2-2-2-pauza-zatrzymanie-ukrycie.html`, `public/wcag-prostym-jezykiem/2-3-1-trzy-blyski-lub-wartosci-ponizej-progu.html`.
+- Dodano statyczne demo `wcag-timing-adjustable-demo`, `wcag-pause-stop-hide-demo` i `wcag-flashing-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 2.2.1 dotyczy limitów czasu, 2.2.2 dotyczy ruchu, migania, przewijania i autoaktualizacji, a 2.3.1 dotyczy błysków mogących wywołać napad padaczkowy.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 4.1.1, 4.1.2, 4.1.3
+
+- `4.1.1 Parsowanie`: rozbudowane - gotowe do przeglądu, z jasnym oznaczeniem, że kryterium jest usunięte w WCAG 2.2.
+- `4.1.2 Nazwa, rola, wartość`: rozbudowane - gotowe do przeglądu.
+- `4.1.3 Komunikaty o stanie`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/4-1-1-parsowanie.html`, `public/wcag-prostym-jezykiem/4-1-2-nazwa-rola-wartosc.html`, `public/wcag-prostym-jezykiem/4-1-3-komunikaty-o-stanie.html`.
+- Dodano statyczne demo `wcag-parsing-demo`, `wcag-name-role-value-demo` i `wcag-status-messages-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex` ani ARIA w renderowanym HTML.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 4.1.1 nie jest ogólną oceną jakości HTML, 4.1.2 nie dotyczy samego tekstu widocznego na ekranie, a 4.1.3 nie zastępuje komunikatów błędów formularza z 3.3.1.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-29: batch 1.3.4, 1.4.2, 2.4.13, 3.2.6
+
+- `1.3.4 Orientacja`: rozbudowane - gotowe do przeglądu.
+- `1.4.2 Kontrola odtwarzania dźwięku`: rozbudowane - gotowe do przeglądu.
+- `2.4.13 Wygląd fokusu`: rozbudowane - gotowe do przeglądu, oznaczone zgodnie z WCAG 2.2 jako poziom AAA.
+- `3.2.6 Spójna pomoc`: rozbudowane - gotowe do przeglądu.
+- Dodano pełną strukturę tutorialową dla każdego kryterium: Krótko, Problem w praktyce, Kogo to dotyczy, Dobry przykład, Zły przykład, Przykłady kodu, Przykład graficzny, Jak sprawdzić, Co sprawdzi automat, Typowe błędy, Powiązane kryteria i Źródła.
+- Dodano nowe strony: `public/wcag-prostym-jezykiem/1-3-4-orientacja.html`, `public/wcag-prostym-jezykiem/1-4-2-kontrola-odtwarzania-dzwieku.html`, `public/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu.html`, `public/wcag-prostym-jezykiem/3-2-6-spojna-pomoc.html`.
+- Dodano statyczne demo `wcag-orientation-demo`, `wcag-audio-control-demo`, `wcag-focus-appearance-demo` i `wcag-consistent-help-demo`. Dema nie mają własnego JavaScriptu, prawdziwych kontrolek, `tabindex`, `role` ani ARIA.
+- Techniki i failures W3C dla batcha dopisano po weryfikacji w How to Meet / Quick Reference oraz Understanding WCAG.
+- W treści zachowano granice: 1.3.4 nie zastępuje 1.4.10, 1.4.2 nie dotyczy napisów ani transkrypcji, 2.4.13 nie zastępuje 2.4.7, a 3.2.6 nie ocenia jakości supportu.
+- Raport źródeł dla batcha zapisano w `content-standards/wcag-prostym-jezykiem-source-qa.md`.
+
+## Status 2026-05-30: finalny QA A/AA tracking
+
+- `1.1.1 Treść nietekstowa`: rozbudowane - gotowe do przeglądu.
+- `2.4.7 Widoczny fokus`: rozbudowane - gotowe do przeglądu.
+- `3.3.1 Identyfikacja błędu`: rozbudowane - gotowe do przeglądu.
+- `3.3.2 Etykiety lub instrukcje`: rozbudowane - gotowe do przeglądu.
+- Checkpoint A/AA: aktywne kryteria WCAG 2.2 A/AA mają pełne tutoriale w `public/wcag-prostym-jezykiem/`.
+- Status `gotowe do przeglądu` domknięty dla `55/55` aktywnych kryteriów WCAG 2.2 A/AA.
+- Source QA domknięte w `content-standards/wcag-prostym-jezykiem-source-qa.md` dla `55/55` aktywnych kryteriów WCAG 2.2 A/AA.
+- `2.4.13 Wygląd fokusu` pozostaje oznaczone jako poziom AAA i nie blokuje domknięcia A/AA.
+- `4.1.1 Parsowanie` pozostaje oznaczone jako kryterium usunięte/przestarzałe w WCAG 2.2 i istnieje edukacyjnie.

@@ -35,8 +35,8 @@
       }
     }
     </script>
-    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles.css?v=17">
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -44,7 +44,7 @@
         <div class="container header-content">
             <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
                 <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
             </a>
             <nav aria-label="Menu główne">
                 <a href="/o-nas">O nas</a>
@@ -79,37 +79,226 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
-                    <p>To kryterium należy do zasady postrzegalności: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
-                    <p>W praktyce oznacza to: Tekst i obrazy tekstu muszą mieć wystarczający kontrast względem tła, żeby dało się je wygodnie przeczytać.</p>
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Tekst musi mieć wystarczający kontrast względem tła, żeby dało się go wygodnie przeczytać.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dlaczego to ważne?</h2>
-                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
+                    <h2>Problem w praktyce</h2>
+                    <p>Na stronie tekst jest jasnoszary na białym tle, biały na jasnym zdjęciu albo fioletowy na ciemnofioletowym tle. Osoba słabowidząca, użytkownik telefonu w słońcu albo osoba korzystająca z gorszego ekranu może nie być w stanie odczytać treści.</p>
+                    <p>To kryterium dotyczy kontrastu tekstu i obrazów tekstu. Nie obejmuje wszystkich elementów nietekstowych, takich jak ikony, obramowania pól formularza czy same komponenty interfejsu. Te tematy opisuje kryterium 1.4.11.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo dotyczy?</h2>
-                    <p>Najbardziej pomaga osobom niewidomym, słabowidzącym, głuchym, niedosłyszącym oraz wszystkim, którzy odbierają treść w trudnych warunkach albo innym kanałem niż zakładał projekt.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak wdrożyć 1.4.3?</h2>
+                    <h2>Kogo to dotyczy</h2>
                     <ul class="detail-list">
-                        <li>Sprawdź, czy informacja nie zależy wyłącznie od jednego zmysłu albo jednego sposobu odbioru.</li>
-                        <li>Dodaj tekst, strukturę, kontrast, napisy, transkrypcję albo inną alternatywę odpowiednią do treści.</li>
-                        <li>Przetestuj stronę bez obrazu, bez dźwięku, przy powiększeniu i przy użyciu technologii wspomagających.</li>
+                        <li>Osób słabowidzących, które potrzebują wyraźnej różnicy między tekstem a tłem.</li>
+                        <li>Osób starszych, u których ostrość widzenia i wrażliwość na kontrast często się zmniejszają.</li>
+                        <li>Osób z zaburzeniami widzenia barw, dla których część zestawień kolorów może być trudna do rozróżnienia.</li>
+                        <li>Osób korzystających z urządzeń mobilnych w słońcu albo przy słabym oświetleniu.</li>
+                        <li>Osób używających ekranów niskiej jakości, z niską jasnością albo nietypowym odwzorowaniem kolorów.</li>
+                        <li>Wszystkich użytkowników, gdy tekst jest mały, cienki albo umieszczony na złożonym tle.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Źródło i licencja</h2>
-                    <p>To materiał pomocniczy. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">specyfikację WCAG 2.1<span class="sr-only"> (otwiera się w nowym oknie)</span></a> oraz normę EN 301 549.</p>
+                    <h2>Dobry przykład</h2>
+                    <ul class="detail-list">
+                        <li>Ciemny tekst na jasnym, jednolitym tle.</li>
+                        <li>Biały tekst na ciemnym, jednolitym tle.</li>
+                        <li>Tekst na zdjęciu z dodatkową ciemną warstwą, która stabilizuje tło.</li>
+                        <li>Linki i komunikaty z kontrastem zgodnym z WCAG.</li>
+                        <li>Metadane typu „POSTRZEGALNOŚĆ · POZIOM A” jako jasny tekst na ciemnofioletowym tle.</li>
+                        <li>Biały tekst na fiolecie <code>#5F28B4</code>, który ma wysoki kontrast i jest czytelny.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <ul class="detail-list">
+                        <li>Jasnoszary tekst na białym tle.</li>
+                        <li>Biały tekst na jasnym zdjęciu.</li>
+                        <li>Cienki tekst w kolorze pastelowym.</li>
+                        <li>Mały tekst w stopce o zbyt niskim kontraście.</li>
+                        <li>Placeholder w formularzu jako jedyna instrukcja i jednocześnie z niskim kontrastem.</li>
+                        <li>Tekst na gradiencie, który w części tła traci czytelność.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Wymagane wartości kontrastu</h2>
+                    <ul class="detail-list">
+                        <li>Zwykły tekst powinien mieć kontrast minimum <strong>4.5:1</strong> względem tła.</li>
+                        <li>Duży tekst powinien mieć kontrast minimum <strong>3:1</strong> względem tła.</li>
+                        <li>Duży tekst to co najmniej 18 pt albo 14 pt, gdy jest pogrubiony.</li>
+                        <li>Poziom AAA wymaga wyższych wartości, ale 1.4.3 jest kryterium poziomu AA.</li>
+                        <li>Logotypy i tekst dekoracyjny mają wyjątki, ale nie należy ich używać jako pretekstu do publikowania ważnych treści o niskim kontraście.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Dobry kontrast tekstu</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Biały tekst na ciemnym fiolecie jest czytelny i ma wysoki kontrast.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.text-on-purple {
+  color: #ffffff;
+  background-color: #5F28B4;
+}</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Ten zestaw kolorów dobrze sprawdza się na ciemnym, jednolitym tle. Podobny układ jest używany w hero tej sekcji.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Zły przykład: jasnoszary tekst</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Jasnoszary tekst na białym tle może być za słabo widoczny, szczególnie dla osób słabowidzących.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.low-contrast-text {
+  color: #b8b8b8;
+  background-color: #ffffff;
+}</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Taki tekst może wyglądać subtelnie, ale dla wielu osób będzie po prostu trudny do przeczytania.</p>
+                        </div>
+                    </section>
+
+                    <section class="wcag-code-example">
+                        <div class="wcag-code-example__header">
+                            <h3>Tekst na zdjęciu z warstwą przyciemniającą</h3>
+                        </div>
+                        <p class="wcag-code-example__description">Jeśli tekst jest na zdjęciu, trzeba kontrolować tło. Sam wybór białego tekstu nie wystarczy, gdy tło jest miejscami jasne.</p>
+                        <div class="wcag-code-example__code">
+                            <p class="wcag-code-example__label">Kod — CSS</p>
+                            <pre><code class="language-css">.hero-text {
+  color: #ffffff;
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.65)
+    ),
+    url("/images/tlo.jpg");
+}</code></pre>
+                        </div>
+                        <div class="wcag-code-example__preview">
+                            <p class="wcag-code-example__label">Jak to działa</p>
+                            <p>Ciemna warstwa zmniejsza ryzyko, że fragment zdjęcia będzie zbyt jasny pod tekstem.</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <p>To jest statyczne demo edukacyjne. Pokazuje typowe sytuacje, w których tekst jest nieczytelny, ryzykowny albo ma dobry kontrast.</p>
+                    <figure class="wcag-contrast-demo">
+                        <div class="wcag-contrast-demo__grid">
+                            <section class="wcag-contrast-demo__item wcag-contrast-demo__item--bad">
+                                <h3>Źle</h3>
+                                <p class="wcag-contrast-demo__sample">Ważna informacja o terminie płatności.</p>
+                                <p class="wcag-contrast-demo__note">Jasnoszary tekst na białym tle jest za delikatny i może zniknąć dla wielu użytkowników.</p>
+                            </section>
+
+                            <section class="wcag-contrast-demo__item wcag-contrast-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <p class="wcag-contrast-demo__sample">Tekst na zmiennym tle może być czytelny tylko miejscami.</p>
+                                <p class="wcag-contrast-demo__note">Gradient albo zdjęcie trzeba sprawdzić w kilku punktach, nie tylko w jednym miejscu.</p>
+                            </section>
+
+                            <section class="wcag-contrast-demo__item wcag-contrast-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <p class="wcag-contrast-demo__sample">Biały tekst na fiolecie #5F28B4 jest wyraźny.</p>
+                                <p class="wcag-contrast-demo__note">Tekst i tło mają stabilną, mocną różnicę jasności.</p>
+                            </section>
+                        </div>
+                        <figcaption>Porównanie trzech wariantów kontrastu tekstu. Ocena jest opisana tekstowo, a nie tylko kolorem.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Znajdź teksty na stronie: akapity, nagłówki, linki, przyciski, formularze, stopki, placeholdery i tekst na grafikach.</li>
+                        <li>Sprawdź kolor tekstu i kolor tła.</li>
+                        <li>Zmierz kontrast narzędziem, na przykład Colour Contrast Analyser, WebAIM Contrast Checker albo DevTools.</li>
+                        <li>Dla zwykłego tekstu sprawdź, czy kontrast wynosi minimum 4.5:1.</li>
+                        <li>Dla dużego tekstu sprawdź, czy kontrast wynosi minimum 3:1.</li>
+                        <li>Jeśli tekst jest na zdjęciu, sprawdź kontrast w kilku miejscach tła.</li>
+                        <li>Sprawdź stany interfejsu, na przykład hover, focus, disabled i active.</li>
+                        <li>Sprawdź stronę przy powiększeniu i na urządzeniu mobilnym.</li>
+                        <li>Nie oceniaj kontrastu „na oko”. Użyj narzędzia.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>Część problemów kontrastu tekstu.</li>
+                        <li>Niektóre problemy z tekstem w przyciskach i linkach.</li>
+                        <li>Część problemów z kolorami zapisanymi w CSS.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>Tekstu osadzonego w obrazie.</li>
+                        <li>Tekstu na złożonym zdjęciu albo gradiencie.</li>
+                        <li>Wszystkich stanów komponentów.</li>
+                        <li>Kontrastu po zmianie stanu, na przykład hover lub focus.</li>
+                        <li>Przypadków, gdzie kolor tła zmienia się dynamicznie.</li>
+                        <li>Czy tekst dekoracyjny faktycznie jest dekoracyjny.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Jasnoszare teksty opisowe.</li>
+                        <li>Blade placeholdery w formularzach.</li>
+                        <li>Tekst na zdjęciach bez przyciemnienia tła.</li>
+                        <li>Pastelowe kolory marek używane do małego tekstu.</li>
+                        <li>Linki i komunikaty o zbyt niskim kontraście.</li>
+                        <li>Stopki z drobnym tekstem o zbyt niskim kontraście.</li>
+                        <li>Przyciski w stanie disabled wyglądające jak zwykły tekst i mające niski kontrast.</li>
+                        <li>Projektowanie „ładne, subtelne”, ale nieczytelne.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/1-4-1-uzycie-koloru">1.4.1 Użycie koloru</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-5-obrazy-tekstu">1.4.5 Obrazy tekstu</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a></li>
+                        <li><a href="/wcag-prostym-jezykiem/3-3-1-identyfikacja-bledu">3.3.1 Identyfikacja błędu</a></li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#contrast-minimum" target="_blank" rel="noopener noreferrer">WCAG 2.2: 1.4.3 Contrast Minimum<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 1.4.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#contrast-minimum" target="_blank" rel="noopener noreferrer">How to Meet WCAG 1.4.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G18" target="_blank" rel="noopener noreferrer">Technika G18<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G145" target="_blank" rel="noopener noreferrer">Technika G145<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G174" target="_blank" rel="noopener noreferrer">Technika G174<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
-                    <a href="/wcag-prostym-jezykiem/1-4-2-kontrola-dzwieku">Poprzednie: 1.4.2 Kontrola dźwięku</a>
+                    <a href="/wcag-prostym-jezykiem/1-4-2-kontrola-odtwarzania-dzwieku">Poprzednie: 1.4.2 Kontrola odtwarzania dźwięku</a>
                     <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
                     <a href="/wcag-prostym-jezykiem/1-4-4-zmiana-rozmiaru-tekstu">Następne: 1.4.4 Zmiana rozmiaru tekstu</a>
                 </nav>
@@ -135,6 +324,6 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/header.js?v=2"></script>
+    <script src="../assets/header.js"></script>
 </body>
 </html>

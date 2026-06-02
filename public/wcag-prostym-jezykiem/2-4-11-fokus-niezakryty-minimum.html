@@ -35,8 +35,8 @@
       }
     }
     </script>
-    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles.css?v=17">
+    <link rel="icon" href="../assets/a11yfirst-icon.svg?v=4" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css?v=15">
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -44,7 +44,7 @@
         <div class="container header-content">
             <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
                 <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=4" alt="" aria-hidden="true">
             </a>
             <nav aria-label="Menu główne">
                 <a href="/o-nas">O nas</a>
@@ -79,39 +79,228 @@
         <section class="knowledge-article wcag-detail" aria-labelledby="criterion-title">
             <div class="container">
                 <article class="knowledge-panel">
-                    <h2 class="section-title" id="criterion-title">Co to jest?</h2>
-                    <p>To kryterium należy do zasady funkcjonalności: użytkownik powinien móc skorzystać z treści lub funkcji w sposób dostępny dla siebie.</p>
-                    <p>W praktyce oznacza to: Element z fokusem nie może być całkowicie zasłonięty przez przyklejone lub nachodzące elementy strony.</p>
+                    <h2 class="section-title" id="criterion-title">Krótko</h2>
+                    <p>Element z fokusem nie może być całkowicie zasłonięty przez przyklejone lub nachodzące elementy strony.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Dlaczego to ważne?</h2>
-                    <p>Bez spełnienia tego wymagania część osób może nie odebrać informacji, nie wykonać zadania albo błędnie zrozumieć działanie strony. Kryterium pomaga zamienić dostępność z dodatku projektowego w realną, przewidywalną część doświadczenia użytkownika.</p>
+                    <h2>Problem w praktyce</h2>
+                    <p>Użytkownik przechodzi po stronie klawiaturą. Fokus trafia na link albo przycisk, ale element znika pod przyklejonym nagłówkiem, paskiem cookie, widgetem czatu, dolnym paskiem akcji, modalem albo panelem bocznym.</p>
+                    <p>Problem widać szczególnie przy automatycznym przewijaniu do kotwicy, przy linkach „przejdź do treści”, po walidacji formularza, przy dynamicznie otwieranych panelach i na małych ekranach. Strona technicznie przenosi fokus, ale użytkownik nie widzi, gdzie aktualnie jest.</p>
+                    <p>W 2.4.11 chodzi o minimum: element z fokusem nie może być całkowicie zasłonięty przez treść utworzoną przez autora strony. Częściowe zasłonięcie jest ryzykowne i może łączyć się z 2.4.12 albo 2.4.13, ale nie opisujemy go automatycznie jako naruszenia 2.4.11.</p>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Kogo dotyczy?</h2>
-                    <p>Najbardziej pomaga osobom korzystającym z klawiatury, przełączników, sterowania głosem, czytników ekranu, powiększenia oraz osobom, które nie mogą wykonać precyzyjnego gestu.</p>
-                </article>
-
-                <article class="knowledge-panel">
-                    <h2>Jak wdrożyć 2.4.11?</h2>
+                    <h2>Kogo to dotyczy</h2>
                     <ul class="detail-list">
-                        <li>Sprawdź, czy funkcję da się obsłużyć klawiaturą i bez precyzyjnych gestów.</li>
-                        <li>Zadbaj o przewidywalną kolejność fokusu, widoczny fokus i możliwość wyjścia z każdego komponentu.</li>
-                        <li>Przetestuj realny proces od początku do końca samą klawiaturą oraz na urządzeniu dotykowym.</li>
+                        <li>Osób korzystających z klawiatury, które śledzą aktualne położenie fokusu wzrokiem.</li>
+                        <li>Osób słabowidzących, które powiększają stronę i widzą tylko fragment ekranu.</li>
+                        <li>Osób korzystających z czytników ekranu razem z widocznym fokusem albo trybem powiększenia.</li>
+                        <li>Osób używających przełączników, urządzeń alternatywnych albo sterowania głosem.</li>
+                        <li>Wszystkich użytkowników na małych ekranach, gdzie sticky nagłówki, banery i czaty łatwo zasłaniają treść.</li>
                     </ul>
                 </article>
 
                 <article class="knowledge-panel">
-                    <h2>Źródło i licencja</h2>
-                    <p>To materiał pomocniczy. Przy decyzjach formalnych sprawdź też <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">specyfikację WCAG 2.1<span class="sr-only"> (otwiera się w nowym oknie)</span></a> oraz normę EN 301 549.</p>
+                    <h2>Dobry przykład</h2>
+                    <p>Strona ma przyklejony nagłówek, ale po przejściu do sekcji link lub nagłówek nie ląduje pod menu. Autor przewidział odstęp dla przewijania do kotwic i testuje stronę klawiaturą przy wszystkich nakładkach.</p>
+                    <ul class="detail-list">
+                        <li>Przy sticky headerze użyj `scroll-padding-top` albo `scroll-margin-top` dla sekcji i kotwic.</li>
+                        <li>Zostaw odpowiedni odstęp przy dolnych paskach, banerach cookie i widgetach czatu.</li>
+                        <li>Gdy otwierasz modal albo panel, przenieś fokus do warstwy i nie zostawiaj fokusu na przykrytej treści.</li>
+                        <li>Jeśli element jest ukryty za warstwą, nie powinien być osiągalny klawiaturą, dopóki warstwa jest modalna.</li>
+                        <li>Sprawdź stronę Tabem, Shift+Tabem i linkami do kotwic na desktopie oraz mobile.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Zły przykład</h2>
+                    <p>Użytkownik naciska Tab, ale aktualny link trafia dokładnie pod przyklejony nagłówek. Fokus istnieje w DOM i czytnik ekranu może go ogłosić, ale wizualnie użytkownik nie widzi aktywnego elementu.</p>
+                    <ul class="detail-list">
+                        <li>Sticky header całkowicie zasłania link po przewinięciu do sekcji.</li>
+                        <li>Fokus przechodzi do treści pod otwartym modalem albo panelem bocznym.</li>
+                        <li>Dolny pasek akcji zakrywa aktywny przycisk.</li>
+                        <li>Widget czatu zasłania link lub przycisk w prawym dolnym rogu.</li>
+                        <li>Przewinięcie do kotwicy chowa nagłówek albo kontrolkę pod przyklejonym menu.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykłady kodu</h2>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">html {
+  scroll-padding-top: 5rem;
+}
+
+.article-section {
+  scroll-margin-top: 5rem;
+}</code></pre>
+                    </div>
+                    <p>`scroll-padding-top` pomaga przy przewijaniu całej strony, a `scroll-margin-top` pomaga konkretnym sekcjom i kotwicom. Wartość powinna odpowiadać realnej wysokości przyklejonego nagłówka z zapasem.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.main-content {
+  padding-top: 1rem;
+}
+
+.main-content :focus-visible {
+  outline: 3px solid #5b2aa0;
+  outline-offset: 4px;
+}</code></pre>
+                    </div>
+                    <p>Przyklejony nagłówek jest dopuszczalny, ale trzeba zostawić przestrzeń i testować, czy fokusowane elementy nie chowają się pod warstwą. Sam wyraźny outline nie wystarczy, jeśli cały element jest zasłonięty.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — CSS</p>
+                        <pre><code class="language-css">.site-header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.section-heading {
+  scroll-margin-top: 0;
+}</code></pre>
+                    </div>
+                    <p>To zły przykład. Nagłówek jest przyklejony nad treścią, ale sekcje nie mają żadnego marginesu przewijania. Po przejściu do kotwicy element z fokusem może znaleźć się całkowicie pod nagłówkiem.</p>
+
+                    <div class="wcag-code-example">
+                        <p class="wcag-code-example__label">Kod — HTML</p>
+                        <pre><code class="language-html">&lt;main inert&gt;
+  &lt;a href="/konto/ustawienia"&gt;
+    Ustawienia konta
+  &lt;/a&gt;
+&lt;/main&gt;
+
+&lt;dialog open&gt;
+  &lt;h2&gt;Potwierdź działanie&lt;/h2&gt;
+  &lt;p&gt;Fokus powinien pozostać w tym oknie, dopóki jest otwarte.&lt;/p&gt;
+  &lt;button type="button"&gt;
+    Zamknij
+  &lt;/button&gt;
+&lt;/dialog&gt;</code></pre>
+                    </div>
+                    <p>To skrócony wzorzec koncepcyjny. Gdy warstwa modalna przykrywa stronę, treść pod spodem nie powinna dalej przyjmować fokusu. W realnym komponencie trzeba też zadbać o przeniesienie fokusu do okna i logiczny powrót po zamknięciu.</p>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Przykład graficzny</h2>
+                    <figure class="wcag-focus-obscured-demo">
+                        <div class="wcag-focus-obscured-demo__grid">
+                            <div class="wcag-focus-obscured-demo__item wcag-focus-obscured-demo__item--bad">
+                                <h3>Źle</h3>
+                                <div class="wcag-focus-obscured-demo__viewport">
+                                    <div class="wcag-focus-obscured-demo__sticky">Przyklejony nagłówek</div>
+                                    <div class="wcag-focus-obscured-demo__focus-target wcag-focus-obscured-demo__focus-target--hidden">Link z fokusem</div>
+                                    <div class="wcag-focus-obscured-demo__content">Treść strony</div>
+                                </div>
+                                <p class="wcag-focus-obscured-demo__note">Element z fokusem jest całkowicie pod warstwą.</p>
+                            </div>
+
+                            <div class="wcag-focus-obscured-demo__item wcag-focus-obscured-demo__item--risky">
+                                <h3>Ryzykownie</h3>
+                                <div class="wcag-focus-obscured-demo__viewport">
+                                    <div class="wcag-focus-obscured-demo__sticky">Przyklejony nagłówek</div>
+                                    <div class="wcag-focus-obscured-demo__focus-target wcag-focus-obscured-demo__focus-target--partial">Przycisk z fokusem</div>
+                                    <div class="wcag-focus-obscured-demo__content">Treść strony</div>
+                                </div>
+                                <p class="wcag-focus-obscured-demo__note">Fokus jest widoczny tylko częściowo albo za blisko warstwy.</p>
+                            </div>
+
+                            <div class="wcag-focus-obscured-demo__item wcag-focus-obscured-demo__item--good">
+                                <h3>Dobrze</h3>
+                                <div class="wcag-focus-obscured-demo__viewport">
+                                    <div class="wcag-focus-obscured-demo__sticky">Przyklejony nagłówek</div>
+                                    <div class="wcag-focus-obscured-demo__focus-target wcag-focus-obscured-demo__focus-target--clear">Link z fokusem</div>
+                                    <div class="wcag-focus-obscured-demo__content">Treść strony</div>
+                                </div>
+                                <p class="wcag-focus-obscured-demo__note">Element z fokusem ma odstęp i jest widoczny w całości.</p>
+                            </div>
+                        </div>
+                        <figcaption>To jest statyczny schemat zasłonięcia fokusu. Pokazuje, czy przyklejona warstwa całkowicie ukrywa aktualny element, czy zostawia go widocznym.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Jak sprawdzić</h2>
+                    <ol class="detail-list">
+                        <li>Znajdź elementy przyklejone albo nachodzące na treść: nagłówki, banery, czaty, paski dolne, modale i panele.</li>
+                        <li>Przejdź po stronie klawiaturą od początku do końca, używając Tab i Shift+Tab.</li>
+                        <li>Sprawdź, czy każdy element z fokusem jest przynajmniej częściowo widoczny.</li>
+                        <li>Użyj linków do kotwic, skip linków i linków prowadzących do sekcji w środku strony.</li>
+                        <li>Otwórz modal, menu albo panel i sprawdź, czy fokus nie trafia do treści przykrytej warstwą.</li>
+                        <li>Sprawdź stronę przy powiększeniu, na wąskim ekranie i z otwartymi banerami, które zwykle pojawiają się użytkownikowi.</li>
+                        <li>Jeśli fokus chowa się całkowicie, popraw odstępy, przewijanie albo zarządzanie fokusem.</li>
+                    </ol>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Co sprawdzi automat, a czego nie</h2>
+                    <h3>Automat może wykryć</h3>
+                    <ul class="detail-list">
+                        <li>część elementów `position: fixed` i `position: sticky`, które mogą zasłaniać treść,</li>
+                        <li>część problemów z fokusem w modalach i panelach,</li>
+                        <li>brak widocznego wskaźnika fokusu, choć to jest głównie temat 2.4.7,</li>
+                        <li>część błędów struktury, które prowadzą do fokusu pod warstwą.</li>
+                    </ul>
+                    <h3>Automat nie oceni pewnie</h3>
+                    <ul class="detail-list">
+                        <li>czy element z fokusem jest całkowicie zasłonięty w konkretnym widoku,</li>
+                        <li>czy baner cookie, czat albo pasek dolny pojawia się tylko w wybranych warunkach,</li>
+                        <li>czy przewinięcie do kotwicy ustawia aktywny element pod nagłówkiem,</li>
+                        <li>czy problem występuje przy powiększeniu albo na małym ekranie,</li>
+                        <li>czy częściowe zasłonięcie jest tylko ryzykiem, czy wchodzi już w zakres innego kryterium.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Typowe błędy</h2>
+                    <ul class="detail-list">
+                        <li>Sticky header bez `scroll-margin-top` albo `scroll-padding-top` dla kotwic.</li>
+                        <li>Skip link prowadzący do elementu schowanego pod nagłówkiem.</li>
+                        <li>Baner cookie zasłaniający przyciski na dole ekranu.</li>
+                        <li>Widget czatu przykrywający aktywny link lub przycisk.</li>
+                        <li>Modal, który wizualnie przykrywa stronę, ale fokus nadal trafia do elementów pod spodem.</li>
+                        <li>Panel boczny zasłaniający część strony bez ograniczenia fokusu do panelu.</li>
+                        <li>Testowanie fokusu tylko na dużym ekranie, bez powiększenia i bez banerów widocznych dla użytkownika.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Powiązane kryteria</h2>
+                    <ul class="detail-list">
+                        <li><a href="/wcag-prostym-jezykiem/2-4-3-kolejnosc-fokusu">2.4.3 Kolejność fokusu</a>: gdy problem dotyczy logicznej kolejności przechodzenia po elementach.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">2.4.7 Widoczny fokus</a>: gdy trzeba sprawdzić, czy wskaźnik fokusu w ogóle jest widoczny.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu">2.4.13 Wygląd fokusu</a>: gdy oceniamy parametry i powierzchnię wskaźnika fokusu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">1.4.11 Kontrast elementów nietekstowych</a>: gdy problemem jest kontrast obramowania albo wskaźnika fokusu.</li>
+                        <li><a href="/wcag-prostym-jezykiem/2-4-1-mozliwosc-pominiecia-blokow">2.4.1 Możliwość pominięcia bloków</a>: gdy skip link albo inny mechanizm pomijania bloków musi prowadzić do widocznego miejsca.</li>
+                    </ul>
+                </article>
+
+                <article class="knowledge-panel">
+                    <h2>Źródła</h2>
+                    <ul class="detail-list">
+                        <li><a href="https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum" target="_blank" rel="noopener noreferrer">WCAG 2.2: 2.4.11 Focus Not Obscured (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 2.4.11: Focus Not Obscured (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#focus-not-obscured-minimum" target="_blank" rel="noopener noreferrer">How to Meet WCAG 2.4.11: Focus Not Obscured (Minimum)<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C43" target="_blank" rel="noopener noreferrer">C43: Using CSS margin and scroll-margin to un-obscure content<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                        <li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F110" target="_blank" rel="noopener noreferrer">F110: Failure due to opening a dialog or menu which obscures focused content<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                    </ul>
                 </article>
 
                 <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
-                    <a href="/wcag-prostym-jezykiem/2-4-10-naglowki-sekcji">Poprzednie: 2.4.10 Nagłówki sekcji</a>
+                    <a href="/wcag-prostym-jezykiem/2-4-7-widoczny-fokus">Poprzednie opracowane: 2.4.7 Widoczny fokus</a>
                     <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
-                    <a href="/wcag-prostym-jezykiem/2-4-12-fokus-niezakryty-rozszerzony">Następne: 2.4.12 Fokus niezakryty (rozszerzony)</a>
+                    <a href="/wcag-prostym-jezykiem/2-4-13-wyglad-fokusu">Następne opracowane: 2.4.13 Wygląd fokusu</a>
                 </nav>
             </div>
         </section>
@@ -135,6 +324,6 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/header.js?v=2"></script>
+    <script src="../assets/header.js"></script>
 </body>
 </html>
