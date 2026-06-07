@@ -2551,6 +2551,299 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+/* AI IN DIGITAL ACCESSIBILITY ARTICLE */
+.ai-page .ai-article {
+    padding-top: 4rem;
+}
+
+.ai-page .ai-article > .container {
+    max-width: 980px;
+}
+
+.ai-page .ai-intro {
+    font-size: 1.12rem;
+    margin: 0 auto 3rem;
+    max-width: 850px;
+}
+
+.ai-page .ai-lead {
+    font-size: 1.3rem;
+    line-height: 1.55;
+}
+
+.ai-page .ai-summary {
+    border-left: 6px solid var(--accent);
+    font-size: 1.2rem;
+    margin-top: 1.75rem;
+    padding: 0.5rem 0 0.5rem 1.25rem;
+}
+
+.ai-page .ai-toc {
+    background: var(--light);
+    border: 3px solid var(--primary);
+    border-radius: 8px;
+    margin: 0 0 4rem;
+    padding: 1.75rem 2rem;
+}
+
+.ai-page .ai-toc h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ai-page .ai-toc ul {
+    columns: 2;
+    gap: 3rem;
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.ai-page .ai-toc li {
+    break-inside: avoid;
+    margin-bottom: 0.55rem;
+}
+
+.ai-page .ai-article a:not(.btn) {
+    color: var(--primary);
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+}
+
+.ai-page .ai-article a:not(.btn):visited {
+    color: #4a1f8f;
+}
+
+.ai-page .ai-article a:not(.btn):hover {
+    color: black;
+}
+
+.ai-page .ai-section {
+    margin: 0 0 4.5rem;
+    scroll-margin-top: 180px;
+}
+
+.ai-page .ai-section > h2,
+.ai-page .ai-sources > h2 {
+    color: var(--primary);
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.ai-page .ai-section > h3 {
+    color: var(--dark);
+    font-size: 1.5rem;
+    margin: 2.5rem 0 1rem;
+}
+
+.ai-page .ai-highlight {
+    background: #f5efff;
+    border-left: 8px solid var(--primary);
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem 1.75rem;
+}
+
+.ai-page .ai-highlight > :last-child {
+    margin-bottom: 0;
+}
+
+.ai-page .ai-highlight-warning {
+    background: #fff4e8;
+    border-left-color: var(--accent);
+}
+
+.ai-page .ai-two-columns,
+.ai-page .ai-use-cases,
+.ai-page .ai-services,
+.ai-page .ai-mistakes {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ai-page .ai-two-columns .knowledge-panel,
+.ai-page .ai-use-cases .knowledge-panel,
+.ai-page .ai-services .knowledge-panel,
+.ai-page .ai-mistakes .knowledge-panel,
+.ai-page .ai-levels .knowledge-panel {
+    margin-bottom: 0;
+}
+
+.ai-page .ai-panel-warning {
+    border-color: var(--accent);
+}
+
+.ai-page .ai-panel-warning h3 {
+    color: #8a4300;
+}
+
+.ai-page .ai-levels {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 2rem;
+}
+
+.ai-page .ai-table-wrapper {
+    scrollbar-color: var(--primary) var(--gray-light);
+}
+
+.ai-page .ai-table-wrapper:focus-visible {
+    outline: 4px solid #ff00ff;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 8px #ccff00;
+}
+
+.ai-page .knowledge-table code {
+    background: var(--gray-light);
+    border-radius: 4px;
+    padding: 0.1em 0.3em;
+}
+
+.ai-page .ai-steps {
+    counter-reset: ai-step;
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.ai-page .ai-steps > li {
+    border-left: 6px solid var(--accent);
+    counter-increment: ai-step;
+    margin-bottom: 1.5rem;
+    padding: 0.25rem 0 0.25rem 1.5rem;
+}
+
+.ai-page .ai-steps h3 {
+    color: var(--primary);
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.ai-page .ai-steps h3::before {
+    content: counter(ai-step) ". ";
+}
+
+.ai-page .ai-checklist {
+    display: grid;
+    gap: 0.75rem 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    list-style: none;
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+}
+
+.ai-page .ai-checklist li {
+    background: var(--light);
+    border-left: 5px solid var(--accent);
+    font-weight: 700;
+    padding: 0.8rem 1rem;
+}
+
+.ai-page .ai-faq {
+    margin-top: 2rem;
+}
+
+.ai-page .ai-faq-item {
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.ai-page .ai-faq-item summary {
+    align-items: center;
+    color: var(--dark);
+    cursor: pointer;
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 800;
+    gap: 1.5rem;
+    justify-content: space-between;
+    list-style: none;
+    padding: 1.5rem 2rem;
+}
+
+.ai-page .ai-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ai-page .ai-faq-item summary::marker {
+    content: "";
+}
+
+.ai-page .ai-faq-item summary:hover {
+    color: var(--primary);
+}
+
+.ai-page .ai-faq-icon {
+    color: var(--accent);
+    flex: 0 0 auto;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.ai-page .ai-faq-item[open] .ai-faq-icon {
+    transform: rotate(180deg);
+}
+
+.ai-page .ai-faq-answer {
+    border-top: 1px solid var(--gray-light);
+    color: black;
+    line-height: 1.8;
+    padding: 1.5rem 2rem 1rem;
+}
+
+.ai-page .ai-faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-page .ai-cta {
+    background: var(--primary);
+    border-radius: 8px;
+    color: white;
+    margin: 1rem 0 4.5rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.ai-page .ai-cta h2 {
+    color: white;
+    font-size: 2.1rem;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.ai-page .ai-cta p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 780px;
+}
+
+.ai-page .ai-cta .btn {
+    background: var(--accent);
+    color: var(--text-on-accent);
+}
+
+.ai-page .ai-cta .btn:hover {
+    background: white;
+    color: var(--primary);
+}
+
+.ai-page .ai-sources {
+    border-top: 3px solid var(--primary);
+    padding-top: 2.5rem;
+}
+
+.ai-page .ai-sources .recommended-resources {
+    margin-bottom: 0;
+}
+
 .shop-products-section {
     background: white;
 }
@@ -3951,6 +4244,10 @@ footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: 
     .knowledge-grid {
         grid-template-columns: 1fr;
     }
+
+    .ai-page .ai-levels {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 640px) {
@@ -3967,6 +4264,27 @@ footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: 
     .knowledge-tabs a { width: 100%; }
     .knowledge-article { padding: 4rem 1rem; }
     .knowledge-panel { padding: 1.5rem 1rem; }
+    .ai-page .ai-article { padding-top: 3rem; }
+    .ai-page .ai-lead { font-size: 1.15rem; }
+    .ai-page .ai-toc { padding: 1.5rem 1.25rem; }
+    .ai-page .ai-toc ul { columns: 1; }
+    .ai-page .ai-section { margin-bottom: 3.5rem; scroll-margin-top: 2rem; }
+    .ai-page .ai-section > h2,
+    .ai-page .ai-sources > h2 { font-size: 1.8rem; }
+    .ai-page .ai-two-columns,
+    .ai-page .ai-use-cases,
+    .ai-page .ai-services,
+    .ai-page .ai-mistakes,
+    .ai-page .ai-checklist { grid-template-columns: 1fr; }
+    .ai-page .ai-highlight { padding: 1.25rem 1rem; }
+    .ai-page .ai-faq-item summary {
+        gap: 1rem;
+        padding: 1.25rem 1rem;
+    }
+    .ai-page .ai-faq-answer { padding: 1.25rem 1rem 0.5rem; }
+    .ai-page .ai-cta { padding: 2rem 1rem; }
+    .ai-page .ai-cta h2 { font-size: 1.75rem; }
+    .ai-page .ai-cta .btn { width: 100%; }
     .wcag-code-example { padding: 1rem; }
     .wcag-code-example pre { font-size: 0.85rem; }
     .pricing { padding: 4rem 1rem; }

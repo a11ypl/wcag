@@ -3,50 +3,51 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI w dostępności cyfrowej - Accessibility First</title>
-    <meta name="description" content="Praktyczne wskazówki o AI w dostępności cyfrowej i audytach.">
+    <title>AI w dostępności cyfrowej — jak sztuczna inteligencja wspiera produkty i usługi cyfrowe</title>
+    <meta name="description" content="Jak AI może wspierać dostępność cyfrową stron, aplikacji, dokumentów i usług? Praktyczne zastosowania, ograniczenia, ryzyka i rola eksperta WCAG.">
     <link rel="canonical" href="https://www.a11yfirst.pl/ai-w-dostepnosci-cyfrowej">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
-    <meta property="og:title" content="AI w dostępności cyfrowej - Accessibility First">
-    <meta property="og:description" content="Praktyczne wskazówki o AI w dostępności cyfrowej i audytach.">
+    <meta property="og:title" content="AI w dostępności cyfrowej — jak sztuczna inteligencja wspiera produkty i usługi cyfrowe">
+    <meta property="og:description" content="Praktyczne zastosowania AI w dostępności cyfrowej, jej ograniczenia, ryzyka i rola eksperta WCAG.">
     <meta property="og:url" content="https://www.a11yfirst.pl/ai-w-dostepnosci-cyfrowej">
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI w dostępności cyfrowej - Accessibility First">
-    <meta name="twitter:description" content="Praktyczne wskazówki o AI w dostępności cyfrowej i audytach.">
+    <meta name="twitter:title" content="AI w dostępności cyfrowej — jak sztuczna inteligencja wspiera produkty i usługi cyfrowe">
+    <meta name="twitter:description" content="Praktyczne zastosowania AI w dostępności cyfrowej, jej ograniczenia, ryzyka i rola eksperta WCAG.">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "AI w dostępności cyfrowej",
-          "headline": "AI w dostępności cyfrowej",
-          "description": "Praktyczne wskazówki o AI w dostępności cyfrowej i audytach.",
-          "url": "https://www.a11yfirst.pl/ai-w-dostepnosci-cyfrowej",
-          "isPartOf": {
-            "@type": "WebSite",
-            "name": "Accessibility First",
-            "url": "https://www.a11yfirst.pl"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Włącz Wizję sp. z o.o.",
-            "url": "https://wlaczwizje.pl"
-          }
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "name": "AI w dostępności cyfrowej",
+        "headline": "AI w dostępności cyfrowej",
+        "description": "Jak AI może wspierać dostępność cyfrową stron, aplikacji, dokumentów i usług? Praktyczne zastosowania, ograniczenia, ryzyka i rola eksperta WCAG.",
+        "url": "https://www.a11yfirst.pl/ai-w-dostepnosci-cyfrowej",
+        "inLanguage": "pl",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Accessibility First",
+          "url": "https://www.a11yfirst.pl"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Włącz Wizję sp. z o.o.",
+          "url": "https://wlaczwizje.pl"
         }
-        </script>
+      }
+    </script>
     <link rel="icon" href="assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/styles.css?v=17">
+    <link rel="stylesheet" href="assets/styles.css?v=18">
   </head>
-  <body>
+  <body class="ai-page">
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
     <header>
       <div class="container header-content">
         <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
-        <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-        <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+          <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+          <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
         </a>
         <nav aria-label="Menu główne">
           <a href="/o-nas">O nas</a>
@@ -62,77 +63,564 @@
     <main id="main">
       <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
         <ol>
-          <li>
-            <a href="/">Strona główna</a>
-          </li>
-          <li>
-            <a href="/baza-wiedzy">Baza wiedzy</a>
-          </li>
+          <li><a href="/">Strona główna</a></li>
+          <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
           <li aria-current="page">AI w dostępności cyfrowej</li>
         </ol>
       </nav>
+
       <section class="hero page-hero">
         <div class="container">
-          <h1>AI w dostępności cyfrowej</h1>
-          <p class="subtitle">AI może wspierać audytora, ale nie zastępuje eksperckiej oceny i testów z użytkownikiem.</p>
+          <p class="eyebrow">AI i dostępność cyfrowa</p>
+          <h1 id="page-title">AI w dostępności cyfrowej</h1>
+          <p class="subtitle">AI może przyspieszyć analizę, raportowanie i kontrolę jakości. Nie zastępuje jednak testów manualnych, technologii asystujących ani eksperckiej oceny.</p>
         </div>
       </section>
-      <section class="knowledge-article" aria-labelledby="ai-title">
+
+      <article class="knowledge-article ai-article" aria-labelledby="page-title">
         <div class="container">
-          <p class="eyebrow">Instrukcja praktyczna</p>
-          <h2 class="section-title" id="ai-title">Co trzeba sprawdzić?</h2>
-          <article class="knowledge-panel">
-            <ul class="detail-list">
-              <li>Czy dane wejściowe są kompletne, konkretne i możliwe do weryfikacji.</li>
-              <li>Czy pojęcia używane w pracy z AI, takie jak prompt, RAG, fine-tuning i automatyzacja, są wyjaśnione zespołowi prostym językiem.</li>
-              <li>Czy odpowiedź AI jest sprawdzona z WCAG, kodem i zachowaniem interfejsu.</li>
-              <li>Czy AI nie generuje pewnych rekomendacji na podstawie niepełnego kontekstu.</li>
-              <li>Czy wrażliwe dane nie trafiają do narzędzia bez podstawy i kontroli.</li>
-              <li>Czy asystent pomaga w porządkowaniu pracy, a nie podejmuje decyzję za audytora.</li>
-              <li>Czy raport zachowuje odpowiedzialność autora i jasne uzasadnienia.</li>
+          <div class="ai-intro">
+            <p class="ai-lead">Sztuczna inteligencja może realnie wspierać dostępność cyfrową produktów i usług. Pomaga szybciej analizować dane, porządkować wyniki testów, opisywać błędy, przygotowywać rekomendacje i utrzymywać standardy w zespołach projektowych.</p>
+            <p><strong>Ale AI nie zastępuje dostępności.</strong></p>
+            <p>Nie podejmie za zespół decyzji projektowej. Nie sprawdzi pełnego doświadczenia użytkownika. Nie potwierdzi zgodności z WCAG bez rzetelnej metodyki, testów manualnych, technologii asystujących i oceny eksperckiej.</p>
+            <p class="ai-summary"><strong>Dobrze użyta AI przyspiesza pracę. Źle użyta daje fałszywe poczucie bezpieczeństwa.</strong></p>
+          </div>
+
+          <nav class="ai-toc" aria-labelledby="ai-toc-title">
+            <h2 id="ai-toc-title">Na tej stronie</h2>
+            <ul>
+              <li><a href="#najwazniejsza-zasada">Najważniejsza zasada</a></li>
+              <li><a href="#zastosowania">Gdzie AI zwiększa dostępność</a></li>
+              <li><a href="#automatyzacja">Co można zautomatyzować</a></li>
+              <li><a href="#ai-a-wcag">AI a WCAG</a></li>
+              <li><a href="#bezpieczne-wdrozenie">Bezpieczne wdrożenie</a></li>
+              <li><a href="#model-pracy">Model pracy Accessibility First</a></li>
+              <li><a href="#bledy">Najczęstsze błędy</a></li>
+              <li><a href="#faq">Pytania i odpowiedzi</a></li>
+              <li><a href="#zrodla">Źródła</a></li>
             </ul>
-          </article>
-          <article class="knowledge-panel">
-            <h3>Polecane zasoby</h3>
-            <ol class="recommended-resources">
+          </nav>
+
+          <section class="ai-section" id="najwazniejsza-zasada">
+            <h2>Najważniejsza zasada</h2>
+            <div class="ai-highlight">
+              <p>AI ma największą wartość wtedy, gdy działa jako <strong>asystent procesu dostępności</strong>, a nie jako automatyczny „audytor”.</p>
+            </div>
+            <div class="ai-two-columns">
+              <section class="knowledge-panel">
+                <h3 id="ai-moze-title">AI może pomóc zespołowi</h3>
+                <ul class="detail-list">
+                  <li>Szybciej znaleźć potencjalne problemy.</li>
+                  <li>Uporządkować obserwacje z testów.</li>
+                  <li>Przygotować roboczy opis błędu.</li>
+                  <li>Wskazać możliwe kryteria WCAG.</li>
+                  <li>Zaproponować rekomendację wdrożeniową.</li>
+                  <li>Przeanalizować powtarzalne wzorce w interfejsie.</li>
+                  <li>Wspierać tworzenie dostępnych treści.</li>
+                  <li>Poprawiać spójność raportów.</li>
+                  <li>Monitorować ryzyko regresji po zmianach.</li>
+                </ul>
+              </section>
+              <section class="knowledge-panel ai-panel-warning">
+                <h3 id="ai-nie-powinna-title">AI nie powinna samodzielnie</h3>
+                <ul class="detail-list">
+                  <li>Deklarować zgodności z WCAG.</li>
+                  <li>Zastępować audytu dostępności cyfrowej.</li>
+                  <li>Oceniać pełnego doświadczenia osób z niepełnosprawnościami.</li>
+                  <li>Pomijać testów klawiaturą i czytnikiem ekranu.</li>
+                  <li>Generować finalnych deklaracji dostępności bez odpowiedzialności człowieka.</li>
+                  <li>Publikować zmian bez kontroli zespołu.</li>
+                </ul>
+              </section>
+            </div>
+          </section>
+
+          <section class="ai-section" id="zastosowania">
+            <h2>Gdzie AI realnie zwiększa dostępność cyfrową</h2>
+
+            <section class="knowledge-panel">
+              <h3 id="projektowanie-title">1. W projektowaniu produktów i usług</h3>
+              <p>AI może pomóc już na etapie koncepcji produktu. Dużo większą wartość daje użycie jej wcześniej: przy analizie wymagań, projektowaniu formularzy, tworzeniu ścieżek użytkownika, pisaniu komunikatów i porządkowaniu treści.</p>
+              <p>Przykładowe zastosowania:</p>
+              <ul class="detail-list">
+                <li>Analiza makiet pod kątem potencjalnych barier.</li>
+                <li>Sprawdzanie, czy proces można obsłużyć bez myszy.</li>
+                <li>Wykrywanie zbyt skomplikowanych formularzy.</li>
+                <li>Upraszczanie języka komunikatów.</li>
+                <li>Przygotowywanie alternatywnych wersji treści.</li>
+                <li>Tworzenie checklist dla projektantów i developerów.</li>
+                <li>Analiza ryzyka dostępności w backlogu.</li>
+              </ul>
+              <p>AI może więc wspierać zasadę „accessibility first”: dostępność planujemy przed wdrożeniem, a nie dopiero po publikacji.</p>
+            </section>
+
+            <section class="knowledge-panel">
+              <h3 id="kod-title">2. W analizie kodu, HTML, CSS i ARIA</h3>
+              <p>Część problemów dostępności da się wykryć automatycznie albo półautomatycznie. AI może wspierać analizę kodu, szczególnie gdy dostaje konkretne dane wejściowe: HTML, CSS, strukturę komponentu, wynik testu automatycznego albo opis zachowania interfejsu.</p>
+              <p>AI może pomóc w wykrywaniu problemów takich jak:</p>
+              <ul class="detail-list">
+                <li>Brak etykiety pola formularza.</li>
+                <li>Niepoprawne użycie nagłówków.</li>
+                <li>Link lub przycisk bez zrozumiałej nazwy.</li>
+                <li>Nadużywanie ARIA albo sprzeczne role i atrybuty.</li>
+                <li>Brak komunikatu błędu.</li>
+                <li>Nieczytelna struktura tabeli.</li>
+                <li>Potencjalny problem z kontrastem lub brak widocznego fokusu.</li>
+                <li>Niejasny tekst alternatywny.</li>
+              </ul>
+              <p>Model może analizować DOM, kod albo zrzut ekranu, ale zwykle nie ma pełnego dostępu do realnego doświadczenia użytkownika, drzewa dostępności, zachowania w konkretnym czytniku ekranu i kontekstu biznesowego.</p>
+            </section>
+
+            <section class="knowledge-panel">
+              <h3 id="audyty-wcag-title">3. W audytach WCAG</h3>
+              <p>AI może przyspieszyć wybrane elementy pracy audytora dostępności cyfrowej. Szczególnie dobrze sprawdza się jako narzędzie do porządkowania informacji.</p>
+              <ul class="detail-list">
+                <li>Mapowanie obserwacji na kryteria WCAG.</li>
+                <li>Tworzenie roboczych opisów błędów.</li>
+                <li>Porównywanie podobnych problemów.</li>
+                <li>Standaryzacja języka raportu.</li>
+                <li>Generowanie propozycji rekomendacji.</li>
+                <li>Streszczanie wyników testów.</li>
+                <li>Analiza powtarzalnych komponentów.</li>
+                <li>Tworzenie list kontrolnych dla reaudytu.</li>
+              </ul>
+              <p>Zgodność z WCAG nie wynika z samej odpowiedzi modelu. WCAG opiera się na testowalnych kryteriach sukcesu, zorganizowanych wokół zasad: postrzegalność, funkcjonalność, zrozumiałość i solidność. To kryteria sukcesu decydują o zgodności, a nie deklaracja narzędzia.</p>
+              <p>Dlatego wynik AI powinien być traktowany jako materiał roboczy, który wymaga weryfikacji audytora.</p>
+            </section>
+
+            <section class="knowledge-panel">
+              <h3 id="tresci-title">4. W tworzeniu treści i dokumentów</h3>
+              <p>Dostępność cyfrowa nie kończy się na kodzie. Duża część barier powstaje w treści: w niejasnych instrukcjach, skomplikowanych komunikatach, źle opisanych linkach, niedostępnych PDF-ach, prezentacjach i formularzach.</p>
+              <ul class="detail-list">
+                <li>Upraszczanie tekstów i pisanie instrukcji prostym językiem.</li>
+                <li>Tworzenie logicznej struktury nagłówków.</li>
+                <li>Proponowanie lepszych nazw linków i przycisków.</li>
+                <li>Przygotowywanie streszczeń.</li>
+                <li>Tworzenie alternatyw tekstowych jako wersji roboczych.</li>
+                <li>Sprawdzanie spójności dokumentów.</li>
+                <li>Wykrywanie miejsc, które wymagają doprecyzowania.</li>
+              </ul>
+              <p>AI może zaproponować tekst alternatywny, ale nie zawsze rozumie cel grafiki, kontekst publikacji i informację, którą obraz ma przekazać użytkownikowi.</p>
+            </section>
+
+            <section class="knowledge-panel">
+              <h3 id="utrzymanie-title">5. W utrzymaniu dostępności po wdrożeniu</h3>
+              <p>Największym problemem organizacji często nie jest jednorazowy audyt, tylko utrzymanie dostępności w czasie. Produkt się zmienia. Dochodzą nowe komponenty, formularze, banery, dokumenty, kampanie, wersje językowe i integracje.</p>
+              <ul class="detail-list">
+                <li>Analiza zmian po wdrożeniu i wykrywanie regresji.</li>
+                <li>Porównywanie nowych widoków ze standardem projektu.</li>
+                <li>Generowanie ticketów do backlogu.</li>
+                <li>Przygotowywanie list kontrolnych dla zespołu.</li>
+                <li>Porządkowanie wyników z axe, Lighthouse, pa11y i testów manualnych.</li>
+                <li>Monitorowanie powtarzalnych błędów w komponentach.</li>
+              </ul>
+              <p>To szczególnie ważne przy większych produktach cyfrowych, gdzie dostępność musi być elementem procesu, a nie jednorazową akcją przed odbiorem.</p>
+            </section>
+          </section>
+
+          <section class="ai-section" id="automatyzacja">
+            <h2>Co AI może zautomatyzować, a czego nie</h2>
+            <div class="knowledge-table-wrapper ai-table-wrapper" tabindex="0" role="region" aria-label="Porównanie poziomu automatyzacji zadań związanych z dostępnością cyfrową">
+              <table class="knowledge-table">
+                <caption>Rola AI i człowieka w wybranych obszarach dostępności</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Obszar</th>
+                    <th scope="col">Poziom automatyzacji</th>
+                    <th scope="col">Rola AI</th>
+                    <th scope="col">Co musi sprawdzić człowiek</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Brak etykiet formularzy</th>
+                    <td>Wysoki</td>
+                    <td>Może wykryć brak <code>label</code>, <code>aria-label</code> lub nieczytelną nazwę.</td>
+                    <td>Czy etykieta jest sensowna w kontekście procesu.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Kontrast tekstu</th>
+                    <td>Wysoki lub częściowy</td>
+                    <td>Może sprawdzić wartości kolorów i wskazać ryzyko.</td>
+                    <td>Stany komponentów, tła dynamiczne, obrazy, fokus i realny rendering.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Struktura nagłówków</th>
+                    <td>Częściowy</td>
+                    <td>Może wykryć pominięte poziomy i brak H1.</td>
+                    <td>Czy struktura logicznie opisuje treść.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Teksty alternatywne</th>
+                    <td>Częściowy</td>
+                    <td>Może zaproponować wersję roboczą.</td>
+                    <td>Czy opis przekazuje właściwą funkcję i kontekst grafiki.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Nazwy linków i przycisków</th>
+                    <td>Częściowy</td>
+                    <td>Może wskazać nazwy typu „czytaj więcej”, „kliknij tutaj” i duplikaty.</td>
+                    <td>Czy nazwa jest zrozumiała w realnej ścieżce użytkownika.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">ARIA</th>
+                    <td>Częściowy</td>
+                    <td>Może wykryć część błędnych ról i atrybutów.</td>
+                    <td>Zachowanie komponentu z klawiaturą i czytnikiem ekranu.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Modale, menu i podpowiedzi</th>
+                    <td>Częściowy</td>
+                    <td>Może porównać komponent z dobrymi wzorcami.</td>
+                    <td>Fokus, zamykanie, kolejność odczytu, obsługę Escape i pułapkę fokusu.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Proces wieloetapowy</th>
+                    <td>Niski lub częściowy</td>
+                    <td>Może uporządkować obserwacje i ryzyka.</td>
+                    <td>Realne przejście procesu, błędy, komunikaty i technologie asystujące.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Zrozumiałość treści</th>
+                    <td>Częściowy</td>
+                    <td>Może uprościć tekst i wykryć żargon.</td>
+                    <td>Czy tekst odpowiada potrzebom użytkowników.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Pełna zgodność z WCAG</th>
+                    <td>Niski</td>
+                    <td>Może wspierać analizę i raportowanie.</td>
+                    <td>Audyt, próbkę, metodykę, testy manualne i decyzję ekspercką.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="ai-section" id="ai-a-wcag">
+            <h2>AI a WCAG: jak o tym myśleć uczciwie</h2>
+            <p>AI nie „sprawdza WCAG” jako całości. Może wspierać analizę wybranych kryteriów, ale każde kryterium wymaga innego rodzaju dowodu. Czasem wystarczy analiza kodu. Czasem trzeba przejść proces klawiaturą, użyć czytnika ekranu albo ocenić sens treści i wpływ błędu na użytkownika.</p>
+            <p>W pracy z AI trzeba rozdzielać trzy poziomy wyniku:</p>
+            <div class="ai-levels">
+              <section class="knowledge-panel">
+                <h3 id="wynik-potwierdzony-title">1. Wynik potwierdzony technicznie</h3>
+                <p>Problem można wykazać na podstawie konkretnego dowodu, na przykład kodu, DOM, CSS, wyniku testu lub zachowania komponentu.</p>
+                <p><strong>Przykład:</strong> pole formularza nie ma dostępnej nazwy.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="wynik-prawdopodobny-title">2. Wynik prawdopodobny</h3>
+                <p>AI wskazuje ryzyko, ale potrzebna jest weryfikacja.</p>
+                <p><strong>Przykład:</strong> przycisk ma nazwę „Dalej”, ale bez kontekstu nie wiadomo, czy użytkownik zrozumie, dokąd przechodzi.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="hipoteza-title">3. Hipoteza do testu manualnego</h3>
+                <p>AI może pomóc sformułować pytanie testowe, ale nie może sama rozstrzygnąć wyniku.</p>
+                <p><strong>Przykład:</strong> czy użytkownik czytnika ekranu zrozumie zmianę stanu po otwarciu dynamicznego panelu.</p>
+              </section>
+            </div>
+          </section>
+
+          <section class="ai-section" id="ograniczenia">
+            <h2>Czego AI nie widzi</h2>
+            <p>AI często działa na niepełnym obrazie produktu. To jej największe ograniczenie w dostępności cyfrowej.</p>
+            <div class="ai-highlight ai-highlight-warning">
+              <ul class="detail-list">
+                <li>Realnej kolejności fokusu i zachowania komponentu po użyciu klawiatury.</li>
+                <li>Komunikatów przekazywanych przez czytnik ekranu.</li>
+                <li>Różnic między DOM, drzewem dostępności i tym, co słyszy użytkownik.</li>
+                <li>Błędów pojawiających się dopiero po interakcji.</li>
+                <li>Kontekstu biznesowego procesu i frustracji użytkownika.</li>
+                <li>Barier poznawczych i jakości instrukcji w realnym zadaniu.</li>
+                <li>Problemów w konkretnym środowisku: przeglądarce, systemie, czytniku ekranu lub urządzeniu mobilnym.</li>
+              </ul>
+            </div>
+            <p>Dlatego AI może wspierać audytora, ale nie powinna być traktowana jako źródło ostatecznej decyzji o zgodności.</p>
+          </section>
+
+          <section class="ai-section" id="produkty-uslugi">
+            <h2>AI w dostępności produktów i usług cyfrowych</h2>
+            <p>Dostępność cyfrowa dotyczy nie tylko stron internetowych. Obejmuje także aplikacje, dokumenty, multimedia, e-commerce, bankowość, usługi publiczne, systemy rezerwacyjne, e-booki, komunikację elektroniczną i inne usługi cyfrowe.</p>
+            <p>Europejski Akt o Dostępności obejmuje określone produkty i usługi istotne dla osób z niepełnosprawnościami. W praktyce dostępność coraz częściej staje się elementem jakości produktu, ryzyka prawnego, obsługi klienta i przewagi organizacyjnej.</p>
+            <p>AI nie „naprawia dostępności” magicznie. Jej wartość polega na wzmacnianiu pracy ludzi i procesów:</p>
+            <ul class="detail-list">
+              <li>Projektant szybciej wykrywa ryzykowne wzorce.</li>
+              <li>Developer dostaje czytelniejszą rekomendację.</li>
+              <li>Audytor szybciej porządkuje materiał.</li>
+              <li>Product owner lepiej rozumie wpływ błędu.</li>
+              <li>Zespół ma spójniejsze checklisty.</li>
+              <li>Organizacja łatwiej utrzymuje standard po wdrożeniu.</li>
+            </ul>
+
+            <h3>Przykłady zastosowań AI</h3>
+            <div class="ai-use-cases">
+              <section class="knowledge-panel">
+                <h4 id="ecommerce-title">E-commerce</h4>
+                <p>Analiza koszyka, formularzy dostawy, filtrów, wyszukiwarki, kart produktów i komunikatów błędów.</p>
+                <ul class="detail-list">
+                  <li>Nieopisane przyciski ikonowe.</li>
+                  <li>Niejasne błędy formularza.</li>
+                  <li>Brak informacji o stanie filtra.</li>
+                  <li>Ryzyka w procesie płatności.</li>
+                </ul>
+              </section>
+              <section class="knowledge-panel">
+                <h4 id="bankowosc-title">Bankowość i usługi finansowe</h4>
+                <p>Porządkowanie treści, analiza formularzy, prostsze komunikaty i wykrywanie ryzyk w procesach wieloetapowych.</p>
+                <p>W tym obszarze dane są wrażliwe, błędy mogą mieć poważne skutki, a rekomendacje AI wymagają kontroli prawnej, bezpieczeństwa i dostępności.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h4 id="mobilne-title">Aplikacje mobilne</h4>
+                <p>Analiza opisów ekranów, nazw kontrolek, komunikatów, struktury procesu i wyników testów.</p>
+                <p>AI nie zastąpi testów na iOS i Androidzie z użyciem VoiceOver, TalkBack, klawiatury zewnętrznej, powiększenia, zmiany rozmiaru tekstu i realnych urządzeń.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h4 id="dokumenty-title">Dokumenty cyfrowe</h4>
+                <p>Tworzenie treści, streszczeń, alternatyw tekstowych, opisów tabel i struktury dokumentów.</p>
+                <p>Dostępny dokument musi mieć właściwą strukturę, kolejność odczytu, tagi, nagłówki, listy, tabele, metadane i poprawny eksport.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h4 id="design-system-title">Design system</h4>
+                <p>Analiza komponentów i tworzenie dokumentacji dostępnościowej dla przycisków, pól formularzy, modali, podpowiedzi, akordeonów, zakładek, komunikatów statusu, tabel i menu.</p>
+                <p>Poprawa jednego komponentu może zmniejszyć liczbę błędów w wielu miejscach produktu.</p>
+              </section>
+            </div>
+          </section>
+
+          <section class="ai-section" id="bezpieczne-wdrozenie">
+            <h2>Jak bezpiecznie wdrożyć AI do procesu dostępności</h2>
+            <ol class="ai-steps">
               <li>
-                <a href="https://aiholics.pl" target="_blank" rel="noopener noreferrer">Przejdź do AIholics, naszej marki i pojęciownika AI, żeby uporządkować podstawowe terminy przed pracą z automatyzacją<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
+                <h3>Określ, co AI może robić</h3>
+                <p>AI może analizować, porządkować, proponować, wskazywać ryzyka i przygotowywać materiał roboczy. Nie powinna samodzielnie zamykać błędów, potwierdzać zgodności, publikować zmian ani wysyłać finalnych raportów.</p>
               </li>
               <li>
-                <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener noreferrer">Przejdź do przeglądu WCAG 2, żeby weryfikować odpowiedzi AI względem standardu<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
+                <h3>Pracuj na dobrych danych wejściowych</h3>
+                <p>Dobre dane wejściowe to kod komponentu, opis zachowania, zrzut ekranu, wynik testu automatycznego, ścieżka użytkownika, środowisko testowe, oczekiwane działanie, kryterium WCAG, wynik testu manualnego i kontekst biznesowy.</p>
               </li>
               <li>
-                <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">Sprawdź NIST AI Risk Management Framework jako punkt odniesienia dla ryzyka pracy z AI<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
+                <h3>Oddziel fakty od interpretacji</h3>
+                <p>Wyraźnie oznaczaj, co zostało potwierdzone, co jest prawdopodobne, co wymaga testu manualnego, czego model nie mógł sprawdzić i na jakiej podstawie powstała rekomendacja.</p>
+              </li>
+              <li>
+                <h3>Weryfikuj wynik z WCAG i metodyką</h3>
+                <p>Ocena zgodności wymaga zakresu, próbki, środowiska, metody i udokumentowanych wyników, a nie tylko listy wygenerowanych błędów. Pomocnym punktem odniesienia jest metodologia WCAG-EM.</p>
+              </li>
+              <li>
+                <h3>Zarządzaj ryzykiem AI</h3>
+                <p>Kontroluj halucynacje, wyniki fałszywie dodatnie i ujemne, ograniczenia, ochronę danych, nadzór człowieka, jakość odpowiedzi i odpowiedzialność za wynik.</p>
               </li>
             </ol>
-          </article>
+            <p>NIST wskazuje, że zarządzanie ryzykiem AI powinno obejmować wpływ na ludzi, organizacje i społeczeństwo. Unijny AI Act wzmacnia podejście oparte na ryzyku, ochronie praw podstawowych i nadzorze człowieka.</p>
+          </section>
+
+          <section class="ai-section" id="model-pracy">
+            <h2>Model pracy Accessibility First</h2>
+            <div class="ai-highlight">
+              <p>W Accessibility First traktujemy AI jako narzędzie wspierające eksperta, a nie zamiennik audytu.</p>
+            </div>
+            <p>Pomagamy organizacjom:</p>
+            <ul class="detail-list">
+              <li>Zrozumieć, gdzie AI ma sens w dostępności.</li>
+              <li>Zaprojektować bezpieczny proces użycia AI.</li>
+              <li>Przygotować checklisty i standardy raportowania.</li>
+              <li>Stworzyć bazę wiedzy dla asystenta AI.</li>
+              <li>Ocenić ryzyka automatyzacji.</li>
+              <li>Wdrożyć AI do pracy audytorów, projektantów, developerów i zespołów produktowych.</li>
+              <li>Uporządkować proces utrzymania dostępności po wdrożeniu.</li>
+            </ul>
+            <p>Łączymy praktykę audytową, WCAG, projektowanie produktów cyfrowych i odpowiedzialne użycie AI.</p>
+          </section>
+
+          <section class="ai-section" id="kiedy-pomaga">
+            <h2>Kiedy AI pomaga najbardziej</h2>
+            <p>AI ma największy sens, gdy organizacja ma już albo chce zbudować:</p>
+            <ul class="detail-list">
+              <li>Powtarzalny proces audytu i standard opisu błędów.</li>
+              <li>Bibliotekę komponentów lub design system.</li>
+              <li>Bazę wiedzy WCAG.</li>
+              <li>System reaudytów i backlog dostępności.</li>
+              <li>Procedury kontroli jakości.</li>
+              <li>Zespół, który rozumie swoje role.</li>
+            </ul>
+            <div class="ai-highlight ai-highlight-warning">
+              <p><strong>AI nie naprawi chaosu organizacyjnego. Może go nawet przyspieszyć.</strong></p>
+              <p>Jeżeli nie ma standardu pracy, model będzie generował niespójne odpowiedzi. Jeżeli dane wejściowe są przypadkowe, wynik też będzie przypadkowy. Jeżeli nikt nie weryfikuje odpowiedzi, AI może wprowadzać zespół w błąd.</p>
+            </div>
+          </section>
+
+          <section class="ai-section" id="bledy">
+            <h2>Najczęstsze błędy przy użyciu AI w dostępności</h2>
+            <div class="ai-mistakes">
+              <section class="knowledge-panel">
+                <h3 id="blad-audytor-title">1. Traktowanie AI jak audytora</h3>
+                <p>AI może pomóc w audycie, ale nie wykonuje pełnego audytu zgodności.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="blad-testy-title">2. Brak testów manualnych</h3>
+                <p>Automatyczna analiza nie zastępuje testów klawiaturą, czytnikiem ekranu i realną interakcją z produktem.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="blad-metodyka-title">3. Brak metodyki</h3>
+                <p>Bez zakresu, próbki, środowiska testowego i kryteriów oceny nie ma rzetelnego wyniku.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="blad-zaufanie-title">4. Zaufanie do ładnie brzmiącej odpowiedzi</h3>
+                <p>Model może pisać pewnie nawet wtedy, gdy się myli.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="blad-zrzut-title">5. Analiza samego zrzutu ekranu</h3>
+                <p>Zrzut nie pokazuje pełnej struktury semantycznej, nazw dostępnych, stanów dynamicznych i zachowania technologii asystujących.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="blad-dane-title">6. Ignorowanie danych wrażliwych</h3>
+                <p>Do narzędzi AI nie powinny trafiać dane użytkowników, klientów ani materiały poufne bez podstawy, kontroli i świadomej decyzji organizacji.</p>
+              </section>
+            </div>
+          </section>
+
+          <section class="ai-section" id="dobra-praktyka">
+            <h2>Dobra praktyka</h2>
+            <p>Każdy wynik AI w procesie dostępności powinien zawierać:</p>
+            <ul class="ai-checklist">
+              <li>Zakres analizy.</li>
+              <li>Dane wejściowe.</li>
+              <li>Podstawę normatywną.</li>
+              <li>Poziom pewności.</li>
+              <li>Wskazane kryterium WCAG.</li>
+              <li>Opis ograniczeń.</li>
+              <li>Rekomendację.</li>
+              <li>Sposób weryfikacji manualnej.</li>
+              <li>Informację, kto odpowiada za finalną decyzję.</li>
+            </ul>
+            <p>To odróżnia odpowiedzialne użycie AI od automatycznego generowania pozornych raportów.</p>
+          </section>
+
+          <section class="ai-section" id="pomoc">
+            <h2>Jak możemy pomóc</h2>
+            <div class="ai-services">
+              <section class="knowledge-panel">
+                <h3 id="szkolenia-title">Szkolenia</h3>
+                <p>Prowadzimy szkolenia z dostępności cyfrowej, WCAG i odpowiedzialnego wykorzystania AI w pracy audytora, projektanta, developera i zespołu produktowego.</p>
+                <p><a class="text-link" href="/szkolenie-ai-asystent">Poznaj szkolenie AI dla audytora dostępności cyfrowej</a>.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="audyty-title">Audyty i konsultacje</h3>
+                <p>Audytujemy strony, aplikacje, dokumenty i produkty cyfrowe. Przygotowujemy raporty z opisem problemu, wpływem na użytkownika, kryterium WCAG i rekomendacją wdrożeniową.</p>
+                <p><a class="text-link" href="/audyty">Sprawdź ofertę audytów dostępności</a>.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="asystenci-title">Budowa asystentów AI</h3>
+                <p>Pomagamy ustalić zakres działania, bazę wiedzy, prompt systemowy, format raportu, poziomy pewności, testy jakości, zasady eskalacji do człowieka oraz ograniczenia prawne i organizacyjne.</p>
+              </section>
+              <section class="knowledge-panel">
+                <h3 id="stala-obsluga-title">Stała obsługa dostępności</h3>
+                <p>Wspieramy zespoły w utrzymaniu dostępności po wdrożeniu: konsultacje, przeglądy zmian, reaudyt, analiza regresji i doskonalenie procesu.</p>
+              </section>
+            </div>
+          </section>
+
+          <section class="ai-section" id="faq">
+            <h2>Pytania i odpowiedzi</h2>
+            <div class="ai-faq">
+              <details class="ai-faq-item">
+                <summary>
+                  <span>Czy AI może zrobić audyt dostępności?</span>
+                  <span class="ai-faq-icon" aria-hidden="true">▼</span>
+                </summary>
+                <div class="ai-faq-answer">
+                  <p>Może wspierać audyt, ale nie powinna być traktowana jako samodzielny audytor. Pełna ocena wymaga metodyki, testów manualnych, technologii asystujących, dowodów i decyzji eksperckiej.</p>
+                </div>
+              </details>
+              <details class="ai-faq-item">
+                <summary>
+                  <span>Czy AI może sprawdzić WCAG?</span>
+                  <span class="ai-faq-icon" aria-hidden="true">▼</span>
+                </summary>
+                <div class="ai-faq-answer">
+                  <p>Może wspierać analizę wybranych kryteriów WCAG. Nie sprawdza jednak całego standardu automatycznie i nie potwierdza zgodności bez weryfikacji.</p>
+                </div>
+              </details>
+              <details class="ai-faq-item">
+                <summary>
+                  <span>Czy AI może pisać rekomendacje do raportu?</span>
+                  <span class="ai-faq-icon" aria-hidden="true">▼</span>
+                </summary>
+                <div class="ai-faq-answer">
+                  <p>Tak, ale jako wersje robocze. Rekomendacje musi sprawdzić osoba, która rozumie WCAG, kontekst produktu i wpływ problemu na użytkownika.</p>
+                </div>
+              </details>
+              <details class="ai-faq-item">
+                <summary>
+                  <span>Czy AI może poprawiać teksty alternatywne?</span>
+                  <span class="ai-faq-icon" aria-hidden="true">▼</span>
+                </summary>
+                <div class="ai-faq-answer">
+                  <p>Może proponować teksty alternatywne, ale człowiek musi ocenić, czy opis odpowiada funkcji grafiki i kontekstowi publikacji.</p>
+                </div>
+              </details>
+              <details class="ai-faq-item">
+                <summary>
+                  <span>Czy AI może pomóc developerom?</span>
+                  <span class="ai-faq-icon" aria-hidden="true">▼</span>
+                </summary>
+                <div class="ai-faq-answer">
+                  <p>Tak. Może tłumaczyć problem, wskazywać możliwe rozwiązania, porównywać kod z dobrymi praktykami i przygotowywać checklisty wdrożeniowe. Zmiany nadal wymagają przeglądu.</p>
+                </div>
+              </details>
+              <details class="ai-faq-item">
+                <summary>
+                  <span>Czy AI może zwiększyć dostępność produktu?</span>
+                  <span class="ai-faq-icon" aria-hidden="true">▼</span>
+                </summary>
+                <div class="ai-faq-answer">
+                  <p>Tak, jeżeli jest częścią procesu projektowania, testowania, raportowania i utrzymania jakości. Sama obecność AI w organizacji nie zwiększa dostępności.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <section class="ai-cta" aria-labelledby="ai-cta-title">
+            <h2 id="ai-cta-title">Chcesz wdrożyć AI bez fałszywego poczucia zgodności?</h2>
+            <p>Pomożemy Ci zaprojektować proces, który przyspiesza pracę zespołu, ale nie rezygnuje z jakości, odpowiedzialności i testów eksperckich.</p>
+            <p class="section-actions">
+              <a class="btn btn-primary" href="mailto:a11y@wlaczwizje.pl?subject=AI%20w%20dostępności%20cyfrowej">Napisz do nas: a11y@wlaczwizje.pl</a>
+            </p>
+            <p>Możemy pomóc w szkoleniu zespołu, audycie dostępności, konsultacjach AI i WCAG, budowie asystenta dla audytora, uporządkowaniu raportowania oraz wdrożeniu standardu dostępności w produkcie.</p>
+          </section>
+
+          <section class="ai-section ai-sources" id="zrodla">
+            <h2>Źródła</h2>
+            <ol class="recommended-resources">
+              <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener noreferrer">W3C WAI: WCAG 2 Overview<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/" target="_blank" rel="noopener noreferrer">W3C WAI: WCAG-EM Overview<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener noreferrer">W3C WAI: How to Meet WCAG 2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" rel="noopener noreferrer">W3C WAI: ARIA Authoring Practices Guide<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST: AI Risk Management Framework<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng" target="_blank" rel="noopener noreferrer">EUR-Lex: rozporządzenie (UE) 2024/1689, AI Act<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en" target="_blank" rel="noopener noreferrer">Komisja Europejska: European Accessibility Act<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+            </ol>
+          </section>
         </div>
-      </section>
+      </article>
     </main>
     <footer>
       <div class="container">
         <div class="footer-contact">
-          <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>
-        </p>
+          <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+        </div>
+        <nav aria-label="Dokumenty prawne" class="footer-nav">
+          <a href="/regulamin">Regulamin świadczenia usług</a>
+          <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+          <a href="/deklaracja">Deklaracja dostępności</a>
+        </nav>
+        <div class="footer-social">
+          <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+        </div>
       </div>
-      <nav aria-label="Dokumenty prawne" class="footer-nav">
-        <a href="/regulamin">Regulamin świadczenia usług</a>
-        <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
-        <a href="/deklaracja">Deklaracja dostępności</a>
-      </nav>
-      <div class="footer-social">
-        <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span>
-        </a>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
-      </div>
-    </div>
-  </footer>
-  <script src="assets/header.js?v=2">
-</script>
-</body>
+    </footer>
+    <script src="assets/header.js?v=2"></script>
+  </body>
 </html>
