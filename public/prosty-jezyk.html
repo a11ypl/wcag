@@ -1,133 +1,197 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prosty język - Accessibility First</title>
-    <meta name="description" content="Praktyczne wskazówki o prostym języku w dostępności cyfrowej.">
+    <title>Prosty język w dostępności cyfrowej | Accessibility First</title>
+    <meta name="description" content="Prosty język, ISO 24495, dostępność poznawcza, WCAG 2.x, kierunek WCAG 3, checklista i ćwiczenia dla audytorów, redaktorów i projektantów.">
     <link rel="canonical" href="https://www.a11yfirst.pl/prosty-jezyk">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
-    <meta property="og:title" content="Prosty język - Accessibility First">
-    <meta property="og:description" content="Praktyczne wskazówki o prostym języku w dostępności cyfrowej.">
+    <meta property="og:title" content="Prosty język w dostępności cyfrowej">
+    <meta property="og:description" content="Prosty język, ISO 24495, dostępność poznawcza, WCAG 2.x, kierunek WCAG 3, checklista i ćwiczenia dla audytorów, redaktorów i projektantów.">
     <meta property="og:url" content="https://www.a11yfirst.pl/prosty-jezyk">
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Prosty język - Accessibility First">
-    <meta name="twitter:description" content="Praktyczne wskazówki o prostym języku w dostępności cyfrowej.">
+    <meta name="twitter:title" content="Prosty język w dostępności cyfrowej">
+    <meta name="twitter:description" content="Prosty język, ISO 24495, dostępność poznawcza, WCAG 2.x, kierunek WCAG 3, checklista i ćwiczenia dla audytorów, redaktorów i projektantów.">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Prosty język",
-          "headline": "Prosty język",
-          "description": "Praktyczne wskazówki o prostym języku w dostępności cyfrowej.",
-          "url": "https://www.a11yfirst.pl/prosty-jezyk",
-          "isPartOf": {
-            "@type": "WebSite",
-            "name": "Accessibility First",
-            "url": "https://www.a11yfirst.pl"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Włącz Wizję sp. z o.o.",
-            "url": "https://wlaczwizje.pl"
-          }
-        }
-        </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Prosty język w dostępności cyfrowej","headline":"Prosty język w dostępności cyfrowej","description":"Prosty język, ISO 24495, dostępność poznawcza, WCAG 2.x, kierunek WCAG 3, checklista i ćwiczenia dla audytorów, redaktorów i projektantów.","url":"https://www.a11yfirst.pl/prosty-jezyk","isPartOf":{"@type":"WebSite","name":"Accessibility First","url":"https://www.a11yfirst.pl"},"publisher":{"@type":"Organization","name":"Włącz Wizję sp. z o.o.","url":"https://wlaczwizje.pl"}}</script>
     <link rel="icon" href="assets/a11yfirst-icon.svg?v=5" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/styles.css?v=17">
-  </head>
-  <body>
+    <link rel="stylesheet" href="assets/styles.css?v=19">
+</head>
+<body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
     <header>
-      <div class="container header-content">
-        <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
-        <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-        <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
-        </a>
-        <nav aria-label="Menu główne">
-          <a href="/o-nas">O nas</a>
-          <a href="/szkolenia">Szkolenia</a>
-          <a href="/audyty">Audyty</a>
-          <a href="/sklep">Sklep</a>
-          <a href="/baza-wiedzy">Baza wiedzy</a>
-          <a href="/deklaracja">Deklaracja dostępności</a>
-          <a href="/kontakt">Kontakt</a>
-        </nav>
-      </div>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+                <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=5" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a><a href="/szkolenia">Szkolenia</a><a href="/audyty">Audyty</a><a href="/sklep">Sklep</a><a href="/baza-wiedzy">Baza wiedzy</a><a href="/deklaracja">Deklaracja dostępności</a><a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
     </header>
     <main id="main">
-      <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
-        <ol>
-          <li>
-            <a href="/">Strona główna</a>
-          </li>
-          <li>
-            <a href="/baza-wiedzy">Baza wiedzy</a>
-          </li>
-          <li aria-current="page">Prosty język</li>
-        </ol>
-      </nav>
-      <section class="hero page-hero">
-        <div class="container">
-          <h1>Prosty język</h1>
-          <p class="subtitle">Treść ma prowadzić użytkownika, a nie sprawdzać jego cierpliwość.</p>
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/baza-wiedzy">Baza wiedzy</a></li><li aria-current="page">Prosty język</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <p class="eyebrow">Baza wiedzy</p>
+                <h1>Prosty język w dostępności cyfrowej</h1>
+                <p class="subtitle">Prosty język, ISO 24495, dostępność poznawcza, WCAG 2.x, kierunek WCAG 3, checklista i ćwiczenia dla audytorów, redaktorów i projektantów.</p>
+            </div>
+        </section>
+        <div class="knowledge-article wcag-detail plain-language-page">
+            <div class="container">
+                <nav class="plain-language-nav" aria-label="Części zasobu o prostym języku"><h2>Przejdź do innej części zasobu</h2><ul><li><span aria-current="page">Wprowadzenie do prostego języka</span></li><li><a href="/prosty-jezyk/wcag-3">ISO 24495 i kierunek WCAG 3</a></li><li><a href="/prosty-jezyk/checklista">Checklista prostego języka</a></li><li><a href="/prosty-jezyk/cwiczenia">Ćwiczenia z prostego języka</a></li></ul></nav>
+                <article class="knowledge-panel knowledge-lead">
+<p>Treść ma pomagać użytkownikowi wykonać zadanie, a nie sprawdzać jego cierpliwość.</p>
+<p>Prosty język w dostępności cyfrowej to nie tylko krótkie zdania. To także jasne nagłówki, konkretne linki, zrozumiałe etykiety formularzy, dobre komunikaty błędów i procesy, które nie zmuszają użytkownika do zgadywania.</p>
+</article>
+<article class="knowledge-panel"><h2 id="dla-kogo-jest-ten-zasob">Dla kogo jest ten zasób?</h2>
+<p>Ten materiał jest dla osób, które tworzą, zamawiają albo audytują treści cyfrowe:</p>
+<ul class="detail-list">
+<li>audytorów dostępności cyfrowej,</li>
+<li>redaktorów stron internetowych,</li>
+<li>projektantów UX i UI,</li>
+<li>osób odpowiedzialnych za formularze i usługi online,</li>
+<li>koordynatorów dostępności,</li>
+<li>zespołów projektujących dokumenty, regulaminy, instrukcje i komunikaty.</li>
+</ul>
+</article>
+<article class="knowledge-panel"><h2 id="najwazniejsza-zasada">Najważniejsza zasada</h2>
+<p>Użytkownik powinien móc:</p>
+<ul class="detail-list">
+<li>znaleźć potrzebną informację,</li>
+<li>zrozumieć, czego dotyczy strona,</li>
+<li>rozpoznać, co robi link, przycisk albo formularz,</li>
+<li>poprawnie wypełnić dane,</li>
+<li>zrozumieć błąd i wiedzieć, jak go naprawić,</li>
+<li>przejść przez proces bez nadmiernego wysiłku pamięciowego.</li>
+</ul>
+<p>Dlatego prosty język łączy się z dostępnością poznawczą. Pomaga osobom z trudnościami w czytaniu, koncentracji, zapamiętywaniu i rozumieniu instrukcji. Przy okazji pomaga wszystkim użytkownikom.</p>
+</article>
+<article class="knowledge-panel"><h2 id="iso-24495-miedzynarodowy-standard-prostego-jezyka">ISO 24495 — międzynarodowy standard prostego języka</h2>
+<p>ISO 24495-1:2023 to międzynarodowy standard dotyczący prostego języka. Określa zasady i wytyczne tworzenia dokumentów w prostym języku.</p>
+<p>ISO wskazuje, że dokument dotyczy przede wszystkim informacji drukowanych i cyfrowych, których główną formą jest tekst. Jednocześnie ISO zaznacza, że standard nie zawiera istniejących technicznych wytycznych dotyczących dostępności i dokumentów cyfrowych. W przypadku dostępności cyfrowej autorzy mogą brać pod uwagę WCAG i EN 301 549.</p>
+<p>W praktyce oznacza to, że ISO 24495 może być używane jako standard pracy nad treścią, a WCAG i EN 301 549 jako standardy oceny dostępności cyfrowej interfejsów, dokumentów i usług.</p>
+</article>
+<article class="knowledge-panel"><h2 id="cztery-zasady-iso-24495-1">Cztery zasady ISO 24495-1</h2>
+<p>ISO 24495-1 porządkuje prosty język wokół czterech zasad. W ujęciu praktycznym dla serwisów internetowych można je opisać tak:</p>
+<div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela: Zasada, Co oznacza w praktyce cyfrowej"><table class="knowledge-table"><thead><tr><th scope="col">Zasada</th><th scope="col">Co oznacza w praktyce cyfrowej</th></tr></thead><tbody><tr><td>Użytkownik dostaje to, czego potrzebuje</td><td>Treść odpowiada na realną potrzebę użytkownika. Nie publikujemy wszystkiego, tylko to, co pomaga podjąć decyzję albo wykonać zadanie.</td></tr><tr><td>Użytkownik może łatwo znaleźć to, czego potrzebuje</td><td>Informacja ma dobrą strukturę: tytuł, nagłówki, listy, kolejność, wyróżnienia i logiczny podział.</td></tr><tr><td>Użytkownik może łatwo zrozumieć treść</td><td>Tekst unika żargonu, formalizmów, skrótów bez wyjaśnienia, zdań wielokrotnie złożonych i ukrytych założeń.</td></tr><tr><td>Użytkownik może łatwo użyć informacji</td><td>Treść prowadzi do działania. Użytkownik wie, co zrobić, jakie dane podać, co oznacza błąd i co stanie się po wysłaniu formularza.</td></tr></tbody></table></div>
+</article>
+<article class="knowledge-panel"><h2 id="czego-iso-24495-nie-zastepuje">Czego ISO 24495 nie zastępuje?</h2>
+<p>ISO 24495 nie jest technicznym standardem dostępności cyfrowej.</p>
+<p>Nie zastępuje:</p>
+<ul class="detail-list">
+<li>WCAG,</li>
+<li>EN 301 549,</li>
+<li>audytu dostępności cyfrowej,</li>
+<li>semantycznego HTML,</li>
+<li>poprawnej obsługi formularzy,</li>
+<li>poprawnej kolejności fokusu,</li>
+<li>kontrastu,</li>
+<li>alternatyw tekstowych,</li>
+<li>dostępności dokumentów PDF, DOCX i PPTX.</li>
+</ul>
+<p>ISO 24495 pomaga natomiast ustawić standard tworzenia treści zrozumiałych, znajdowalnych i użytecznych.</p>
+</article>
+<article class="knowledge-panel"><h2 id="prosty-jezyk-a-wcag-2-x">Prosty język a WCAG 2.x</h2>
+<p>W WCAG 2.x prosty język nie jest jednym dużym kryterium sukcesu na poziomie A albo AA. Pojawia się jednak w kilku miejscach.</p>
+<div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Tabela: Obszar, Kryterium sukcesu, Co sprawdzać"><table class="knowledge-table"><thead><tr><th scope="col">Obszar</th><th scope="col">Kryterium sukcesu</th><th scope="col">Co sprawdzać</th></tr></thead><tbody><tr><td>Cel linku</td><td>2.4.4 Cel linku w kontekście</td><td>Czy użytkownik rozumie, dokąd prowadzi link albo co się stanie po jego aktywacji.</td></tr><tr><td>Nagłówki i etykiety</td><td>2.4.6 Nagłówki i etykiety</td><td>Czy nagłówki i etykiety opisują temat albo cel treści.</td></tr><tr><td>Etykiety i instrukcje</td><td>3.3.2 Etykiety lub instrukcje</td><td>Czy formularz wyjaśnia, jakich danych oczekuje od użytkownika.</td></tr><tr><td>Sugestie korekty błędów</td><td>3.3.3 Sugestie korekty błędów</td><td>Czy użytkownik dostaje konkretną informację, jak poprawić błąd.</td></tr><tr><td>Skróty</td><td>3.1.4 Skróty</td><td>Czy skróty mają rozwinięcie albo wyjaśnienie.</td></tr><tr><td>Poziom umiejętności czytania</td><td>3.1.5 Poziom umiejętności czytania</td><td>Czy trudny tekst ma prostszą wersję albo dodatkowe wyjaśnienie.</td></tr></tbody></table></div>
+</article>
+<article class="knowledge-panel"><h2 id="prosty-jezyk-a-wcag-3">Prosty język a WCAG 3</h2>
+<p>WCAG 3 jest nadal szkicem, a nie obowiązującym standardem. W3C wskazuje, że wymagania w WCAG 3 są rozwijane i mogą się zmienić.</p>
+<p>Mimo to WCAG 3 pokazuje ważny kierunek: większe uwzględnienie potrzeb poznawczych użytkowników. W szkicu WCAG 3 pojawia się między innymi obszar Clear Language, czyli jasny język.</p>
+<p>Dlatego ISO 24495, WCAG 3 i dokumenty W3C dotyczące dostępności poznawczej warto czytać razem, ale nie należy ich utożsamiać.</p>
+</article>
+<article class="knowledge-panel"><h2 id="co-znajdziesz-w-tym-zasobie">Co znajdziesz w tym zasobie?</h2>
+<h3 id="prosty-jezyk-w-wcag-3">Prosty język w WCAG 3</h3>
+<p>Artykuł o tym, jak ISO 24495, dostępność poznawcza i kierunek WCAG 3 mogą pomóc w projektowaniu lepszych treści cyfrowych.</p>
+<p><a href="/prosty-jezyk/wcag-3">Przejdź do artykułu o prostym języku w WCAG 3</a></p>
+<h3 id="checklista-prostego-jezyka">Checklista prostego języka</h3>
+<p>Lista pytań kontrolnych dla audytora, redaktora, projektanta UX i osoby odpowiedzialnej za formularze.</p>
+<p><a href="/prosty-jezyk/checklista">Przejdź do checklisty prostego języka</a></p>
+<h3 id="cwiczenia-praktyczne">Ćwiczenia praktyczne</h3>
+<p>Zadania do szkolenia: poprawianie komunikatów błędów, etykiet, linków, instrukcji i tekstów formalnych.</p>
+<p><a href="/prosty-jezyk/cwiczenia">Przejdź do ćwiczeń z prostego języka</a></p>
+</article>
+<article class="knowledge-panel"><h2 id="co-trzeba-sprawdzic-w-serwisie">Co trzeba sprawdzić w serwisie?</h2>
+<ul class="detail-list">
+<li>Czy najważniejsza informacja jest na początku.</li>
+<li>Czy nagłówki jasno opisują zawartość sekcji.</li>
+<li>Czy zdania są krótkie i mają jasny podmiot.</li>
+<li>Czy instrukcje mówią użytkownikowi, co ma zrobić.</li>
+<li>Czy nazwy linków i przycisków są konkretne.</li>
+<li>Czy etykiety pól formularza wyjaśniają, jakie dane trzeba wpisać.</li>
+<li>Czy komunikaty błędów mówią, co jest nie tak i jak to poprawić.</li>
+<li>Czy skróty i trudne pojęcia są wyjaśnione przy pierwszym użyciu.</li>
+<li>Czy użytkownik nie musi pamiętać informacji z poprzednich kroków.</li>
+<li>Czy długi lub trudny tekst ma krótkie podsumowanie.</li>
+</ul>
+</article>
+<article class="knowledge-panel"><h2 id="przyklad-etykieta-i-instrukcja-w-formularzu">Przykład: etykieta i instrukcja w formularzu</h2>
+<h3 id="slabsza-wersja">Słabsza wersja</h3>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><p class="wcag-code-example__label">Kod — HTML</p><pre><code class="language-html">&lt;label for=&quot;id&quot;&gt;Identyfikator&lt;/label&gt;
+&lt;input id=&quot;id&quot; name=&quot;id&quot; type=&quot;text&quot;&gt;
+&lt;p&gt;Wprowadź właściwy ciąg znaków.&lt;/p&gt;</code></pre></div></div>
+<p>Problem:</p>
+<ul class="detail-list">
+<li>„Identyfikator” może oznaczać wiele różnych rzeczy.</li>
+<li>„Właściwy ciąg znaków” nie wyjaśnia wymaganego formatu.</li>
+<li>Użytkownik nie wie, czy chodzi o PESEL, numer sprawy, login, numer klienta czy inny identyfikator.</li>
+</ul>
+<h3 id="lepsza-wersja">Lepsza wersja</h3>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><p class="wcag-code-example__label">Kod — HTML</p><pre><code class="language-html">&lt;label for=&quot;case-number&quot;&gt;Numer sprawy&lt;/label&gt;
+&lt;input id=&quot;case-number&quot; name=&quot;case-number&quot; type=&quot;text&quot; aria-describedby=&quot;case-number-help&quot;&gt;
+
+&lt;p id=&quot;case-number-help&quot;&gt;
+  Wpisz numer sprawy z pisma, np. ABC.123.2026.
+&lt;/p&gt;</code></pre></div></div>
+<p>Dlaczego lepiej:</p>
+<ul class="detail-list">
+<li>etykieta mówi, czego dotyczy pole,</li>
+<li>instrukcja podaje oczekiwany format,</li>
+<li>przykład zmniejsza ryzyko błędu,</li>
+<li><code>aria-describedby</code> łączy instrukcję z polem formularza.</li>
+</ul>
+<p>Powiązane kryteria sukcesu: 3.3.2 Etykiety lub instrukcje, 2.4.6 Nagłówki i etykiety, a przy obsłudze błędów także 3.3.3 Sugestie korekty błędów.</p>
+</article>
+<article class="knowledge-panel"><h2 id="jak-wykorzystujemy-ten-temat-w-accessibility-first">Jak wykorzystujemy ten temat w Accessibility First?</h2>
+<p>W Accessibility First traktujemy ISO 24495 jako punkt odniesienia przy pracy nad prostym językiem w treściach cyfrowych, formularzach, komunikatach błędów, instrukcjach, dokumentach i procesach online.</p>
+<p>Nie zastępuje to audytu WCAG. Dobrze go jednak uzupełnia tam, gdzie problemem nie jest tylko techniczna dostępność, lecz także zrozumiałość i użyteczność informacji.</p>
+</article>
+<article class="knowledge-panel"><h2 id="powiazane-materialy">Powiązane materiały</h2>
+<ul class="detail-list">
+<li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li>
+<li><a href="/baza-wiedzy">Baza wiedzy Accessibility First</a></li>
+<li><a href="/audyty">Audyty dostępności cyfrowej</a></li>
+<li><a href="/szkolenia">Szkolenia Accessibility First</a></li>
+</ul>
+</article>
+<article class="knowledge-panel"><h2 id="zrodla">Źródła</h2>
+<ul class="detail-list">
+<li><a href="https://www.iso.org/standard/78907.html" target="_blank" rel="noopener noreferrer">ISO 24495-1:2023 — Plain language — Part 1: Governing principles and guidelines<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+<li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/wcag3-intro/" target="_blank" rel="noopener noreferrer">W3C/WAI — WCAG 3 Introduction<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+<li><a href="https://www.w3.org/TR/wcag-3.0/" target="_blank" rel="noopener noreferrer">W3C — W3C Accessibility Guidelines (WCAG) 3.0 Working Draft<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+<li><a href="https://www.w3.org/TR/coga-usable/" target="_blank" rel="noopener noreferrer">W3C — Making Content Usable for People with Cognitive and Learning Disabilities<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+<li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener noreferrer">W3C/WAI — WCAG 2 Overview<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+<li><a href="https://www.gov.pl/web/sluzbacywilna/prosty-jezyk" target="_blank" rel="noopener noreferrer">Gov.pl — Prosty język<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+</ul>
+</article>
+            </div>
         </div>
-      </section>
-      <section class="knowledge-article" aria-labelledby="plain-title">
-        <div class="container">
-          <p class="eyebrow">Instrukcja praktyczna</p>
-          <h2 class="section-title" id="plain-title">Co trzeba sprawdzić?</h2>
-          <article class="knowledge-panel">
-            <ul class="detail-list">
-              <li>Czy najważniejsza informacja jest na początku.</li>
-              <li>Czy zdania są krótkie i mają jasny podmiot.</li>
-              <li>Czy instrukcje mówią użytkownikowi, co ma zrobić.</li>
-              <li>Czy błędy formularza wyjaśniają, jak poprawić dane.</li>
-              <li>Czy nazwy linków i przycisków są konkretne.</li>
-              <li>Czy specjalistyczne pojęcia są wyjaśnione przy pierwszym użyciu.</li>
-            </ul>
-          </article>
-          <article class="knowledge-panel">
-            <h3>Polecane zasoby</h3>
-            <ol class="recommended-resources">
-              <li>
-                <a href="https://www.gov.pl/web/dostepnosc-cyfrowa/prosty-jezyk" target="_blank" rel="noopener noreferrer">Przejdź do poradnika gov.pl o prostym języku w dostępności cyfrowej<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.gov.pl/web/sluzbacywilna/prosty-jezyk" target="_blank" rel="noopener noreferrer">Sprawdź zasady prostego języka w serwisie Służby Cywilnej<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
-              </li>
-            </ol>
-          </article>
-        </div>
-      </section>
     </main>
     <footer>
-      <div class="container">
-        <div class="footer-contact">
-          <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>
-        </p>
-      </div>
-      <nav aria-label="Dokumenty prawne" class="footer-nav">
-        <a href="/regulamin">Regulamin świadczenia usług</a>
-        <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
-        <a href="/deklaracja">Deklaracja dostępności</a>
-      </nav>
-      <div class="footer-social">
-        <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span>
-        </a>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
-      </div>
-    </div>
-  </footer>
-  <script src="assets/header.js?v=2">
-</script>
+        <div class="container">
+            <div class="footer-contact"><p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p></div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav"><a href="/regulamin">Regulamin świadczenia usług</a><a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a><a href="/deklaracja">Deklaracja dostępności</a></nav>
+            <div class="footer-social"><a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a></div>
+            <div class="footer-bottom"><p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p></div>
+        </div>
+    </footer>
+    <script src="assets/header.js?v=2"></script>
 </body>
 </html>

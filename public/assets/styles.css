@@ -2551,6 +2551,82 @@ header nav a:hover { color: white; }
     margin-top: 1rem;
 }
 
+.plain-language-page .knowledge-lead {
+    margin-top: 0;
+}
+
+.plain-language-nav {
+    background: #faf7ff;
+    border: 3px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+.plain-language-nav h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+}
+
+.plain-language-nav ul {
+    display: grid;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.plain-language-nav a,
+.plain-language-nav span[aria-current="page"] {
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    display: block;
+    font-weight: 800;
+    padding: 0.8rem 1rem;
+}
+
+.plain-language-nav a {
+    background: white;
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+}
+
+.knowledge-article.wcag-detail .plain-language-nav a:hover,
+.knowledge-article.wcag-detail .plain-language-nav a:visited:hover {
+    background: var(--primary);
+    color: #ffcc00;
+}
+
+.plain-language-nav span[aria-current="page"] {
+    background: var(--primary);
+    color: white;
+}
+
+.plain-language-page blockquote {
+    background: #faf7ff;
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    margin: 1rem 0;
+    padding: 1rem 1.25rem;
+}
+
+.plain-language-page blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+.plain-language-page :not(pre) > code {
+    background: var(--gray-light);
+    border-radius: 4px;
+    color: black;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    padding: 0.1em 0.3em;
+}
+
 /* AI IN DIGITAL ACCESSIBILITY ARTICLE */
 .ai-page .ai-article {
     padding-top: 4rem;
