@@ -1,0 +1,44 @@
+{
+  "id": "unique-id",
+  "type": "single-choice",
+  "mode": "wcag-detective",
+  "level": "advanced",
+  "category": "kategoria",
+  "question": "Treść pytania/scenariusza.",
+  "answers": [
+    {
+      "id": "a",
+      "text": "Odpowiedź A",
+      "correct": false,
+      "feedback": "Dlaczego A jest błędne."
+    },
+    {
+      "id": "b",
+      "text": "Odpowiedź B",
+      "correct": true,
+      "feedback": "Dlaczego B jest poprawne."
+    },
+    {
+      "id": "c",
+      "text": "Odpowiedź C",
+      "correct": false,
+      "feedback": "Dlaczego C jest błędne."
+    },
+    {
+      "id": "d",
+      "text": "Odpowiedź D",
+      "correct": false,
+      "feedback": "Dlaczego D jest błędne."
+    }
+  ],
+  "wcag": [
+    "4.1.2"
+  ],
+  "summary": "Krótka zasada do zapamiętania.",
+  "fix": "Opcjonalny przykład poprawki.",
+  "tags": [
+    "tag-1",
+    "tag-2"
+  ],
+  "estimatedTimeSeconds": 90
+}

@@ -1,0 +1,779 @@
+{
+  "version": 1,
+  "exercises": [
+    {
+      "id": "wcag-name-role-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "dostępna nazwa",
+      "question": "Na stronie znajduje się przycisk graficzny z ikoną lupy. Kod: <button><img src=\"search.svg\" alt=\"\"></button>. Przycisk nie ma innej nazwy. Co należy stwierdzić?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Poprawne, bo obraz dekoracyjny ma pusty alt.",
+          "correct": false,
+          "feedback": "Nie. Obraz dekoracyjny może mieć pusty alt, ale tutaj obraz jest jedyną treścią przycisku. Po ukryciu obrazu przed technologiami wspomagającymi przycisk zostaje bez dostępnej nazwy."
+        },
+        {
+          "id": "b",
+          "text": "Błąd, bo przycisk nie ma dostępnej nazwy.",
+          "correct": true,
+          "feedback": "Tak. Kontrolka interaktywna musi mieć nazwę możliwą do określenia programowo. W tym przypadku trzeba dodać tekst widoczny albo np. aria-label=\"Szukaj\" na przycisku."
+        },
+        {
+          "id": "c",
+          "text": "Poprawne, jeśli obok znajduje się pole wyszukiwania.",
+          "correct": false,
+          "feedback": "Nie. Pole obok nie nadaje automatycznie nazwy przyciskowi. Każda kontrolka interaktywna powinna mieć własną dostępną nazwę."
+        },
+        {
+          "id": "d",
+          "text": "Błąd dotyczy tylko dokumentów PDF, nie stron internetowych.",
+          "correct": false,
+          "feedback": "Nie. Dostępna nazwa kontrolek jest wymagana w interfejsach WWW. Problem dotyczy HTML i kryterium nazwa, rola, wartość."
+        }
+      ],
+      "wcag": [
+        "4.1.2",
+        "1.1.1"
+      ],
+      "summary": "Problemem nie jest samo alt=\"\", tylko brak dostępnej nazwy przycisku.",
+      "fix": "<button type=\"submit\" aria-label=\"Szukaj\"><img src=\"search.svg\" alt=\"\"></button>",
+      "tags": [
+        "button",
+        "alt",
+        "accessible-name"
+      ],
+      "estimatedTimeSeconds": 90
+    },
+    {
+      "id": "wcag-keyboard-trap-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "klawiatura",
+      "question": "Menu rozwijane można otworzyć klawiaturą, ale po wejściu do podmenu nie da się z niego wyjść klawiszem Tab, Shift+Tab ani Esc. Jak najlepiej zaklasyfikować problem?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "To problem wyłącznie użytecznościowy, bez naruszenia WCAG.",
+          "correct": false,
+          "feedback": "Nie. Jeżeli użytkownik klawiatury zostaje uwięziony w komponencie, problem dotyczy wymagań dostępności, nie tylko wygody."
+        },
+        {
+          "id": "b",
+          "text": "Naruszenie 2.1.2 Brak pułapki na klawiaturę.",
+          "correct": true,
+          "feedback": "Tak. Użytkownik musi móc opuścić komponent przy użyciu klawiatury. Jeśli nie może, mamy pułapkę klawiaturową."
+        },
+        {
+          "id": "c",
+          "text": "Naruszenie tylko 1.4.3 Kontrast minimum.",
+          "correct": false,
+          "feedback": "Nie. Kontrast może być osobnym problemem, ale w scenariuszu chodzi o niemożność opuszczenia komponentu klawiaturą."
+        },
+        {
+          "id": "d",
+          "text": "Problem występuje tylko wtedy, gdy użytkownik korzysta z czytnika ekranu.",
+          "correct": false,
+          "feedback": "Nie. Pułapka klawiaturowa dotyka wszystkich użytkowników klawiatury, także osób bez czytnika ekranu."
+        }
+      ],
+      "wcag": [
+        "2.1.2",
+        "2.1.1"
+      ],
+      "summary": "Komponent dostępny klawiaturą musi dać się także opuścić klawiaturą.",
+      "fix": "Zapewnić obsługę Esc, logiczny Tab/Shift+Tab oraz brak blokady fokusu poza uzasadnionymi modalami.",
+      "tags": [
+        "keyboard",
+        "focus",
+        "menu"
+      ],
+      "estimatedTimeSeconds": 90
+    },
+    {
+      "id": "wcag-form-label-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "formularze",
+      "question": "Pole formularza ma widoczną etykietę 'Adres e-mail', ale etykieta nie jest powiązana z polem przez label/for, aria-labelledby ani inne poprawne mechanizmy. Co jest najtrafniejszą diagnozą?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Problem 1.3.1, bo relacja etykiety i pola nie jest programowo określona.",
+          "correct": true,
+          "feedback": "Tak. Widoczna relacja musi być dostępna programowo. Czytnik ekranu powinien móc powiązać pole z jego etykietą."
+        },
+        {
+          "id": "b",
+          "text": "Problem wyłącznie 1.4.3, bo etykieta może mieć zbyt słaby kontrast.",
+          "correct": false,
+          "feedback": "Nie. Kontrast może być dodatkowym problemem, ale opisany błąd dotyczy braku programowego powiązania etykiety z polem."
+        },
+        {
+          "id": "c",
+          "text": "Brak problemu, bo etykieta jest widoczna na ekranie.",
+          "correct": false,
+          "feedback": "Nie. Widoczność etykiety nie wystarcza. Relacja musi być dostępna także dla technologii wspomagających."
+        },
+        {
+          "id": "d",
+          "text": "Problem tylko SEO, bez wpływu na dostępność.",
+          "correct": false,
+          "feedback": "Nie. To podstawowy problem dostępności formularzy. Użytkownik czytnika ekranu może nie wiedzieć, czego dotyczy pole."
+        }
+      ],
+      "wcag": [
+        "1.3.1",
+        "3.3.2",
+        "4.1.2"
+      ],
+      "summary": "Widoczna etykieta powinna być programowo powiązana z polem formularza.",
+      "fix": "<label for=\"email\">Adres e-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\">",
+      "tags": [
+        "forms",
+        "label",
+        "info-relationships"
+      ],
+      "estimatedTimeSeconds": 90
+    },
+    {
+      "id": "wcag-status-message-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "komunikaty dynamiczne",
+      "question": "Po zapisaniu formularza pojawia się komunikat 'Zapisano zmiany', ale fokus zostaje na przycisku, a czytnik ekranu nie informuje o komunikacie. Które kryterium jest najbardziej bezpośrednie?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "4.1.3 Komunikaty o stanie.",
+          "correct": true,
+          "feedback": "Tak. Komunikat o wyniku akcji powinien być możliwy do określenia programowo, aby technologie wspomagające mogły go ogłosić bez konieczności przenoszenia fokusu."
+        },
+        {
+          "id": "b",
+          "text": "1.2.2 Napisy rozszerzone.",
+          "correct": false,
+          "feedback": "Nie. 1.2.2 dotyczy napisów do nagranych materiałów audio/wideo, nie komunikatów dynamicznych w aplikacji."
+        },
+        {
+          "id": "c",
+          "text": "2.4.1 Możliwość pominięcia bloków.",
+          "correct": false,
+          "feedback": "Nie. To kryterium dotyczy pomijania powtarzalnych bloków, np. nawigacji. Tutaj problemem jest nieogłoszony komunikat o stanie."
+        },
+        {
+          "id": "d",
+          "text": "3.1.1 Język strony.",
+          "correct": false,
+          "feedback": "Nie. Język strony nie jest tu sednem. Problem polega na tym, że komunikat nie jest prezentowany użytkownikowi czytnika ekranu."
+        }
+      ],
+      "wcag": [
+        "4.1.3"
+      ],
+      "summary": "Komunikaty o stanie muszą być dostępne programowo i ogłaszane technologiom wspomagającym.",
+      "fix": "Użyć np. regionu status: <div role=\"status\">Zapisano zmiany</div> albo aria-live=\"polite\" w odpowiednim miejscu.",
+      "tags": [
+        "status",
+        "aria-live",
+        "forms"
+      ],
+      "estimatedTimeSeconds": 90
+    },
+    {
+      "id": "wcag-modal-focus-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "modal / fokus",
+      "question": "Po otwarciu modala fokus zostaje na stronie pod spodem, a użytkownik może tabulować po elementach tła. Co jest najlepszą rekomendacją?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Dodać role=\"dialog\", nazwę modala, przenieść fokus do modala i uniemożliwić interakcję z tłem do zamknięcia.",
+          "correct": true,
+          "feedback": "Tak. Modal wymaga semantyki, nazwy, zarządzania fokusem i zablokowania interakcji z tłem. Sam wygląd modala nie wystarcza."
+        },
+        {
+          "id": "b",
+          "text": "Dodać większy z-index, żeby modal był bardziej widoczny.",
+          "correct": false,
+          "feedback": "Nie. z-index może poprawić warstwę wizualną, ale nie rozwiązuje fokusu, klawiatury ani dostępności dla czytników ekranu."
+        },
+        {
+          "id": "c",
+          "text": "Ukryć modal przez aria-hidden=\"true\", żeby nie przeszkadzał czytnikowi ekranu.",
+          "correct": false,
+          "feedback": "Nie. Ukrycie aktywnego modala przed technologiami wspomagającymi pogłębia problem. To tło powinno być nieaktywne, a modal dostępny."
+        },
+        {
+          "id": "d",
+          "text": "Nie robić nic, bo modal jest tylko elementem wizualnym.",
+          "correct": false,
+          "feedback": "Nie. Modal zmienia przepływ interakcji. Musi być poprawnie obsłużony klawiaturą i semantycznie."
+        }
+      ],
+      "wcag": [
+        "2.1.1",
+        "2.1.2",
+        "2.4.3",
+        "4.1.2"
+      ],
+      "summary": "Modal wymaga zarządzania fokusem, nazwy, roli i ograniczenia interakcji z tłem.",
+      "fix": "Preferuj natywny <dialog> albo wzorzec dialogu zgodny z APG. Po zamknięciu zwróć fokus do elementu otwierającego.",
+      "tags": [
+        "dialog",
+        "modal",
+        "focus"
+      ],
+      "estimatedTimeSeconds": 120
+    },
+    {
+      "id": "wcag-css-focus-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "fokus / CSS",
+      "question": "W CSS zastosowano regułę: a:focus { outline: none; }. Nie dodano żadnego alternatywnego wskaźnika fokusu. Co należy stwierdzić?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "To poprawne, jeśli linki mają dobry kontrast.",
+          "correct": false,
+          "feedback": "Nie. Kontrast linku nie zastępuje widocznego wskaźnika fokusu. Użytkownik klawiatury musi widzieć, który element jest aktywny."
+        },
+        {
+          "id": "b",
+          "text": "To narusza wymaganie widocznego fokusu.",
+          "correct": true,
+          "feedback": "Tak. Usunięcie outline bez zapewnienia alternatywnego wskaźnika fokusu powoduje, że użytkownik klawiatury traci orientację."
+        },
+        {
+          "id": "c",
+          "text": "To problem wyłącznie dla użytkowników myszy.",
+          "correct": false,
+          "feedback": "Nie. Problem dotyczy przede wszystkim użytkowników klawiatury i technologii opartych na fokusu."
+        },
+        {
+          "id": "d",
+          "text": "Wystarczy dodać title do linków.",
+          "correct": false,
+          "feedback": "Nie. Atrybut title nie zapewnia widocznego fokusu i nie rozwiązuje problemu nawigacji klawiaturą."
+        }
+      ],
+      "wcag": [
+        "2.4.7",
+        "1.4.11",
+        "2.4.11"
+      ],
+      "summary": "Nie wolno usuwać wskaźnika fokusu bez zapewnienia widocznej alternatywy.",
+      "fix": ":focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }",
+      "tags": [
+        "css",
+        "focus",
+        "keyboard"
+      ],
+      "estimatedTimeSeconds": 80
+    },
+    {
+      "id": "wcag-color-current-page-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "użycie koloru",
+      "question": "W menu aktualna podstrona jest oznaczona wyłącznie innym kolorem linku. Nie ma tekstu, ikony, podkreślenia ani informacji programowej. Co jest najtrafniejszą oceną?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Problem może dotyczyć 1.4.1 Użycie koloru; warto też przekazać stan programowo, np. aria-current=\"page\".",
+          "correct": true,
+          "feedback": "Tak. Kolor nie powinien być jedynym sposobem przekazania informacji. Stan aktualnej strony warto także przekazać programowo."
+        },
+        {
+          "id": "b",
+          "text": "To wyłącznie problem kontrastu 1.4.3.",
+          "correct": false,
+          "feedback": "Nie. Nawet przy dobrym kontraście kolor nadal może być jedynym nośnikiem informacji o aktualnej podstronie."
+        },
+        {
+          "id": "c",
+          "text": "To nie jest problem, bo aktualną stronę widać po adresie URL.",
+          "correct": false,
+          "feedback": "Nie. Użytkownik nie powinien musieć analizować adresu URL, aby zrozumieć aktualne położenie w menu."
+        },
+        {
+          "id": "d",
+          "text": "Wystarczy dodać target=\"_blank\" do linku aktualnej strony.",
+          "correct": false,
+          "feedback": "Nie. Otwieranie w nowej karcie nie przekazuje stanu aktualnej strony i może dodatkowo dezorientować."
+        }
+      ],
+      "wcag": [
+        "1.4.1",
+        "4.1.2"
+      ],
+      "summary": "Informacji o stanie nie należy przekazywać wyłącznie kolorem.",
+      "fix": "Dodać wizualne oznaczenie niewymagające rozróżniania koloru oraz aria-current=\"page\" na linku bieżącej strony.",
+      "tags": [
+        "color",
+        "navigation",
+        "aria-current"
+      ],
+      "estimatedTimeSeconds": 90
+    },
+    {
+      "id": "wcag-label-in-name-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "etykieta w nazwie",
+      "question": "Przycisk ma widoczny tekst 'Pobierz raport', ale przez aria-label jego dostępna nazwa brzmi 'Dokument PDF'. Co jest najważniejszym problemem?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Widoczna etykieta nie jest zawarta w dostępnej nazwie, co może utrudnić obsługę głosem.",
+          "correct": true,
+          "feedback": "Tak. Dostępna nazwa powinna zawierać widoczną etykietę. Inaczej użytkownik sterowania głosem może powiedzieć 'Pobierz raport' i nie trafić w kontrolkę."
+        },
+        {
+          "id": "b",
+          "text": "Problem polega wyłącznie na braku kontrastu tekstu.",
+          "correct": false,
+          "feedback": "Nie. W scenariuszu nie ma informacji o kontraście. Kluczowa jest niespójność tekstu widocznego i dostępnej nazwy."
+        },
+        {
+          "id": "c",
+          "text": "To poprawne, bo aria-label zawsze ma pierwszeństwo.",
+          "correct": false,
+          "feedback": "Nie. To, że aria-label może nadpisać nazwę, nie oznacza, że powinien tworzyć nazwę niespójną z widoczną etykietą."
+        },
+        {
+          "id": "d",
+          "text": "Wystarczy usunąć widoczny tekst i zostawić samą ikonę.",
+          "correct": false,
+          "feedback": "Nie. Usunięcie widocznego tekstu pogorszyłoby zrozumiałość dla wielu użytkowników. Lepsze jest zapewnienie spójnej nazwy."
+        }
+      ],
+      "wcag": [
+        "2.5.3",
+        "4.1.2"
+      ],
+      "summary": "Dostępna nazwa kontrolki powinna zawierać jej widoczną etykietę.",
+      "fix": "Najprościej usunąć zbędne aria-label i zostawić tekst przycisku albo ustawić aria-label zaczynające się od 'Pobierz raport'.",
+      "tags": [
+        "label-in-name",
+        "speech-input",
+        "aria-label"
+      ],
+      "estimatedTimeSeconds": 100
+    },
+    {
+      "id": "wcag-reflow-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "advanced",
+      "category": "reflow / responsive",
+      "question": "Przy szerokości 320 CSS px strona wymaga przewijania w dwóch kierunkach, a część przycisków znajduje się poza widokiem. Które kryterium należy szczególnie sprawdzić?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "1.4.10 Dopasowanie do ekranu.",
+          "correct": true,
+          "feedback": "Tak. Przy małej szerokości treść powinna się dopasować bez utraty informacji i bez konieczności przewijania w dwóch kierunkach dla całej strony."
+        },
+        {
+          "id": "b",
+          "text": "1.2.2 Napisy rozszerzone.",
+          "correct": false,
+          "feedback": "Nie. Napisy dotyczą multimediów, a problem dotyczy układu i dopasowania treści do ekranu."
+        },
+        {
+          "id": "c",
+          "text": "3.1.1 Język strony.",
+          "correct": false,
+          "feedback": "Nie. Język strony nie rozwiązuje problemu reflow i przycisków poza widokiem."
+        },
+        {
+          "id": "d",
+          "text": "2.3.1 Trzy błyski.",
+          "correct": false,
+          "feedback": "Nie. To kryterium dotyczy błysków mogących wywołać napady, nie układu responsywnego."
+        }
+      ],
+      "wcag": [
+        "1.4.10",
+        "1.4.4"
+      ],
+      "summary": "Interfejs musi działać przy małych szerokościach i powiększeniu bez utraty funkcji.",
+      "fix": "Stosować elastyczny layout, unikać sztywnych szerokości i fixed-height, testować 320 CSS px oraz zoom 400%.",
+      "tags": [
+        "reflow",
+        "responsive",
+        "zoom"
+      ],
+      "estimatedTimeSeconds": 80
+    },
+    {
+      "id": "wcag-aria-hidden-focus-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "advanced",
+      "category": "ARIA / fokus",
+      "statement": "Element interaktywny ukryty przez aria-hidden=\"true\", ale nadal osiągalny klawiaturą, jest poważnym problemem dostępności.",
+      "correct": true,
+      "feedbackTrue": "Tak. Element może otrzymać fokus, ale jest usunięty z drzewa dostępności. Użytkownik czytnika ekranu może trafić na kontrolkę, która nie jest poprawnie ogłaszana.",
+      "feedbackFalse": "Nie. To jest poważny problem. aria-hidden=\"true\" nie usuwa elementu z kolejności fokusu, więc może powstać niespójność między klawiaturą a drzewem dostępności.",
+      "wcag": [
+        "4.1.2",
+        "2.1.1",
+        "2.4.3"
+      ],
+      "summary": "Nie wolno zostawiać fokusowalnych kontrolek ukrytych przed technologiami wspomagającymi.",
+      "tags": [
+        "aria-hidden",
+        "focus",
+        "screen-reader"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-role-button-keyboard-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "advanced",
+      "category": "ARIA / klawiatura",
+      "statement": "Dodanie role=\"button\" do elementu div automatycznie zapewnia obsługę klawiszy Enter i Spacja.",
+      "correct": false,
+      "feedbackTrue": "Nie. role=\"button\" zmienia semantykę, ale nie dodaje natywnej obsługi klawiatury. Autor musiałby dodać tabindex i obsłużyć Enter oraz Spację, dlatego lepiej użyć natywnego button.",
+      "feedbackFalse": "Tak. To zdanie jest fałszywe. ARIA nie dodaje zachowań przeglądarki. Natywny <button> zapewnia semantykę i obsługę klawiatury bez dodatkowego kodu.",
+      "wcag": [
+        "2.1.1",
+        "4.1.2"
+      ],
+      "summary": "ARIA może dodać semantykę, ale nie dodaje natywnego zachowania komponentu.",
+      "tags": [
+        "role-button",
+        "keyboard",
+        "native-html"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-placeholder-label-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "advanced",
+      "category": "formularze",
+      "statement": "Sam placeholder może zastąpić etykietę pola formularza, jeśli jego tekst jest zrozumiały.",
+      "correct": false,
+      "feedbackTrue": "Nie. Placeholder nie jest dobrym zamiennikiem etykiety. Może znikać po wpisaniu treści, bywa słabiej widoczny i nie zawsze zapewnia poprawną relację instrukcji z polem.",
+      "feedbackFalse": "Tak. To zdanie jest fałszywe. Pole powinno mieć widoczną etykietę powiązaną programowo; placeholder może być tylko dodatkową podpowiedzią.",
+      "wcag": [
+        "1.3.1",
+        "3.3.2",
+        "4.1.2"
+      ],
+      "summary": "Placeholder nie zastępuje etykiety formularza.",
+      "tags": [
+        "forms",
+        "placeholder",
+        "label"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-automatic-tools-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "advanced",
+      "category": "narzędzia automatyczne",
+      "statement": "Jeżeli WAVE, axe albo inne narzędzie automatyczne nie wykryło błędów, strona jest zgodna z WCAG.",
+      "correct": false,
+      "feedbackTrue": "Nie. Narzędzia automatyczne wykrywają tylko część problemów. Nie ocenią w pełni sensu tekstu alternatywnego, jakości feedbacku, logiczności kolejności fokusu czy realnej użyteczności z czytnikiem ekranu.",
+      "feedbackFalse": "Tak. To zdanie jest fałszywe. Wynik narzędzia jest dowodem pomocniczym, a nie pełnym audytem zgodności z WCAG.",
+      "wcag": [],
+      "summary": "Automaty są wsparciem audytora, ale nie zastępują testów manualnych.",
+      "tags": [
+        "wave",
+        "axe",
+        "manual-testing"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-link-context-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "advanced",
+      "category": "linki",
+      "statement": "Link 'czytaj więcej' może być poprawny, jeśli jego cel wynika z programowo określonego kontekstu, np. powiązanego nagłówka karty artykułu.",
+      "correct": true,
+      "feedbackTrue": "Tak. Cel linku nie zawsze musi wynikać wyłącznie z samego tekstu linku, jeżeli jest zrozumiały z programowo określonego kontekstu. W praktyce trzeba to zweryfikować, a nie zakładać automatycznie.",
+      "feedbackFalse": "Nie. Link 'czytaj więcej' nie zawsze jest błędem. Może być poprawny, jeśli jego cel jest jednoznaczny w programowo określonym kontekście.",
+      "wcag": [
+        "2.4.4"
+      ],
+      "summary": "Ocena linku zależy od tekstu linku i jego dostępnego kontekstu.",
+      "tags": [
+        "links",
+        "context",
+        "screen-reader"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-feedback-color-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "advanced",
+      "category": "feedback / kolor",
+      "statement": "W grze edukacyjnej wystarczy oznaczyć poprawną odpowiedź kolorem zielonym, a błędną czerwonym, jeśli kontrast kolorów jest wystarczający.",
+      "correct": false,
+      "feedbackTrue": "Nie. Nawet przy dobrym kontraście kolor nie może być jedynym nośnikiem informacji. Trzeba dodać tekst, np. 'Odpowiedź poprawna' albo 'Odpowiedź niepoprawna'.",
+      "feedbackFalse": "Tak. To zdanie jest fałszywe. Kontrast jest ważny, ale nie rozwiązuje problemu przekazywania statusu wyłącznie kolorem.",
+      "wcag": [
+        "1.4.1",
+        "1.4.3"
+      ],
+      "summary": "Status odpowiedzi musi być przekazany tekstowo, nie tylko kolorem.",
+      "tags": [
+        "color",
+        "feedback",
+        "status"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-heading-order-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "intermediate",
+      "category": "nagłówki",
+      "question": "Na stronie sekcja wizualnie wygląda jak główny dział treści, ale jej tytuł jest zwykłym pogrubionym paragrafem: <p><strong>Oferta</strong></p>. Co jest najtrafniejszą rekomendacją?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Zostawić paragraf, jeśli jest wystarczająco duży wizualnie.",
+          "correct": false,
+          "feedback": "Nie. Wygląd nie tworzy struktury dokumentu. Użytkownik technologii wspomagających może nie odnaleźć tej sekcji w nawigacji po nagłówkach."
+        },
+        {
+          "id": "b",
+          "text": "Użyć właściwego elementu nagłówka zgodnego z hierarchią strony.",
+          "correct": true,
+          "feedback": "Tak. Jeśli tekst pełni funkcję nagłówka sekcji, powinien być oznaczony semantycznie jako nagłówek, np. h2 albo h3 zależnie od kontekstu."
+        },
+        {
+          "id": "c",
+          "text": "Dodać tylko aria-label do paragrafu.",
+          "correct": false,
+          "feedback": "Nie. aria-label na paragrafie nie zmieni go w nagłówek i może dodać zbędny hałas. Najpierw należy użyć poprawnego HTML."
+        },
+        {
+          "id": "d",
+          "text": "Ukryć tytuł przed czytnikiem ekranu, bo jest dekoracyjny.",
+          "correct": false,
+          "feedback": "Nie. Tytuł sekcji nie jest dekoracją. Ukrycie go pogorszyłoby orientację w treści."
+        }
+      ],
+      "wcag": [
+        "1.3.1",
+        "2.4.6"
+      ],
+      "summary": "Nagłówki muszą być oznaczone semantycznie, jeśli organizują treść strony.",
+      "fix": "<section aria-labelledby=\"offer-heading\"><h2 id=\"offer-heading\">Oferta</h2><p>...</p></section>",
+      "tags": [
+        "headings",
+        "structure",
+        "html"
+      ],
+      "estimatedTimeSeconds": 80
+    },
+    {
+      "id": "wcag-error-identification-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "intermediate",
+      "category": "formularze",
+      "question": "Po wysłaniu formularza błędne pole ma tylko czerwoną ramkę. Nie ma tekstu błędu ani informacji programowej. Co należy wskazać w raporcie?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "To wystarczy, jeśli czerwony kolor ma dobry kontrast.",
+          "correct": false,
+          "feedback": "Nie. Nawet kontrastowy kolor nie może być jedynym nośnikiem informacji o błędzie."
+        },
+        {
+          "id": "b",
+          "text": "Trzeba dodać zrozumiały tekst błędu i powiązać go z polem.",
+          "correct": true,
+          "feedback": "Tak. Użytkownik powinien wiedzieć, które pole jest błędne i jak poprawić wpis. Komunikat warto powiązać z polem przez aria-describedby."
+        },
+        {
+          "id": "c",
+          "text": "Wystarczy dodać placeholder z przykładem.",
+          "correct": false,
+          "feedback": "Nie. Placeholder nie zastępuje komunikatu błędu po walidacji i może zniknąć po wpisaniu treści."
+        },
+        {
+          "id": "d",
+          "text": "Najlepiej automatycznie usunąć błędne pole.",
+          "correct": false,
+          "feedback": "Nie. Usunięcie pola nie wyjaśnia problemu i może uniemożliwić ukończenie formularza."
+        }
+      ],
+      "wcag": [
+        "3.3.1",
+        "1.4.1",
+        "3.3.3"
+      ],
+      "summary": "Błąd formularza musi być rozpoznawalny tekstowo i programowo, nie tylko przez kolor.",
+      "fix": "<label for=\"phone\">Telefon</label><input id=\"phone\" aria-invalid=\"true\" aria-describedby=\"phone-error\"><p id=\"phone-error\">Podaj numer telefonu w formacie 123 456 789.</p>",
+      "tags": [
+        "forms",
+        "errors",
+        "aria-describedby"
+      ],
+      "estimatedTimeSeconds": 90
+    },
+    {
+      "id": "wcag-touch-target-001",
+      "type": "single-choice",
+      "mode": "wcag-detective",
+      "level": "intermediate",
+      "category": "rozmiar celu",
+      "question": "Lista akcji w aplikacji mobilnej ma ikony 16 na 16 pikseli CSS bez tekstu i bez dodatkowego obszaru kliknięcia. Co jest najtrafniejszą diagnozą?",
+      "answers": [
+        {
+          "id": "a",
+          "text": "Problem dotyczy wyłącznie estetyki interfejsu.",
+          "correct": false,
+          "feedback": "Nie. Zbyt małe cele utrudniają obsługę osobom z ograniczoną precyzją ruchu i użytkownikom ekranów dotykowych."
+        },
+        {
+          "id": "b",
+          "text": "Należy sprawdzić rozmiar celu i dostępne nazwy ikon.",
+          "correct": true,
+          "feedback": "Tak. Ikona jako kontrolka powinna mieć dostępny cel o odpowiednim rozmiarze oraz nazwę zrozumiałą dla technologii wspomagających."
+        },
+        {
+          "id": "c",
+          "text": "Wystarczy powiększyć ikonę wizualnie przez transform: scale.",
+          "correct": false,
+          "feedback": "Nie. Transformacja wizualna nie zawsze zwiększa faktyczny obszar aktywacji i nie rozwiązuje dostępnej nazwy."
+        },
+        {
+          "id": "d",
+          "text": "Problem znika, jeśli użytkownik może używać gestu szczypania.",
+          "correct": false,
+          "feedback": "Nie. Użytkownik nie powinien musieć powiększać strony, aby trafić w podstawowe kontrolki."
+        }
+      ],
+      "wcag": [
+        "2.5.8",
+        "4.1.2"
+      ],
+      "summary": "Cele interaktywne muszą być wystarczająco duże i mieć dostępne nazwy.",
+      "fix": "<button type=\"button\" aria-label=\"Usuń element\" class=\"icon-button\"><svg aria-hidden=\"true\" focusable=\"false\">...</svg></button>",
+      "tags": [
+        "target-size",
+        "mobile",
+        "icon-button"
+      ],
+      "estimatedTimeSeconds": 80
+    },
+    {
+      "id": "wcag-autoplay-audio-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "intermediate",
+      "category": "multimedia",
+      "statement": "Automatycznie odtwarzany dźwięk trwający dłużej niż 3 sekundy powinien mieć mechanizm zatrzymania, wyciszenia albo kontroli głośności niezależny od systemu.",
+      "correct": true,
+      "feedbackTrue": "Tak. Dźwięk odtwarzany automatycznie może zagłuszać czytnik ekranu i utrudniać korzystanie ze strony. Użytkownik musi mieć kontrolę.",
+      "feedbackFalse": "Nie. To wymaganie dotyczy kontroli dźwięku. Sam fakt, że dźwięk jest elementem strony, nie zwalnia z zapewnienia użytkownikowi mechanizmu zatrzymania lub wyciszenia.",
+      "wcag": [
+        "1.4.2"
+      ],
+      "summary": "Automatyczny dźwięk dłuższy niż 3 sekundy wymaga kontroli po stronie interfejsu.",
+      "tags": [
+        "audio",
+        "autoplay",
+        "control"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-focus-visible-truefalse-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "intermediate",
+      "category": "fokus",
+      "statement": "Jeśli element interaktywny można obsłużyć klawiaturą, widoczny wskaźnik fokusu nadal jest wymagany.",
+      "correct": true,
+      "feedbackTrue": "Tak. Sama obsługa klawiaturą nie wystarcza. Użytkownik musi widzieć, który element ma aktualnie fokus.",
+      "feedbackFalse": "Nie. Brak widocznego fokusu może sprawić, że użytkownik klawiatury zgubi miejsce w interfejsie mimo technicznej możliwości obsługi.",
+      "wcag": [
+        "2.4.7",
+        "2.4.13"
+      ],
+      "summary": "Klawiatura i widoczny fokus to dwa powiązane, ale osobne wymagania.",
+      "tags": [
+        "focus",
+        "keyboard",
+        "css"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-required-field-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "intermediate",
+      "category": "formularze",
+      "statement": "Sama gwiazdka przy etykiecie pola wymaganego jest wystarczająca, nawet jeśli nigdzie nie wyjaśniono jej znaczenia.",
+      "correct": false,
+      "feedbackTrue": "Nie. Symbol wymaga tekstowego wyjaśnienia. Użytkownik powinien wiedzieć, co oznacza gwiazdka, zanim wyśle formularz.",
+      "feedbackFalse": "Tak. To zdanie jest fałszywe. Informacja o polach wymaganych powinna być zrozumiała tekstowo i nie opierać się wyłącznie na symbolu.",
+      "wcag": [
+        "3.3.2",
+        "1.3.1"
+      ],
+      "summary": "Oznaczenia pól wymaganych muszą być zrozumiałe, nie tylko symboliczne.",
+      "tags": [
+        "required",
+        "forms",
+        "instructions"
+      ],
+      "estimatedTimeSeconds": 60
+    },
+    {
+      "id": "wcag-dialog-native-001",
+      "type": "true-false",
+      "mode": "true-false-auditor",
+      "level": "intermediate",
+      "category": "modal / fokus",
+      "statement": "Natywny element dialog nadal wymaga sprawdzenia nazwy, fokusu po otwarciu i powrotu fokusu po zamknięciu.",
+      "correct": true,
+      "feedbackTrue": "Tak. Natywny dialog pomaga, ale nie zwalnia z zaprojektowania etykiety, sensownego fokusu początkowego i powrotu fokusu po zamknięciu.",
+      "feedbackFalse": "Nie. Natywna semantyka jest dobrym punktem startu, ale audyt nadal musi sprawdzić cały przepływ interakcji.",
+      "wcag": [
+        "2.4.3",
+        "4.1.2",
+        "2.1.2"
+      ],
+      "summary": "Natywny komponent zmniejsza ryzyko, ale nie zastępuje testu całego wzorca modalnego.",
+      "tags": [
+        "dialog",
+        "focus",
+        "native-html"
+      ],
+      "estimatedTimeSeconds": 60
+    }
+  ]
+}

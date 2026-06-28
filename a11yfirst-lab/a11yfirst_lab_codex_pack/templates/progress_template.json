@@ -1,0 +1,17 @@
+{
+  "userProgressVersion": 1,
+  "createdAt": "2026-06-27T10:00:00.000Z",
+  "updatedAt": "2026-06-27T10:20:00.000Z",
+  "lastMode": "wcag-detective",
+  "lastExerciseId": "wcag-name-role-001",
+  "completedExerciseIds": [],
+  "incorrectExerciseIds": [],
+  "resultsByExerciseId": {},
+  "categoryStats": {},
+  "settings": {
+    "reduceMotion": false,
+    "highContrast": false,
+    "largeSpacing": false,
+    "showWcagHints": true
+  }
+}
