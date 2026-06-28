@@ -1,0 +1,554 @@
+[
+  {
+    "name": "role=\"alert\"",
+    "type": "rola",
+    "short": "Oznacza pilny komunikat, który technologie wspomagające mogą ogłosić natychmiast.",
+    "useWhen": "Dla krytycznych błędów i informacji wymagających szybkiej reakcji użytkownika.",
+    "avoidWhen": "Nie używaj do zwykłych statusów, potwierdzeń ani informacji, które mogą poczekać.",
+    "wcag": [
+      "4.1.3"
+    ],
+    "example": "<p role=\"alert\">Sesja za chwilę wygaśnie.</p>",
+    "risk": "Nadużywanie alertów przerywa użytkownikowi pracę i tworzy hałas informacyjny."
+  },
+  {
+    "name": "role=\"button\"",
+    "type": "rola",
+    "short": "Informuje, że element ma być przyciskiem w drzewie dostępności.",
+    "useWhen": "Tylko gdy nie możesz użyć natywnego <button> i odtwarzasz pełne zachowanie przycisku.",
+    "avoidWhen": "Nie używaj na div lub span tylko dlatego, że element wygląda jak przycisk.",
+    "wcag": [
+      "2.1.1",
+      "2.4.7",
+      "4.1.2"
+    ],
+    "example": "<button type=\"button\">Zamknij</button>",
+    "risk": "Sama rola nie dodaje obsługi klawiatury, fokusu ani aktywacji spacją."
+  },
+  {
+    "name": "role=\"dialog\"",
+    "type": "rola",
+    "short": "Oznacza okno dialogowe, które wymaga wyraźnego kontekstu i nazwy dostępnej.",
+    "useWhen": "Przy faktycznych dialogach lub modalach z poprawną obsługą fokusu.",
+    "avoidWhen": "Nie używaj dla zwykłych sekcji strony ani paneli, które nie zachowują się jak dialog.",
+    "wcag": [
+      "2.1.1",
+      "2.4.3",
+      "4.1.2"
+    ],
+    "example": "<div role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"dialog-title\">...</div>",
+    "risk": "Dialog bez przeniesienia, zatrzymania i przywrócenia fokusu może być niedostępny z klawiatury."
+  },
+  {
+    "name": "role=\"status\"",
+    "type": "rola",
+    "short": "Tworzy niepilny komunikat o stanie, ogłaszany bez przenoszenia fokusu.",
+    "useWhen": "Dla wyników filtrowania, zapisu, postępu, potwierdzeń i podobnych statusów.",
+    "avoidWhen": "Nie używaj dla komunikatów krytycznych, które wymagają natychmiastowej reakcji.",
+    "wcag": [
+      "4.1.3"
+    ],
+    "example": "<p role=\"status\">Pokazano 7 wyników.</p>",
+    "risk": "Zbyt częste aktualizacje statusu mogą przeszkadzać w pracy użytkownika."
+  },
+  {
+    "name": "role=\"switch\"",
+    "type": "rola",
+    "short": "Oznacza przełącznik z dwoma stanami: włączony albo wyłączony.",
+    "useWhen": "Gdy kontrolka faktycznie działa jak przełącznik i nie możesz użyć natywnego checkboxa.",
+    "avoidWhen": "Nie używaj do zwykłych przycisków akcji ani do rozwijania sekcji.",
+    "wcag": [
+      "2.1.1",
+      "4.1.2"
+    ],
+    "example": "<button type=\"button\" role=\"switch\" aria-checked=\"false\">Powiadomienia</button>",
+    "risk": "Stan aria-checked musi być aktualizowany razem ze stanem wizualnym."
+  },
+  {
+    "name": "role=\"tab\"",
+    "type": "rola",
+    "short": "Oznacza zakładkę w komponencie kart, zwykle razem z tablist i tabpanel.",
+    "useWhen": "Przy prawdziwych zakładkach, które przełączają widoczne panele w tym samym widoku.",
+    "avoidWhen": "Nie używaj do zwykłej nawigacji między stronami. Tam wystarczą linki i aria-current.",
+    "wcag": [
+      "2.1.1",
+      "2.4.3",
+      "4.1.2"
+    ],
+    "example": "<button role=\"tab\" aria-selected=\"true\" aria-controls=\"panel-a\">A</button>",
+    "risk": "Zakładki wymagają obsługi klawiatury, aria-selected i poprawnych relacji z panelami."
+  },
+  {
+    "name": "aria-activedescendant",
+    "type": "właściwość",
+    "short": "Wskazuje aktualnie aktywny element potomny, gdy fokus pozostaje na elemencie nadrzędnym.",
+    "useWhen": "W złożonych komponentach, takich jak combobox, listbox, grid albo tree, gdy faktyczny fokus DOM pozostaje na kontenerze lub polu wejściowym.",
+    "avoidWhen": "Nie używaj w prostych listach linków albo wtedy, gdy możesz przenosić prawdziwy fokus na aktywny element.",
+    "wcag": [
+      "1.3.1",
+      "2.1.1",
+      "4.1.2"
+    ],
+    "example": "<input role=\"combobox\" aria-activedescendant=\"option-2\" aria-controls=\"results\">\n<ul id=\"results\" role=\"listbox\">\n  <li id=\"option-2\" role=\"option\">Warszawa</li>\n</ul>",
+    "risk": "Jeżeli wskazane id nie istnieje albo aktywny element nie jest logicznym potomkiem komponentu, czytnik ekranu może ogłaszać błędny stan."
+  },
+  {
+    "name": "aria-atomic",
+    "type": "właściwość",
+    "short": "Określa, czy przy zmianie regionu live ma zostać ogłoszony cały region, czy tylko zmieniona część.",
+    "useWhen": "Gdy zmieniona część bez kontekstu jest niezrozumiała, np. sama liczba w komunikacie koszyka.",
+    "avoidWhen": "Nie stosuj na dużych sekcjach, bo drobna zmiana może powodować odczytywanie zbyt dużej ilości treści.",
+    "wcag": [
+      "4.1.3"
+    ],
+    "example": "<p aria-live=\"polite\" aria-atomic=\"true\">W koszyku: <span>3</span> produkty</p>",
+    "risk": "Zbyt duży region z aria-atomic=true może zasypywać użytkownika powtarzanymi komunikatami."
+  },
+  {
+    "name": "aria-autocomplete",
+    "type": "właściwość",
+    "short": "Informuje, jaki typ sugestii automatycznego uzupełniania jest dostępny.",
+    "useWhen": "Przy comboboxach i polach z sugestiami, gdy użytkownik może wybierać albo akceptować podpowiedzi.",
+    "avoidWhen": "Nie stosuj przy zwykłym polu tekstowym bez faktycznego mechanizmu sugestii.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<input role=\"combobox\" aria-autocomplete=\"list\" aria-controls=\"city-list\">",
+    "risk": "Fałszywe aria-autocomplete sugeruje funkcję, której użytkownik nie może użyć."
+  },
+  {
+    "name": "aria-busy",
+    "type": "stan",
+    "short": "Informuje, że region jest aktualnie aktualizowany.",
+    "useWhen": "Przy dynamicznych listach, wynikach wyszukiwania albo panelach, które są w trakcie ładowania.",
+    "avoidWhen": "Nie zostawiaj aria-busy=true po zakończeniu aktualizacji.",
+    "wcag": [
+      "4.1.3"
+    ],
+    "example": "<section aria-live=\"polite\" aria-busy=\"true\">Ładowanie wyników…</section>",
+    "risk": "Stałe aria-busy=true może blokować lub opóźniać ogłaszanie istotnych zmian."
+  },
+  {
+    "name": "aria-checked",
+    "type": "stan",
+    "short": "Informuje, czy element typu checkbox, radio albo switch jest zaznaczony.",
+    "useWhen": "Przy niestandardowych checkboxach, radio buttonach i przełącznikach, gdy nie można użyć natywnego inputa.",
+    "avoidWhen": "Nie używaj zamiast natywnego checked na <input type=\"checkbox\">, jeśli natywny input wystarcza.",
+    "wcag": [
+      "2.1.1",
+      "4.1.2"
+    ],
+    "example": "<button role=\"switch\" aria-checked=\"false\">Powiadomienia</button>",
+    "risk": "Jeżeli stan wizualny i aria-checked są niespójne, użytkownik dostaje błędną informację o stanie kontrolki."
+  },
+  {
+    "name": "aria-controls",
+    "type": "właściwość",
+    "short": "Wskazuje element kontrolowany przez daną kontrolkę.",
+    "useWhen": "Przy akordeonach, disclosure, menu rozwijanych, zakładkach i panelach sterowanych przyciskiem.",
+    "avoidWhen": "Nie używaj jako zamiennika działania JavaScript. Sam atrybut niczego nie otwiera i nie zamyka.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<button aria-expanded=\"false\" aria-controls=\"filters\">Pokaż filtry</button>\n<section id=\"filters\" hidden>...</section>",
+    "risk": "Błędne albo nieistniejące id powoduje fałszywą relację."
+  },
+  {
+    "name": "aria-current",
+    "type": "stan",
+    "short": "Wskazuje aktualny element w zestawie, np. aktualną stronę w nawigacji.",
+    "useWhen": "W menu, breadcrumbs, paginacji, kalendarzu albo krokach procesu.",
+    "avoidWhen": "Nie używaj do wskazania wybranej zakładki lub opcji w listboxie. Tam zwykle użyj aria-selected.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<a href=\"/szkolenia\" aria-current=\"page\">Szkolenia</a>",
+    "risk": "Mylenie aria-current z aria-selected utrudnia zrozumienie komponentu."
+  },
+  {
+    "name": "aria-describedby",
+    "type": "właściwość",
+    "short": "Łączy element z dodatkowym opisem.",
+    "useWhen": "Do instrukcji, podpowiedzi, ograniczeń i komunikatów błędów.",
+    "avoidWhen": "Nie wskazuj bardzo długich treści, które utrudnią korzystanie z formularza.",
+    "wcag": [
+      "1.3.1",
+      "3.3.1",
+      "3.3.2",
+      "4.1.2"
+    ],
+    "example": "<input id=\"password\" aria-describedby=\"password-help\">\n<p id=\"password-help\">Minimum 12 znaków.</p>",
+    "risk": "Nieistniejące id albo zbyt długi opis obniża użyteczność."
+  },
+  {
+    "name": "aria-description",
+    "type": "właściwość",
+    "short": "Nadaje elementowi opis dostępny bez odwoływania się do innego elementu w DOM.",
+    "useWhen": "Gdy krótki opis nie musi być widoczny jako osobny tekst w interfejsie.",
+    "avoidWhen": "Nie używaj zamiast widocznych instrukcji, szczególnie przy formularzach.",
+    "wcag": [
+      "3.3.2",
+      "4.1.2"
+    ],
+    "example": "<button aria-description=\"Eksportuje dane w formacie CSV\">Eksportuj</button>",
+    "risk": "Może ukryć ważną informację przed użytkownikami widzącymi. Jeśli informacja jest ważna, pokaż ją wizualnie."
+  },
+  {
+    "name": "aria-details",
+    "type": "właściwość",
+    "short": "Wskazuje element zawierający bardziej szczegółowy opis lub strukturę pomocniczą.",
+    "useWhen": "Gdy element wymaga bogatszego opisu niż krótki tekst, np. z tabelą albo listą.",
+    "avoidWhen": "Nie używaj dla prostych podpowiedzi. Do nich wystarczy aria-describedby.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<img src=\"chart.png\" alt=\"Sprzedaż rośnie w 2026 roku\" aria-details=\"chart-details\">\n<div id=\"chart-details\">...</div>",
+    "risk": "Wsparcie i sposób obsługi mogą różnić się między technologiami wspomagającymi. Zapewnij też zwykłą widoczną alternatywę, jeśli opis jest krytyczny."
+  },
+  {
+    "name": "aria-disabled",
+    "type": "stan",
+    "short": "Informuje, że element jest niedostępny lub wyłączony.",
+    "useWhen": "Przy niestandardowych komponentach albo gdy wyłączony element ma pozostać w kolejności fokusu.",
+    "avoidWhen": "Dla natywnych przycisków i pól formularza zwykle użyj disabled.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<button type=\"button\" aria-disabled=\"true\">Następny krok</button>",
+    "risk": "aria-disabled samo nie blokuje kliknięcia ani działania skryptu. Trzeba to obsłużyć w logice."
+  },
+  {
+    "name": "aria-errormessage",
+    "type": "właściwość",
+    "short": "Wskazuje element z komunikatem błędu dla pola.",
+    "useWhen": "Razem z aria-invalid=true, gdy pole ma aktywny komunikat błędu.",
+    "avoidWhen": "Nie wskazuj komunikatu, który jest ukryty albo nie dotyczy aktualnego błędu.",
+    "wcag": [
+      "3.3.1",
+      "4.1.2"
+    ],
+    "example": "<input aria-invalid=\"true\" aria-errormessage=\"email-error\">\n<p id=\"email-error\">Wpisz poprawny e-mail.</p>",
+    "risk": "W praktyce często bezpieczniejsze jest też użycie aria-describedby, bo wsparcie aria-errormessage może być mniej przewidywalne."
+  },
+  {
+    "name": "aria-expanded",
+    "type": "stan",
+    "short": "Informuje, czy kontrolowany obszar jest rozwinięty czy zwinięty.",
+    "useWhen": "Przy akordeonach, disclosure, menu, drzewach i przyciskach 'pokaż więcej'.",
+    "avoidWhen": "Nie używaj dla elementów, które niczego nie rozwijają ani nie zwijają.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<button aria-expanded=\"false\" aria-controls=\"panel\">Pokaż szczegóły</button>",
+    "risk": "Stan musi być synchronizowany z widocznością. Fałszywe aria-expanded to częsty błąd audytowy."
+  },
+  {
+    "name": "aria-haspopup",
+    "type": "właściwość",
+    "short": "Informuje, że element otwiera popup określonego typu.",
+    "useWhen": "Gdy przycisk otwiera menu, listbox, tree, grid albo dialog.",
+    "avoidWhen": "Nie używaj dla zwykłych tooltipów albo linków prowadzących na inną stronę.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<button aria-haspopup=\"menu\" aria-expanded=\"false\">Opcje</button>",
+    "risk": "Fałszywy typ popupu wprowadza użytkownika w błąd co do zachowania komponentu."
+  },
+  {
+    "name": "aria-hidden",
+    "type": "stan",
+    "short": "Usuwa element i jego potomków z drzewa dostępności.",
+    "useWhen": "Dla dekoracji, duplikatów treści albo ikon, które mają już alternatywny tekst.",
+    "avoidWhen": "Nigdy nie ukrywaj elementów fokusowalnych ani interaktywnych.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<span aria-hidden=\"true\">★</span><span class=\"sr-only\">Ocena 5 na 5</span>",
+    "risk": "aria-hidden=true na rodzicu ukryje także dzieci, w tym przyciski i linki."
+  },
+  {
+    "name": "aria-invalid",
+    "type": "stan",
+    "short": "Informuje, że wartość pola jest nieprawidłowa.",
+    "useWhen": "Po walidacji pola, najlepiej razem z widocznym komunikatem błędu.",
+    "avoidWhen": "Nie ustawiaj true od razu na pustym formularzu przed interakcją użytkownika.",
+    "wcag": [
+      "3.3.1",
+      "4.1.2"
+    ],
+    "example": "<input aria-invalid=\"true\" aria-describedby=\"email-error\">",
+    "risk": "Zbyt wczesne oznaczenie błędu tworzy hałas i może dezorientować użytkownika."
+  },
+  {
+    "name": "aria-keyshortcuts",
+    "type": "właściwość",
+    "short": "Informuje o skrótach klawiaturowych powiązanych z elementem.",
+    "useWhen": "Gdy aplikacja ma własne skróty i użytkownik powinien móc je poznać przez technologię wspomagającą.",
+    "avoidWhen": "Nie używaj dla skrótów, które nie działają albo są sprzeczne ze skrótami przeglądarki i czytnika ekranu.",
+    "wcag": [
+      "2.1.4",
+      "4.1.2"
+    ],
+    "example": "<button aria-keyshortcuts=\"Control+S\">Zapisz</button>",
+    "risk": "Sam atrybut nie tworzy skrótu. Skrót musi faktycznie działać i nie może blokować użytkownika."
+  },
+  {
+    "name": "aria-label",
+    "type": "właściwość",
+    "short": "Nadaje elementowi nazwę dostępną.",
+    "useWhen": "Dla elementów bez widocznej etykiety, np. przycisku z samą ikoną.",
+    "avoidWhen": "Nie używaj, jeśli widoczna etykieta już istnieje i może być użyta jako nazwa.",
+    "wcag": [
+      "2.5.3",
+      "4.1.2"
+    ],
+    "example": "<button aria-label=\"Zamknij okno\">×</button>",
+    "risk": "Nazwa sprzeczna z tekstem widocznym narusza zrozumiałość i może łamać 2.5.3."
+  },
+  {
+    "name": "aria-labelledby",
+    "type": "właściwość",
+    "short": "Tworzy nazwę dostępną z treści elementu lub elementów wskazanych przez id.",
+    "useWhen": "Gdy nazwa jest już widoczna na stronie i można się do niej odwołać.",
+    "avoidWhen": "Nie wskazuj id, które nie istnieje albo jest zduplikowane.",
+    "wcag": [
+      "1.3.1",
+      "2.5.3",
+      "4.1.2"
+    ],
+    "example": "<h2 id=\"dialog-title\">Usuń plik</h2>\n<div role=\"dialog\" aria-labelledby=\"dialog-title\">...</div>",
+    "risk": "aria-labelledby ma pierwszeństwo w wyliczaniu nazwy. Błędne wskazanie może nadpisać dobrą nazwę."
+  },
+  {
+    "name": "aria-level",
+    "type": "właściwość",
+    "short": "Określa poziom elementu w strukturze, np. nagłówka, drzewa albo listy hierarchicznej.",
+    "useWhen": "Przy niestandardowych strukturach, gdy nie da się użyć natywnych nagłówków albo list.",
+    "avoidWhen": "Nie używaj zamiast poprawnej hierarchii <h1>-<h6>, jeśli możesz użyć natywnego HTML.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<div role=\"heading\" aria-level=\"2\">Dostępność formularzy</div>",
+    "risk": "Niewłaściwy poziom zaburza strukturę dokumentu."
+  },
+  {
+    "name": "aria-live",
+    "type": "właściwość",
+    "short": "Określa, czy zmiany w regionie mają być ogłaszane przez technologie wspomagające.",
+    "useWhen": "Przy komunikatach statusu, wynikach wyszukiwania, walidacji i powiadomieniach.",
+    "avoidWhen": "Nie ustawiaj assertive dla zwykłych informacji. Nie dawaj aria-live na cały main.",
+    "wcag": [
+      "4.1.3"
+    ],
+    "example": "<p aria-live=\"polite\" id=\"status\"></p>",
+    "risk": "Nadużywanie regionów live powoduje chaos informacyjny."
+  },
+  {
+    "name": "aria-modal",
+    "type": "właściwość",
+    "short": "Informuje, że dialog jest modalny i interakcja powinna być ograniczona do niego.",
+    "useWhen": "Przy faktycznych modalach z poprawną obsługą fokusu.",
+    "avoidWhen": "Nie używaj, jeśli fokus może przejść poza modal albo tło nadal jest interaktywne.",
+    "wcag": [
+      "2.1.1",
+      "2.4.3",
+      "4.1.2"
+    ],
+    "example": "<div role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"title\">...</div>",
+    "risk": "aria-modal bez focus trapu i powrotu fokusu daje fałszywe poczucie dostępności."
+  },
+  {
+    "name": "aria-multiline",
+    "type": "właściwość",
+    "short": "Informuje, że element tekstowy obsługuje wiele linii.",
+    "useWhen": "Przy niestandardowym textboxie wielowierszowym.",
+    "avoidWhen": "Nie używaj zamiast natywnego <textarea>, jeśli <textarea> wystarcza.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<div role=\"textbox\" aria-multiline=\"true\" contenteditable=\"true\"></div>",
+    "risk": "Niestandardowy textbox wymaga obsługi klawiatury, fokusu i edycji tekstu."
+  },
+  {
+    "name": "aria-multiselectable",
+    "type": "właściwość",
+    "short": "Informuje, że w komponencie można wybrać więcej niż jeden element.",
+    "useWhen": "Przy listboxie, gridzie albo tree z wielokrotnym wyborem.",
+    "avoidWhen": "Nie używaj, jeśli interfejs pozwala wybrać tylko jedną opcję.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<ul role=\"listbox\" aria-multiselectable=\"true\">...</ul>",
+    "risk": "Użytkownik musi dostać jasną instrukcję, jak zaznaczać wiele elementów klawiaturą."
+  },
+  {
+    "name": "aria-orientation",
+    "type": "właściwość",
+    "short": "Określa orientację komponentu: poziomą albo pionową.",
+    "useWhen": "Przy tablist, separatorach, suwakach i innych widgetach, gdzie orientacja wpływa na obsługę klawiatury.",
+    "avoidWhen": "Nie dodawaj, jeśli orientacja jest domyślna i oczywista dla danego wzorca.",
+    "wcag": [
+      "2.1.1",
+      "4.1.2"
+    ],
+    "example": "<div role=\"tablist\" aria-orientation=\"vertical\">...</div>",
+    "risk": "Orientacja musi pasować do realnej obsługi strzałkami."
+  },
+  {
+    "name": "aria-owns",
+    "type": "właściwość",
+    "short": "Tworzy relację rodzic-dziecko w drzewie dostępności niezależnie od struktury DOM.",
+    "useWhen": "Tylko w rzadkich przypadkach złożonych komponentów, gdy elementy logicznie należą do komponentu, ale nie są jego potomkami w DOM.",
+    "avoidWhen": "Unikaj jako domyślnego sposobu naprawiania złej struktury HTML. Najpierw popraw DOM.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<div role=\"listbox\" aria-owns=\"option-a option-b\"></div>",
+    "risk": "Może zmienić kolejność czytania i stworzyć niespójność między DOM a drzewem dostępności."
+  },
+  {
+    "name": "aria-placeholder",
+    "type": "właściwość",
+    "short": "Przekazuje tekst zastępczy dla niestandardowego pola tekstowego.",
+    "useWhen": "Przy niestandardowym role=textbox, gdy nie można użyć natywnego placeholdera.",
+    "avoidWhen": "Nie używaj placeholdera zamiast etykiety. Placeholder znika i nie jest dobrą instrukcją.",
+    "wcag": [
+      "3.3.2",
+      "4.1.2"
+    ],
+    "example": "<div role=\"textbox\" aria-placeholder=\"Wpisz komentarz\" contenteditable=\"true\"></div>",
+    "risk": "Brak widocznej etykiety nadal będzie problemem, nawet jeśli placeholder istnieje."
+  },
+  {
+    "name": "aria-posinset",
+    "type": "właściwość",
+    "short": "Określa pozycję elementu w zestawie.",
+    "useWhen": "Gdy nie wszystkie elementy zestawu są obecne w DOM, np. przy wirtualizowanych listach.",
+    "avoidWhen": "Nie używaj w zwykłych listach HTML, gdzie przeglądarka może sama określić pozycję.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<div role=\"option\" aria-posinset=\"7\" aria-setsize=\"120\">Wynik 7</div>",
+    "risk": "Błędna pozycja dezorientuje użytkownika, szczególnie w długich listach."
+  },
+  {
+    "name": "aria-pressed",
+    "type": "stan",
+    "short": "Informuje, że przycisk działa jako przełącznik i czy jest wciśnięty.",
+    "useWhen": "Przy przyciskach typu toggle, np. włącz/wyłącz tryb, pogrubienie, wyciszenie.",
+    "avoidWhen": "Nie używaj do rozwijania i zwijania sekcji. Tam użyj aria-expanded.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<button aria-pressed=\"false\">Tryb ciemny</button>",
+    "risk": "Stan musi zmieniać się po aktywacji i pasować do wizualnego wyglądu."
+  },
+  {
+    "name": "aria-readonly",
+    "type": "stan",
+    "short": "Informuje, że element jest tylko do odczytu.",
+    "useWhen": "Przy polach lub komórkach gridu, które można odczytać, ale nie edytować.",
+    "avoidWhen": "Dla natywnych pól formularza użyj readonly, jeśli wystarcza.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<input value=\"ABC-123\" readonly>",
+    "risk": "aria-readonly samo nie blokuje edycji w niestandardowym komponencie."
+  },
+  {
+    "name": "aria-relevant",
+    "type": "właściwość",
+    "short": "Określa, jakie typy zmian w regionie live są istotne do ogłoszenia.",
+    "useWhen": "W regionach live, gdy trzeba kontrolować, czy ogłaszane są dodania, usunięcia albo zmiany tekstu.",
+    "avoidWhen": "Nie komplikuj bez potrzeby. Często wystarczy aria-live i krótki komunikat statusu.",
+    "wcag": [
+      "4.1.3"
+    ],
+    "example": "<ul aria-live=\"polite\" aria-relevant=\"additions text\"></ul>",
+    "risk": "Różnice wsparcia między technologiami mogą sprawić, że efekt nie będzie identyczny wszędzie."
+  },
+  {
+    "name": "aria-required",
+    "type": "stan",
+    "short": "Informuje, że użytkownik musi uzupełnić pole przed wysłaniem formularza.",
+    "useWhen": "Przy niestandardowych kontrolkach albo jako uzupełnienie widocznej informacji o wymaganym polu.",
+    "avoidWhen": "Nie używaj jako jedynej informacji o wymaganiu. Użytkownik widzący też musi to wiedzieć.",
+    "wcag": [
+      "3.3.2",
+      "4.1.2"
+    ],
+    "example": "<div role=\"textbox\" aria-required=\"true\" aria-labelledby=\"comment-label\"></div>",
+    "risk": "Dla natywnych pól required jest zwykle lepsze, bo wpływa też na zachowanie formularza."
+  },
+  {
+    "name": "aria-roledescription",
+    "type": "właściwość",
+    "short": "Zmienia sposób prezentowania roli elementu przez technologie wspomagające.",
+    "useWhen": "Bardzo ostrożnie, tylko gdy standardowa rola jest poprawna, ale potrzebuje bardziej zrozumiałego opisu kontekstowego.",
+    "avoidWhen": "Nie używaj do maskowania złej roli ani do wymyślania nazw, które utrudnią zrozumienie komponentu.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<section role=\"region\" aria-roledescription=\"slajd\" aria-labelledby=\"slide-title\">...</section>",
+    "risk": "Może ukryć standardową rolę i pogorszyć przewidywalność. Używać wyjątkowo."
+  },
+  {
+    "name": "aria-selected",
+    "type": "stan",
+    "short": "Informuje, który element jest wybrany w złożonym komponencie.",
+    "useWhen": "Przy zakładkach, opcjach listboxa, wierszach lub komórkach w gridzie.",
+    "avoidWhen": "Nie używaj w zwykłej nawigacji do oznaczenia aktualnej strony. Tam użyj aria-current.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<button role=\"tab\" aria-selected=\"true\">WCAG</button>",
+    "risk": "Stan musi odpowiadać realnie aktywnej lub wybranej opcji."
+  },
+  {
+    "name": "aria-setsize",
+    "type": "właściwość",
+    "short": "Określa łączną liczbę elementów w zestawie.",
+    "useWhen": "Razem z aria-posinset, szczególnie przy wirtualizowanych listach.",
+    "avoidWhen": "Nie używaj w zwykłych listach, gdzie wszystkie elementy są w DOM.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<div role=\"option\" aria-posinset=\"7\" aria-setsize=\"120\">Wynik 7</div>",
+    "risk": "Błędny rozmiar zestawu może sugerować, że użytkownik ma mniej lub więcej opcji niż faktycznie."
+  },
+  {
+    "name": "aria-sort",
+    "type": "właściwość",
+    "short": "Informuje o kierunku sortowania kolumny lub wiersza.",
+    "useWhen": "Przy tabelach danych z sortowalnymi nagłówkami.",
+    "avoidWhen": "Nie dodawaj na wiele kolumn jednocześnie, jeśli tylko jedna kolumna określa bieżące sortowanie.",
+    "wcag": [
+      "1.3.1",
+      "4.1.2"
+    ],
+    "example": "<th scope=\"col\" aria-sort=\"ascending\"><button>Nazwa</button></th>",
+    "risk": "Stan sortowania musi być aktualizowany po każdej zmianie sortowania."
+  },
+  {
+    "name": "aria-valuemin / aria-valuemax / aria-valuenow / aria-valuetext",
+    "type": "właściwość",
+    "short": "Opisują wartość, zakres i tekstową reprezentację wartości w komponentach liczbowych.",
+    "useWhen": "Przy sliderach, progressbarach, scrollbarach i spinbuttonach, szczególnie niestandardowych.",
+    "avoidWhen": "Nie używaj, jeśli natywny element, np. <input type=\"range\"> albo <progress>, wystarcza.",
+    "wcag": [
+      "4.1.2"
+    ],
+    "example": "<div role=\"slider\" tabindex=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"50\" aria-label=\"Głośność\"></div>",
+    "risk": "Niestandardowy slider wymaga pełnej obsługi klawiatury i aktualizacji wartości."
+  }
+]

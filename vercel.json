@@ -11,6 +11,13 @@
       "destination": "/index.html"
     }
   ],
+  "redirects": [
+    {
+      "source": "/aria",
+      "destination": "/baza-wiedzy/aria",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

@@ -3343,6 +3343,64 @@ header nav a:hover { color: white; }
     margin-top: 0.75rem;
 }
 
+.aria-resource-page .knowledge-panel > :where(h2, h3, h4) {
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.aria-resource-page .knowledge-panel > :first-child {
+    margin-top: 0;
+}
+
+.aria-resource-page .knowledge-panel > :where(p, ul, ol, .knowledge-table-wrapper, .wcag-code-example, .static-faq) + :where(h2, h3, h4) {
+    margin-top: 2.75rem;
+}
+
+.aria-resource-page .knowledge-panel > :where(h2, h3, h4) + :where(p, ul, ol, .knowledge-table-wrapper, .wcag-code-example, .static-faq) {
+    margin-top: 1rem;
+}
+
+.aria-resource-page .aria-reference-filter {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0 0;
+}
+
+.aria-resource-page [data-aria-reference-list] {
+    margin-top: 1.5rem;
+    padding-left: 1.25rem;
+}
+
+.aria-resource-page [data-aria-reference-list] > li {
+    margin-bottom: 1rem;
+}
+
+.aria-resource-page [data-aria-reference-list] details {
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 1rem;
+}
+
+.aria-resource-page [data-aria-reference-list] > li:last-child details {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.aria-resource-page [data-aria-reference-list] summary {
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.aria-resource-page [data-aria-reference-list] summary:focus-visible {
+    border-radius: 0.2rem;
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.aria-resource-page [data-aria-reference-list] summary + div {
+    margin-top: 1rem;
+}
+
 .closed-training {
     padding: 5rem 2rem;
     background: var(--light);

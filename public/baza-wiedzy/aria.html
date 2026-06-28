@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARIA bez magii - Accessibility First</title>
+  <meta name="description" content="Praktyczny tutorial o WAI-ARIA: role, stany, właściwość, przykłady wdrożeń, typowe błędy i metody testowania dostępności.">
+  <link rel="canonical" href="https://www.a11yfirst.pl/baza-wiedzy/aria">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="Accessibility First">
+  <meta property="og:title" content="ARIA bez magii - Accessibility First">
+  <meta property="og:description" content="Praktyczny tutorial o WAI-ARIA: role, stany, właściwość, przykłady wdrożeń, typowe błędy i metody testowania dostępności.">
+  <meta property="og:url" content="https://www.a11yfirst.pl/baza-wiedzy/aria">
+  <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ARIA bez magii - Accessibility First">
+  <meta name="twitter:description" content="Praktyczny tutorial o WAI-ARIA: role, stany, właściwość, przykłady wdrożeń, typowe błędy i metody testowania dostępności.">
+  <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "ARIA bez magii: kiedy pomaga, kiedy psuje dostępność",
+    "headline": "ARIA bez magii: kiedy pomaga, kiedy psuje dostępność",
+    "description": "Praktyczny tutorial o WAI-ARIA: role, stany, właściwość, przykłady wdrożeń, typowe błędy i metody testowania dostępności.",
+    "dateModified": "2026-06-28",
+    "url": "https://www.a11yfirst.pl/baza-wiedzy/aria",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Accessibility First",
+      "url": "https://www.a11yfirst.pl"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Włącz Wizję sp. z o.o.",
+      "url": "https://wlaczwizje.pl"
+    }
+  }
+  </script>
+  <link rel="icon" href="../assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/styles.css?v=18">
+</head>
+<body>
+  <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+  <header>
+    <div class="container header-content">
+      <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+        <img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+        <img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=7" alt="" aria-hidden="true">
+      </a>
+      <nav aria-label="Menu główne">
+        <a href="/o-nas">O nas</a>
+        <a href="/szkolenia">Szkolenia</a>
+        <a href="/audyty">Audyty</a>
+        <a href="/sklep">Sklep</a>
+        <a href="/baza-wiedzy">Baza wiedzy</a>
+        <a href="/deklaracja">Deklaracja dostępności</a>
+        <a href="/kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
+      <ol>
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+        <li aria-current="page">ARIA bez magii</li>
+      </ol>
+    </nav>
+    <section class="hero page-hero">
+      <div class="container">
+        <h1 id="page-title">ARIA bez magii: kiedy pomaga, kiedy psuje dostępność</h1>
+        <p class="subtitle">Najpierw semantyczny HTML, dopiero potem role, stany i właściwość ARIA.</p>
+      </div>
+    </section>
+    <section class="knowledge-article wcag-detail plain-language-page aria-resource-page" aria-labelledby="page-title">
+      <div class="container">
+        <article class="knowledge-panel">
+<p>ARIA może poprawić dostępność dynamicznych komponentów, ale źle użyta potrafi zepsuć interfejs bardziej niż jej brak. Najważniejsza zasada brzmi: <strong>najpierw semantyczny HTML, dopiero potem ARIA</strong>.</p>
+<p>WAI-ARIA definiuje role, stany i właściwość, które pomagają technologiom wspomagającym rozumieć komponenty interfejsu, szczególnie w aplikacjach tworzonych z użyciem JavaScriptu. ARIA nie dodaje jednak działania, obsługi klawiatury ani poprawnego fokusu. To musi zapewnić kod aplikacji.</p>
+<h2 id="dla-kogo-jest-ten-tutorial">Dla kogo jest ten tutorial?</h2>
+<p>Dla osób, które projektują, kodują albo audytują interfejsy:</p>
+<ul>
+<li>deweloperów front-end,</li>
+<li>audytorów dostępności cyfrowej,</li>
+<li>UX/UI designerów,</li>
+<li>redaktorów technicznych,</li>
+<li>osób wdrażających WCAG w aplikacjach webowych.</li>
+</ul>
+<p>Po przeczytaniu tej strony masz wiedzieć:</p>
+<ul>
+<li>co robią najważniejsze atrybuty ARIA,</li>
+<li>kiedy używać ARIA, a kiedy zwykłego HTML,</li>
+<li>jak testować ARIA z klawiaturą i czytnikiem ekranu,</li>
+<li>które błędy ARIA najczęściej psują dostępność.</li>
+</ul>
+<h2 id="czym-jest-aria">Czym jest ARIA?</h2>
+<p><strong>ARIA</strong> oznacza <strong>Accessible Rich Internet Applications</strong>. To zestaw ról i atrybutów, które można dodać do HTML, aby przekazać technologiom wspomagającym dodatkowe informacje o elemencie.</p>
+<p>ARIA odpowiada między innymi na pytania:</p>
+<ul>
+<li>czym jest element: przyciskiem, dialogiem, alertem, zakładką, przełącznikiem,</li>
+<li>jaką ma nazwę dostępną,</li>
+<li>czy jest rozwinięty, zaznaczony, wybrany, błędny albo wyłączony,</li>
+<li>z jakim opisem lub komunikatem błędu jest powiązany,</li>
+<li>czy zmiana treści ma zostać ogłoszona przez czytnik ekranu.</li>
+</ul>
+<p>ARIA działa na poziomie semantyki dostępności. To oznacza, że może zmienić sposób, w jaki element jest widoczny w drzewie dostępności, ale nie sprawi automatycznie, że element zacznie działać jak natywna kontrolka HTML.</p>
+<h2 id="najwazniejsza-zasada-html-przed-aria">Najważniejsza zasada: HTML przed ARIA</h2>
+<p>Jeżeli istnieje natywny element HTML, który robi to samo, użyj natywnego elementu.</p>
+<h3 id="zle">Źle</h3>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-html">&lt;div role=&quot;button&quot; tabindex=&quot;0&quot; onclick=&quot;sendForm()&quot;&gt;
+  Wyślij formularz
+&lt;/div&gt;</code></pre></div></div>
+<p>Taki element tylko udaje przycisk. Trzeba samodzielnie dodać obsługę fokusu, aktywację spacją i Enterem, poprawną semantykę oraz przewidywalne zachowanie.</p>
+<h3 id="dobrze">Dobrze</h3>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-html">&lt;button type=&quot;submit&quot;&gt;
+  Wyślij formularz
+&lt;/button&gt;</code></pre></div></div>
+<p>Natywny <code>&lt;button&gt;</code> ma od razu:</p>
+<ul>
+<li>rolę przycisku,</li>
+<li>obsługę klawiatury,</li>
+<li>obsługę fokusu,</li>
+<li>obsługę kliknięcia,</li>
+<li>poprawną komunikację z technologiami wspomagającymi.</li>
+</ul>
+<h2 id="aria-a-wcag">ARIA a WCAG</h2>
+<p>ARIA najczęściej wpływa na te kryteria sukcesu WCAG:</p>
+<div class="knowledge-table-wrapper aria-table-wrapper" tabindex="0" role="region" aria-label="Tabela: Kryterium, Znaczenie w kontekście ARIA"><table class="knowledge-table"><thead><tr><th scope="col">Kryterium</th><th scope="col">Znaczenie w kontekście ARIA</th></tr></thead><tbody><tr><td><strong>1.3.1 Informacje i relacje</strong></td><td>Relacje widoczne wizualnie muszą być możliwe do odczytania programowo. Dotyczy między innymi etykiet, instrukcji, komunikatów błędów, regionów i grup pól.</td></tr><tr><td><strong>2.1.1 Klawiatura</strong></td><td>Jeżeli tworzysz komponent z ARIA, musi działać z klawiatury.</td></tr><tr><td><strong>2.4.3 Kolejność fokusu</strong></td><td>Elementy interaktywne muszą mieć logiczną kolejność fokusu.</td></tr><tr><td><strong>2.4.7 Widoczny fokus</strong></td><td>Użytkownik klawiatury musi widzieć, gdzie aktualnie jest fokus.</td></tr><tr><td><strong>2.5.3 Etykieta w nazwie</strong></td><td>Widoczna etykieta powinna być częścią nazwy dostępnej. Szczególnie ważne przy <code>aria-label</code>.</td></tr><tr><td><strong>3.3.1 Identyfikacja błędu</strong></td><td>Błędy muszą być wskazane tekstowo. ARIA może połączyć pole z komunikatem błędu.</td></tr><tr><td><strong>3.3.2 Etykiety lub instrukcje</strong></td><td>Użytkownik musi wiedzieć, czego oczekuje formularz. ARIA nie zastępuje widocznej instrukcji.</td></tr><tr><td><strong>4.1.2 Nazwa, rola, wartość</strong></td><td>Komponenty interfejsu muszą mieć programowo określoną nazwę, rolę, stan i wartość.</td></tr><tr><td><strong>4.1.3 Komunikaty o stanie</strong></td><td>Komunikaty dynamiczne mogą być przekazywane przez regiony live bez przenoszenia fokusu.</td></tr></tbody></table></div>
+<h2 id="trzy-grupy-aria">Trzy grupy ARIA</h2>
+<p>ARIA można praktycznie podzielić na trzy grupy.</p>
+<div class="knowledge-table-wrapper aria-table-wrapper" tabindex="0" role="region" aria-label="Tabela: Grupa, Przykłady, Do czego służy"><table class="knowledge-table"><thead><tr><th scope="col">Grupa</th><th scope="col">Przykłady</th><th scope="col">Do czego służy</th></tr></thead><tbody><tr><td><strong>Role</strong></td><td><code>role=&quot;button&quot;</code>, <code>role=&quot;dialog&quot;</code>, <code>role=&quot;alert&quot;</code>, <code>role=&quot;tab&quot;</code></td><td>Mówią, czym jest element.</td></tr><tr><td><strong>Stany</strong></td><td><code>aria-expanded</code>, <code>aria-checked</code>, <code>aria-selected</code>, <code>aria-invalid</code></td><td>Mówią, w jakim stanie jest element.</td></tr><tr><td><strong>Właściwości</strong></td><td><code>aria-label</code>, <code>aria-labelledby</code>, <code>aria-describedby</code>, <code>aria-controls</code></td><td>Dodają nazwę, opis, relację albo dodatkową informację semantyczną.</td></tr></tbody></table></div>
+<h2 id="zasada-rola-jest-obietnica">Zasada „rola jest obietnicą”</h2>
+<p>Jeżeli oznaczasz element jako przycisk, zakładkę, menu albo suwak, obiecujesz użytkownikowi technologii wspomagającej, że element będzie działał jak taki komponent.</p>
+<p>To oznacza, że musisz zapewnić:</p>
+<ul>
+<li>poprawną obsługę klawiatury,</li>
+<li>przewidywalny fokus,</li>
+<li>poprawną nazwę dostępną,</li>
+<li>aktualny stan,</li>
+<li>zgodność zachowania z oczekiwanym wzorcem.</li>
+</ul>
+<p>Nie wystarczy dopisać <code>role=&quot;button&quot;</code> albo <code>aria-expanded=&quot;true&quot;</code>.</p>
+<section class="static-faq" aria-labelledby="aria-reference-title" data-aria-reference>
+  <div>
+    <h2 id="aria-reference-title">Słownik ARIA</h2>
+    <p>
+      Ten słownik pokazuje najczęściej używane atrybuty i role ARIA: co robią, kiedy ich używać i gdzie mogą powodować błędy. JavaScript dodaje filtrowanie, ale treść musi pozostać dostępna bez skryptów.
+    </p>
+  </div>
+
+  <form class="aria-reference-filter" role="search" aria-labelledby="aria-reference-search-title">
+    <h3 id="aria-reference-search-title">Filtruj słownik ARIA</h3>
+
+    <div class="detail-two-columns">
+      <div>
+        <label for="aria-search">Szukaj po nazwie lub opisie</label>
+        <input class="checkout-input" id="aria-search" name="q" type="search" autocomplete="off" placeholder="np. aria-live, błąd, formularz">
+      </div>
+
+      <div>
+        <label for="aria-type">Typ</label>
+        <select class="checkout-input" id="aria-type" name="type">
+          <option value="">Wszystkie typy</option>
+          <option value="rola">Rola</option>
+          <option value="stan">Stan</option>
+          <option value="właściwość">Właściwość</option>
+        </select>
+      </div>
+    </div>
+
+    <p role="status" aria-live="polite" aria-atomic="true" data-aria-reference-status>
+      Pokazano wszystkie pozycje słownika.
+    </p>
+  </form>
+
+  <ul class="detail-list aria-reference-list" data-aria-reference-list>
+    <li>
+      <details data-name="role=&quot;alert&quot;" data-type="rola" data-search="role alert rola pilny komunikat dynamiczny ogłaszany natychmiast przez technologie wspomagajace. dla krytycznych błedow i informacji wymagajacych szybkiej reakcji. nie uzywaj do zwykłych statusow ani potwierdzen. naduzywanie alertow przerywa uzytkownikowi prace i tworzy hałas. 4.1.3">
+      <summary>
+        <code>role="alert"</code>
+        <span>rola</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Oznacza pilny komunikat, który technologie wspomagające mogą ogłosić natychmiast.</p>
+        <p><strong>Kiedy używać:</strong> Dla krytycznych błędów i informacji wymagających szybkiej reakcji użytkownika.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj do zwykłych statusów, potwierdzeń ani informacji, które mogą poczekać.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.3</p>
+        <p><strong>Ryzyko:</strong> Nadużywanie alertów przerywa użytkownikowi pracę i tworzy hałas informacyjny.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;p role=&quot;alert&quot;&gt;Sesja za chwilę wygaśnie.&lt;/p&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="role=&quot;button&quot;" data-type="rola" data-search="role button rola informuje ze element jest przyciskiem. tylko gdy nie mozna uzyc natywnego button i odtwarzasz pełne zachowanie przycisku. nie uzywaj na div lub span tylko po to, zeby element wygladał jak przycisk. sama rola nie dodaje obsługi klawiatury ani fokusu. 2.1.1 2.4.7 4.1.2">
+      <summary>
+        <code>role="button"</code>
+        <span>rola</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że element ma być przyciskiem w drzewie dostępności.</p>
+        <p><strong>Kiedy używać:</strong> Tylko gdy nie możesz użyć natywnego <code>&lt;button&gt;</code> i odtwarzasz pełne zachowanie przycisku.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj na <code>div</code> lub <code>span</code> tylko dlatego, że element wygląda jak przycisk.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 2.4.7, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Sama rola nie dodaje obsługi klawiatury, fokusu ani aktywacji spacją.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button type=&quot;button&quot;&gt;Zamknij&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="role=&quot;dialog&quot;" data-type="rola" data-search="role dialog rola oznacza okno dialogowe lub modalne. przy faktycznych dialogach z nazwa dostepna i kontrola fokusu. nie uzywaj dla zwykłych sekcji strony. dialog bez zarzadzania fokusem moze byc niedostepny z klawiatury. 2.1.1 2.4.3 4.1.2">
+      <summary>
+        <code>role="dialog"</code>
+        <span>rola</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Oznacza okno dialogowe, które wymaga wyraźnego kontekstu i nazwy dostępnej.</p>
+        <p><strong>Kiedy używać:</strong> Przy faktycznych dialogach lub modalach z poprawną obsługą fokusu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj dla zwykłych sekcji strony ani paneli, które nie zachowują się jak dialog.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 2.4.3, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Dialog bez przeniesienia, zatrzymania i przywrócenia fokusu może być niedostępny z klawiatury.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;dialog-title&quot;&gt;
+  &lt;h2 id=&quot;dialog-title&quot;&gt;Potwierdź usunięcie&lt;/h2&gt;
+&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="role=&quot;status&quot;" data-type="rola" data-search="role status rola niepilny komunikat o stanie ogłaszany bez przenoszenia fokusu. dla wynikow filtrowania zapisu postepu i potwierdzen. nie uzywaj dla komunikatow krytycznych. zbyt czeste aktualizacje moga przeszkadzac w pracy. 4.1.3">
+      <summary>
+        <code>role="status"</code>
+        <span>rola</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Tworzy niepilny komunikat o stanie, ogłaszany bez przenoszenia fokusu.</p>
+        <p><strong>Kiedy używać:</strong> Dla wyników filtrowania, zapisu, postępu, potwierdzeń i podobnych statusów.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj dla komunikatów krytycznych, które wymagają natychmiastowej reakcji.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.3</p>
+        <p><strong>Ryzyko:</strong> Zbyt częste aktualizacje statusu mogą przeszkadzać w pracy użytkownika.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;p role=&quot;status&quot;&gt;Pokazano 7 wyników.&lt;/p&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="role=&quot;switch&quot;" data-type="rola" data-search="role switch rola przełacznik właczony lub wyłaczony. gdy kontrolka ma dwa stany i nie mozna uzyc natywnego checkboxa. nie uzywaj do zwykłych przyciskow akcji. stan aria-checked musi byc aktualizowany po zmianie. 2.1.1 4.1.2">
+      <summary>
+        <code>role="switch"</code>
+        <span>rola</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Oznacza przełącznik z dwoma stanami: włączony albo wyłączony.</p>
+        <p><strong>Kiedy używać:</strong> Gdy kontrolka faktycznie działa jak przełącznik i nie możesz użyć natywnego checkboxa.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj do zwykłych przycisków akcji ani do rozwijania sekcji.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Stan <code>aria-checked</code> musi być aktualizowany razem ze stanem wizualnym.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button type=&quot;button&quot; role=&quot;switch&quot; aria-checked=&quot;false&quot;&gt;
+  Powiadomienia
+&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="role=&quot;tab&quot;" data-type="rola" data-search="role tab tablist tabpanel rola zakładka w komponencie kart. przy poprawnie zbudowanych zakładkach z tablist i tabpanel. nie uzywaj do zwykłej nawigacji miedzy stronami. zakładki wymagaja obsługi strzałek fokusu aria-selected i relacji aria-controls. 2.1.1 2.4.3 4.1.2">
+      <summary>
+        <code>role="tab"</code>
+        <span>rola</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Oznacza zakładkę w komponencie kart, zwykle razem z <code>tablist</code> i <code>tabpanel</code>.</p>
+        <p><strong>Kiedy używać:</strong> Przy prawdziwych zakładkach, które przełączają widoczne panele w tym samym widoku.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj do zwykłej nawigacji między stronami. Tam wystarczą linki i <code>aria-current</code>.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 2.4.3, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Zakładki wymagają obsługi klawiatury, <code>aria-selected</code> i poprawnych relacji z panelami.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;tablist&quot; aria-label=&quot;Sekcje&quot;&gt;
+  &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;panel-a&quot;&gt;A&lt;/button&gt;
+&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-activedescendant" data-type="właściwość" data-search="aria-activedescendant własciwosc wskazuje aktualnie aktywny element potomny, gdy fokus pozostaje na elemencie nadrzednym. w złozonych komponentach, takich jak combobox, listbox, grid albo tree, gdy faktyczny fokus dom pozostaje na kontenerze lub polu wejsciowym. nie uzywaj w prostych listach linkow albo wtedy, gdy mozesz przenosic prawdziwy fokus na aktywny element. jezeli wskazane id nie istnieje albo aktywny element nie jest logicznym potomkiem komponentu, czytnik ekranu moze ogłaszac błedny stan. 1.3.1 2.1.1 4.1.2">
+      <summary>
+        <code>aria-activedescendant</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Wskazuje aktualnie aktywny element potomny, gdy fokus pozostaje na elemencie nadrzędnym.</p>
+        <p><strong>Kiedy używać:</strong> W złożonych komponentach, takich jak combobox, listbox, grid albo tree, gdy faktyczny fokus DOM pozostaje na kontenerze lub polu wejściowym.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj w prostych listach linków albo wtedy, gdy możesz przenosić prawdziwy fokus na aktywny element.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 2.1.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Jeżeli wskazane id nie istnieje albo aktywny element nie jest logicznym potomkiem komponentu, czytnik ekranu może ogłaszać błędny stan.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;input role=&quot;combobox&quot; aria-activedescendant=&quot;option-2&quot; aria-controls=&quot;results&quot;&gt;
+    &lt;ul id=&quot;results&quot; role=&quot;listbox&quot;&gt;
+      &lt;li id=&quot;option-2&quot; role=&quot;option&quot;&gt;Warszawa&lt;/li&gt;
+    &lt;/ul&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-atomic" data-type="właściwość" data-search="aria-atomic własciwosc okresla, czy przy zmianie regionu live ma zostac ogłoszony cały region, czy tylko zmieniona czesc. gdy zmieniona czesc bez kontekstu jest niezrozumiała, np. sama liczba w komunikacie koszyka. nie stosuj na duzych sekcjach, bo drobna zmiana moze powodowac odczytywanie zbyt duzej ilosci tresci. zbyt duzy region z aria-atomic=true moze zasypywac uzytkownika powtarzanymi komunikatami. 4.1.3">
+      <summary>
+        <code>aria-atomic</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa, czy przy zmianie regionu live ma zostać ogłoszony cały region, czy tylko zmieniona część.</p>
+        <p><strong>Kiedy używać:</strong> Gdy zmieniona część bez kontekstu jest niezrozumiała, np. sama liczba w komunikacie koszyka.</p>
+        <p><strong>Kiedy uważać:</strong> Nie stosuj na dużych sekcjach, bo drobna zmiana może powodować odczytywanie zbyt dużej ilości treści.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.3</p>
+        <p><strong>Ryzyko:</strong> Zbyt duży region z aria-atomic=true może zasypywać użytkownika powtarzanymi komunikatami.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;p aria-live=&quot;polite&quot; aria-atomic=&quot;true&quot;&gt;W koszyku: &lt;span&gt;3&lt;/span&gt; produkty&lt;/p&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-autocomplete" data-type="właściwość" data-search="aria-autocomplete własciwosc informuje, jaki typ sugestii automatycznego uzupełniania jest dostepny. przy comboboxach i polach z sugestiami, gdy uzytkownik moze wybierac albo akceptowac podpowiedzi. nie stosuj przy zwykłym polu tekstowym bez faktycznego mechanizmu sugestii. fałszywe aria-autocomplete sugeruje funkcje, ktorej uzytkownik nie moze uzyc. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-autocomplete</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, jaki typ sugestii automatycznego uzupełniania jest dostępny.</p>
+        <p><strong>Kiedy używać:</strong> Przy comboboxach i polach z sugestiami, gdy użytkownik może wybierać albo akceptować podpowiedzi.</p>
+        <p><strong>Kiedy uważać:</strong> Nie stosuj przy zwykłym polu tekstowym bez faktycznego mechanizmu sugestii.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Fałszywe aria-autocomplete sugeruje funkcję, której użytkownik nie może użyć.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;input role=&quot;combobox&quot; aria-autocomplete=&quot;list&quot; aria-controls=&quot;city-list&quot;&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-busy" data-type="stan" data-search="aria-busy stan informuje, ze region jest aktualnie aktualizowany. przy dynamicznych listach, wynikach wyszukiwania albo panelach, ktore sa w trakcie ładowania. nie zostawiaj aria-busy=true po zakonczeniu aktualizacji. stałe aria-busy=true moze blokowac lub opozniac ogłaszanie istotnych zmian. 4.1.3">
+      <summary>
+        <code>aria-busy</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że region jest aktualnie aktualizowany.</p>
+        <p><strong>Kiedy używać:</strong> Przy dynamicznych listach, wynikach wyszukiwania albo panelach, które są w trakcie ładowania.</p>
+        <p><strong>Kiedy uważać:</strong> Nie zostawiaj aria-busy=true po zakończeniu aktualizacji.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.3</p>
+        <p><strong>Ryzyko:</strong> Stałe aria-busy=true może blokować lub opóźniać ogłaszanie istotnych zmian.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;section aria-live=&quot;polite&quot; aria-busy=&quot;true&quot;&gt;Ładowanie wyników…&lt;/section&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-checked" data-type="stan" data-search="aria-checked stan informuje, czy element typu checkbox, radio albo switch jest zaznaczony. przy niestandardowych checkboxach, radio buttonach i przełacznikach, gdy nie mozna uzyc natywnego inputa. nie uzywaj zamiast natywnego checked na &lt;input type=&quot;checkbox&quot;&gt;, jesli natywny input wystarcza. jezeli stan wizualny i aria-checked sa niespojne, uzytkownik dostaje błedna informacje o stanie kontrolki. 2.1.1 4.1.2">
+      <summary>
+        <code>aria-checked</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, czy element typu checkbox, radio albo switch jest zaznaczony.</p>
+        <p><strong>Kiedy używać:</strong> Przy niestandardowych checkboxach, radio buttonach i przełącznikach, gdy nie można użyć natywnego inputa.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj zamiast natywnego checked na &lt;input type=&quot;checkbox&quot;&gt;, jeśli natywny input wystarcza.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Jeżeli stan wizualny i aria-checked są niespójne, użytkownik dostaje błędną informację o stanie kontrolki.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button role=&quot;switch&quot; aria-checked=&quot;false&quot;&gt;Powiadomienia&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-controls" data-type="właściwość" data-search="aria-controls własciwosc wskazuje element kontrolowany przez dana kontrolke. przy akordeonach, disclosure, menu rozwijanych, zakładkach i panelach sterowanych przyciskiem. nie uzywaj jako zamiennika działania javascript. sam atrybut niczego nie otwiera i nie zamyka. błedne albo nieistniejace id powoduje fałszywa relacje. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-controls</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Wskazuje element kontrolowany przez daną kontrolkę.</p>
+        <p><strong>Kiedy używać:</strong> Przy akordeonach, disclosure, menu rozwijanych, zakładkach i panelach sterowanych przyciskiem.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj jako zamiennika działania JavaScript. Sam atrybut niczego nie otwiera i nie zamyka.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Błędne albo nieistniejące id powoduje fałszywą relację.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-expanded=&quot;false&quot; aria-controls=&quot;filters&quot;&gt;Pokaż filtry&lt;/button&gt;
+    &lt;section id=&quot;filters&quot; hidden&gt;...&lt;/section&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-current" data-type="stan" data-search="aria-current stan wskazuje aktualny element w zestawie, np. aktualna strone w nawigacji. w menu, breadcrumbs, paginacji, kalendarzu albo krokach procesu. nie uzywaj do wskazania wybranej zakładki lub opcji w listboxie. tam zwykle uzyj aria-selected. mylenie aria-current z aria-selected utrudnia zrozumienie komponentu. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-current</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Wskazuje aktualny element w zestawie, np. aktualną stronę w nawigacji.</p>
+        <p><strong>Kiedy używać:</strong> W menu, breadcrumbs, paginacji, kalendarzu albo krokach procesu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj do wskazania wybranej zakładki lub opcji w listboxie. Tam zwykle użyj aria-selected.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Mylenie aria-current z aria-selected utrudnia zrozumienie komponentu.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;a href=&quot;/szkolenia&quot; aria-current=&quot;page&quot;&gt;Szkolenia&lt;/a&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-describedby" data-type="właściwość" data-search="aria-describedby własciwosc łaczy element z dodatkowym opisem. do instrukcji, podpowiedzi, ograniczen i komunikatow błedow. nie wskazuj bardzo długich tresci, ktore utrudnia korzystanie z formularza. nieistniejace id albo zbyt długi opis obniza uzytecznosc. 1.3.1 3.3.1 3.3.2 4.1.2">
+      <summary>
+        <code>aria-describedby</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Łączy element z dodatkowym opisem.</p>
+        <p><strong>Kiedy używać:</strong> Do instrukcji, podpowiedzi, ograniczeń i komunikatów błędów.</p>
+        <p><strong>Kiedy uważać:</strong> Nie wskazuj bardzo długich treści, które utrudnią korzystanie z formularza.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 3.3.1, 3.3.2, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Nieistniejące id albo zbyt długi opis obniża użyteczność.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;input id=&quot;password&quot; aria-describedby=&quot;password-help&quot;&gt;
+    &lt;p id=&quot;password-help&quot;&gt;Minimum 12 znaków.&lt;/p&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-description" data-type="właściwość" data-search="aria-description własciwosc nadaje elementowi opis dostepny bez odwoływania sie do innego elementu w dom. gdy krotki opis nie musi byc widoczny jako osobny tekst w interfejsie. nie uzywaj zamiast widocznych instrukcji, szczegolnie przy formularzach. moze ukryc wazna informacje przed uzytkownikami widzacymi. jesli informacja jest wazna, pokaz ja wizualnie. 3.3.2 4.1.2">
+      <summary>
+        <code>aria-description</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Nadaje elementowi opis dostępny bez odwoływania się do innego elementu w DOM.</p>
+        <p><strong>Kiedy używać:</strong> Gdy krótki opis nie musi być widoczny jako osobny tekst w interfejsie.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj zamiast widocznych instrukcji, szczególnie przy formularzach.</p>
+        <p><strong>Powiązane WCAG:</strong> 3.3.2, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Może ukryć ważną informację przed użytkownikami widzącymi. Jeśli informacja jest ważna, pokaż ją wizualnie.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-description=&quot;Eksportuje dane w formacie CSV&quot;&gt;Eksportuj&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-details" data-type="właściwość" data-search="aria-details własciwosc wskazuje element zawierajacy bardziej szczegołowy opis lub strukture pomocnicza. gdy element wymaga bogatszego opisu niz krotki tekst, np. z tabela albo lista. nie uzywaj dla prostych podpowiedzi. do nich wystarczy aria-describedby. wsparcie i sposob obsługi moga roznic sie miedzy technologiami wspomagajacymi. zapewnij tez zwykła widoczna alternatywe, jesli opis jest krytyczny. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-details</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Wskazuje element zawierający bardziej szczegółowy opis lub strukturę pomocniczą.</p>
+        <p><strong>Kiedy używać:</strong> Gdy element wymaga bogatszego opisu niż krótki tekst, np. z tabelą albo listą.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj dla prostych podpowiedzi. Do nich wystarczy aria-describedby.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Wsparcie i sposób obsługi mogą różnić się między technologiami wspomagającymi. Zapewnij też zwykłą widoczną alternatywę, jeśli opis jest krytyczny.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;img src=&quot;chart.png&quot; alt=&quot;Sprzedaż rośnie w 2026 roku&quot; aria-details=&quot;chart-details&quot;&gt;
+    &lt;div id=&quot;chart-details&quot;&gt;...&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-disabled" data-type="stan" data-search="aria-disabled stan informuje, ze element jest niedostepny lub wyłaczony. przy niestandardowych komponentach albo gdy wyłaczony element ma pozostac w kolejnosci fokusu. dla natywnych przyciskow i pol formularza zwykle uzyj disabled. aria-disabled samo nie blokuje klikniecia ani działania skryptu. trzeba to obsłuzyc w logice. 4.1.2">
+      <summary>
+        <code>aria-disabled</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że element jest niedostępny lub wyłączony.</p>
+        <p><strong>Kiedy używać:</strong> Przy niestandardowych komponentach albo gdy wyłączony element ma pozostać w kolejności fokusu.</p>
+        <p><strong>Kiedy uważać:</strong> Dla natywnych przycisków i pól formularza zwykle użyj disabled.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> aria-disabled samo nie blokuje kliknięcia ani działania skryptu. Trzeba to obsłużyć w logice.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button type=&quot;button&quot; aria-disabled=&quot;true&quot;&gt;Następny krok&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-errormessage" data-type="właściwość" data-search="aria-errormessage własciwosc wskazuje element z komunikatem błedu dla pola. razem z aria-invalid=true, gdy pole ma aktywny komunikat błedu. nie wskazuj komunikatu, ktory jest ukryty albo nie dotyczy aktualnego błedu. w praktyce czesto bezpieczniejsze jest tez uzycie aria-describedby, bo wsparcie aria-errormessage moze byc mniej przewidywalne. 3.3.1 4.1.2">
+      <summary>
+        <code>aria-errormessage</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Wskazuje element z komunikatem błędu dla pola.</p>
+        <p><strong>Kiedy używać:</strong> Razem z aria-invalid=true, gdy pole ma aktywny komunikat błędu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie wskazuj komunikatu, który jest ukryty albo nie dotyczy aktualnego błędu.</p>
+        <p><strong>Powiązane WCAG:</strong> 3.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> W praktyce często bezpieczniejsze jest też użycie aria-describedby, bo wsparcie aria-errormessage może być mniej przewidywalne.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;input aria-invalid=&quot;true&quot; aria-errormessage=&quot;email-error&quot;&gt;
+    &lt;p id=&quot;email-error&quot;&gt;Wpisz poprawny e-mail.&lt;/p&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-expanded" data-type="stan" data-search="aria-expanded stan informuje, czy kontrolowany obszar jest rozwiniety czy zwiniety. przy akordeonach, disclosure, menu, drzewach i przyciskach &#039;pokaz wiecej&#039;. nie uzywaj dla elementow, ktore niczego nie rozwijaja ani nie zwijaja. stan musi byc synchronizowany z widocznoscia. fałszywe aria-expanded to czesty bład audytowy. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-expanded</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, czy kontrolowany obszar jest rozwinięty czy zwinięty.</p>
+        <p><strong>Kiedy używać:</strong> Przy akordeonach, disclosure, menu, drzewach i przyciskach &#039;pokaż więcej&#039;.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj dla elementów, które niczego nie rozwijają ani nie zwijają.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Stan musi być synchronizowany z widocznością. Fałszywe aria-expanded to częsty błąd audytowy.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-expanded=&quot;false&quot; aria-controls=&quot;panel&quot;&gt;Pokaż szczegóły&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-haspopup" data-type="właściwość" data-search="aria-haspopup własciwosc informuje, ze element otwiera popup okreslonego typu. gdy przycisk otwiera menu, listbox, tree, grid albo dialog. nie uzywaj dla zwykłych tooltipow albo linkow prowadzacych na inna strone. fałszywy typ popupu wprowadza uzytkownika w bład co do zachowania komponentu. 4.1.2">
+      <summary>
+        <code>aria-haspopup</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że element otwiera popup określonego typu.</p>
+        <p><strong>Kiedy używać:</strong> Gdy przycisk otwiera menu, listbox, tree, grid albo dialog.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj dla zwykłych tooltipów albo linków prowadzących na inną stronę.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Fałszywy typ popupu wprowadza użytkownika w błąd co do zachowania komponentu.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-haspopup=&quot;menu&quot; aria-expanded=&quot;false&quot;&gt;Opcje&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-hidden" data-type="stan" data-search="aria-hidden stan usuwa element i jego potomkow z drzewa dostepnosci. dla dekoracji, duplikatow tresci albo ikon, ktore maja juz alternatywny tekst. nigdy nie ukrywaj elementow fokusowalnych ani interaktywnych. aria-hidden=true na rodzicu ukryje takze dzieci, w tym przyciski i linki. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-hidden</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Usuwa element i jego potomków z drzewa dostępności.</p>
+        <p><strong>Kiedy używać:</strong> Dla dekoracji, duplikatów treści albo ikon, które mają już alternatywny tekst.</p>
+        <p><strong>Kiedy uważać:</strong> Nigdy nie ukrywaj elementów fokusowalnych ani interaktywnych.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> aria-hidden=true na rodzicu ukryje także dzieci, w tym przyciski i linki.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;span aria-hidden=&quot;true&quot;&gt;★&lt;/span&gt;&lt;span class=&quot;sr-only&quot;&gt;Ocena 5 na 5&lt;/span&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-invalid" data-type="stan" data-search="aria-invalid stan informuje, ze wartosc pola jest nieprawidłowa. po walidacji pola, najlepiej razem z widocznym komunikatem błedu. nie ustawiaj true od razu na pustym formularzu przed interakcja uzytkownika. zbyt wczesne oznaczenie błedu tworzy hałas i moze dezorientowac uzytkownika. 3.3.1 4.1.2">
+      <summary>
+        <code>aria-invalid</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że wartość pola jest nieprawidłowa.</p>
+        <p><strong>Kiedy używać:</strong> Po walidacji pola, najlepiej razem z widocznym komunikatem błędu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie ustawiaj true od razu na pustym formularzu przed interakcją użytkownika.</p>
+        <p><strong>Powiązane WCAG:</strong> 3.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Zbyt wczesne oznaczenie błędu tworzy hałas i może dezorientować użytkownika.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;input aria-invalid=&quot;true&quot; aria-describedby=&quot;email-error&quot;&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-keyshortcuts" data-type="właściwość" data-search="aria-keyshortcuts własciwosc informuje o skrotach klawiaturowych powiazanych z elementem. gdy aplikacja ma własne skroty i uzytkownik powinien moc je poznac przez technologie wspomagajaca. nie uzywaj dla skrotow, ktore nie działaja albo sa sprzeczne ze skrotami przegladarki i czytnika ekranu. sam atrybut nie tworzy skrotu. skrot musi faktycznie działac i nie moze blokowac uzytkownika. 2.1.4 4.1.2">
+      <summary>
+        <code>aria-keyshortcuts</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje o skrótach klawiaturowych powiązanych z elementem.</p>
+        <p><strong>Kiedy używać:</strong> Gdy aplikacja ma własne skróty i użytkownik powinien móc je poznać przez technologię wspomagającą.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj dla skrótów, które nie działają albo są sprzeczne ze skrótami przeglądarki i czytnika ekranu.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.4, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Sam atrybut nie tworzy skrótu. Skrót musi faktycznie działać i nie może blokować użytkownika.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-keyshortcuts=&quot;Control+S&quot;&gt;Zapisz&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-label" data-type="właściwość" data-search="aria-label własciwosc nadaje elementowi nazwe dostepna. dla elementow bez widocznej etykiety, np. przycisku z sama ikona. nie uzywaj, jesli widoczna etykieta juz istnieje i moze byc uzyta jako nazwa. nazwa sprzeczna z tekstem widocznym narusza zrozumiałosc i moze łamac 2.5.3. 2.5.3 4.1.2">
+      <summary>
+        <code>aria-label</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Nadaje elementowi nazwę dostępną.</p>
+        <p><strong>Kiedy używać:</strong> Dla elementów bez widocznej etykiety, np. przycisku z samą ikoną.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj, jeśli widoczna etykieta już istnieje i może być użyta jako nazwa.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.5.3, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Nazwa sprzeczna z tekstem widocznym narusza zrozumiałość i może łamać 2.5.3.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-label=&quot;Zamknij okno&quot;&gt;×&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-labelledby" data-type="właściwość" data-search="aria-labelledby własciwosc tworzy nazwe dostepna z tresci elementu lub elementow wskazanych przez id. gdy nazwa jest juz widoczna na stronie i mozna sie do niej odwołac. nie wskazuj id, ktore nie istnieje albo jest zduplikowane. aria-labelledby ma pierwszenstwo w wyliczaniu nazwy. błedne wskazanie moze nadpisac dobra nazwe. 1.3.1 2.5.3 4.1.2">
+      <summary>
+        <code>aria-labelledby</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Tworzy nazwę dostępną z treści elementu lub elementów wskazanych przez id.</p>
+        <p><strong>Kiedy używać:</strong> Gdy nazwa jest już widoczna na stronie i można się do niej odwołać.</p>
+        <p><strong>Kiedy uważać:</strong> Nie wskazuj id, które nie istnieje albo jest zduplikowane.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 2.5.3, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> aria-labelledby ma pierwszeństwo w wyliczaniu nazwy. Błędne wskazanie może nadpisać dobrą nazwę.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;h2 id=&quot;dialog-title&quot;&gt;Usuń plik&lt;/h2&gt;
+    &lt;div role=&quot;dialog&quot; aria-labelledby=&quot;dialog-title&quot;&gt;...&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-level" data-type="właściwość" data-search="aria-level własciwosc okresla poziom elementu w strukturze, np. nagłowka, drzewa albo listy hierarchicznej. przy niestandardowych strukturach, gdy nie da sie uzyc natywnych nagłowkow albo list. nie uzywaj zamiast poprawnej hierarchii &lt;h1&gt;-&lt;h6&gt;, jesli mozesz uzyc natywnego html. niewłasciwy poziom zaburza strukture dokumentu. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-level</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa poziom elementu w strukturze, np. nagłówka, drzewa albo listy hierarchicznej.</p>
+        <p><strong>Kiedy używać:</strong> Przy niestandardowych strukturach, gdy nie da się użyć natywnych nagłówków albo list.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj zamiast poprawnej hierarchii &lt;h1&gt;-&lt;h6&gt;, jeśli możesz użyć natywnego HTML.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Niewłaściwy poziom zaburza strukturę dokumentu.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;heading&quot; aria-level=&quot;2&quot;&gt;Dostępność formularzy&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-live" data-type="właściwość" data-search="aria-live własciwosc okresla, czy zmiany w regionie maja byc ogłaszane przez technologie wspomagajace. przy komunikatach statusu, wynikach wyszukiwania, walidacji i powiadomieniach. nie ustawiaj assertive dla zwykłych informacji. nie dawaj aria-live na cały main. naduzywanie regionow live powoduje chaos informacyjny. 4.1.3">
+      <summary>
+        <code>aria-live</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa, czy zmiany w regionie mają być ogłaszane przez technologie wspomagające.</p>
+        <p><strong>Kiedy używać:</strong> Przy komunikatach statusu, wynikach wyszukiwania, walidacji i powiadomieniach.</p>
+        <p><strong>Kiedy uważać:</strong> Nie ustawiaj assertive dla zwykłych informacji. Nie dawaj aria-live na cały main.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.3</p>
+        <p><strong>Ryzyko:</strong> Nadużywanie regionów live powoduje chaos informacyjny.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;p aria-live=&quot;polite&quot; id=&quot;status&quot;&gt;&lt;/p&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-modal" data-type="właściwość" data-search="aria-modal własciwosc informuje, ze dialog jest modalny i interakcja powinna byc ograniczona do niego. przy faktycznych modalach z poprawna obsługa fokusu. nie uzywaj, jesli fokus moze przejsc poza modal albo tło nadal jest interaktywne. aria-modal bez focus trapu i powrotu fokusu daje fałszywe poczucie dostepnosci. 2.1.1 2.4.3 4.1.2">
+      <summary>
+        <code>aria-modal</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że dialog jest modalny i interakcja powinna być ograniczona do niego.</p>
+        <p><strong>Kiedy używać:</strong> Przy faktycznych modalach z poprawną obsługą fokusu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj, jeśli fokus może przejść poza modal albo tło nadal jest interaktywne.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 2.4.3, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> aria-modal bez focus trapu i powrotu fokusu daje fałszywe poczucie dostępności.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;title&quot;&gt;...&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-multiline" data-type="właściwość" data-search="aria-multiline własciwosc informuje, ze element tekstowy obsługuje wiele linii. przy niestandardowym textboxie wielowierszowym. nie uzywaj zamiast natywnego &lt;textarea&gt;, jesli &lt;textarea&gt; wystarcza. niestandardowy textbox wymaga obsługi klawiatury, fokusu i edycji tekstu. 4.1.2">
+      <summary>
+        <code>aria-multiline</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że element tekstowy obsługuje wiele linii.</p>
+        <p><strong>Kiedy używać:</strong> Przy niestandardowym textboxie wielowierszowym.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj zamiast natywnego &lt;textarea&gt;, jeśli &lt;textarea&gt; wystarcza.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Niestandardowy textbox wymaga obsługi klawiatury, fokusu i edycji tekstu.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;textbox&quot; aria-multiline=&quot;true&quot; contenteditable=&quot;true&quot;&gt;&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-multiselectable" data-type="właściwość" data-search="aria-multiselectable własciwosc informuje, ze w komponencie mozna wybrac wiecej niz jeden element. przy listboxie, gridzie albo tree z wielokrotnym wyborem. nie uzywaj, jesli interfejs pozwala wybrac tylko jedna opcje. uzytkownik musi dostac jasna instrukcje, jak zaznaczac wiele elementow klawiatura. 4.1.2">
+      <summary>
+        <code>aria-multiselectable</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że w komponencie można wybrać więcej niż jeden element.</p>
+        <p><strong>Kiedy używać:</strong> Przy listboxie, gridzie albo tree z wielokrotnym wyborem.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj, jeśli interfejs pozwala wybrać tylko jedną opcję.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Użytkownik musi dostać jasną instrukcję, jak zaznaczać wiele elementów klawiaturą.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;ul role=&quot;listbox&quot; aria-multiselectable=&quot;true&quot;&gt;...&lt;/ul&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-orientation" data-type="właściwość" data-search="aria-orientation własciwosc okresla orientacje komponentu: pozioma albo pionowa. przy tablist, separatorach, suwakach i innych widgetach, gdzie orientacja wpływa na obsługe klawiatury. nie dodawaj, jesli orientacja jest domyslna i oczywista dla danego wzorca. orientacja musi pasowac do realnej obsługi strzałkami. 2.1.1 4.1.2">
+      <summary>
+        <code>aria-orientation</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa orientację komponentu: poziomą albo pionową.</p>
+        <p><strong>Kiedy używać:</strong> Przy tablist, separatorach, suwakach i innych widgetach, gdzie orientacja wpływa na obsługę klawiatury.</p>
+        <p><strong>Kiedy uważać:</strong> Nie dodawaj, jeśli orientacja jest domyślna i oczywista dla danego wzorca.</p>
+        <p><strong>Powiązane WCAG:</strong> 2.1.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Orientacja musi pasować do realnej obsługi strzałkami.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;tablist&quot; aria-orientation=&quot;vertical&quot;&gt;...&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-owns" data-type="właściwość" data-search="aria-owns własciwosc tworzy relacje rodzic-dziecko w drzewie dostepnosci niezaleznie od struktury dom. tylko w rzadkich przypadkach złozonych komponentow, gdy elementy logicznie naleza do komponentu, ale nie sa jego potomkami w dom. unikaj jako domyslnego sposobu naprawiania złej struktury html. najpierw popraw dom. moze zmienic kolejnosc czytania i stworzyc niespojnosc miedzy dom a drzewem dostepnosci. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-owns</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Tworzy relację rodzic-dziecko w drzewie dostępności niezależnie od struktury DOM.</p>
+        <p><strong>Kiedy używać:</strong> Tylko w rzadkich przypadkach złożonych komponentów, gdy elementy logicznie należą do komponentu, ale nie są jego potomkami w DOM.</p>
+        <p><strong>Kiedy uważać:</strong> Unikaj jako domyślnego sposobu naprawiania złej struktury HTML. Najpierw popraw DOM.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Może zmienić kolejność czytania i stworzyć niespójność między DOM a drzewem dostępności.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;listbox&quot; aria-owns=&quot;option-a option-b&quot;&gt;&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-placeholder" data-type="właściwość" data-search="aria-placeholder własciwosc przekazuje tekst zastepczy dla niestandardowego pola tekstowego. przy niestandardowym role=textbox, gdy nie mozna uzyc natywnego placeholdera. nie uzywaj placeholdera zamiast etykiety. placeholder znika i nie jest dobra instrukcja. brak widocznej etykiety nadal bedzie problemem, nawet jesli placeholder istnieje. 3.3.2 4.1.2">
+      <summary>
+        <code>aria-placeholder</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Przekazuje tekst zastępczy dla niestandardowego pola tekstowego.</p>
+        <p><strong>Kiedy używać:</strong> Przy niestandardowym role=textbox, gdy nie można użyć natywnego placeholdera.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj placeholdera zamiast etykiety. Placeholder znika i nie jest dobrą instrukcją.</p>
+        <p><strong>Powiązane WCAG:</strong> 3.3.2, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Brak widocznej etykiety nadal będzie problemem, nawet jeśli placeholder istnieje.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;textbox&quot; aria-placeholder=&quot;Wpisz komentarz&quot; contenteditable=&quot;true&quot;&gt;&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-posinset" data-type="właściwość" data-search="aria-posinset własciwosc okresla pozycje elementu w zestawie. gdy nie wszystkie elementy zestawu sa obecne w dom, np. przy wirtualizowanych listach. nie uzywaj w zwykłych listach html, gdzie przegladarka moze sama okreslic pozycje. błedna pozycja dezorientuje uzytkownika, szczegolnie w długich listach. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-posinset</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa pozycję elementu w zestawie.</p>
+        <p><strong>Kiedy używać:</strong> Gdy nie wszystkie elementy zestawu są obecne w DOM, np. przy wirtualizowanych listach.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj w zwykłych listach HTML, gdzie przeglądarka może sama określić pozycję.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Błędna pozycja dezorientuje użytkownika, szczególnie w długich listach.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;option&quot; aria-posinset=&quot;7&quot; aria-setsize=&quot;120&quot;&gt;Wynik 7&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-pressed" data-type="stan" data-search="aria-pressed stan informuje, ze przycisk działa jako przełacznik i czy jest wcisniety. przy przyciskach typu toggle, np. włacz/wyłacz tryb, pogrubienie, wyciszenie. nie uzywaj do rozwijania i zwijania sekcji. tam uzyj aria-expanded. stan musi zmieniac sie po aktywacji i pasowac do wizualnego wygladu. 4.1.2">
+      <summary>
+        <code>aria-pressed</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że przycisk działa jako przełącznik i czy jest wciśnięty.</p>
+        <p><strong>Kiedy używać:</strong> Przy przyciskach typu toggle, np. włącz/wyłącz tryb, pogrubienie, wyciszenie.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj do rozwijania i zwijania sekcji. Tam użyj aria-expanded.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Stan musi zmieniać się po aktywacji i pasować do wizualnego wyglądu.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button aria-pressed=&quot;false&quot;&gt;Tryb ciemny&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-readonly" data-type="stan" data-search="aria-readonly stan informuje, ze element jest tylko do odczytu. przy polach lub komorkach gridu, ktore mozna odczytac, ale nie edytowac. dla natywnych pol formularza uzyj readonly, jesli wystarcza. aria-readonly samo nie blokuje edycji w niestandardowym komponencie. 4.1.2">
+      <summary>
+        <code>aria-readonly</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że element jest tylko do odczytu.</p>
+        <p><strong>Kiedy używać:</strong> Przy polach lub komórkach gridu, które można odczytać, ale nie edytować.</p>
+        <p><strong>Kiedy uważać:</strong> Dla natywnych pól formularza użyj readonly, jeśli wystarcza.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> aria-readonly samo nie blokuje edycji w niestandardowym komponencie.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;input value=&quot;ABC-123&quot; readonly&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-relevant" data-type="właściwość" data-search="aria-relevant własciwosc okresla, jakie typy zmian w regionie live sa istotne do ogłoszenia. w regionach live, gdy trzeba kontrolowac, czy ogłaszane sa dodania, usuniecia albo zmiany tekstu. nie komplikuj bez potrzeby. czesto wystarczy aria-live i krotki komunikat statusu. roznice wsparcia miedzy technologiami moga sprawic, ze efekt nie bedzie identyczny wszedzie. 4.1.3">
+      <summary>
+        <code>aria-relevant</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa, jakie typy zmian w regionie live są istotne do ogłoszenia.</p>
+        <p><strong>Kiedy używać:</strong> W regionach live, gdy trzeba kontrolować, czy ogłaszane są dodania, usunięcia albo zmiany tekstu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie komplikuj bez potrzeby. Często wystarczy aria-live i krótki komunikat statusu.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.3</p>
+        <p><strong>Ryzyko:</strong> Różnice wsparcia między technologiami mogą sprawić, że efekt nie będzie identyczny wszędzie.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;ul aria-live=&quot;polite&quot; aria-relevant=&quot;additions text&quot;&gt;&lt;/ul&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-required" data-type="stan" data-search="aria-required stan informuje, ze uzytkownik musi uzupełnic pole przed wysłaniem formularza. przy niestandardowych kontrolkach albo jako uzupełnienie widocznej informacji o wymaganym polu. nie uzywaj jako jedynej informacji o wymaganiu. uzytkownik widzacy tez musi to wiedziec. dla natywnych pol required jest zwykle lepsze, bo wpływa tez na zachowanie formularza. 3.3.2 4.1.2">
+      <summary>
+        <code>aria-required</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, że użytkownik musi uzupełnić pole przed wysłaniem formularza.</p>
+        <p><strong>Kiedy używać:</strong> Przy niestandardowych kontrolkach albo jako uzupełnienie widocznej informacji o wymaganym polu.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj jako jedynej informacji o wymaganiu. Użytkownik widzący też musi to wiedzieć.</p>
+        <p><strong>Powiązane WCAG:</strong> 3.3.2, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Dla natywnych pól required jest zwykle lepsze, bo wpływa też na zachowanie formularza.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;textbox&quot; aria-required=&quot;true&quot; aria-labelledby=&quot;comment-label&quot;&gt;&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-roledescription" data-type="właściwość" data-search="aria-roledescription własciwosc zmienia sposob prezentowania roli elementu przez technologie wspomagajace. bardzo ostroznie, tylko gdy standardowa rola jest poprawna, ale potrzebuje bardziej zrozumiałego opisu kontekstowego. nie uzywaj do maskowania złej roli ani do wymyslania nazw, ktore utrudnia zrozumienie komponentu. moze ukryc standardowa role i pogorszyc przewidywalnosc. uzywac wyjatkowo. 4.1.2">
+      <summary>
+        <code>aria-roledescription</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Zmienia sposób prezentowania roli elementu przez technologie wspomagające.</p>
+        <p><strong>Kiedy używać:</strong> Bardzo ostrożnie, tylko gdy standardowa rola jest poprawna, ale potrzebuje bardziej zrozumiałego opisu kontekstowego.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj do maskowania złej roli ani do wymyślania nazw, które utrudnią zrozumienie komponentu.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Może ukryć standardową rolę i pogorszyć przewidywalność. Używać wyjątkowo.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;section role=&quot;region&quot; aria-roledescription=&quot;slajd&quot; aria-labelledby=&quot;slide-title&quot;&gt;...&lt;/section&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-selected" data-type="stan" data-search="aria-selected stan informuje, ktory element jest wybrany w złozonym komponencie. przy zakładkach, opcjach listboxa, wierszach lub komorkach w gridzie. nie uzywaj w zwykłej nawigacji do oznaczenia aktualnej strony. tam uzyj aria-current. stan musi odpowiadac realnie aktywnej lub wybranej opcji. 4.1.2">
+      <summary>
+        <code>aria-selected</code>
+        <span>stan</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje, który element jest wybrany w złożonym komponencie.</p>
+        <p><strong>Kiedy używać:</strong> Przy zakładkach, opcjach listboxa, wierszach lub komórkach w gridzie.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj w zwykłej nawigacji do oznaczenia aktualnej strony. Tam użyj aria-current.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Stan musi odpowiadać realnie aktywnej lub wybranej opcji.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot;&gt;WCAG&lt;/button&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-setsize" data-type="właściwość" data-search="aria-setsize własciwosc okresla łaczna liczbe elementow w zestawie. razem z aria-posinset, szczegolnie przy wirtualizowanych listach. nie uzywaj w zwykłych listach, gdzie wszystkie elementy sa w dom. błedny rozmiar zestawu moze sugerowac, ze uzytkownik ma mniej lub wiecej opcji niz faktycznie. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-setsize</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Określa łączną liczbę elementów w zestawie.</p>
+        <p><strong>Kiedy używać:</strong> Razem z aria-posinset, szczególnie przy wirtualizowanych listach.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj w zwykłych listach, gdzie wszystkie elementy są w DOM.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Błędny rozmiar zestawu może sugerować, że użytkownik ma mniej lub więcej opcji niż faktycznie.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;option&quot; aria-posinset=&quot;7&quot; aria-setsize=&quot;120&quot;&gt;Wynik 7&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-sort" data-type="właściwość" data-search="aria-sort własciwosc informuje o kierunku sortowania kolumny lub wiersza. przy tabelach danych z sortowalnymi nagłowkami. nie dodawaj na wiele kolumn jednoczesnie, jesli tylko jedna kolumna okresla biezace sortowanie. stan sortowania musi byc aktualizowany po kazdej zmianie sortowania. 1.3.1 4.1.2">
+      <summary>
+        <code>aria-sort</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Informuje o kierunku sortowania kolumny lub wiersza.</p>
+        <p><strong>Kiedy używać:</strong> Przy tabelach danych z sortowalnymi nagłówkami.</p>
+        <p><strong>Kiedy uważać:</strong> Nie dodawaj na wiele kolumn jednocześnie, jeśli tylko jedna kolumna określa bieżące sortowanie.</p>
+        <p><strong>Powiązane WCAG:</strong> 1.3.1, 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Stan sortowania musi być aktualizowany po każdej zmianie sortowania.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;th scope=&quot;col&quot; aria-sort=&quot;ascending&quot;&gt;&lt;button&gt;Nazwa&lt;/button&gt;&lt;/th&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+
+    <li>
+      <details data-name="aria-valuemin / aria-valuemax / aria-valuenow / aria-valuetext" data-type="właściwość" data-search="aria-valuemin / aria-valuemax / aria-valuenow / aria-valuetext własciwosc opisuja wartosc, zakres i tekstowa reprezentacje wartosci w komponentach liczbowych. przy sliderach, progressbarach, scrollbarach i spinbuttonach, szczegolnie niestandardowych. nie uzywaj, jesli natywny element, np. &lt;input type=&quot;range&quot;&gt; albo &lt;progress&gt;, wystarcza. niestandardowy slider wymaga pełnej obsługi klawiatury i aktualizacji wartosci. 4.1.2">
+      <summary>
+        <code>aria-valuemin / aria-valuemax / aria-valuenow / aria-valuetext</code>
+        <span>właściwość</span>
+      </summary>
+      <div>
+        <p><strong>Co robi:</strong> Opisują wartość, zakres i tekstową reprezentację wartości w komponentach liczbowych.</p>
+        <p><strong>Kiedy używać:</strong> Przy sliderach, progressbarach, scrollbarach i spinbuttonach, szczególnie niestandardowych.</p>
+        <p><strong>Kiedy uważać:</strong> Nie używaj, jeśli natywny element, np. &lt;input type=&quot;range&quot;&gt; albo &lt;progress&gt;, wystarcza.</p>
+        <p><strong>Powiązane WCAG:</strong> 4.1.2</p>
+        <p><strong>Ryzyko:</strong> Niestandardowy slider wymaga pełnej obsługi klawiatury i aktualizacji wartości.</p>
+        <div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code>&lt;div role=&quot;slider&quot; tabindex=&quot;0&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; aria-valuenow=&quot;50&quot; aria-label=&quot;Głośność&quot;&gt;&lt;/div&gt;</code></pre></div></div>
+      </div>
+      </details>
+    </li>
+  </ul>
+
+  <noscript>
+    <p>
+      Filtrowanie słownika wymaga JavaScriptu. Wszystkie pozycje powinny być nadal widoczne bez JavaScriptu.
+    </p>
+  </noscript>
+</section>
+
+<h2 id="gotowy-wzorzec-dostepny-komunikat-bledu-w-formularzu">Gotowy wzorzec: dostępny komunikat błędu w formularzu</h2>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-html">&lt;form novalidate&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label for=&quot;email&quot;&gt;Adres e-mail&lt;/label&gt;
+
+    &lt;input
+      id=&quot;email&quot;
+      name=&quot;email&quot;
+      type=&quot;email&quot;
+      autocomplete=&quot;email&quot;
+      required
+      aria-invalid=&quot;true&quot;
+      aria-describedby=&quot;email-error&quot;&gt;
+
+    &lt;p id=&quot;email-error&quot;&gt;
+      Wpisz poprawny adres e-mail, np. jan@example.com.
+    &lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;button type=&quot;submit&quot;&gt;
+    Wyślij
+  &lt;/button&gt;
+&lt;/form&gt;</code></pre></div></div>
+<p>Dlaczego to działa:</p>
+<ul>
+<li>pole ma widoczną etykietę przez <code>&lt;label&gt;</code>,</li>
+<li>pole jest wymagane przez <code>required</code>,</li>
+<li>błąd jest widoczny tekstowo,</li>
+<li><code>aria-invalid=&quot;true&quot;</code> przekazuje stan błędu,</li>
+<li><code>aria-describedby</code> łączy pole z komunikatem błędu.</li>
+</ul>
+<p>Ten wzorzec wspiera wymagania WCAG 3.3.1, 3.3.2 i 4.1.2.</p>
+<h2 id="gotowy-wzorzec-przycisk-rozwijajacy-sekcje">Gotowy wzorzec: przycisk rozwijający sekcję</h2>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-html">&lt;button
+  type=&quot;button&quot;
+  aria-expanded=&quot;false&quot;
+  aria-controls=&quot;details&quot;&gt;
+  Pokaż szczegóły
+&lt;/button&gt;
+
+&lt;div id=&quot;details&quot; hidden&gt;
+  &lt;p&gt;
+    Szkolenie obejmuje analizę WCAG, testy klawiaturą i pracę z czytnikiem ekranu.
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre></div></div>
+<p>Minimum działania:</p>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-js">const button = document.querySelector('[aria-controls=&quot;details&quot;]');
+const panel = document.querySelector('#details');
+
+button.addEventListener('click', () =&gt; {
+  const expanded = button.getAttribute('aria-expanded') === 'true';
+
+  button.setAttribute('aria-expanded', String(!expanded));
+  panel.hidden = expanded;
+  button.textContent = expanded ? 'Pokaż szczegóły' : 'Ukryj szczegóły';
+});</code></pre></div></div>
+<p>To działa, bo:</p>
+<ul>
+<li>aktywatorem jest natywny <code>&lt;button&gt;</code>,</li>
+<li>stan <code>aria-expanded</code> zgadza się ze stanem panelu,</li>
+<li>relacja z panelem jest wskazana przez <code>aria-controls</code>,</li>
+<li>treść ukryta jest przez natywny atrybut <code>hidden</code>.</li>
+</ul>
+<h2 id="gotowy-wzorzec-komunikat-dynamiczny">Gotowy wzorzec: komunikat dynamiczny</h2>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-html">&lt;button type=&quot;button&quot; id=&quot;save-button&quot;&gt;
+  Zapisz zmiany
+&lt;/button&gt;
+
+&lt;p id=&quot;save-status&quot; aria-live=&quot;polite&quot; aria-atomic=&quot;true&quot;&gt;&lt;/p&gt;</code></pre></div></div>
+<div class="wcag-code-example"><div class="wcag-code-example__code"><pre><code class="language-js">const button = document.querySelector('#save-button');
+const status = document.querySelector('#save-status');
+
+button.addEventListener('click', async () =&gt; {
+  status.textContent = 'Zapisywanie zmian…';
+
+  await saveChanges();
+
+  status.textContent = 'Zmiany zostały zapisane.';
+});</code></pre></div></div>
+<p>To działa, bo komunikat o stanie jest przekazany bez przenoszenia fokusu. To wspiera WCAG 4.1.3.</p>
+<h2 id="najczestsze-bledy-aria">Najczęstsze błędy ARIA</h2>
+<div class="knowledge-table-wrapper aria-table-wrapper" tabindex="0" role="region" aria-label="Tabela: Błąd, Dlaczego to problem, Poprawka"><table class="knowledge-table"><thead><tr><th scope="col">Błąd</th><th scope="col">Dlaczego to problem</th><th scope="col">Poprawka</th></tr></thead><tbody><tr><td><code>div role=&quot;button&quot;</code> bez obsługi klawiatury</td><td>Czytnik ekranu ogłasza przycisk, ale użytkownik klawiatury nie może go aktywować jak przycisku.</td><td>Użyj <code>&lt;button&gt;</code> albo dodaj pełną obsługę klawiatury.</td></tr><tr><td><code>aria-label</code> sprzeczne z widocznym tekstem</td><td>Użytkownicy widzący i korzystający z technologii wspomagających dostają różne informacje.</td><td>Nazwa dostępna powinna zawierać widoczny tekst.</td></tr><tr><td><code>aria-expanded</code> niezgodne ze stanem komponentu</td><td>Czytnik ekranu dostaje fałszywą informację.</td><td>Aktualizuj atrybut przy każdej zmianie widoczności.</td></tr><tr><td><code>aria-hidden=&quot;true&quot;</code> na rodzicu przycisku</td><td>Element może zniknąć z drzewa dostępności.</td><td>Nie ukrywaj interaktywnych treści przed technologiami wspomagającymi.</td></tr><tr><td><code>aria-describedby</code> wskazuje nieistniejące <code>id</code></td><td>Opis nie zostanie powiązany z elementem.</td><td>Sprawdź unikalność i istnienie <code>id</code>.</td></tr><tr><td><code>aria-required</code> bez widocznego oznaczenia</td><td>Użytkownicy widzący nie wiedzą, że pole jest wymagane.</td><td>Dodaj tekst, np. „wymagane” albo gwiazdkę z wyjaśnieniem.</td></tr><tr><td><code>role=&quot;alert&quot;</code> tworzony dopiero w momencie błędu</td><td>Niektóre czytniki mogą nie ogłosić komunikatu.</td><td>Kontener live powinien istnieć w DOM wcześniej.</td></tr><tr><td>Nadużywanie <code>aria-live=&quot;assertive&quot;</code></td><td>Komunikaty przerywają użytkownikowi pracę.</td><td>Domyślnie używaj <code>polite</code>; <code>assertive</code> tylko dla krytycznych informacji.</td></tr><tr><td><code>aria-selected</code> w zwykłej nawigacji</td><td>Myli stan wyboru z aktualną stroną.</td><td>W nawigacji użyj <code>aria-current=&quot;page&quot;</code>.</td></tr><tr><td>ARIA zamiast natywnego HTML</td><td>Trzeba samodzielnie odtwarzać zachowania przeglądarki.</td><td>Zacznij od semantycznego HTML.</td></tr></tbody></table></div>
+<h2 id="jak-testowac-aria">Jak testować ARIA?</h2>
+<h3 id="1-sprawdz-semantyke-w-devtools">1. Sprawdź semantykę w DevTools</h3>
+<p>W Chrome albo Edge:</p>
+<ol>
+<li>Otwórz DevTools.</li>
+<li>Wybierz element.</li>
+<li>Przejdź do panelu <strong>Accessibility</strong>.</li>
+<li>Sprawdź:</li>
+</ol>
+<ul>
+<li>nazwę dostępną,</li>
+<li>rolę,</li>
+<li>stany,</li>
+<li>opis,</li>
+<li>źródło nazwy.</li>
+</ul>
+<h3 id="2-przetestuj-klawiatura">2. Przetestuj klawiaturą</h3>
+<p>Sprawdź:</p>
+<ol>
+<li>Czy można dojść do elementu klawiszem <code>Tab</code>.</li>
+<li>Czy element aktywuje się <code>Enterem</code> i/lub spacją.</li>
+<li>Czy fokus nie znika.</li>
+<li>Czy kolejność fokusu jest logiczna.</li>
+<li>Czy modal zatrzymuje fokus wewnątrz.</li>
+<li>Czy po zamknięciu modala fokus wraca na element otwierający.</li>
+</ol>
+<h3 id="3-przetestuj-czytnikiem-ekranu">3. Przetestuj czytnikiem ekranu</h3>
+<p>Minimum:</p>
+<ul>
+<li>Windows: NVDA + Firefox albo Chrome,</li>
+<li>macOS: VoiceOver + Safari,</li>
+<li>mobile: VoiceOver iOS albo TalkBack Android.</li>
+</ul>
+<p>Sprawdź, czy czytnik ogłasza:</p>
+<ul>
+<li>poprawną nazwę,</li>
+<li>poprawną rolę,</li>
+<li>poprawny stan,</li>
+<li>komunikaty błędów,</li>
+<li>zmiany w regionach live.</li>
+</ul>
+<h3 id="4-uruchom-automatyczne-skanery">4. Uruchom automatyczne skanery</h3>
+<p>Narzędzia:</p>
+<ul>
+<li>axe DevTools,</li>
+<li>WAVE,</li>
+<li>Lighthouse,</li>
+<li>ARC Toolkit,</li>
+<li>W3C Markup Validation Service.</li>
+</ul>
+<p>Automat może wykryć między innymi:</p>
+<ul>
+<li>niepoprawne role,</li>
+<li>niedozwolone atrybuty ARIA,</li>
+<li>brak nazwy dostępnej,</li>
+<li>błędne <code>aria-*</code>,</li>
+<li>odwołania do nieistniejących identyfikatorów.</li>
+</ul>
+<p>Automat nie powie jednak w pełni, czy komponent jest zrozumiały i wygodny. To trzeba sprawdzić manualnie.</p>
+<h2 id="kryteria-oceny-kiedy-aria-jest-wdrozona-dobrze">Kryteria oceny: kiedy ARIA jest wdrożona dobrze?</h2>
+<p>ARIA jest wdrożona dobrze, gdy:</p>
+<ul>
+<li>element ma właściwą rolę,</li>
+<li>element ma poprawną nazwę dostępną,</li>
+<li>stan ARIA zgadza się ze stanem wizualnym,</li>
+<li>atrybuty wskazujące na <code>id</code> prowadzą do istniejących elementów,</li>
+<li>komponent działa z klawiatury,</li>
+<li>fokus jest widoczny i logiczny,</li>
+<li>komunikaty dynamiczne są ogłaszane w odpowiednim momencie,</li>
+<li>ARIA nie zastępuje natywnego HTML tam, gdzie HTML wystarcza,</li>
+<li>użytkownik czytnika ekranu dostaje tę samą informację i funkcję co użytkownik widzący.</li>
+</ul>
+<p>ARIA jest wdrożona źle, gdy:</p>
+<ul>
+<li>opisuje coś inaczej niż pokazuje interfejs,</li>
+<li>ukrywa ważne treści,</li>
+<li>tworzy fałszywe role,</li>
+<li>nie jest aktualizowana dynamicznie,</li>
+<li>wymaga od użytkownika zgadywania,</li>
+<li>działa tylko wizualnie, ale nie działa z klawiatury i technologiami wspomagającymi.</li>
+</ul>
+<h2 id="krotka-sciaga-ktorego-atrybutu-uzyc">Krótka ściąga: którego atrybutu użyć?</h2>
+<div class="knowledge-table-wrapper aria-table-wrapper" tabindex="0" role="region" aria-label="Tabela: Potrzeba, Użyj, Nie używaj błędnie"><table class="knowledge-table"><thead><tr><th scope="col">Potrzeba</th><th scope="col">Użyj</th><th scope="col">Nie używaj błędnie</th></tr></thead><tbody><tr><td>Przycisk z samą ikoną</td><td><code>aria-label</code></td><td>Nie dawaj nazwy innej niż znaczenie ikony.</td></tr><tr><td>Nazwa z widocznego tekstu obok</td><td><code>aria-labelledby</code></td><td>Nie wskazuj nieistniejącego <code>id</code>.</td></tr><tr><td>Dodatkowa instrukcja</td><td><code>aria-describedby</code></td><td>Nie wrzucaj tam długiego regulaminu.</td></tr><tr><td>Sekcja rozwijana</td><td><code>aria-expanded</code> + opcjonalnie <code>aria-controls</code></td><td>Nie używaj <code>aria-pressed</code>.</td></tr><tr><td>Aktualna strona w menu</td><td><code>aria-current=&quot;page&quot;</code></td><td>Nie używaj <code>aria-selected</code>.</td></tr><tr><td>Wybrana zakładka</td><td><code>aria-selected</code></td><td>Nie używaj <code>aria-current</code>.</td></tr><tr><td>Przycisk przełącznik</td><td><code>aria-pressed</code></td><td>Nie używaj do akordeonu.</td></tr><tr><td>Pole z błędem</td><td><code>aria-invalid</code> + <code>aria-describedby</code></td><td>Nie ustawiaj błędu przed interakcją użytkownika.</td></tr><tr><td>Komunikat dynamiczny</td><td><code>aria-live=&quot;polite&quot;</code></td><td>Nie dawaj <code>assertive</code> na wszystko.</td></tr><tr><td>Pełny odczyt krótkiego statusu</td><td><code>aria-atomic=&quot;true&quot;</code></td><td>Nie stosuj na dużych sekcjach.</td></tr><tr><td>Ukrycie dekoracji przed AT</td><td><code>aria-hidden=&quot;true&quot;</code></td><td>Nie ukrywaj elementów fokusowalnych.</td></tr><tr><td>Modal</td><td><code>role=&quot;dialog&quot;</code> + <code>aria-modal=&quot;true&quot;</code> + nazwa</td><td>Nie zapominaj o obsłudze fokusu.</td></tr></tbody></table></div>
+<h2 id="zrodla">Źródła</h2>
+<ul><li><a href="https://www.w3.org/TR/wai-aria-1.2/">W3C: WAI-ARIA 1.2</a></li><li><a href="https://www.w3.org/TR/html-aria/">W3C: ARIA in HTML</a></li><li><a href="https://www.w3.org/WAI/ARIA/apg/">WAI: ARIA Authoring Practices Guide</a></li><li><a href="https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/">WAI APG: Read Me First</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes">MDN: ARIA attributes</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles">MDN: ARIA roles</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-atomic">MDN: aria-atomic</a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA2">WAI Technique ARIA2</a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA19">WAI Technique ARIA19</a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA21">WAI Technique ARIA21</a></li><li><a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a></li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-contact"><p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p></div>
+      <nav aria-label="Dokumenty prawne" class="footer-nav">
+        <a href="/regulamin">Regulamin świadczenia usług</a>
+        <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+        <a href="/deklaracja">Deklaracja dostępności</a>
+      </nav>
+      <div class="footer-social"><a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a></div>
+      <div class="footer-bottom"><p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p></div>
+    </div>
+  </footer>
+  <script src="../assets/header.js?v=2"></script>
+  <script src="../assets/aria-guide.js?v=1"></script>
+</body>
+</html>
