@@ -3,40 +3,47 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dostępne aplikacje mobilne - Accessibility First</title>
-    <meta name="description" content="Praktyczne wskazówki o dostępnych aplikacjach mobilnych: gesty, fokus, nazwy kontrolek, czytniki ekranu i testy na iOS oraz Androidzie.">
+    <title>Dostępność aplikacji mobilnych: tutorial - Accessibility First</title>
+    <meta name="description" content="Praktyczny tutorial dostępności aplikacji mobilnych: semantyka, VoiceOver, TalkBack, formularze, gesty, skalowanie tekstu, testy i deklaracja dostępności.">
     <link rel="canonical" href="https://www.a11yfirst.pl/dostepne-aplikacje-mobilne">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
-    <meta property="og:title" content="Dostępne aplikacje mobilne - Accessibility First">
-    <meta property="og:description" content="Praktyczne wskazówki o dostępnych aplikacjach mobilnych: gesty, fokus, nazwy kontrolek, czytniki ekranu i testy na iOS oraz Androidzie.">
+    <meta property="og:title" content="Dostępność aplikacji mobilnych: tutorial - Accessibility First">
+    <meta property="og:description" content="Praktyczny tutorial wdrażania i testowania dostępności natywnych oraz hybrydowych aplikacji na iOS i Androida.">
     <meta property="og:url" content="https://www.a11yfirst.pl/dostepne-aplikacje-mobilne">
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dostępne aplikacje mobilne - Accessibility First">
-    <meta name="twitter:description" content="Praktyczne wskazówki o dostępnych aplikacjach mobilnych: gesty, fokus, nazwy kontrolek, czytniki ekranu i testy na iOS oraz Androidzie.">
+    <meta name="twitter:title" content="Dostępność aplikacji mobilnych: tutorial - Accessibility First">
+    <meta name="twitter:description" content="Semantyka, VoiceOver, TalkBack, formularze, gesty, skalowanie tekstu, testy i obowiązki publikacyjne.">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Dostępne aplikacje mobilne",
-          "headline": "Dostępne aplikacje mobilne",
-          "description": "Praktyczne wskazówki o dostępnych aplikacjach mobilnych: gesty, fokus, nazwy kontrolek, czytniki ekranu i testy na iOS oraz Androidzie.",
-          "url": "https://www.a11yfirst.pl/dostepne-aplikacje-mobilne",
-          "isPartOf": {
-            "@type": "WebSite",
-            "name": "Accessibility First",
-            "url": "https://www.a11yfirst.pl"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Włącz Wizję sp. z o.o.",
-            "url": "https://wlaczwizje.pl"
-          }
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "name": "Dostępność aplikacji mobilnych: tutorial",
+        "headline": "Jak projektować, wdrażać i testować dostępne aplikacje mobilne",
+        "description": "Praktyczny tutorial dostępności natywnych i hybrydowych aplikacji mobilnych na iOS i Androida.",
+        "url": "https://www.a11yfirst.pl/dostepne-aplikacje-mobilne",
+        "dateModified": "2026-08-16",
+        "inLanguage": "pl-PL",
+        "articleSection": "Dostępność aplikacji mobilnych",
+        "author": {
+          "@type": "Person",
+          "name": "Damian Żłobicki"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Accessibility First",
+          "url": "https://www.a11yfirst.pl"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Włącz Wizję sp. z o.o.",
+          "url": "https://wlaczwizje.pl"
         }
-        </script>
+      }
+    </script>
     <link rel="icon" href="assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
     <link rel="stylesheet" href="assets/styles.css?v=18">
   </head>
@@ -45,8 +52,8 @@
     <header>
       <div class="container header-content">
         <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
-        <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
-        <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=7" alt="" aria-hidden="true">
+          <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true">
+          <img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=7" alt="" aria-hidden="true">
         </a>
         <nav aria-label="Menu główne">
           <a href="/o-nas">O nas</a>
@@ -62,50 +69,477 @@
     <main id="main">
       <nav class="breadcrumbs" aria-label="Ścieżka okruszków">
         <ol>
-          <li>
-            <a href="/">Strona główna</a>
-          </li>
-          <li>
-            <a href="/baza-wiedzy">Baza wiedzy</a>
-          </li>
-          <li aria-current="page">Dostępne aplikacje mobilne</li>
+          <li><a href="/">Strona główna</a></li>
+          <li><a href="/baza-wiedzy">Baza wiedzy</a></li>
+          <li aria-current="page">Dostępność aplikacji mobilnych</li>
         </ol>
       </nav>
+
       <section class="hero page-hero">
         <div class="container">
-          <h1>Dostępne aplikacje mobilne</h1>
-          <p class="subtitle">Fokus, gesty, nazwy kontrolek, komunikaty i obsługa bez wzroku na iOS oraz Androidzie.</p>
+          <p class="eyebrow">Tutorial praktyczny</p>
+          <h1>Dostępność aplikacji mobilnych</h1>
+          <p class="subtitle">Od projektu i semantyki po testy z VoiceOver, TalkBack i różnymi metodami obsługi.</p>
         </div>
       </section>
-      <section class="knowledge-article" aria-labelledby="mobile-title">
+
+      <section class="knowledge-article wcag-detail">
         <div class="container">
-          <p class="eyebrow">Instrukcja praktyczna</p>
-          <h2 class="section-title" id="mobile-title">Co trzeba sprawdzić?</h2>
           <article class="knowledge-panel">
+            <h2 class="section-title">Krótko</h2>
+            <p>Dostępna aplikacja nie ogranicza się do współpracy z czytnikiem ekranu. Musi przekazywać znaczenie kontrolek, działać przy powiększonym tekście, obsługiwać różne metody wejścia, nie wymuszać złożonych gestów i nie zaskakiwać zmianami kontekstu.</p>
+            <p>Ten tutorial dotyczy natywnych i hybrydowych aplikacji na telefony oraz tablety. Zawiera wskazówki dla projektantów, programistów i osób wykonujących testy. Materiał został zaktualizowany 16 sierpnia 2026 r. na podstawie dokumentacji W3C, Apple, Androida, Fluttera i polskich źródeł urzędowych.</p>
+            <div class="wcag-code-example__note">
+              <p><strong>Ważne:</strong> WCAG2Mobile pomaga stosować WCAG 2.2 w aplikacjach, ale jest dokumentem informacyjnym i nie stanowi osobnego standardu zgodności. W wymaganiach formalnych trzeba uwzględnić właściwe przepisy, EN 301 549, WCAG2ICT oraz kontekst konkretnego produktu.</p>
+            </div>
+          </article>
+
+          <nav class="knowledge-tabs" aria-label="Spis treści tutorialu">
+            <a href="#podstawy">Podstawy i zakres</a>
+            <a href="#semantyka">Semantyka kontrolek</a>
+            <a href="#zmiany">Zmiany i fokus</a>
+            <a href="#formularze">Formularze</a>
+            <a href="#grafiki-media">Grafiki i media</a>
+            <a href="#struktura">Struktura ekranu</a>
+            <a href="#obsluga">Dotyk i inne wejścia</a>
+            <a href="#prezentacja">Kontrast i skalowanie</a>
+            <a href="#wdrozenie">Przykłady wdrożenia</a>
+            <a href="#wstepna-kontrola">Wstępna kontrola</a>
+            <a href="#testy">Proces testowania</a>
+            <a href="#deklaracja">Deklaracja dostępności</a>
+            <a href="#checklista">Checklista</a>
+            <a href="#zrodla">Źródła</a>
+          </nav>
+
+          <article class="knowledge-panel" id="podstawy">
+            <h2>1. Zacznij od zakresu i właściwego punktu odniesienia</h2>
+            <p>Najpierw ustal technologię aplikacji. Od niej zależy sposób implementacji i zestaw narzędzi testowych.</p>
+            <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Porównanie technologii aplikacji i mechanizmów dostępności">
+              <table class="knowledge-table">
+                <caption>Technologia aplikacji a mechanizm dostępności</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Rodzaj aplikacji</th>
+                    <th scope="col">Główny mechanizm</th>
+                    <th scope="col">Co testować</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Natywna iOS lub iPadOS</td>
+                    <td>SwiftUI, UIKit i framework Accessibility</td>
+                    <td>VoiceOver, Dynamic Type, Full Keyboard Access, Switch Control, orientację i ustawienia systemowe.</td>
+                  </tr>
+                  <tr>
+                    <td>Natywna Android</td>
+                    <td>Jetpack Compose albo Android Views i drzewo semantyki</td>
+                    <td>TalkBack, Voice Access, Switch Access, klawiaturę, skalę tekstu i rozmiar ekranu.</td>
+                  </tr>
+                  <tr>
+                    <td>Flutter</td>
+                    <td>Drzewo <code>Semantics</code> mapowane na API systemu</td>
+                    <td>Osobno wynik na iOS i Androidzie. Taka sama implementacja może zachowywać się inaczej na obu platformach.</td>
+                  </tr>
+                  <tr>
+                    <td>Hybrydowa albo WebView</td>
+                    <td>Semantyka webowa, w tym HTML i ARIA, oraz integracja z natywnym kontenerem</td>
+                    <td>Zarówno dostępność treści webowej, jak i przejścia fokusu pomiędzy warstwą webową a natywną.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>ARIA nie jest API aplikacji natywnej</h3>
+            <p>WAI-ARIA opisuje semantykę treści webowych. W aplikacji natywnej nie dodajesz <code>aria-label</code> ani <code>role="button"</code>. Przekazujesz tę samą intencję przez mechanizmy platformy: etykietę, rolę, stan, wartość, nagłówek, relację i akcję.</p>
+            <p>ARIA nadal ma zastosowanie w mobilnej stronie internetowej i w treści osadzonej w WebView. Nie należy jednak mechanicznie kopiować nazw atrybutów ARIA do kodu natywnego.</p>
+          </article>
+
+          <article class="knowledge-panel" id="semantyka">
+            <h2>2. Zapewnij nazwę, rolę, stan i wartość</h2>
+            <p>Czytnik ekranu powinien móc odpowiedzieć na cztery pytania: co to jest, jak się nazywa, w jakim jest stanie i jaka jest jego aktualna wartość. Najbezpieczniej zacząć od standardowego komponentu platformy.</p>
+            <h3>Używaj standardowych komponentów</h3>
             <ul class="detail-list">
-              <li>Czy każdy element interaktywny ma nazwę, rolę i stan.</li>
-              <li>Czy kolejność fokusu jest logiczna przy VoiceOver i TalkBack.</li>
-              <li>Czy elementy dotykowe mają odpowiednio duży obszar aktywacji.</li>
-              <li>Czy aplikacja działa w orientacji pionowej i poziomej, jeżeli nie ma uzasadnionego ograniczenia.</li>
-              <li>Czy błędy, sukcesy i zmiany widoku są komunikowane użytkownikowi czytnika ekranu.</li>
-              <li>Czy gesty złożone mają prostą alternatywę.</li>
+              <li>Przycisk powinien być komponentem przycisku, a nie klikalnym kontenerem.</li>
+              <li>Przełącznik powinien przekazywać stan włączony lub wyłączony.</li>
+              <li>Suwak powinien mieć nazwę, bieżącą wartość, zakres i działające akcje zwiększania oraz zmniejszania.</li>
+              <li>Pole tekstowe powinno mieć widoczną etykietę powiązaną programowo z polem.</li>
+              <li>Komponent niestandardowy musi odtworzyć pełną semantykę i obsługę, a nie tylko wygląd.</li>
+            </ul>
+            <h3>Nazwa dostępna ma być krótka i zgodna z widoczną etykietą</h3>
+            <p>Jeśli przycisk ma widoczny tekst „Zapisz”, czytnik ekranu nie potrzebuje nazwy „Przycisk Zapisz”. Rolę „przycisk” ogłosi system. Nie zastępuj też tej etykiety tekstem „Zatwierdź formularz”, bo użytkownik sterowania głosem może próbować wybrać element słowem, które widzi na ekranie.</p>
+            <h3>Wskazówka nie zastępuje nazwy</h3>
+            <p>Nazwa identyfikuje element, na przykład „Pobierz raport”. Wskazówka opisuje nietypowy rezultat, na przykład „Otwiera plik PDF w innej aplikacji”. Nie dodawaj wskazówek wyjaśniających standardowe gesty typu „stuknij dwukrotnie”. Sposób obsługi komunikuje technologia wspomagająca.</p>
+          </article>
+
+          <article class="knowledge-panel" id="zmiany">
+            <h2>3. Komunikuj zmiany i zarządzaj fokusem</h2>
+            <p>Po akcji użytkownika mogą pojawić się: błąd, potwierdzenie, nowe wyniki, zmiana liczby produktów albo nowy ekran. Informacja istotna wizualnie musi dotrzeć również do osoby korzystającej z technologii wspomagającej.</p>
+            <h3>Kiedy ogłosić zmianę bez przenoszenia fokusu</h3>
+            <ul class="detail-list">
+              <li>krótkie potwierdzenie, na przykład „Ustawienia zapisane”,</li>
+              <li>komunikat o błędzie przesyłania danych,</li>
+              <li>aktualizacja liczby wyników po zastosowaniu filtra,</li>
+              <li>zmiana statusu zadania, jeśli użytkownik jej oczekuje.</li>
+            </ul>
+            <p>Preferuj ogłoszenia spokojne. Komunikat pilny, który przerywa mowę czytnika ekranu, powinien być wyjątkiem. Nie oznaczaj jako regionu live zegara, licznika albo treści zmieniającej się wiele razy na sekundę.</p>
+            <h3>Kiedy przenieść fokus</h3>
+            <ul class="detail-list">
+              <li>po otwarciu modala, do jego logicznego początku lub pierwszej wymaganej kontrolki,</li>
+              <li>po zamknięciu modala, z powrotem do elementu, który go otworzył,</li>
+              <li>po przejściu na nowy ekran, do tytułu lub początku nowej zawartości, zgodnie z zachowaniem platformy,</li>
+              <li>po nieudanej walidacji, do podsumowania błędów albo pierwszego błędnego pola, jeśli pomaga to naprawić formularz.</li>
+            </ul>
+            <p>Nie przenoś fokusu tylko po to, żeby odczytać status. Nagłe skoki dezorientują i przerywają wykonywane zadanie.</p>
+          </article>
+
+          <article class="knowledge-panel" id="formularze">
+            <h2>4. Zbuduj dostępne formularze i komunikaty błędów</h2>
+            <ol class="detail-list">
+              <li><strong>Dodaj widoczną etykietę.</strong> Placeholder albo podpowiedź w polu nie zastępują etykiety.</li>
+              <li><strong>Określ przeznaczenie danych.</strong> Użyj właściwego typu klawiatury, autouzupełniania i formatu danych, jeśli platforma to wspiera.</li>
+              <li><strong>Wyjaśnij ograniczenia przed wpisaniem danych.</strong> Podaj format daty, wymagania hasła i informację o polach wymaganych.</li>
+              <li><strong>Opisz błąd tekstem.</strong> Kolor i ikona mogą wspierać komunikat, ale nie mogą być jedyną informacją.</li>
+              <li><strong>Powiąż błąd z polem.</strong> Użytkownik powinien poznać nazwę pola, przyczynę i sposób poprawy.</li>
+              <li><strong>Zachowaj wpisane dane.</strong> Po błędzie nie każ ponownie podawać informacji, które aplikacja już ma, jeśli nie wymaga tego bezpieczeństwo.</li>
+              <li><strong>Zapobiegaj kosztownym błędom.</strong> Przy operacjach prawnych, finansowych i usuwaniu danych zapewnij weryfikację, potwierdzenie lub możliwość cofnięcia.</li>
+            </ol>
+            <div class="wcag-code-example__note">
+              <p><strong>Przykład komunikatu:</strong> „Kod pocztowy: wpisz pięć cyfr w formacie 00-000”. Komunikat „Nieprawidłowa wartość” nie mówi użytkownikowi, co ma poprawić.</p>
+            </div>
+          </article>
+
+          <article class="knowledge-panel" id="grafiki-media">
+            <h2>5. Opisz grafiki i zapewnij alternatywy dla multimediów</h2>
+            <h3>Grafiki</h3>
+            <ul class="detail-list">
+              <li><strong>Informacyjna:</strong> przekaż równoważną informację tekstem.</li>
+              <li><strong>Funkcjonalna:</strong> nazwij akcję, na przykład „Zrób zdjęcie”, a nie wygląd ikony aparatu.</li>
+              <li><strong>Dekoracyjna:</strong> usuń ją z drzewa dostępności, żeby nie dodawała szumu.</li>
+              <li><strong>Złożona:</strong> przygotuj krótką nazwę i pełniejsze objaśnienie danych w dostępnym miejscu.</li>
+            </ul>
+            <h3>Audio i wideo</h3>
+            <p>Dobierz alternatywę do treści. Film z dialogiem potrzebuje napisów. Materiał tylko audio potrzebuje transkrypcji. Film, w którym ważna informacja pojawia się wyłącznie w obrazie, może wymagać audiodeskrypcji lub pełnego opisu tekstowego.</p>
+            <ul class="detail-list">
+              <li>Zapewnij dostępne przyciski odtwarzania, pauzy, przewijania, głośności i napisów.</li>
+              <li>Nie uruchamiaj dźwięku bez świadomej akcji użytkownika. Jeśli gra automatycznie dłużej niż 3 sekundy, zapewnij zatrzymanie, pauzę albo niezależną regulację głośności.</li>
+              <li>Nie zakładaj, że system zawsze poprawnie wyciszy multimedia podczas mowy VoiceOver lub TalkBack. Sprawdź rzeczywiste zachowanie.</li>
+              <li>Animacje i automatycznie przewijane karuzele muszą dać się zatrzymać, jeśli spełniają warunki WCAG dotyczące ruchu i aktualizacji.</li>
             </ul>
           </article>
-          <article class="knowledge-panel">
-            <h3>Polecane zasoby</h3>
+
+          <article class="knowledge-panel" id="struktura">
+            <h2>6. Zadbaj o strukturę, kolejność i język</h2>
+            <h3>Tytuły i nagłówki</h3>
+            <p>Każdy ekran powinien mieć opisowy tytuł, który potwierdza miejsce i cel widoku. Dłuższe ekrany dziel nagłówkami. Nie oznaczaj nagłówkiem tekstu tylko dlatego, że jest duży lub pogrubiony.</p>
+            <p>SwiftUI wspiera poziomy nagłówków. Android Compose i Android Views pozwalają oznaczyć element jako nagłówek, a Flutter udostępnia między innymi właściwości <code>header</code> i <code>headingLevel</code>. Sprawdź jednak zachowanie z wersjami systemu wspieranymi przez produkt.</p>
+            <h3>Kolejność odczytu</h3>
+            <p>Domyślna kolejność powinna wynikać z logicznej struktury widoków i odpowiadać kolejności wizualnej. Ręczne priorytety stosuj dopiero wtedy, gdy nie można poprawić struktury. Po każdej zmianie układu sprawdź eksplorację dotykiem, gesty przesuwania, klawiaturę i sterowanie przełącznikami.</p>
+            <h3>Listy i kolekcje</h3>
+            <p>Używaj natywnych list i siatek. Platforma może dzięki temu przekazać liczbę elementów, pozycję w kolekcji oraz obsługę przewijania. Nie grupuj całej interaktywnej listy w jeden element semantyczny.</p>
+            <h3>Język</h3>
+            <p>Korzystaj z lokalizacji systemu i zasobów językowych platformy. Nie ustawiaj języka tylko przez nazwę pliku albo komentarz w projekcie. Jeśli pojedynczy fragment jest w innym języku, sprawdź, czy wybrany framework pozwala przekazać lokalizację dla tego fragmentu.</p>
+            <h3>Projekt w Figma</h3>
+            <p>Figma służy do udokumentowania intencji: nazwy kontrolki, roli, stanu, kolejności, zachowania po akcji, treści komunikatu i oczekiwanego fokusu. Nazwa warstwy lub adnotacja nie trafia automatycznie do aplikacji. Zespół musi przenieść tę informację do kodu i zweryfikować ją w działającym produkcie.</p>
+          </article>
+
+          <article class="knowledge-panel" id="obsluga">
+            <h2>7. Zapewnij obsługę dotykiem, klawiaturą, głosem i przełącznikami</h2>
+            <h3>Rozmiar celu</h3>
+            <div class="knowledge-table-wrapper" tabindex="0" role="region" aria-label="Porównanie wymagań i wytycznych dotyczących rozmiaru celu">
+              <table class="knowledge-table">
+                <caption>Rozmiar celu: różne punkty odniesienia</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Źródło</th>
+                    <th scope="col">Wartość</th>
+                    <th scope="col">Jak ją rozumieć</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>WCAG 2.2, 2.5.8, poziom AA</td>
+                    <td>24 na 24 piksele CSS</td>
+                    <td>Minimalny rozmiar celu dla wskaźnika, z określonymi wyjątkami, między innymi dla odstępów i linków śródtekstowych.</td>
+                  </tr>
+                  <tr>
+                    <td>WCAG 2.2, 2.5.5, poziom AAA</td>
+                    <td>44 na 44 piksele CSS</td>
+                    <td>Wymaganie rozszerzone, także z wyjątkami.</td>
+                  </tr>
+                  <tr>
+                    <td>Apple</td>
+                    <td>Praktycznie 44 na 44 pt dla przycisków</td>
+                    <td>Wytyczna projektowa platformy. Liczy się obszar aktywacji, nie tylko widoczna ikona.</td>
+                  </tr>
+                  <tr>
+                    <td>Android</td>
+                    <td>Co najmniej 48 na 48 dp</td>
+                    <td>Rekomendowany obszar dotykowy dla elementów interaktywnych.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Nie zamieniaj tych jednostek jeden do jednego. W projekcie przyjmij wytyczne platformy jako bezpieczny cel, a zgodność formalną oceniaj według właściwego standardu.</p>
+            <h3>Gesty</h3>
+            <ul class="detail-list">
+              <li>Każda funkcja wymagająca gestu wielopunktowego lub zależnego od ścieżki powinna mieć prostą alternatywę jednopunktową, jeśli złożony gest nie jest istotą działania.</li>
+              <li>Przeciąganie powinno mieć alternatywę bez przeciągania, na przykład przyciski „Przenieś wyżej” i „Przenieś niżej”.</li>
+              <li>Akcję uruchamianą ruchem urządzenia zapewnij także przez kontrolkę i pozwól wyłączyć reakcję na ruch.</li>
+              <li>Nie nadpisuj gestów systemowych i gestów technologii wspomagających.</li>
+            </ul>
+            <h3>Klawiatura i inne metody wejścia</h3>
+            <p>VoiceOver i TalkBack nie są testami klawiatury. Sprawdź osobno klawiaturę sprzętową, Full Keyboard Access, Voice Access, Switch Control lub Switch Access, jeśli są istotne dla platformy i zakresu produktu.</p>
+            <ul class="detail-list">
+              <li>Każda istotna akcja powinna być osiągalna bez gestu wymagającego precyzji.</li>
+              <li>Kolejność fokusu ma być logiczna, a fokus nie może utknąć ani znikać.</li>
+              <li>Własne skróty klawiszowe nie mogą kolidować z systemem i technologiami wspomagającymi.</li>
+              <li>Nie ograniczaj użytkownika do jednej metody wejścia, jeśli platforma obsługuje inne.</li>
+            </ul>
+            <h3>Orientacja</h3>
+            <p>Nie blokuj aplikacji wyłącznie w pionie albo poziomie, chyba że konkretna orientacja jest niezbędna do funkcji. Sprawdź także urządzenia zamocowane w uchwycie, na których użytkownik nie może łatwo obrócić ekranu.</p>
+          </article>
+
+          <article class="knowledge-panel" id="prezentacja">
+            <h2>8. Sprawdź kontrast, tekst, czas i ruch</h2>
+            <h3>Kontrast</h3>
+            <ul class="detail-list">
+              <li>Zwykły tekst: co najmniej 4,5:1 względem tła.</li>
+              <li>Duży tekst: co najmniej 3:1.</li>
+              <li>Informacja potrzebna do rozpoznania kontrolki, stanu i istotnej grafiki: co najmniej 3:1 względem koloru sąsiadującego.</li>
+              <li>Kolor nie może być jedynym sposobem przekazania błędu, wyboru albo statusu.</li>
+              <li>Sprawdź tryb jasny, ciemny, podwyższony kontrast i ustawienia odwrócenia kolorów wspierane przez platformę.</li>
+            </ul>
+            <h3>Skalowanie tekstu</h3>
+            <ul class="detail-list">
+              <li><strong>iOS:</strong> używaj semantycznych stylów tekstu i Dynamic Type. Układ powinien przechodzić z poziomego na pionowy, jeśli zabraknie miejsca.</li>
+              <li><strong>Android:</strong> rozmiar tekstu podawaj w <code>sp</code>, nie blokuj wysokości kontenerów i testuj maksymalną skalę. Od Androida 14 system obsługuje nieliniowe skalowanie do 200%.</li>
+              <li><strong>Flutter:</strong> respektuj <code>MediaQuery</code> i <code>TextScaler</code>. Nie ustawiaj globalnego limitu skali tylko po to, żeby zachować pierwotny układ.</li>
+            </ul>
+            <p><code>autoSizeTextType</code> na Androidzie dopasowuje tekst do miejsca i może go zmniejszyć. Nie jest zamiennikiem obsługi preferowanej wielkości tekstu.</p>
+            <h3>Limity czasowe i automatyczne aktualizacje</h3>
+            <p>Jeśli czas nie jest istotą działania, pozwól go wyłączyć, dostosować albo wydłużyć zgodnie z WCAG 2.2. Przed końcem sesji pokaż dostępne ostrzeżenie i daj użytkownikowi czas na reakcję. Nie zamykaj automatycznie komunikatów, których przeczytanie lub odnalezienie wymaga więcej czasu.</p>
+            <h3>Przewidywalność</h3>
+            <p>Uzyskanie fokusu albo zmiana wartości pola nie powinny same uruchamiać przejścia na inny ekran. Powtarzalne funkcje powinny mieć te same nazwy i zachowanie. Jeśli zmiana kontekstu jest nieoczekiwana, uprzedź o niej przed aktywacją.</p>
+          </article>
+
+          <article class="knowledge-panel" id="wdrozenie">
+            <h2>9. Przykłady wdrożenia na trzech platformach</h2>
+            <p>Przykłady pokazują intencję. Przed użyciem sprawdź minimalną wersję systemu i API przyjętą w projekcie.</p>
+
+            <section class="wcag-code-example">
+              <div class="wcag-code-example__header"><h3>SwiftUI: standardowy przycisk i nagłówek</h3></div>
+              <p class="wcag-code-example__description">Standardowy przycisk przekazuje nazwę i rolę bez ręcznego dodawania cechy przycisku.</p>
+              <div class="wcag-code-example__code">
+                <p class="wcag-code-example__label">Kod: Swift</p>
+                <pre><code class="language-swift">VStack(alignment: .leading) {
+    Text("Dane kontaktowe")
+        .font(.headline)
+        .accessibilityHeading(.h2)
+
+    Button("Zapisz") {
+        saveProfile()
+    }
+}</code></pre>
+              </div>
+              <div class="wcag-code-example__note"><p>Nie dodawaj do <code>Button</code> cechy <code>.isButton</code>. Jest już częścią semantyki standardowego komponentu.</p></div>
+            </section>
+
+            <section class="wcag-code-example">
+              <div class="wcag-code-example__header"><h3>Jetpack Compose: przycisk ikonowy i komunikat dynamiczny</h3></div>
+              <p class="wcag-code-example__description">Ikona bez widocznego tekstu dostaje nazwę akcji. Zmieniający się status jest regionem live.</p>
+              <div class="wcag-code-example__code">
+                <p class="wcag-code-example__label">Kod: Kotlin</p>
+                <pre><code class="language-kotlin">IconButton(onClick = onDelete) {
+    Icon(
+        imageVector = Icons.Default.Delete,
+        contentDescription = stringResource(R.string.delete_message)
+    )
+}
+
+Text(
+    text = saveStatus,
+    modifier = Modifier.semantics {
+        liveRegion = LiveRegionMode.Polite
+    }
+)</code></pre>
+              </div>
+              <div class="wcag-code-example__note"><p>Dla przycisku z widocznym tekstem nie dodawaj opisu „Przycisk Zapisz”. Komponent i tekst przekazują te informacje automatycznie.</p></div>
+            </section>
+
+            <section class="wcag-code-example">
+              <div class="wcag-code-example__header"><h3>Flutter: nagłówek i komunikat dynamiczny</h3></div>
+              <p class="wcag-code-example__description">Semantyka uzupełnia znaczenie tekstu. Aktualizacja dziecka regionu live może zostać ogłoszona przez technologię wspomagającą.</p>
+              <div class="wcag-code-example__code">
+                <p class="wcag-code-example__label">Kod: Dart</p>
+                <pre><code class="language-dart">Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Semantics(
+      header: true,
+      headingLevel: 2,
+      child: const Text('Dane kontaktowe'),
+    ),
+    Semantics(
+      liveRegion: true,
+      child: Text(saveStatus),
+    ),
+  ],
+)</code></pre>
+              </div>
+              <div class="wcag-code-example__note"><p>Nie używaj opisywanego dawniej <code>SemanticsService.announce</code> jako domyślnego rozwiązania. API jest przestarzałe. Najpierw aktualizuj semantykę interfejsu; ręczne ogłoszenie zostaw dla informacji, której system nie komunikuje naturalnie.</p></div>
+            </section>
+          </article>
+
+          <article class="knowledge-panel" id="wstepna-kontrola">
+            <h2>10. Wstępna kontrola dostępności aplikacji w 20 minut</h2>
+            <p>Ta procedura pomaga wykryć oczywiste bariery, zebrać podstawowe informacje o aplikacji i lepiej przygotować zakres właściwego audytu. Możesz wykonać ją przed przekazaniem aplikacji audytorowi albo po większej zmianie produktu.</p>
+            <div class="wcag-code-example__note">
+              <p><strong>Wstępna kontrola nie zastępuje audytu dostępności.</strong> Nie pozwala potwierdzić zgodności aplikacji z WCAG, EN 301 549 ani przepisami. Dwadzieścia minut to orientacyjny czas pierwszego przeglądu, a nie gwarancja sprawdzenia całej aplikacji.</p>
+            </div>
+
+            <h3>Co przygotować przed rozpoczęciem</h3>
+            <ul class="detail-list">
+              <li>wersję aplikacji, numer wersji systemu i model urządzenia,</li>
+              <li>konto testowe oraz dane potrzebne do przejścia wybranego procesu,</li>
+              <li>jeden lub dwa najważniejsze procesy, na przykład logowanie, zakup, rezerwację albo wysłanie formularza,</li>
+              <li>informację o platformach i wersjach systemu oficjalnie wspieranych przez produkt,</li>
+              <li>miejsce do zapisywania problemów, na przykład dokument, arkusz albo system zgłoszeń.</li>
+            </ul>
+            <p>Jeśli aplikacja działa na iOS i Androidzie, przeprowadź kontrolę osobno na każdej platformie. Wynik z jednego systemu nie potwierdza zachowania na drugim.</p>
+
+            <h3>Przebieg kontroli</h3>
+            <ol class="detail-list">
+              <li><strong>Minuty 0–3: wybierz proces.</strong> Określ jego początek, oczekiwany koniec i dane potrzebne do wykonania zadania. Nie próbuj sprawdzać wszystkich ekranów.</li>
+              <li><strong>Minuty 3–8: włącz czytnik ekranu.</strong> Przejdź proces za pomocą VoiceOver albo TalkBack. Sprawdź, czy kontrolki mają zrozumiałe nazwy, role i stany oraz czy kolejność odczytu jest logiczna.</li>
+              <li><strong>Minuty 8–12: sprawdź formularze i zmiany.</strong> Wywołaj co najmniej jeden błąd. Sprawdź jego treść, powiązanie z polem, zachowanie fokusu i ogłoszenie potwierdzenia albo statusu.</li>
+              <li><strong>Minuty 12–16: zwiększ tekst i obróć ekran.</strong> Ustaw dużą skalę tekstu, sprawdź utratę treści, nachodzenie elementów oraz działanie w obu orientacjach, jeśli żadna z nich nie jest niezbędna.</li>
+              <li><strong>Minuty 16–20: sprawdź sposób obsługi.</strong> Poszukaj przeciągania, gestów złożonych, małych celów dotykowych i funkcji zależnych od ruchu urządzenia. Sprawdź, czy mają prostą alternatywę.</li>
+            </ol>
+            <p>Jeśli nie znasz gestów czytnika ekranu, skorzystaj z instrukcji <a href="/czytnik-voiceover-iphone">VoiceOver na iPhonie</a> albo <a href="/czytnik-talkback">TalkBack na Androidzie</a>.</p>
+
+            <h3>Jak zapisać znaleziony problem</h3>
+            <p>Każde zgłoszenie powinno pozwolić innej osobie odtworzyć barierę. Zapisz:</p>
+            <ul class="detail-list">
+              <li>platformę, urządzenie, wersję systemu i wersję aplikacji,</li>
+              <li>nazwę ekranu oraz sprawdzany proces,</li>
+              <li>kroki prowadzące do problemu,</li>
+              <li>zachowanie zaobserwowane i zachowanie oczekiwane,</li>
+              <li>użytą technologię wspomagającą oraz jej ustawienia,</li>
+              <li>nagranie lub zrzut ekranu, jeśli pomaga zrozumieć problem.</li>
+            </ul>
+            <p>Nie nadawaj aplikacji procentowego wyniku zgodności na podstawie tej kontroli. Jej rezultatem jest lista pierwszych obserwacji i pytań do sprawdzenia podczas pełnego audytu.</p>
+
+            <h3>Kiedy zaplanować pełny audyt</h3>
+            <ul class="detail-list">
+              <li>czytnik ekranu nie pozwala ukończyć kluczowego procesu,</li>
+              <li>aplikacja zawiera komponenty niestandardowe, rozbudowane gesty albo wiele zmian dynamicznych,</li>
+              <li>proces obejmuje płatności, uwierzytelnianie, podpisanie umowy lub usuwanie danych,</li>
+              <li>wyniki różnią się pomiędzy systemami lub wspieranymi wersjami aplikacji,</li>
+              <li>trzeba ocenić zgodność z konkretnym standardem, umową albo wymaganiem prawnym.</li>
+            </ul>
+          </article>
+
+          <article class="knowledge-panel" id="testy">
+            <h2>11. Przeprowadź testy w kilku warstwach</h2>
+            <h3>Etap 1: projekt</h3>
+            <ul class="detail-list">
+              <li>sprawdź kolejność informacji i fokusu,</li>
+              <li>opisz zachowanie kontrolek, błędów, modali i komunikatów dynamicznych,</li>
+              <li>przetestuj kontrast oraz układ przy dużym tekście,</li>
+              <li>zaprojektuj alternatywy dla gestów, ruchu i treści multimedialnych,</li>
+              <li>przekaż zespołowi teksty etykiet i komunikatów, nie tylko nazwy warstw.</li>
+            </ul>
+            <h3>Etap 2: kontrola automatyczna i inspekcja</h3>
+            <ul class="detail-list">
+              <li><strong>iOS:</strong> Accessibility Inspector i audyt w Xcode.</li>
+              <li><strong>Android:</strong> Accessibility Scanner, lint, Layout Inspector, Accessibility Test Framework i testy Compose.</li>
+              <li><strong>Flutter:</strong> Accessibility Guideline API, Semantics Debugger oraz inspektory natywne na iOS i Androidzie.</li>
+            </ul>
+            <p>Automat może wykryć część brakujących nazw, małe cele, kontrast i wybrane problemy semantyki. Nie oceni wiarygodnie kolejności całego procesu, jakości etykiet, sensu ogłoszeń, dostępności złożonych gestów ani tego, czy aplikacja jest zrozumiała.</p>
+            <h3>Etap 3: test manualny</h3>
+            <ol class="detail-list">
+              <li>Włącz czytnik ekranu i wykonaj kluczowe procesy bez patrzenia na ekran.</li>
+              <li>Sprawdź eksplorację dotykiem i nawigację gestami element po elemencie.</li>
+              <li>Zwiększ tekst i rozmiar elementów do maksymalnych wspieranych wartości.</li>
+              <li>Przetestuj obie orientacje, mały ekran oraz tryb jasny i ciemny.</li>
+              <li>Podłącz klawiaturę i sprawdź pełny przepływ fokusu.</li>
+              <li>Sprawdź Voice Access oraz sterowanie przełącznikami, jeśli są w zakresie.</li>
+              <li>Powtórz test na rzeczywistych urządzeniach i wspieranych wersjach systemu.</li>
+            </ol>
+            <h3>Etap 4: test z użytkownikami</h3>
+            <p>Test ekspercki sprawdza wymagania i przewidywalne bariery. Badanie z osobami korzystającymi na co dzień z technologii wspomagających pokazuje problemy procesowe, których nie widać w pojedynczych kontrolkach. Oba typy testów uzupełniają się.</p>
+          </article>
+
+          <article class="knowledge-panel" id="deklaracja">
+            <h2>12. Deklaracja dostępności aplikacji mobilnej</h2>
+            <p>Obowiązek deklaracji dostępności z ustawy z 4 kwietnia 2019 r. dotyczy aplikacji mobilnych podmiotów publicznych. Nie należy pisać, że każda aplikacja na rynku musi mieć taką deklarację.</p>
+            <h3>Gdzie opublikować deklarację podmiotu publicznego</h3>
+            <ul class="detail-list">
+              <li>na jednej ze stron internetowych podmiotu,</li>
+              <li>w aplikacji mobilnej,</li>
+              <li>jako link w miejscu, z którego można pobrać aplikację.</li>
+            </ul>
+            <h3>Aktualizacja</h3>
+            <p>Podmiot publiczny przegląda i aktualizuje deklarację do 31 marca każdego roku oraz niezwłocznie po zmianach, które mogą wpłynąć na dostępność cyfrową aplikacji.</p>
+            <h3>Identyfikatory <code>a11y-*</code></h3>
+            <p>Warunki techniczne w wersji 2.0 określają strukturę, treść i identyfikatory HTML deklaracji. Identyfikatory stosuje się w wersji HTML publikowanej na stronie oraz w aplikacji wykonanej w HTML. Nie dodaje się ich do natywnego ekranu iOS albo Androida.</p>
+            <h3>Aplikacje podmiotów gospodarczych</h3>
+            <p>Od 28 czerwca 2025 r. Polski Akt o Dostępności obejmuje wskazane produkty i usługi, między innymi część usług oferowanych przez urządzenia mobilne, bankowość detaliczną i handel elektroniczny. Zakres, wyłączenia i obowiązki informacyjne są inne niż deklaracja podmiotu publicznego. Ta część tutorialu nie jest opinią prawną; zakres konkretnej usługi trzeba ocenić osobno.</p>
+          </article>
+
+          <article class="knowledge-panel" id="checklista">
+            <h2>13. Checklista przed wydaniem aplikacji</h2>
+            <h3>Semantyka</h3>
+            <ul class="detail-list">
+              <li>Każda kontrolka ma poprawną nazwę, rolę, stan, wartość i akcje.</li>
+              <li>Widoczna etykieta jest częścią nazwy dostępnej.</li>
+              <li>Dekoracje nie trafiają do drzewa dostępności.</li>
+              <li>Komponenty niestandardowe mają pełną obsługę równoważną komponentom standardowym.</li>
+            </ul>
+            <h3>Nawigacja i zmiany</h3>
+            <ul class="detail-list">
+              <li>Kolejność odczytu i fokusu odpowiada logice ekranu.</li>
+              <li>Tytuły, nagłówki, listy i grupy są przekazane programowo.</li>
+              <li>Modal zatrzymuje fokus w swoim zakresie i oddaje go po zamknięciu.</li>
+              <li>Ważne statusy są ogłaszane bez zbędnego przenoszenia fokusu.</li>
+            </ul>
+            <h3>Widok i obsługa</h3>
+            <ul class="detail-list">
+              <li>Tekst skaluje się bez utraty treści i funkcji.</li>
+              <li>Kontrast spełnia właściwe wymagania w każdym motywie.</li>
+              <li>Cele dotykowe spełniają wytyczne platformy i wymagania przyjętego standardu.</li>
+              <li>Złożone gesty, przeciąganie i ruch urządzenia mają prostą alternatywę.</li>
+              <li>Aplikacja działa w obu orientacjach, jeśli konkretna orientacja nie jest niezbędna.</li>
+              <li>Limity czasu można dostosować albo wydłużyć, jeśli nie zachodzi wyjątek.</li>
+            </ul>
+            <h3>Testy</h3>
+            <ul class="detail-list">
+              <li>Kluczowe procesy przeszły test z VoiceOver i TalkBack.</li>
+              <li>Klawiatura i inne wspierane metody wejścia przeszły osobny test.</li>
+              <li>Testy wykonano na rzeczywistych urządzeniach i wersjach systemu objętych wsparciem.</li>
+              <li>Wyniki automatyczne zostały zweryfikowane manualnie.</li>
+              <li>Po istotnych zmianach wykonano test regresji dostępności.</li>
+            </ul>
+          </article>
+
+          <article class="knowledge-panel" id="zrodla">
+            <h2>Źródła</h2>
+            <p>Źródła techniczne i prawne sprawdzone 16 sierpnia 2026 r.</p>
             <ol class="recommended-resources">
-              <li>
-                <a href="https://www.w3.org/WAI/standards-guidelines/mobile/" target="_blank" rel="noopener noreferrer">Przejdź do omówienia dostępności mobilnej w W3C WAI<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.w3.org/TR/wcag2mobile-22/" target="_blank" rel="noopener noreferrer">WCAG2Mobile: wskazówki W3C dotyczące stosowania WCAG 2.2 w aplikacjach mobilnych<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.w3.org/TR/wcag2ict-22/" target="_blank" rel="noopener noreferrer">Sprawdź WCAG2ICT dla aplikacji i technologii poza stronami WWW<span class="sr-only"> (otwiera się w nowym oknie)</span>
-                </a>
-              </li>
+              <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">WCAG 2.2<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.w3.org/TR/wcag2ict-22/" target="_blank" rel="noopener noreferrer">W3C: Guidance on Applying WCAG 2 to Non-Web Information and Communications Technologies<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.w3.org/TR/wcag2mobile-22/" target="_blank" rel="noopener noreferrer">W3C: Guidance on Applying WCAG 2.2 to Mobile Applications<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://developer.apple.com/design/human-interface-guidelines/accessibility" target="_blank" rel="noopener noreferrer">Apple Human Interface Guidelines: Accessibility<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://developer.apple.com/documentation/swiftui/view-accessibility" target="_blank" rel="noopener noreferrer">Apple: accessibility modifiers w SwiftUI<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://developer.apple.com/documentation/accessibility/accessibilitynotification/announcement" target="_blank" rel="noopener noreferrer">Apple: AccessibilityNotification.Announcement<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://developer.android.com/develop/ui/compose/accessibility" target="_blank" rel="noopener noreferrer">Android Developers: Accessibility in Jetpack Compose<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://developer.android.com/guide/topics/ui/accessibility/apps" target="_blank" rel="noopener noreferrer">Android Developers: Make apps more accessible<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://developer.android.com/about/versions/14/features#non-linear-font-scaling" target="_blank" rel="noopener noreferrer">Android 14: nieliniowe skalowanie tekstu do 200%<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html" target="_blank" rel="noopener noreferrer">Flutter API: Semantics<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://docs.flutter.dev/ui/accessibility/accessibility-testing" target="_blank" rel="noopener noreferrer">Flutter: accessibility testing<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.gov.pl/web/dostepnosc-cyfrowa/deklaracja-dostepnosci-w-aplikacjach-mobilnych" target="_blank" rel="noopener noreferrer">Gov.pl: deklaracja dostępności w aplikacjach mobilnych<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://www.gov.pl/web/dostepnosc-cyfrowa/publikowanie-deklaracji-dostepnosci" target="_blank" rel="noopener noreferrer">Gov.pl: warunki techniczne deklaracji dostępności<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://eli.gov.pl/eli/DU/2023/1440/ogl" target="_blank" rel="noopener noreferrer">Ustawa o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+              <li><a href="https://eli.gov.pl/eli/DU/2024/731/ogl" target="_blank" rel="noopener noreferrer">Ustawa o zapewnianiu spełniania wymagań dostępności niektórych produktów i usług przez podmioty gospodarcze<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
             </ol>
           </article>
         </div>
@@ -114,24 +548,21 @@
     <footer>
       <div class="container">
         <div class="footer-contact">
-          <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>
-        </p>
+          <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+        </div>
+        <nav aria-label="Dokumenty prawne" class="footer-nav">
+          <a href="/regulamin">Regulamin świadczenia usług</a>
+          <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+          <a href="/deklaracja">Deklaracja dostępności</a>
+        </nav>
+        <div class="footer-social">
+          <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+        </div>
       </div>
-      <nav aria-label="Dokumenty prawne" class="footer-nav">
-        <a href="/regulamin">Regulamin świadczenia usług</a>
-        <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
-        <a href="/deklaracja">Deklaracja dostępności</a>
-      </nav>
-      <div class="footer-social">
-        <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span>
-        </a>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
-      </div>
-    </div>
-  </footer>
-  <script src="assets/header.js?v=2">
-</script>
-</body>
+    </footer>
+    <script src="assets/header.js?v=2"></script>
+  </body>
 </html>
