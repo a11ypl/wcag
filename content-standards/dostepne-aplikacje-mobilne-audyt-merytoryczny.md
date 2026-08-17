@@ -11,7 +11,7 @@ Zweryfikowanie treści przed przeredagowaniem ich na tutorial w bazie wiedzy Acc
 ## Źródła podstawowe
 
 - W3C, WCAG 2.2.
-- W3C, WCAG2ICT 2.2, W3C Group Note z 8 października 2024 r.
+- W3C, WCAG2ICT 2.2, W3C Group Note z 11 grudnia 2025 r.
 - W3C, WCAG2Mobile, Group Draft Note z 6 maja 2025 r. Dokument ma charakter informacyjny i nie ustanawia wymagań.
 - Apple Developer Documentation i Apple Human Interface Guidelines.
 - Android Developers, w tym dokumentacja Jetpack Compose i wytyczne testowania dostępności.
@@ -78,6 +78,12 @@ Zweryfikowanie treści przed przeredagowaniem ich na tutorial w bazie wiedzy Acc
 
 15. **Deklaracja dostępności**  
     Obowiązek deklaracji z ustawy z 4 kwietnia 2019 r. dotyczy aplikacji mobilnych podmiotów publicznych, a nie każdej aplikacji. Deklarację aplikacji publikuje się na stronie podmiotu i w aplikacji, a link także w miejscu pobierania. Identyfikatory `a11y-*` dotyczą wersji HTML deklaracji, nie natywnego interfejsu. Podmioty prywatne objęte Polskim Aktem o Dostępności mają od 28 czerwca 2025 r. odrębne obowiązki dla wskazanych produktów i usług, ale nie należy utożsamiać ich z deklaracją wymaganą od podmiotów publicznych.
+
+16. **WCAG 2.2 a polska podstawa prawna**
+    WCAG 2.2 jest aktualną rekomendacją W3C, ale wymagania ustawy z 4 kwietnia 2019 r. dla podmiotów publicznych są obecnie powiązane z punktami 9, 10 i 11 PN-ETSI EN 301 549 V3.2.1:2021, która opiera się głównie na WCAG 2.1 AA. Kryteriów 2.5.8 i 3.3.8 nie należy przedstawiać jako elementów obecnego załącznika do tej ustawy.
+
+17. **Flutter: nagłówki semantyczne**
+    W nowych wersjach Fluttera nagłówek na iOS i Androidzie należy deklarować przez `headingLevel` większy od zera. Właściwość `header` pozostaje w API, ale zgodnie z opublikowaną instrukcją migracji ma stać się nieaktywna na tych platformach. Tutorial nie przypisuje tej zmiany do niepotwierdzonego numeru stabilnego wydania.
 
 ## Elementy pominięte jako mylące albo niezweryfikowane
 
