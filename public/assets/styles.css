@@ -92,28 +92,6 @@ header {
     width: 44px;
 }
 
-body.header-compact .site-banner {
-    height: 44px;
-    margin-right: 0.5rem;
-    width: 44px;
-}
-
-body.header-compact .site-banner-full {
-    display: none !important;
-}
-
-body.header-compact .site-banner-icon {
-    display: block !important;
-}
-
-body:not(.header-compact) .site-banner-full {
-    display: block !important;
-}
-
-body:not(.header-compact) .site-banner-icon {
-    display: none !important;
-}
-
 header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 1rem; }
 header nav a {
     color: #ffcc00;
@@ -4361,10 +4339,8 @@ footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: 
     .container { padding: 0 1.25rem; }
     .header-content { justify-items: center; }
     .site-banner { height: 44px; margin-right: 0.5rem; width: 44px; }
-    .site-banner-full,
-    body:not(.header-compact) .site-banner-full { display: none !important; }
-    .site-banner-icon,
-    body:not(.header-compact) .site-banner-icon { display: block !important; }
+    .site-banner-full { display: none !important; }
+    .site-banner-icon { display: block !important; }
     header nav { justify-content: center; }
     .instructors-grid { max-width: 560px; }
     .days-container { max-width: 560px; }
