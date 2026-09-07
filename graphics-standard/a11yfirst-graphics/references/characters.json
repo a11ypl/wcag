@@ -1,0 +1,93 @@
+{
+  "version": "0.1",
+  "status": "awaiting-character-approval",
+  "characters": [
+    {
+      "id": "AF-M01",
+      "label": "Damian / AF-M01",
+      "status": "candidate",
+      "identity_source": "assets/sources/male-portrait.png",
+      "candidate_sheet": "assets/characters/af-m01-candidate-v03.png",
+      "approved_reference": null,
+      "approved_sha256": null,
+      "approved_at": null,
+      "approval_evidence": null,
+      "fixed_traits": [
+        "kształt twarzy, nosa i policzków z portretu",
+        "stosunkowo małe szaroniebieskie oczy",
+        "brązowe włosy z miedzianymi refleksami, uniesiony przód i krótkie boki",
+        "krótka miedzianobrązowa broda połączona z wąsami",
+        "jasna ciepła skóra",
+        "wysportowana, umięśniona sylwetka pływaka: szerokie barki, rozbudowana klatka piersiowa i górna część pleców, wyraźne zwężenie tułowia ku talii; kształt odwróconego trójkąta"
+      ],
+      "pending_decisions": [
+        "ocena umięśnionej sylwetki Damiana i wspólnego podglądu z Olą niższą o około pół głowy"
+      ],
+      "confirmed_context": "Damian ma tatuaże typu rękaw na obu rękach. Informacja od użytkownika z 7 września 2026; wzory nie zostały dostarczone i nie należy ich wymyślać. Użytkownik doprecyzował, że Damian jest wysportowany i umięśniony, ma mieć szersze ramiona i sylwetkę pływaka w kształcie odwróconego trójkąta.",
+      "wardrobe_constraints": [
+        "Koszulka z długimi rękawami opuszczonymi do nadgarstków; całe ramiona i przedramiona zakryte tkaniną, dłonie widoczne.",
+        "Bez podwijania lub podciągania rękawów, krótkich rękawów i rękawów trzy czwarte.",
+        "Nie odtwarzaj ani nie wymyślaj tatuaży. Zmiana tej zasady tylko na wyraźne polecenie Damiana."
+      ],
+      "variable_traits": [
+        "kolor i fason ubrania z zachowaniem pełnych długich rękawów",
+        "poza",
+        "emocja",
+        "rekwizyty",
+        "otoczenie"
+      ],
+      "provisional_extensions": [
+        "grafitowe spodnie i czarne buty bez oznaczeń"
+      ],
+      "height_constraints": [
+        "Ola / AF-F01 jest około pół głowy Damiana niższa od Damiana / AF-M01. Pół głowy oznacza połowę odległości od czubka głowy do podbródka Damiana, przy wyprostowanych sylwetkach na wspólnym podłożu i w tej samej odległości od obserwatora.",
+        "Nie podawaj wzrostu w centymetrach; nie został określony. Zachowaj naturalne proporcje dorosłych osób."
+      ]
+    },
+    {
+      "id": "AF-F01",
+      "label": "Ola / AF-F01",
+      "status": "candidate",
+      "identity_source": "assets/sources/recent-offer-landscape.png",
+      "candidate_sheet": "assets/characters/af-f01-candidate-v01.png",
+      "approved_reference": null,
+      "approved_sha256": null,
+      "approved_at": null,
+      "approval_evidence": null,
+      "fixed_traits": [
+        "owalna twarz i łagodnie zwężający się podbródek",
+        "migdałowe niebieskozielone oczy",
+        "łukowate brązowe brwi",
+        "kasztanowe włosy do ramion z uniesionym przodem i ciepłymi refleksami",
+        "jasna ciepła skóra"
+      ],
+      "pending_decisions": [
+        "ocena wspólnej planszy różnicy wzrostu przed zatwierdzeniem do dalszej pracy"
+      ],
+      "variable_traits": [
+        "ubranie",
+        "poza",
+        "emocja",
+        "rekwizyty",
+        "otoczenie"
+      ],
+      "provisional_extensions": [
+        "pełna sylwetka na podstawie niepełnego kadru",
+        "proste czarne płaskie buty"
+      ],
+      "height_constraints": [
+        "Ola / AF-F01 jest około pół głowy Damiana niższa od Damiana / AF-M01. Pół głowy oznacza połowę odległości od czubka głowy do podbródka Damiana, przy wyprostowanych sylwetkach na wspólnym podłożu i w tej samej odległości od obserwatora.",
+        "Nie podawaj wzrostu w centymetrach; nie został określony. Zachowaj naturalne proporcje dorosłych osób."
+      ],
+      "confirmed_context": "Użytkownik wskazał, że AF-F01 to Ola, 7 września 2026. Nie dopisujemy niepodanego nazwiska."
+    }
+  ],
+  "pair_reference": {
+    "id": "AF-PAIR01",
+    "file": "assets/characters/af-pair-height-candidate-v02.png",
+    "status": "candidate",
+    "purpose": "relative-height-and-athletic-male-build; individual sheets remain face identity references",
+    "rule": "Ola / AF-F01 jest około pół głowy Damiana niższa od Damiana / AF-M01. Pół głowy oznacza połowę odległości od czubka głowy do podbródka Damiana, przy wyprostowanych sylwetkach na wspólnym podłożu i w tej samej odległości od obserwatora.",
+    "source": "Polecenie użytkownika z 7 września 2026: Ola ma być pół głowy niższa od Damiana. Wspólna plansza do wglądu przed dalszą pracą."
+  }
+}

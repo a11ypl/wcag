@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "scope": "technical-layout-only; identity and anatomy require visual review",
+  "outside": [],
+  "overlaps": [],
+  "imagesLoaded": true,
+  "fontsLoaded": true,
+  "width": 1080,
+  "height": 1350,
+  "errors": [],
+  "html_sha256": "99e817146bb1ae8cb53c427a1cef6f754ae4cc17f59804bfe6c10408e4aca836"
+}

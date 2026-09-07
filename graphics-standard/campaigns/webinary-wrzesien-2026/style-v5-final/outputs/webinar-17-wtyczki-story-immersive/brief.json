@@ -1,0 +1,23 @@
+{
+  "id": "webinar-17-wtyczki-story-immersive",
+  "template": "webinar",
+  "format": "story",
+  "status": "mockup",
+  "style": "immersive",
+  "eyebrow": "Webinary o dostępności",
+  "cta": "Zapisz się na webinar",
+  "url": "https://www.a11yfirst.pl/webinary",
+  "title": "Narzędzia do badania dostępności",
+  "body": "Nieoczywiste wtyczki i praktyczne zastosowania.",
+  "details": [
+    "17 września 2026 · godz. 17:00",
+    "Prowadzą: Damian Żłobicki i Ola Migus"
+  ],
+  "scene": "Damian i Ola sprawdzają formularz oraz strukturę strony na dużym monitorze.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ],
+  "illustration": "../../../../a11yfirst-graphics/assets/sources/recent-offer-landscape.png",
+  "illustration_alt": "Ilustracja w stylu komiksowym: Damian pracuje przy monitorze, a Ola pokazuje mu element interfejsu."
+}

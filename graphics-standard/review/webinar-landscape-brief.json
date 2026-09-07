@@ -1,0 +1,18 @@
+{
+  "id": "webinar-landscape",
+  "template": "webinar",
+  "format": "landscape",
+  "status": "mockup",
+  "eyebrow": "Webinar",
+  "title": "AI w pracy audytora",
+  "body": "Zastosowania, ograniczenia i weryfikacja wyników.",
+  "details": [
+    "Termin: [do uzupełnienia]"
+  ],
+  "cta": "Zobacz szczegóły",
+  "url": "https://a11yfirst.pl/szkolenia",
+  "scene": "Prowadzący omawia wynik analizy i sprawdza go na komputerze.",
+  "characters": [
+    "AF-M01"
+  ]
+}

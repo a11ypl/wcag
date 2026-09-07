@@ -1,0 +1,14 @@
+{
+  "id": "tip-portrait",
+  "template": "tip",
+  "format": "portrait",
+  "status": "mockup",
+  "eyebrow": "Dostępność w praktyce",
+  "title": "Nadaj polu czytelną etykietę",
+  "body": "Etykieta wyjaśnia, jakie dane trzeba wpisać.",
+  "cta": "Sprawdź swoje formularze",
+  "scene": "Ekspertka wskazuje etykietę pola na ekranie.",
+  "characters": [
+    "AF-F01"
+  ]
+}

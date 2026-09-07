@@ -1,0 +1,22 @@
+{
+  "id": "webinar-17-wtyczki-story",
+  "template": "webinar",
+  "format": "story",
+  "status": "mockup",
+  "eyebrow": "Webinary Accessibility First",
+  "cta": "Zobacz szczegóły i zapisz się",
+  "url": "https://www.a11yfirst.pl/webinary",
+  "title": "Narzędzia do badania dostępności",
+  "body": "Nieoczywiste wtyczki i praktyczne zastosowania",
+  "details": [
+    "17 września 2026 · godz. 17:00",
+    "Prowadzą: Damian Żłobicki i Ola Migus"
+  ],
+  "scene": "Damian i Ola analizują strukturę strony oraz formularz na laptopie.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ],
+  "illustration": "../../../a11yfirst-graphics/assets/characters/af-pair-height-candidate-v02.png",
+  "illustration_alt": "Damian i Ola analizują formularz internetowy i narzędzia wspierające badanie dostępności."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "tip-square",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1080,
+  "wordCount": 16,
+  "references": [
+    {
+      "id": "AF-F01",
+      "file": "assets/sources/recent-offer-landscape.png",
+      "status": "candidate",
+      "sha256": "cb09365a8e6876419e64c9061c1e5cd7cb8313a6f004666670600f58076a7fa9"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": null,
+  "html_sha256": "1529c61f8a747020652129269454aa3c5886ff1dc9874c8e2f3acde8305af860",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "e2435d9ca22d75acd41e3f6cb324127fe4ac31a1b9f60682478f84eadfc51512"
+}

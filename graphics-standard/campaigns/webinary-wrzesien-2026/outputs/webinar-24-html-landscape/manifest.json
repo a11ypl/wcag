@@ -1,0 +1,22 @@
+{
+  "id": "webinar-24-html-landscape",
+  "status": "mockup",
+  "width": 1920,
+  "height": 1080,
+  "wordCount": 29,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": "077cff540a2d7b0fb188cd360a58d8cbef6431418b6b317b0a441a85cd48a2a9",
+  "html_sha256": "5fa34c8f2e9515f45cc9dfd0a4307deed46a35ca971fdfb3f6fb438cd70c0180",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "9ea672ba5874c4d8dc3404dac085fbd8d2df452214b941506320a8711d327ad4"
+}

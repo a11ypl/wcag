@@ -1,0 +1,22 @@
+{
+  "id": "webinar-story",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1920,
+  "wordCount": 16,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": null,
+  "html_sha256": "45ab5db7db4650be520f2dfcc9b00f399f0d476fc044128e8f7b80a65357bc8f",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "a83f3693aea9acd6bd5681d240f9d4e0baaebbeac0be183e46de0d0aac12f545"
+}

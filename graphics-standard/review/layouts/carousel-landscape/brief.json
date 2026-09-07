@@ -1,0 +1,15 @@
+{
+  "id": "carousel-landscape",
+  "template": "carousel",
+  "format": "landscape",
+  "status": "mockup",
+  "eyebrow": "Poradnik",
+  "title": "Formularz krok po kroku",
+  "body": "Od etykiety do komunikatu błędu.",
+  "cta": "Przejdź do kolejnej planszy",
+  "scene": "Dwie osoby omawiają formularz i notatki z testów.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ]
+}

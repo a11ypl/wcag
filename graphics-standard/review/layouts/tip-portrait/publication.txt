@@ -1,0 +1,6 @@
+MAKIETA. Przykładowa treść do oceny układu, nie ogłoszenie wydarzenia.
+Accessibility First
+Dostępność w praktyce
+Nadaj polu czytelną etykietę
+Etykieta wyjaśnia, jakie dane trzeba wpisać.
+Sprawdź swoje formularze

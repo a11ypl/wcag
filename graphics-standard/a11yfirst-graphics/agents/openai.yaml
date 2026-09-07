@@ -1,0 +1,6 @@
+interface:
+  display_name: "Grafiki Accessibility First"
+  short_description: "Spójne postacie, proste treści i makiety grafik"
+  default_prompt: "Użyj $a11yfirst-graphics, aby przygotować grafikę Accessibility First według zapisanych wzorców postaci i zasad składu."
+policy:
+  allow_implicit_invocation: true

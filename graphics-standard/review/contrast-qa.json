@@ -1,0 +1,53 @@
+{
+  "source": "layouts/training-portrait/graphic.png",
+  "method": "RGB samples from rendered flat backgrounds; full CSS foreground colours, excluding anti-aliasing",
+  "background_samples": {
+    "background": [
+      16,
+      16,
+      22
+    ],
+    "surface": [
+      28,
+      28,
+      40
+    ],
+    "purple": [
+      95,
+      40,
+      180
+    ],
+    "yellow": [
+      250,
+      204,
+      21
+    ]
+  },
+  "ratios": [
+    {
+      "pair": "white/background",
+      "ratio": 18.96,
+      "pass_4_5": true
+    },
+    {
+      "pair": "secondary/background",
+      "ratio": 13.28,
+      "pass_4_5": true
+    },
+    {
+      "pair": "white/purple",
+      "ratio": 8.57,
+      "pass_4_5": true
+    },
+    {
+      "pair": "yellow/background",
+      "ratio": 12.38,
+      "pass_4_5": true
+    },
+    {
+      "pair": "secondary/surface",
+      "ratio": 11.8,
+      "pass_4_5": true
+    }
+  ]
+}

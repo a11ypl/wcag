@@ -1,0 +1,21 @@
+{
+  "id": "webinar-24-html-portrait",
+  "template": "webinar",
+  "format": "portrait",
+  "status": "mockup",
+  "eyebrow": "Webinary Accessibility First",
+  "cta": "Zobacz szczegóły i zapisz się",
+  "url": "https://www.a11yfirst.pl/webinary",
+  "title": "Semantyczny HTML, nie taki straszny",
+  "body": "Właściwe elementy HTML jako fundament dostępności",
+  "details": [
+    "24 września 2026 · godz. 17:00",
+    "Prowadzi: Damian Żłobicki"
+  ],
+  "scene": "Damian pokazuje na laptopie różnicę między właściwym elementem HTML a przypadkowym kontenerem.",
+  "characters": [
+    "AF-M01"
+  ],
+  "illustration": "../../../a11yfirst-graphics/assets/characters/af-m01-candidate-v03.png",
+  "illustration_alt": "Damian pokazuje na laptopie przykłady semantycznego HTML."
+}

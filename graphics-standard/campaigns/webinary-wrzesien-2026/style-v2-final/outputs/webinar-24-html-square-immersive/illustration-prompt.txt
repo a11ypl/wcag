@@ -1,0 +1,9 @@
+Use case: illustration-story / identity-preserve.
+Asset: Accessibility First illustration without text or logos.
+Scene: Damian omawia strukturę HTML na tle interfejsów i fragmentów kodu.
+Format of final composition: square; prepare an illustration suitable for a separate image area.
+AF-M01: kształt twarzy, nosa i policzków z portretu; stosunkowo małe szaroniebieskie oczy; brązowe włosy z miedzianymi refleksami, uniesiony przód i krótkie boki; krótka miedzianobrązowa broda połączona z wąsami; jasna ciepła skóra; wysportowana, umięśniona sylwetka pływaka: szerokie barki, rozbudowana klatka piersiowa i górna część pleców, wyraźne zwężenie tułowia ku talii; kształt odwróconego trójkąta. Wardrobe constraints: Koszulka z długimi rękawami opuszczonymi do nadgarstków; całe ramiona i przedramiona zakryte tkaniną, dłonie widoczne. Bez podwijania lub podciągania rękawów, krótkich rękawów i rękawów trzy czwarte. Nie odtwarzaj ani nie wymyślaj tatuaży. Zmiana tej zasady tylko na wyraźne polecenie Damiana.. Relative height: Ola / AF-F01 jest około pół głowy Damiana niższa od Damiana / AF-M01. Pół głowy oznacza połowę odległości od czubka głowy do podbródka Damiana, przy wyprostowanych sylwetkach na wspólnym podłożu i w tej samej odległości od obserwatora. Nie podawaj wzrostu w centymetrach; nie został określony. Zachowaj naturalne proporcje dorosłych osób.. Reference status: candidate.
+Style: mature editorial comic; clean dark outlines, warm controlled cel shading.
+Preserve all approved identity traits; change only clothing, pose and setting needed for this scene.
+No text, logos, watermark, extra characters or decorative holograms. Keep important faces and hands inside frame.
+STOP: character candidates require approval before scene production. This is a planning prompt only.

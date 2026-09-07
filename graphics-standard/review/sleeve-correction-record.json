@@ -1,0 +1,11 @@
+{
+  "character": "AF-M01",
+  "stage": "long-sleeves-v02",
+  "date": "2026-09-07",
+  "mode": "built-in-image_gen",
+  "model": "not-disclosed",
+  "prompt": "Use case: precise-object-edit / identity-preserve.\nEdit this exact character model sheet. Make ONLY this clothing correction: on EVERY depiction of the man, extend both charcoal shirt sleeves fully down to the wrists. The cuffs must sit at the base of the hands, so all forearm skin is covered, including in front, three-quarter and side full-body views. Sleeves must be fully lowered, not rolled, pushed up or three-quarter length. Keep his hands visible and anatomically unchanged. His real arms have full tattoo sleeves; the clothing must completely conceal them. Do not draw, invent or expose tattoos.\nPreserve everything else from this sheet: exact same face, subtle slate blue-grey eyes, nose, beard, hair, ear cuff, body proportions, poses, expression panels, black trousers, shoes, composition, off-white background, lighting and illustration style. Preserve the existing dimensions. Do not change facial identity or redraw the sheet in a different style. No text, no logo, no extra objects. Only lengthen the fabric sleeves over the currently bare forearms.",
+  "source": "assets/characters/af-m01-candidate-v01.png",
+  "file": "assets/characters/af-m01-candidate-v02.png",
+  "assessment": "Obejrzano wynik: rękawy zakrywają przedramiona do nadgarstków we wszystkich trzech pełnych ujęciach; dłonie widoczne, brak generowanych tatuaży. Karta pozostaje kandydatem, bez domniemanej akceptacji całego wyglądu."
+}

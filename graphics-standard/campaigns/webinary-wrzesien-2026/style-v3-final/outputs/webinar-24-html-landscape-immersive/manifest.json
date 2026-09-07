@@ -1,0 +1,22 @@
+{
+  "id": "webinar-24-html-landscape-immersive",
+  "status": "mockup",
+  "width": 1920,
+  "height": 1080,
+  "wordCount": 27,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": "01547f0860a7780103442c918168ef11db76c98cd2d321eefd352822fa574448",
+  "html_sha256": "31382494f865fb39218a47dc928e8ef2d0759e9c1417a5bc9669a6d34655d5b3",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "18f9775051045822c9d686c3a2c18b9d429fcb6791675e6ecbba8449a8fdbbe3"
+}

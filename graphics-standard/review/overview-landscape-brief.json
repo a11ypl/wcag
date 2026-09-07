@@ -1,0 +1,20 @@
+{
+  "id": "overview-landscape",
+  "template": "overview",
+  "format": "landscape",
+  "status": "mockup",
+  "eyebrow": "Accessibility First",
+  "title": "Wybierz temat szkolenia",
+  "details": [
+    "Dostępność cyfrowa",
+    "Audyt w praktyce",
+    "AI w pracy audytora"
+  ],
+  "cta": "Zobacz ofertę",
+  "url": "https://a11yfirst.pl/szkolenia",
+  "scene": "Wspólna praca przy stole: laptop i dokumenty.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ]
+}

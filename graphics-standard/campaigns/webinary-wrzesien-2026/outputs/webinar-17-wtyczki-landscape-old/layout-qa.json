@@ -1,0 +1,27 @@
+{
+  "status": "fail",
+  "scope": "technical-layout-only; identity and anatomy require visual review",
+  "outside": [
+    {
+      "element": "DIV.content",
+      "scrollWidth": 1760,
+      "clientWidth": 1760,
+      "scrollHeight": 688,
+      "clientHeight": 658
+    },
+    {
+      "element": "SECTION.copy",
+      "scrollWidth": 878,
+      "clientWidth": 878,
+      "scrollHeight": 688,
+      "clientHeight": 658
+    }
+  ],
+  "overlaps": [],
+  "imagesLoaded": true,
+  "fontsLoaded": true,
+  "width": 1920,
+  "height": 1080,
+  "errors": [],
+  "html_sha256": "e7aef183ded557604fc768689899225736b5c057176185bb24284e1cf8295801"
+}

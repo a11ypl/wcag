@@ -1,0 +1,22 @@
+{
+  "id": "webinar-24-html-square-immersive",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1080,
+  "wordCount": 27,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": "01547f0860a7780103442c918168ef11db76c98cd2d321eefd352822fa574448",
+  "html_sha256": "d4ac82fdce5fc0e49b051033c72e45fef15188b8103b3f0c0e2342365d09adb1",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "9f311e9c857c6717d0825b2edc235a54bdf82f89a87d700e3bbcab49054c88fe"
+}

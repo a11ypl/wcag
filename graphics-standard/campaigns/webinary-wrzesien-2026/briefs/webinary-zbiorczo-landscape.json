@@ -1,0 +1,22 @@
+{
+  "id": "webinary-zbiorczo-landscape",
+  "template": "overview",
+  "format": "landscape",
+  "status": "mockup",
+  "eyebrow": "Webinary Accessibility First",
+  "cta": "Zobacz szczegóły i zapisz się",
+  "url": "https://www.a11yfirst.pl/webinary",
+  "title": "Dwa webinary we wrześniu",
+  "body": "Praktyka, dostępność i web development",
+  "details": [
+    "17 września · wtyczki · 17:00",
+    "24 września · semantyczny HTML · 17:00"
+  ],
+  "scene": "Damian i Ola wspólnie sprawdzają formularz internetowy przy laptopie.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ],
+  "illustration": "../../../a11yfirst-graphics/assets/characters/af-pair-height-candidate-v02.png",
+  "illustration_alt": "Damian i Ola stoją obok siebie przy laptopie i wspólnie sprawdzają formularz internetowy."
+}

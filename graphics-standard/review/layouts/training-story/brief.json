@@ -1,0 +1,19 @@
+{
+  "id": "training-story",
+  "template": "training",
+  "format": "story",
+  "status": "mockup",
+  "eyebrow": "Szkolenie",
+  "title": "Sprawdzaj formularze w praktyce",
+  "body": "Od znalezienia bariery do rekomendacji.",
+  "details": [
+    "Termin: [do uzupełnienia]"
+  ],
+  "cta": "Zobacz program",
+  "url": "https://a11yfirst.pl/szkolenia",
+  "scene": "Dwie osoby wspólnie sprawdzają formularz na laptopie.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ]
+}

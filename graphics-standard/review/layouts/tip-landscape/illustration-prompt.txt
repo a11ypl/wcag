@@ -1,0 +1,9 @@
+Use case: illustration-story / identity-preserve.
+Asset: Accessibility First illustration without text or logos.
+Scene: Ekspertka wskazuje etykietę pola na ekranie.
+Format of final composition: landscape; prepare an illustration suitable for a separate image area.
+AF-F01: owalna twarz i łagodnie zwężający się podbródek; migdałowe niebieskozielone oczy; łukowate brązowe brwi; kasztanowe włosy do ramion z uniesionym przodem i ciepłymi refleksami; jasna ciepła skóra. Wardrobe constraints: . Relative height: Ola / AF-F01 jest około pół głowy Damiana niższa od Damiana / AF-M01. Pół głowy oznacza połowę odległości od czubka głowy do podbródka Damiana, przy wyprostowanych sylwetkach na wspólnym podłożu i w tej samej odległości od obserwatora. Nie podawaj wzrostu w centymetrach; nie został określony. Zachowaj naturalne proporcje dorosłych osób.. Reference status: candidate.
+Style: mature editorial comic; clean dark outlines, warm controlled cel shading.
+Preserve all approved identity traits; change only clothing, pose and setting needed for this scene.
+No text, logos, watermark, extra characters or decorative holograms. Keep important faces and hands inside frame.
+STOP: character candidates require approval before scene production. This is a planning prompt only.

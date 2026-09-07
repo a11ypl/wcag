@@ -1,0 +1,22 @@
+{
+  "id": "webinar-24-html-story-immersive",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1920,
+  "wordCount": 28,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": "01547f0860a7780103442c918168ef11db76c98cd2d321eefd352822fa574448",
+  "html_sha256": "8de21c80545c37aca05e5d386550e662dd0e388197bcbfd85b1cf891b3712cbc",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "8a4a22d688569d146ad89e97dfaadad1f0a29f6ffe0a8887a16787c62367240e"
+}

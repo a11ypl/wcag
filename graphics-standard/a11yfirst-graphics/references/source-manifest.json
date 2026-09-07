@@ -1,0 +1,187 @@
+{
+  "created": "2026-09-06",
+  "sources": [
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/ai-webb.png",
+      "file": "assets/sources/archive-ai-webinar.png",
+      "sha256": "493735f61d7a30b2615f3c31a21565d5ad0ece20b49d21e5bd9670bbc2df5fca",
+      "bytes": 2276187,
+      "role": "archive-only",
+      "width": 1080,
+      "height": 1350,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/aktualne - gfx - a11yfirst/Nadchodzące szkolenia wakacje INSTA.png",
+      "file": "assets/sources/recent-schedule-portrait.png",
+      "sha256": "8d8054a048066b9cee6e36ba549aa9f8e4e53efbd61b8ea585e34eb75c86b665",
+      "bytes": 1696001,
+      "role": "archive-only",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/aktualne - gfx - a11yfirst/Nadchodzące szkolenia wakacje.png",
+      "file": "assets/sources/recent-schedule-landscape.png",
+      "sha256": "724f8da4f737e875958ef68be4654a6baf0074ef29a6b192333d46a9d40e6a8a",
+      "bytes": 1761038,
+      "role": "archive-only",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/aktualne - gfx - a11yfirst/a11yfirst - oferta, tło.png",
+      "file": "assets/sources/recent-offer-landscape.png",
+      "sha256": "cb09365a8e6876419e64c9061c1e5cd7cb8313a6f004666670600f58076a7fa9",
+      "bytes": 1845955,
+      "role": "candidate-female-identity-and-style",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/aktualne - gfx - a11yfirst/damianek graficzny.png",
+      "file": "assets/sources/male-portrait.png",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa",
+      "bytes": 1609682,
+      "role": "candidate-male-identity",
+      "width": 941,
+      "height": 1672,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/aktyprawne.png",
+      "file": "assets/sources/archive-law-webinar.png",
+      "sha256": "2027dcc663775a4a64a670889896d4299088efd8dcd6c55e89dec806aed180be",
+      "bytes": 700593,
+      "role": "archive-only",
+      "width": 1080,
+      "height": 1350,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/dostepne technologie tedx.png",
+      "file": "assets/sources/archive-technology.png",
+      "sha256": "abe1a8d391cbc6a8bb85d9ca7853c83a9e22a7f0b7170af8dcbc47dfbab758fa",
+      "bytes": 2193253,
+      "role": "archive-only",
+      "width": 2752,
+      "height": 1536,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/kkkkkkkkkk.png",
+      "file": "assets/sources/archive-ai-overlap.png",
+      "sha256": "e62c2d5958693f521269eb1861b74a53a0ea3f23d12b79dc05121c8025d39852",
+      "bytes": 999143,
+      "role": "archive-only",
+      "width": 1080,
+      "height": 1350,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/promo szkolenia-ai.png",
+      "file": "assets/sources/archive-ai-dense.png",
+      "sha256": "1d25f148f7c30f771c2a19aa0117bd4c73fcb976b1871a060fc06534811713a9",
+      "bytes": 2197605,
+      "role": "archive-only",
+      "width": 1080,
+      "height": 1350,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/przedstaw_mężczyznę_z_202604271149.jpeg",
+      "file": "assets/sources/archive-male-full-body.jpeg",
+      "sha256": "01547f0860a7780103442c918168ef11db76c98cd2d321eefd352822fa574448",
+      "bytes": 2365244,
+      "role": "archive-only",
+      "width": 1792,
+      "height": 2400,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/GFX a11yfirst/wcagdlaspec#2.jpeg",
+      "file": "assets/sources/archive-office-pair.jpeg",
+      "sha256": "eac0dc41414662567f546b6dff31c1e6d65ae1e28e8eac11fe06efad9e65d49e",
+      "bytes": 2170946,
+      "role": "archive-only",
+      "width": 1792,
+      "height": 2400,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/a11yfirst logo-sygnet.png",
+      "file": "assets/brand/a11yfirst logo-sygnet.png",
+      "sha256": "5a58197c3c2486ca92774c3589137b436703b1a57850c2beae11692e41a7b6f4",
+      "bytes": 35324,
+      "role": "original-brand-asset",
+      "width": 1063,
+      "height": 1063,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/accessibility-first-logo-dark.png",
+      "file": "assets/brand/accessibility-first-logo-dark.png",
+      "sha256": "d7319e645a3fb5ff0f99b472760f45b4de80ef1605de5bb255fd391bf5f7e97f",
+      "bytes": 41535,
+      "role": "original-brand-asset",
+      "width": 1800,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/accessibility-first-logo-transparent.png",
+      "file": "assets/brand/accessibility-first-logo-transparent.png",
+      "sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+      "bytes": 37768,
+      "role": "original-brand-asset",
+      "width": 1800,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/ikon a11yfirst.svg",
+      "file": "assets/brand/ikon a11yfirst.svg",
+      "sha256": "9f7467ba02f6ecdbd9c754bcb95188aa0077a681e11be3a1ed39c6d220892731",
+      "bytes": 59827,
+      "role": "original-brand-asset",
+      "embedded_raster": true
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/ikon.png",
+      "file": "assets/brand/ikon.png",
+      "sha256": "be75655669f514ccb659bf96c2564b615c6557241114b7576d2b73cfe36a3698",
+      "bytes": 65739,
+      "role": "original-brand-asset",
+      "width": 1866,
+      "height": 1866,
+      "mode": "RGB"
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/ikon.svg",
+      "file": "assets/brand/ikon.svg",
+      "sha256": "5aebb56603194e8db71e4f31833cd124c3aa936fcc7aa719b54768243b50f569",
+      "bytes": 1715563,
+      "role": "original-brand-asset",
+      "embedded_raster": true
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/ikon2.svg",
+      "file": "assets/brand/ikon2.svg",
+      "sha256": "14902cb956559a61aca5265cc248d7f50973112478337a0718c95dad0f4bbab5",
+      "bytes": 1832706,
+      "role": "original-brand-asset",
+      "embedded_raster": true
+    },
+    {
+      "original": "/Users/bergi/Documents/a11y/a11yfirst/a11yfirst logo/ikon3.svg",
+      "file": "assets/brand/ikon3.svg",
+      "sha256": "756881f1ab5dfb2d119037ab46f7a7b73e93cb5ea200ada14a32ee3f00e8297c",
+      "bytes": 4975018,
+      "role": "original-brand-asset",
+      "embedded_raster": true
+    }
+  ]
+}

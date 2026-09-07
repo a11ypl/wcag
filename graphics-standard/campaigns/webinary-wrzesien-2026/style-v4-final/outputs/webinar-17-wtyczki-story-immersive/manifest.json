@@ -1,0 +1,34 @@
+{
+  "id": "webinar-17-wtyczki-story-immersive",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1920,
+  "wordCount": 29,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    },
+    {
+      "id": "AF-F01",
+      "file": "assets/sources/recent-offer-landscape.png",
+      "status": "candidate",
+      "sha256": "cb09365a8e6876419e64c9061c1e5cd7cb8313a6f004666670600f58076a7fa9"
+    },
+    {
+      "id": "AF-PAIR01",
+      "file": "assets/characters/af-pair-height-candidate-v02.png",
+      "status": "candidate",
+      "sha256": "5984189c203fae0a140643f7da0371d22edfbdce612ec854ab594f9766ff2153"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": "cb09365a8e6876419e64c9061c1e5cd7cb8313a6f004666670600f58076a7fa9",
+  "html_sha256": "9241507288e3284569a4c4b08f567a2a91f2a3072c97ebb2490c87cbf04d882e",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "f823207d13e1741da2b1ffa95e781b619ed52074a110f6188bc8dae385e8508e"
+}

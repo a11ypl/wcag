@@ -1,0 +1,22 @@
+{
+  "id": "webinar-24-html-portrait-immersive",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1350,
+  "wordCount": 28,
+  "references": [
+    {
+      "id": "AF-M01",
+      "file": "assets/sources/male-portrait.png",
+      "status": "candidate",
+      "sha256": "602e634d149e0bf75d040dd9f060c8ab1960ce110d8c41a61a7810067eeb61fa"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": "01547f0860a7780103442c918168ef11db76c98cd2d321eefd352822fa574448",
+  "html_sha256": "09d67471fa6035bdc9b6dbcadf806cd8ae0e473e74917f7178f1112ca67d81bf",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "31329a98b54ea2c1f52cccd1b6990d93ab8c2c482a4210e32d3316b091bddaa4"
+}

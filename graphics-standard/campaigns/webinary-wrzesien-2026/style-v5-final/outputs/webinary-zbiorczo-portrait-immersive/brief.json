@@ -1,0 +1,23 @@
+{
+  "id": "webinary-zbiorczo-portrait-immersive",
+  "template": "overview",
+  "format": "portrait",
+  "status": "mockup",
+  "style": "immersive",
+  "eyebrow": "Webinary o dostępności",
+  "cta": "Zapisz się na webinar",
+  "url": "https://www.a11yfirst.pl/webinary",
+  "title": "Dwa webinary we wrześniu",
+  "body": "Praktyka dostępności cyfrowej dla osób, które tworzą i sprawdzają strony.",
+  "details": [
+    "17 września · narzędzia do badania dostępności · 17:00",
+    "24 września · semantyczny HTML · 17:00"
+  ],
+  "scene": "Damian i Ola wspólnie analizują dostępność strony w nowoczesnym biurze.",
+  "characters": [
+    "AF-M01",
+    "AF-F01"
+  ],
+  "illustration": "../../../../a11yfirst-graphics/assets/sources/recent-offer-landscape.png",
+  "illustration_alt": "Ilustracja w stylu komiksowym: Damian siedzi przy monitorze, a Ola wskazuje element na ekranie w biurze."
+}

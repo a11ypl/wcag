@@ -1,0 +1,22 @@
+[
+  {
+    "character": "AF-M01",
+    "stage": "athletic-swimmer-v03",
+    "date": "2026-09-07",
+    "mode": "built-in-image_gen",
+    "model": "not-disclosed",
+    "prompt": "Use case: identity-preserve / precise-object-edit.\nEdit this exact male character model sheet. Change ONLY the man's BUILD in every relevant view consistently: Damian is athletic and muscular, with a swimmer's V-shaped silhouette. Make his shoulders clearly broader (roughly 15–20% broader than this starting reference), developed deltoids, a broader chest and upper back, athletic muscular upper arms, tapering distinctly to a trim waist. Fit muscular swimmer proportions, not an exaggerated bodybuilder. Preserve a natural adult neck and head size. His torso should read as an inverted triangle, with broader shoulders than waist. Keep height, leg length, head position, facial identity and all view positions unchanged; make room laterally without merging adjacent figures.\nClothing must remain the SAME charcoal CREWNECK LONG-SLEEVE SHIRT in all views, fitting the athletic body naturally without painted-on muscle grooves. Both sleeves extend FULLY TO THE WRISTS, NEVER rolled or pushed up; all arms and forearms covered, hands visible; no tattoos rendered. Keep charcoal trousers and black shoes.\nPreserve the exact same face and facial geometry, slate blue-grey eyes, brown quiff, short copper-brown beard, ear cuff, expressions, warm ivory background, illustration style and sheet arrangement. Apply the athletic broad shoulders consistently to all three full-body front/three-quarter/profile views and the three head-and-shoulder expressions. Keep the man's original total height and plausible proportions, do not enlarge the head, do not change the face, no new text or objects.",
+    "file": "assets/characters/af-m01-candidate-v03.png",
+    "assessment": "Oględziny: szersze barki, mocniejsza klatka piersiowa i ramiona, wyraźne zwężenie do talii w trzech pełnych ujęciach. Pełne długie rękawy, dłonie widoczne. Sylwetka zmieniona zgodnie z poleceniem użytkownika; karta pozostaje do oceny."
+  },
+  {
+    "character": "AF-PAIR01",
+    "stage": "athletic-male-pair-v02",
+    "date": "2026-09-07",
+    "mode": "built-in-image_gen",
+    "model": "not-disclosed",
+    "prompt": "Use case: precise-object-edit / identity-preserve.\nImage 1 is the EDIT TARGET: the existing two-person shared height sheet.\nImage 2 is the updated male character model sheet: use it ONLY as the authoritative BODY BUILD reference for Damian, the man on the LEFT of image 1.\nChange ONLY Damian's shoulder width and torso/upper-arm musculature in image 1 to match the broad-shouldered athletic swimmer physique in image 2: developed deltoids, broader chest and upper back, athletic arms, distinct V taper to a trim waist. Natural muscular swimmer proportions. His dark crewneck long-sleeve shirt must fit naturally over this build.\nCRITICAL preserve the exact height and positions from image 1: man's crown approximately y=126 and chin y=334, woman's crown approximately y=238, both soles around y=1370 on the same ground line in the 1024x1536 composition. Ola remains around half of Damian's head height shorter. Do not change either person's head size, standing height, leg length or ground level. Preserve the WOMAN on the right completely unchanged: exact same face, eyes, hair, blue shirt, body, pose and shoes. Do not widen her.\nPreserve Damian's exact FACE from image 1, beard, quiff, eye colour, ear cuff and expression; do not redraw his face to accommodate the wider body. His BOTH SLEEVES remain FULLY DOWN TO THE WRISTS, all forearms covered, hands visible, no tattoos. Keep the same trousers, shoes, hand anatomy, warm ivory background, floor line and illustration style. Only broaden and develop the man's upper body to match image 2, with a V taper. No text, no labels, no new objects.",
+    "file": "assets/characters/af-pair-height-candidate-v02.png",
+    "assessment": "Wspólny podgląd: Damian z szerszymi barkami i sylwetką pływaka, Ola około pół głowy niższa. Położenie czubków głów i wspólne podłoże wizualnie zachowane względem planszy v01. Długie rękawy Damiana zachowane; brak tatuaży do odtwarzania. Do wglądu użytkownika przed dalszą produkcją."
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "id": "tip-portrait",
+  "status": "mockup",
+  "width": 1080,
+  "height": 1350,
+  "wordCount": 16,
+  "references": [
+    {
+      "id": "AF-F01",
+      "file": "assets/sources/recent-offer-landscape.png",
+      "status": "candidate",
+      "sha256": "cb09365a8e6876419e64c9061c1e5cd7cb8313a6f004666670600f58076a7fa9"
+    }
+  ],
+  "logo_sha256": "48c408a64590217311e3cb963cf2e67a8005c2309342e40f31d22901bd8575da",
+  "illustration_sha256": null,
+  "html_sha256": "87aaa5d3c19445bb0553e7df05d49ab4b7a02e558f709c117995b125d0776f72",
+  "visual_review": null,
+  "generation": "not-called-by-composer",
+  "layout_review": "pass",
+  "png_sha256": "da7f0ada933f527d49a0271de402ed4a4821a0659c1038cd7ead64c7ffb87650"
+}

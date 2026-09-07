@@ -1,0 +1,20 @@
+{
+  "status": "fail",
+  "scope": "technical-layout-only; identity and anatomy require visual review",
+  "outside": [
+    {
+      "element": "H1.",
+      "scrollWidth": 842,
+      "clientWidth": 842,
+      "scrollHeight": 280,
+      "clientHeight": 277
+    }
+  ],
+  "overlaps": [],
+  "imagesLoaded": true,
+  "fontsLoaded": true,
+  "width": 1080,
+  "height": 1920,
+  "errors": [],
+  "html_sha256": "0d96d9e7eb12c2e195f5b3304d779ef7e182afa1c5a23cfcde388967972673b9"
+}
