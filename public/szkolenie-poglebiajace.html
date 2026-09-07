@@ -39,8 +39,43 @@
     </script>
 
     <link rel="icon" href="assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/styles.css?v=18">
+    <link rel="stylesheet" href="assets/styles.css?v=20">
     <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
 </head>
 <body class="course-page">
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -216,10 +251,23 @@
                         <p><output id="poglebiajaceSelectedProduct">Złap skilla w audytowaniu</output></p>
                         <p>Razem do zapłaty: <output id="poglebiajaceTotalPrice">1649 zł</output></p>
                     </div>
+                    <p id="poglebiajaceDiscountSummary" class="checkout-discount-summary" hidden></p>
 
-                    <form id="poglebiajaceRegistrationForm" data-checkout-form data-product-title="Złap skilla w audytowaniu" data-product-price="1649" data-transfer-title="Złap skilla w audytowaniu" data-error-summary="poglebiajaceCheckoutErrorSummary" data-transfer-section="poglebiajaceBankTransferInfo" data-selected-output="poglebiajaceSelectedProduct" data-total-output="poglebiajaceTotalPrice" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie Złap skilla w audytowaniu z a11yfirst.pl" novalidate>
+                    <form id="poglebiajaceRegistrationForm" data-checkout-form data-product-title="Złap skilla w audytowaniu" data-product-price="1649" data-product-category="training" data-transfer-title="Złap skilla w audytowaniu" data-error-summary="poglebiajaceCheckoutErrorSummary" data-transfer-section="poglebiajaceBankTransferInfo" data-selected-output="poglebiajaceSelectedProduct" data-total-output="poglebiajaceTotalPrice" data-discount-output="poglebiajaceDiscountSummary" data-discount-input="poglebiajace-discount-code" data-discount-apply="poglebiajace-apply-discount" data-discount-remove="poglebiajace-remove-discount" data-discount-status="poglebiajace-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie Złap skilla w audytowaniu z a11yfirst.pl" novalidate>
                         <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
                         <div id="poglebiajaceCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
+
+                        <fieldset class="checkout-discount">
+                            <legend>Kod rabatowy</legend>
+                            <p class="checkout-helper">Kod <code>jestemwgrupie</code> daje 10% rabatu na szkolenia.</p>
+                            <div class="checkout-discount-row">
+                                <label for="poglebiajace-discount-code">Wpisz kod rabatowy</label>
+                                <input type="text" id="poglebiajace-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
+                                <button class="btn btn-secondary" type="button" id="poglebiajace-apply-discount">Zastosuj kod</button>
+                                <button class="btn btn-secondary" type="button" id="poglebiajace-remove-discount">Usuń kod</button>
+                            </div>
+                            <p id="poglebiajace-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
+                        </fieldset>
 
                         <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
                             <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / nabywcy</legend>
@@ -362,7 +410,7 @@
         </div>
     </footer>
     <script src="assets/trainer-flips.js?v=6"></script>
-    <script src="assets/checkout-forms.js"></script>
+    <script src="assets/checkout-forms.js?v=20"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.A11yFirstTrainerFlip) {
@@ -370,6 +418,5 @@
             }
         });
     </script>
-    <script src="assets/header.js?v=2"></script>
 </body>
 </html>

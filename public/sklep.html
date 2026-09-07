@@ -31,8 +31,43 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="assets/styles.css?v=18">
+    <link rel="stylesheet" href="assets/styles.css?v=20">
     <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -60,7 +95,7 @@
         <section class="hero page-hero">
             <div class="container">
                 <h1>Sklep</h1>
-                <p class="subtitle">Webinary wspierające praktyczną automatyzację audytów dostępności cyfrowej.</p>
+                <p class="subtitle">Webinary wspierające praktyczną pracę z dostępnością cyfrową.</p>
             </div>
         </section>
 
@@ -87,7 +122,7 @@
                             <p>Konkretne omówienie najważniejszych obowiązków prawnych związanych z dostępnością cyfrową.</p>
                             <p class="product-note">Zakup obejmuje dostęp do nagrania i prezentacji PPTX przez minimum 12 miesięcy od zakupu.</p>
                         </div>
-                        <button class="btn btn-checkout" type="button" data-checkout-form="shopCheckoutForm" data-checkout-select="shop-product-1">Dodaj do zamówienia</button>
+                        <button class="btn btn-checkout" type="button" data-checkout-form="shopCheckoutForm" data-checkout-select="shop-product-2">Dodaj do zamówienia</button>
                     </article>
 
                     <article class="knowledge-panel shop-product-box">
@@ -111,10 +146,11 @@
                         </div>
                         <button class="btn btn-checkout" type="button" data-checkout-form="shopCheckoutForm" data-checkout-select="shop-product-4">Dodaj do zamówienia</button>
                     </article>
+
                 </div>
 
                 <div class="checkout-summary">
-                    <h3>Zamów webinary</h3>
+                    <h3>Zamów produkty</h3>
                     <div class="checkout-overview">
                         <div>
                             <p class="shop-summary-label">Wybrane produkty:</p>
@@ -125,16 +161,17 @@
                             <output id="shopTotalPrice">0 zł</output>
                         </div>
                     </div>
+                    <p id="shopDiscountSummary" class="checkout-discount-summary" hidden></p>
 
-                    <form id="shopCheckoutForm" data-checkout-form data-error-summary="shopCheckoutErrorSummary" data-transfer-section="shopBankTransferInfo" data-selected-output="shopSelectedProduct" data-total-output="shopTotalPrice" data-alert-region="alertRegion" data-subject-prefix="Nowe zamówienie webinarów" data-message-heading="Nowe zamówienie webinarów ze sklepu Accessibility First" novalidate>
+                    <form id="shopCheckoutForm" data-checkout-form data-error-summary="shopCheckoutErrorSummary" data-transfer-section="shopBankTransferInfo" data-selected-output="shopSelectedProduct" data-total-output="shopTotalPrice" data-discount-output="shopDiscountSummary" data-discount-input="shop-discount-code" data-discount-apply="shop-apply-discount" data-discount-remove="shop-remove-discount" data-discount-status="shop-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowe zamówienie produktów" data-message-heading="Nowe zamówienie ze sklepu Accessibility First" novalidate>
                         <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
                         <div id="shopCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
 
-                        <fieldset id="shopProductGroup" data-checkout-product-group data-label="Wybór webinarów" data-error-id="shop-product-error" aria-describedby="shop-product-error" style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
-                            <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Wybierz co najmniej jeden webinar <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></legend>
+                        <fieldset id="shopProductGroup" data-checkout-product-group data-label="Wybór produktów" data-error-id="shop-product-error" aria-describedby="shop-product-error" style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
+                            <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Wybierz co najmniej jeden produkt <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></legend>
                             <div class="checkout-product-options">
                                 <label class="checkout-product-option" for="shop-product-1">
-                                    <input type="checkbox" id="shop-product-1" name="product" value="WEB01" data-product-id="WEB01" data-title="Konsola deweloperska w audycie dostępności — jak z niej realnie korzystać?" data-price="69" data-transfer-title="WEB01 - Webinar: Konsola deweloperska w audycie dostępności">
+                                    <input type="checkbox" id="shop-product-1" name="product" value="WEB01" data-product-id="WEB01" data-product-category="webinar" data-title="Konsola deweloperska w audycie dostępności — jak z niej realnie korzystać?" data-price="69" data-transfer-title="WEB01 - Webinar: Konsola deweloperska w audycie dostępności">
                                     <span>
                                         <span>ID produktu: WEB01</span>
                                         <strong>Konsola deweloperska w audycie dostępności — jak z niej realnie korzystać?</strong>
@@ -142,7 +179,7 @@
                                     </span>
                                 </label>
                                 <label class="checkout-product-option" for="shop-product-2">
-                                    <input type="checkbox" id="shop-product-2" name="product" value="WEB02" data-product-id="WEB02" data-title="Akty prawne w dostępności cyfrowej – co musisz wiedzieć w 60 minut" data-price="69" data-transfer-title="WEB02 - Webinar: Akty prawne w dostępności cyfrowej">
+                                    <input type="checkbox" id="shop-product-2" name="product" value="WEB02" data-product-id="WEB02" data-product-category="webinar" data-title="Akty prawne w dostępności cyfrowej – co musisz wiedzieć w 60 minut" data-price="69" data-transfer-title="WEB02 - Webinar: Akty prawne w dostępności cyfrowej">
                                     <span>
                                         <span>ID produktu: WEB02</span>
                                         <strong>Akty prawne w dostępności cyfrowej – co musisz wiedzieć w 60 minut</strong>
@@ -150,7 +187,7 @@
                                     </span>
                                 </label>
                                 <label class="checkout-product-option" for="shop-product-3">
-                                    <input type="checkbox" id="shop-product-3" name="product" value="WEB03" data-product-id="WEB03" data-title="AI dla audytora dostępności cyfrowej – możliwości, ograniczenia i kierunki budowy własnego asystenta" data-price="69" data-transfer-title="WEB03 - Webinar: AI dla audytora dostępności cyfrowej">
+                                    <input type="checkbox" id="shop-product-3" name="product" value="WEB03" data-product-id="WEB03" data-product-category="webinar" data-title="AI dla audytora dostępności cyfrowej – możliwości, ograniczenia i kierunki budowy własnego asystenta" data-price="69" data-transfer-title="WEB03 - Webinar: AI dla audytora dostępności cyfrowej">
                                     <span>
                                         <span>ID produktu: WEB03</span>
                                         <strong>AI dla audytora dostępności cyfrowej – możliwości, ograniczenia i kierunki budowy własnego asystenta</strong>
@@ -158,7 +195,7 @@
                                     </span>
                                 </label>
                                 <label class="checkout-product-option" for="shop-product-4">
-                                    <input type="checkbox" id="shop-product-4" name="product" value="WEB04" data-product-id="WEB04" data-title="Dostępne dokumenty od podstaw. Proste zasady, konkretne przykłady" data-price="69" data-transfer-title="WEB04 - Webinar: Dostępne dokumenty od podstaw">
+                                    <input type="checkbox" id="shop-product-4" name="product" value="WEB04" data-product-id="WEB04" data-product-category="webinar" data-title="Dostępne dokumenty od podstaw. Proste zasady, konkretne przykłady" data-price="69" data-transfer-title="WEB04 - Webinar: Dostępne dokumenty od podstaw">
                                     <span>
                                         <span>ID produktu: WEB04</span>
                                         <strong>Dostępne dokumenty od podstaw. Proste zasady, konkretne przykłady</strong>
@@ -167,6 +204,18 @@
                                 </label>
                             </div>
                             <p id="shop-product-error" class="field-error"></p>
+                        </fieldset>
+
+                        <fieldset class="checkout-discount">
+                            <legend>Kod rabatowy</legend>
+                            <p class="checkout-helper">Kod <code>jestemwgrupie</code> daje 10% rabatu na szkolenia. Nie obejmuje webinarów ani materiałów w sklepie.</p>
+                            <div class="checkout-discount-row">
+                                <label for="shop-discount-code">Wpisz kod rabatowy</label>
+                                <input type="text" id="shop-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
+                                <button class="btn btn-secondary" type="button" id="shop-apply-discount">Zastosuj kod</button>
+                                <button class="btn btn-secondary" type="button" id="shop-remove-discount">Usuń kod</button>
+                            </div>
+                            <p id="shop-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
                         </fieldset>
 
                         <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
@@ -248,7 +297,7 @@
                             <div class="transfer-row">
                                 <strong>Tytuł przelewu:</strong>
                                 <div class="transfer-value">
-                                    <span id="shopTransferTitle" data-transfer-title>Wybierz webinar.</span>
+                                    <span id="shopTransferTitle" data-transfer-title>Wybierz produkt.</span>
                                     <button class="copy-btn" type="button" data-copy-target="shopTransferTitle">Kopiuj</button>
                                 </div>
                             </div>
@@ -278,7 +327,6 @@
             </div>
         </div>
     </footer>
-    <script src="assets/checkout-forms.js"></script>
-    <script src="assets/header.js?v=2"></script>
+    <script src="assets/checkout-forms.js?v=20"></script>
 </body>
 </html>

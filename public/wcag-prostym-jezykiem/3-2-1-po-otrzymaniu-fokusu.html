@@ -9,26 +9,61 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
-    <meta property="og:title" content="3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem">
+    <meta property="og:title" content="3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem | Accessibility First">
     <meta property="og:description" content="3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.">
     <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu">
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem">
+    <meta name="twitter:title" content="3.2.1 Po otrzymaniu fokusu - WCAG prostym językiem | Accessibility First">
     <meta name="twitter:description" content="3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Article","name":"3.2.1 Po otrzymaniu fokusu","headline":"3.2.1 Po otrzymaniu fokusu","description":"3.2.1 Po otrzymaniu fokusu prostym językiem: Samo wejście fokusu na element nie może przenosić użytkownika, otwierać nowego okna ani zmieniać kontekstu strony.","url":"https://www.a11yfirst.pl/wcag-prostym-jezykiem/3-2-1-po-otrzymaniu-fokusu","isBasedOn":"https://aaardvarkaccessibility.com/wcag-plain-english/","license":"https://creativecommons.org/licenses/by-sa/4.0/","articleSection":"Zrozumiałość","publisher":{"@type":"Organization","name":"Włącz Wizję sp. z o.o.","url":"https://wlaczwizje.pl"}}
     </script>
     <link rel="icon" href="../assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles.css?v=18">
+    <link rel="stylesheet" href="../assets/styles.css?v=20">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
     <header><div class="container header-content"><a class="site-banner" href="/" aria-label="Accessibility First - strona główna"><img class="site-banner-full" src="../assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="../assets/a11yfirst-icon.svg?v=7" alt="" aria-hidden="true"></a><nav aria-label="Menu główne"><a href="/o-nas">O nas</a><a href="/szkolenia">Szkolenia</a><a href="/audyty">Audyty</a><a href="/sklep">Sklep</a><a href="/baza-wiedzy">Baza wiedzy</a><a href="/deklaracja">Deklaracja dostępności</a><a href="/kontakt">Kontakt</a></nav></div></header>
     <main id="main">
         <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/baza-wiedzy">Baza wiedzy</a></li><li><a href="/wcag-prostym-jezykiem">WCAG prostym językiem</a></li><li aria-current="page">3.2.1 Po otrzymaniu fokusu</li></ol></nav>
-        <section class="hero page-hero"><div class="container"><p class="eyebrow">Zrozumiałość · Poziom A</p><h1>3.2.1 Po otrzymaniu fokusu</h1><p class="subtitle">Fokus ma pomagać w nawigacji, a nie zaskakiwać zmianą strony.</p></div></section>
+        <section class="hero page-hero"><div class="container"><p class="eyebrow">Zrozumiałość · Poziom A</p><h1>3.2.1 Po otrzymaniu fokusu</h1><p class="subtitle">Fokus ma pomagać w nawigacji, a nie zaskakiwać zmianą strony.</p><p class="criterion-versions">Występuje w: WCAG 2.0, WCAG 2.1 i WCAG 2.2.</p></div></section>
         <section class="knowledge-article wcag-detail">
             <div class="container">
                 <article class="knowledge-panel">
@@ -102,11 +137,10 @@ helpLink.addEventListener("focus", () =&gt; {
                     <h2>Źródła</h2>
                     <ul class="detail-list"><li><a href="https://www.w3.org/TR/WCAG22/#on-focus" target="_blank" rel="noopener noreferrer">WCAG 2.2: 3.2.1 On Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html" target="_blank" rel="noopener noreferrer">Understanding WCAG 3.2.1: On Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/quickref/#on-focus" target="_blank" rel="noopener noreferrer">How to Meet WCAG 3.2.1: On Focus<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G107" target="_blank" rel="noopener noreferrer">G107: Using activate rather than focus as a trigger for changes of context<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F55" target="_blank" rel="noopener noreferrer">F55: Failure due to using script to remove focus when focus is received<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li></ul>
                 </article>
-                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG"><a href="/wcag-prostym-jezykiem/3-1-2-jezyk-czesci">Poprzednie kryterium: 3.1.2 Język części</a><a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a><a href="/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych">Następne: 3.2.2 Podczas wprowadzania danych</a></nav>
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG"><a href="/wcag-prostym-jezykiem/3-1-6-wymowa">Poprzednie: 3.1.6 Wymowa</a><a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a><a href="/wcag-prostym-jezykiem/3-2-2-podczas-wprowadzania-danych">Następne: 3.2.2 Podczas wprowadzania danych</a></nav>
             </div>
         </section>
     </main>
     <footer><div class="container"><div class="footer-contact"><p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p></div><nav aria-label="Dokumenty prawne" class="footer-nav"><a href="/regulamin">Regulamin świadczenia usług</a><a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a><a href="/deklaracja">Deklaracja dostępności</a></nav><div class="footer-social"><a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a></div><div class="footer-bottom"><p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p></div></div></footer>
-    <script src="../assets/header.js"></script>
 </body>
 </html>

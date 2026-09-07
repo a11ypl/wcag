@@ -39,8 +39,43 @@
     </script>
 
     <link rel="icon" href="assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/styles.css?v=18">
+    <link rel="stylesheet" href="assets/styles.css?v=20">
     <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
 </head>
 <body class="course-page ai-training-page">
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -205,10 +240,23 @@
                             <output id="aiTotalPrice" style="font-weight: bold; color: var(--primary); display:block;">1999 zł</output>
                         </div>
                     </div>
+                    <p id="aiDiscountSummary" class="checkout-discount-summary" hidden></p>
 
-                    <form id="aiRegistrationForm" data-checkout-form data-product-title="Asystent AI w dostępności cyfrowej #2" data-product-price="1999" data-transfer-title="Asystent AI w dostępności cyfrowej #2" data-error-summary="aiCheckoutErrorSummary" data-transfer-section="aiBankTransferInfo" data-selected-output="aiSelectedProduct" data-total-output="aiTotalPrice" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie Asystent AI w dostępności cyfrowej #2 z a11yfirst.pl" novalidate>
+                    <form id="aiRegistrationForm" data-checkout-form data-product-title="Asystent AI w dostępności cyfrowej #2" data-product-price="1999" data-product-category="training" data-transfer-title="Asystent AI w dostępności cyfrowej #2" data-error-summary="aiCheckoutErrorSummary" data-transfer-section="aiBankTransferInfo" data-selected-output="aiSelectedProduct" data-total-output="aiTotalPrice" data-discount-output="aiDiscountSummary" data-discount-input="ai-discount-code" data-discount-apply="ai-apply-discount" data-discount-remove="ai-remove-discount" data-discount-status="ai-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie Asystent AI w dostępności cyfrowej #2 z a11yfirst.pl" novalidate>
                         <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
                         <div id="aiCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
+
+                        <fieldset class="checkout-discount">
+                            <legend>Kod rabatowy</legend>
+                            <p class="checkout-helper">Kod <code>jestemwgrupie</code> daje 10% rabatu na szkolenia.</p>
+                            <div class="checkout-discount-row">
+                                <label for="ai-discount-code">Wpisz kod rabatowy</label>
+                                <input type="text" id="ai-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
+                                <button class="btn btn-secondary" type="button" id="ai-apply-discount">Zastosuj kod</button>
+                                <button class="btn btn-secondary" type="button" id="ai-remove-discount">Usuń kod</button>
+                            </div>
+                            <p id="ai-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
+                        </fieldset>
 
                         <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
                             <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / nabywcy</legend>
@@ -327,7 +375,7 @@
         </div>
     </footer>
     <script src="assets/trainer-flips.js?v=6"></script>
-    <script src="assets/checkout-forms.js"></script>
+    <script src="assets/checkout-forms.js?v=20"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (!window.A11yFirstTrainerFlip) return;
@@ -355,6 +403,5 @@
             ]);
         });
     </script>
-    <script src="assets/header.js?v=2"></script>
 </body>
 </html>

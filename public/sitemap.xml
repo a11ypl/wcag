@@ -186,4 +186,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- generated:webinars:start -->
+  <url><loc>https://www.a11yfirst.pl/webinary</loc></url>
+  <url><loc>https://www.a11yfirst.pl/webinary/nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej</loc></url>
+  <url><loc>https://www.a11yfirst.pl/webinary/semantyczny-html-nie-taki-straszny</loc></url>
+  <!-- generated:webinars:end -->
 </urlset>

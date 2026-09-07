@@ -9,12 +9,12 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
-    <meta property="og:title" content="1.4.12 Odstępy w tekście - WCAG prostym językiem">
+    <meta property="og:title" content="1.4.12 Odstępy w tekście - WCAG prostym językiem | Accessibility First">
     <meta property="og:description" content="1.4.12 Odstępy w tekście prostym językiem: Treść musi działać, gdy użytkownik zwiększy odstęp między liniami, akapitami, literami i słowami.">
     <meta property="og:url" content="https://www.a11yfirst.pl/wcag-prostym-jezykiem/1-4-12-odstepy-w-tekscie">
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="1.4.12 Odstępy w tekście - WCAG prostym językiem">
+    <meta name="twitter:title" content="1.4.12 Odstępy w tekście - WCAG prostym językiem | Accessibility First">
     <meta name="twitter:description" content="1.4.12 Odstępy w tekście prostym językiem: Treść musi działać, gdy użytkownik zwiększy odstęp między liniami, akapitami, literami i słowami.">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <script type="application/ld+json">
@@ -36,7 +36,42 @@
     }
     </script>
     <link rel="icon" href="../assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/styles.css?v=18">
+    <link rel="stylesheet" href="../assets/styles.css?v=20">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -70,9 +105,7 @@
 
         <section class="hero page-hero">
             <div class="container">
-                <p class="eyebrow">Postrzegalność · Poziom AA · Dodane w WCAG 2.1</p>
-                <h1>1.4.12 Odstępy w tekście</h1>
-                <p class="subtitle">Treść nie może się rozsypać, gdy użytkownik zwiększy odstępy w tekście.</p>
+                <p class="eyebrow">Postrzegalność · Poziom AA</p><h1>1.4.12 Odstępy w tekście</h1><p class="subtitle">Treść nie może się rozsypać, gdy użytkownik zwiększy odstępy w tekście.</p><p class="criterion-versions">Występuje w: WCAG 2.1 i WCAG 2.2.</p>
             </div>
         </section>
 
@@ -266,11 +299,7 @@ p {
                     </ul>
                 </article>
 
-                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG">
-                    <a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">Poprzednie: 1.4.11 Kontrast elementów nietekstowych</a>
-                    <a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a>
-                    <a href="/wcag-prostym-jezykiem/1-4-13-tresc-po-najechaniu-lub-fokusie">Następne: 1.4.13 Treść po najechaniu lub fokusie</a>
-                </nav>
+                <nav class="criterion-navigation" aria-label="Nawigacja między kryteriami WCAG"><a href="/wcag-prostym-jezykiem/1-4-11-kontrast-elementow-nietekstowych">Poprzednie: 1.4.11 Kontrast elementów nietekstowych</a><a href="/wcag-prostym-jezykiem">Wróć do listy kryteriów</a><a href="/wcag-prostym-jezykiem/1-4-13-tresc-po-najechaniu-lub-fokusie">Następne: 1.4.13 Treść po najechaniu lub fokusie</a></nav>
             </div>
         </section>
     </main>
@@ -293,6 +322,5 @@ p {
             </div>
         </div>
     </footer>
-    <script src="../assets/header.js"></script>
 </body>
 </html>

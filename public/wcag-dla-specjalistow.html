@@ -126,8 +126,43 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="assets/styles.css?v=18">
+    <link rel="stylesheet" href="assets/styles.css?v=20">
     <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
 </head>
 <body class="course-page">
     <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
@@ -274,6 +309,19 @@
             <output id="totalPrice" style="font-weight: bold; color: var(--primary); display:block;">0 zł</output>
         </div>
     </div>
+    <p id="wcagDiscountSummary" class="checkout-discount-summary" hidden></p>
+
+    <fieldset class="checkout-discount">
+        <legend>Kod rabatowy</legend>
+        <p class="checkout-helper">Kod <code>jestemwgrupie</code> daje 10% rabatu na szkolenia.</p>
+        <div class="checkout-discount-row">
+            <label for="wcag-discount-code">Wpisz kod rabatowy</label>
+            <input type="text" id="wcag-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
+            <button class="btn btn-secondary" type="button" id="wcag-apply-discount">Zastosuj kod</button>
+            <button class="btn btn-secondary" type="button" id="wcag-remove-discount">Usuń kod</button>
+        </div>
+        <p id="wcag-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </fieldset>
 
     <div class="checkout-actions">
         <button class="btn btn-primary btn-full-width" id="confirmOrderBtn" type="button" onclick="openOrderConfirmation()" aria-disabled="true" aria-describedby="confirmOrderHelp" style="opacity: 0.5; cursor: not-allowed;">Przejdź do potwierdzenia zamówienia</button>
@@ -553,14 +601,110 @@
         const state = {
             selectedDays: [],
             prices: { single: 999, full: 2499 },
-            confirmationOpen: false
+            confirmationOpen: false,
+            discountCode: ''
         };
+        const WCAG_DISCOUNT_CODE = 'jestemwgrupie';
+        const WCAG_DISCOUNT_PERCENT = 10;
 
         function formatPrice(value) {
             return new Intl.NumberFormat('pl-PL', {
                 minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
                 maximumFractionDigits: 2
             }).format(value);
+        }
+
+        function roundMoney(value) {
+            return Math.round(value * 100) / 100;
+        }
+
+        function normalizeDiscountCode(value) {
+            return String(value || '').trim().toLowerCase();
+        }
+
+        function getBaseTotal() {
+            const selectedCount = state.selectedDays.length;
+            if (!selectedCount) return 0;
+            return selectedCount === 3 ? state.prices.full : selectedCount * state.prices.single;
+        }
+
+        function getDiscountAmount(baseTotal = getBaseTotal()) {
+            return state.discountCode === WCAG_DISCOUNT_CODE ? roundMoney(baseTotal * WCAG_DISCOUNT_PERCENT / 100) : 0;
+        }
+
+        function getTotalAfterDiscount(baseTotal = getBaseTotal()) {
+            return roundMoney(baseTotal - getDiscountAmount(baseTotal));
+        }
+
+        function updateDiscountSummary() {
+            const summary = document.getElementById('wcagDiscountSummary');
+            const status = document.getElementById('wcag-discount-status');
+            const baseTotal = getBaseTotal();
+            const discountAmount = getDiscountAmount(baseTotal);
+
+            if (!summary) return;
+
+            if (discountAmount > 0) {
+                summary.textContent = `Rabat ${WCAG_DISCOUNT_CODE}: -${formatPrice(discountAmount)} zł. Cena przed rabatem: ${formatPrice(baseTotal)} zł.`;
+                summary.hidden = false;
+                if (status) status.textContent = `Zastosowano kod ${WCAG_DISCOUNT_CODE}. Rabat ${WCAG_DISCOUNT_PERCENT}% obniża cenę o ${formatPrice(discountAmount)} zł.`;
+            } else if (state.discountCode === WCAG_DISCOUNT_CODE) {
+                summary.textContent = `Kod ${WCAG_DISCOUNT_CODE} jest aktywny. Wybierz wariant szkolenia, aby naliczyć rabat.`;
+                summary.hidden = false;
+            } else {
+                summary.textContent = '';
+                summary.hidden = true;
+            }
+        }
+
+        function applyWcagDiscount() {
+            const input = document.getElementById('wcag-discount-code');
+            const status = document.getElementById('wcag-discount-status');
+            const code = normalizeDiscountCode(input ? input.value : '');
+
+            if (!code) {
+                state.discountCode = '';
+                if (status) {
+                    status.textContent = 'Wpisz kod rabatowy.';
+                    status.classList.add('checkout-discount-status--error');
+                }
+                updateSelection();
+                return;
+            }
+
+            if (code !== WCAG_DISCOUNT_CODE) {
+                state.discountCode = '';
+                if (status) {
+                    status.textContent = 'Kod rabatowy jest nieprawidłowy.';
+                    status.classList.add('checkout-discount-status--error');
+                }
+                updateSelection();
+                return;
+            }
+
+            state.discountCode = WCAG_DISCOUNT_CODE;
+            if (input) input.value = WCAG_DISCOUNT_CODE;
+            if (status) {
+                status.classList.remove('checkout-discount-status--error');
+                status.textContent = getBaseTotal() > 0
+                    ? `Zastosowano kod ${WCAG_DISCOUNT_CODE}. Rabat ${WCAG_DISCOUNT_PERCENT}% obniża cenę o ${formatPrice(getDiscountAmount())} zł.`
+                    : `Zastosowano kod ${WCAG_DISCOUNT_CODE}. Wybierz wariant szkolenia, aby naliczyć rabat.`;
+            }
+            updateSelection();
+            showAlert(status ? status.textContent : `Zastosowano kod ${WCAG_DISCOUNT_CODE}.`);
+        }
+
+        function removeWcagDiscount() {
+            const input = document.getElementById('wcag-discount-code');
+            const status = document.getElementById('wcag-discount-status');
+            state.discountCode = '';
+            if (input) input.value = '';
+            if (status) {
+                status.classList.remove('checkout-discount-status--error');
+                status.textContent = 'Kod rabatowy został usunięty.';
+            }
+            updateSelection();
+            showAlert('Kod rabatowy został usunięty. Cena została przeliczona.');
         }
 
         function setButtonState(button, enabled) {
@@ -577,7 +721,8 @@
             const selectionLabel = document.getElementById('confirmationSelection');
             const sortedDays = [...state.selectedDays].sort();
             const isFull = sortedDays.length === 3;
-            const total = isFull ? state.prices.full : sortedDays.length * state.prices.single;
+            const baseTotal = isFull ? state.prices.full : sortedDays.length * state.prices.single;
+            const total = getTotalAfterDiscount(baseTotal);
 
             if (!sortedDays.length) {
                 selectionLabel.textContent = 'Wybierz dni kursu, aby przejść dalej.';
@@ -820,7 +965,8 @@
             state.selectedDays = checkedValues;
 
             const isFull = checkedValues.length === 3;
-            const total = Math.round((isFull ? state.prices.full : checkedValues.length * state.prices.single) * 100) / 100;
+            const baseTotal = isFull ? state.prices.full : checkedValues.length * state.prices.single;
+            const total = getTotalAfterDiscount(baseTotal);
             
             document.getElementById('selectedDays').textContent = isFull
                 ? "Pełny kurs (3 dni)"
@@ -828,6 +974,7 @@
                     ? `Dzień: ${checkedValues[0]}`
                     : (checkedValues.length ? `Dni: ${[...checkedValues].sort().join(', ')}` : "Brak");
             document.getElementById('totalPrice').textContent = `${formatPrice(total)} zł`;
+            updateDiscountSummary();
             updateConfirmationButton();
             updateConfirmationSelection();
 
@@ -1046,7 +1193,9 @@
 
             const sortedDays = state.selectedDays.map(Number).sort((a, b) => a - b);
             const key = sortedDays.join(',');
-            const priceVal = Math.round((sortedDays.length === 3 ? state.prices.full : sortedDays.length * state.prices.single) * 100) / 100;
+            const basePriceVal = roundMoney(sortedDays.length === 3 ? state.prices.full : sortedDays.length * state.prices.single);
+            const discountAmount = getDiscountAmount(basePriceVal);
+            const priceVal = getTotalAfterDiscount(basePriceVal);
             const transferInfo = document.getElementById('bankTransferInfo');
             const transferTitle = transferTitles[key] || 'Wybierz wariant kursu.';
             const participant = {
@@ -1068,6 +1217,8 @@
             payload.append('nip', participant.nip || 'Nie podano');
             payload.append('access_needs', participant.accessNeeds || 'Nie podano');
             payload.append('selected_days', sortedDays.join(', '));
+            payload.append('discount_code', state.discountCode || 'Brak');
+            payload.append('discount_amount', `${formatPrice(discountAmount)} zł`);
             payload.append('amount', `${formatPrice(priceVal)} zł`);
             payload.append('transfer_title', transferTitle);
             payload.append(
@@ -1081,6 +1232,8 @@
                     `NIP: ${participant.nip || 'Nie podano'}`,
                     `Dostosowanie szkolenia do potrzeb: ${participant.accessNeeds || 'Nie podano'}`,
                     `Wybrane dni: ${sortedDays.join(', ')}`,
+                    `Kod rabatowy: ${state.discountCode || 'Brak'}`,
+                    `Rabat: ${formatPrice(discountAmount)} zł`,
                     `Kwota: ${formatPrice(priceVal)} zł`,
                     `Tytuł przelewu: ${transferTitle}`
                 ].join('\n')
@@ -1140,6 +1293,26 @@
             });
         }
 
+        const wcagApplyDiscount = document.getElementById('wcag-apply-discount');
+        if (wcagApplyDiscount) {
+            wcagApplyDiscount.addEventListener('click', applyWcagDiscount);
+        }
+
+        const wcagRemoveDiscount = document.getElementById('wcag-remove-discount');
+        if (wcagRemoveDiscount) {
+            wcagRemoveDiscount.addEventListener('click', removeWcagDiscount);
+        }
+
+        const wcagDiscountInput = document.getElementById('wcag-discount-code');
+        if (wcagDiscountInput) {
+            wcagDiscountInput.addEventListener('keydown', event => {
+                if (event.key !== 'Enter') return;
+
+                event.preventDefault();
+                applyWcagDiscount();
+            });
+        }
+
         window.onload = () => {
             renderCards();
             updateHighZoomLayout();
@@ -1153,6 +1326,5 @@
         }
         window.addEventListener('resize', updateHighZoomLayout);
     </script>
-    <script src="assets/header.js?v=2"></script>
 </body>
 </html>
