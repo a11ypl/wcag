@@ -38,7 +38,7 @@
         }
         </script>
     <link rel="icon" href="assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/styles.css?v=19">
+    <link rel="stylesheet" href="assets/styles.css?v=20">
     <script>
     (function(w,d,s,a,m,t) {
       a = d.createElement(s);
@@ -126,6 +126,88 @@
               <li>Czy tekst w obrazie lub na slajdach jest dostępny także poza grafiką.</li>
             </ul>
           </article>
+          <section class="media-alternatives-onepager" aria-labelledby="media-alternatives-title">
+            <p class="eyebrow">Onepager</p>
+            <h3 id="media-alternatives-title">Alternatywy dla multimediów: co przygotować?</h3>
+            <p class="media-alternatives-lead">Dobierz rozwiązanie do informacji, której użytkownik nie może odebrać. Dźwięk zamieniamy na tekst, a ważny obraz na opis słowny. Pełna alternatywa dla filmu z dźwiękiem musi uwzględniać obie warstwy.</p>
+
+            <aside class="media-wcag-note" aria-labelledby="media-wcag-note-title">
+              <h4 id="media-wcag-note-title">Ważne rozróżnienie dla WCAG 1.2.3</h4>
+              <p><strong>Transkrypcja</strong> odwzorowuje dźwięk. <strong>Deskrypcja</strong> opisuje obraz. Sama transkrypcja dialogów nie przekazuje tego, co widać, a sam skrypt audiodeskrypcyjny nie zawiera całej warstwy dźwiękowej.</p>
+              <p>Pełna tekstowa alternatywa dla nagranego materiału audio-wideo łączy dialogi, ważne dźwięki i opis istotnych informacji wizualnych w kolejności zgodnej z nagraniem. W tym materiale nazywamy ją <strong>transkrypcją rozszerzoną</strong>.</p>
+              <p>Na poziomie A kryterium 1.2.3 pozwala wybrać audiodeskrypcję albo pełną alternatywę tekstową. Na poziomie AA kryterium 1.2.5 wymaga audiodeskrypcji, chyba że główna ścieżka dźwiękowa przekazuje już wszystkie ważne informacje wizualne.</p>
+            </aside>
+
+            <ol class="media-alternatives-list" role="list">
+              <li class="media-alternative-card">
+                <h4>Transkrypcja</h4>
+                <p>Tekstowa wersja warstwy dźwiękowej. Zawiera wypowiedzi, identyfikację osób mówiących oraz ważne dźwięki, na przykład <span class="media-example">[dzwonek telefonu]</span> lub <span class="media-example">[spokojna muzyka]</span>.</p>
+                <p><strong>Stosuj:</strong> przede wszystkim do nagrań tylko audio, takich jak podcast lub wywiad bez obrazu.</p>
+              </li>
+              <li class="media-alternative-card">
+                <h4>Audiodeskrypcja</h4>
+                <p>Dodatkowa narracja, która opisuje ważne informacje widoczne w filmie, ale niedostępne w jego głównej ścieżce dźwiękowej: działania, postacie, zmianę miejsca, tekst na ekranie i inne istotne elementy obrazu.</p>
+                <dl class="media-alternative-types">
+                  <div>
+                    <dt>Podstawowa</dt>
+                    <dd>Opis mieści się w naturalnych przerwach między dialogami. Film nie jest zatrzymywany.</dd>
+                  </div>
+                  <div>
+                    <dt>Rozszerzona</dt>
+                    <dd>Film jest zatrzymywany, gdy przerwy są zbyt krótkie, aby przekazać potrzebny opis. Odtwarzanie trwa wtedy dłużej.</dd>
+                  </div>
+                  <div>
+                    <dt>Audiowstęp</dt>
+                    <dd>Krótki opis przed materiałem. Może przedstawić postacie, miejsce, układ sceny lub konwencję wizualną. Uzupełnia audiodeskrypcję, ale jej nie zastępuje, jeśli ważna akcja rozgrywa się w obrazie.</dd>
+                  </div>
+                  <div>
+                    <dt>Audiotekst</dt>
+                    <dd>Odczytanie tekstu widocznego na ekranie, na przykład planszy lub podpisu. Nie opisuje akcji ani wyglądu sceny, dlatego nie jest pełną audiodeskrypcją.</dd>
+                  </div>
+                </dl>
+              </li>
+              <li class="media-alternative-card">
+                <h4>Napisy rozszerzone</h4>
+                <p>Zsynchronizowany z nagraniem tekst wypowiedzi i ważnych informacji dźwiękowych. Oprócz dialogów wskazuje osoby mówiące oraz opisuje dźwięki potrzebne do zrozumienia materiału.</p>
+                <dl class="media-alternative-types">
+                  <div>
+                    <dt>Zamknięte</dt>
+                    <dd>Są osobną ścieżką, którą użytkownik może włączyć lub wyłączyć. Odtwarzacz może pozwalać na zmianę ich wyglądu. To preferowane rozwiązanie w internecie.</dd>
+                  </div>
+                  <div>
+                    <dt>Otwarte</dt>
+                    <dd>Są na stałe w obrazie i zawsze widoczne. Nie można ich wyłączyć ani dostosować, a technologia wspomagająca nie odczyta ich jako osobnego tekstu.</dd>
+                  </div>
+                </dl>
+                <p><strong>Uwaga:</strong> zwykłe napisy tłumaczeniowe, które zawierają tylko dialogi, nie są napisami rozszerzonymi.</p>
+              </li>
+              <li class="media-alternative-card">
+                <h4>Deskrypcja i skrypt audiodeskrypcyjny</h4>
+                <p><strong>Deskrypcja</strong> to tekstowy opis tego, co widać. <strong>Skrypt audiodeskrypcyjny</strong> porządkuje te opisy zgodnie z przebiegiem filmu i może zawierać znaczniki czasu. Po nagraniu przez lektora lub syntezator staje się ścieżką audiodeskrypcji.</p>
+                <p>Skrypt opisuje warstwę wizualną. Nie należy nazywać go transkrypcją dźwięku.</p>
+              </li>
+              <li class="media-alternative-card media-alternative-card--full">
+                <h4>Transkrypcja rozszerzona</h4>
+                <p>Pełna, uporządkowana wersja tekstowa materiału. Łączy:</p>
+                <ul class="detail-list">
+                  <li>dialogi i identyfikację osób mówiących,</li>
+                  <li>ważne dźwięki niebędące mową,</li>
+                  <li>deskrypcję akcji, postaci, zmian scen i tekstu widocznego na ekranie.</li>
+                </ul>
+                <p>To rozwiązanie jest szczególnie ważne dla osób głuchoniewidomych. Mogą odczytać kompletną treść jako tekst, także za pomocą monitora brajlowskiego. Same napisy, otwarte albo zamknięte, nie opisują obrazu, a sama ścieżka audiodeskrypcji pozostaje dźwiękiem.</p>
+              </li>
+            </ol>
+
+            <div class="media-choice-summary">
+              <h4>Szybki wybór</h4>
+              <ul class="detail-list">
+                <li><strong>Nagranie tylko audio:</strong> przygotuj transkrypcję.</li>
+                <li><strong>Film z ważnym dźwiękiem:</strong> przygotuj napisy rozszerzone.</li>
+                <li><strong>Film z ważnym obrazem:</strong> na poziomie A przygotuj audiodeskrypcję albo pełną alternatywę tekstową. Na poziomie AA przygotuj audiodeskrypcję.</li>
+                <li><strong>Jedna kompletna wersja tekstowa:</strong> przygotuj transkrypcję rozszerzoną.</li>
+              </ul>
+            </div>
+          </section>
           <article class="knowledge-panel">
             <h3>Polecane zasoby</h3>
             <ol class="recommended-resources">
@@ -136,6 +218,15 @@
               <li>
                 <a href="https://www.w3.org/WAI/WCAG22/Understanding/time-based-media.html" target="_blank" rel="noopener noreferrer">Sprawdź wyjaśnienie WCAG 2.2 dla alternatyw mediów czasowych<span class="sr-only"> (otwiera się w nowym oknie)</span>
                 </a>
+              </li>
+              <li>
+                <a href="https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html" target="_blank" rel="noopener noreferrer">Sprawdź wyjaśnienie W3C do kryterium WCAG 1.2.3<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+              </li>
+              <li>
+                <a href="https://www.w3.org/WAI/media/av/transcripts/" target="_blank" rel="noopener noreferrer">Przeczytaj poradnik W3C o transkrypcjach podstawowych i rozszerzonych<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+              </li>
+              <li>
+                <a href="https://www.w3.org/WAI/media/av/captions/" target="_blank" rel="noopener noreferrer">Przeczytaj poradnik W3C o napisach rozszerzonych<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
               </li>
             </ol>
           </article>

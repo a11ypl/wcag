@@ -141,7 +141,7 @@ try {
     if (!html.includes('site-banner')) continue;
     assert.ok(!/assets\/header\.js/.test(html), `${file}: obsolete header script`);
     for (const match of html.matchAll(/(?:\.\.\/|\/)?assets\/styles\.css(?:\?[^"\s]*)?/g)) {
-      assert.ok(match[0].endsWith('?v=19'), `${file}: old stylesheet URL`);
+      assert.ok(match[0].endsWith('?v=20'), `${file}: old stylesheet URL`);
     }
     htmlCount++;
   }

@@ -13,6 +13,56 @@
   ],
   "redirects": [
     {
+      "source": "/wcag-prostym-jezykiem/1-2-1-tylko-audio-i-tylko-wideo-nagranie",
+      "destination": "/wcag-prostym-jezykiem/1-2-1-tylko-audio-oraz-tylko-wideo",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/1-2-2-napisy-rozszerzone-nagranie",
+      "destination": "/wcag-prostym-jezykiem/1-2-2-napisy-rozszerzone",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/1-2-3-audiodeskrypcja-lub-alternatywa-dla-mediow-nagranie",
+      "destination": "/wcag-prostym-jezykiem/1-2-3-audiodeskrypcja-lub-alternatywa-dla-mediow",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/1-2-5-audiodeskrypcja-nagranie",
+      "destination": "/wcag-prostym-jezykiem/1-2-5-audiodeskrypcja",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/1-4-2-kontrola-dzwieku",
+      "destination": "/wcag-prostym-jezykiem/1-4-2-kontrola-odtwarzania-dzwieku",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/2-1-4-jednoznakowe-skroty-klawiaturowe",
+      "destination": "/wcag-prostym-jezykiem/2-1-4-skroty-klawiszowe-znakowe",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/2-3-1-trzy-blyski-lub-ponizej-progu",
+      "destination": "/wcag-prostym-jezykiem/2-3-1-trzy-blyski-lub-wartosci-ponizej-progu",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/2-4-5-wiele-drog",
+      "destination": "/wcag-prostym-jezykiem/2-4-5-wiele-sposobow",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/2-5-1-gesty-wskazujace",
+      "destination": "/wcag-prostym-jezykiem/2-5-1-gesty-wskaznika",
+      "permanent": true
+    },
+    {
+      "source": "/wcag-prostym-jezykiem/2-5-2-anulowanie-akcji-wskaznikiem",
+      "destination": "/wcag-prostym-jezykiem/2-5-2-anulowanie-wskazania",
+      "permanent": true
+    },
+    {
       "source": "/aria",
       "destination": "/baza-wiedzy/aria",
       "permanent": true
