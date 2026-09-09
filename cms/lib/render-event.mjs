@@ -26,7 +26,7 @@ function shell(site,slug,title,description,content,jsonLd,image) {
   const page={slug,title,description,blocks:[],breadcrumbs:[{label:'Strona główna',href:'/'},{label:'Szkolenia',href:'/szkolenia'},...(slug==='webinary'?[]:[{label:'Webinary',href:'/webinary'}]),{label:slug==='webinary'?'Webinary':title}]};
   return renderPage({...site,socialImage:image || site.socialImage},page,{assetBase:'/assets'})
     .replace(/<script type="application\/ld\+json">.*?<\/script>/s,`<script type="application/ld+json">${escapeJson(jsonLd)}</script>`)
-    .replace('</head>','    <link rel="stylesheet" href="/assets/events.css?v=4">\n</head>')
+    .replace('</head>','    <link rel="stylesheet" href="/assets/events.css?v=5">\n</head>')
     .replace('<body>','<body class="events-page">')
     .replace('        \n    </main>','\n    </main>')
     .replace('    </main>',`${content}\n    </main>`);

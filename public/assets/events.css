@@ -22,7 +22,7 @@ html { scroll-padding-top: 2rem; }
 .events-page .training-card > .training-card-body, .webinar-list .training-card > .training-card-body { min-width: 0; display: flex; flex-direction: column; gap: 0.75rem; grid-column: 2; grid-row: 1; }
 .events-page .training-card-body p, .events-page .training-card-body h3, .webinar-list .training-card-body p, .webinar-list .training-card-body h3 { margin: 0; }
 .events-page .training-card-body .btn, .webinar-list .training-card-body .btn { align-self: flex-start; margin-top: auto; }
-.events-page .training-card-body .btn-primary, .webinar-list .training-card-body .btn-primary, .home-webinars .training-card-body .btn-primary { background: var(--primary); border: 2px solid #ffd43b; color: #ffd43b; font-weight: 800; }
+.events-page .training-card-body .btn-primary, .webinar-list .training-card-body .btn-primary, .home-webinars .training-card-body .btn-primary { background: var(--primary); border: 2px solid #ffd43b; color: #ffd43b; font-weight: 800; text-decoration: underline; text-decoration-thickness: 0.12em; text-underline-offset: 0.2em; }
 .events-page .training-card-body .btn-primary:hover, .webinar-list .training-card-body .btn-primary:hover, .home-webinars .training-card-body .btn-primary:hover { background: #4a1f8f; color: #ffd43b; }
 .events-page header { position: static; }
 .events-page .header-content, .events-page .site-banner, .events-page .site-banner-full { transition: none; }
