@@ -1,0 +1,94 @@
+{
+  "id": "webinary-wrzesien-2026",
+  "status": "draft",
+  "campaign": "webinary_wrzesien_2026",
+  "events": [
+    "nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej",
+    "semantyczny-html-nie-taki-straszny"
+  ],
+  "social": [
+    {
+      "id": "webinary-wrzesien-linkedin-launch",
+      "channel": "linkedin",
+      "enabled": true,
+      "publishAt": null,
+      "suggestedWindow": "2026-09-05/2026-09-07",
+      "text": "We wrześniu organizujemy dwa praktyczne webinary Accessibility First.\n\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateCompact}}, godz. {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.startTime}}\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.title}}\nProwadzenie: {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.speaker}}\n\nPokażemy rozszerzenia i narzędzia, które uzupełniają automatyczne skanery i pomagają sprawniej prowadzić ręczne badanie dostępności.\n\n{{events.semantyczny-html-nie-taki-straszny.dateCompact}}, godz. {{events.semantyczny-html-nie-taki-straszny.startTime}}\n{{events.semantyczny-html-nie-taki-straszny.title}}\nProwadzenie: {{events.semantyczny-html-nie-taki-straszny.speaker}}\n\nNa przykładach pokażemy, dlaczego właściwe elementy HTML są jednym z fundamentów dostępności i kiedy semantyka pozwala uniknąć niepotrzebnego komplikowania kodu.\n\nOba spotkania są online i nastawione na praktykę.\n\nZapisy:\n- {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateCompact}}: {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.registrationUrl}}\n- {{events.semantyczny-html-nie-taki-straszny.dateCompact}}: {{events.semantyczny-html-nie-taki-straszny.registrationUrl}}\n\nAccessibility First | Włącz Wizję\n\n#DostępnośćCyfrowa #WCAG #A11y #Accessibility #HTML",
+      "cta": "Zapisz się na webinary",
+      "image": {
+        "url": "https://www.a11yfirst.pl/assets/webinary/2026/oba-webinary/landscape.png",
+        "alt": "Grafika zbiorcza dwóch webinarów Accessibility First we wrześniu 2026."
+      }
+    },
+    {
+      "id": "webinary-wrzesien-facebook-launch",
+      "channel": "facebook",
+      "enabled": true,
+      "publishAt": null,
+      "suggestedWindow": "2026-09-05/2026-09-07",
+      "text": "We wrześniu spotykamy się dwa razy na webinarach Accessibility First.\n\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateShort}}, {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.startTime}}  \n👉 *{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.title}}*\nProwadzenie: {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.speaker}}\n\n{{events.semantyczny-html-nie-taki-straszny.dateShort}}, {{events.semantyczny-html-nie-taki-straszny.startTime}}  \n👉 *{{events.semantyczny-html-nie-taki-straszny.title}}*\nProwadzenie: {{events.semantyczny-html-nie-taki-straszny.speaker}}\n\nPierwsze spotkanie będzie poświęcone praktycznym narzędziom wspierającym badanie dostępności. Tydzień później przyjrzymy się semantyce HTML i temu, jak wpływa ona na dostępność oraz współpracę strony z technologiami asystującymi.\n\nOba webinary: online.\n\nZapisy:\n- {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateCompact}}: {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.registrationUrl}}\n- {{events.semantyczny-html-nie-taki-straszny.dateCompact}}: {{events.semantyczny-html-nie-taki-straszny.registrationUrl}}\n\nAccessibility First | Włącz Wizję",
+      "cta": "Zapisz się na webinary",
+      "image": {
+        "url": "https://www.a11yfirst.pl/assets/webinary/2026/oba-webinary/portrait.png",
+        "alt": "Grafika zbiorcza dwóch webinarów Accessibility First we wrześniu 2026."
+      }
+    },
+    {
+      "id": "webinary-wrzesien-instagram-launch",
+      "channel": "instagram",
+      "enabled": true,
+      "publishAt": null,
+      "suggestedWindow": "2026-09-05/2026-09-07",
+      "text": "Dwa wrześniowe webinary Accessibility First:\n\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateCompact}} | {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.startTime}}  \n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.title}}\nProwadzenie: {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.speaker}}\n\n{{events.semantyczny-html-nie-taki-straszny.dateCompact}} | {{events.semantyczny-html-nie-taki-straszny.startTime}}  \n{{events.semantyczny-html-nie-taki-straszny.title}}\nProwadzenie: {{events.semantyczny-html-nie-taki-straszny.speaker}}\n\nPierwszy: narzędzia wspierające testowanie.  \nDrugi: fundamenty semantycznego HTML i dostępnego kodu.\n\nOba online. Oba praktyczne.\n\nZapisy:\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateCompact}} → {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.registrationUrl}}\n{{events.semantyczny-html-nie-taki-straszny.dateCompact}} → {{events.semantyczny-html-nie-taki-straszny.registrationUrl}}\n\n#dostepnosccyfrowa #wcag #a11y #accessibility #html",
+      "cta": "Zapisz się na webinary",
+      "image": {
+        "url": "https://www.a11yfirst.pl/assets/webinary/2026/oba-webinary/portrait.png",
+        "alt": "Grafika zbiorcza dwóch webinarów Accessibility First we wrześniu 2026."
+      }
+    }
+  ],
+  "newsletter": {
+    "from": "a11y@wlaczwizje.pl",
+    "id": "webinary-wrzesien-newsletter-launch",
+    "enabled": true,
+    "sendAt": null,
+    "template": "accessibility-first-default",
+    "recipients": {
+      "type": "google-contact-group",
+      "group": "contactGroups/197dc45988cd8770"
+    },
+    "subject": "Zaproszenie na wrześniowe webinary od Accessibility First",
+    "preheader": "17 września: narzędzia do badania dostępności. 24 września: semantyczny HTML.",
+    "body": "Cześć,\n\nwe wrześniu zapraszamy na dwa praktyczne webinary Accessibility First.\n\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateShort}}, godz. {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.startTime}}\n{{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.title}}\n\nPokażemy mniej oczywiste rozszerzenia i narzędzia, które mogą usprawnić codzienne badanie dostępności strony.\n\nBędziemy pracować m.in. ze strukturą strony, nagłówkami, formularzami, fokusem i tekstami alternatywnymi. Najważniejsze będzie jednak to, do czego używać konkretnych narzędzi i czego nie wywnioskujemy wyłącznie z automatycznego testu.\n\nZAPISZ SIĘ NA WEBINAR {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.dateCompact}}: {{events.nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej.registrationUrl}}\n\n\n{{events.semantyczny-html-nie-taki-straszny.dateShort}}, godz. {{events.semantyczny-html-nie-taki-straszny.startTime}}\n{{events.semantyczny-html-nie-taki-straszny.title}}\n\nTydzień później zajmiemy się jednym z fundamentów dostępnych stron internetowych.\n\nNa przykładach pokażemy, jak dobierać właściwe elementy HTML, czym różnią się linki od przycisków, po co są landmarki, jak budować formularze i kiedy ARIA rzeczywiście jest potrzebna.\n\nZAPISZ SIĘ NA WEBINAR {{events.semantyczny-html-nie-taki-straszny.dateCompact}}: {{events.semantyczny-html-nie-taki-straszny.registrationUrl}}\n\n\nOba spotkania odbędą się online.\n\nJeśli pracujesz przy tworzeniu, testowaniu, projektowaniu lub utrzymywaniu stron internetowych, oba tematy mogą przydać Ci się w codziennej pracy.\n\nDo zobaczenia,\n\nZespół Accessibility First  \nWłącz Wizję",
+    "deliveryMode": "manual",
+    "content": {
+      "heading": "Wrześniowe webinary o dostępności",
+      "intro": [
+        "Cześć,",
+        "we wrześniu zapraszamy na dwa spotkania online. Najpierw przyjrzymy się narzędziom do badania dostępności, a tydzień później przejdziemy do semantycznego HTML."
+      ],
+      "articles": [
+        {
+          "slug": "nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej",
+          "paragraphs": [
+            "Pokażemy mniej oczywiste rozszerzenia przeglądarki, które mogą usprawnić ręczne badanie dostępności.",
+            "Przyjrzymy się strukturze strony, nagłówkom, formularzom, fokusowi i tekstom alternatywnym. Omówimy też, czego nie wywnioskujemy wyłącznie z wyniku automatycznego testu."
+          ],
+          "cta": "Zapisz się: wtyczki do badania dostępności"
+        },
+        {
+          "slug": "semantyczny-html-nie-taki-straszny",
+          "paragraphs": [
+            "Na przykładach pokażemy, jak dobierać elementy HTML, aby ułatwić korzystanie ze strony z klawiaturą i czytnikiem ekranu.",
+            "Porozmawiamy o nagłówkach, landmarkach, linkach, przyciskach, listach i formularzach. Sprawdzimy również, kiedy ARIA jest potrzebna."
+          ],
+          "cta": "Zapisz się: semantyczny HTML"
+        }
+      ],
+      "closing": [
+        "Spotkania są skierowane do osób, które tworzą, projektują, testują lub utrzymują strony internetowe.",
+        "Do zobaczenia!"
+      ]
+    }
+  }
+}

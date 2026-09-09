@@ -1,0 +1,119 @@
+{
+  "slug": "nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej",
+  "title": "Nieoczywiste wtyczki do badania dostępności cyfrowej",
+  "shortDescription": "Praktyczny webinar o mniej oczywistych rozszerzeniach i narzędziach przeglądarkowych, które pomagają sprawniej badać dostępność cyfrową.",
+  "description": [
+    "Automatyczne testy dostępności to tylko początek. W codziennej pracy przydają się również narzędzia, które pomagają szybciej sprawdzić strukturę strony, sposób użycia nagłówków, teksty alternatywne, fokus, formularze, kontrast czy elementy istotne dla technologii asystujących.",
+    "Podczas webinaru pokażemy mniej oczywiste wtyczki i rozszerzenia do przeglądarki, które warto mieć pod ręką podczas badania dostępności cyfrowej."
+  ],
+  "date": "2026-09-17",
+  "startTime": "17:00",
+  "endTime": null,
+  "timezone": "Europe/Warsaw",
+  "format": "online",
+  "registrationUrl": "https://forms.gle/BeNkgVS6WWdYA3iK7",
+  "speaker": "Damian Żłobicki i Ola Migus",
+  "price": null,
+  "duration": null,
+  "platform": null,
+  "recordingInfo": null,
+  "capacity": null,
+  "status": "approved",
+  "registrationStatus": "open",
+  "targetGroups": [
+    "osób zajmujących się dostępnością cyfrową,",
+    "testerów i audytorów,",
+    "frontend developerów,",
+    "osób tworzących i utrzymujących serwisy internetowe,",
+    "UX/UI designerów,",
+    "osób odpowiedzialnych za jakość i zgodność cyfrowych produktów."
+  ],
+  "topics": [
+    "jakie wtyczki mogą uzupełnić podstawowy zestaw narzędzi audytora i specjalisty dostępności,",
+    "do jakich problemów warto używać konkretnych rozszerzeń,",
+    "jak szybciej wychwytywać błędy, których nie pokazuje pojedynczy skaner automatyczny,",
+    "jak nie wpaść w pułapkę „zielonego wyniku” z automatycznego testu,",
+    "jak zbudować własny praktyczny zestaw narzędzi do codziennej pracy."
+  ],
+  "audienceNote": "Nie musisz być zaawansowanym audytorem. Wystarczy podstawowa znajomość dostępności cyfrowej i chęć usprawnienia swojej pracy.",
+  "topicsNote": "Webinar będzie nastawiony na praktykę i konkretne zastosowania, a nie przegląd przypadkowych dodatków do przeglądarki.",
+  "image": {
+    "url": "https://www.a11yfirst.pl/assets/webinary/2026/nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej/landscape.png",
+    "alt": "Grafika webinaru „Nieoczywiste wtyczki do badania dostępności cyfrowej”. Ola i Damian stoją przy komputerze Apple w jasnej sali szkoleniowej."
+  },
+  "seo": {
+    "title": "Nieoczywiste wtyczki do badania dostępności cyfrowej",
+    "description": "Praktyczny webinar o mniej oczywistych rozszerzeniach i narzędziach przeglądarkowych, które pomagają sprawniej badać dostępność cyfrową."
+  },
+  "source": "_campaigns/webinary-wrzesien-2026/01_webinar_17_strona.md",
+  "social": {
+    "campaign": "webinary_wrzesien_2026",
+    "posts": [
+      {
+        "id": "webinar-17-linkedin-launch",
+        "channel": "linkedin",
+        "enabled": true,
+        "publishAt": null,
+        "suggestedWindow": "2026-09-09/2026-09-10",
+        "text": "{{title}}  \n📅 {{dateLong}}  \n🕔 {{startTime}}  \n💻 online\nProwadzenie: {{speaker}}\n\nSkaner automatyczny nie zrobi za nas audytu dostępności. Ale dobrze dobrane narzędzia potrafią bardzo przyspieszyć pracę.\n\nPodczas webinaru pokażemy mniej oczywiste rozszerzenia i wtyczki, które pomagają sprawdzać m.in. strukturę strony, nagłówki, formularze, fokus, teksty alternatywne i inne elementy istotne z punktu widzenia WCAG.\n\nSkupimy się na tym, do czego faktycznie używać konkretnych narzędzi i jak uzupełnić nimi ręczne badanie dostępności.\n\nWebinar dla osób zajmujących się dostępnością, testami, frontendem, UX/UI i jakością serwisów internetowych.\n\nZapisy: {{registrationUrl}}\n\nAccessibility First | Włącz Wizję\n\n#DostępnośćCyfrowa #WCAG #Accessibility #A11y #WebAccessibility",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej/landscape.png",
+          "alt": "Grafika webinaru „Nieoczywiste wtyczki do badania dostępności cyfrowej”."
+        }
+      },
+      {
+        "id": "webinar-17-facebook-launch",
+        "channel": "facebook",
+        "enabled": true,
+        "publishAt": null,
+        "suggestedWindow": "2026-09-09/2026-09-10",
+        "text": "{{title}}\nProwadzenie: {{speaker}}\n\n{{dateShort}} o {{startTime}} spotykamy się na kolejnym webinarze Accessibility First.\n\nTym razem bierzemy na warsztat narzędzia, które potrafią znacznie usprawnić badanie dostępności strony; także te mniej oczywiste niż najpopularniejsze automatyczne skanery.\n\nPokażemy, jak wykorzystać rozszerzenia przeglądarki m.in. do sprawdzania:\n\n- struktury i nagłówków,\n- formularzy,\n- fokusu,\n- tekstów alternatywnych,\n- elementów ważnych dla technologii asystujących.\n\nBez listy „20 najlepszych pluginów”. Zamiast tego: konkretne narzędzie → konkretne zastosowanie.\n\n📅 {{date}}  \n🕔 {{startTime}}  \n💻 online  \n🔗 Zapisy: {{registrationUrl}}\n\nAccessibility First | Włącz Wizję",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej/portrait.png",
+          "alt": "Grafika webinaru „Nieoczywiste wtyczki do badania dostępności cyfrowej”."
+        }
+      },
+      {
+        "id": "webinar-17-instagram-launch",
+        "channel": "instagram",
+        "enabled": true,
+        "publishAt": null,
+        "suggestedWindow": "2026-09-09/2026-09-10",
+        "text": "{{title}}\nProwadzenie: {{speaker}}\n\n{{dateCompact}} | {{startTime}} | online\n\nAutomatyczny skaner to za mało.\n\nNa webinarze pokażemy wtyczki i rozszerzenia, które pomagają szybciej sprawdzać m.in.:\n\n- strukturę strony,\n- nagłówki,\n- formularze,\n- fokus,\n- teksty alternatywne,\n- inne elementy istotne dla dostępności.\n\nBez przypadkowej listy narzędzi. Pokażemy przede wszystkim co, kiedy i po co uruchamiać.\n\nZapisy: {{registrationUrl}}\n\nAccessibility First | Włącz Wizję\n\n#dostepnosccyfrowa #wcag #a11y #accessibility #webaccessibility",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej/portrait.png",
+          "alt": "Grafika webinaru „Nieoczywiste wtyczki do badania dostępności cyfrowej”."
+        }
+      },
+      {
+        "id": "webinar-17-google-business-profile-launch",
+        "channel": "googleBusinessProfile",
+        "enabled": true,
+        "publishAt": null,
+        "text": "{{title}}\n{{dateLong}}, godz. {{startTime}}. Webinar online Accessibility First.\nProwadzenie: {{speaker}}\n\nPraktyczny webinar o mniej oczywistych rozszerzeniach i narzędziach przeglądarkowych, które pomagają sprawniej badać dostępność cyfrową.\n\nPoznaj zakres spotkania i zapisz się: {{registrationUrl}}",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/nieoczywiste-wtyczki-do-badania-dostepnosci-cyfrowej/square.png",
+          "alt": "Grafika webinaru „Nieoczywiste wtyczki do badania dostępności cyfrowej”."
+        }
+      }
+    ]
+  },
+  "newsletter": {
+    "from": "a11y@wlaczwizje.pl",
+    "id": "webinar-17-newsletter-launch",
+    "enabled": true,
+    "sendAt": null,
+    "template": "accessibility-first-default",
+    "recipients": {
+      "type": "google-contact-group",
+      "group": "contactGroups/197dc45988cd8770"
+    },
+    "subject": "Nieoczywiste wtyczki do badania dostępności; webinar {{dateShort}}",
+    "preheader": "Praktyczne narzędzia, które warto dodać do swojego zestawu do testowania dostępności.",
+    "body": "Cześć,\n\n{{dateShort}} o godz. {{startTime}} zapraszamy na webinar Accessibility First:\n\n{{title}}\n\nAutomatyczne skanery są przydatne, ale nie wystarczą do rzetelnego badania dostępności. Dlatego podczas webinaru pokażemy mniej oczywiste rozszerzenia i wtyczki, które mogą realnie usprawnić codzienną pracę.\n\nPorozmawiamy o narzędziach pomagających sprawdzać m.in.:\n\n- strukturę strony i nagłówki,\n- formularze,\n- fokus,\n- teksty alternatywne,\n- elementy istotne dla technologii asystujących.\n\nNajważniejsze będzie jednak nie samo „co zainstalować”, ale do czego używać konkretnego narzędzia i kiedy jego wynik wymaga dalszej ręcznej weryfikacji.\n\nInformacje\n\n- {{dateLong}}\n- godz. {{startTime}}\n- online\n\nZapisz się na webinar: {{registrationUrl}}\n\nDo zobaczenia,\n\nZespół Accessibility First  \nWłącz Wizję"
+  }
+}

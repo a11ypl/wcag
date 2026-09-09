@@ -10,3 +10,14 @@ dist
 .next
 coverage
 *.log
+
+# Committed webinar pages and stylesheet
+!/public/
+/public/*
+!/public/webinary.html
+!/public/webinary/
+!/public/assets/
+/public/assets/*
+!/public/assets/webinary/
+!/public/assets/webinary/**
+!/public/assets/events.css

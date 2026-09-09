@@ -1,0 +1,120 @@
+{
+  "slug": "semantyczny-html-nie-taki-straszny",
+  "title": "Semantyczny HTML, nie taki straszny",
+  "shortDescription": "Praktyczny webinar o semantycznym HTML i jego znaczeniu dla dostępności cyfrowej, jakości kodu oraz współpracy z technologiami asystującymi.",
+  "description": [
+    "div potrafi zrobić prawie wszystko. Problem w tym, że przeglądarka i technologie asystujące nie zawsze wiedzą wtedy, czym dany element właściwie jest.",
+    "Semantyczny HTML pozwala opisać strukturę i znaczenie treści w sposób zrozumiały nie tylko dla człowieka, ale także dla przeglądarek, czytników ekranu i innych technologii.",
+    "Na webinarze pokażemy, jak korzystać z semantyki HTML bez komplikowania kodu i bez traktowania jej jako dodatkowej warstwy „pod dostępność”."
+  ],
+  "date": "2026-09-24",
+  "startTime": "17:00",
+  "endTime": null,
+  "timezone": "Europe/Warsaw",
+  "format": "online",
+  "registrationUrl": "https://forms.gle/rjvFigaSQvUqb4Uy9",
+  "speaker": "Damian Żłobicki",
+  "price": null,
+  "duration": null,
+  "platform": null,
+  "recordingInfo": null,
+  "capacity": null,
+  "status": "approved",
+  "registrationStatus": "open",
+  "targetGroups": [
+    "frontend developerów,",
+    "osób tworzących strony i aplikacje,",
+    "testerów i audytorów dostępności,",
+    "UX/UI designerów współpracujących z developerami,",
+    "osób odpowiedzialnych za jakość cyfrowych produktów."
+  ],
+  "topics": [
+    "czym naprawdę jest semantyczny HTML,",
+    "dlaczego właściwy element HTML jest często lepszy niż div z dodatkowymi atrybutami,",
+    "jak dobierać nagłówki, landmarki, listy, przyciski, linki i elementy formularzy,",
+    "kiedy ARIA pomaga, a kiedy próbuje naprawić problem, który nie powinien powstać,",
+    "jak semantyka wpływa na korzystanie ze strony z czytnikiem ekranu i klawiaturą,",
+    "jakie błędy najczęściej pojawiają się w kodzie stron i komponentów."
+  ],
+  "audienceNote": "Nie musisz znać HTML na poziomie zaawansowanym. Webinar ma pomóc uporządkować podstawy i pokazać, dlaczego semantyka ma praktyczne znaczenie.",
+  "topicsNote": "Pokażemy przykłady kodu i różnice pomiędzy rozwiązaniami, które wyglądają podobnie, ale nie przekazują tej samej informacji technologiom asystującym.",
+  "image": {
+    "url": "https://www.a11yfirst.pl/assets/webinary/2026/semantyczny-html-nie-taki-straszny/landscape.png",
+    "alt": "Grafika webinaru „Semantyczny HTML, nie taki straszny”. Damian stoi przy komputerze Apple w jasnej sali szkoleniowej."
+  },
+  "seo": {
+    "title": "Semantyczny HTML, nie taki straszny",
+    "description": "Praktyczny webinar o semantycznym HTML i jego znaczeniu dla dostępności cyfrowej, jakości kodu oraz współpracy z technologiami asystującymi."
+  },
+  "source": "_campaigns/webinary-wrzesien-2026/04_webinar_24_strona.md",
+  "social": {
+    "campaign": "webinary_wrzesien_2026",
+    "posts": [
+      {
+        "id": "webinar-24-linkedin-launch",
+        "channel": "linkedin",
+        "enabled": true,
+        "publishAt": null,
+        "suggestedWindow": "2026-09-18/2026-09-19",
+        "text": "{{title}}  \n📅 {{dateLong}}  \n🕔 {{startTime}}  \n💻 online\nProwadzenie: {{speaker}}\n\nCzy wszystko da się zrobić za pomocą div?\n\nTechnicznie; bardzo dużo. Semantycznie; często znacznie za mało.\n\nPodczas webinaru Accessibility First pokażemy, dlaczego dobrze dobrane elementy HTML mają znaczenie dla dostępności, jakości kodu i współpracy strony z technologiami asystującymi.\n\nBędą przykłady dotyczące m.in.:\n\n- nagłówków i struktury strony,\n- landmarków,\n- linków i przycisków,\n- list,\n- formularzy,\n- relacji HTML i ARIA.\n\nSkupimy się na praktycznej zasadzie: najpierw właściwy HTML, dopiero później dodatkowe mechanizmy.\n\nWebinar dla developerów, testerów, audytorów oraz osób pracujących przy projektowaniu i jakości produktów cyfrowych.\n\nZapisy: {{registrationUrl}}\n\nAccessibility First | Włącz Wizję\n\n#HTML #SemanticHTML #DostępnośćCyfrowa #WCAG #A11y #Accessibility",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/semantyczny-html-nie-taki-straszny/landscape.png",
+          "alt": "Grafika webinaru „Semantyczny HTML, nie taki straszny”."
+        }
+      },
+      {
+        "id": "webinar-24-facebook-launch",
+        "channel": "facebook",
+        "enabled": true,
+        "publishAt": null,
+        "suggestedWindow": "2026-09-18/2026-09-19",
+        "text": "{{title}}\nProwadzenie: {{speaker}}\n\n{{dateShort}} o {{startTime}} zapraszamy na webinar o jednym z fundamentów dostępnych stron internetowych.\n\nPorozmawiamy o tym, dlaczego właściwy element HTML często robi więcej dobrego niż dodatkowe atrybuty i skrypty oraz jak semantyka wpływa na działanie strony z czytnikiem ekranu i klawiaturą.\n\nNa konkretnych przykładach pokażemy m.in.:\n\n- jak budować strukturę nagłówków,\n- czym różni się link od przycisku,\n- po co są landmarki,\n- jak poprawnie opisywać formularze,\n- kiedy używać ARIA,\n- jakie problemy powoduje nadmiar div-ów.\n\n📅 {{date}}  \n🕔 {{startTime}}  \n💻 online  \n🔗 Zapisy: {{registrationUrl}}\n\nAccessibility First | Włącz Wizję",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/semantyczny-html-nie-taki-straszny/portrait.png",
+          "alt": "Grafika webinaru „Semantyczny HTML, nie taki straszny”."
+        }
+      },
+      {
+        "id": "webinar-24-instagram-launch",
+        "channel": "instagram",
+        "enabled": true,
+        "publishAt": null,
+        "suggestedWindow": "2026-09-18/2026-09-19",
+        "text": "{{title}}\nProwadzenie: {{speaker}}\n\n{{dateCompact}} | {{startTime}} | online\n\ndiv nie zawsze jest odpowiedzią.\n\nNa webinarze pokażemy, jak semantyczny HTML pomaga tworzyć strony bardziej dostępne i czytelne dla przeglądarek oraz technologii asystujących.\n\nBędą m.in.:\n\n- nagłówki,\n- landmarki,\n- linki i przyciski,\n- listy,\n- formularze,\n- HTML vs ARIA.\n\nDużo konkretnych przykładów. Mało teorii dla samej teorii.\n\nZapisy: {{registrationUrl}}\n\nAccessibility First | Włącz Wizję\n\n#html #semantichtml #dostepnosccyfrowa #wcag #a11y #accessibility",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/semantyczny-html-nie-taki-straszny/portrait.png",
+          "alt": "Grafika webinaru „Semantyczny HTML, nie taki straszny”."
+        }
+      },
+      {
+        "id": "webinar-24-google-business-profile-launch",
+        "channel": "googleBusinessProfile",
+        "enabled": true,
+        "publishAt": null,
+        "text": "{{title}}\n{{dateLong}}, godz. {{startTime}}. Webinar online Accessibility First.\nProwadzenie: {{speaker}}\n\nPraktyczny webinar o semantycznym HTML i jego znaczeniu dla dostępności cyfrowej, jakości kodu oraz współpracy z technologiami asystującymi.\n\nPoznaj zakres spotkania i zapisz się: {{registrationUrl}}",
+        "cta": "Zapisz się na webinar",
+        "image": {
+          "url": "https://www.a11yfirst.pl/assets/webinary/2026/semantyczny-html-nie-taki-straszny/square.png",
+          "alt": "Grafika webinaru „Semantyczny HTML, nie taki straszny”."
+        }
+      }
+    ]
+  },
+  "newsletter": {
+    "from": "a11y@wlaczwizje.pl",
+    "id": "webinar-24-newsletter-launch",
+    "enabled": true,
+    "sendAt": null,
+    "template": "accessibility-first-default",
+    "recipients": {
+      "type": "google-contact-group",
+      "group": "contactGroups/197dc45988cd8770"
+    },
+    "subject": "{{title}}; webinar {{dateShort}}",
+    "preheader": "Nagłówki, landmarki, linki, przyciski, formularze i ARIA; na praktycznych przykładach.",
+    "body": "Cześć,\n\n{{dateShort}} o godz. {{startTime}} zapraszamy na webinar Accessibility First:\n\n{{title}}\n\nSemantyczny HTML nie jest dodatkiem do dostępności. To jeden z fundamentów dobrze zbudowanej strony.\n\nPodczas webinaru pokażemy, jak dobór właściwych elementów HTML wpływa na sposób, w jaki stronę rozumieją przeglądarki i technologie asystujące.\n\nNa przykładach omówimy m.in.:\n\n- nagłówki i strukturę dokumentu,\n- landmarki,\n- linki i przyciski,\n- listy,\n- formularze,\n- zastosowanie ARIA.\n\nPokażemy również sytuacje, w których rozbudowane rozwiązanie można zastąpić prostszym i bardziej odpornym kodem dzięki wykorzystaniu właściwego elementu HTML.\n\nInformacje\n\n- {{dateLong}}\n- godz. {{startTime}}\n- online\n\nZapisz się na webinar: {{registrationUrl}}\n\nDo zobaczenia,\n\nZespół Accessibility First  \nWłącz Wizję"
+  }
+}
