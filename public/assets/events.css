@@ -15,7 +15,35 @@ html { scroll-padding-top: 2rem; }
 .events-page .event-facts dd { margin: 0; overflow-wrap: anywhere; }
 .events-page .event-image { max-width: 100%; height: auto; }
 .events-page .btn { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
-.events-page .training-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+.events-page .training-grid, .webinar-list .training-grid { display: flex; flex-direction: column; gap: 1rem; }
+.events-page .training-card, .webinar-list .training-card { display: grid; grid-template-columns: minmax(16rem, 26rem) minmax(0, 1fr); gap: 1.5rem; align-items: stretch; padding: 1.25rem; border: 2px solid var(--primary); border-radius: 12px; background: var(--surface); }
+.events-page .training-card > .training-card-image, .webinar-list .training-card > .training-card-image { min-width: 0; align-self: start; grid-column: 1; grid-row: 1; }
+.events-page .training-card-image img, .webinar-list .training-card-image img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 628; object-fit: cover; border-radius: 8px; }
+.events-page .training-card > .training-card-body, .webinar-list .training-card > .training-card-body { min-width: 0; display: flex; flex-direction: column; gap: 0.75rem; grid-column: 2; grid-row: 1; }
+.events-page .training-card-body p, .events-page .training-card-body h3, .webinar-list .training-card-body p, .webinar-list .training-card-body h3 { margin: 0; }
+.events-page .training-card-body .btn, .webinar-list .training-card-body .btn { align-self: flex-start; margin-top: auto; }
+.events-page .training-card-body .btn-primary, .webinar-list .training-card-body .btn-primary, .home-webinars .training-card-body .btn-primary { background: var(--primary); border: 2px solid #ffd43b; color: #ffd43b; font-weight: 800; text-decoration: underline; text-decoration-thickness: 0.12em; text-underline-offset: 0.2em; }
+.events-page .training-card-body .btn-primary:hover, .webinar-list .training-card-body .btn-primary:hover, .home-webinars .training-card-body .btn-primary:hover { background: #4a1f8f; color: #ffd43b; }
 .events-page header { position: static; }
 .events-page .header-content, .events-page .site-banner, .events-page .site-banner-full { transition: none; }
-.events-page :where(a,button):focus-visible { outline: 3px solid black; outline-offset: 4px; box-shadow: 0 0 0 7px white; }
+
+.home-webinars { grid-column: 1 / -1; min-width: 0; padding-block: 1.5rem; line-height: 1.6; }
+.home-webinars h2 { margin: 0 0 1.5rem; font-size: 1.75rem; }
+.home-webinars h3 { margin: 0; font-size: 1.35rem; line-height: 1.4; overflow-wrap: anywhere; }
+.home-webinars .training-grid { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+.home-webinars .training-card { min-width: 0; display: grid; grid-template-columns: minmax(16rem, 26rem) minmax(0, 1fr); gap: 1.5rem; align-items: stretch; padding: 1.5rem; border: 2px solid var(--primary); border-radius: 12px; background: var(--surface); }
+.home-webinars .training-card > .training-card-image { min-width: 0; align-self: start; grid-column: 1; grid-row: 1; }
+.home-webinars .training-card-image img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 628; object-fit: cover; border-radius: 8px; }
+.home-webinars .training-card > .training-card-body { min-width: 0; display: flex; flex-direction: column; gap: 0.75rem; grid-column: 2; grid-row: 1; }
+.home-webinars .training-card-body p, .home-webinars .training-card-body h3 { margin: 0; }
+.home-webinars .training-card-body .btn { align-self: flex-start; margin-top: auto; }
+.home-webinars .training-type { color: var(--muted); }
+.home-webinars a { color: var(--text); text-decoration: underline; text-underline-offset: 0.2em; }
+.home-webinars .btn { align-self: flex-start; margin-top: auto; padding: 0.75rem 1rem; border: 2px solid var(--accent); border-radius: 8px; }
+.home-webinars a:focus-visible { outline: 3px solid var(--focus-inner); outline-offset: 4px; }
+
+@media (max-width: 700px) {
+  .events-page .training-card, .webinar-list .training-card, .home-webinars .training-card { grid-template-columns: 1fr; gap: 1rem; }
+  .events-page .training-card > .training-card-image, .events-page .training-card > .training-card-body, .webinar-list .training-card > .training-card-image, .webinar-list .training-card > .training-card-body, .home-webinars .training-card > .training-card-image, .home-webinars .training-card > .training-card-body { grid-column: 1; grid-row: auto; }
+  .events-page .training-card-image img, .webinar-list .training-card-image img, .home-webinars .training-card-image img { aspect-ratio: 1200 / 628; }
+}
