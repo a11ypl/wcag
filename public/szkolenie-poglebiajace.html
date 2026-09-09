@@ -76,6 +76,7 @@
     })(window, document, 'script');
     </script>
 
+    <link rel="stylesheet" href="assets/training-enrollment.css?v=1">
 </head>
 <body class="course-page">
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -104,10 +105,10 @@
             <div class="container">
                 <h1>Złap skilla w audytowaniu</h1>
                 <p class="subtitle">Dwudniowe szkolenie dla osób, które znają podstawy WCAG i chcą doskonalić realizację audytów dostępności cyfrowej: od analizy wybranej strony, przez trudne przypadki, po poprawę raportu.</p>
-                <p class="course-dates">27-28 sierpnia 2026 | 9:00-17:00 (online live)</p>
+                <p class="course-dates">Kolejna edycja: termin w przygotowaniu. Zapisz się na listę zainteresowanych.</p>
 
                 <div class="hero-cta">
-                    <a href="#pricing" class="btn btn-primary">Zarezerwuj miejsce</a>
+                    <a href="#pricing" class="btn btn-primary">Zapisz się na listę</a>
                     <a href="#program" class="btn btn-secondary">Poznaj program</a>
                 </div>
 
@@ -119,10 +120,6 @@
                     <div class="stat">
                         <span class="stat-number">16h</span>
                         <span class="stat-label">pracy na przykładach</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">1649 zł</span>
-                        <span class="stat-label">pełne szkolenie</span>
                     </div>
                 </div>
             </div>
@@ -225,144 +222,29 @@
             </div>
         </section>
 
-        <section id="pricing" class="pricing">
+        <section class="pricing training-interest" id="pricing" aria-labelledby="interest-title">
             <div class="container">
-                <h2 class="section-title">Zapis na szkolenie</h2>
-
-                <div class="pricing-grid">
-                    <div class="price-card price-card--featured">
-                        <span class="price-card__badge">Pełne szkolenie</span>
-                        <h3>Złap skilla w audytowaniu</h3>
-                        <div class="price">1649 <span class="price-currency">zł</span></div>
-                        <p class="price-period">brutto za 2 dni. Faktura bez VAT.</p>
-                        <ul class="price-features">
-                            <li>2 dni warsztatów online live</li>
-                            <li>Materiały i przykłady do dalszej pracy</li>
-                            <li>Imienny certyfikat uczestnictwa</li>
-                            <li>Praca na realnych przypadkach audytorskich</li>
-                        </ul>
-                        <a class="btn btn-primary btn-full-width" href="#pricing">Wypełnij formularz zapisu</a>
+                <h2 class="section-title" id="interest-title">Zapisz się na listę zainteresowanych</h2>
+                <p class="section-lead">Termin kolejnej edycji nie jest jeszcze ustalony. Zostaw adres e-mail, a powiadomimy Cię o uruchomieniu zapisów na szkolenie „Złap skilla w audytowaniu”.</p>
+                <p class="section-lead">Zgłoszenie jest bezpłatne i nie zobowiązuje do zakupu szkolenia.</p>
+                <form class="training-interest-form" data-interest-form action="https://api.web3forms.com/submit" method="post">
+                    <input type="hidden" name="access_key" value="45035717-3dcb-44cc-b1d5-ae1e120a6c01">
+                    <input type="hidden" name="subject" value="Lista zainteresowanych: Złap skilla w audytowaniu">
+                    <input type="hidden" name="training" value="Złap skilla w audytowaniu">
+                    <input type="hidden" name="from_name" value="a11yfirst.pl">
+                    <input type="checkbox" name="botcheck" hidden tabindex="-1">
+                    <div class="checkout-field">
+                        <label for="interest-name">Imię (opcjonalnie)</label>
+                        <input class="checkout-input" id="interest-name" name="name" autocomplete="given-name" maxlength="100">
                     </div>
-                </div>
-
-                <div class="checkout-summary poglebiajace-registration">
-                    <h3>Rejestracja</h3>
-                    <div class="poglebiajace-checkout-lines" aria-live="polite" aria-atomic="true">
-                        <p><output id="poglebiajaceSelectedProduct">Złap skilla w audytowaniu</output></p>
-                        <p>Razem do zapłaty: <output id="poglebiajaceTotalPrice">1649 zł</output></p>
+                    <div class="checkout-field">
+                        <label for="interest-email">Adres e-mail (wymagany)</label>
+                        <input class="checkout-input" id="interest-email" name="email" type="email" autocomplete="email" required maxlength="254">
                     </div>
-                    <p id="poglebiajaceDiscountSummary" class="checkout-discount-summary" hidden></p>
-
-                    <form id="poglebiajaceRegistrationForm" data-checkout-form data-product-title="Złap skilla w audytowaniu" data-product-price="1649" data-product-category="training" data-transfer-title="Złap skilla w audytowaniu" data-error-summary="poglebiajaceCheckoutErrorSummary" data-transfer-section="poglebiajaceBankTransferInfo" data-selected-output="poglebiajaceSelectedProduct" data-total-output="poglebiajaceTotalPrice" data-discount-output="poglebiajaceDiscountSummary" data-discount-input="poglebiajace-discount-code" data-discount-apply="poglebiajace-apply-discount" data-discount-remove="poglebiajace-remove-discount" data-discount-status="poglebiajace-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie Złap skilla w audytowaniu z a11yfirst.pl" novalidate>
-                        <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
-                        <div id="poglebiajaceCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
-
-                        <fieldset class="checkout-discount">
-                            <legend>Kod rabatowy</legend>
-                            <p class="checkout-helper">Kod <code>jestemwgrupie</code> daje 10% rabatu na szkolenia.</p>
-                            <div class="checkout-discount-row">
-                                <label for="poglebiajace-discount-code">Wpisz kod rabatowy</label>
-                                <input type="text" id="poglebiajace-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
-                                <button class="btn btn-secondary" type="button" id="poglebiajace-apply-discount">Zastosuj kod</button>
-                                <button class="btn btn-secondary" type="button" id="poglebiajace-remove-discount">Usuń kod</button>
-                            </div>
-                            <p id="poglebiajace-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
-                        </fieldset>
-
-                        <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
-                            <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / nabywcy</legend>
-
-                            <div class="checkout-form-grid">
-                                <div class="checkout-field">
-                                    <label for="poglebiajace-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
-                                    <input type="text" id="poglebiajace-fname" name="fname" class="checkout-input" required autocomplete="given-name" data-checkout-field data-label="Imię" data-validate="text" data-error-id="poglebiajace-fname-error" aria-describedby="poglebiajace-fname-error">
-                                    <p id="poglebiajace-fname-error" class="field-error"></p>
-                                </div>
-                                <div class="checkout-field">
-                                    <label for="poglebiajace-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
-                                    <input type="text" id="poglebiajace-lname" name="lname" class="checkout-input" required autocomplete="family-name" data-checkout-field data-label="Nazwisko" data-validate="text" data-error-id="poglebiajace-lname-error" aria-describedby="poglebiajace-lname-error">
-                                    <p id="poglebiajace-lname-error" class="field-error"></p>
-                                </div>
-                            </div>
-
-                            <div class="checkout-field" style="margin-bottom: 1rem;">
-                                <label for="poglebiajace-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
-                                <input type="email" id="poglebiajace-email" name="email" class="checkout-input" required autocomplete="email" data-checkout-field data-label="Adres e-mail" data-validate="email" data-error-id="poglebiajace-email-error" aria-describedby="poglebiajace-email-error">
-                                <p id="poglebiajace-email-error" class="field-error"></p>
-                            </div>
-
-                            <div class="checkout-field" style="margin-bottom: 1rem;">
-                                <label for="poglebiajace-phone" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Numer telefonu (opcjonalnie)</label>
-                                <input type="tel" id="poglebiajace-phone" name="phone" class="checkout-input" inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" data-checkout-field data-label="Numer telefonu" data-validate="phone" data-error-id="poglebiajace-phone-error" aria-describedby="poglebiajace-phone-error">
-                                <p id="poglebiajace-phone-error" class="field-error"></p>
-                            </div>
-
-                            <div class="checkout-field" style="margin-bottom: 1rem;">
-                                <label for="poglebiajace-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (opcjonalnie - dla firm)</label>
-                                <input type="text" id="poglebiajace-nip" name="nip" class="checkout-input" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="on" data-checkout-field data-label="NIP" data-validate="nip" data-error-id="poglebiajace-nip-error" aria-describedby="poglebiajace-nip-error">
-                                <p id="poglebiajace-nip-error" class="field-error"></p>
-                            </div>
-
-                            <div class="checkout-field">
-                                <label for="poglebiajace-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
-                                <textarea id="poglebiajace-access-needs" name="access_needs" class="checkout-input checkout-textarea" maxlength="1000" data-checkout-field data-label="W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?" data-validate="text" data-error-id="poglebiajace-access-needs-error" aria-describedby="poglebiajace-access-needs-help poglebiajace-access-needs-error"></textarea>
-                                <p id="poglebiajace-access-needs-help" class="checkout-helper" style="color: black;">Pole opcjonalne. Napisz, czego potrzebujesz, np. dłuższych przerw, wolniejszego tempa, materiałów w innym formacie albo innego sposobu komunikacji.</p>
-                                <p id="poglebiajace-access-needs-error" class="field-error"></p>
-                            </div>
-                        </fieldset>
-
-                        <fieldset style="border: none; padding: 0; margin: 0 auto; max-width: 700px; text-align: left;">
-                            <legend class="sr-only">Zgody formalne niezbędne do realizacji zamówienia</legend>
-                            <div class="form-field form-field--checkbox">
-                                <div class="form-field--checkbox-control">
-                                    <input type="checkbox" id="poglebiajace-consent-tos" name="consent_tos" class="checkout-checkbox" required style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" data-checkout-field data-label="Akceptacja regulaminu i polityki prywatności" data-error-id="poglebiajace-consent-tos-error" aria-describedby="poglebiajace-consent-tos-help poglebiajace-consent-tos-error">
-                                    <label for="poglebiajace-consent-tos" style="color: var(--dark);">
-                                        Akceptuję regulamin świadczenia usług oraz potwierdzam zapoznanie się z polityką prywatności<span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span>
-                                    </label>
-                                </div>
-                                <p id="poglebiajace-consent-tos-help" class="checkout-helper">Przeczytaj: <a href="/regulamin" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin świadczenia usług</a> oraz <a href="/polityka-prywatnosci" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Politykę prywatności</a>.</p>
-                            </div>
-                            <p id="poglebiajace-consent-tos-error" class="field-error"></p>
-                        </fieldset>
-
-                        <button class="btn btn-primary" type="submit" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem;">Wyślij zgłoszenie i pokaż dane do przelewu</button>
-                    </form>
-
-                    <section id="poglebiajaceBankTransferInfo" class="checkout-step" hidden aria-live="polite">
-                        <h4 class="checkout-step-title">Dane do przelewu</h4>
-                        <div class="transfer-list">
-                            <div class="transfer-row">
-                                <strong>Odbiorca:</strong>
-                                <div class="transfer-value">
-                                    <span id="poglebiajaceTransferRecipient">Włącz Wizję sp. z o.o.</span>
-                                    <button class="copy-btn" type="button" data-copy-target="poglebiajaceTransferRecipient">Kopiuj</button>
-                                </div>
-                            </div>
-                            <div class="transfer-row">
-                                <strong>Numer rachunku:</strong>
-                                <div class="transfer-value">
-                                    <span id="poglebiajaceTransferAccount">43 1870 1045 2078 1086 1525 0001</span>
-                                    <button class="copy-btn" type="button" data-copy-target="poglebiajaceTransferAccount">Kopiuj</button>
-                                </div>
-                            </div>
-                            <div class="transfer-row">
-                                <strong>Kwota:</strong>
-                                <div class="transfer-value">
-                                    <span id="poglebiajaceTransferAmount" data-transfer-amount>1649 zł</span>
-                                    <button class="copy-btn" type="button" data-copy-target="poglebiajaceTransferAmount">Kopiuj</button>
-                                </div>
-                            </div>
-                            <div class="transfer-row">
-                                <strong>Tytuł przelewu:</strong>
-                                <div class="transfer-value">
-                                    <span id="poglebiajaceTransferTitle" data-transfer-title>Złap skilla w audytowaniu</span>
-                                    <button class="copy-btn" type="button" data-copy-target="poglebiajaceTransferTitle">Kopiuj</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p style="margin-top: 1rem; margin-bottom: 0; color: var(--dark); font-size: 0.95rem;">Po wykonaniu przelewu wyślij potwierdzenie na adres <a href="mailto:a11y@wlaczwizje.pl" style="color: var(--primary); font-weight: 600;">a11y@wlaczwizje.pl</a>.</p>
-                    </section>
-                </div>
+                    <p>Zapisując się, prosisz o wiadomość dotyczącą kolejnej edycji tego szkolenia. Informacje o przetwarzaniu danych znajdziesz w <a href="/polityka-prywatnosci">polityce prywatności</a>.</p>
+                    <button class="btn btn-primary" type="submit">Zapisz się na listę</button>
+                    <p class="interest-status" role="status" aria-atomic="true"></p>
+                </form>
             </div>
         </section>
 
@@ -384,7 +266,7 @@
                     </details>
                     <details>
                         <summary>Czy szkolenie odbywa się online?</summary>
-                        <p>Tak. Szkolenie odbywa się online live w dniach 27-28 sierpnia 2026 roku, w godzinach 9:00-17:00.</p>
+                        <p>Tak. Szkolenie odbywa się online na żywo. Termin i godziny kolejnej edycji podamy po uruchomieniu zapisów.</p>
                     </details>
                 </div>
             </div>
@@ -410,7 +292,7 @@
         </div>
     </footer>
     <script src="assets/trainer-flips.js?v=6"></script>
-    <script src="assets/checkout-forms.js?v=20"></script>
+    <script src="assets/training-interest.js?v=1" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.A11yFirstTrainerFlip) {

@@ -166,10 +166,10 @@ window.A11yFirstCheckout = (() => {
 
         if (discountOutput) {
             if (cart.discountAmount > 0) {
-                discountOutput.textContent = `Rabat ${cart.discount.label}: -${formatPrice(cart.discountAmount)} zł. Cena przed rabatem: ${formatPrice(cart.subtotal)} zł.`;
+                discountOutput.textContent = `Rabat 10%: -${formatPrice(cart.discountAmount)} zł. Cena przed rabatem: ${formatPrice(cart.subtotal)} zł.`;
                 discountOutput.hidden = false;
             } else if (cart.discount) {
-                discountOutput.textContent = `Kod ${cart.discount.label} jest aktywny, ale nie obejmuje wybranych produktów.`;
+                discountOutput.textContent = 'Rabat jest aktywny, ale nie obejmuje wybranych produktów.';
                 discountOutput.hidden = false;
             } else {
                 discountOutput.textContent = '';
@@ -295,11 +295,11 @@ window.A11yFirstCheckout = (() => {
         const eligibleTotal = getDiscountableTotal(products, discount);
 
         if (eligibleTotal <= 0) {
-            return `Kod ${discount.label} działa tylko na szkolenia. Nie obejmuje produktów w sklepie, webinarów ani materiałów.`;
+            return 'Ten rabat działa tylko na szkolenia. Nie obejmuje produktów w sklepie, webinarów ani materiałów.';
         }
 
         const discountAmount = roundMoney(eligibleTotal * discount.percent / 100);
-        return `Zastosowano kod ${discount.label}. Rabat ${discount.percent}% obniża cenę o ${formatPrice(discountAmount)} zł.`;
+        return `Zastosowano rabat ${discount.percent}%. Cena spadła o ${formatPrice(discountAmount)} zł.`;
     }
 
     function applyDiscountCode(form) {

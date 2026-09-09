@@ -16,7 +16,7 @@
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview-wcag.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="WCAG dla specjalistów. Praktyczny kurs audytu dostępności cyfrowej. 24-26 sierpnia 2026, online live.">
+    <meta property="og:image:alt" content="Accessibility First">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="WCAG dla specjalistów - Praktyczny kurs audytu dostępności">
     <meta name="twitter:description" content="3-dniowy praktyczny kurs audytu dostępności cyfrowej. Wybierz pojedyncze dni lub pełny kurs.">
@@ -47,8 +47,8 @@
           "hasCourseInstance": {
             "@type": "CourseInstance",
             "courseMode": "online",
-            "startDate": "2026-08-24",
-            "endDate": "2026-08-26",
+            "startDate": "2026-10-27",
+            "endDate": "2026-10-29",
             "inLanguage": "pl-PL"
           },
           "offers": [
@@ -128,6 +128,7 @@
     </script>
     <link rel="stylesheet" href="assets/styles.css?v=20">
     <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+    <link rel="stylesheet" href="assets/training-enrollment.css?v=1">
     <script>
     (function(w,d,s,a,m,t) {
       a = d.createElement(s);
@@ -193,7 +194,7 @@
             <div class="container">
                 <h1>Naucz się prowadzić audyt WCAG od analizy do raportu</h1>
                 <p class="subtitle">Praktyczny, 3-dniowy warsztat, podczas którego opanujesz proces audytowania i opisywania błędów w raportach</p>
-                <p class="course-dates">Dołącz do drugiej edycji:<br>24-26 sierpnia 2026 | 9:00-17:00 (online live)</p>
+                <p class="course-dates">Najbliższa edycja:<br>27-29 października 2026 | 9:00-17:00 (online live)</p>
                 
                 <div class="hero-cta">
                     <a href="#pricing" class="btn btn-primary">🚀 Zarezerwuj miejsce</a>
@@ -313,12 +314,11 @@
 
     <fieldset class="checkout-discount">
         <legend>Kod rabatowy</legend>
-        <p class="checkout-helper">Kod <code>jestemwgrupie</code> daje 10% rabatu na szkolenia.</p>
         <div class="checkout-discount-row">
             <label for="wcag-discount-code">Wpisz kod rabatowy</label>
             <input type="text" id="wcag-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
-            <button class="btn btn-secondary" type="button" id="wcag-apply-discount">Zastosuj kod</button>
-            <button class="btn btn-secondary" type="button" id="wcag-remove-discount">Usuń kod</button>
+            <button class="btn btn-secondary-light" type="button" id="wcag-apply-discount">Zastosuj kod</button>
+            <button class="btn btn-secondary-light" type="button" id="wcag-remove-discount">Usuń kod</button>
         </div>
         <p id="wcag-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
     </fieldset>
@@ -645,11 +645,11 @@
             if (!summary) return;
 
             if (discountAmount > 0) {
-                summary.textContent = `Rabat ${WCAG_DISCOUNT_CODE}: -${formatPrice(discountAmount)} zł. Cena przed rabatem: ${formatPrice(baseTotal)} zł.`;
+                summary.textContent = `Rabat ${WCAG_DISCOUNT_PERCENT}%: -${formatPrice(discountAmount)} zł. Cena przed rabatem: ${formatPrice(baseTotal)} zł.`;
                 summary.hidden = false;
-                if (status) status.textContent = `Zastosowano kod ${WCAG_DISCOUNT_CODE}. Rabat ${WCAG_DISCOUNT_PERCENT}% obniża cenę o ${formatPrice(discountAmount)} zł.`;
+                if (status) status.textContent = `Zastosowano rabat ${WCAG_DISCOUNT_PERCENT}%. Cena spadła o ${formatPrice(discountAmount)} zł.`;
             } else if (state.discountCode === WCAG_DISCOUNT_CODE) {
-                summary.textContent = `Kod ${WCAG_DISCOUNT_CODE} jest aktywny. Wybierz wariant szkolenia, aby naliczyć rabat.`;
+                summary.textContent = 'Rabat jest aktywny. Wybierz wariant szkolenia, aby go naliczyć.';
                 summary.hidden = false;
             } else {
                 summary.textContent = '';
@@ -687,11 +687,11 @@
             if (status) {
                 status.classList.remove('checkout-discount-status--error');
                 status.textContent = getBaseTotal() > 0
-                    ? `Zastosowano kod ${WCAG_DISCOUNT_CODE}. Rabat ${WCAG_DISCOUNT_PERCENT}% obniża cenę o ${formatPrice(getDiscountAmount())} zł.`
-                    : `Zastosowano kod ${WCAG_DISCOUNT_CODE}. Wybierz wariant szkolenia, aby naliczyć rabat.`;
+                    ? `Zastosowano rabat ${WCAG_DISCOUNT_PERCENT}%. Cena spadła o ${formatPrice(getDiscountAmount())} zł.`
+                    : 'Zastosowano rabat. Wybierz wariant szkolenia, aby go naliczyć.';
             }
             updateSelection();
-            showAlert(status ? status.textContent : `Zastosowano kod ${WCAG_DISCOUNT_CODE}.`);
+            showAlert(status ? status.textContent : 'Zastosowano rabat.');
         }
 
         function removeWcagDiscount() {
