@@ -69,6 +69,20 @@
     </script>
 
     <link rel="stylesheet" href="/assets/events.css?v=6">
+    <style>
+        .promo-box {
+            border: 2px solid var(--gray-light);
+            border-left: 5px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            background: white;
+        }
+        .promo-box h3 { margin-top: 0; }
+        .promo-deadline { font-weight: 700; }
+        .price-regular { margin-right: 0.5rem; }
+        .price-promo { font-weight: 700; }
+    </style>
 </head>
 <body>
     <a href="#main" class="skip-link">Przejdź do głównej treści</a>
@@ -133,49 +147,57 @@
         <section class="program training-page">
             <div class="container">
                 <h2 class="section-title">Nasze najbliższe szkolenia</h2>
+
+                <div class="promo-box">
+                    <h3>Zniżka dla uczestników webinaru</h3>
+                    <p class="promo-deadline">Oferta obowiązuje do końca dnia <time datetime="2026-09-18">18 września 2026</time>.</p>
+                    <p>Zniżka dotyczy trzech szkoleń otwartych poniżej. Żeby z niej skorzystać, napisz na <a href="mailto:a11y@wlaczwizje.pl?subject=Zapis%20na%20szkolenie%20ze%20zni%C5%BCk%C4%85">a11y@wlaczwizje.pl</a> i wskaż, które szkolenie Cię interesuje. Jeśli termin Ci nie pasuje, napisz mimo wszystko — zachowujemy zniżkę na kolejny termin.</p>
+                </div>
+
                 <div class="training-grid">
                     <article class="training-card training-card--featured">
                         <p class="training-type">Szkolenie</p>
                         <h3>WCAG dla specjalistów #2</h3>
                         <ul class="training-meta-list">
-                            <li><span>Data</span>24-26 sierpnia 2026</li>
+                            <li><span>Data</span><time datetime="2026-10-28">28-30 października 2026</time></li>
                             <li><span>Godzina</span>9:00-17:00</li>
-                            <li><span>Cena</span>2499 zł</li>
+                            <li><span>Cena</span><span class="price-regular"><span class="sr-only">Cena regularna: </span><s>2499 zł</s></span><span class="price-promo"><span class="sr-only">Cena ze zniżką dla uczestników webinaru, do 18 września: </span>1999 zł</span></li>
                             <li><span>Prowadzenie</span>Damian Żłobicki, Ola Migus</li>
                         </ul>
                         <p>Trzydniowe szkolenie dla osób, które chcą nauczyć się realizować audyty dostępności cyfrowej zgodnie z WCAG i lepiej rozumieć wymagania techniczne, funkcjonalne oraz organizacyjne.</p>
                         <div class="training-actions">
-                            <a class="btn btn-primary" href="/wcag-dla-specjalistow">Szczegóły szkolenia</a>
+                            <a class="btn btn-primary" href="mailto:a11y@wlaczwizje.pl?subject=Zapis%3A%20WCAG%20dla%20specjalist%C3%B3w%2028-30.10.2026">Zapisz się ze zniżką<span class="sr-only">: WCAG dla specjalistów #2. Otworzy się program pocztowy z gotową wiadomością.</span></a>
+                            <a class="btn btn-secondary" href="/wcag-dla-specjalistow">Szczegóły szkolenia<span class="sr-only">: WCAG dla specjalistów #2</span></a>
                         </div>
                     </article>
 
                     <article class="training-card training-card--featured">
                         <p class="training-type">Szkolenie</p>
-                        <h3>Złap skilla w audytowaniu</h3>
+                        <h3>AI dla audytora dostępności cyfrowej</h3>
                         <ul class="training-meta-list">
-                            <li><span>Data</span>27-28 sierpnia 2026</li>
-                            <li><span>Godzina</span>9:00-17:00</li>
-                            <li><span>Cena</span>1649 zł</li>
-                            <li><span>Prowadzenie</span>Damian Żłobicki, Ola Migus</li>
-                        </ul>
-                        <p>Szkolenie dla osób, które mają już podstawy WCAG i chcą wejść głębiej w praktykę audytorską: analizę trudniejszych przypadków, raportowanie, uzasadnianie niezgodności i pracę na realnych przykładach.</p>
-                        <div class="training-actions">
-                            <a class="btn btn-primary" href="/szkolenie-poglebiajace">Szczegóły szkolenia</a>
-                        </div>
-                    </article>
-
-                    <article class="training-card training-card--featured">
-                        <p class="training-type">Szkolenie</p>
-                        <h3>Asystent AI w dostępności cyfrowej #2</h3>
-                        <ul class="training-meta-list">
-                            <li><span>Data</span>31 sierpnia - 1 września 2026</li>
+                            <li><span>Data</span><time datetime="2026-11-09">9-10 listopada 2026</time></li>
                             <li><span>Godzina</span>10:00-16:00</li>
-                            <li><span>Cena</span>1999 zł</li>
+                            <li><span>Cena</span><span class="price-regular"><span class="sr-only">Cena regularna: </span><s>1999 zł</s></span><span class="price-promo"><span class="sr-only">Cena ze zniżką dla uczestników webinaru, do 18 września: </span>1599 zł</span></li>
                             <li><span>Prowadzenie</span>Damian Żłobicki</li>
                         </ul>
-                        <p>Szkolenie dla osób, które chcą praktycznie wykorzystać AI w analizie dostępności cyfrowej, pracy z kryteriami WCAG, raportami, checklistami i procesem audytowym.</p>
+                        <p>Druga edycja szkolenia o sztucznej inteligencji w pracy audytora. Poza asystentami AI wchodzimy tym razem w budowę agentów: jak je projektować bezpiecznie, jak powierzać im zadania i jak pilnować, żeby efekt ich pracy był dostępny, a nie generyczny.</p>
                         <div class="training-actions">
-                            <a class="btn btn-primary" href="/szkolenie-ai-asystent">Szczegóły szkolenia</a>
+                            <a class="btn btn-primary" href="mailto:a11y@wlaczwizje.pl?subject=Zapis%3A%20AI%20dla%20audytora%20dost%C4%99pno%C5%9Bci%20cyfrowej%209-10.11.2026">Zapisz się ze zniżką<span class="sr-only">: AI dla audytora dostępności cyfrowej. Otworzy się program pocztowy z gotową wiadomością.</span></a>
+                            <a class="btn btn-secondary" href="/szkolenie-ai-asystent">Szczegóły szkolenia<span class="sr-only">: AI dla audytora dostępności cyfrowej</span></a>
+                        </div>
+                    </article>
+
+                    <article class="training-card training-card--featured">
+                        <p class="training-type">Szkolenie</p>
+                        <h3>Dostępne dokumenty w praktyce</h3>
+                        <ul class="training-meta-list">
+                            <li><span>Data</span><time datetime="2026-11-26">26-27 listopada 2026</time></li>
+                            <li><span>Cena</span><span class="price-regular"><span class="sr-only">Cena regularna: </span><s>1999 zł</s></span><span class="price-promo"><span class="sr-only">Cena ze zniżką dla uczestników webinaru, do 18 września: </span>1599 zł</span></li>
+                            <li><span>Prowadzenie</span>Damian Żłobicki, Ola Migus</li>
+                        </ul>
+                        <p>Dwudniowe szkolenie o dostępnych dokumentach — i od strony tworzenia, i od strony audytu. Dla osób, które przygotowują dokumenty oraz dla tych, które mają je sprawdzać.</p>
+                        <div class="training-actions">
+                            <a class="btn btn-primary" href="mailto:a11y@wlaczwizje.pl?subject=Zapis%3A%20Dost%C4%99pne%20dokumenty%20w%20praktyce%2026-27.11.2026">Zapisz się ze zniżką<span class="sr-only">: Dostępne dokumenty w praktyce. Otworzy się program pocztowy z gotową wiadomością.</span></a>
                         </div>
                     </article>
                 </div>
@@ -187,7 +209,7 @@
                 <h2 class="section-title">Szkolenia zamknięte</h2>
                 <p class="section-lead">Zamów szkolenie dopasowane do potrzeb Twojego zespołu, produktu albo instytucji.</p>
 
-                <form class="closed-training-form" id="closedTrainingForm" action="mailto:a11y@wlaczwizje.pl" method="post" enctype="text/plain" novalidate>
+                <form class="closed-training-form" id="closedTrainingForm" novalidate>
                     <fieldset>
                         <legend>Zamów szkolenie</legend>
                         <p class="form-required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
@@ -222,6 +244,8 @@
                         </div>
 
                         <button class="btn btn-primary" type="submit">Wyślij zapytanie</button>
+                        <p id="closedTrainingStatus" class="field-help" role="status"></p>
+                        <p class="field-help">Przycisk otwiera Twój program pocztowy z gotową wiadomością. Jeśli nic się nie otworzy, napisz bezpośrednio na <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</p>
                     </fieldset>
                 </form>
             </div>
@@ -334,13 +358,35 @@
         }
 
         closedTrainingForm.addEventListener('submit', event => {
+            // Formularz celowo nie ma action="mailto:" - przegladarki nie obsluguja
+            // wysylki POST na mailto i zgloszenie przepada bez zadnego komunikatu.
+            // Zamiast tego skladamy adres mailto i oddajemy go programowi pocztowemu.
+            event.preventDefault();
             closedTrainingWasSubmitted = true;
             const result = validateClosedTrainingForm(true);
 
             if (!result.isValid) {
-                event.preventDefault();
                 document.getElementById(result.firstInvalidFieldId).focus();
+                return;
             }
+
+            const wartosc = id => document.getElementById(id).value.trim();
+            const tresc = [
+                'Instytucja zamawiajaca: ' + wartosc('institution'),
+                'Adres e-mail: ' + wartosc('training-email'),
+                'Numer telefonu: ' + wartosc('training-phone'),
+                '',
+                'Opis potrzeby szkoleniowej:',
+                wartosc('training-need')
+            ].join('\n');
+
+            const adres = 'mailto:a11y@wlaczwizje.pl'
+                + '?subject=' + encodeURIComponent('Zapytanie o szkolenie zamkniete: ' + wartosc('institution'))
+                + '&body=' + encodeURIComponent(tresc);
+
+            document.getElementById('closedTrainingStatus').textContent =
+                'Otwieramy Twój program pocztowy z gotową wiadomością. Wyślij ją, żeby zapytanie do nas dotarło.';
+            window.location.href = adres;
         });
 
         closedTrainingFields.forEach(field => {
