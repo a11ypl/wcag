@@ -101,11 +101,11 @@
 
 <!-- generated:webinars:start -->
 <!-- generated:webinars:end -->
-        <section class="program training-page" aria-labelledby="najblizsze-terminy">
+        <section class="program training-page" aria-labelledby="najblizsze-terminy" data-lista-webinarow="linkWebinary">
             <div class="container">
                 <h2 class="section-title" id="najblizsze-terminy">Najbliższe terminy</h2>
                 <div class="training-grid">
-                    <article class="training-card training-card--featured">
+                    <article class="training-card training-card--featured" data-typ="webinar">
                         <p class="training-type">Webinar · online</p>
                         <h3>Semantyczny HTML, nie taki straszny</h3>
                         <ul class="training-meta-list">
@@ -164,7 +164,7 @@
                         </div>
                     </article>
                 </div>
-                <p class="training-list-footer"><a class="btn btn-secondary-light" href="/webinary">Wszystkie webinary Accessibility First</a></p>
+                <p class="training-list-footer" id="linkWebinary" hidden><a class="btn btn-secondary-light" href="/webinary">Zapoznaj się ze wszystkimi webinarami</a></p>
             </div>
         </section>
 
@@ -361,6 +361,16 @@
             document.getElementById(field.id).addEventListener('input', () => {
                 if (closedTrainingWasSubmitted) validateClosedTrainingForm(false);
             });
+        });
+    </script>
+    <script>
+        // Link do pelnej listy webinarow pokazujemy dopiero, gdy webinarow jest
+        // wiecej niz jeden - przy jednym prowadzilby do strony z ta sama karta.
+        document.querySelectorAll('[data-lista-webinarow]').forEach(function (lista) {
+            var link = document.getElementById(lista.dataset.listaWebinarow);
+            if (link && lista.querySelectorAll('[data-typ="webinar"]').length > 1) {
+                link.hidden = false;
+            }
         });
     </script>
 </body>
