@@ -23,14 +23,21 @@ window.A11yFirstTrainerFlip = (() => {
             id: 'aleksandra',
             name: 'Ola Migus',
             company: 'SOFTIQ',
-            bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.',
+            bio: 'QA lead i senior testerka, audytorka dostępności cyfrowej.',
             image: 'assets/aleksandra-migus.jpg',
             alt: 'Portret Oli Migus.',
             backContent: `
                 <h3>Ola Migus</h3>
-                <p class="trainer-flip-label">Specjalizacja:</p>
-                <p>Aleksandra specjalizuje się w dostępności UI/UX oraz audytach kodu frontendowego.</p>
-                <a href="https://www.linkedin.com/in/aleksandra-migus/" target="_blank" rel="noopener noreferrer" class="instructor-text-link instructor-profile-link">Profil LinkedIn<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+                        <p class="trainer-flip-label">Doświadczenie:</p>
+                        <ul class="instructor-credentials">
+                            <li>QA lead — prowadzi zespół testów w software housie</li>
+                            <li>Senior testerka oprogramowania</li>
+                            <li>Ekspertka ds. dostępności cyfrowej</li>
+                            <li>Członkini <a href="https://www.gov.pl/web/dostepnosc-cyfrowa/sklad-sieci-dostepnosci-cyfrowej" target="_blank" rel="noopener noreferrer" class="trainer-flip-inline-link">Sieci Dostępności Cyfrowej<span class="sr-only"> (otwiera się w nowym oknie)</span></a> przy Ministerstwie Cyfryzacji</li>
+                            <li>Audytorka dostępności cyfrowej</li>
+                            <li>Trenerka: dostępność cyfrowa, testowanie i jakość systemów IT</li>
+                        </ul>
+                        <a href="https://www.linkedin.com/in/aleksandra-migus/" target="_blank" rel="noopener noreferrer" class="instructor-text-link instructor-profile-link">Profil LinkedIn<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
             `
         }
     ];
