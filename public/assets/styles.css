@@ -14,7 +14,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-    scroll-padding-top: 280px;
+    /* Tyle miejsca zostawiamy nad elementem, do ktorego przewija przegladarka.
+       280px + drugie 280px ze scroll-margin ponizej spychalo fokus na sam dol
+       ekranu. Teraz to mniej wiecej wysokosc przyklejonego naglowka. */
+    scroll-padding-top: clamp(96px, 12vh, 160px);
 }
 
 body {
@@ -34,8 +37,15 @@ p { margin-bottom: 1rem; }
 }
 
 :where(a[href], button, input, select, textarea, summary, [tabindex]):focus {
-    scroll-margin-top: 280px;
+    scroll-margin-top: 0;
     scroll-margin-bottom: 2rem;
+}
+
+/* Pytania FAQ maja ladowac mniej wiecej na srodku ekranu, a nie tuz pod
+   naglowkiem albo przy dolnej krawedzi. */
+.static-faq summary,
+.static-faq details {
+    scroll-margin-top: 18vh;
 }
 
 /* HEADER & HERO */
@@ -3731,12 +3741,17 @@ button.instructor-front {
 .instructor-bio { font-size: 0.95rem; color: black; line-height: 1.5; }
 
 .instructor-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
-/* Karta ma stala wysokosc (460px), a tyl bywa dluzszy niz front - u trenera z
-   czterema pozycjami doswiadczenia przycisk "Zamknij szczegoly" wychodzil poza
-   karte. Tresc przewija sie wiec wewnatrz, a przycisk zostaje na swoim miejscu. */
-.instructor-back { overflow: hidden; }
-.instructor-back > div:first-child { overflow-y: auto; min-height: 0; overscroll-behavior: contain; }
-.instructor-back .flip-close-button { flex: 0 0 auto; }
+/* Tyl karty trenera bywa wyzszy niz front (cztery pozycje doswiadczenia +
+   przycisk), a karta miala sztywne 460px - przycisk "Zamknij szczegoly"
+   wychodzil poza karte. Obie strony leza teraz w jednej komorce siatki, wiec
+   karta rosnie do wyzszej z nich. Bez przewijania w srodku.
+   Dotyczy wylacznie kart trenerow - karty dni (.day-card) zostaja bez zmian. */
+.instructor-flip-card { height: auto; min-height: 460px; }
+.instructor-flip-card .instructor-flip-card-inner { display: grid; height: auto; min-height: 460px; }
+.instructor-flip-card button.instructor-front,
+.instructor-flip-card .instructor-back { position: relative; grid-area: 1 / 1; height: auto; }
+/* bylo 60% z 460px - przy karcie o zmiennej wysokosci procent nie ma do czego sie odniesc */
+.instructor-flip-card .instructor-image { height: 276px; }
 .instructor-back h3,
 .instructor-back p,
 .instructor-back li {
