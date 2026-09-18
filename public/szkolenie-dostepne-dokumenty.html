@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dostępne dokumenty w praktyce - Accessibility First</title>
+    <meta name="description" content="Dwudniowe szkolenie o tworzeniu i audytowaniu dostępnych dokumentów Word i PDF, zgodnie z WCAG i PDF/UA.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/szkolenie-doc-asystent">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="Dostępne dokumenty w praktyce - Accessibility First">
+    <meta property="og:description" content="Dwudniowe szkolenie o tworzeniu i audytowaniu dostępnych dokumentów Word i PDF, zgodnie z WCAG i PDF/UA.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/szkolenie-doc-asystent">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dostępne dokumenty w praktyce - Accessibility First">
+    <meta name="twitter:description" content="Dwudniowe szkolenie o tworzeniu i audytowaniu dostępnych dokumentów Word i PDF, zgodnie z WCAG i PDF/UA.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Dostępne dokumenty w praktyce",
+      "headline": "Dostępne dokumenty w praktyce",
+      "description": "Dwudniowe szkolenie o tworzeniu i audytowaniu dostępnych dokumentów Word i PDF, zgodnie z WCAG i PDF/UA.",
+      "url": "https://www.a11yfirst.pl/szkolenie-doc-asystent",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Accessibility First",
+        "url": "https://www.a11yfirst.pl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Włącz Wizję sp. z o.o.",
+        "url": "https://wlaczwizje.pl"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css?v=20">
+    <link rel="stylesheet" href="assets/form-accessibility.css?v=1">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
+</head>
+<body class="course-page doc-training-page">
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+    <div class="aria-alert-region" role="status" aria-live="polite" aria-atomic="true" id="alertRegion"></div>
+
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=7" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/szkolenia">Szkolenia</a></li><li aria-current="page">Dostępne dokumenty w praktyce</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <h1>Dostępne dokumenty w praktyce</h1>
+                <p class="subtitle">Dwudniowe szkolenie o tworzeniu i sprawdzaniu dokumentów, które każdy może przeczytać — od Worda po PDF.</p>
+                <p class="course-dates">26-27 listopada 2026 | 1999 zł</p>
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#docRegistration">Zapisz się</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="training-detail">
+            <div class="container">
+                <p class="detail-intro">Dokument jest dziś najczęstszym sposobem, w jaki instytucja mówi do ludzi — i najczęstszym miejscem, w którym dostępność się sypie. To szkolenie jest dwa w jednym: uczysz się tworzyć dostępne dokumenty i sprawdzać te, które dostajesz od innych.</p>
+
+                <h2>Dla kogo jest to szkolenie</h2>
+                <p>To szkolenie jest dla:</p>
+                <ul class="detail-list">
+                    <li>osób przygotowujących dokumenty w urzędach, instytucjach kultury i edukacji,</li>
+                    <li>zespołów komunikacji, promocji i obsługi klienta,</li>
+                    <li>koordynatorów dostępności i osób odpowiedzialnych za deklarację dostępności,</li>
+                    <li>audytorów, którzy chcą objąć badaniem także dokumenty, nie tylko strony,</li>
+                    <li>wszystkich, którzy publikują pliki do pobrania i chcą, żeby dało się z nich korzystać.</li>
+                </ul>
+
+                <h2>Co zyskasz</h2>
+                <p>Po szkoleniu:</p>
+                <ul class="detail-list">
+                    <li>przygotujesz dokument tekstowy tak, żeby jego struktura była czytelna dla czytnika ekranu,</li>
+                    <li>będziesz wiedzieć, kiedy tabela pomaga, a kiedy szkodzi,</li>
+                    <li>napiszesz sensowne teksty alternatywne do wykresów, schematów i zdjęć,</li>
+                    <li>wyeksportujesz PDF bez utraty tego, co zrobiłeś w edytorze,</li>
+                    <li>sprawdzisz tagi, kolejność odczytu i język w gotowym pliku,</li>
+                    <li>ocenisz dokument wobec PDF/UA i WCAG i opiszesz niezgodności,</li>
+                    <li>będziesz wiedzieć, co zrobić z dokumentami skanowanymi i formularzami.</li>
+                </ul>
+
+                <h2>O czym jest to szkolenie</h2>
+                <p>Dostępny dokument nie bierze się z wtyczki ani z jednego kliknięcia przy eksporcie. Bierze się z kolejności: najpierw struktura, potem treść, potem forma, a na końcu sprawdzenie. Przez dwa dni przechodzimy tę kolejność na realnych plikach — takich, jakie faktycznie krążą po instytucjach.</p>
+                <p>Pracujemy na tym, z czego korzystasz na co dzień: edytor tekstu, eksport do PDF i darmowe narzędzia do sprawdzania. Bez wymogu kupowania drogiego oprogramowania.</p>
+
+                <h2>Program szkolenia</h2>
+                <div class="detail-two-columns training-days">
+                    <article>
+                        <h3>Dzień 1. Jak tworzyć dostępne dokumenty</h3>
+                        <p>Pierwszy dzień to praca w edytorze: od pustej strony do pliku gotowego do publikacji.</p>
+                        <ul class="detail-list">
+                            <li>po co komu dostępny dokument i co mówi o tym prawo,</li>
+                            <li>style i nagłówki zamiast pogrubionego tekstu,</li>
+                            <li>listy, kolumny i podziały stron,</li>
+                            <li>tabele: nagłówki, scalanie komórek i tabele użyte do układu strony,</li>
+                            <li>teksty alternatywne do zdjęć, wykresów i schematów,</li>
+                            <li>linki, które mówią, dokąd prowadzą,</li>
+                            <li>kolor, kontrast i czytelność tekstu,</li>
+                            <li>język dokumentu, tytuł i metadane,</li>
+                            <li>prosty język jako część dostępności,</li>
+                            <li>eksport do PDF bez utraty struktury.</li>
+                        </ul>
+                    </article>
+                    <article>
+                        <h3>Dzień 2. Jak sprawdzać i poprawiać dokumenty</h3>
+                        <p>Drugi dzień to spojrzenie audytora: co sprawdzić, czym i jak to opisać.</p>
+                        <ul class="detail-list">
+                            <li>czym jest tagowanie PDF i jak je podejrzeć,</li>
+                            <li>kolejność odczytu i jej poprawianie,</li>
+                            <li>PDF/UA i WCAG — co z czego wynika,</li>
+                            <li>narzędzia do sprawdzania dokumentów i ich ograniczenia,</li>
+                            <li>sprawdzenie ręczne: co zawsze trzeba zobaczyć samemu,</li>
+                            <li>dokumenty skanowane, OCR i pliki „obrazkowe",</li>
+                            <li>formularze do wypełnienia,</li>
+                            <li>opis niezgodności w raporcie i rekomendacja poprawki,</li>
+                            <li>co robić z dokumentem, którego nie da się naprawić,</li>
+                            <li>praca na własnym pliku uczestnika.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <h2>Prowadzący</h2>
+                <div class="instructors-grid" id="docInstructorsContainer"></div>
+
+                <h2>Dlaczego warto wziąć udział</h2>
+                <p>Większość szkoleń o dokumentach kończy się listą zasad. Tu wychodzisz z umiejętnością: z własnym plikiem doprowadzonym do porządku i z wiedzą, jak sprawdzić następny.</p>
+                <ul class="detail-list">
+                    <li>pracujesz na realnych dokumentach, nie na przykładach z podręcznika,</li>
+                    <li>poznajesz obie strony: tworzenie i audyt,</li>
+                    <li>dostajesz checklistę do codziennej pracy,</li>
+                    <li>wiesz, które błędy są krytyczne, a które kosmetyczne,</li>
+                    <li>możesz przynieść własny plik i wyjść z nim poprawionym.</li>
+                </ul>
+
+                <h2>FAQ</h2>
+                <div class="static-faq">
+                    <details>
+                        <summary>Czy muszę mieć płatne oprogramowanie?</summary>
+                        <p>Nie. Pracujemy na edytorze tekstu, z którego korzystasz na co dzień, i na darmowych narzędziach do sprawdzania dokumentów. Płatne programy pokazujemy, ale ich nie wymagamy.</p>
+                    </details>
+                    <details>
+                        <summary>Czy to szkolenie dla tworzących, czy dla audytujących?</summary>
+                        <p>Dla jednych i drugich. Pierwszy dzień jest o tworzeniu, drugi o sprawdzaniu. Można przyjść po jedno i zostać z obydwoma.</p>
+                    </details>
+                    <details>
+                        <summary>Czy mogę przynieść własny dokument?</summary>
+                        <p>Tak i zachęcamy. Praca na pliku, który realnie publikujesz, daje najwięcej.</p>
+                    </details>
+                    <details>
+                        <summary>Czy otrzymam materiały i certyfikat?</summary>
+                        <p>Tak. Uczestnicy otrzymują materiały szkoleniowe oraz imienny certyfikat uczestnictwa.</p>
+                    </details>
+                </div>
+                <a class="btn btn-primary" href="#docRegistration">Zapisz się</a>
+            </div>
+        </section>
+
+        <section class="pricing" id="docRegistration" aria-labelledby="doc-registration-title">
+            <div class="container">
+                <h2 class="section-title" id="doc-registration-title">Zapisz się na szkolenie</h2>
+                <div class="checkout-summary">
+                    <h3>Rejestracja</h3>
+                    <div class="checkout-overview">
+                        <div>
+                            <p style="color: var(--dark); margin-bottom: 0.5rem; text-align: left;">Szkolenie:</p>
+                            <output id="docSelectedProduct" style="font-weight: bold; color: var(--dark); display:block;">Dostępne dokumenty w praktyce</output>
+                        </div>
+                        <div>
+                            <p style="color: var(--dark); margin-bottom: 0.5rem; text-align: left;">Razem do zapłaty:</p>
+                            <output id="docTotalPrice" style="font-weight: bold; color: var(--primary); display:block;">1999 zł</output>
+                        </div>
+                    </div>
+                    <p id="docDiscountSummary" class="checkout-discount-summary" hidden></p>
+
+                    <form id="docRegistrationForm" data-checkout-form data-product-title="Dostępne dokumenty w praktyce" data-product-price="1999" data-product-category="training" data-transfer-title="Dostępne dokumenty w praktyce" data-error-summary="docCheckoutErrorSummary" data-transfer-section="docBankTransferInfo" data-selected-output="docSelectedProduct" data-total-output="docTotalPrice" data-discount-output="docDiscountSummary" data-discount-input="doc-discount-code" data-discount-apply="doc-apply-discount" data-discount-remove="doc-remove-discount" data-discount-status="doc-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie Dostępne dokumenty w praktyce z a11yfirst.pl" novalidate>
+                        <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
+                        <div id="docCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
+
+                        <fieldset class="checkout-discount">
+                            <legend>Kod rabatowy</legend>
+                            <div class="checkout-discount-row">
+                                <label for="doc-discount-code">Wpisz kod rabatowy</label>
+                                <input type="text" id="doc-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
+                                <button class="btn btn-secondary" type="button" id="doc-apply-discount">Zastosuj kod</button>
+                                <button class="btn btn-secondary" type="button" id="doc-remove-discount">Usuń kod</button>
+                            </div>
+                            <p id="doc-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
+                        </fieldset>
+
+                        <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
+                            <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / nabywcy</legend>
+
+                            <div class="checkout-form-grid">
+                                <div class="checkout-field">
+                                    <label for="doc-fname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Imię <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                                    <input type="text" id="doc-fname" name="fname" class="checkout-input" required autocomplete="given-name" data-checkout-field data-label="Imię" data-validate="text" data-error-id="doc-fname-error" aria-describedby="doc-fname-error">
+                                    <p id="doc-fname-error" class="field-error"></p>
+                                </div>
+                                <div class="checkout-field">
+                                    <label for="doc-lname" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Nazwisko <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                                    <input type="text" id="doc-lname" name="lname" class="checkout-input" required autocomplete="family-name" data-checkout-field data-label="Nazwisko" data-validate="text" data-error-id="doc-lname-error" aria-describedby="doc-lname-error">
+                                    <p id="doc-lname-error" class="field-error"></p>
+                                </div>
+                            </div>
+
+                            <div class="checkout-field" style="margin-bottom: 1rem;">
+                                <label for="doc-email" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Adres e-mail <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                                <input type="email" id="doc-email" name="email" class="checkout-input" required autocomplete="email" data-checkout-field data-label="Adres e-mail" data-validate="email" data-error-id="doc-email-error" aria-describedby="doc-email-error">
+                                <p id="doc-email-error" class="field-error"></p>
+                            </div>
+
+                            <div class="checkout-field" style="margin-bottom: 1rem;">
+                                <label for="doc-phone" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">Numer telefonu (opcjonalnie)</label>
+                                <input type="tel" id="doc-phone" name="phone" class="checkout-input" inputmode="numeric" pattern="[0-9]{9,15}" maxlength="15" autocomplete="tel" data-checkout-field data-label="Numer telefonu" data-validate="phone" data-error-id="doc-phone-error" aria-describedby="doc-phone-error">
+                                <p id="doc-phone-error" class="field-error"></p>
+                            </div>
+
+                            <div class="checkout-field" style="margin-bottom: 1rem;">
+                                <label for="doc-nip" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">NIP (opcjonalnie - dla firm)</label>
+                                <input type="text" id="doc-nip" name="nip" class="checkout-input" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" autocomplete="on" data-checkout-field data-label="NIP" data-validate="nip" data-error-id="doc-nip-error" aria-describedby="doc-nip-error">
+                                <p id="doc-nip-error" class="field-error"></p>
+                            </div>
+
+                            <div class="checkout-field">
+                                <label for="doc-access-needs" style="font-weight: 600; margin-bottom: 0.3rem; color: var(--dark);">W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?</label>
+                                <textarea id="doc-access-needs" name="access_needs" class="checkout-input checkout-textarea" maxlength="1000" data-checkout-field data-label="W jaki sposób powinniśmy dostosować prowadzenie szkolenia do Twoich potrzeb?" data-validate="text" data-error-id="doc-access-needs-error" aria-describedby="doc-access-needs-help doc-access-needs-error"></textarea>
+                                <p id="doc-access-needs-help" class="checkout-helper" style="color: black;">Pole opcjonalne. Napisz, czego potrzebujesz, np. dłuższych przerw, wolniejszego tempa, materiałów w innym formacie albo innego sposobu komunikacji.</p>
+                                <p id="doc-access-needs-error" class="field-error"></p>
+                            </div>
+                        </fieldset>
+
+                        <fieldset style="border: none; padding: 0; margin: 0 auto; max-width: 700px; text-align: left;">
+                            <legend class="sr-only">Zgody formalne niezbędne do realizacji zamówienia</legend>
+                            <div class="form-field form-field--checkbox">
+                                <div class="form-field--checkbox-control">
+                                    <input type="checkbox" id="doc-consent-tos" name="consent_tos" class="checkout-checkbox" required style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" data-checkout-field data-label="Akceptacja regulaminu i polityki prywatności" data-error-id="doc-consent-tos-error" aria-describedby="doc-consent-tos-help doc-consent-tos-error">
+                                    <label for="doc-consent-tos" style="color: var(--dark);">
+                                        Akceptuję regulamin świadczenia usług oraz potwierdzam zapoznanie się z polityką prywatności<span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span>
+                                    </label>
+                                </div>
+                                <p id="doc-consent-tos-help" class="checkout-helper">Przeczytaj: <a href="/regulamin" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin świadczenia usług</a> oraz <a href="/polityka-prywatnosci" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Politykę prywatności</a>.</p>
+                            </div>
+                            <p id="doc-consent-tos-error" class="field-error"></p>
+                        </fieldset>
+
+                        <button class="btn btn-primary" type="submit" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem;">Wyślij zgłoszenie i pokaż dane do przelewu</button>
+                    </form>
+
+                    <section id="docBankTransferInfo" class="checkout-step" hidden aria-live="polite">
+                        <h4 class="checkout-step-title">Dane do przelewu</h4>
+                        <div class="transfer-list">
+                            <div class="transfer-row">
+                                <strong>Odbiorca:</strong>
+                                <div class="transfer-value">
+                                    <span id="docTransferRecipient">Włącz Wizję sp. z o.o.</span>
+                                    <button class="copy-btn" type="button" data-copy-target="docTransferRecipient">Kopiuj</button>
+                                </div>
+                            </div>
+                            <div class="transfer-row">
+                                <strong>Numer rachunku:</strong>
+                                <div class="transfer-value">
+                                    <span id="docTransferAccount">43 1870 1045 2078 1086 1525 0001</span>
+                                    <button class="copy-btn" type="button" data-copy-target="docTransferAccount">Kopiuj</button>
+                                </div>
+                            </div>
+                            <div class="transfer-row">
+                                <strong>Kwota:</strong>
+                                <div class="transfer-value">
+                                    <span id="docTransferAmount" data-transfer-amount>1999 zł</span>
+                                    <button class="copy-btn" type="button" data-copy-target="docTransferAmount">Kopiuj</button>
+                                </div>
+                            </div>
+                            <div class="transfer-row">
+                                <strong>Tytuł przelewu:</strong>
+                                <div class="transfer-value">
+                                    <span id="docTransferTitle" data-transfer-title>Dostępne dokumenty w praktyce</span>
+                                    <button class="copy-btn" type="button" data-copy-target="docTransferTitle">Kopiuj</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; margin-bottom: 0; color: var(--dark); font-size: 0.95rem;">Po wykonaniu przelewu wyślij potwierdzenie na adres <a href="mailto:a11y@wlaczwizje.pl" style="color: var(--primary); font-weight: 600;">a11y@wlaczwizje.pl</a>.</p>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/trainer-flips.js?v=6"></script>
+    <script src="assets/checkout-forms.js?v=20"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.A11yFirstTrainerFlip) return;
+
+            window.A11yFirstTrainerFlip.render('docInstructorsContainer', [
+                {
+                    id: 'damian',
+                    name: 'Damian Żłobicki',
+                    company: 'Włącz Wizję',
+                    bio: 'Trener biznesu, audytor dostępności cyfrowej i founder Accessibility First.',
+                    image: 'assets/damian-profil-4.jpg',
+                    alt: 'Portret Damiana Żłobickiego.',
+                    backContent: `
+                        <h3>Damian Żłobicki</h3>
+                        <p class="trainer-flip-label">Doświadczenie:</p>
+                        <ul class="instructor-credentials">
+                            <li>Lider <a href="https://www.gov.pl/web/dostepnosc-cyfrowa/sklad-sieci-dostepnosci-cyfrowej" target="_blank" rel="noopener noreferrer" class="trainer-flip-inline-link">Sieci Dostępności Cyfrowej<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
+                            <li>Audytor stron internetowych i aplikacji mobilnych</li>
+                            <li>5000h zrealizowanych szkoleń, 11 lat doświadczenia</li>
+                            <li>Ekspert w projekcie "AI DC - sztuczna inteligencja wspierająca dostępność cyfrową"</li>
+                        </ul>
+                        <a href="https://linktr.ee/bergivision" target="_blank" rel="noopener noreferrer" class="instructor-text-link instructor-profile-link">Poznaj Damiana<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+                    `
+                },
+                {
+                    id: 'aleksandra',
+                    name: 'Ola Migus',
+                    company: 'SOFTIQ',
+                    bio: 'Ekspertka wdrażania standardów WCAG w złożonych systemach IT.',
+                    image: 'assets/aleksandra-migus.jpg',
+                    alt: 'Portret Oli Migus.',
+                    backContent: `
+                        <h3>Ola Migus</h3>
+                        <p style="margin-bottom:0.5rem; font-weight:bold; color:var(--accent)">Specjalizacja:</p>
+                        <p>Aleksandra specjalizuje się w dostępności UI/UX oraz audytach kodu frontendowego.</p>
+                        <a href="https://www.linkedin.com/in/aleksandra-migus/" target="_blank" rel="noopener noreferrer" class="instructor-text-link instructor-profile-link">Profil LinkedIn<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+                    `
+                }
+            ]);
+        });
+    </script>
+</body>
+</html>
