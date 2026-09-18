@@ -3731,6 +3731,12 @@ button.instructor-front {
 .instructor-bio { font-size: 0.95rem; color: black; line-height: 1.5; }
 
 .instructor-back { background: var(--primary); color: white; border-top: 5px solid var(--accent); padding: 2rem; justify-content: space-between; }
+/* Karta ma stala wysokosc (460px), a tyl bywa dluzszy niz front - u trenera z
+   czterema pozycjami doswiadczenia przycisk "Zamknij szczegoly" wychodzil poza
+   karte. Tresc przewija sie wiec wewnatrz, a przycisk zostaje na swoim miejscu. */
+.instructor-back { overflow: hidden; }
+.instructor-back > div:first-child { overflow-y: auto; min-height: 0; overscroll-behavior: contain; }
+.instructor-back .flip-close-button { flex: 0 0 auto; }
 .instructor-back h3,
 .instructor-back p,
 .instructor-back li {
