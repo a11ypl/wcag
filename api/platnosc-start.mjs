@@ -16,6 +16,23 @@ const BAZA_SANDBOX = "https://secure.sandbox.tpay.com";
 
 const baza = () => (process.env.TPAY_SANDBOX === "1" ? BAZA_SANDBOX : BAZA_PRODUKCJA);
 
+/**
+ * Adres publiczny, pod ktorym Tpay ma oddzwonic z powiadomieniem.
+ *
+ * Na produkcji podajemy go jawnie w PUBLICZNY_ADRES. Na podgladzie Vercela
+ * adres jest generowany przy kazdym wdrozeniu, wiec nie da sie go wpisac
+ * z gory - bierzemy go wtedy ze zmiennych systemowych platformy
+ * (VERCEL_BRANCH_URL jest stabilny dla galezi, VERCEL_URL zmienia sie
+ * przy kazdym wdrozeniu). Dzieki temu testy w sandboksie nie wymagaja
+ * zgadywania adresu ani poprawiania zmiennej po kazdym pushu.
+ */
+function ustalAdresPubliczny() {
+  const jawny = process.env.PUBLICZNY_ADRES;
+  if (jawny) return jawny.replace(/\/+$/, "");
+  const zVercela = process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL;
+  return zVercela ? `https://${zVercela.replace(/\/+$/, "")}` : "";
+}
+
 const POPRAWNY_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function bladWejscia(res, powod) {
@@ -44,12 +61,19 @@ export default async function handler(req, res) {
     res.status(405).json({ blad: "tylko POST" });
     return;
   }
-  for (const zmienna of ["TPAY_CLIENT_ID", "TPAY_CLIENT_SECRET", "PUBLICZNY_ADRES"]) {
+  for (const zmienna of ["TPAY_CLIENT_ID", "TPAY_CLIENT_SECRET"]) {
     if (!process.env[zmienna]) {
       console.error(`[platnosc] brak zmiennej srodowiskowej ${zmienna}`);
       res.status(503).json({ blad: "platnosci chwilowo niedostepne" });
       return;
     }
+  }
+
+  const adresPubliczny = ustalAdresPubliczny();
+  if (!adresPubliczny) {
+    console.error("[platnosc] nie udalo sie ustalic adresu publicznego");
+    res.status(503).json({ blad: "platnosci chwilowo niedostepne" });
+    return;
   }
 
   const dane = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
@@ -71,7 +95,7 @@ export default async function handler(req, res) {
   // Nazwa produktu zostaje w srodku wylacznie po to, zeby przy reklamacji dalo
   // sie odczytac z panelu Tpay, czego dotyczyla wplata - nie jest to dana osobowa.
   const idZamowienia = `a11y-${kluczProduktu}-${crypto.randomUUID()}`;
-  const adres = process.env.PUBLICZNY_ADRES.replace(/\/+$/, "");
+  const adres = adresPubliczny;
 
   const opis = `${wycena.produkt.nazwa} (${wycena.produkt.termin})`;
 
