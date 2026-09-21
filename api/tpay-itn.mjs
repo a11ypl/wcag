@@ -135,7 +135,16 @@ export default async function handler(req, res) {
 
   const pola = Object.fromEntries(new URLSearchParams(cialo));
   const md5 = sprawdzMd5(pola);
-  const zaplacone = pola.tr_status === "true" && md5.zgodna !== false;
+
+  // Status to nie wszystko. Sprawdzamy takze, czy wplynela PELNA kwota i we
+  // wlasciwej walucie - inaczej niedoplata przeszlaby jako zaplacone szkolenie.
+  const naleznosc = Number.parseFloat(pola.tr_amount);
+  const wplata = Number.parseFloat(pola.tr_paid);
+  const kwotaZgodna = Number.isFinite(naleznosc) && Number.isFinite(wplata) && wplata >= naleznosc;
+  const walutaZgodna = !pola.tr_currency || pola.tr_currency === "PLN";
+
+  const zaplacone =
+    pola.tr_status === "true" && md5.zgodna !== false && kwotaZgodna && walutaZgodna;
 
   // Idempotencja: to samo powiadomienie potrafi przyjsc wiele razy.
   const klucz = `${pola.tr_id}:${pola.tr_status}`;
@@ -154,6 +163,8 @@ export default async function handler(req, res) {
     tryb_testowy: pola.test_mode,
     md5_sprawdzona: md5.sprawdzono,
     md5_zgodna: md5.zgodna ?? null,
+    kwota_zgodna: kwotaZgodna,
+    waluta_zgodna: walutaZgodna,
     uznane_za_zaplacone: zaplacone,
   }));
 
