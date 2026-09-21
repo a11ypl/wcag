@@ -38,6 +38,26 @@
     if (pole) pole.checked = true;
   }
 
+  /** Druga zgoda dotyczy WYLACZNIE tresci cyfrowych - przy szkoleniu z terminem
+   *  swiadczenie nie zaczyna sie "niezwlocznie", wiec pytanie byloby bez sensu.
+   *  Pole nigdy nie jest zaznaczone domyslnie i nigdy nie jest wymagane:
+   *  nie wolno uzaleznic sprzedazy od zrzeczenia sie prawa odstapienia. */
+  const sekcjaCyfrowa = document.getElementById("zgodaCyfrowa");
+  const polaProduktu = form.querySelectorAll('input[name="produkt"]');
+
+  function odswiezZgodeCyfrowa() {
+    if (!sekcjaCyfrowa) return;
+    const wybrany = form.querySelector('input[name="produkt"]:checked');
+    const cyfrowy = Boolean(wybrany && wybrany.dataset.tresciCyfrowe === "1");
+    sekcjaCyfrowa.hidden = !cyfrowy;
+    if (!cyfrowy) {
+      const pole = document.getElementById("natychmiast");
+      if (pole) pole.checked = false;
+    }
+  }
+  polaProduktu.forEach((pole) => pole.addEventListener("change", odswiezZgodeCyfrowa));
+  odswiezZgodeCyfrowa();
+
   function pokazBledy(lista) {
     if (!podsumowanieBledow) return;
     if (!lista.length) {
@@ -72,6 +92,7 @@
       firma: (pola.get("firma") || "").toString().trim(),
       nip: (pola.get("nip") || "").toString().trim(),
       kod: (pola.get("kod") || "").toString().trim(),
+      natychmiast: pola.get("natychmiast") === "on",
     };
 
     const bledy = zwaliduj(dane, pola.get("zgoda"));

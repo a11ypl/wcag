@@ -109,6 +109,12 @@
                         <legend>Wybierz szkolenie <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></legend>
                         <div class="form-field">
                             <label>
+                                <input type="radio" name="produkt" value="semantyczny-html" data-tresci-cyfrowe="1" required>
+                                Semantyczny HTML — kurs e-learningowy, 12 lekcji — 999 zł
+                            </label>
+                        </div>
+                        <div class="form-field">
+                            <label>
                                 <input type="radio" name="produkt" value="wcag-dla-specjalistow" required>
                                 WCAG dla specjalistów — 28-30.10.2026 — 2499 zł
                             </label>
@@ -155,10 +161,14 @@
                     </div>
 
                     <div class="form-field">
-                        <label>
-                            <input type="checkbox" id="zgoda" name="zgoda" required>
-                            Akceptuję <a href="/regulamin">regulamin</a> i <a href="/polityka-prywatnosci">politykę prywatności</a> <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span>
-                        </label>
+                        <input type="checkbox" id="zgoda" name="zgoda" required>
+                        <label for="zgoda">Zapoznałem się z <a href="/regulamin">regulaminem</a> i <a href="/polityka-prywatnosci">polityką prywatności</a> i akceptuję ich treść <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                    </div>
+
+                    <div class="form-field" id="zgodaCyfrowa" hidden>
+                        <input type="checkbox" id="natychmiast" name="natychmiast" aria-describedby="natychmiastOpis">
+                        <label for="natychmiast">Żądam rozpoczęcia świadczenia przed upływem terminu odstąpienia od umowy. Przyjmuję do wiadomości, że po spełnieniu świadczenia przez Sprzedawcę utracę prawo odstąpienia od umowy.</label>
+                        <p id="natychmiastOpis" class="form-hint">Bez tej zgody dostęp do kursu otrzymasz po 14 dniach.</p>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Przejdź do płatności</button>

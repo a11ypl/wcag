@@ -182,3 +182,30 @@ test("brak zgody na regulamin nie blokuje serwera, ale brak danych juz tak", asy
   const { res } = await wywolajStart({ produkt: "dostepne-dokumenty", imie: "A", email: "zly" });
   assert.equal(res.kod, 400);
 });
+
+// --- Tresci cyfrowe: prawo odstapienia ---
+
+test("kurs bez zgody na natychmiastowe swiadczenie nadal da sie kupic", async () => {
+  const { res, zadanie } = await wywolajStart({
+    produkt: "semantyczny-html", imie: "Jan Kowalski", email: "jan@example.com",
+    natychmiast: false,
+  });
+  assert.equal(res.kod, 200, "brak zgody nie moze blokowac sprzedazy");
+  assert.match(zadanie.hiddenDescription, /^a11y-semantyczny-html-n0-/);
+});
+
+test("zgoda na natychmiastowe swiadczenie jest widoczna w identyfikatorze", async () => {
+  const { zadanie } = await wywolajStart({
+    produkt: "semantyczny-html", imie: "Jan Kowalski", email: "jan@example.com",
+    natychmiast: true,
+  });
+  assert.match(zadanie.hiddenDescription, /^a11y-semantyczny-html-n1-/);
+});
+
+test("szkolenie z terminem nie dostaje znacznika tresci cyfrowych", async () => {
+  const { zadanie } = await wywolajStart({
+    produkt: "wcag-dla-specjalistow", imie: "Jan Kowalski", email: "jan@example.com",
+    natychmiast: true,
+  });
+  assert.ok(!/-n[01]-/.test(zadanie.hiddenDescription), "znacznik dotyczy tylko tresci cyfrowych");
+});

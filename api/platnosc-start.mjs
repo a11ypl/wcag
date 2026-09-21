@@ -77,7 +77,7 @@ export default async function handler(req, res) {
   }
 
   const dane = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  const { produkt: kluczProduktu, kod, imie, email, firma, nip } = dane;
+  const { produkt: kluczProduktu, kod, imie, email, firma, nip, natychmiast } = dane;
 
   if (!kluczProduktu) return bladWejscia(res, "brak-produktu");
   if (!imie || String(imie).trim().length < 3) return bladWejscia(res, "brak-imienia-i-nazwiska");
@@ -94,7 +94,15 @@ export default async function handler(req, res) {
   // ktos taki kiedys dopisal, krotki identyfikator natychmiast stalby sie idorem.
   // Nazwa produktu zostaje w srodku wylacznie po to, zeby przy reklamacji dalo
   // sie odczytac z panelu Tpay, czego dotyczyla wplata - nie jest to dana osobowa.
-  const idZamowienia = `a11y-${kluczProduktu}-${crypto.randomUUID()}`;
+  // Przy tresciach cyfrowych zapisujemy w identyfikatorze, czy kupujacy zazadal
+  // natychmiastowego swiadczenia. ITN zwraca wylacznie tr_crc, wiec bez tego
+  // znacznika realizacja nie wiedzialaby, czy dostep nalezy sie od razu, czy po
+  // 14 dniach. Nie wolno uzaleznic sprzedazy od zrzeczenia sie prawa odstapienia,
+  // wiec sciezka "kupuje i czekam" musi istniec (wymog opisany przez sesje mozg-27
+  // w raporty/2026-09-22-regulamin-tresci-cyfrowe-kurs.md).
+  const zadaNatychmiast = wycena.produkt.tresciCyfrowe ? Boolean(natychmiast) : null;
+  const znacznik = zadaNatychmiast === null ? "" : (zadaNatychmiast ? "-n1" : "-n0");
+  const idZamowienia = `a11y-${kluczProduktu}${znacznik}-${crypto.randomUUID()}`;
   const adres = adresPubliczny;
 
   const opis = `${wycena.produkt.nazwa} (${wycena.produkt.termin})`;
@@ -161,6 +169,10 @@ export default async function handler(req, res) {
     produkt: kluczProduktu,
     kwota_zl: naZlote(wycena.kwotaGrosze),
     rabat: wycena.rabat,
+    tresci_cyfrowe: Boolean(wycena.produkt.tresciCyfrowe),
+    zadanie_natychmiastowego_swiadczenia: zadaNatychmiast,
+    dostep: zadaNatychmiast === null ? "wg terminu szkolenia"
+      : (zadaNatychmiast ? "niezwlocznie po platnosci" : "po 14 dniach od zakupu"),
     firma: firma || null,
     nip: nip || null,
     tr_id: transakcja.transactionId || null,
