@@ -31,6 +31,16 @@ export const PRODUKTY = {
     termin: "26-27.11.2026",
     cenaGrosze: 199900,
   },
+  // Kurs e-learningowy: dostep online, nie termin szkolenia. Sprzedaz od 28.09.2026,
+  // cena promocyjna 500 zl dla uczestnikow webinaru wazna do 05.10.2026 - obsluguje
+  // ja kod rabatowy, nie druga cena na stronie.
+  "semantyczny-html": {
+    nazwa: "Semantyczny HTML",
+    podtytul: "kurs e-learningowy, 12 lekcji",
+    termin: "dostęp online, bezterminowo",
+    cenaGrosze: 99900,
+    tresciCyfrowe: true,
+  },
 };
 
 /**

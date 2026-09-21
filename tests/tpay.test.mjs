@@ -12,11 +12,13 @@ process.env.TPAY_KODY_RABATOWE = JSON.stringify({
   WEBINAR0925: { produkty: ["dostepne-dokumenty"], cenaGrosze: 159900, wazneDo: "2026-12-31" },
   WYGASLY: { produkty: ["dostepne-dokumenty"], cenaGrosze: 159900, wazneDo: "2026-01-01" },
   ZADROGI: { produkty: ["dostepne-dokumenty"], cenaGrosze: 999900, wazneDo: "2026-12-31" },
+  WEBINAR2409: { produkty: ["semantyczny-html"], cenaGrosze: 50000, wazneDo: "2026-10-05" },
 });
 
 const { wycen, PRODUKTY } = await import("../api/_katalog.mjs");
 
 test("cena stala zgadza sie z cennikiem", () => {
+  assert.equal(wycen("semantyczny-html").kwotaGrosze, 99900);
   assert.equal(wycen("wcag-dla-specjalistow").kwotaGrosze, 249900);
   assert.equal(wycen("ai-dla-audytora").kwotaGrosze, 199900);
   assert.equal(wycen("dostepne-dokumenty").kwotaGrosze, 199900);
@@ -46,6 +48,12 @@ test("kod po terminie waznosci nie dziala", () => {
 
 test("kod nie moze podniesc ceny ani jej wyzerowac", () => {
   assert.equal(wycen("dostepne-dokumenty", "ZADROGI").kwotaGrosze, 199900);
+});
+
+test("kurs po kodzie z webinaru kosztuje 500 zl", () => {
+  const w = wycen("semantyczny-html", "WEBINAR2409");
+  assert.equal(w.kwotaGrosze, 50000);
+  assert.equal(w.rabat.zastosowany, true);
 });
 
 test("nieznany produkt jest odrzucany, nie wyceniany", () => {
