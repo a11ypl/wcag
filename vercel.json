@@ -13,6 +13,11 @@
   ],
   "redirects": [
     {
+      "source": "/kurs",
+      "destination": "/kurs-semantyczny-html",
+      "permanent": false
+    },
+    {
       "source": "/wcag-prostym-jezykiem/1-2-1-tylko-audio-i-tylko-wideo-nagranie",
       "destination": "/wcag-prostym-jezykiem/1-2-1-tylko-audio-oraz-tylko-wideo",
       "permanent": true
