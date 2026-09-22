@@ -12,6 +12,9 @@
  * netto, a dokument sprzedazy wystawiany jest ze zwolnieniem.
  */
 
+/** Gorny limit na jedno zamowienie - zabezpieczenie przed pomylka i naduzyciem. */
+export const MAKS_OSOB = 20;
+
 export const PRODUKTY = {
   "wcag-dla-specjalistow": {
     nazwa: "WCAG dla specjalistów",
@@ -79,17 +82,35 @@ function znormalizuj(kod) {
  * Zwraca {ok, produkt, kluczProduktu, kwotaGrosze, rabat, powod}.
  * Nieznany albo wygasly kod NIE jest bledem - po prostu obowiazuje cena stala.
  */
-export function wycen(kluczProduktu, kod) {
+export function wycen(kluczProduktu, kod, liczbaOsob = 1) {
   const produkt = PRODUKTY[kluczProduktu];
   if (!produkt) return { ok: false, powod: "nieznany-produkt" };
+
+  // Zakup firmowy: cena to iloczyn, bez progow ilosciowych - ta sama stawka
+  // przy jednej i przy dziesieciu osobach (decyzja Damiana z 22.09.2026).
+  const osoby = Number.parseInt(liczbaOsob, 10);
+  if (!Number.isInteger(osoby) || osoby < 1 || osoby > MAKS_OSOB) {
+    return { ok: false, powod: "bledna-liczba-osob" };
+  }
 
   const wynik = {
     ok: true,
     produkt,
     kluczProduktu,
-    kwotaGrosze: produkt.cenaGrosze,
+    liczbaOsob: osoby,
+    cenaJednostkowaGrosze: produkt.cenaGrosze,
+    kwotaGrosze: produkt.cenaGrosze * osoby,
     rabat: null,
   };
+
+  // Kod rabatowy z webinaru jest zachęta dla osoby, ktora w nim uczestniczyla,
+  // wiec nie mnozy sie na caly zespol. Zalozenie zachowawcze - latwo poluzowac,
+  // trudno odzyskac przychod. Do potwierdzenia przez Damiana.
+  if (osoby > 1) {
+    return kod
+      ? { ...wynik, rabat: { zastosowany: false, powod: "kod-tylko-dla-jednej-osoby" } }
+      : wynik;
+  }
 
   const szukany = znormalizuj(kod);
   if (!szukany) return wynik;
@@ -118,7 +139,8 @@ export function wycen(kluczProduktu, kod) {
 
   return {
     ...wynik,
-    kwotaGrosze: cenaPoRabacie,
+    cenaJednostkowaGrosze: cenaPoRabacie,
+    kwotaGrosze: cenaPoRabacie * osoby,
     rabat: { zastosowany: true, kod: szukany, cenaPrzed: produkt.cenaGrosze },
   };
 }

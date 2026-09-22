@@ -77,14 +77,31 @@ export default async function handler(req, res) {
   }
 
   const dane = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  const { produkt: kluczProduktu, kod, imie, email, firma, nip, natychmiast } = dane;
+  const { produkt: kluczProduktu, kod, imie, email, firma, nip, natychmiast,
+          liczbaOsob, uczestnicy } = dane;
 
   if (!kluczProduktu) return bladWejscia(res, "brak-produktu");
   if (!imie || String(imie).trim().length < 3) return bladWejscia(res, "brak-imienia-i-nazwiska");
   if (!POPRAWNY_EMAIL.test(String(email || ""))) return bladWejscia(res, "bledny-email");
 
-  const wycena = wycen(kluczProduktu, kod);
+  const osoby = liczbaOsob === undefined ? 1 : liczbaOsob;
+  const wycena = wycen(kluczProduktu, kod, osoby);
   if (!wycena.ok) return bladWejscia(res, wycena.powod);
+
+  // Przy zakupie dla kilku osob kazdy uczestnik dostaje odrebny, imienny dostep,
+  // wiec musimy znac jego dane. Sprawdzamy je tutaj, a nie tylko w przegladarce.
+  const lista = Array.isArray(uczestnicy) ? uczestnicy : [];
+  if (wycena.liczbaOsob > 1) {
+    if (lista.length !== wycena.liczbaOsob) return bladWejscia(res, "niepelna-lista-uczestnikow");
+    for (const osoba of lista) {
+      if (!osoba || String(osoba.imie || "").trim().length < 3) {
+        return bladWejscia(res, "brak-imienia-uczestnika");
+      }
+      if (!POPRAWNY_EMAIL.test(String(osoba.email || "").trim())) {
+        return bladWejscia(res, "bledny-email-uczestnika");
+      }
+    }
+  }
 
   // Identyfikator zamowienia wraca w powiadomieniu ITN jako tr_crc - po nim
   // rozpoznajemy, czego dotyczyla wplata.
@@ -105,7 +122,9 @@ export default async function handler(req, res) {
   const idZamowienia = `a11y-${kluczProduktu}${znacznik}-${crypto.randomUUID()}`;
   const adres = adresPubliczny;
 
-  const opis = `${wycena.produkt.nazwa} (${wycena.produkt.termin})`;
+  const opis = wycena.liczbaOsob > 1
+    ? `${wycena.produkt.nazwa} (${wycena.produkt.termin}) - ${wycena.liczbaOsob} osob`
+    : `${wycena.produkt.nazwa} (${wycena.produkt.termin})`;
 
   let token;
   try {
@@ -169,6 +188,9 @@ export default async function handler(req, res) {
     produkt: kluczProduktu,
     kwota_zl: naZlote(wycena.kwotaGrosze),
     rabat: wycena.rabat,
+    liczba_osob: wycena.liczbaOsob,
+    cena_jednostkowa_zl: naZlote(wycena.cenaJednostkowaGrosze),
+    uczestnicy: lista.map((o) => ({ imie: o.imie, email: o.email })),
     tresci_cyfrowe: Boolean(wycena.produkt.tresciCyfrowe),
     zadanie_natychmiastowego_swiadczenia: zadaNatychmiast,
     dostep: zadaNatychmiast === null ? "wg terminu szkolenia"
@@ -182,6 +204,7 @@ export default async function handler(req, res) {
     url: adresBramki,
     zamowienie: idZamowienia,
     kwota: naZlote(wycena.kwotaGrosze),
+    liczbaOsob: wycena.liczbaOsob,
     rabatZastosowany: Boolean(wycena.rabat?.zastosowany),
   });
 }

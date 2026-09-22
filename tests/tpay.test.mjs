@@ -209,3 +209,40 @@ test("szkolenie z terminem nie dostaje znacznika tresci cyfrowych", async () => 
   });
   assert.ok(!/-n[01]-/.test(zadanie.hiddenDescription), "znacznik dotyczy tylko tresci cyfrowych");
 });
+
+// --- Zakup dla kilku osob ---
+
+test("zakup dla trzech osob liczy iloczyn, bez rabatu ilosciowego", async () => {
+  const { res, zadanie } = await wywolajStart({
+    produkt: "semantyczny-html", imie: "Firma Sp. z o.o.", email: "biuro@firma.pl",
+    liczbaOsob: 3,
+    uczestnicy: [
+      { imie: "Anna Nowak", email: "anna@firma.pl" },
+      { imie: "Jan Kowalski", email: "jan@firma.pl" },
+      { imie: "Ewa Wisniewska", email: "ewa@firma.pl" },
+    ],
+  });
+  assert.equal(res.kod, 200);
+  assert.equal(zadanie.amount, 2997);
+});
+
+test("liczba osob bez kompletnej listy uczestnikow jest odrzucana", async () => {
+  const { res } = await wywolajStart({
+    produkt: "semantyczny-html", imie: "Firma", email: "biuro@firma.pl",
+    liczbaOsob: 3,
+    uczestnicy: [{ imie: "Anna Nowak", email: "anna@firma.pl" }],
+  });
+  assert.equal(res.kod, 400);
+});
+
+test("uczestnik z blednym adresem blokuje zamowienie", async () => {
+  const { res } = await wywolajStart({
+    produkt: "semantyczny-html", imie: "Firma", email: "biuro@firma.pl",
+    liczbaOsob: 2,
+    uczestnicy: [
+      { imie: "Anna Nowak", email: "anna@firma.pl" },
+      { imie: "Jan Kowalski", email: "to-nie-jest-email" },
+    ],
+  });
+  assert.equal(res.kod, 400);
+});
