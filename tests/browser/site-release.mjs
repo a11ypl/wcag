@@ -50,47 +50,34 @@ try {
   console.log(`PASS: ${htmlFiles.length} pages, headings, language, scripts and stable header`);
 
   const money = text => Number(text.replace(/[^\d,]/g, '').replace(',', '.'));
+  for (const path of ['sklep', 'szkolenie-ai-asystent', 'szkolenie-poglebiajace', 'wcag-dla-specjalistow']) {
+    await page.goto(`http://a11yfirst.test/${path}`);
+    assert.equal(await page.locator('[id*="discount"], .checkout-discount').count(), 0, `${path}: discount field`);
+    assert.doesNotMatch(await page.locator('body').textContent(), /kod rabatowy|jestemwgrupie/i, `${path}: discount text`);
+  }
   for (const [path, prefix, price] of [['szkolenie-ai-asystent', 'ai', 1999], ['szkolenie-poglebiajace', 'poglebiajace', 1649]]) {
     await page.goto(`http://a11yfirst.test/${path}`);
-    const input = page.locator(`#${prefix}-discount-code`);
-    const total = page.locator(`#${prefix}TotalPrice`);
-    assert.equal(money(await total.textContent()), price);
-    await input.fill(' JESTEMWGRUPIE ');
-    await page.locator(`#${prefix}-apply-discount`).click();
-    assert.equal(money(await total.textContent()), Math.round(price * 90) / 100);
-    await input.fill('invalid');
-    await page.locator(`#${prefix}-apply-discount`).click();
-    assert.equal(money(await total.textContent()), price);
-    await input.fill('jestemwgrupie');
-    await page.locator(`#${prefix}-apply-discount`).click();
-    await page.locator(`#${prefix}-remove-discount`).click();
-    assert.equal(money(await total.textContent()), price);
+    assert.equal(money(await page.locator(`#${prefix}TotalPrice`).textContent()), price);
   }
   await page.goto('http://a11yfirst.test/sklep');
   assert.equal(await page.locator('[value="DOC01"]').count(), 0);
   await page.locator('[data-checkout-select="shop-product-2"]').click();
   assert.ok(await page.locator('#shop-product-2').isChecked());
   assert.ok(!await page.locator('#shop-product-1').isChecked());
-  await page.locator('#shop-discount-code').fill('jestemwgrupie');
-  await page.locator('#shop-apply-discount').click();
   assert.equal(money(await page.locator('#shopTotalPrice').textContent()), 69);
-  console.log('PASS: training discounts, invalid/removal flows, shop selection and webinar exclusion');
+  await page.locator('[data-checkout-select="shop-product-3"]').click();
+  assert.equal(money(await page.locator('#shopTotalPrice').textContent()), 138);
+  console.log('PASS: no discount codes, training prices and shop totals');
 
   await page.goto('http://a11yfirst.test/wcag-dla-specjalistow');
   await page.locator('#toggleDaysBtn').click();
   await page.locator('#pricing-day-1').check();
-  await page.locator('#wcag-discount-code').fill('jestemwgrupie');
-  await page.locator('#wcag-apply-discount').click();
-  assert.equal(money(await page.locator('#totalPrice').textContent()), 899.1);
+  assert.equal(money(await page.locator('#totalPrice').textContent()), 999);
   await page.locator('#pricing-day-2').check();
-  assert.equal(money(await page.locator('#totalPrice').textContent()), 1798.2);
-  assert.match(await page.locator('#wcag-discount-status').textContent(), /199,80/);
+  assert.equal(money(await page.locator('#totalPrice').textContent()), 1998);
   await page.locator('#pricing-day-3').check();
-  assert.equal(money(await page.locator('#totalPrice').textContent()), 2249.1);
-  await page.locator('#wcag-discount-code').fill('');
-  await page.locator('#wcag-apply-discount').click();
   assert.equal(money(await page.locator('#totalPrice').textContent()), 2499);
-  console.log('PASS: WCAG course day changes, full-course discount and clearing the code');
+  console.log('PASS: WCAG course day changes and full-course price');
 
   await page.goto('http://a11yfirst.test/baza-wiedzy/aria');
   const summary = page.locator('[data-aria-reference-list] summary').first();

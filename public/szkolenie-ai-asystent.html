@@ -244,22 +244,11 @@
                             <output id="aiTotalPrice" style="font-weight: bold; color: var(--primary); display:block;">1999 zł</output>
                         </div>
                     </div>
-                    <p id="aiDiscountSummary" class="checkout-discount-summary" hidden></p>
 
-                    <form id="aiRegistrationForm" data-checkout-form data-product-title="AI w audytowaniu dostępności cyfrowej" data-product-price="1999" data-product-category="training" data-transfer-title="AI w audytowaniu dostępności cyfrowej" data-error-summary="aiCheckoutErrorSummary" data-transfer-section="aiBankTransferInfo" data-selected-output="aiSelectedProduct" data-total-output="aiTotalPrice" data-discount-output="aiDiscountSummary" data-discount-input="ai-discount-code" data-discount-apply="ai-apply-discount" data-discount-remove="ai-remove-discount" data-discount-status="ai-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie AI w audytowaniu dostępności cyfrowej z a11yfirst.pl" novalidate>
+                    <form id="aiRegistrationForm" data-checkout-form data-product-title="AI w audytowaniu dostępności cyfrowej" data-product-price="1999" data-product-category="training" data-transfer-title="AI w audytowaniu dostępności cyfrowej" data-error-summary="aiCheckoutErrorSummary" data-transfer-section="aiBankTransferInfo" data-selected-output="aiSelectedProduct" data-total-output="aiTotalPrice" data-alert-region="alertRegion" data-subject-prefix="Nowy zapis na szkolenie" data-message-heading="Nowy zapis na szkolenie AI w audytowaniu dostępności cyfrowej z a11yfirst.pl" novalidate>
                         <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
                         <div id="aiCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
 
-                        <fieldset class="checkout-discount">
-                            <legend>Kod rabatowy</legend>
-                            <div class="checkout-discount-row">
-                                <label for="ai-discount-code">Wpisz kod rabatowy</label>
-                                <input type="text" id="ai-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
-                                <button class="btn btn-secondary" type="button" id="ai-apply-discount">Zastosuj kod</button>
-                                <button class="btn btn-secondary" type="button" id="ai-remove-discount">Usuń kod</button>
-                            </div>
-                            <p id="ai-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
-                        </fieldset>
 
                         <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
                             <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / nabywcy</legend>
@@ -378,7 +367,7 @@
         </div>
     </footer>
     <script src="assets/trainer-flips.js?v=6"></script>
-    <script src="assets/checkout-forms.js?v=20"></script>
+    <script src="assets/checkout-forms.js?v=21"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (!window.A11yFirstTrainerFlip) return;
