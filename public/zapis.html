@@ -100,6 +100,7 @@
         <section class="features">
             <div class="container">
                 <div id="zapisStatus" class="checkout-discount-summary" role="status" aria-live="polite" hidden></div>
+                <div id="zapisCena" class="checkout-discount-summary" role="status" aria-live="polite" hidden></div>
                 <div id="zapisBledy" class="checkout-error-summary" tabindex="-1" hidden aria-live="assertive"></div>
 
                 <form id="zapisForm" novalidate>
@@ -154,11 +155,6 @@
                         <input type="text" id="nip" name="nip" inputmode="numeric" autocomplete="off">
                     </div>
 
-                    <div class="form-field">
-                        <label for="kod">Kod rabatowy</label>
-                        <input type="text" id="kod" name="kod" autocomplete="off" aria-describedby="kodOpis">
-                        <p id="kodOpis" class="form-hint">Jeśli masz kod z webinaru, wpisz go tutaj. Cenę po rabacie zobaczysz na stronie płatności.</p>
-                    </div>
 
                     <div class="form-field">
                         <input type="checkbox" id="zgoda" name="zgoda" required>
@@ -184,7 +180,7 @@
             </div>
         </section>
     </main>
-    <script src="assets/zapis.js?v=1" defer></script>
+    <script src="assets/zapis.js?v=2" defer></script>
 
     <footer>
         <div class="container">

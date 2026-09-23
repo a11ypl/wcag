@@ -1,12 +1,13 @@
 /**
- * Katalog produktow i kodow rabatowych - JEDYNE zrodlo prawdy o cenie.
+ * Katalog produktow i wariantow ceny - JEDYNE zrodlo prawdy o kwocie.
  *
- * Przegladarka nigdy nie podaje kwoty. Wysyla identyfikator produktu i
- * ewentualny kod rabatowy; kwote wylicza wylacznie serwer. Bez tego kazdy
- * moglby podmienic cene w narzedziach dewelopera i kupic szkolenie za zlotowke.
+ * Przegladarka nigdy nie podaje ceny. Wysyla identyfikator produktu i
+ * ewentualny identyfikator wariantu; kwote wylicza wylacznie serwer. Bez tego
+ * kazdy moglby podmienic cene w narzedziach dewelopera i kupic szkolenie za
+ * zlotowke.
  *
  * Kwoty trzymamy w groszach (liczby calkowite), zeby uniknac bledow
- * zmiennoprzecinkowych przy rabatach.
+ * zmiennoprzecinkowych.
  *
  * Wlacz Wizje sp. z o.o. nie jest platnikiem VAT - kwota brutto rowna sie
  * netto, a dokument sprzedazy wystawiany jest ze zwolnieniem.
@@ -15,28 +16,73 @@
 /** Gorny limit na jedno zamowienie - zabezpieczenie przed pomylka i naduzyciem. */
 export const MAKS_OSOB = 20;
 
+/**
+ * Promocje jako WARIANT CENY, nie kod rabatowy (decyzja Damiana z 23.09.2026).
+ *
+ * Kodow rabatowych nie ma nigdzie na stronie. Promocja powebinarowa dziala
+ * przez dedykowany link, ktory wskazuje wariant:
+ *
+ *   /zapis?szkolenie=wcag-dla-specjalistow&wariant=webinar-2409
+ *
+ * Wariant jest zagniezdzony w produkcie, wiec z definicji nie da sie uzyc
+ * wariantu jednego szkolenia przy innym - nie ma tu czego sprawdzac krzyzowo
+ * i nie ma jak sie pomylic w konfiguracji.
+ *
+ * Te dane moga lezec w repozytorium, w odroznieniu od dawnych kodow: modul
+ * jest serwerowy (`api/`), nie trafia do przegladarki. Dawny kod rabatowy byl
+ * wpisany w plik JavaScript wysylany do kazdego odwiedzajacego - przestawal
+ * wtedy byc rabatem dla uczestnikow webinaru i stawal sie publiczna cena.
+ *
+ * Link po dacie waznosci nie jest bledem: kupujacy widzi cene regularna wraz
+ * z wyjasnieniem, dlaczego promocja juz nie obowiazuje.
+ */
 export const PRODUKTY = {
   "wcag-dla-specjalistow": {
     nazwa: "WCAG dla specjalistów",
     podtytul: "jeśli zaczynasz",
     termin: "28-30.10.2026",
     cenaGrosze: 249900,
+    warianty: {
+      "webinar-2409": {
+        nazwa: "cena dla uczestników webinaru",
+        cenaGrosze: 199900,
+        wazneDo: "2026-10-05",
+      },
+    },
   },
   "ai-dla-audytora": {
     nazwa: "AI dla audytora dostępności cyfrowej",
     podtytul: "jeśli chcesz audytować z AI",
     termin: "9-10.11.2026",
     cenaGrosze: 199900,
+    warianty: {
+      "webinar-2409": {
+        nazwa: "cena dla uczestników webinaru",
+        cenaGrosze: 159900,
+        wazneDo: "2026-10-05",
+      },
+    },
   },
   "dostepne-dokumenty": {
     nazwa: "Dostępne dokumenty w praktyce",
     podtytul: "jeśli chcesz tworzyć dostępne dokumenty",
     termin: "26-27.11.2026",
     cenaGrosze: 199900,
+    warianty: {
+      "webinar-2409": {
+        nazwa: "cena dla uczestników webinaru",
+        cenaGrosze: 159900,
+        wazneDo: "2026-10-05",
+      },
+    },
   },
-  // Kurs e-learningowy: dostep online, nie termin szkolenia. Sprzedaz od 28.09.2026,
-  // cena promocyjna 500 zl dla uczestnikow webinaru wazna do 05.10.2026 - obsluguje
-  // ja kod rabatowy, nie druga cena na stronie.
+  // Kurs e-learningowy: dostep online, nie termin szkolenia.
+  //
+  // Sprzedaz ODLOZONA (decyzja z 22.09.2026, notatka 01 Biznesy) - pierwotny
+  // start 28.09 i okno promocyjne 28.09-05.10 sa nieaktualne, wchodzi lista
+  // preorderowa bez daty. Produkt zostaje w katalogu, bo mechanika jest gotowa
+  // i przetestowana; wariantu promocyjnego nie definiujemy, dopoki nie zapadnie
+  // decyzja o cenie dla listy (rekomendacja 500 zl).
   "semantyczny-html": {
     nazwa: "Semantyczny HTML",
     podtytul: "kurs e-learningowy, 12 lekcji",
@@ -46,43 +92,33 @@ export const PRODUKTY = {
   },
 };
 
-/**
- * Kody rabatowe pochodza WYLACZNIE ze zmiennej srodowiskowej, nigdy z repo.
- * Kod zapisany w kodzie zrodlowym strony przestaje byc rabatem dla uczestnikow
- * webinaru i staje sie publiczna cena - tak jest dzis w checkout-forms.js,
- * gdzie 'jestemwgrupie' widzi kazdy, kto otworzy plik.
- *
- * Format TPAY_KODY_RABATOWE (JSON):
- *   {"WEBINAR0925": {"produkty": ["dostepne-dokumenty"],
- *                    "cenaGrosze": 159900,
- *                    "wazneDo": "2026-09-30"}}
- *
- * Podajemy cene docelowa, nie procent - ceny promocyjne sa ustalane kwotowo
- * (1 999 zamiast 2 499), a nie jako rowny procent.
- */
-function wczytajKody() {
-  const surowe = process.env.TPAY_KODY_RABATOWE;
-  if (!surowe) return {};
-  try {
-    const dane = JSON.parse(surowe);
-    return dane && typeof dane === "object" ? dane : {};
-  } catch {
-    console.error("[katalog] TPAY_KODY_RABATOWE nie jest poprawnym JSON-em - rabaty wylaczone");
-    return {};
-  }
+/** Porownanie odporne na roznice wielkosci liter i biale znaki. */
+function znormalizuj(wartosc) {
+  return String(wartosc || "").trim().toLowerCase();
 }
 
-/** Porownanie odporne na roznice wielkosci liter i biale znaki. */
-function znormalizuj(kod) {
-  return String(kod || "").trim().toUpperCase();
+/**
+ * Czy wariant jest wazny na teraz.
+ *
+ * `wazneDo` to ostatni dzien obowiazywania wlacznie, liczony do konca dnia
+ * czasu warszawskiego. Brak `wazneDo` znaczy "bezterminowo".
+ */
+function czyWazny(wariant) {
+  if (!wariant.wazneDo) return true;
+  const koniec = new Date(`${wariant.wazneDo}T23:59:59+02:00`);
+  return !Number.isNaN(koniec.getTime()) && Date.now() <= koniec.getTime();
 }
 
 /**
  * Wylicza kwote do zaplaty.
- * Zwraca {ok, produkt, kluczProduktu, kwotaGrosze, rabat, powod}.
- * Nieznany albo wygasly kod NIE jest bledem - po prostu obowiazuje cena stala.
+ *
+ * Zwraca {ok, produkt, kluczProduktu, liczbaOsob, cenaJednostkowaGrosze,
+ *         kwotaGrosze, wariant, powod}.
+ *
+ * Nieznany albo wygasly wariant NIE jest bledem - obowiazuje wtedy cena stala,
+ * a pole `wariant` niesie powod, ktory strona pokazuje kupujacemu.
  */
-export function wycen(kluczProduktu, kod, liczbaOsob = 1) {
+export function wycen(kluczProduktu, kluczWariantu, liczbaOsob = 1) {
   const produkt = PRODUKTY[kluczProduktu];
   if (!produkt) return { ok: false, powod: "nieznany-produkt" };
 
@@ -100,48 +136,49 @@ export function wycen(kluczProduktu, kod, liczbaOsob = 1) {
     liczbaOsob: osoby,
     cenaJednostkowaGrosze: produkt.cenaGrosze,
     kwotaGrosze: produkt.cenaGrosze * osoby,
-    rabat: null,
+    wariant: null,
   };
 
-  // Kod rabatowy z webinaru jest zachęta dla osoby, ktora w nim uczestniczyla,
+  const szukany = znormalizuj(kluczWariantu);
+  if (!szukany) return wynik;
+
+  // Cena powebinarowa jest zacheta dla osoby, ktora w webinarze uczestniczyla,
   // wiec nie mnozy sie na caly zespol. Zalozenie zachowawcze - latwo poluzowac,
   // trudno odzyskac przychod. Do potwierdzenia przez Damiana.
   if (osoby > 1) {
-    return kod
-      ? { ...wynik, rabat: { zastosowany: false, powod: "kod-tylko-dla-jednej-osoby" } }
-      : wynik;
+    return { ...wynik, wariant: { zastosowany: false, powod: "wariant-tylko-dla-jednej-osoby" } };
   }
 
-  const szukany = znormalizuj(kod);
-  if (!szukany) return wynik;
+  const warianty = produkt.warianty || {};
+  const klucz = Object.keys(warianty).find((k) => znormalizuj(k) === szukany);
+  if (!klucz) return { ...wynik, wariant: { zastosowany: false, powod: "nieznany-wariant" } };
 
-  const kody = wczytajKody();
-  const wpis = kody[szukany] || kody[Object.keys(kody).find((k) => znormalizuj(k) === szukany)];
-  if (!wpis) return { ...wynik, rabat: { zastosowany: false, powod: "nieznany-kod" } };
-
-  const produktyKodu = Array.isArray(wpis.produkty) ? wpis.produkty : [];
-  if (produktyKodu.length && !produktyKodu.includes(kluczProduktu)) {
-    return { ...wynik, rabat: { zastosowany: false, powod: "kod-nie-dotyczy-tego-produktu" } };
+  const wariant = warianty[klucz];
+  if (!czyWazny(wariant)) {
+    return {
+      ...wynik,
+      wariant: { zastosowany: false, powod: "wariant-wygasl", wazneDo: wariant.wazneDo },
+    };
   }
 
-  if (wpis.wazneDo) {
-    // Koniec dnia wskazanego jako ostatni dzien waznosci, czas warszawski.
-    const koniec = new Date(`${wpis.wazneDo}T23:59:59+02:00`);
-    if (Number.isNaN(koniec.getTime()) || Date.now() > koniec.getTime()) {
-      return { ...wynik, rabat: { zastosowany: false, powod: "kod-wygasl" } };
-    }
-  }
-
-  const cenaPoRabacie = Number.parseInt(wpis.cenaGrosze, 10);
-  if (!Number.isInteger(cenaPoRabacie) || cenaPoRabacie <= 0 || cenaPoRabacie > produkt.cenaGrosze) {
-    return { ...wynik, rabat: { zastosowany: false, powod: "bledna-konfiguracja-kodu" } };
+  // Wariant moze cene wylacznie obnizyc. Blad w katalogu nie moze sprawic,
+  // ze ktos zaplaci wiecej, niz widzi na stronie.
+  const cena = Number.parseInt(wariant.cenaGrosze, 10);
+  if (!Number.isInteger(cena) || cena <= 0 || cena > produkt.cenaGrosze) {
+    return { ...wynik, wariant: { zastosowany: false, powod: "bledna-konfiguracja-wariantu" } };
   }
 
   return {
     ...wynik,
-    cenaJednostkowaGrosze: cenaPoRabacie,
-    kwotaGrosze: cenaPoRabacie * osoby,
-    rabat: { zastosowany: true, kod: szukany, cenaPrzed: produkt.cenaGrosze },
+    cenaJednostkowaGrosze: cena,
+    kwotaGrosze: cena * osoby,
+    wariant: {
+      zastosowany: true,
+      klucz,
+      nazwa: wariant.nazwa || null,
+      cenaPrzed: produkt.cenaGrosze,
+      wazneDo: wariant.wazneDo || null,
+    },
   };
 }
 

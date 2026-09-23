@@ -77,7 +77,7 @@ export default async function handler(req, res) {
   }
 
   const dane = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  const { produkt: kluczProduktu, kod, imie, email, firma, nip, natychmiast,
+  const { produkt: kluczProduktu, wariant, imie, email, firma, nip, natychmiast,
           liczbaOsob, uczestnicy } = dane;
 
   if (!kluczProduktu) return bladWejscia(res, "brak-produktu");
@@ -85,7 +85,7 @@ export default async function handler(req, res) {
   if (!POPRAWNY_EMAIL.test(String(email || ""))) return bladWejscia(res, "bledny-email");
 
   const osoby = liczbaOsob === undefined ? 1 : liczbaOsob;
-  const wycena = wycen(kluczProduktu, kod, osoby);
+  const wycena = wycen(kluczProduktu, wariant, osoby);
   if (!wycena.ok) return bladWejscia(res, wycena.powod);
 
   // Przy zakupie dla kilku osob kazdy uczestnik dostaje odrebny, imienny dostep,
@@ -187,7 +187,7 @@ export default async function handler(req, res) {
     zamowienie: idZamowienia,
     produkt: kluczProduktu,
     kwota_zl: naZlote(wycena.kwotaGrosze),
-    rabat: wycena.rabat,
+    wariant: wycena.wariant,
     liczba_osob: wycena.liczbaOsob,
     cena_jednostkowa_zl: naZlote(wycena.cenaJednostkowaGrosze),
     uczestnicy: lista.map((o) => ({ imie: o.imie, email: o.email })),
@@ -205,6 +205,7 @@ export default async function handler(req, res) {
     zamowienie: idZamowienia,
     kwota: naZlote(wycena.kwotaGrosze),
     liczbaOsob: wycena.liczbaOsob,
-    rabatZastosowany: Boolean(wycena.rabat?.zastosowany),
+    wariantZastosowany: Boolean(wycena.wariant?.zastosowany),
+    cenaJednostkowa: naZlote(wycena.cenaJednostkowaGrosze),
   });
 }

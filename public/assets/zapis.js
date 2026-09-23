@@ -1,8 +1,8 @@
 /**
  * Formularz zapisu na szkolenie.
  *
- * Do serwera ida WYLACZNIE: identyfikator szkolenia, kod rabatowy i dane
- * kupujacego. Kwota nie jest tu liczona ani wysylana - wylicza ja api/_katalog.mjs.
+ * Do serwera ida WYLACZNIE: identyfikator szkolenia, identyfikator wariantu
+ * ceny z linku i dane kupujacego. Kwota nie jest tu liczona ani wysylana - wylicza ja api/_katalog.mjs.
  * Gdyby cena szla z przegladarki, mozna by ja podmienic w narzedziach dewelopera.
  *
  * Bledy pokazujemy w podsumowaniu nad formularzem, z przeniesieniem fokusu -
@@ -32,7 +32,9 @@
   /** Preselekcja szkolenia z adresu, np. /zapis?szkolenie=dostepne-dokumenty.
    *  To klucz katalogowy, nie identyfikator cudzego zamowienia - i tak jest
    *  sprawdzany po stronie serwera, wiec podmiana niczego nie daje. */
-  const wybrane = new URLSearchParams(location.search).get("szkolenie");
+  const parametry = new URLSearchParams(location.search);
+  const wariant = parametry.get("wariant") || "";
+  const wybrane = parametry.get("szkolenie");
   if (wybrane) {
     const pole = form.querySelector(`input[name="produkt"][value="${CSS.escape(wybrane)}"]`);
     if (pole) pole.checked = true;
@@ -57,6 +59,37 @@
   }
   polaProduktu.forEach((pole) => pole.addEventListener("change", odswiezZgodeCyfrowa));
   odswiezZgodeCyfrowa();
+
+  /** Cena przychodzi z serwera, nie z przegladarki - tu tylko ja pokazujemy.
+   *  Dzieki temu kupujacy widzi, ze promocja z linku wygasla, zanim zaplaci. */
+  const panelCeny = document.getElementById("zapisCena");
+
+  async function odswiezCene() {
+    const wybrany = form.querySelector('input[name="produkt"]:checked');
+    if (!panelCeny || !wybrany) return;
+    const pytanie = new URLSearchParams({ produkt: wybrany.value });
+    if (wariant) pytanie.set("wariant", wariant);
+    try {
+      const odp = await fetch("/api/cennik?" + pytanie.toString());
+      if (!odp.ok) { panelCeny.hidden = true; return; }
+      const dane = await odp.json();
+      let tresc = "<p><strong>Do zapłaty: " + dane.kwota + " zł</strong></p>";
+      if (dane.wariant && dane.wariant.zastosowany) {
+        tresc += "<p>Cena promocyjna z Twojego linku zamiast " +
+                 (dane.wariant.cenaPrzed / 100).toFixed(2) + " zł" +
+                 (dane.wariant.wazneDo ? ". Link jest ważny do " + dane.wariant.wazneDo + "." : ".") + "</p>";
+      } else if (dane.wariant && dane.wariant.powod === "wariant-wygasl") {
+        tresc += "<p>Promocja z tego linku wygasła " + dane.wariant.wazneDo +
+                 ". Obowiązuje cena regularna.</p>";
+      }
+      panelCeny.innerHTML = tresc;
+      panelCeny.hidden = false;
+    } catch (blad) {
+      panelCeny.hidden = true;
+    }
+  }
+  polaProduktu.forEach(function (pole) { pole.addEventListener("change", odswiezCene); });
+  odswiezCene();
 
   function pokazBledy(lista) {
     if (!podsumowanieBledow) return;
@@ -91,7 +124,7 @@
       email: (pola.get("email") || "").toString().trim(),
       firma: (pola.get("firma") || "").toString().trim(),
       nip: (pola.get("nip") || "").toString().trim(),
-      kod: (pola.get("kod") || "").toString().trim(),
+      wariant: wariant,
       natychmiast: pola.get("natychmiast") === "on",
     };
 

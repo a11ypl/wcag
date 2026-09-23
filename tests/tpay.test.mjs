@@ -8,14 +8,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-process.env.TPAY_KODY_RABATOWE = JSON.stringify({
-  WEBINAR0925: { produkty: ["dostepne-dokumenty"], cenaGrosze: 159900, wazneDo: "2026-12-31" },
-  WYGASLY: { produkty: ["dostepne-dokumenty"], cenaGrosze: 159900, wazneDo: "2026-01-01" },
-  ZADROGI: { produkty: ["dostepne-dokumenty"], cenaGrosze: 999900, wazneDo: "2026-12-31" },
-  WEBINAR2409: { produkty: ["semantyczny-html"], cenaGrosze: 50000, wazneDo: "2026-10-05" },
-});
-
 const { wycen, PRODUKTY } = await import("../api/_katalog.mjs");
+
+// Warianty testowe wstrzykniete do katalogu: jeden juz wygasly, jeden drozszy
+// od ceny regularnej. W repo takich nie trzymamy - to sa sytuacje, ktore maja
+// nie zadzialac, a nie oferta.
+PRODUKTY["dostepne-dokumenty"].warianty["test-wygasly"] = {
+  nazwa: "wariant po terminie", cenaGrosze: 159900, wazneDo: "2026-01-01",
+};
+PRODUKTY["dostepne-dokumenty"].warianty["test-zadrogi"] = {
+  nazwa: "wariant drozszy od ceny regularnej", cenaGrosze: 999900,
+};
 
 test("cena stala zgadza sie z cennikiem", () => {
   assert.equal(wycen("semantyczny-html").kwotaGrosze, 99900);
@@ -24,36 +27,42 @@ test("cena stala zgadza sie z cennikiem", () => {
   assert.equal(wycen("dostepne-dokumenty").kwotaGrosze, 199900);
 });
 
-test("wazny kod obniza cene do ustalonej kwoty", () => {
-  const w = wycen("dostepne-dokumenty", "WEBINAR0925");
-  assert.equal(w.kwotaGrosze, 159900);
-  assert.equal(w.rabat.zastosowany, true);
-});
-
-test("wielkosc liter i spacje w kodzie nie maja znaczenia", () => {
-  assert.equal(wycen("dostepne-dokumenty", "  webinar0925 ").kwotaGrosze, 159900);
-});
-
-test("kod przypisany do innego produktu nie dziala", () => {
-  const w = wycen("wcag-dla-specjalistow", "WEBINAR0925");
-  assert.equal(w.kwotaGrosze, 249900, "musi zostac cena stala");
-  assert.equal(w.rabat.zastosowany, false);
-});
-
-test("kod po terminie waznosci nie dziala", () => {
-  const w = wycen("dostepne-dokumenty", "WYGASLY");
+test("wariant z linku obniza cene do ustalonej kwoty", () => {
+  const w = wycen("wcag-dla-specjalistow", "webinar-2409");
   assert.equal(w.kwotaGrosze, 199900);
-  assert.equal(w.rabat.powod, "kod-wygasl");
+  assert.equal(w.wariant.zastosowany, true);
 });
 
-test("kod nie moze podniesc ceny ani jej wyzerowac", () => {
-  assert.equal(wycen("dostepne-dokumenty", "ZADROGI").kwotaGrosze, 199900);
+test("wielkosc liter i spacje w identyfikatorze wariantu nie maja znaczenia", () => {
+  assert.equal(wycen("wcag-dla-specjalistow", "  WEBINAR-2409 ").kwotaGrosze, 199900);
 });
 
-test("kurs po kodzie z webinaru kosztuje 500 zl", () => {
-  const w = wycen("semantyczny-html", "WEBINAR2409");
-  assert.equal(w.kwotaGrosze, 50000);
-  assert.equal(w.rabat.zastosowany, true);
+test("wariant nalezy do produktu - nie da sie go przeniesc na inny", () => {
+  // Kurs nie ma zadnego wariantu, wiec identyfikator z innego szkolenia
+  // musi zostac zignorowany, a nie zastosowany.
+  const w = wycen("semantyczny-html", "webinar-2409");
+  assert.equal(w.kwotaGrosze, 99900, "musi zostac cena stala");
+  assert.equal(w.wariant.zastosowany, false);
+  assert.equal(w.wariant.powod, "nieznany-wariant");
+});
+
+test("wariant po terminie waznosci nie dziala i mowi dlaczego", () => {
+  const w = wycen("dostepne-dokumenty", "test-wygasly");
+  assert.equal(w.kwotaGrosze, 199900);
+  assert.equal(w.wariant.powod, "wariant-wygasl");
+  assert.equal(w.wariant.wazneDo, "2026-01-01", "kupujacy ma zobaczyc date, nie sam komunikat");
+});
+
+test("wariant nie moze podniesc ceny ani jej wyzerowac", () => {
+  const w = wycen("dostepne-dokumenty", "test-zadrogi");
+  assert.equal(w.kwotaGrosze, 199900);
+  assert.equal(w.wariant.zastosowany, false);
+});
+
+test("zmyslony wariant nie jest bledem - obowiazuje cena regularna", () => {
+  const w = wycen("wcag-dla-specjalistow", "wymyslony-przez-kupujacego");
+  assert.equal(w.ok, true);
+  assert.equal(w.kwotaGrosze, 249900);
 });
 
 test("nieznany produkt jest odrzucany, nie wyceniany", () => {
