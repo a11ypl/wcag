@@ -9,3 +9,9 @@ dist
 .next
 coverage
 *.log
+
+# Katalogi, ktore powstaja lokalnie i nie moga trafic na produkcje.
+# Zgloszone przez sesje mozg-86: leza tam nieopublikowane materialy.
+.vercel
+public/.vercel
+public/materialy/
