@@ -271,6 +271,27 @@
       font-size: clamp(0.75rem, 1.6vh, 0.875rem);
     }
 
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+
+    .footer-links a:focus-visible {
+      outline: 3px solid var(--focus-inner);
+      outline-offset: 3px;
+    }
+
     @media (max-height: 760px) {
       main {
         gap: 14px;
@@ -469,7 +490,12 @@
     </nav>
 
     <footer>
-      Accessibility First / Włącz Wizję
+      <p>Accessibility First / Włącz Wizję</p>
+      <ul class="footer-links">
+        <li><a href="/regulamin">Regulamin świadczenia usług</a></li>
+        <li><a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a></li>
+        <li><a href="/deklaracja">Deklaracja dostępności</a></li>
+      </ul>
     </footer>
 <!-- generated:webinars:start -->
 <section class="home-webinars" aria-labelledby="home-webinars-title" data-lista-webinarow="linkWebinaryHome"><h2 id="home-webinars-title">Najbliższe webinary</h2><div class="training-grid"><article class="training-card" data-typ="webinar"><div class="training-card-image"><img src="/assets/webinary/2026/semantyczny-html-nie-taki-straszny/landscape.png" alt="Grafika webinaru „Semantyczny HTML, nie taki straszny”. Damian stoi przy komputerze Apple w jasnej sali szkoleniowej." loading="lazy"></div><div class="training-card-body"><p class="training-type">Webinar · online</p><h3>Semantyczny HTML, nie taki straszny</h3><p class="training-date"><strong><time datetime="2026-09-24T17:00:00+02:00">24 września 2026, godz. 17:00</time></strong></p><p class="training-speaker"><strong>Prowadzenie: Damian Żłobicki</strong></p><p>Praktyczny webinar o semantycznym HTML i jego znaczeniu dla dostępności cyfrowej, jakości kodu oraz współpracy z technologiami asystującymi.</p><a class="btn btn-primary" href="https://forms.gle/rjvFigaSQvUqb4Uy9">Zapisz się na webinar<span class="sr-only">: Semantyczny HTML, nie taki straszny</span></a></div></article></div><p id="linkWebinaryHome" hidden><a href="/webinary">Zapoznaj się ze wszystkimi webinarami</a></p></section>
