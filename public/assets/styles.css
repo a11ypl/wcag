@@ -403,6 +403,22 @@ header nav a:hover { color: white; }
     color: black;
 }
 
+/* Linki w treści paneli (np. polityka prywatności, regulamin). Bez tej reguły
+   przeglądarka dawała domyślny niebieski. Podkreślenie zostaje obowiązkowe:
+   fiolet obok czarnego tekstu ma tylko 2,45:1 (WCAG 1.4.1 wymaga 3:1 albo
+   innego wyróżnienia niż kolor). */
+.knowledge-panel :where(p, li, dd) a:not(.btn),
+.knowledge-panel :where(p, li, dd) a:not(.btn):visited {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.knowledge-panel :where(p, li, dd) a:not(.btn):hover {
+    color: black;
+}
+
 .knowledge-panel .btn {
     text-align: left;
 }
