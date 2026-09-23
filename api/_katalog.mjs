@@ -35,6 +35,11 @@ export const MAKS_OSOB = 20;
  *
  * Link po dacie waznosci nie jest bledem: kupujacy widzi cene regularna wraz
  * z wyjasnieniem, dlaczego promocja juz nie obowiazuje.
+ *
+ * Kwoty promocyjne: cennik z 21.09.2026 (notatka 01 Biznesy). Data waznosci
+ * 2026-10-05 - jedno okno dla wszystkich trzech szkolen, potwierdzona przez
+ * Damiana 23.09.2026. Uwaga: to NIE jest to samo okno, co dawna promocja na
+ * kurs (28.09-05.10), ktora jest nieaktualna wraz z odlozeniem sprzedazy.
  */
 export const PRODUKTY = {
   "wcag-dla-specjalistow": {

@@ -10,11 +10,27 @@ Dokument dla przeglądu bezpieczeństwa — opisuje, co zostało zabezpieczone i
 |---|---|---|
 | `/api/platnosc-start` | POST, JSON | przeglądarka kupującego |
 | `/api/tpay-itn` | POST, form-urlencoded | serwery Tpay |
+| `/api/cennik` | GET, parametry w adresie | przeglądarka kupującego |
 | `/zapis`, `/platnosc-udana`, `/platnosc-nieudana` | GET | każdy |
 
 Nie istnieje **żaden** punkt końcowy, który przyjmuje identyfikator zamówienia
 i zwraca dane. To jest decyzja projektowa, nie przeoczenie: bez takiego punktu
 nie ma powierzchni na IDOR-a.
+
+`/api/cennik` dodany 23.09.2026 wraz z wariantami ceny. Przyjmuje klucz
+produktu, klucz wariantu i liczbę osób; zwraca kwotę wyliczoną z tego samego
+katalogu, z którego liczy ją płatność. Istnieje po to, żeby kupujący zobaczył
+wygaśnięcie promocji przed zapłatą, a nie dopiero na bramce.
+
+Czego ten punkt **nie** robi: nie przyjmuje kwoty, nie zapisuje niczego, nie
+zna zamówień i nie zwraca danych osobowych. Wszystko, co oddaje, jest i tak
+napisane na stronie sprzedażowej. Nie da się przez niego wpłynąć na cenę
+transakcji — płatność liczy ją niezależnie, w `api/platnosc-start.mjs`.
+
+Co zostaje do przemyślenia: punkt jest nielimitowany, więc pozwala odpytywać
+katalog dowolnie często i zgadywać nazwy wariantów. Koszt takiego zgadywania to
+poznanie ceny promocyjnej bez linku — nie dostęp do cudzych danych. Uznane za
+akceptowalne, do przeglądu razem z resztą braku ograniczeń liczby żądań.
 
 ## Zabezpieczone
 
