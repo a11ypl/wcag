@@ -369,7 +369,11 @@ function renderPage(page, metadata, content) {
     <meta name="twitter:description" content="${escapeHtml(description)}">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <script type="application/ld+json">${jsonLd}</script>
-    <link rel="icon" href="${assetPrefix}/a11yfirst-icon.svg?v=5" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48">
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">
+    <link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
     <link rel="stylesheet" href="${assetPrefix}/styles.css?v=19">
 </head>
 <body>
