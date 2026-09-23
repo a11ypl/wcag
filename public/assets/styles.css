@@ -4270,36 +4270,6 @@ button.day-card-front {
     font-size: 0.9rem;
     text-align: center;
 }
-.checkout-discount {
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-    margin: 0 auto 2rem;
-    max-width: 700px;
-    padding: 1.5rem;
-    text-align: left;
-}
-.checkout-discount legend {
-    color: var(--primary);
-    font-weight: 800;
-    padding: 0 0.5rem;
-}
-.checkout-discount-row {
-    display: grid;
-    gap: 0.75rem;
-}
-.checkout-discount-row label {
-    color: var(--dark);
-    font-weight: 700;
-}
-.checkout-discount-status,
-.checkout-discount-summary {
-    color: var(--dark);
-    font-weight: 700;
-    margin-top: 1rem;
-}
-.checkout-discount-status--error {
-    color: #b00020;
-}
 .checkout-actions {
     max-width: 700px;
     margin: 0 auto;

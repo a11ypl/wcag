@@ -1,13 +1,5 @@
 window.A11yFirstCheckout = (() => {
     const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
-    const DISCOUNT_CODES = {
-        jestemwgrupie: {
-            code: 'jestemwgrupie',
-            label: 'jestemwgrupie',
-            percent: 10,
-            category: 'training'
-        }
-    };
 
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -19,10 +11,6 @@ window.A11yFirstCheckout = (() => {
 
     function sanitizeDigits(value, maxLength) {
         return value.replace(/\D+/g, '').slice(0, maxLength);
-    }
-
-    function normalizeDiscountCode(value) {
-        return String(value || '').trim().toLowerCase();
     }
 
     function roundMoney(value) {
@@ -97,36 +85,13 @@ window.A11yFirstCheckout = (() => {
         return getSelectedProducts(form)[0] || null;
     }
 
-    function getActiveDiscount(form) {
-        const code = normalizeDiscountCode(form.dataset.appliedDiscountCode);
-        return DISCOUNT_CODES[code] || null;
-    }
-
-    function isDiscountEligible(product, discount) {
-        return Boolean(discount && product.category === discount.category);
-    }
-
-    function getDiscountableTotal(products, discount) {
-        return roundMoney(products
-            .filter((product) => isDiscountEligible(product, discount))
-            .reduce((sum, product) => sum + product.price, 0));
-    }
-
-    function getCartSummary(products, form) {
-        const subtotal = roundMoney(products.reduce((sum, product) => sum + product.price, 0));
-        const discount = form ? getActiveDiscount(form) : null;
-        const discountableTotal = getDiscountableTotal(products, discount);
-        const discountAmount = discount ? roundMoney(discountableTotal * discount.percent / 100) : 0;
-        const total = roundMoney(subtotal - discountAmount);
+    function getCartSummary(products) {
+        const total = roundMoney(products.reduce((sum, product) => sum + product.price, 0));
         const ids = products.map((product) => product.id).filter(Boolean);
         const titles = products.map((product) => product.id ? `ID ${product.id}: ${product.title}` : product.title);
         const transferTitles = products.map((product) => product.transferTitle);
 
         return {
-            subtotal,
-            discount,
-            discountAmount,
-            discountableTotal,
             total,
             ids,
             titles,
@@ -143,10 +108,9 @@ window.A11yFirstCheckout = (() => {
 
     function updateSummary(form) {
         const products = getSelectedProducts(form);
-        const cart = getCartSummary(products, form);
+        const cart = getCartSummary(products);
         const selectedOutput = document.getElementById(form.dataset.selectedOutput || '');
         const totalOutput = document.getElementById(form.dataset.totalOutput || '');
-        const discountOutput = document.getElementById(form.dataset.discountOutput || '');
 
         if (selectedOutput) {
             if (products.length) {
@@ -162,19 +126,6 @@ window.A11yFirstCheckout = (() => {
 
         if (totalOutput) {
             totalOutput.textContent = products.length ? `${formatPrice(cart.total)} zł` : '0 zł';
-        }
-
-        if (discountOutput) {
-            if (cart.discountAmount > 0) {
-                discountOutput.textContent = `Rabat ${cart.discount.label}: -${formatPrice(cart.discountAmount)} zł. Cena przed rabatem: ${formatPrice(cart.subtotal)} zł.`;
-                discountOutput.hidden = false;
-            } else if (cart.discount) {
-                discountOutput.textContent = `Kod ${cart.discount.label} jest aktywny, ale nie obejmuje wybranych produktów.`;
-                discountOutput.hidden = false;
-            } else {
-                discountOutput.textContent = '';
-                discountOutput.hidden = true;
-            }
         }
     }
 
@@ -278,70 +229,6 @@ window.A11yFirstCheckout = (() => {
         window.setTimeout(() => region.classList.remove('show'), 5000);
     }
 
-    function getDiscountStatus(form) {
-        return document.getElementById(form.dataset.discountStatus || '');
-    }
-
-    function setDiscountStatus(form, message, isError = false) {
-        const status = getDiscountStatus(form);
-        if (!status) return;
-
-        status.textContent = message;
-        status.classList.toggle('checkout-discount-status--error', isError);
-    }
-
-    function describeDiscountResult(form, discount) {
-        const products = getSelectedProducts(form);
-        const eligibleTotal = getDiscountableTotal(products, discount);
-
-        if (eligibleTotal <= 0) {
-            return `Kod ${discount.label} działa tylko na szkolenia. Nie obejmuje produktów w sklepie, webinarów ani materiałów.`;
-        }
-
-        const discountAmount = roundMoney(eligibleTotal * discount.percent / 100);
-        return `Zastosowano kod ${discount.label}. Rabat ${discount.percent}% obniża cenę o ${formatPrice(discountAmount)} zł.`;
-    }
-
-    function applyDiscountCode(form) {
-        const input = document.getElementById(form.dataset.discountInput || '');
-        if (!input) return;
-
-        const code = normalizeDiscountCode(input.value);
-        const discount = DISCOUNT_CODES[code];
-
-        if (!code) {
-            delete form.dataset.appliedDiscountCode;
-            setDiscountStatus(form, 'Wpisz kod rabatowy.', true);
-            updateSummary(form);
-            return;
-        }
-
-        if (!discount) {
-            delete form.dataset.appliedDiscountCode;
-            setDiscountStatus(form, 'Kod rabatowy jest nieprawidłowy.', true);
-            showStatus(form, 'Kod rabatowy jest nieprawidłowy.');
-            updateSummary(form);
-            return;
-        }
-
-        form.dataset.appliedDiscountCode = discount.code;
-        input.value = discount.label;
-        const message = describeDiscountResult(form, discount);
-        const hasEligibleProducts = getDiscountableTotal(getSelectedProducts(form), discount) > 0;
-        setDiscountStatus(form, message, !hasEligibleProducts);
-        showStatus(form, message);
-        updateSummary(form);
-    }
-
-    function removeDiscountCode(form) {
-        const input = document.getElementById(form.dataset.discountInput || '');
-        delete form.dataset.appliedDiscountCode;
-        if (input) input.value = '';
-        setDiscountStatus(form, 'Kod rabatowy został usunięty.');
-        showStatus(form, 'Kod rabatowy został usunięty. Cena została przeliczona.');
-        updateSummary(form);
-    }
-
     function focusStepTitle(section) {
         const title = section ? section.querySelector('.checkout-step-title') : null;
         if (!title) return;
@@ -358,7 +245,7 @@ window.A11yFirstCheckout = (() => {
         const section = document.getElementById(form.dataset.transferSection || '');
         if (!section) return;
 
-        const cart = getCartSummary(products, form);
+        const cart = getCartSummary(products);
         const amount = section.querySelector('[data-transfer-amount]');
         const title = section.querySelector('[data-transfer-title]');
         if (amount) amount.textContent = `${formatPrice(cart.total)} zł`;
@@ -394,7 +281,7 @@ window.A11yFirstCheckout = (() => {
         }
 
         const products = getSelectedProducts(form);
-        const cart = getCartSummary(products, form);
+        const cart = getCartSummary(products);
         const participant = getParticipant(form);
         const submitButton = form.querySelector('[type="submit"]');
         const transferSection = document.getElementById(form.dataset.transferSection || '');
@@ -412,16 +299,12 @@ window.A11yFirstCheckout = (() => {
         payload.append('access_needs', participant.accessNeeds || 'Nie podano');
         payload.append('product_ids', cart.ids.join(', '));
         payload.append('products', cart.titles.join('\n'));
-        payload.append('discount_code', cart.discount ? cart.discount.label : 'Brak');
-        payload.append('discount_amount', cart.discountAmount > 0 ? `${formatPrice(cart.discountAmount)} zł` : '0 zł');
         payload.append('amount', `${formatPrice(cart.total)} zł`);
         payload.append('transfer_title', cart.transferTitle);
         payload.append('message', [
             form.dataset.messageHeading || 'Nowe zamówienie z a11yfirst.pl',
             '',
             `Produkty:\n${cart.titles.join('\n')}`,
-            cart.discount ? `Kod rabatowy: ${cart.discount.label}` : 'Kod rabatowy: Brak',
-            `Rabat: ${formatPrice(cart.discountAmount)} zł`,
             `Kwota: ${formatPrice(cart.total)} zł`,
             `Uczestnik / nabywca: ${participant.firstName} ${participant.lastName}`.trim(),
             `Email: ${participant.email}`,
@@ -481,34 +364,12 @@ window.A11yFirstCheckout = (() => {
         });
         form.addEventListener('change', () => {
             updateSummary(form);
-            const discount = getActiveDiscount(form);
-            if (discount) setDiscountStatus(form, describeDiscountResult(form, discount), getDiscountableTotal(getSelectedProducts(form), discount) <= 0);
             validate(form);
         });
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             submitForm(form);
         });
-
-        const discountApply = document.getElementById(form.dataset.discountApply || '');
-        if (discountApply) {
-            discountApply.addEventListener('click', () => applyDiscountCode(form));
-        }
-
-        const discountInput = document.getElementById(form.dataset.discountInput || '');
-        if (discountInput) {
-            discountInput.addEventListener('keydown', (event) => {
-                if (event.key !== 'Enter') return;
-
-                event.preventDefault();
-                applyDiscountCode(form);
-            });
-        }
-
-        const discountRemove = document.getElementById(form.dataset.discountRemove || '');
-        if (discountRemove) {
-            discountRemove.addEventListener('click', () => removeDiscountCode(form));
-        }
     }
 
     function init() {

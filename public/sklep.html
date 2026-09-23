@@ -165,9 +165,8 @@
                             <output id="shopTotalPrice">0 zł</output>
                         </div>
                     </div>
-                    <p id="shopDiscountSummary" class="checkout-discount-summary" hidden></p>
 
-                    <form id="shopCheckoutForm" data-checkout-form data-error-summary="shopCheckoutErrorSummary" data-transfer-section="shopBankTransferInfo" data-selected-output="shopSelectedProduct" data-total-output="shopTotalPrice" data-discount-output="shopDiscountSummary" data-discount-input="shop-discount-code" data-discount-apply="shop-apply-discount" data-discount-remove="shop-remove-discount" data-discount-status="shop-discount-status" data-alert-region="alertRegion" data-subject-prefix="Nowe zamówienie produktów" data-message-heading="Nowe zamówienie ze sklepu Accessibility First" novalidate>
+                    <form id="shopCheckoutForm" data-checkout-form data-error-summary="shopCheckoutErrorSummary" data-transfer-section="shopBankTransferInfo" data-selected-output="shopSelectedProduct" data-total-output="shopTotalPrice" data-alert-region="alertRegion" data-subject-prefix="Nowe zamówienie produktów" data-message-heading="Nowe zamówienie ze sklepu Accessibility First" novalidate>
                         <p class="required-note">Pola wymagane są oznaczone gwiazdką (*).</p>
                         <div id="shopCheckoutErrorSummary" class="checkout-error-summary" hidden aria-live="assertive"></div>
 
@@ -210,17 +209,6 @@
                             <p id="shop-product-error" class="field-error"></p>
                         </fieldset>
 
-                        <fieldset class="checkout-discount">
-                            <legend>Kod rabatowy</legend>
-                            <p class="checkout-helper">Rabat nie obejmuje webinarów ani materiałów w sklepie.</p>
-                            <div class="checkout-discount-row">
-                                <label for="shop-discount-code">Wpisz kod rabatowy</label>
-                                <input type="text" id="shop-discount-code" class="checkout-input" autocomplete="off" autocapitalize="none" spellcheck="false">
-                                <button class="btn btn-secondary" type="button" id="shop-apply-discount">Zastosuj kod</button>
-                                <button class="btn btn-secondary" type="button" id="shop-remove-discount">Usuń kod</button>
-                            </div>
-                            <p id="shop-discount-status" class="checkout-discount-status" role="status" aria-live="polite" aria-atomic="true"></p>
-                        </fieldset>
 
                         <fieldset style="border: 2px solid var(--primary); padding: 1.5rem; margin: 0 auto 2rem auto; max-width: 700px; text-align: left; border-radius: 8px;">
                             <legend style="font-weight: bold; color: var(--primary); padding: 0 0.5rem;">Dane uczestnika / nabywcy</legend>
@@ -331,6 +319,6 @@
             </div>
         </div>
     </footer>
-    <script src="assets/checkout-forms.js?v=20"></script>
+    <script src="assets/checkout-forms.js?v=21"></script>
 </body>
 </html>
