@@ -1,5 +1,7 @@
 window.A11yFirstCheckout = (() => {
     const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
+    // Wersja regulaminu zapisywana w zgloszeniu jako dowod, ktora wersje zaakceptowal kupujacy.
+    const REGULAMIN_WERSJA = '2026-09-24';
 
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -169,7 +171,9 @@ window.A11yFirstCheckout = (() => {
         let message = '';
 
         if (field.type === 'checkbox') {
-            message = field.checked
+            // Pola zgody bez `required` (np. natychmiastowe dostarczenie tresci cyfrowej)
+            // sa dobrowolne: brak zaznaczenia nie jest bledem.
+            message = field.checked || !field.required
                 ? ''
                 : (field.name === 'consent_tos' ? 'Zaakceptuj regulamin i politykę prywatności.' : `Zaznacz pole: ${label}.`);
         } else if (required && value === '') {
@@ -272,6 +276,19 @@ window.A11yFirstCheckout = (() => {
         };
     }
 
+    // Tresc i stan dobrowolnych zgod prawnych (pola z data-consent-record).
+    // Tekst etykiety trafia do zgloszenia doslownie: to dowod, na co kupujacy sie zgodzil.
+    function getConsentRecords(form) {
+        return Array.from(form.querySelectorAll('input[type="checkbox"][data-consent-record]')).map((field) => {
+            const label = form.querySelector(`label[for="${field.id}"]`);
+            return {
+                name: field.name,
+                label: field.dataset.label || field.name,
+                value: field.checked ? `TAK: ${label ? label.textContent.trim() : ''}` : 'NIE'
+            };
+        });
+    }
+
     async function submitForm(form) {
         const validation = validate(form, { showSummary: true });
         if (!validation.isValid) {
@@ -301,6 +318,10 @@ window.A11yFirstCheckout = (() => {
         payload.append('products', cart.titles.join('\n'));
         payload.append('amount', `${formatPrice(cart.total)} zł`);
         payload.append('transfer_title', cart.transferTitle);
+        const consents = getConsentRecords(form);
+        consents.forEach((consent) => payload.append(consent.name, consent.value));
+        payload.append('regulamin_wersja', REGULAMIN_WERSJA);
+        payload.append('zamowienie_czas', new Date().toISOString());
         payload.append('message', [
             form.dataset.messageHeading || 'Nowe zamówienie z a11yfirst.pl',
             '',
@@ -311,7 +332,9 @@ window.A11yFirstCheckout = (() => {
             `Telefon: ${participant.phone || 'Nie podano'}`,
             `NIP: ${participant.nip || 'Nie podano'}`,
             `Dostosowanie do potrzeb: ${participant.accessNeeds || 'Nie podano'}`,
-            `Tytuł przelewu: ${cart.transferTitle}`
+            `Tytuł przelewu: ${cart.transferTitle}`,
+            `Akceptacja regulaminu (wersja ${REGULAMIN_WERSJA}): TAK`,
+            ...consents.map((consent) => `${consent.label}: ${consent.value}`)
         ].join('\n'));
 
         setButtonBusy(submitButton, true);

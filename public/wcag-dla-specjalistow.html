@@ -382,9 +382,23 @@
                 <p id="consent-tos-help" class="checkout-helper">Przeczytaj: <a href="/regulamin" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Regulamin świadczenia usług<span class="sr-only"> (otwiera się w nowym oknie)</span></a> oraz <a href="/polityka-prywatnosci" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline; font-weight: 600;">Politykę prywatności<span class="sr-only"> (otwiera się w nowym oknie)</span></a>.</p>
                 <p id="consent-tos-error" class="field-error"></p>
             </div>
+            <div class="form-field form-field--checkbox">
+                <div class="form-field--checkbox-control">
+                    <input type="checkbox" id="consent-start" name="consent_start" class="checkout-checkbox" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" data-checkout-field data-consent-record data-label="Rozpoczęcie usługi przed upływem 14 dni" aria-describedby="consent-start-help">
+                    <label for="consent-start" style="color: var(--dark);">Żądam rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po pełnym wykonaniu usługi utracę prawo odstąpienia od umowy.</label>
+                </div>
+                <p id="consent-start-help" class="checkout-helper">Pole nieobowiązkowe. Zaznacz je, jeśli szkolenie zaczyna się wcześniej niż 14 dni od zamówienia. Bez tego żądania nie możemy dopuścić Cię do udziału przed upływem tego terminu. Jeśli odstąpisz od umowy w trakcie szkolenia, zapłacisz za część już wykonaną. Szczegóły: <a href="/regulamin#par-11" style="color: var(--primary); text-decoration: underline; font-weight: 600;">§ 11 regulaminu</a>.</p>
+            </div>
+            <div class="form-field form-field--checkbox">
+                <div class="form-field--checkbox-control">
+                    <input type="checkbox" id="consent-course" name="consent_course" class="checkout-checkbox" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" data-checkout-field data-consent-record data-label="Dostarczenie kursu przed upływem 14 dni" aria-describedby="consent-course-help">
+                    <label for="consent-course" style="color: var(--dark);">Żądam dostarczenia kursu e-learning „Semantyczny HTML” przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po jego dostarczeniu utracę prawo odstąpienia od umowy w zakresie kursu.</label>
+                </div>
+                <p id="consent-course-help" class="checkout-helper">Pole nieobowiązkowe. W cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r. Bez tej zgody, jeśli od zapisu do tej daty minie mniej niż 14 dni, dostęp otrzymasz po upływie 14 dni od zapisu. Szczegóły: <a href="/regulamin#par-9" style="color: var(--primary); text-decoration: underline; font-weight: 600;">§ 9 regulaminu</a>.</p>
+            </div>
         </fieldset>
 
-        <button class="btn btn-primary" id="proceedBtn" type="submit" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Wyślij zamówienie i pokaż dane do przelewu</button>
+        <button class="btn btn-primary" id="proceedBtn" type="submit" aria-disabled="true" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 1rem 2rem; opacity: 0.5; cursor: not-allowed;">Zamawiam z obowiązkiem zapłaty</button>
         </form>
     </section>
 
@@ -501,6 +515,8 @@
     <script src="assets/trainer-flips.js?v=6"></script>
     <script>
         const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
+        // Wersja regulaminu zapisywana w zgloszeniu jako dowod, ktora wersje zaakceptowal kupujacy.
+        const REGULAMIN_WERSJA = '2026-09-24';
 
         const transferTitles = {
             "1": "Szkolenie WCAG dla specjalistów: Dzień 1",
@@ -1114,6 +1130,20 @@
             payload.append('selected_days', sortedDays.join(', '));
             payload.append('amount', `${formatPrice(priceVal)} zł`);
             payload.append('transfer_title', transferTitle);
+            const startConsent = document.getElementById('consent-start');
+            const startConsentLabel = document.querySelector('label[for="consent-start"]');
+            const startConsentRecord = startConsent && startConsent.checked
+                ? `TAK: ${startConsentLabel ? startConsentLabel.textContent.trim() : ''}`
+                : 'NIE (bez żądania rozpoczęcia usługi przed upływem 14 dni)';
+            payload.append('consent_start', startConsentRecord);
+            const courseConsent = document.getElementById('consent-course');
+            const courseConsentLabel = document.querySelector('label[for="consent-course"]');
+            const courseConsentRecord = courseConsent && courseConsent.checked
+                ? `TAK: ${courseConsentLabel ? courseConsentLabel.textContent.trim() : ''}`
+                : 'NIE (kurs po upływie 14 dni od zapisu, jeśli start kursu wypada wcześniej)';
+            payload.append('consent_course', courseConsentRecord);
+            payload.append('regulamin_wersja', REGULAMIN_WERSJA);
+            payload.append('zamowienie_czas', new Date().toISOString());
             payload.append(
                 'message',
                 [
@@ -1126,7 +1156,10 @@
                     `Dostosowanie szkolenia do potrzeb: ${participant.accessNeeds || 'Nie podano'}`,
                     `Wybrane dni: ${sortedDays.join(', ')}`,
                     `Kwota: ${formatPrice(priceVal)} zł`,
-                    `Tytuł przelewu: ${transferTitle}`
+                    `Tytuł przelewu: ${transferTitle}`,
+                    `Akceptacja regulaminu (wersja ${REGULAMIN_WERSJA}): TAK`,
+                    `Rozpoczęcie usługi przed upływem 14 dni: ${startConsentRecord}`,
+                    `Dostarczenie kursu przed upływem 14 dni: ${courseConsentRecord}`
                 ].join('\n')
             );
 

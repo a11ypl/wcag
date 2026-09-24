@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regulamin świadczenia usług - Accessibility First</title>
-    <meta name="description" content="Regulamin świadczenia usług i sprzedaży szkoleń oraz webinarów Accessibility First.">
+    <meta name="description" content="Regulamin serwisu a11yfirst.pl: dane sprzedawcy, zawarcie umowy, płatności, dostawa, odstąpienie, zwroty, reklamacje i wymagania techniczne.">
     <link rel="canonical" href="https://www.a11yfirst.pl/regulamin">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Accessibility First">
     <meta property="og:title" content="Regulamin świadczenia usług - Accessibility First">
-    <meta property="og:description" content="Regulamin świadczenia usług i sprzedaży szkoleń oraz webinarów Accessibility First.">
+    <meta property="og:description" content="Regulamin serwisu a11yfirst.pl: dane sprzedawcy, zawarcie umowy, płatności, dostawa, odstąpienie, zwroty, reklamacje i wymagania techniczne.">
     <meta property="og:url" content="https://www.a11yfirst.pl/regulamin">
     <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Regulamin świadczenia usług - Accessibility First">
-    <meta name="twitter:description" content="Regulamin świadczenia usług i sprzedaży szkoleń oraz webinarów Accessibility First.">
+    <meta name="twitter:description" content="Regulamin serwisu a11yfirst.pl: dane sprzedawcy, zawarcie umowy, płatności, dostawa, odstąpienie, zwroty, reklamacje i wymagania techniczne.">
     <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
     <script type="application/ld+json">
     {
@@ -23,7 +23,7 @@
       "@type": "WebPage",
       "name": "Regulamin świadczenia usług i sprzedaży",
       "headline": "Regulamin świadczenia usług i sprzedaży",
-      "description": "Regulamin świadczenia usług i sprzedaży szkoleń oraz webinarów Accessibility First.",
+      "description": "Regulamin serwisu a11yfirst.pl: dane sprzedawcy, zawarcie umowy, płatności, dostawa, odstąpienie, zwroty, reklamacje i wymagania techniczne.",
       "url": "https://www.a11yfirst.pl/regulamin",
       "isPartOf": {
         "@type": "WebSite",
@@ -44,6 +44,32 @@
     <link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
     <link rel="stylesheet" href="assets/styles.css?v=21">
+    <style>
+        /* Regulamin: numeracja ustepow i liter musi byc widoczna, bo tekst prawny odwoluje sie do niej ("§ 7 ust. 8"). */
+        .legal-document .knowledge-panel h2 { color: var(--primary); font-size: 1.35rem; line-height: 1.25; margin-bottom: 1rem; scroll-margin-top: 140px; }
+        .legal-document ol { padding-left: 1.75rem; margin-bottom: 1rem; }
+        .legal-document ol ol { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        .legal-document li { margin-bottom: 0.6rem; }
+        .legal-document .knowledge-panel p { margin-bottom: 0.75rem; }
+        .legal-toc { margin-bottom: 2.5rem; }
+        .legal-toc ul { list-style: none; padding-left: 0; }
+        .legal-toc h2 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem; }
+        .legal-toc a { color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+        .legal-toc a:hover { color: black; }
+        .legal-version { margin-top: 0.75rem; }
+        .legal-download { margin-bottom: 2rem; }
+        .legal-download a { color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+        .legal-download a:hover { color: black; }
+        @media print {
+            header, footer, .breadcrumbs, .skip-link, .legal-toc, .legal-download, #auditor_app { display: none !important; }
+            .hero, .page-hero { background: none !important; color: black !important; padding: 0 0 1rem !important; }
+            .hero h1, .hero p { color: black !important; }
+            .knowledge-article { padding: 0 !important; }
+            .legal-document .knowledge-panel { border: none; box-shadow: none; padding: 0; margin-bottom: 1.25rem; break-inside: auto; }
+            .legal-document .knowledge-panel h2 { break-after: avoid; }
+            .legal-document li { break-inside: avoid; }
+        }
+    </style>
     <script>
     (function(w,d,s,a,m,t) {
       a = d.createElement(s);
@@ -105,32 +131,345 @@
         <section class="hero page-hero">
             <div class="container">
                 <h1>Regulamin świadczenia usług i sprzedaży</h1>
-                <p class="subtitle">Zasady korzystania z usług, szkoleń i materiałów Accessibility First.</p>
+                <p class="subtitle">Zasady korzystania z serwisu a11yfirst.pl oraz zakupu szkoleń, nagrań webinarów i kursów Accessibility First.</p>
+                <p class="legal-version">Wersja z 24 września 2026 r.</p>
             </div>
         </section>
 
-        <section class="knowledge-article" aria-labelledby="terms-title">
+        <section class="knowledge-article legal-document">
             <div class="container">
-                <h2 class="section-title" id="terms-title">Regulamin</h2>
+                <p class="legal-download"><a href="/regulamin-2026-09-24.pdf">Pobierz regulamin w formacie PDF (wersja z 24 września 2026 r., 360 KB)</a></p>
 
-                <article class="knowledge-panel">
-                    <h3>§ 1. Informacje ogólne i definicje</h3>
-                    <p>Właścicielem serwisu oraz organizatorem kursów jest WŁĄCZ WIZJĘ SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ, z siedzibą: ul. Sternicza 129 lok. 50, 01-350 Warszawa, NIP: 5223299694, REGON: 528742997, KRS: 0001108036.</p>
-                    <p>Kontakt z usługodawcą możliwy jest pod adresem e-mail: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</p>
-                </article>
+                <nav class="legal-toc" aria-labelledby="toc-title">
+                    <h2 id="toc-title">Spis treści</h2>
+                    <ul>
+                        <li><a href="#par-1">§ 1. Postanowienia ogólne</a></li>
+                        <li><a href="#par-2">§ 2. Definicje</a></li>
+                        <li><a href="#par-3">§ 3. Dane Sprzedawcy i kontakt</a></li>
+                        <li><a href="#par-4">§ 4. Usługi świadczone drogą elektroniczną</a></li>
+                        <li><a href="#par-5">§ 5. Wymagania techniczne</a></li>
+                        <li><a href="#par-6">§ 6. Zakaz treści bezprawnych i zasady korzystania</a></li>
+                        <li><a href="#par-7">§ 7. Produkty, ceny i zawarcie umowy</a></li>
+                        <li><a href="#par-8">§ 8. Płatności</a></li>
+                        <li><a href="#par-9">§ 9. Dostawa i realizacja Produktów</a></li>
+                        <li><a href="#par-10">§ 10. Szkolenia otwarte: zmiany, rezygnacja i zastępstwo</a></li>
+                        <li><a href="#par-11">§ 11. Prawo odstąpienia od umowy</a></li>
+                        <li><a href="#par-12">§ 12. Zwrot płatności</a></li>
+                        <li><a href="#par-13">§ 13. Reklamacje</a></li>
+                        <li><a href="#par-14">§ 14. Rozwiązanie umowy</a></li>
+                        <li><a href="#par-15">§ 15. Prawa autorskie</a></li>
+                        <li><a href="#par-16">§ 16. Dane osobowe</a></li>
+                        <li><a href="#par-17">§ 17. Pozasądowe sposoby rozpatrywania reklamacji i dochodzenia roszczeń</a></li>
+                        <li><a href="#par-18">§ 18. Postanowienia końcowe</a></li>
+                        <li><a href="#zalacznik">Załącznik. Wzór formularza odstąpienia od umowy</a></li>
+                    </ul>
+                </nav>
 
-                <article class="knowledge-panel">
-                    <h3>§ 2. Zasady płatności</h3>
-                    <p>Ceny podane w serwisie są cenami brutto. Organizator wystawia fakturę bez VAT.</p>
-                    <p>Płatność za szkolenie albo webinar odbywa się przelewem tradycyjnym na rachunek wskazany w formularzu zamówienia.</p>
-                    <p>Rezerwacja miejsca następuje po zaksięgowaniu wpłaty lub po indywidualnym potwierdzeniu przez organizatora.</p>
-                </article>
+                <section class="knowledge-panel legal-section" aria-labelledby="par-1">
+                    <h2 id="par-1">§ 1. Postanowienia ogólne</h2>
+                    <ol>
+                        <li>Regulamin określa zasady korzystania z serwisu internetowego www.a11yfirst.pl oraz zasady zawierania i wykonywania umów, które zawieramy z Klientami za pośrednictwem Serwisu.</li>
+                        <li>Regulamin jest regulaminem, o którym mowa w art. 8 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną.</li>
+                        <li>Accessibility First jest marką Sprzedawcy poświęconą dostępności cyfrowej.</li>
+                        <li>Regulamin jest dostępny bezpłatnie w Serwisie. Można go wyświetlić, wydrukować i zapisać na dysku. Na prośbę przesłaną na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a> przekażemy go w innym formacie, na przykład w pliku tekstowym.</li>
+                        <li>Przed złożeniem zamówienia Klient zapoznaje się z Regulaminem i akceptuje go. Akceptacja jest warunkiem złożenia zamówienia.</li>
+                        <li>Szkolenia zamknięte, audyty, konsultacje i inne usługi realizowane na podstawie indywidualnej oferty nie są objęte Regulaminem. Zasady ich realizacji określa oferta lub umowa zawarta z Klientem.</li>
+                    </ol>
+                </section>
 
-                <article class="knowledge-panel">
-                    <h3>§ 3. Prawo odstąpienia od umowy i reklamacje</h3>
-                    <p>Uczestnik będący konsumentem ma prawo odstąpić od umowy w terminie 14 dni od jej zawarcia bez podania przyczyny, chyba że kurs lub dostęp do materiału cyfrowego rozpoczął się za wyraźną zgodą konsumenta.</p>
-                    <p>Reklamacje należy składać na adres e-mail organizatora. Organizator rozpatruje reklamację w terminie 14 dni.</p>
-                </article>
+                <section class="knowledge-panel legal-section" aria-labelledby="par-2">
+                    <h2 id="par-2">§ 2. Definicje</h2>
+                    <p>Użyte w Regulaminie pojęcia oznaczają:</p>
+                    <ol>
+                        <li><strong>Sprzedawca</strong> albo <strong>Usługodawca</strong>: Włącz Wizję sp. z o.o., której dane podajemy w § 3.</li>
+                        <li><strong>Serwis</strong>: strona internetowa dostępna pod adresem www.a11yfirst.pl.</li>
+                        <li><strong>Klient</strong>: osoba fizyczna, osoba prawna albo jednostka organizacyjna nieposiadająca osobowości prawnej, której ustawa przyznaje zdolność prawną, która składa zamówienie lub korzysta z Serwisu.</li>
+                        <li><strong>Konsument</strong>: osoba fizyczna, która zawiera ze Sprzedawcą umowę niezwiązaną bezpośrednio z jej działalnością gospodarczą lub zawodową.</li>
+                        <li><strong>Przedsiębiorca na prawach konsumenta</strong>: osoba fizyczna prowadząca jednoosobową działalność gospodarczą, która zawiera umowę bezpośrednio związaną z tą działalnością, jeżeli z treści umowy wynika, że nie ma ona dla niej charakteru zawodowego. Charakter zawodowy ocenia się w szczególności na podstawie przedmiotu działalności wpisanego do Centralnej Ewidencji i Informacji o Działalności Gospodarczej. Jeżeli z treści umowy nie wynika to jednoznacznie, taka osoba może najpóźniej w chwili zawarcia umowy złożyć oświadczenie, czy umowa ma dla niej charakter zawodowy. Sprzedawca nie uzależnia zawarcia umowy od złożenia takiego oświadczenia.</li>
+                        <li><strong>Uczestnik</strong>: osoba wskazana w zamówieniu, która bierze udział w Szkoleniu otwartym lub Webinarze albo korzysta z Treści cyfrowej. Uczestnikiem może być sam Klient.</li>
+                        <li><strong>Produkt</strong>: Szkolenie otwarte, Webinar bezpłatny, Nagranie webinaru albo Kurs e-learning.</li>
+                        <li><strong>Szkolenie otwarte</strong>: szkolenie prowadzone na żywo online w terminie ogłoszonym w Serwisie, na które zapisać się może każdy.</li>
+                        <li><strong>Webinar bezpłatny</strong>: spotkanie online na żywo, w którym można wziąć udział bez opłat, po zapisaniu się przez formularz w Serwisie.</li>
+                        <li><strong>Nagranie webinaru</strong>: nagranie wcześniej przeprowadzonego webinaru wraz z prezentacją, sprzedawane w zakładce Sklep.</li>
+                        <li><strong>Kurs e-learning</strong>: kurs online do samodzielnej nauki, złożony z lekcji, ćwiczeń i testów wiedzy.</li>
+                        <li><strong>Treść cyfrowa</strong>: dane wytwarzane i dostarczane w postaci cyfrowej, w szczególności Nagranie webinaru, Kurs e-learning i materiały szkoleniowe w formie plików.</li>
+                        <li><strong>Operator płatności</strong>: Krajowy Integrator Płatności S.A. z siedzibą w Poznaniu, plac Andersa 3, 17 piętro, 61-894 Poznań, KRS 0000412357, NIP 7773061579, operator systemu płatności Tpay, krajowa instytucja płatnicza nadzorowana przez Komisję Nadzoru Finansowego.</li>
+                        <li><strong>Dzień roboczy</strong>: dzień od poniedziałku do piątku z wyjątkiem dni ustawowo wolnych od pracy.</li>
+                        <li><strong>Trwały nośnik</strong>: materiał, który pozwala przechowywać informacje i odtwarzać je w niezmienionej postaci, w szczególności wiadomość e-mail i plik PDF.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-3">
+                    <h2 id="par-3">§ 3. Dane Sprzedawcy i kontakt</h2>
+                    <ol>
+                        <li>Sprzedawcą i usługodawcą jest Włącz Wizję spółka z ograniczoną odpowiedzialnością z siedzibą w Warszawie, ul. Sternicza 129 lok. 50, 01-350 Warszawa, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy dla m.st. Warszawy w Warszawie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego, pod numerem KRS 0001108036, NIP 5223299694, REGON 528742997, kapitał zakładowy 5000 zł.</li>
+                        <li>Kontakt ze Sprzedawcą:
+                            <ol type="a" class="legal-letters">
+                                <li>e-mail: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>,</li>
+                                <li>telefon: <a href="tel:+48727935587">+48 727 935 587</a>, w dni robocze w godzinach 9:00-17:00,</li>
+                                <li>adres do korespondencji: ul. Sternicza 129 lok. 50, 01-350 Warszawa.</li>
+                            </ol>
+                        </li>
+                        <li>Sprzedawca korzysta ze zwolnienia z podatku od towarów i usług na podstawie art. 113 ust. 1 ustawy z dnia 11 marca 2004 r. o podatku od towarów i usług.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-4">
+                    <h2 id="par-4">§ 4. Usługi świadczone drogą elektroniczną</h2>
+                    <ol>
+                        <li>W Serwisie świadczymy bezpłatnie następujące usługi drogą elektroniczną:
+                            <ol type="a" class="legal-letters">
+                                <li>udostępnianie treści Serwisu, w tym artykułów bazy wiedzy,</li>
+                                <li>formularze zamówienia Produktów,</li>
+                                <li>formularz zapisu na Webinar bezpłatny,</li>
+                                <li>formularz zapisu na listę osób zainteresowanych Produktem, który jeszcze nie jest w sprzedaży,</li>
+                                <li>formularz zapytania o szkolenie zamknięte i formularz kontaktowy.</li>
+                            </ol>
+                        </li>
+                        <li>Umowa o świadczenie usługi z ustępu 1 litera a zostaje zawarta z chwilą otwarcia Serwisu i rozwiązuje się z chwilą jego opuszczenia.</li>
+                        <li>Umowa o świadczenie usługi z ustępu 1 litery b do e zostaje zawarta z chwilą rozpoczęcia wypełniania formularza i rozwiązuje się z chwilą jego wysłania albo porzucenia. Wysłanie formularza zamówienia prowadzi do zawarcia umowy o Produkt na zasadach z § 7.</li>
+                        <li>Z zapisu na listę osób zainteresowanych i z zapisu na Webinar bezpłatny można zrezygnować w każdej chwili, bez podawania przyczyny, pisząc na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a> albo korzystając z linku rezygnacji w otrzymanej wiadomości.</li>
+                        <li>Korzystanie z Serwisu wiąże się z typowymi ryzykami przesyłania danych przez internet, w szczególności z ryzykiem przechwycenia danych przez osoby nieuprawnione i złośliwego oprogramowania. Sprzedawca stosuje środki techniczne, które te ryzyka ograniczają, w tym szyfrowane połączenie (HTTPS).</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-5">
+                    <h2 id="par-5">§ 5. Wymagania techniczne</h2>
+                    <ol>
+                        <li>Do korzystania z Serwisu i składania zamówień potrzebne są:
+                            <ol type="a" class="legal-letters">
+                                <li>urządzenie z dostępem do internetu,</li>
+                                <li>aktualna wersja przeglądarki internetowej, na przykład Chrome, Firefox, Safari lub Edge, z włączoną obsługą JavaScript,</li>
+                                <li>aktywny adres e-mail.</li>
+                            </ol>
+                        </li>
+                        <li>Do udziału w Szkoleniu otwartym i Webinarze bezpłatnym potrzebne są dodatkowo:
+                            <ol type="a" class="legal-letters">
+                                <li>stabilne łącze internetowe umożliwiające odbiór obrazu i dźwięku,</li>
+                                <li>głośniki lub słuchawki oraz mikrofon, a jeżeli forma zajęć tego wymaga, także kamera,</li>
+                                <li>dostęp do narzędzia do wideokonferencji wskazanego w wiadomości organizacyjnej. Narzędzie działa w przeglądarce albo w bezpłatnej aplikacji.</li>
+                            </ol>
+                        </li>
+                        <li>Do korzystania z Nagrania webinaru potrzebne są odtwarzacz obsługujący popularne formaty wideo oraz program do otwierania prezentacji w formacie PPTX, na przykład Microsoft PowerPoint, Keynote, LibreOffice Impress lub Prezentacje Google.</li>
+                        <li>Do korzystania z Kursu e-learning wystarczy aktualna przeglądarka internetowa i dostęp do internetu. Kurs nie wymaga instalowania dodatkowego oprogramowania.</li>
+                        <li>Treści cyfrowe służą do odtwarzania materiałów edukacyjnych, a w przypadku Kursu e-learning także do wykonywania ćwiczeń i testów wiedzy. Działają na urządzeniach i w oprogramowaniu spełniających wymagania z tego paragrafu. O dodatkowych wymaganiach dotyczących kompatybilności, interoperacyjności albo zabezpieczeń technicznych Sprzedawca informuje w opisie Produktu przed zawarciem umowy.</li>
+                        <li>Serwis i Produkty projektujemy zgodnie z zasadami dostępności cyfrowej. Jeżeli Uczestnik korzysta z technologii wspomagających albo potrzebuje dostosowania sposobu prowadzenia zajęć lub materiałów, może to wskazać w formularzu zamówienia albo w wiadomości na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-6">
+                    <h2 id="par-6">§ 6. Zakaz treści bezprawnych i zasady korzystania</h2>
+                    <ol>
+                        <li>Klient i Uczestnik nie mogą dostarczać do Serwisu, w tym przez formularze, ani przekazywać w trakcie Szkoleń i Webinarów treści o charakterze bezprawnym.</li>
+                        <li>Zabronione jest korzystanie z Serwisu w sposób zakłócający jego działanie, w szczególności przez przesyłanie złośliwego oprogramowania albo masowe, automatyczne wysyłanie formularzy.</li>
+                        <li>Uczestnik nie nagrywa Szkoleń i Webinarów i nie udostępnia linków do spotkań osobom trzecim bez zgody Sprzedawcy.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-7">
+                    <h2 id="par-7">§ 7. Produkty, ceny i zawarcie umowy</h2>
+                    <ol>
+                        <li>Opis każdego Produktu, jego cena, termin, forma i zakres znajdują się na stronie Produktu w Serwisie. Informacje w Serwisie stanowią zaproszenie do zawarcia umowy.</li>
+                        <li>Ceny w Serwisie podane są w złotych polskich i są cenami brutto. Ze względu na zwolnienie z VAT cena brutto równa się cenie netto, a Sprzedawca wystawia fakturę bez VAT. Cena nie obejmuje kosztów dostępu do internetu po stronie Klienta.</li>
+                        <li>Sprzedawca nie stosuje kodów rabatowych. Obniżona cena, na przykład dla uczestników webinaru, jest dostępna wyłącznie przez dedykowany link, który wskazuje cenę obniżoną i datę, do której obowiązuje. Po tej dacie obowiązuje cena regularna.</li>
+                        <li>Obniżona cena z ustępu 3 dotyczy zakupu dla jednej osoby, chyba że opis promocji stanowi inaczej.</li>
+                        <li>Przy każdej obniżce ceny Sprzedawca podaje także najniższą cenę Produktu z 30 dni przed wprowadzeniem obniżki, a jeżeli Produkt jest oferowany krócej niż 30 dni, najniższą cenę od rozpoczęcia jego oferowania do dnia wprowadzenia obniżki.</li>
+                        <li>Aby złożyć zamówienie, Klient:
+                            <ol type="a" class="legal-letters">
+                                <li>wybiera Produkt, a w przypadku Szkolenia otwartego z modułową budową także wybrane dni,</li>
+                                <li>podaje w formularzu imię, nazwisko, adres e-mail, a przy zakupie na firmę także dane do faktury, w tym NIP,</li>
+                                <li>akceptuje Regulamin i potwierdza zapoznanie się z <a href="/polityka-prywatnosci">Polityką prywatności</a>,</li>
+                                <li>przy zakupie Treści cyfrowej decyduje, czy żąda jej dostarczenia przed upływem terminu na odstąpienie od umowy (§ 11 ust. 6),</li>
+                                <li>klika przycisk „Zamawiam z obowiązkiem zapłaty”, a przy płatności przez Operatora płatności przechodzi do jego strony.</li>
+                            </ol>
+                        </li>
+                        <li>Umowa zostaje zawarta z chwilą otrzymania przez Klienta wiadomości e-mail potwierdzającej przyjęcie zamówienia. Wiadomość zawiera treść zamówienia, cenę, termin realizacji, a przy przedsprzedaży dzień rozpoczęcia dostępu, oraz Regulamin w wersji obowiązującej w dniu zamówienia w załączniku w formacie PDF. Sprzedawca przechowuje wersję Regulaminu i opisu Produktu obowiązującą w chwili zawarcia umowy.</li>
+                        <li>Jeżeli Klient wybrał przelew tradycyjny i nie zapłaci w terminie z § 8 ust. 4, umowa wygasa, chyba że Sprzedawca zgodził się na odroczony termin płatności (§ 8 ust. 7). Do upływu tego terminu miejsce na Szkoleniu otwartym jest zarezerwowane dla Klienta.</li>
+                        <li>Klient może zamówić Produkt dla kilku osób. W zamówieniu podaje imiona, nazwiska i adresy e-mail Uczestników. Cena jest iloczynem liczby osób i ceny obowiązującej w dniu zamówienia. W jednym zamówieniu przez formularz można kupić dostęp dla najwyżej 20 osób. Przy większej liczbie prosimy o kontakt.</li>
+                        <li>Liczba miejsc na Szkoleniu otwartym jest ograniczona. O zapisie decyduje kolejność zawarcia umów, z zastrzeżeniem ustępu 8. Jeżeli miejsc zabraknie, Sprzedawca niezwłocznie informuje o tym Klienta i zwraca wpłatę w całości albo, za zgodą Klienta, proponuje miejsce w innym terminie.</li>
+                        <li>Webinar bezpłatny nie wymaga płatności. Umowa o udział w nim zostaje zawarta z chwilą otrzymania wiadomości e-mail potwierdzającej zapis.</li>
+                        <li>Sprzedawca może sprzedawać Produkt przed dniem, w którym zacznie go dostarczać (przedsprzedaż). Opis Produktu podaje wtedy dzień rozpoczęcia dostępu. Klient płaci przy zamówieniu, a umowa zostaje zawarta na zasadach z ustępu 7.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-8">
+                    <h2 id="par-8">§ 8. Płatności</h2>
+                    <ol>
+                        <li>Dla poszczególnych Produktów Sprzedawca może udostępniać następujące metody płatności:
+                            <ol type="a" class="legal-letters">
+                                <li>przelew tradycyjny na rachunek bankowy Sprzedawcy wskazany w formularzu zamówienia i w potwierdzeniu zamówienia,</li>
+                                <li>płatności elektroniczne obsługiwane przez Operatora płatności, w szczególności BLIK, szybki przelew internetowy lub kartę płatniczą, jeżeli dana metoda jest dostępna w formularzu zamówienia.</li>
+                            </ol>
+                        </li>
+                        <li>Wiążąca lista metod płatności dostępnych dla danego zamówienia jest widoczna w formularzu przed jego złożeniem.</li>
+                        <li>Podmiotem świadczącym obsługę płatności elektronicznych jest Operator płatności (§ 2 ust. 13). Przy płatności elektronicznej Klient akceptuje także regulamin Operatora płatności, dostępny na stronie tpay.com. Reklamacje dotyczące samego przeprowadzenia płatności rozpatruje Operator płatności (kontakt@tpay.com, tel. 61 66 82 778). Reklamacje dotyczące Produktu, zwroty i odstąpienie od umowy obsługuje Sprzedawca.</li>
+                        <li>Przy przelewie tradycyjnym Klient wpłaca należność w ciągu 1 dnia roboczego od złożenia zamówienia, a jeżeli Szkolenie otwarte zaczyna się wcześniej, przed jego rozpoczęciem. W tytule przelewu podaje nazwę Produktu i imię i nazwisko Uczestnika. Skutki braku wpłaty w tym terminie określa § 7 ust. 8. Sprzedawca informuje o nich Klienta e-mailem.</li>
+                        <li>Płatność elektroniczną należy zrealizować niezwłocznie po złożeniu zamówienia. Jeżeli nie powiedzie się, Klient może ją ponowić albo zapłacić przelewem tradycyjnym w terminie z ustępu 4. Skutki braku płatności w tym terminie określa § 7 ust. 8.</li>
+                        <li>Sprzedawca wystawia faktury bez VAT w Krajowym Systemie e-Faktur (KSeF), zgodnie z obowiązującymi przepisami. Klientowi będącemu przedsiębiorcą faktura jest udostępniana w KSeF. Konsumentowi, a na prośbę także innemu Klientowi, Sprzedawca przesyła dodatkowo wizualizację faktury na adres e-mail podany w zamówieniu. Klient, który chce otrzymać fakturę na firmę, podaje dane do faktury w zamówieniu.</li>
+                        <li>Jeżeli Klient będący instytucją lub przedsiębiorcą wymaga odroczonego terminu płatności, strony mogą uzgodnić taki termin e-mailem przed rozpoczęciem realizacji Produktu.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-9">
+                    <h2 id="par-9">§ 9. Dostawa i realizacja Produktów</h2>
+                    <ol>
+                        <li>Wszystkie Produkty realizujemy online. Nie wysyłamy przesyłek fizycznych i nie pobieramy kosztów dostawy.</li>
+                        <li><strong>Szkolenie otwarte.</strong> Najpóźniej 1 dzień roboczy przed rozpoczęciem szkolenia Sprzedawca wysyła na adres e-mail Uczestnika wiadomość organizacyjną z linkiem do spotkania, harmonogramem i informacjami technicznymi. Materiały szkoleniowe Uczestnik otrzymuje w trakcie lub po szkoleniu, zgodnie z opisem Produktu. Imienny certyfikat uczestnictwa w formie PDF Sprzedawca wysyła w ciągu 14 dni od zakończenia szkolenia.</li>
+                        <li><strong>Webinar bezpłatny.</strong> Link do spotkania Sprzedawca wysyła na adres e-mail podany przy zapisie, najpóźniej w dniu webinaru.</li>
+                        <li><strong>Nagranie webinaru.</strong> Link do nagrania i prezentacji Sprzedawca wysyła na adres e-mail podany w zamówieniu w ciągu 1 dnia roboczego od zaksięgowania płatności, z zastrzeżeniem § 11 ust. 7. Dostęp do nagrania trwa 12 miesięcy od dnia jego przekazania, chyba że opis Produktu przed zawarciem umowy wskazuje dłuższy okres.</li>
+                        <li><strong>Kurs e-learning.</strong> Dostęp do kursu Sprzedawca przekazuje na adres e-mail podany w zamówieniu w ciągu 1 dnia roboczego od zaksięgowania płatności, a przy zakupie w przedsprzedaży (§ 7 ust. 12) w dniu rozpoczęcia dostępu podanym w opisie Produktu, z zastrzeżeniem § 11 ust. 7. Dostęp jest udzielany na czas nieoznaczony. W przypadku trwałego zakończenia działania wykorzystywanej platformy Sprzedawca, w miarę możliwości technicznych i prawnych, zapewni dostęp do kursu w inny sposób albo umożliwi pobranie materiałów, które mogą zostać udostępnione w takiej formie. Zmiana sposobu dostępu nie ogranicza uprawnień z § 13.</li>
+                        <li>Sprzedawca może wprowadzać zmiany w Kursie e-learning, które nie są konieczne do zachowania jego zgodności z umową, wyłącznie z uzasadnionych przyczyn: zmiany przepisów lub standardów (w szczególności WCAG), względów bezpieczeństwa, poprawienia błędów, zmian technicznych platformy albo ulepszenia materiałów. Zmiana nie wiąże się z kosztami dla Klienta. O zmianie, która istotnie i negatywnie wpływa na dostęp do kursu lub korzystanie z niego, Sprzedawca informuje z wyprzedzeniem na Trwałym nośniku. Klient może wtedy rozwiązać umowę w ciągu 30 dni od zmiany i otrzymać zwrot proporcjonalnej części ceny, na zasadach z art. 43m ustawy o prawach konsumenta.</li>
+                        <li>Dostęp do Nagrania webinaru i do Kursu e-learning jest imienny i przypisany do jednej osoby. Nie można go udostępniać innym osobom ani korzystać z niego wspólnie. Firma, która chce zapewnić dostęp kilku osobom, kupuje dostęp dla każdej z nich (§ 7 ust. 9).</li>
+                        <li>Wersja Kursu e-learning dostępna w dniu zakupu nie zbiera danych o postępach Uczestnika. Wyniki ćwiczeń i testów zostają w przeglądarce Uczestnika.</li>
+                        <li>Jeżeli Klient nie otrzyma wiadomości z linkiem w terminach z tego paragrafu, prosimy o sprawdzenie folderu spam i kontakt na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</li>
+                        <li>Jeżeli Sprzedawca nie może udostępnić Produktu kupionego w przedsprzedaży w podanym dniu, informuje o tym Klienta e-mailem niezwłocznie, nie później niż w tym dniu, i podaje nowy termin. Klient może wtedy odstąpić od umowy i otrzymać zwrot całej ceny w ciągu 14 dni, niezależnie od prawa odstąpienia z § 11 i od uprawnień z § 13. To dodatkowe uprawnienie umowne Klienta, które nie ogranicza praw wynikających z bezwzględnie obowiązujących przepisów.</li>
+                        <li><strong>Dostęp do Kursu e-learning jako dodatek.</strong> Jeżeli opis Szkolenia otwartego przewiduje dostęp do Kursu e-learning, każdy Uczestnik wskazany w zamówieniu otrzymuje ten dostęp. Dostęp stanowi element świadczenia objętego ceną Szkolenia otwartego i nie wymaga dodatkowej opłaty. Do tej części świadczenia stosuje się przepisy o treściach cyfrowych, w tym rozdział 5b ustawy o prawach konsumenta. Sprzedawca przekazuje go na adres e-mail Uczestnika w dniu rozpoczęcia dostępu do kursu podanym w opisie, a jeżeli płatność za szkolenie zostanie zaksięgowana później, w ciągu 1 dnia roboczego od jej zaksięgowania. Do dostępu z dodatku stosuje się ustępy 5-7 oraz § 11 ust. 7.</li>
+                        <li>Dostęp z dodatku jest częścią umowy o udział w Szkoleniu otwartym. Wygasa, jeżeli ta umowa zostanie rozwiązana ze zwrotem ceny, w szczególności po odstąpieniu od umowy (§ 11), rezygnacji ze zwrotem (§ 10 ust. 5 litera a) albo odwołaniu szkolenia przez Sprzedawcę ze zwrotem (§ 10 ust. 3 litera a).</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-10">
+                    <h2 id="par-10">§ 10. Szkolenia otwarte: zmiany, rezygnacja i zastępstwo</h2>
+                    <ol>
+                        <li>W opisie Szkolenia otwartego Sprzedawca może wskazać minimalną liczbę Uczestników potrzebną do jego uruchomienia.</li>
+                        <li>Sprzedawca może odwołać Szkolenie otwarte albo zmienić jego termin, jeżeli nie zbierze się minimalna liczba Uczestników albo z ważnych przyczyn, na które nie ma wpływu, w szczególności z powodu choroby prowadzącego. Informuje o tym Klienta e-mailem niezwłocznie, a przy braku minimalnej liczby Uczestników najpóźniej 5 dni roboczych przed planowanym terminem.</li>
+                        <li>W przypadku z ustępu 2 Klient wybiera jedną z możliwości:
+                            <ol type="a" class="legal-letters">
+                                <li>zwrot całej wpłaty w ciągu 14 dni,</li>
+                                <li>udział w szkoleniu w nowym terminie,</li>
+                                <li>udział w innym Szkoleniu otwartym o tej samej lub niższej cenie. Różnicę w cenie Sprzedawca zwraca.</li>
+                            </ol>
+                        </li>
+                        <li>Klient może w każdej chwili, bez dodatkowych opłat, wskazać zamiast siebie lub zgłoszonego Uczestnika inną osobę. Wystarczy przesłać jej imię, nazwisko i adres e-mail na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a> najpóźniej w dniu roboczym poprzedzającym szkolenie.</li>
+                        <li>Klient może zrezygnować z udziału w Szkoleniu otwartym, pisząc na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>. Niezależnie od prawa odstąpienia z § 11:
+                            <ol type="a" class="legal-letters">
+                                <li>przy rezygnacji złożonej najpóźniej 21 dni przed rozpoczęciem szkolenia Sprzedawca zwraca 100% wpłaty,</li>
+                                <li>przy rezygnacji złożonej później Klient może bezpłatnie wskazać zastępcę na zasadach z ustępu 4 albo przenieść udział na kolejną edycję tego samego szkolenia, która odbędzie się w ciągu 12 miesięcy.</li>
+                            </ol>
+                        </li>
+                        <li>Jeżeli Konsument albo Przedsiębiorca na prawach konsumenta w przypadku z ustępu 5 litera b nie skorzysta z żadnej z tych możliwości, Sprzedawca zwraca wpłatę pomniejszoną wyłącznie o uzasadnione i rzeczywiście poniesione koszty, pozostające w bezpośrednim związku z rezygnacją. Na żądanie Klienta Sprzedawca przedstawia sposób ich obliczenia. Innym Klientom w takim przypadku wpłata nie jest zwracana.</li>
+                        <li>Jeżeli Klient wybrał przeniesienie udziału, a w ciągu 12 miesięcy Sprzedawca nie zorganizuje kolejnej edycji szkolenia, Sprzedawca zwraca Klientowi wpłatę w całości.</li>
+                        <li>Ustępy 5-7 nie ograniczają praw Konsumenta i Przedsiębiorcy na prawach konsumenta wynikających z § 11. Jeżeli przysługuje im prawo odstąpienia, stosuje się rozwiązanie korzystniejsze dla nich.</li>
+                        <li>Nieobecność Uczestnika na szkoleniu bez rezygnacji nie uprawnia do zwrotu wpłaty.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-11">
+                    <h2 id="par-11">§ 11. Prawo odstąpienia od umowy</h2>
+                    <ol>
+                        <li>Konsument i Przedsiębiorca na prawach konsumenta mogą odstąpić od umowy zawartej na odległość w terminie 14 dni, bez podawania przyczyny i bez ponoszenia kosztów, z wyjątkiem kosztów z ustępu 5.</li>
+                        <li>Termin na odstąpienie liczy się od dnia zawarcia umowy. Do zachowania terminu wystarczy wysłanie oświadczenia przed jego upływem.</li>
+                        <li>Oświadczenie o odstąpieniu można wysłać e-mailem na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a> albo pocztą na adres Sprzedawcy. Można skorzystać ze wzoru formularza z załącznika do Regulaminu, ale nie jest to obowiązkowe. Sprzedawca niezwłocznie potwierdza e-mailem otrzymanie oświadczenia.</li>
+                        <li>Jeżeli Szkolenie otwarte zaczyna się przed upływem 14 dni od zawarcia umowy, udział w nim jest możliwy wyłącznie na wyraźne żądanie Klienta, aby Sprzedawca rozpoczął świadczenie przed upływem terminu na odstąpienie. Klient zgłasza je w formularzu zamówienia przez zaznaczenie osobnego pola, które nie jest zaznaczone domyślnie, i jednocześnie przyjmuje do wiadomości, że po pełnym wykonaniu usługi utraci prawo odstąpienia od umowy.</li>
+                        <li>Klient, który zgłosił żądanie z ustępu 4 i odstąpi od umowy po rozpoczęciu szkolenia, płaci za świadczenia spełnione do chwili odstąpienia, proporcjonalnie do ceny.</li>
+                        <li>Prawo odstąpienia nie przysługuje:
+                            <ol type="a" class="legal-letters">
+                                <li>w odniesieniu do umowy o świadczenie usług, jeżeli Sprzedawca wykonał usługę w pełni za wyraźną i uprzednią zgodą Klienta, który został poinformowany przed rozpoczęciem świadczenia, że po jego spełnieniu utraci prawo odstąpienia od umowy, i przyjął to do wiadomości (art. 38 ust. 1 pkt 1 ustawy z dnia 30 maja 2014 r. o prawach konsumenta),</li>
+                                <li>w odniesieniu do umowy o dostarczanie Treści cyfrowej niedostarczanej na nośniku materialnym, jeżeli spełnianie świadczenia rozpoczęło się za wyraźną i uprzednią zgodą Klienta, który został poinformowany przed rozpoczęciem świadczenia, że po jego spełnieniu utraci prawo odstąpienia od umowy, przyjął to do wiadomości, a Sprzedawca przekazał mu potwierdzenie tej zgody na Trwałym nośniku (art. 38 ust. 1 pkt 13 tej ustawy).</li>
+                            </ol>
+                        </li>
+                        <li>Zgodę z ustępu 6 litera b Klient wyraża w formularzu zamówienia przez zaznaczenie osobnego pola. Pole nie jest zaznaczone domyślnie. Sprzedawca potwierdza otrzymanie zgody w wiadomości e-mail, która przekazuje dostęp. Jeżeli Klient nie wyrazi zgody, dostęp do Treści cyfrowej otrzyma po upływie terminu na odstąpienie od umowy. Przy przedsprzedaży i przy dostępie z dodatku (§ 9 ust. 11) zgoda ma znaczenie tylko wtedy, gdy dzień rozpoczęcia dostępu przypada przed upływem 14 dni od zawarcia umowy.</li>
+                        <li>Jeżeli przesłanki z ustępu 6 litera b zostały spełnione, Konsument albo Przedsiębiorca na prawach konsumenta traci prawo odstąpienia od umowy w zakresie Treści cyfrowej z chwilą spełnienia przez Sprzedawcę świadczenia objętego zgodą, czyli udostępnienia pełnej Treści cyfrowej. Od tej chwili zwrot ceny z tytułu odstąpienia nie przysługuje, niezależnie od tego, w jakim stopniu Klient z Treści cyfrowej skorzystał. Samo wyrażenie zgody nie powoduje utraty prawa odstąpienia przed spełnieniem pozostałych przesłanek ustawowych. W przypadku Szkolenia otwartego prawo odstąpienia wygasa po pełnym wykonaniu usługi po żądaniu z ustępu 4. Nie ogranicza to uprawnień związanych z niezgodnością z umową (§ 13).</li>
+                        <li>Zasady tego paragrafu stosuje się do Przedsiębiorcy na prawach konsumenta na podstawie art. 7aa ustawy o prawach konsumenta. Innym przedsiębiorcom, w tym spółkom, prawo odstąpienia nie przysługuje. Mogą oni skorzystać z zasad rezygnacji z § 10.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-12">
+                    <h2 id="par-12">§ 12. Zwrot płatności</h2>
+                    <ol>
+                        <li>Po skutecznym odstąpieniu od umowy Sprzedawca zwraca Klientowi wszystkie otrzymane płatności niezwłocznie, nie później niż w ciągu 14 dni od dnia otrzymania oświadczenia o odstąpieniu.</li>
+                        <li>Zwrot następuje tą samą metodą płatności, której użył Klient, chyba że Klient wyraźnie zgodzi się na inną metodę, która nie wiąże się dla niego z żadnymi kosztami. Przy płatności przez Operatora płatności Sprzedawca zleca zwrot w systemie Operatora płatności, a środki trafiają na rachunek lub kartę, z której dokonano płatności. Klient nie ponosi kosztów zwrotu.</li>
+                        <li>W tym samym terminie i w ten sam sposób Sprzedawca zwraca należności w przypadkach z § 7 ust. 10, § 10 ust. 3, 5, 6 i 7 oraz przy uwzględnieniu reklamacji, która prowadzi do obniżenia ceny lub odstąpienia od umowy.</li>
+                        <li>Po odstąpieniu od umowy o dostarczanie Treści cyfrowej Klient przestaje z niej korzystać i nie udostępnia jej innym osobom. Sprzedawca może zablokować dostęp.</li>
+                        <li>Jeżeli Sprzedawca wystawił fakturę, przy zwrocie wystawia fakturę korygującą.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-13">
+                    <h2 id="par-13">§ 13. Reklamacje</h2>
+                    <ol>
+                        <li>Sprzedawca odpowiada za zgodność Produktu z umową.</li>
+                        <li>Reklamację można złożyć e-mailem na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a> albo pocztą na adres Sprzedawcy. Reklamacja może dotyczyć Produktu albo usług świadczonych drogą elektroniczną w Serwisie.</li>
+                        <li>W reklamacji prosimy podać:
+                            <ol type="a" class="legal-letters">
+                                <li>imię, nazwisko i adres e-mail,</li>
+                                <li>nazwę Produktu albo usługi, której reklamacja dotyczy,</li>
+                                <li>opis problemu i datę jego wystąpienia,</li>
+                                <li>oczekiwany sposób rozwiązania.</li>
+                            </ol>
+                        </li>
+                        <li>Brak któregoś z elementów z ustępu 3 nie powoduje odrzucenia reklamacji. Jeżeli czegoś brakuje, Sprzedawca poprosi o uzupełnienie.</li>
+                        <li>Sprzedawca odpowiada na reklamację w terminie 14 dni od jej otrzymania, na papierze lub innym Trwałym nośniku, w szczególności e-mailem. Jeżeli w tym terminie nie odpowie na reklamację Konsumenta albo Przedsiębiorcy na prawach konsumenta, uważa się, że ją uznał.</li>
+                        <li>Jeżeli Treść cyfrowa jest niezgodna z umową, Konsument i Przedsiębiorca na prawach konsumenta mogą żądać doprowadzenia jej do zgodności z umową. Gdy doprowadzenie do zgodności jest niemożliwe, wymaga nadmiernych kosztów, nie nastąpiło w rozsądnym terminie albo niezgodność jest istotna, mogą złożyć oświadczenie o obniżeniu ceny albo o odstąpieniu od umowy. Szczegółowe zasady określa rozdział 5b ustawy o prawach konsumenta.</li>
+                        <li>Jeżeli Szkolenie otwarte zostało przeprowadzone niezgodnie z umową, na przykład w części się nie odbyło lub znacząco odbiegało od opisanego programu, Klient może złożyć reklamację. Sprzedawca zaproponuje wtedy uzupełnienie zajęć, udział w innym terminie albo obniżenie ceny.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-14">
+                    <h2 id="par-14">§ 14. Rozwiązanie umowy</h2>
+                    <ol>
+                        <li>Umowy o świadczenie usług drogą elektroniczną z § 4 rozwiązują się w sposób tam opisany. Klient może też w każdej chwili zrezygnować z tych usług bez podawania przyczyny.</li>
+                        <li>Umowa o udział w Szkoleniu otwartym wygasa z chwilą jego przeprowadzenia i przekazania certyfikatu. Wcześniej może zostać rozwiązana przez odstąpienie (§ 11), rezygnację Klienta (§ 10 ust. 5-7) albo odwołanie szkolenia przez Sprzedawcę (§ 10 ust. 2).</li>
+                        <li>Umowa o dostarczanie Nagrania webinaru wygasa z upływem okresu dostępu z § 9 ust. 4. Umowa o dostarczanie Kursu e-learning jest zawarta na czas nieoznaczony. Dostęp z dodatku wygasa w przypadkach z § 9 ust. 12.</li>
+                        <li>Klient może w każdej chwili zrezygnować z dostępu do Treści cyfrowej. Rezygnacja po upływie terminu na odstąpienie albo po utracie prawa odstąpienia nie uprawnia do zwrotu ceny.</li>
+                        <li>Jeżeli Klient w sposób istotny lub powtarzający się udostępnia dostęp do Treści cyfrowej osobom nieuprawnionym albo narusza prawa autorskie z § 15, Sprzedawca wzywa go e-mailem do zaprzestania naruszeń i wyznacza odpowiedni termin na ich usunięcie, chyba że ze względu na charakter naruszenia nie da się go usunąć. Po bezskutecznym upływie terminu albo przy ponownym istotnym naruszeniu Sprzedawca może zablokować dostęp lub rozwiązać umowę w zakresie dopuszczalnym przez przepisy. Nie ogranicza to bezwzględnie obowiązujących praw Konsumenta i Przedsiębiorcy na prawach konsumenta.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-15">
+                    <h2 id="par-15">§ 15. Prawa autorskie</h2>
+                    <ol>
+                        <li>Materiały szkoleniowe, nagrania, prezentacje, treści Kursu e-learning i treści Serwisu są chronione prawem autorskim.</li>
+                        <li>Uczestnik może korzystać z nich na własny użytek, w tym w swojej pracy zawodowej, chyba że opis Produktu przyznaje szersze prawa.</li>
+                        <li>Bez zgody Sprzedawcy nie wolno udostępniać materiałów innym osobom, publikować ich, odsprzedawać ani wykorzystywać do prowadzenia własnych szkoleń.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-16">
+                    <h2 id="par-16">§ 16. Dane osobowe</h2>
+                    <p>Administratorem danych osobowych Klientów i Uczestników jest Sprzedawca. Zasady przetwarzania danych osobowych, w tym przy płatnościach elektronicznych, opisuje Polityka prywatności dostępna pod adresem <a href="/polityka-prywatnosci">www.a11yfirst.pl/polityka-prywatnosci</a>.</p>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-17">
+                    <h2 id="par-17">§ 17. Pozasądowe sposoby rozpatrywania reklamacji i dochodzenia roszczeń</h2>
+                    <ol>
+                        <li>Konsument może skorzystać z pozasądowych sposobów rozpatrywania reklamacji i dochodzenia roszczeń. W szczególności może:
+                            <ol type="a" class="legal-letters">
+                                <li>zwrócić się do stałego polubownego sądu konsumenckiego przy Wojewódzkim Inspektorze Inspekcji Handlowej,</li>
+                                <li>zwrócić się do Wojewódzkiego Inspektora Inspekcji Handlowej z wnioskiem o wszczęcie postępowania mediacyjnego w sprawie polubownego zakończenia sporu,</li>
+                                <li>skorzystać z bezpłatnej pomocy miejskiego lub powiatowego rzecznika konsumentów albo organizacji społecznej, do której zadań należy ochrona konsumentów.</li>
+                            </ol>
+                        </li>
+                        <li>Informacje o tych sposobach i procedurach są dostępne na stronie Urzędu Ochrony Konkurencji i Konsumentów: <a href="https://polubowne.uokik.gov.pl" rel="noopener noreferrer">polubowne.uokik.gov.pl</a>.</li>
+                        <li>Skorzystanie z pozasądowych sposobów rozwiązywania sporów jest dobrowolne i wymaga zgody obu stron.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="par-18">
+                    <h2 id="par-18">§ 18. Postanowienia końcowe</h2>
+                    <ol>
+                        <li>W sprawach nieuregulowanych w Regulaminie stosuje się przepisy prawa polskiego, w szczególności Kodeksu cywilnego, ustawy o prawach konsumenta i ustawy o świadczeniu usług drogą elektroniczną.</li>
+                        <li>Regulamin nie wyłącza ani nie ogranicza praw Konsumenta i Przedsiębiorcy na prawach konsumenta, które przysługują im na podstawie bezwzględnie obowiązujących przepisów. W razie sprzeczności stosuje się te przepisy.</li>
+                        <li>Spory z Klientami, którzy nie są Konsumentami ani Przedsiębiorcami na prawach konsumenta, rozstrzyga sąd właściwy dla siedziby Sprzedawcy.</li>
+                        <li>Sprzedawca może zmienić Regulamin z ważnych przyczyn, w szczególności przy zmianie przepisów, zmianie metod płatności albo wprowadzeniu nowych Produktów. O zmianie informuje w Serwisie z co najmniej 7-dniowym wyprzedzeniem. Do umów zawartych przed zmianą stosuje się Regulamin w wersji obowiązującej w dniu zawarcia umowy.</li>
+                        <li>Regulamin obowiązuje od dnia opublikowania w Serwisie. Każda wersja Regulaminu jest dostępna w formacie PDF pod adresem podanym na stronie Regulaminu. Poprzednie wersje przekazujemy także na prośbę przesłaną na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</li>
+                    </ol>
+                </section>
+
+                <section class="knowledge-panel legal-section" aria-labelledby="zalacznik">
+                    <h2 id="zalacznik">Załącznik. Wzór formularza odstąpienia od umowy</h2>
+                    <p>Formularz należy wypełnić i odesłać tylko wtedy, gdy chcesz odstąpić od umowy.</p>
+                    <p>Adresat: Włącz Wizję sp. z o.o., ul. Sternicza 129 lok. 50, 01-350 Warszawa, e-mail: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+                    <ol>
+                        <li>Ja/My niniejszym informuję/informujemy o moim/naszym odstąpieniu od umowy o: (nazwa Produktu)</li>
+                        <li>Data zawarcia umowy:</li>
+                        <li>Imię i nazwisko Konsumenta albo Konsumentów:</li>
+                        <li>Adres Konsumenta albo Konsumentów:</li>
+                        <li>Podpis Konsumenta albo Konsumentów (tylko jeżeli formularz jest przesyłany w wersji papierowej):</li>
+                        <li>Data:</li>
+                    </ol>
+                </section>
+
             </div>
         </section>
     </main>
