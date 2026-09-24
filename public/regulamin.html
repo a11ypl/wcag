@@ -57,6 +57,18 @@
         .legal-toc a { color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
         .legal-toc a:hover { color: black; }
         .legal-version { margin-top: 0.75rem; }
+        .legal-download { margin-bottom: 2rem; }
+        .legal-download a { color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+        .legal-download a:hover { color: black; }
+        @media print {
+            header, footer, .breadcrumbs, .skip-link, .legal-toc, .legal-download, #auditor_app { display: none !important; }
+            .hero, .page-hero { background: none !important; color: black !important; padding: 0 0 1rem !important; }
+            .hero h1, .hero p { color: black !important; }
+            .knowledge-article { padding: 0 !important; }
+            .legal-document .knowledge-panel { border: none; box-shadow: none; padding: 0; margin-bottom: 1.25rem; break-inside: auto; }
+            .legal-document .knowledge-panel h2 { break-after: avoid; }
+            .legal-document li { break-inside: avoid; }
+        }
     </style>
     <script>
     (function(w,d,s,a,m,t) {
@@ -126,6 +138,8 @@
 
         <section class="knowledge-article legal-document">
             <div class="container">
+                <p class="legal-download"><a href="/regulamin-2026-09-24.pdf">Pobierz regulamin w formacie PDF (wersja z 24 września 2026 r., 360 KB)</a></p>
+
                 <nav class="legal-toc" aria-labelledby="toc-title">
                     <h2 id="toc-title">Spis treści</h2>
                     <ul>
@@ -179,7 +193,7 @@
                         <li><strong>Nagranie webinaru</strong>: nagranie wcześniej przeprowadzonego webinaru wraz z prezentacją, sprzedawane w zakładce Sklep.</li>
                         <li><strong>Kurs e-learning</strong>: kurs online do samodzielnej nauki, złożony z lekcji, ćwiczeń i testów wiedzy.</li>
                         <li><strong>Treść cyfrowa</strong>: dane wytwarzane i dostarczane w postaci cyfrowej, w szczególności Nagranie webinaru, Kurs e-learning i materiały szkoleniowe w formie plików.</li>
-                        <li><strong>Operator płatności</strong>: Krajowy Integrator Płatności S.A. z siedzibą w Poznaniu, operator systemu płatności Tpay.</li>
+                        <li><strong>Operator płatności</strong>: Krajowy Integrator Płatności S.A. z siedzibą w Poznaniu, plac Andersa 3, 17 piętro, 61-894 Poznań, KRS 0000412357, NIP 7773061579, operator systemu płatności Tpay, krajowa instytucja płatnicza nadzorowana przez Komisję Nadzoru Finansowego.</li>
                         <li><strong>Dzień roboczy</strong>: dzień od poniedziałku do piątku z wyjątkiem dni ustawowo wolnych od pracy.</li>
                         <li><strong>Trwały nośnik</strong>: materiał, który pozwala przechowywać informacje i odtwarzać je w niezmienionej postaci, w szczególności wiadomość e-mail i plik PDF.</li>
                     </ol>
@@ -288,10 +302,10 @@
                             </ol>
                         </li>
                         <li>Wiążąca lista metod płatności dostępnych dla danego zamówienia jest widoczna w formularzu przed jego złożeniem.</li>
-                        <li>Podmiotem świadczącym obsługę płatności elektronicznych jest Krajowy Integrator Płatności S.A. z siedzibą w Poznaniu. Przy płatności elektronicznej Klient akceptuje także regulamin Operatora płatności, który udostępnia Operator płatności na swojej stronie.</li>
+                        <li>Podmiotem świadczącym obsługę płatności elektronicznych jest Operator płatności (§ 2 ust. 13). Przy płatności elektronicznej Klient akceptuje także regulamin Operatora płatności, dostępny na stronie tpay.com. Reklamacje dotyczące samego przeprowadzenia płatności rozpatruje Operator płatności (kontakt@tpay.com, tel. 61 66 82 778). Reklamacje dotyczące Produktu, zwroty i odstąpienie od umowy obsługuje Sprzedawca.</li>
                         <li>Przy przelewie tradycyjnym Klient wpłaca należność w ciągu 1 dnia roboczego od złożenia zamówienia, a jeżeli Szkolenie otwarte zaczyna się wcześniej, przed jego rozpoczęciem. W tytule przelewu podaje nazwę Produktu i imię i nazwisko Uczestnika. Skutki braku wpłaty w tym terminie określa § 7 ust. 8. Sprzedawca informuje o nich Klienta e-mailem.</li>
                         <li>Płatność elektroniczną należy zrealizować niezwłocznie po złożeniu zamówienia. Jeżeli nie powiedzie się, Klient może ją ponowić albo zapłacić przelewem tradycyjnym w terminie z ustępu 4. Skutki braku płatności w tym terminie określa § 7 ust. 8.</li>
-                        <li>Sprzedawca wystawia faktury bez VAT zgodnie z obowiązującymi przepisami. Jeżeli faktura podlega obowiązkowi wystawienia w Krajowym Systemie e-Faktur (KSeF), jest wystawiana zgodnie z zasadami tego systemu. W pozostałych przypadkach faktura może zostać przesłana na adres e-mail podany w zamówieniu. Klient, który chce otrzymać fakturę na firmę, podaje dane do faktury w zamówieniu.</li>
+                        <li>Sprzedawca wystawia faktury bez VAT w Krajowym Systemie e-Faktur (KSeF), zgodnie z obowiązującymi przepisami. Klientowi będącemu przedsiębiorcą faktura jest udostępniana w KSeF. Konsumentowi, a na prośbę także innemu Klientowi, Sprzedawca przesyła dodatkowo wizualizację faktury na adres e-mail podany w zamówieniu. Klient, który chce otrzymać fakturę na firmę, podaje dane do faktury w zamówieniu.</li>
                         <li>Jeżeli Klient będący instytucją lub przedsiębiorcą wymaga odroczonego terminu płatności, strony mogą uzgodnić taki termin e-mailem przed rozpoczęciem realizacji Produktu.</li>
                     </ol>
                 </section>
@@ -364,7 +378,7 @@
                     <h2 id="par-12">§ 12. Zwrot płatności</h2>
                     <ol>
                         <li>Po skutecznym odstąpieniu od umowy Sprzedawca zwraca Klientowi wszystkie otrzymane płatności niezwłocznie, nie później niż w ciągu 14 dni od dnia otrzymania oświadczenia o odstąpieniu.</li>
-                        <li>Zwrot następuje tą samą metodą płatności, której użył Klient, chyba że Klient wyraźnie zgodzi się na inną metodę, która nie wiąże się dla niego z żadnymi kosztami. Przy płatności przez Operatora płatności zwrot trafia na rachunek lub kartę, z której dokonano płatności.</li>
+                        <li>Zwrot następuje tą samą metodą płatności, której użył Klient, chyba że Klient wyraźnie zgodzi się na inną metodę, która nie wiąże się dla niego z żadnymi kosztami. Przy płatności przez Operatora płatności Sprzedawca zleca zwrot w systemie Operatora płatności, a środki trafiają na rachunek lub kartę, z której dokonano płatności. Klient nie ponosi kosztów zwrotu.</li>
                         <li>W tym samym terminie i w ten sam sposób Sprzedawca zwraca należności w przypadkach z § 7 ust. 10, § 10 ust. 3, 5, 6 i 7 oraz przy uwzględnieniu reklamacji, która prowadzi do obniżenia ceny lub odstąpienia od umowy.</li>
                         <li>Po odstąpieniu od umowy o dostarczanie Treści cyfrowej Klient przestaje z niej korzystać i nie udostępnia jej innym osobom. Sprzedawca może zablokować dostęp.</li>
                         <li>Jeżeli Sprzedawca wystawił fakturę, przy zwrocie wystawia fakturę korygującą.</li>
@@ -438,7 +452,7 @@
                         <li>Regulamin nie wyłącza ani nie ogranicza praw Konsumenta i Przedsiębiorcy na prawach konsumenta, które przysługują im na podstawie bezwzględnie obowiązujących przepisów. W razie sprzeczności stosuje się te przepisy.</li>
                         <li>Spory z Klientami, którzy nie są Konsumentami ani Przedsiębiorcami na prawach konsumenta, rozstrzyga sąd właściwy dla siedziby Sprzedawcy.</li>
                         <li>Sprzedawca może zmienić Regulamin z ważnych przyczyn, w szczególności przy zmianie przepisów, zmianie metod płatności albo wprowadzeniu nowych Produktów. O zmianie informuje w Serwisie z co najmniej 7-dniowym wyprzedzeniem. Do umów zawartych przed zmianą stosuje się Regulamin w wersji obowiązującej w dniu zawarcia umowy.</li>
-                        <li>Regulamin obowiązuje od dnia opublikowania w Serwisie. Poprzednie wersje Regulaminu przekazujemy na prośbę przesłaną na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</li>
+                        <li>Regulamin obowiązuje od dnia opublikowania w Serwisie. Każda wersja Regulaminu jest dostępna w formacie PDF pod adresem podanym na stronie Regulaminu. Poprzednie wersje przekazujemy także na prośbę przesłaną na adres <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</li>
                     </ol>
                 </section>
 
