@@ -441,3 +441,14 @@ test("bez PDF regulaminu klient nie dostaje niepelnego potwierdzenia, idzie alar
   assert.equal(wyslane[0].do, "a11y@wlaczwizje.pl");
   assert.match(wyslane[0].temat, /NIE wysłane/);
 });
+
+test("sekret obejscia ochrony podgladu trafia do adresu ITN tylko w sandboxie", async () => {
+  const { adresPowiadomien } = await import("../api/platnosc-start.mjs");
+  const baza = "https://podglad.vercel.app";
+  const sekret = "abc123";
+  assert.equal(adresPowiadomien(baza, { TPAY_SANDBOX: "1", VERCEL_AUTOMATION_BYPASS_SECRET: sekret }),
+    "https://podglad.vercel.app/api/tpay-itn?x-vercel-protection-bypass=abc123");
+  assert.equal(adresPowiadomien(baza, { VERCEL_AUTOMATION_BYPASS_SECRET: sekret }),
+    "https://podglad.vercel.app/api/tpay-itn", "produkcja bez sekretu w adresie");
+  assert.equal(adresPowiadomien(baza, { TPAY_SANDBOX: "1" }), "https://podglad.vercel.app/api/tpay-itn");
+});

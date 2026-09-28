@@ -33,6 +33,20 @@ function ustalAdresPubliczny() {
   return zVercela ? `https://${zVercela.replace(/\/+$/, "")}` : "";
 }
 
+/**
+ * Adres ITN. Podglad Vercela jest chroniony logowaniem, wiec powiadomienie
+ * z sandboxu Tpay dostaloby przekierowanie do logowania. Wylacznie w trybie
+ * sandbox doklejamy sekret "Protection Bypass for Automation" (zmienna
+ * systemowa Vercela, pojawia sie po wlaczeniu tej opcji w projekcie).
+ * Produkcja nie jest chroniona i nigdy nie dostaje sekretu w adresie.
+ */
+export function adresPowiadomien(adres, env = process.env) {
+  const url = `${adres}/api/tpay-itn`;
+  const sekret = env.VERCEL_AUTOMATION_BYPASS_SECRET;
+  if (env.TPAY_SANDBOX !== "1" || !sekret) return url;
+  return `${url}?x-vercel-protection-bypass=${encodeURIComponent(sekret)}`;
+}
+
 const POPRAWNY_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function bladWejscia(res, powod) {
@@ -172,7 +186,7 @@ export default async function handler(req, res) {
         success: `${adres}/platnosc-udana`,
         error: `${adres}/platnosc-nieudana`,
       },
-      notification: { url: `${adres}/api/tpay-itn` },
+      notification: { url: adresPowiadomien(adres) },
     },
   };
 

@@ -196,7 +196,11 @@ export async function wczytajRegulaminPdf(adresPubliczny, env = process.env, reg
     `https://www.a11yfirst.pl${regulamin.pdf}`].filter(Boolean);
   for (const adres of adresy) {
     try {
-      const odp = await fetch(adres);
+      // Na chronionym podgladzie Vercela (test na sandboxie) potrzebny jest
+      // naglowek obejscia; na produkcji zmiennej nie ma i naglowek nie idzie.
+      const naglowki = env.VERCEL_AUTOMATION_BYPASS_SECRET
+        ? { "x-vercel-protection-bypass": env.VERCEL_AUTOMATION_BYPASS_SECRET } : {};
+      const odp = await fetch(adres, { headers: naglowki });
       if (!odp.ok) continue;
       const dane = Buffer.from(await odp.arrayBuffer());
       if (dane.subarray(0, 5).toString() === "%PDF-") return dane;
