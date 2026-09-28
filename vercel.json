@@ -5,6 +5,11 @@
   "buildCommand": "echo \"Use committed public directory\"",
   "outputDirectory": "public",
   "cleanUrls": true,
+  "functions": {
+    "api/tpay-itn.mjs": {
+      "includeFiles": "public/regulamin-*.pdf"
+    }
+  },
   "rewrites": [
     {
       "source": "/",

@@ -19,6 +19,8 @@
  */
 
 import crypto from "node:crypto";
+import { rozlozIdentyfikator, zbudujPotwierdzenie, wczytajRegulaminPdf } from "./_potwierdzenie.mjs";
+import { wyslijMail, konfiguracjaPoczty } from "./_poczta.mjs";
 
 /**
  * Wylaczamy parser ciala Vercela. Podpis liczony jest z SUROWEGO tekstu -
@@ -168,6 +170,92 @@ export default async function handler(req, res) {
     uznane_za_zaplacone: zaplacone,
   }));
 
+  // Potwierdzenie zawarcia umowy (§ 7 ust. 9 regulaminu) - przed odpowiedzia,
+  // bo po wyslaniu odpowiedzi Vercel moze zamrozic funkcje. Blad wysylki nie
+  // zmienia odpowiedzi dla Tpay: platnosc jest przyjeta, a brak maila zglaszamy
+  // alarmem na POCZTA_KOPIA, zeby czlowiek wyslal potwierdzenie recznie.
+  if (zaplacone && !powtorka) {
+    await wyslijPotwierdzenie(pola);
+  }
+
   // Potwierdzenie odbioru. Dokladnie ta tresc, bez znaku konca linii.
   res.status(200).send("TRUE");
+}
+
+function adresPubliczny() {
+  const jawny = process.env.PUBLICZNY_ADRES;
+  if (jawny) return jawny.replace(/\/+$/, "");
+  const zVercela = process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL;
+  return zVercela ? `https://${zVercela.replace(/\/+$/, "")}` : "";
+}
+
+/**
+ * Wysyla klientowi potwierdzenie z PDF regulaminu, z kopia UDW na POCZTA_KOPIA
+ * (archiwum i dowod oswiadczen). Nigdy nie rzuca - kazdy problem konczy sie
+ * wpisem w logu i, jesli sie da, alarmem do czlowieka.
+ */
+export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
+  const wyslij = zaleznosci.wyslijMail || wyslijMail;
+  const pdf = zaleznosci.wczytajRegulaminPdf || wczytajRegulaminPdf;
+  const poczta = konfiguracjaPoczty();
+  const zamowienie = rozlozIdentyfikator(pola.tr_crc);
+
+  const alarm = async (powod) => {
+    console.error(JSON.stringify({ zdarzenie: "potwierdzenie-niewyslane", zamowienie: pola.tr_crc, powod }));
+    try {
+      await wyslij({
+        do: poczta.kopia,
+        temat: `[Tpay] Potwierdzenie NIE wysłane: ${pola.tr_id || pola.tr_crc}`,
+        tekst: [
+          "Płatność jest zaksięgowana, ale automatyczne potwierdzenie zawarcia umowy nie wyszło.",
+          "Wyślij je ręcznie z PDF regulaminu (szablon: raporty/2026-09-24-mail-dostep-tresci-cyfrowej-szablon.md).",
+          "",
+          `Powód: ${powod}`,
+          `Transakcja Tpay: ${pola.tr_id}`,
+          `Zamówienie: ${pola.tr_crc}`,
+          `Kwota: ${pola.tr_paid} ${pola.tr_currency || "PLN"}`,
+          `E-mail kupującego: ${pola.tr_email}`,
+          "",
+          "Oświadczenia i uczestników znajdziesz w logu Vercela (zdarzenie platnosc-rozpoczeta).",
+        ].join("\n"),
+      });
+    } catch (blad) {
+      console.error(JSON.stringify({ zdarzenie: "alarm-niewyslany", powod: String(blad.message || blad) }));
+    }
+    return { wyslano: false, powod };
+  };
+
+  if (!zamowienie) return alarm("identyfikator zamowienia spoza bramki");
+  if (!poczta.gotowa && !zaleznosci.wyslijMail) {
+    console.error(JSON.stringify({ zdarzenie: "potwierdzenie-niewyslane", zamowienie: pola.tr_crc, powod: "brak konfiguracji SMTP" }));
+    return { wyslano: false, powod: "brak konfiguracji SMTP" };
+  }
+
+  let regulamin;
+  try {
+    regulamin = await pdf(adresPubliczny());
+  } catch (blad) {
+    return alarm(String(blad.message || blad));
+  }
+
+  const { temat, tekst, plikPdf } = zbudujPotwierdzenie(zamowienie, {
+    kwota: pola.tr_paid || pola.tr_amount,
+    trId: pola.tr_id,
+    czas: new Date(),
+  });
+
+  try {
+    await wyslij({
+      do: pola.tr_email,
+      udw: [poczta.kopia],
+      temat,
+      tekst,
+      zalaczniki: [{ nazwa: plikPdf, typ: "application/pdf", dane: regulamin }],
+    });
+  } catch (blad) {
+    return alarm(`wysylka do klienta: ${String(blad.message || blad)}`);
+  }
+
+  console.log(JSON.stringify({ zdarzenie: "potwierdzenie-wyslane", zamowienie: pola.tr_crc, tr_id: pola.tr_id }));
+  return { wyslano: true };
 }

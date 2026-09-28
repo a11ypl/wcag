@@ -341,3 +341,103 @@ test("informacja o metodach platnosci jest przed przyciskiem, a kurs bez ceny ni
   assert.ok(!formularz.includes('value="semantyczny-html"'));
   assert.ok(!/[\u2013\u2014]/.test(formularz), "bez polpauz i pauz w tekscie dla klienta");
 });
+
+// --- Potwierdzenie zawarcia umowy po platnosci (§ 7 ust. 9) ---
+
+const { rozlozIdentyfikator, zbudujPotwierdzenie } = await import("../api/_potwierdzenie.mjs");
+const { zbudujWiadomosc, wyslijMail } = await import("../api/_poczta.mjs");
+const { wyslijPotwierdzenie } = await import("../api/tpay-itn.mjs");
+
+const UUID = "123e4567-e89b-42d3-a456-426614174000";
+
+test("identyfikator zamowienia rozklada sie na produkt i oswiadczenia", () => {
+  const s = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s1k0-${UUID}`);
+  assert.equal(s.kluczProduktu, "wcag-dla-specjalistow");
+  assert.equal(s.rozpoczecie, true);
+  assert.equal(s.kurs, false);
+  assert.equal(s.natychmiast, null);
+  const c = rozlozIdentyfikator(`a11y-test-tresc-cyfrowa-n1-${UUID}`);
+  assert.equal(c.natychmiast, true);
+  const stary = rozlozIdentyfikator(`a11y-dostepne-dokumenty-${UUID}`);
+  assert.equal(stary.kluczProduktu, "dostepne-dokumenty");
+  assert.equal(stary.rozpoczecie, null);
+  assert.equal(rozlozIdentyfikator(`a11y-nieistniejacy-${UUID}`), null);
+  assert.equal(rozlozIdentyfikator("cokolwiek"), null);
+});
+
+test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia", () => {
+  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s1k1-${UUID}`);
+  const { temat, tekst, plikPdf } = zbudujPotwierdzenie(z, {
+    kwota: "1999.00", trId: "TR-TEST", czas: new Date("2026-10-01T12:05:00Z"),
+  });
+  assert.equal(temat, "Potwierdzenie zawarcia umowy: WCAG dla specjalistów, 28-30.10.2026");
+  assert.equal(plikPdf, "regulamin-2026-09-24.pdf");
+  for (const fragment of [
+    "1999,00 zł", "01.10.2026, godz. 14:05", "TR-TEST", "art. 113",
+    "zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni",
+    "zażądałeś(-aś) dostarczenia kursu e-learning „Semantyczny HTML”",
+    "WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY", "regulamin-2026-09-24.pdf",
+    "Krajowym Systemie e-Faktur",
+  ]) assert.ok(tekst.includes(fragment), `brak: ${fragment}`);
+  assert.ok(!/[–—]/.test(tekst + temat), "bez polpauz i pauz w tresci dla klienta");
+});
+
+test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail podaje zdanie do odeslania", () => {
+  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s0k0-${UUID}`);
+  const blisko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z") }).tekst;
+  assert.ok(blisko.includes("odpisz na tę wiadomość zdaniem: „Żądam rozpoczęcia"));
+  const daleko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-01T10:00:00Z") }).tekst;
+  assert.ok(!daleko.includes("odpisz na tę wiadomość zdaniem"));
+  assert.ok(daleko.includes("dostęp otrzymasz 1 grudnia 2026 r."));
+});
+
+test("wiadomosc MIME: PDF w zalaczniku, UDW poza naglowkami, polskie znaki w temacie", () => {
+  const m = zbudujWiadomosc({
+    od: "a11y@wlaczwizje.pl", nazwaNadawcy: "Accessibility First", do: "jan@example.com",
+    temat: "Potwierdzenie zawarcia umowy: Dostępne dokumenty", tekst: "Dzień dobry",
+    zalaczniki: [{ nazwa: "regulamin.pdf", typ: "application/pdf", dane: Buffer.from("%PDF-1.7 test") }],
+  });
+  assert.match(m, /^Subject: =\?UTF-8\?B\?/m);
+  assert.match(m, /Content-Disposition: attachment; filename="regulamin.pdf"/);
+  assert.ok(m.includes(Buffer.from("%PDF-1.7 test").toString("base64")));
+  assert.ok(!/^Bcc:/mi.test(m));
+});
+
+test("adres z wstrzyknietym naglowkiem jest odrzucany przed polaczeniem", async () => {
+  const env = { SMTP_UZYTKOWNIK: "a11y@wlaczwizje.pl", SMTP_HASLO: "x" };
+  await assert.rejects(
+    wyslijMail({ do: "jan@example.com\r\nBcc: ktos@zly.pl", temat: "t", tekst: "t" }, env),
+    /niepoprawny adres/,
+  );
+});
+
+const polaZaplacone = {
+  tr_id: "TR-TEST", tr_crc: `a11y-ai-dla-audytora-s0k1-${UUID}`, tr_status: "true",
+  tr_amount: "1599.00", tr_paid: "1599.00", tr_currency: "PLN", tr_email: "jan@example.com",
+};
+
+test("po platnosci klient dostaje potwierdzenie z PDF, a a11y@ kopie UDW", async () => {
+  const wyslane = [];
+  const wynik = await wyslijPotwierdzenie(polaZaplacone, {
+    wyslijMail: async (m) => { wyslane.push(m); },
+    wczytajRegulaminPdf: async () => Buffer.from("%PDF-1.7"),
+  });
+  assert.equal(wynik.wyslano, true);
+  assert.equal(wyslane.length, 1);
+  assert.equal(wyslane[0].do, "jan@example.com");
+  assert.deepEqual(wyslane[0].udw, ["a11y@wlaczwizje.pl"]);
+  assert.equal(wyslane[0].zalaczniki[0].typ, "application/pdf");
+  assert.ok(wyslane[0].tekst.includes("AI w audytowaniu dostępności cyfrowej"));
+});
+
+test("bez PDF regulaminu klient nie dostaje niepelnego potwierdzenia, idzie alarm do a11y@", async () => {
+  const wyslane = [];
+  const wynik = await wyslijPotwierdzenie(polaZaplacone, {
+    wyslijMail: async (m) => { wyslane.push(m); },
+    wczytajRegulaminPdf: async () => { throw new Error("brak PDF"); },
+  });
+  assert.equal(wynik.wyslano, false);
+  assert.equal(wyslane.length, 1);
+  assert.equal(wyslane[0].do, "a11y@wlaczwizje.pl");
+  assert.match(wyslane[0].temat, /NIE wysłane/);
+});

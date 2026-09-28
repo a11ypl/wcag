@@ -98,3 +98,29 @@ dopóki ktoś nie kliknie martwego odnośnika.**
 Kształt ciała żądania tworzącego transakcję (`POST /transactions`) pochodzi
 z dokumentacji i oficjalnego SDK, ale **nie został potwierdzony na żywym
 sandboksie**. To pierwsza rzecz do weryfikacji po wprowadzeniu danych.
+
+## Potwierdzenie zawarcia umowy (od 28.09.2026)
+
+Po ITN uznanym za zapłacone `api/tpay-itn.mjs` wysyła kupującemu
+potwierdzenie na trwałym nośniku (§ 7 ust. 9 regulaminu): dane zamówienia,
+cena, warunki realizacji, powtórzone oświadczenia (`-sXkY`, `-nX`), wzór
+formularza odstąpienia i PDF regulaminu w załączniku. Kopia UDW na
+`POCZTA_KOPIA` (domyślnie a11y@wlaczwizje.pl) jest archiwum i dowodem.
+
+- Wysyłka: Gmail SMTP (`smtp.gmail.com:465`), własny minimalny klient
+  w `api/_poczta.mjs`, bez zależności npm. Hasło aplikacji Google tylko
+  w zmiennej `SMTP_HASLO` w Vercelu. Komenda AUTH nigdy nie trafia do logu.
+- Adresy są sprawdzane przed połączeniem: znak nowej linii, `<`, `>`, `,`
+  albo `;` odrzuca adres, więc nie da się wstrzyknąć nagłówka ani odbiorcy.
+- Bez PDF regulaminu klient **nie dostaje** potwierdzenia (sam link nie
+  wystarcza). Zamiast tego idzie alarm na `POCZTA_KOPIA` z danymi do
+  ręcznej wysyłki. PDF jest dołączany do paczki funkcji (`vercel.json`,
+  `includeFiles`), a zapasowo pobierany przez HTTP.
+- Błąd wysyłki nie zmienia odpowiedzi `TRUE` dla Tpay: płatność jest
+  przyjęta niezależnie od poczty.
+- Znane ograniczenie: idempotencja działa w obrębie jednej instancji
+  funkcji. Powtórzone ITN trafiające na inną instancję może wysłać drugie,
+  identyczne potwierdzenie. Szkoda niewielka (duplikat maila), rozwiązanie
+  wymagałoby trwałego magazynu.
+- Przy zakupie dla kilku osób ITN nie zna listy uczestników. Potwierdzenie
+  idzie do kupującego, uczestników odczytasz z logu `platnosc-rozpoczeta`.
