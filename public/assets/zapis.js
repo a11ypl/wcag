@@ -23,6 +23,8 @@
     "brak-imienia-i-nazwiska": "Podaj imię i nazwisko uczestnika.",
     "bledny-email": "Podaj poprawny adres e-mail.",
     "nieznany-produkt": "To szkolenie jest już niedostępne. Odśwież stronę.",
+    "produkt-niedostepny": "Ten produkt nie jest jeszcze w sprzedaży.",
+    "brak-akceptacji-regulaminu": "Zaakceptuj regulamin i potwierdź zapoznanie się z polityką prywatności.",
     "bramka-niedostepna": "Operator płatności chwilowo nie odpowiada. Spróbuj za chwilę.",
     "bramka-odrzucila-transakcje": "Operator płatności odrzucił transakcję. Spróbuj ponownie lub napisz na a11y@wlaczwizje.pl.",
     "brak-adresu-platnosci": "Nie udało się otworzyć płatności. Napisz na a11y@wlaczwizje.pl.",
@@ -40,25 +42,35 @@
     if (pole) pole.checked = true;
   }
 
-  /** Druga zgoda dotyczy WYLACZNIE tresci cyfrowych - przy szkoleniu z terminem
-   *  swiadczenie nie zaczyna sie "niezwlocznie", wiec pytanie byloby bez sensu.
-   *  Pole nigdy nie jest zaznaczone domyslnie i nigdy nie jest wymagane:
-   *  nie wolno uzaleznic sprzedazy od zrzeczenia sie prawa odstapienia. */
-  const sekcjaCyfrowa = document.getElementById("zgodaCyfrowa");
+  /** Oswiadczenia o wczesniejszym rozpoczeciu zaleza od rodzaju produktu:
+   *  szkolenie otwarte - rozpoczecie uslugi i kurs z pakietu, tresc cyfrowa -
+   *  natychmiastowe dostarczenie. Pola nigdy nie sa zaznaczone domyslnie
+   *  i nigdy nie sa wymagane: nie wolno uzaleznic sprzedazy od zrzeczenia sie
+   *  prawa odstapienia. Ukryte pole jest odznaczane, zeby nie poszlo
+   *  oswiadczenie, ktorego kupujacy nie widzial. */
   const polaProduktu = form.querySelectorAll('input[name="produkt"]');
+  const SEKCJE = [
+    { sekcja: "zgodaRozpoczecie", pole: "rozpoczecie", dlaCyfrowych: false },
+    { sekcja: "zgodaKurs", pole: "kurs", dlaCyfrowych: false },
+    { sekcja: "zgodaCyfrowa", pole: "natychmiast", dlaCyfrowych: true },
+  ];
 
-  function odswiezZgodeCyfrowa() {
-    if (!sekcjaCyfrowa) return;
+  function odswiezOswiadczenia() {
     const wybrany = form.querySelector('input[name="produkt"]:checked');
     const cyfrowy = Boolean(wybrany && wybrany.dataset.tresciCyfrowe === "1");
-    sekcjaCyfrowa.hidden = !cyfrowy;
-    if (!cyfrowy) {
-      const pole = document.getElementById("natychmiast");
-      if (pole) pole.checked = false;
-    }
+    SEKCJE.forEach(function (s) {
+      const sekcja = document.getElementById(s.sekcja);
+      if (!sekcja) return;
+      const widoczna = s.dlaCyfrowych === cyfrowy;
+      sekcja.hidden = !widoczna;
+      if (!widoczna) {
+        const pole = document.getElementById(s.pole);
+        if (pole) pole.checked = false;
+      }
+    });
   }
-  polaProduktu.forEach((pole) => pole.addEventListener("change", odswiezZgodeCyfrowa));
-  odswiezZgodeCyfrowa();
+  polaProduktu.forEach((pole) => pole.addEventListener("change", odswiezOswiadczenia));
+  odswiezOswiadczenia();
 
   /** Cena przychodzi z serwera, nie z przegladarki - tu tylko ja pokazujemy.
    *  Dzieki temu kupujacy widzi, ze promocja z linku wygasla, zanim zaplaci. */
@@ -110,7 +122,7 @@
     if (!dane.produkt) bledy.push("Wybierz szkolenie.");
     if (!dane.imie || dane.imie.trim().length < 3) bledy.push("Podaj imię i nazwisko uczestnika.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(dane.email || "")) bledy.push("Podaj poprawny adres e-mail.");
-    if (!zgoda) bledy.push("Zaakceptuj regulamin i politykę prywatności.");
+    if (!zgoda) bledy.push("Zaakceptuj regulamin i potwierdź zapoznanie się z polityką prywatności.");
     return bledy;
   }
 
@@ -126,9 +138,12 @@
       nip: (pola.get("nip") || "").toString().trim(),
       wariant: wariant,
       natychmiast: pola.get("natychmiast") === "on",
+      rozpoczecie: pola.get("rozpoczecie") === "on",
+      kurs: pola.get("kurs") === "on",
+      zgoda: pola.get("zgoda") === "on",
     };
 
-    const bledy = zwaliduj(dane, pola.get("zgoda"));
+    const bledy = zwaliduj(dane, dane.zgoda);
     if (bledy.length) {
       pokazBledy(bledy);
       return;
@@ -139,7 +154,7 @@
     const etykieta = przycisk ? przycisk.textContent : "";
     if (przycisk) {
       przycisk.disabled = true;
-      przycisk.textContent = "Otwieram płatność...";
+      przycisk.textContent = "Otwieram płatność…";
     }
     if (status) {
       status.textContent = "Łączę się z operatorem płatności. Za chwilę nastąpi przekierowanie.";

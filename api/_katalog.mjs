@@ -17,6 +17,19 @@
 export const MAKS_OSOB = 20;
 
 /**
+ * Wersja regulaminu, ktora kupujacy akceptuje przy zamowieniu, i jej PDF
+ * dolaczany do potwierdzenia na trwalym nosniku (§ 7 ust. 9 regulaminu).
+ *
+ * UWAGA przy merge PR #18: nazwa pliku PDF musi odpowiadac wersji
+ * opublikowanej w public/. Po kazdej zmianie tekstu regulaminu - nowa wersja
+ * tutaj i nowy plik PDF, stary zostaje (archiwum dla wczesniejszych umow).
+ */
+export const REGULAMIN = {
+  wersja: "2026-09-24",
+  pdf: "/regulamin-2026-09-24.pdf",
+};
+
+/**
  * Promocje jako WARIANT CENY, nie kod rabatowy (decyzja Damiana z 23.09.2026).
  *
  * Kodow rabatowych nie ma nigdzie na stronie. Promocja powebinarowa dziala
@@ -46,6 +59,8 @@ export const PRODUKTY = {
     nazwa: "WCAG dla specjalistów",
     podtytul: "jeśli zaczynasz",
     termin: "28-30.10.2026",
+    dataStartu: "2026-10-28",
+    kursWPakiecie: true,
     cenaGrosze: 249900,
     warianty: {
       "webinar-2409": {
@@ -56,9 +71,11 @@ export const PRODUKTY = {
     },
   },
   "ai-dla-audytora": {
-    nazwa: "AI dla audytora dostępności cyfrowej",
+    nazwa: "AI w audytowaniu dostępności cyfrowej",
     podtytul: "jeśli chcesz audytować z AI",
     termin: "9-10.11.2026",
+    dataStartu: "2026-11-09",
+    kursWPakiecie: true,
     cenaGrosze: 199900,
     warianty: {
       "webinar-2409": {
@@ -72,6 +89,8 @@ export const PRODUKTY = {
     nazwa: "Dostępne dokumenty w praktyce",
     podtytul: "jeśli chcesz tworzyć dostępne dokumenty",
     termin: "26-27.11.2026",
+    dataStartu: "2026-11-26",
+    kursWPakiecie: true,
     cenaGrosze: 199900,
     warianty: {
       "webinar-2409": {
@@ -81,19 +100,21 @@ export const PRODUKTY = {
       },
     },
   },
-  // Kurs e-learningowy: dostep online, nie termin szkolenia.
+  // Kurs e-learningowy "Semantyczny HTML": start 01.12.2026, preorder od
+  // pazdziernika, CENA NIEUSTALONA (stan na 28.09.2026). Produkt jest w
+  // katalogu, bo mechanika tresci cyfrowych (zgoda na natychmiastowe
+  // dostarczenie, znacznik -n1/-n0) jest gotowa i przetestowana, ale
+  // wSprzedazy: false blokuje go w wycenie. Nie wpisuj ceny bez decyzji
+  // Damiana w notatce 01 Biznesy.
   //
-  // Sprzedaz ODLOZONA (decyzja z 22.09.2026, notatka 01 Biznesy) - pierwotny
-  // start 28.09 i okno promocyjne 28.09-05.10 sa nieaktualne, wchodzi lista
-  // preorderowa bez daty. Produkt zostaje w katalogu, bo mechanika jest gotowa
-  // i przetestowana; wariantu promocyjnego nie definiujemy, dopoki nie zapadnie
-  // decyzja o cenie dla listy (rekomendacja 500 zl).
+  // Uczestnicy szkolen otwartych dostaja kurs w cenie szkolenia (kursWPakiecie).
   "semantyczny-html": {
     nazwa: "Semantyczny HTML",
-    podtytul: "kurs e-learningowy, 12 lekcji",
-    termin: "dostęp online, bezterminowo",
-    cenaGrosze: 99900,
+    podtytul: "kurs e-learningowy",
+    termin: "dostęp online od 01.12.2026",
+    cenaGrosze: null,
     tresciCyfrowe: true,
+    wSprzedazy: false,
   },
 };
 
@@ -126,6 +147,7 @@ function czyWazny(wariant) {
 export function wycen(kluczProduktu, kluczWariantu, liczbaOsob = 1) {
   const produkt = PRODUKTY[kluczProduktu];
   if (!produkt) return { ok: false, powod: "nieznany-produkt" };
+  if (produkt.wSprzedazy === false) return { ok: false, powod: "produkt-niedostepny" };
 
   // Zakup firmowy: cena to iloczyn, bez progow ilosciowych - ta sama stawka
   // przy jednej i przy dziesieciu osobach (decyzja Damiana z 22.09.2026).

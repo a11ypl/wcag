@@ -9,7 +9,7 @@
  */
 
 import crypto from "node:crypto";
-import { wycen, naZlote } from "./_katalog.mjs";
+import { wycen, naZlote, REGULAMIN } from "./_katalog.mjs";
 
 const BAZA_PRODUKCJA = "https://secure.tpay.com";
 const BAZA_SANDBOX = "https://secure.sandbox.tpay.com";
@@ -78,11 +78,14 @@ export default async function handler(req, res) {
 
   const dane = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
   const { produkt: kluczProduktu, wariant, imie, email, firma, nip, natychmiast,
-          liczbaOsob, uczestnicy } = dane;
+          liczbaOsob, uczestnicy, zgoda, rozpoczecie, kurs } = dane;
 
   if (!kluczProduktu) return bladWejscia(res, "brak-produktu");
   if (!imie || String(imie).trim().length < 3) return bladWejscia(res, "brak-imienia-i-nazwiska");
   if (!POPRAWNY_EMAIL.test(String(email || ""))) return bladWejscia(res, "bledny-email");
+  // § 7 ust. 7 lit. d regulaminu: bez akceptacji nie ma zamowienia. Sprawdzamy
+  // na serwerze, bo pole "required" w przegladarce da sie obejsc.
+  if (zgoda !== true) return bladWejscia(res, "brak-akceptacji-regulaminu");
 
   const osoby = liczbaOsob === undefined ? 1 : liczbaOsob;
   const wycena = wycen(kluczProduktu, wariant, osoby);
@@ -118,7 +121,19 @@ export default async function handler(req, res) {
   // wiec sciezka "kupuje i czekam" musi istniec (wymog opisany przez sesje mozg-27
   // w raporty/2026-09-22-regulamin-tresci-cyfrowe-kurs.md).
   const zadaNatychmiast = wycena.produkt.tresciCyfrowe ? Boolean(natychmiast) : null;
-  const znacznik = zadaNatychmiast === null ? "" : (zadaNatychmiast ? "-n1" : "-n0");
+  // Przy szkoleniu otwartym dwa osobne, dobrowolne oswiadczenia (§ 11 ust. 6
+  // i § 9 regulaminu): zadanie rozpoczecia uslugi przed uplywem 14 dni (s1/s0)
+  // i zadanie dostarczenia kursu z pakietu przed uplywem 14 dni (k1/k0).
+  // Znacznik trafia do identyfikatora z tego samego powodu co -n1/-n0: ITN
+  // zwraca tylko tr_crc, a potwierdzenie musi te oswiadczenia powtorzyc.
+  const szkolenie = !wycena.produkt.tresciCyfrowe;
+  const zadaRozpoczecia = szkolenie ? Boolean(rozpoczecie) : null;
+  const zadaKursu = szkolenie && wycena.produkt.kursWPakiecie ? Boolean(kurs) : null;
+  let znacznik = "";
+  if (zadaNatychmiast !== null) znacznik = zadaNatychmiast ? "-n1" : "-n0";
+  if (zadaRozpoczecia !== null) {
+    znacznik = `-s${zadaRozpoczecia ? 1 : 0}` + (zadaKursu === null ? "" : `k${zadaKursu ? 1 : 0}`);
+  }
   const idZamowienia = `a11y-${kluczProduktu}${znacznik}-${crypto.randomUUID()}`;
   const adres = adresPubliczny;
 
@@ -195,6 +210,10 @@ export default async function handler(req, res) {
     zadanie_natychmiastowego_swiadczenia: zadaNatychmiast,
     dostep: zadaNatychmiast === null ? "wg terminu szkolenia"
       : (zadaNatychmiast ? "niezwlocznie po platnosci" : "po 14 dniach od zakupu"),
+    zadanie_rozpoczecia_uslugi: zadaRozpoczecia,
+    zadanie_dostarczenia_kursu: zadaKursu,
+    regulamin_wersja: REGULAMIN.wersja,
+    czas_zamowienia: new Date().toISOString(),
     firma: firma || null,
     nip: nip || null,
     tr_id: transakcja.transactionId || null,

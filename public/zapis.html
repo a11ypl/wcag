@@ -93,7 +93,7 @@
         <section class="hero page-hero">
             <div class="container">
                 <h1>Zapis na szkolenie</h1>
-                <p class="subtitle">Wybierz termin, podaj dane i przejdź do płatności. Miejsce rezerwujemy po zaksięgowaniu wpłaty.</p>
+                <p class="subtitle">Wybierz szkolenie, podaj dane i zapłać online. Miejsce potwierdzamy po zaksięgowaniu wpłaty.</p>
             </div>
         </section>
 
@@ -110,28 +110,23 @@
                         <legend>Wybierz szkolenie <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></legend>
                         <div class="form-field">
                             <label>
-                                <input type="radio" name="produkt" value="semantyczny-html" data-tresci-cyfrowe="1" required>
-                                Semantyczny HTML — kurs e-learningowy, 12 lekcji — 999 zł
-                            </label>
-                        </div>
-                        <div class="form-field">
-                            <label>
                                 <input type="radio" name="produkt" value="wcag-dla-specjalistow" required>
-                                WCAG dla specjalistów — 28-30.10.2026 — 2499 zł
+                                WCAG dla specjalistów, 28-30.10.2026, 2499 zł
                             </label>
                         </div>
                         <div class="form-field">
                             <label>
                                 <input type="radio" name="produkt" value="ai-dla-audytora" required>
-                                AI dla audytora dostępności cyfrowej — 9-10.11.2026 — 1999 zł
+                                AI w audytowaniu dostępności cyfrowej, 9-10.11.2026, 1999 zł
                             </label>
                         </div>
                         <div class="form-field">
                             <label>
                                 <input type="radio" name="produkt" value="dostepne-dokumenty" required>
-                                Dostępne dokumenty w praktyce — 26-27.11.2026 — 1999 zł
+                                Dostępne dokumenty w praktyce, 26-27.11.2026, 1999 zł
                             </label>
                         </div>
+                        <p class="form-hint">W cenie każdego szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r.</p>
                     </fieldset>
 
                     <div class="form-field">
@@ -157,30 +152,44 @@
 
 
                     <div class="form-field">
-                        <input type="checkbox" id="zgoda" name="zgoda" required>
-                        <label for="zgoda">Zapoznałem się z <a href="/regulamin">regulaminem</a> i <a href="/polityka-prywatnosci">polityką prywatności</a> i akceptuję ich treść <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                        <input type="checkbox" id="zgoda" name="zgoda" required aria-describedby="zgodaOpis">
+                        <label for="zgoda">Akceptuję regulamin świadczenia usług oraz potwierdzam zapoznanie się z polityką prywatności <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                        <p id="zgodaOpis" class="form-hint">Przeczytaj: <a href="/regulamin">Regulamin świadczenia usług</a> oraz <a href="/polityka-prywatnosci">Politykę prywatności</a>.</p>
+                    </div>
+
+                    <div class="form-field" id="zgodaRozpoczecie">
+                        <input type="checkbox" id="rozpoczecie" name="rozpoczecie" aria-describedby="rozpoczecieOpis">
+                        <label for="rozpoczecie">Żądam rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po pełnym wykonaniu usługi utracę prawo odstąpienia od umowy.</label>
+                        <p id="rozpoczecieOpis" class="form-hint">Pole nieobowiązkowe. Zaznacz je, jeśli szkolenie zaczyna się wcześniej niż 14 dni od zamówienia. Bez tego żądania nie możemy dopuścić Cię do udziału przed upływem tego terminu. Jeśli odstąpisz od umowy w trakcie szkolenia, zapłacisz za część już wykonaną. Szczegóły: <a href="/regulamin#par-11">§ 11 regulaminu</a>.</p>
+                    </div>
+
+                    <div class="form-field" id="zgodaKurs">
+                        <input type="checkbox" id="kurs" name="kurs" aria-describedby="kursOpis">
+                        <label for="kurs">Żądam dostarczenia kursu e-learning „Semantyczny HTML” przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po jego dostarczeniu utracę prawo odstąpienia od umowy w zakresie kursu.</label>
+                        <p id="kursOpis" class="form-hint">Pole nieobowiązkowe. Bez tej zgody, jeśli od zapisu do 1 grudnia 2026 r. minie mniej niż 14 dni, dostęp do kursu otrzymasz po upływie 14 dni od zapisu. Szczegóły: <a href="/regulamin#par-9">§ 9 regulaminu</a>.</p>
                     </div>
 
                     <div class="form-field" id="zgodaCyfrowa" hidden>
                         <input type="checkbox" id="natychmiast" name="natychmiast" aria-describedby="natychmiastOpis">
-                        <label for="natychmiast">Żądam rozpoczęcia świadczenia przed upływem terminu odstąpienia od umowy. Przyjmuję do wiadomości, że po spełnieniu świadczenia przez Sprzedawcę utracę prawo odstąpienia od umowy.</label>
-                        <p id="natychmiastOpis" class="form-hint">Bez tej zgody dostęp do kursu otrzymasz po 14 dniach.</p>
+                        <label for="natychmiast">Żądam dostarczenia treści cyfrowej przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po jej dostarczeniu utracę prawo odstąpienia od umowy.</label>
+                        <p id="natychmiastOpis" class="form-hint">Pole nieobowiązkowe. Bez tej zgody dostęp otrzymasz po upływie 14 dni od zamówienia.</p>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Przejdź do płatności</button>
-                </form>
+                    <h2 class="section-title">Jak przebiega płatność</h2>
+                    <ul>
+                        <li>Płacisz od razu przy zamówieniu, przez <strong>Tpay</strong> (Krajowy Integrator Płatności S.A.): szybki przelew, BLIK albo karta. Dostępne metody zobaczysz na stronie operatora. Tam też podajesz dane karty i bankowości, nie u nas.</li>
+                        <li>Umowa zostaje zawarta z chwilą zaksięgowania pełnej wpłaty. Potwierdzenie z regulaminem w PDF wyślemy na podany adres e-mail.</li>
+                        <li>Jeśli płatność się nie powiedzie, możesz ją ponowić albo napisać na <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a> i zapłacić przelewem tradycyjnym.</li>
+                        <li>Sprzedawcą jest <strong>Włącz Wizję sp. z o.o.</strong>, NIP 5223299694. Korzystamy ze zwolnienia z VAT (art. 113 ustawy o VAT), więc podana cena jest ceną końcową.</li>
+                        <li>Fakturę wystawiamy po zaksięgowaniu wpłaty, zgodnie z przepisami, w tym w KSeF.</li>
+                    </ul>
 
-                <h2 class="section-title">Jak przebiega płatność</h2>
-                <ul>
-                    <li>Płatność obsługuje <strong>Tpay</strong> (Krajowy Integrator Płatności S.A.). Dane karty i bankowości podajesz na stronie operatora, nie u nas.</li>
-                    <li>Sprzedawcą jest <strong>Włącz Wizję sp. z o.o.</strong>, NIP 5223299694.</li>
-                    <li>Nie jesteśmy płatnikiem VAT — faktura wystawiana jest ze zwolnieniem, a podana cena jest ceną końcową.</li>
-                    <li>Fakturę wystawiamy po zaksięgowaniu wpłaty i wysyłamy na podany adres e-mail.</li>
-                </ul>
+                    <button type="submit" class="btn btn-primary">Zamawiam z obowiązkiem zapłaty</button>
+                </form>
             </div>
         </section>
     </main>
-    <script src="assets/zapis.js?v=2" defer></script>
+    <script src="assets/zapis.js?v=3" defer></script>
 
     <footer>
         <div class="container">

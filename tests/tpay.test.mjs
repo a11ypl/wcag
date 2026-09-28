@@ -20,8 +20,13 @@ PRODUKTY["dostepne-dokumenty"].warianty["test-zadrogi"] = {
   nazwa: "wariant drozszy od ceny regularnej", cenaGrosze: 999900,
 };
 
+// Kurs "Semantyczny HTML" nie jest w sprzedazy (cena nieustalona), wiec
+// mechanike tresci cyfrowych sprawdzamy na produkcie testowym.
+PRODUKTY["test-tresc-cyfrowa"] = {
+  nazwa: "Tresc cyfrowa testowa", termin: "dostep online", cenaGrosze: 99900, tresciCyfrowe: true,
+};
+
 test("cena stala zgadza sie z cennikiem", () => {
-  assert.equal(wycen("semantyczny-html").kwotaGrosze, 99900);
   assert.equal(wycen("wcag-dla-specjalistow").kwotaGrosze, 249900);
   assert.equal(wycen("ai-dla-audytora").kwotaGrosze, 199900);
   assert.equal(wycen("dostepne-dokumenty").kwotaGrosze, 199900);
@@ -40,7 +45,7 @@ test("wielkosc liter i spacje w identyfikatorze wariantu nie maja znaczenia", ()
 test("wariant nalezy do produktu - nie da sie go przeniesc na inny", () => {
   // Kurs nie ma zadnego wariantu, wiec identyfikator z innego szkolenia
   // musi zostac zignorowany, a nie zastosowany.
-  const w = wycen("semantyczny-html", "webinar-2409");
+  const w = wycen("test-tresc-cyfrowa", "webinar-2409");
   assert.equal(w.kwotaGrosze, 99900, "musi zostac cena stala");
   assert.equal(w.wariant.zastosowany, false);
   assert.equal(w.wariant.powod, "nieznany-wariant");
@@ -69,8 +74,9 @@ test("nieznany produkt jest odrzucany, nie wyceniany", () => {
   assert.equal(wycen("nie-ma-takiego").ok, false);
 });
 
-test("katalog nie zawiera produktu bez ceny albo terminu", () => {
+test("katalog nie zawiera produktu w sprzedazy bez ceny albo terminu", () => {
   for (const [klucz, p] of Object.entries(PRODUKTY)) {
+    if (p.wSprzedazy === false) continue;
     assert.ok(Number.isInteger(p.cenaGrosze) && p.cenaGrosze > 0, `${klucz}: zla cena`);
     assert.ok(p.termin && p.nazwa, `${klucz}: brak terminu albo nazwy`);
   }
@@ -159,7 +165,8 @@ async function wywolajStart(cialo) {
   try {
     const { default: start } = await import("../api/platnosc-start.mjs");
     const res = atrapaOdpowiedzi();
-    await start({ method: "POST", body: cialo, headers: {} }, res);
+    // Domyslnie z akceptacja regulaminu - testy braku akceptacji podaja ja jawnie.
+    await start({ method: "POST", body: { zgoda: true, ...cialo }, headers: {} }, res);
     return { res, zadanie: zapamietane.zadanie };
   } finally {
     globalThis.fetch = oryginalny;
@@ -181,13 +188,13 @@ test("identyfikator zamowienia nie jest zgadywalny i nie wycieka w adresach powr
   const { zadanie } = await wywolajStart({
     produkt: "dostepne-dokumenty", imie: "Anna Nowak", email: "anna@example.com",
   });
-  assert.match(zadanie.hiddenDescription, /^a11y-dostepne-dokumenty-[0-9a-f-]{36}$/);
+  assert.match(zadanie.hiddenDescription, /^a11y-dostepne-dokumenty-s0k0-[0-9a-f-]{36}$/);
   assert.equal(zadanie.callbacks.payerUrls.success, "https://a11yfirst.pl/platnosc-udana");
   assert.ok(!zadanie.callbacks.payerUrls.success.includes("?"), "brak identyfikatora w adresie powrotu");
   assert.equal(zadanie.callbacks.notification.url, "https://a11yfirst.pl/api/tpay-itn");
 });
 
-test("brak zgody na regulamin nie blokuje serwera, ale brak danych juz tak", async () => {
+test("bledne dane kupujacego sa odrzucane", async () => {
   const { res } = await wywolajStart({ produkt: "dostepne-dokumenty", imie: "A", email: "zly" });
   assert.equal(res.kod, 400);
 });
@@ -196,19 +203,19 @@ test("brak zgody na regulamin nie blokuje serwera, ale brak danych juz tak", asy
 
 test("kurs bez zgody na natychmiastowe swiadczenie nadal da sie kupic", async () => {
   const { res, zadanie } = await wywolajStart({
-    produkt: "semantyczny-html", imie: "Jan Kowalski", email: "jan@example.com",
+    produkt: "test-tresc-cyfrowa", imie: "Jan Kowalski", email: "jan@example.com",
     natychmiast: false,
   });
   assert.equal(res.kod, 200, "brak zgody nie moze blokowac sprzedazy");
-  assert.match(zadanie.hiddenDescription, /^a11y-semantyczny-html-n0-/);
+  assert.match(zadanie.hiddenDescription, /^a11y-test-tresc-cyfrowa-n0-/);
 });
 
 test("zgoda na natychmiastowe swiadczenie jest widoczna w identyfikatorze", async () => {
   const { zadanie } = await wywolajStart({
-    produkt: "semantyczny-html", imie: "Jan Kowalski", email: "jan@example.com",
+    produkt: "test-tresc-cyfrowa", imie: "Jan Kowalski", email: "jan@example.com",
     natychmiast: true,
   });
-  assert.match(zadanie.hiddenDescription, /^a11y-semantyczny-html-n1-/);
+  assert.match(zadanie.hiddenDescription, /^a11y-test-tresc-cyfrowa-n1-/);
 });
 
 test("szkolenie z terminem nie dostaje znacznika tresci cyfrowych", async () => {
@@ -223,7 +230,7 @@ test("szkolenie z terminem nie dostaje znacznika tresci cyfrowych", async () => 
 
 test("zakup dla trzech osob liczy iloczyn, bez rabatu ilosciowego", async () => {
   const { res, zadanie } = await wywolajStart({
-    produkt: "semantyczny-html", imie: "Firma Sp. z o.o.", email: "biuro@firma.pl",
+    produkt: "test-tresc-cyfrowa", imie: "Firma Sp. z o.o.", email: "biuro@firma.pl",
     liczbaOsob: 3,
     uczestnicy: [
       { imie: "Anna Nowak", email: "anna@firma.pl" },
@@ -237,7 +244,7 @@ test("zakup dla trzech osob liczy iloczyn, bez rabatu ilosciowego", async () => 
 
 test("liczba osob bez kompletnej listy uczestnikow jest odrzucana", async () => {
   const { res } = await wywolajStart({
-    produkt: "semantyczny-html", imie: "Firma", email: "biuro@firma.pl",
+    produkt: "test-tresc-cyfrowa", imie: "Firma", email: "biuro@firma.pl",
     liczbaOsob: 3,
     uczestnicy: [{ imie: "Anna Nowak", email: "anna@firma.pl" }],
   });
@@ -246,7 +253,7 @@ test("liczba osob bez kompletnej listy uczestnikow jest odrzucana", async () => 
 
 test("uczestnik z blednym adresem blokuje zamowienie", async () => {
   const { res } = await wywolajStart({
-    produkt: "semantyczny-html", imie: "Firma", email: "biuro@firma.pl",
+    produkt: "test-tresc-cyfrowa", imie: "Firma", email: "biuro@firma.pl",
     liczbaOsob: 2,
     uczestnicy: [
       { imie: "Anna Nowak", email: "anna@firma.pl" },
@@ -254,4 +261,83 @@ test("uczestnik z blednym adresem blokuje zamowienie", async () => {
     ],
   });
   assert.equal(res.kod, 400);
+});
+
+// --- Regulamin z 28.09.2026: § 7 ust. 7, § 9, § 11 ---
+
+test("bez akceptacji regulaminu serwer nie tworzy transakcji", async () => {
+  for (const zgoda of [undefined, false, "on", 1]) {
+    const { res, zadanie } = await wywolajStart({
+      produkt: "dostepne-dokumenty", imie: "Anna Nowak", email: "anna@example.com", zgoda,
+    });
+    assert.equal(res.kod, 400, `zgoda=${zgoda} nie moze wystarczyc`);
+    assert.equal(res.tresc.blad, "brak-akceptacji-regulaminu");
+    assert.equal(zadanie, undefined, "do Tpay nic nie moze pojsc");
+  }
+});
+
+test("kurs Semantyczny HTML nie jest w sprzedazy, dopoki nie ma ceny", async () => {
+  assert.equal(wycen("semantyczny-html").ok, false);
+  assert.equal(wycen("semantyczny-html").powod, "produkt-niedostepny");
+  const { res, zadanie } = await wywolajStart({
+    produkt: "semantyczny-html", imie: "Jan Kowalski", email: "jan@example.com",
+  });
+  assert.equal(res.kod, 400);
+  assert.equal(zadanie, undefined);
+});
+
+test("szkolenie: zadanie rozpoczecia uslugi i kursu z pakietu trafia do identyfikatora", async () => {
+  const przypadki = [
+    [{ rozpoczecie: true, kurs: true }, "s1k1"],
+    [{ rozpoczecie: true, kurs: false }, "s1k0"],
+    [{ rozpoczecie: false, kurs: true }, "s0k1"],
+    [{}, "s0k0"],
+  ];
+  for (const [oswiadczenia, znacznik] of przypadki) {
+    const { res, zadanie } = await wywolajStart({
+      produkt: "ai-dla-audytora", imie: "Jan Kowalski", email: "jan@example.com", ...oswiadczenia,
+    });
+    assert.equal(res.kod, 200, "oswiadczenia sa dobrowolne i nie blokuja zakupu");
+    assert.match(zadanie.hiddenDescription, new RegExp(`^a11y-ai-dla-audytora-${znacznik}-`));
+  }
+});
+
+test("tresc cyfrowa nie dostaje znacznikow szkolenia", async () => {
+  const { zadanie } = await wywolajStart({
+    produkt: "test-tresc-cyfrowa", imie: "Jan Kowalski", email: "jan@example.com",
+    rozpoczecie: true, kurs: true,
+  });
+  assert.ok(!/-s[01]/.test(zadanie.hiddenDescription));
+});
+
+test("nazwa szkolenia AI zgodna ze strona", () => {
+  assert.equal(PRODUKTY["ai-dla-audytora"].nazwa, "AI w audytowaniu dostępności cyfrowej");
+});
+
+// --- Formularz /zapis: art. 17 ustawy o prawach konsumenta ---
+
+const { readFileSync } = await import("node:fs");
+const formularz = readFileSync(new URL("../public/zapis.html", import.meta.url), "utf8");
+
+test("przycisk zamowienia informuje o obowiazku zaplaty", () => {
+  const przyciski = [...formularz.matchAll(/<button[^>]*type="submit"[^>]*>([\s\S]*?)<\/button>/g)];
+  assert.equal(przyciski.length, 1);
+  assert.equal(przyciski[0][1].trim(), "Zamawiam z obowiązkiem zapłaty");
+  assert.ok(!formularz.includes("Przejdź do płatności"));
+});
+
+test("oswiadczenia o wczesniejszym rozpoczeciu nie sa wymagane ani zaznaczone", () => {
+  for (const id of ["rozpoczecie", "kurs", "natychmiast"]) {
+    const pole = formularz.match(new RegExp(`<input[^>]*id="${id}"[^>]*>`));
+    assert.ok(pole, `brak pola ${id}`);
+    assert.ok(!/\brequired\b/.test(pole[0]), `${id} nie moze byc wymagane`);
+    assert.ok(!/\bchecked\b/.test(pole[0]), `${id} nie moze byc zaznaczone domyslnie`);
+  }
+  assert.match(formularz, /<input[^>]*id="zgoda"[^>]*required/);
+});
+
+test("informacja o metodach platnosci jest przed przyciskiem, a kurs bez ceny nie jest w ofercie", () => {
+  assert.ok(formularz.indexOf("Jak przebiega płatność") < formularz.indexOf("Zamawiam z obowiązkiem zapłaty"));
+  assert.ok(!formularz.includes('value="semantyczny-html"'));
+  assert.ok(!/[\u2013\u2014]/.test(formularz), "bez polpauz i pauz w tekscie dla klienta");
 });
