@@ -110,19 +110,19 @@
                         <legend>Wybierz szkolenie <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></legend>
                         <div class="form-field">
                             <label>
-                                <input type="radio" name="produkt" value="wcag-dla-specjalistow" required>
+                                <input type="radio" name="produkt" value="wcag-dla-specjalistow" data-start="2026-10-28" required>
                                 WCAG dla specjalistów, 28-30.10.2026, 2499 zł
                             </label>
                         </div>
                         <div class="form-field">
                             <label>
-                                <input type="radio" name="produkt" value="ai-dla-audytora" required>
+                                <input type="radio" name="produkt" value="ai-dla-audytora" data-start="2026-11-09" required>
                                 AI w audytowaniu dostępności cyfrowej, 9-10.11.2026, 1999 zł
                             </label>
                         </div>
                         <div class="form-field">
                             <label>
-                                <input type="radio" name="produkt" value="dostepne-dokumenty" required>
+                                <input type="radio" name="produkt" value="dostepne-dokumenty" data-start="2026-11-26" required>
                                 Dostępne dokumenty w praktyce, 26-27.11.2026, 1999 zł
                             </label>
                         </div>
@@ -157,8 +157,9 @@
                     </div>
 
                     <div class="form-field" id="zgodaRozpoczecie">
-                        <input type="checkbox" id="rozpoczecie" name="rozpoczecie" aria-describedby="rozpoczecieOpis">
+                        <input type="checkbox" id="rozpoczecie" name="rozpoczecie" aria-describedby="rozpoczecieUwaga rozpoczecieOpis">
                         <label for="rozpoczecie">Żądam rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po pełnym wykonaniu usługi utracę prawo odstąpienia od umowy.</label>
+                        <p id="rozpoczecieUwaga" class="form-hint" hidden><strong>To szkolenie zaczyna się wcześniej niż za 14 dni.</strong> Jeśli nie zaznaczysz tego pola, nie będziemy mogli dopuścić Cię do udziału. Po płatności wyślemy Ci link, którym możesz to jeszcze potwierdzić.</p>
                         <p id="rozpoczecieOpis" class="form-hint">Pole nieobowiązkowe. Zaznacz je, jeśli szkolenie zaczyna się wcześniej niż 14 dni od zamówienia. Bez tego żądania nie możemy dopuścić Cię do udziału przed upływem tego terminu. Jeśli odstąpisz od umowy w trakcie szkolenia, zapłacisz za część już wykonaną. Szczegóły: <a href="/regulamin#par-11">§ 11 regulaminu</a>.</p>
                     </div>
 
@@ -182,7 +183,7 @@
             </div>
         </section>
     </main>
-    <script src="assets/zapis.js?v=5" defer></script>
+    <script src="assets/zapis.js?v=6" defer></script>
 
     <footer>
         <div class="container">

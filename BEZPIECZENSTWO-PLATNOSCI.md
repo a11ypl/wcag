@@ -124,3 +124,17 @@ formularza odstąpienia i PDF regulaminu w załączniku. Kopia UDW na
   wymagałoby trwałego magazynu.
 - Przy zakupie dla kilku osób ITN nie zna listy uczestników. Potwierdzenie
   idzie do kupującego, uczestników odczytasz z logu `platnosc-rozpoczeta`.
+
+## Późniejsze żądanie rozpoczęcia usługi (od 29.09.2026)
+
+Kupujący, który nie zaznaczył pola, a szkolenie zaczyna się wcześniej niż
+14 dni od zawarcia umowy, dostaje w potwierdzeniu link
+`/zgoda-rozpoczecie#t=<token>`. Strona pokazuje to samo pole co formularz
+(niezaznaczone), a `api/zgoda-rozpoczecie.mjs` wysyła potwierdzenie żądania
+z kopią UDW na `POCZTA_KOPIA` (to jest dowód, log Vercela nie jest trwały).
+
+- Token: HMAC-SHA256 z kluczem wyprowadzonym z `TPAY_CLIENT_SECRET`,
+  zawiera identyfikator zamówienia, adres e-mail i datę ważności (dzień
+  startu szkolenia). Podmiana adresu albo zamówienia unieważnia podpis.
+- Token jest po `#`, więc nie trafia do logów żądań ani nagłówka Referer.
+- Punkt nic nie zwraca poza wynikiem. Link działa tylko dla szkoleń.

@@ -68,8 +68,24 @@
       }
     });
   }
-  polaProduktu.forEach((pole) => pole.addEventListener("change", odswiezOswiadczenia));
+  /** Ostrzezenie, gdy szkolenie zaczyna sie za mniej niz 14 dni: bez zadania
+   *  rozpoczecia uslugi nie mozemy dopuscic do udzialu. Pole zostaje dobrowolne,
+   *  zmienia sie tylko informacja przy nim. */
+  function odswiezUwageOTerminie() {
+    const uwaga = document.getElementById("rozpoczecieUwaga");
+    if (!uwaga) return;
+    const wybrany = form.querySelector('input[name="produkt"]:checked');
+    const start = wybrany && wybrany.dataset.start;
+    const dni = start ? (new Date(start + "T00:00:00").getTime() - Date.now()) / 86400000 : Infinity;
+    uwaga.hidden = !(dni < 14);
+  }
+
+  polaProduktu.forEach((pole) => pole.addEventListener("change", () => {
+    odswiezOswiadczenia();
+    odswiezUwageOTerminie();
+  }));
   odswiezOswiadczenia();
+  odswiezUwageOTerminie();
 
   /** Cena przychodzi z serwera, nie z przegladarki - tu tylko ja pokazujemy.
    *  Dzieki temu kupujacy widzi, ze promocja z linku wygasla, zanim zaplaci. */

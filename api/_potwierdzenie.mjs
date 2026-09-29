@@ -138,7 +138,14 @@ export function zbudujPotwierdzenie(zamowienie, platnosc, regulamin = REGULAMIN)
     } else {
       linie.push("Nie zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy.");
       if (produkt.dataStartu && dniDo(produkt.dataStartu, czas) < 14) {
-        linie.push("Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli chcesz w nim uczestniczyć, odpisz na tę wiadomość zdaniem: „Żądam rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po pełnym wykonaniu usługi utracę prawo odstąpienia od umowy.”");
+        // Klient nie musi niczego pisac: link prowadzi do strony z tym samym
+        // polem co w formularzu (api/zgoda-rozpoczecie.mjs).
+        linie.push(
+          "Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Bez żądania rozpoczęcia usługi nie możemy dopuścić Cię do udziału.",
+          platnosc.linkZgody
+            ? `Jeśli chcesz wziąć udział, otwórz ten link i potwierdź jednym kliknięciem: ${platnosc.linkZgody}`
+            : "Jeśli chcesz wziąć udział, napisz na a11y@wlaczwizje.pl, że chcesz, żebyśmy rozpoczęli usługę przed upływem 14 dni.",
+        );
       }
     }
     if (produkt.kursWPakiecie) {

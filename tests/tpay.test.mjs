@@ -384,12 +384,16 @@ test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia"
   assert.ok(!tekst.includes("Semantyczny HTML"), "szkolenie nie obejmuje kursu");
 });
 
-test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail podaje zdanie do odeslania", () => {
+test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail daje link zamiast formulki", () => {
   const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s0-${UUID}`);
   const blisko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z") }).tekst;
-  assert.ok(blisko.includes("odpisz na tę wiadomość zdaniem: „Żądam rozpoczęcia"));
+  assert.ok(blisko.includes("napisz na a11y@wlaczwizje.pl"), "bez linku: kontakt, bez formulki");
+  assert.ok(!blisko.includes("zdaniem"), "nie wymagamy konkretnej formulki");
+  const zLinkiem = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z"),
+    linkZgody: "https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc" }).tekst;
+  assert.ok(zLinkiem.includes("potwierdź jednym kliknięciem: https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"));
   const daleko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-01T10:00:00Z") }).tekst;
-  assert.ok(!daleko.includes("odpisz na tę wiadomość zdaniem"));
+  assert.ok(!daleko.includes("Bez żądania rozpoczęcia usługi nie możemy"));
 });
 
 test("wiadomosc MIME: PDF w zalaczniku, UDW poza naglowkami, polskie znaki w temacie", () => {
@@ -452,4 +456,62 @@ test("sekret obejscia ochrony podgladu trafia do adresu ITN tylko w sandboxie", 
   assert.equal(adresPowiadomien(baza, { VERCEL_AUTOMATION_BYPASS_SECRET: sekret }),
     "https://podglad.vercel.app/api/tpay-itn", "produkcja bez sekretu w adresie");
   assert.equal(adresPowiadomien(baza, { TPAY_SANDBOX: "1" }), "https://podglad.vercel.app/api/tpay-itn");
+});
+
+// --- Pozniejsze zadanie rozpoczecia uslugi z linku (decyzja Damiana 29.09) ---
+
+const { podpiszZgode, sprawdzZgode } = await import("../api/_zgoda.mjs");
+const { default: zgodaHandler } = await import("../api/zgoda-rozpoczecie.mjs");
+const ENV_ZGODY = { TPAY_CLIENT_SECRET: "sekret-testowy" };
+
+test("token zgody: podpis, podmiana i wygasniecie", () => {
+  const t = podpiszZgode({ zamowienie: `a11y-wcag-dla-specjalistow-s0-${UUID}`, email: "jan@example.com", wazneDo: "2026-10-28" }, ENV_ZGODY);
+  const z = sprawdzZgode(t, ENV_ZGODY, new Date("2026-10-20T10:00:00Z"));
+  assert.equal(z.email, "jan@example.com");
+  const [dane, podpis] = t.split(".");
+  const obce = Buffer.from(JSON.stringify({ z: `a11y-wcag-dla-specjalistow-s0-${UUID}`, e: "zly@example.com", d: "2026-10-28" })).toString("base64url");
+  assert.throws(() => sprawdzZgode(`${obce}.${podpis}`, ENV_ZGODY), /zly-token/, "podmiana adresu");
+  assert.throws(() => sprawdzZgode(t, { TPAY_CLIENT_SECRET: "inny" }), /zly-token/, "inny klucz");
+  assert.throws(() => sprawdzZgode(t, ENV_ZGODY, new Date("2026-10-30T10:00:00Z")), /link-wygasl/);
+  assert.throws(() => sprawdzZgode(dane, ENV_ZGODY), /zly-token/);
+});
+
+test("klikniecie linku wysyla potwierdzenie zadania na trwalym nosniku", async () => {
+  const stary = process.env.TPAY_CLIENT_SECRET;
+  process.env.TPAY_CLIENT_SECRET = ENV_ZGODY.TPAY_CLIENT_SECRET;
+  try {
+    const token = podpiszZgode({ zamowienie: `a11y-wcag-dla-specjalistow-s0-${UUID}`, email: "jan@example.com", wazneDo: "2099-01-01" });
+    const wyslane = [];
+    const res = atrapaOdpowiedzi();
+    await zgodaHandler({ method: "POST", body: { token } }, res, { wyslijMail: async (m) => { wyslane.push(m); } });
+    assert.equal(res.kod, 200);
+    assert.equal(wyslane[0].do, "jan@example.com");
+    assert.deepEqual(wyslane[0].udw, ["a11y@wlaczwizje.pl"]);
+    assert.match(wyslane[0].tekst, /zażądałeś\(-aś\) rozpoczęcia świadczenia usługi „WCAG dla specjalistów”/);
+    assert.ok(!/[\u2013\u2014]/.test(wyslane[0].tekst + wyslane[0].temat));
+
+    const zly = atrapaOdpowiedzi();
+    await zgodaHandler({ method: "POST", body: { token: token.slice(0, -2) + "xx" } }, zly, { wyslijMail: async () => { throw new Error("nie powinno"); } });
+    assert.equal(zly.kod, 400);
+
+    const cyfrowy = podpiszZgode({ zamowienie: `a11y-test-tresc-cyfrowa-n0-${UUID}`, email: "jan@example.com", wazneDo: "2099-01-01" });
+    const c = atrapaOdpowiedzi();
+    await zgodaHandler({ method: "POST", body: { token: cyfrowy } }, c, { wyslijMail: async () => {} });
+    assert.equal(c.kod, 400, "link dotyczy tylko szkolen");
+  } finally {
+    process.env.TPAY_CLIENT_SECRET = stary;
+  }
+});
+
+test("strona zgody: pole niezaznaczone, noindex, bez pauz", () => {
+  const strona = readFileSync(new URL("../public/zgoda-rozpoczecie.html", import.meta.url), "utf8");
+  const pole = strona.match(/<input[^>]*id="rozpoczecie"[^>]*>/)[0];
+  assert.ok(!/\bchecked\b/.test(pole));
+  assert.match(strona, /noindex/);
+  assert.ok(!/[\u2013\u2014]/.test(strona));
+});
+
+test("formularz ostrzega o szkoleniu za mniej niz 14 dni", () => {
+  assert.match(formularz, /data-start="2026-10-28"/);
+  assert.match(formularz, /<p id="rozpoczecieUwaga"[^>]*hidden/);
 });

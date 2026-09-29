@@ -21,6 +21,7 @@
 import crypto from "node:crypto";
 import { rozlozIdentyfikator, zbudujPotwierdzenie, wczytajRegulaminPdf } from "./_potwierdzenie.mjs";
 import { wyslijMail, konfiguracjaPoczty } from "./_poczta.mjs";
+import { podpiszZgode } from "./_zgoda.mjs";
 
 /**
  * Wylaczamy parser ciala Vercela. Podpis liczony jest z SUROWEGO tekstu -
@@ -238,10 +239,23 @@ export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
     return alarm(String(blad.message || blad));
   }
 
+  // Link do pozniejszego zadania rozpoczecia uslugi - tylko przy szkoleniu bez
+  // zaznaczonego pola. O tym, czy pojawi sie w tresci, decyduje termin startu.
+  let linkZgody = null;
+  if (zamowienie.rozpoczecie === false && zamowienie.produkt.dataStartu) {
+    try {
+      const token = podpiszZgode({
+        zamowienie: pola.tr_crc, email: pola.tr_email, wazneDo: zamowienie.produkt.dataStartu,
+      });
+      linkZgody = `${adresPubliczny() || "https://www.a11yfirst.pl"}/zgoda-rozpoczecie#t=${token}`;
+    } catch { /* bez sekretu - tresc podpowie kontakt mailowy */ }
+  }
+
   const { temat, tekst, plikPdf } = zbudujPotwierdzenie(zamowienie, {
     kwota: pola.tr_paid || pola.tr_amount,
     trId: pola.tr_id,
     czas: new Date(),
+    linkZgody,
   });
 
   try {
