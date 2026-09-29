@@ -1,7 +1,7 @@
 // Zapis na listę zainteresowanych kursem. Zgłoszenie idzie mailem przez
 // Web3Forms, tym samym kontem co formularze sklepu (checkout-forms.js).
 (() => {
-    const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
+    const WEB3FORMS_ACCESS_KEY = 'b0091686-d8cd-4397-bac7-ebfac9250594';
     const COURSE = 'Semantyczny HTML, nie taki straszny';
 
     const form = document.getElementById('waitlistForm');
