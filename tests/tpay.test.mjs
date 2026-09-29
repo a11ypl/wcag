@@ -371,12 +371,12 @@ test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia"
     kwota: "1999.00", trId: "TR-TEST", czas: new Date("2026-10-01T12:05:00Z"),
   });
   assert.equal(temat, "Potwierdzenie zawarcia umowy: WCAG dla specjalistów, 28-30.10.2026");
-  assert.equal(plikPdf, "regulamin-2026-09-24.pdf");
+  assert.equal(plikPdf, "regulamin-2026-09-29.pdf");
   for (const fragment of [
     "1999,00 zł", "01.10.2026, godz. 14:05", "TR-TEST", "art. 113",
     "zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni",
     "zażądałeś(-aś) dostarczenia kursu e-learning „Semantyczny HTML”",
-    "WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY", "regulamin-2026-09-24.pdf",
+    "WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY", "regulamin-2026-09-29.pdf",
     "Krajowym Systemie e-Faktur",
   ]) assert.ok(tekst.includes(fragment), `brak: ${fragment}`);
   assert.ok(!/[–—]/.test(tekst + temat), "bez polpauz i pauz w tresci dla klienta");

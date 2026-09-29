@@ -25,8 +25,8 @@ export const MAKS_OSOB = 20;
  * tutaj i nowy plik PDF, stary zostaje (archiwum dla wczesniejszych umow).
  */
 export const REGULAMIN = {
-  wersja: "2026-09-24",
-  pdf: "/regulamin-2026-09-24.pdf",
+  wersja: "2026-09-29",
+  pdf: "/regulamin-2026-09-29.pdf",
 };
 
 /**

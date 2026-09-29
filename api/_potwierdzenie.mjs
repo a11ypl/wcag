@@ -118,7 +118,7 @@ export function zbudujPotwierdzenie(zamowienie, platnosc, regulamin = REGULAMIN)
       "- imienny certyfikat uczestnictwa w PDF wyślemy w ciągu 14 dni od zakończenia szkolenia,",
     );
     if (produkt.kursWPakiecie) {
-      linie.push("- w cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r.,");
+      linie.push("- w cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r., na 12 miesięcy od przekazania dostępu,");
     }
   } else {
     linie.push(
