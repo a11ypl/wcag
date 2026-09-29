@@ -140,12 +140,10 @@ export function zbudujPotwierdzenie(zamowienie, platnosc, regulamin = REGULAMIN)
       if (produkt.dataStartu && dniDo(produkt.dataStartu, czas) < 14) {
         // Klient nie musi niczego pisac: link prowadzi do strony z tym samym
         // polem co w formularzu (api/zgoda-rozpoczecie.mjs).
-        linie.push(
-          "Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Bez żądania rozpoczęcia usługi nie możemy dopuścić Cię do udziału.",
-          platnosc.linkZgody
-            ? `Jeśli chcesz wziąć udział, otwórz ten link i potwierdź jednym kliknięciem: ${platnosc.linkZgody}`
-            : "Jeśli chcesz wziąć udział, napisz na a11y@wlaczwizje.pl, że chcesz, żebyśmy rozpoczęli usługę przed upływem 14 dni.",
-        );
+        // Dotyczy tylko konsumentow; wersja lagodna wybrana przez Damiana 29.09.
+        linie.push(platnosc.linkZgody
+          ? `Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, potwierdź jednym kliknięciem, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie: ${platnosc.linkZgody}`
+          : "Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, odpisz, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie.");
       }
     }
     if (produkt.kursWPakiecie) {

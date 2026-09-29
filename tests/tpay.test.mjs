@@ -387,13 +387,15 @@ test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia"
 test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail daje link zamiast formulki", () => {
   const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s0-${UUID}`);
   const blisko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z") }).tekst;
-  assert.ok(blisko.includes("napisz na a11y@wlaczwizje.pl"), "bez linku: kontakt, bez formulki");
+  assert.ok(blisko.includes("Jeśli kupujesz jako osoba prywatna, odpisz"), "bez linku: zwykla odpowiedz");
   assert.ok(!blisko.includes("zdaniem"), "nie wymagamy konkretnej formulki");
   const zLinkiem = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z"),
     linkZgody: "https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc" }).tekst;
-  assert.ok(zLinkiem.includes("potwierdź jednym kliknięciem: https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"));
+  assert.ok(zLinkiem.includes("Jeśli kupujesz jako osoba prywatna, potwierdź jednym kliknięciem"));
+  assert.ok(zLinkiem.includes("na odstąpienie: https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"));
+  assert.ok(!zLinkiem.includes("nie możemy dopuścić"), "wersja lagodna");
   const daleko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-01T10:00:00Z") }).tekst;
-  assert.ok(!daleko.includes("Bez żądania rozpoczęcia usługi nie możemy"));
+  assert.ok(!daleko.includes("Jeśli kupujesz jako osoba prywatna"));
 });
 
 test("wiadomosc MIME: PDF w zalaczniku, UDW poza naglowkami, polskie znaki w temacie", () => {
