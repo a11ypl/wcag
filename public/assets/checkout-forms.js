@@ -1,7 +1,7 @@
 window.A11yFirstCheckout = (() => {
     const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
     // Wersja regulaminu zapisywana w zgloszeniu jako dowod, ktora wersje zaakceptowal kupujacy.
-    const REGULAMIN_WERSJA = '2026-09-24';
+    const REGULAMIN_WERSJA = '2026-09-29';
 
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

@@ -394,7 +394,7 @@
                     <input type="checkbox" id="consent-course" name="consent_course" class="checkout-checkbox" style="width: 24px; height: 24px; margin-top: 2px; accent-color: var(--primary);" data-checkout-field data-consent-record data-label="Dostarczenie kursu przed upływem 14 dni" aria-describedby="consent-course-help">
                     <label for="consent-course" style="color: var(--dark);">Żądam dostarczenia kursu e-learning „Semantyczny HTML” przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po jego dostarczeniu utracę prawo odstąpienia od umowy w zakresie kursu.</label>
                 </div>
-                <p id="consent-course-help" class="checkout-helper">Pole nieobowiązkowe. W cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r. Bez tej zgody, jeśli od zapisu do tej daty minie mniej niż 14 dni, dostęp otrzymasz po upływie 14 dni od zapisu. Szczegóły: <a href="/regulamin#par-9" style="color: var(--primary); text-decoration: underline; font-weight: 600;">§ 9 regulaminu</a>.</p>
+                <p id="consent-course-help" class="checkout-helper">Pole nieobowiązkowe. W cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” na 12 miesięcy od 1 grudnia 2026 r. Bez tej zgody, jeśli od zaksięgowania płatności do tej daty minie mniej niż 14 dni, dostęp otrzymasz po upływie 14 dni od zaksięgowania płatności. Szczegóły: <a href="/regulamin#par-9" style="color: var(--primary); text-decoration: underline; font-weight: 600;">§ 9 regulaminu</a>.</p>
             </div>
         </fieldset>
 
@@ -516,7 +516,7 @@
     <script>
         const WEB3FORMS_ACCESS_KEY = '45035717-3dcb-44cc-b1d5-ae1e120a6c01';
         // Wersja regulaminu zapisywana w zgloszeniu jako dowod, ktora wersje zaakceptowal kupujacy.
-        const REGULAMIN_WERSJA = '2026-09-24';
+        const REGULAMIN_WERSJA = '2026-09-29';
 
         const transferTitles = {
             "1": "Szkolenie WCAG dla specjalistów: Dzień 1",
@@ -1140,7 +1140,7 @@
             const courseConsentLabel = document.querySelector('label[for="consent-course"]');
             const courseConsentRecord = courseConsent && courseConsent.checked
                 ? `TAK: ${courseConsentLabel ? courseConsentLabel.textContent.trim() : ''}`
-                : 'NIE (kurs po upływie 14 dni od zapisu, jeśli start kursu wypada wcześniej)';
+                : 'NIE (kurs po upływie 14 dni od zaksięgowania płatności, jeśli start kursu wypada wcześniej)';
             payload.append('consent_course', courseConsentRecord);
             payload.append('regulamin_wersja', REGULAMIN_WERSJA);
             payload.append('zamowienie_czas', new Date().toISOString());
