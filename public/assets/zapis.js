@@ -43,7 +43,7 @@
   }
 
   /** Oswiadczenia o wczesniejszym rozpoczeciu zaleza od rodzaju produktu:
-   *  szkolenie otwarte - rozpoczecie uslugi i kurs z pakietu, tresc cyfrowa -
+   *  szkolenie otwarte - rozpoczecie uslugi, tresc cyfrowa -
    *  natychmiastowe dostarczenie. Pola nigdy nie sa zaznaczone domyslnie
    *  i nigdy nie sa wymagane: nie wolno uzaleznic sprzedazy od zrzeczenia sie
    *  prawa odstapienia. Ukryte pole jest odznaczane, zeby nie poszlo
@@ -51,7 +51,6 @@
   const polaProduktu = form.querySelectorAll('input[name="produkt"]');
   const SEKCJE = [
     { sekcja: "zgodaRozpoczecie", pole: "rozpoczecie", dlaCyfrowych: false },
-    { sekcja: "zgodaKurs", pole: "kurs", dlaCyfrowych: false },
     { sekcja: "zgodaCyfrowa", pole: "natychmiast", dlaCyfrowych: true },
   ];
 
@@ -139,7 +138,6 @@
       wariant: wariant,
       natychmiast: pola.get("natychmiast") === "on",
       rozpoczecie: pola.get("rozpoczecie") === "on",
-      kurs: pola.get("kurs") === "on",
       zgoda: pola.get("zgoda") === "on",
     };
 

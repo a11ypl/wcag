@@ -137,7 +137,8 @@ export default async function handler(req, res) {
   const zadaNatychmiast = wycena.produkt.tresciCyfrowe ? Boolean(natychmiast) : null;
   // Przy szkoleniu otwartym dwa osobne, dobrowolne oswiadczenia (§ 11 ust. 6
   // i § 9 regulaminu): zadanie rozpoczecia uslugi przed uplywem 14 dni (s1/s0)
-  // i zadanie dostarczenia kursu z pakietu przed uplywem 14 dni (k1/k0).
+  // i - tylko gdy produkt ma kursWPakiecie - zadanie dostarczenia kursu z
+  // pakietu przed uplywem 14 dni (k1/k0). Dzis zaden produkt nie ma pakietu.
   // Znacznik trafia do identyfikatora z tego samego powodu co -n1/-n0: ITN
   // zwraca tylko tr_crc, a potwierdzenie musi te oswiadczenia powtorzyc.
   const szkolenie = !wycena.produkt.tresciCyfrowe;

@@ -188,7 +188,7 @@ test("identyfikator zamowienia nie jest zgadywalny i nie wycieka w adresach powr
   const { zadanie } = await wywolajStart({
     produkt: "dostepne-dokumenty", imie: "Anna Nowak", email: "anna@example.com",
   });
-  assert.match(zadanie.hiddenDescription, /^a11y-dostepne-dokumenty-s0k0-[0-9a-f-]{36}$/);
+  assert.match(zadanie.hiddenDescription, /^a11y-dostepne-dokumenty-s0-[0-9a-f-]{36}$/);
   assert.equal(zadanie.callbacks.payerUrls.success, "https://a11yfirst.pl/platnosc-udana");
   assert.ok(!zadanie.callbacks.payerUrls.success.includes("?"), "brak identyfikatora w adresie powrotu");
   assert.equal(zadanie.callbacks.notification.url, "https://a11yfirst.pl/api/tpay-itn");
@@ -286,19 +286,19 @@ test("kurs Semantyczny HTML nie jest w sprzedazy, dopoki nie ma ceny", async () 
   assert.equal(zadanie, undefined);
 });
 
-test("szkolenie: zadanie rozpoczecia uslugi i kursu z pakietu trafia do identyfikatora", async () => {
+test("szkolenie: zadanie rozpoczecia uslugi trafia do identyfikatora, kursu w pakiecie nie ma", async () => {
   const przypadki = [
-    [{ rozpoczecie: true, kurs: true }, "s1k1"],
-    [{ rozpoczecie: true, kurs: false }, "s1k0"],
-    [{ rozpoczecie: false, kurs: true }, "s0k1"],
-    [{}, "s0k0"],
+    [{ rozpoczecie: true }, "s1"],
+    [{ rozpoczecie: true, kurs: true }, "s1"],
+    [{ rozpoczecie: false, kurs: true }, "s0"],
+    [{}, "s0"],
   ];
   for (const [oswiadczenia, znacznik] of przypadki) {
     const { res, zadanie } = await wywolajStart({
       produkt: "ai-dla-audytora", imie: "Jan Kowalski", email: "jan@example.com", ...oswiadczenia,
     });
     assert.equal(res.kod, 200, "oswiadczenia sa dobrowolne i nie blokuja zakupu");
-    assert.match(zadanie.hiddenDescription, new RegExp(`^a11y-ai-dla-audytora-${znacznik}-`));
+    assert.match(zadanie.hiddenDescription, new RegExp(`^a11y-ai-dla-audytora-${znacznik}-[0-9a-f]{8}-`));
   }
 });
 
@@ -327,7 +327,9 @@ test("przycisk zamowienia informuje o obowiazku zaplaty", () => {
 });
 
 test("oswiadczenia o wczesniejszym rozpoczeciu nie sa wymagane ani zaznaczone", () => {
-  for (const id of ["rozpoczecie", "kurs", "natychmiast"]) {
+  assert.ok(!formularz.includes('id="kurs"'), "kurs nie jest w pakiecie szkolen (decyzja z 29.09)");
+  assert.ok(!formularz.includes("W cenie każdego szkolenia"));
+  for (const id of ["rozpoczecie", "natychmiast"]) {
     const pole = formularz.match(new RegExp(`<input[^>]*id="${id}"[^>]*>`));
     assert.ok(pole, `brak pola ${id}`);
     assert.ok(!/\brequired\b/.test(pole[0]), `${id} nie moze byc wymagane`);
@@ -366,7 +368,7 @@ test("identyfikator zamowienia rozklada sie na produkt i oswiadczenia", () => {
 });
 
 test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia", () => {
-  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s1k1-${UUID}`);
+  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s1-${UUID}`);
   const { temat, tekst, plikPdf } = zbudujPotwierdzenie(z, {
     kwota: "1999.00", trId: "TR-TEST", czas: new Date("2026-10-01T12:05:00Z"),
   });
@@ -375,20 +377,19 @@ test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia"
   for (const fragment of [
     "1999,00 zł", "01.10.2026, godz. 14:05", "TR-TEST", "art. 113",
     "zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni",
-    "zażądałeś(-aś) dostarczenia kursu e-learning „Semantyczny HTML”",
     "WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY", "regulamin-2026-09-29.pdf",
     "Krajowym Systemie e-Faktur",
   ]) assert.ok(tekst.includes(fragment), `brak: ${fragment}`);
-  assert.ok(!/[–—]/.test(tekst + temat), "bez polpauz i pauz w tresci dla klienta");
+  assert.ok(!/[\u2013\u2014]/.test(tekst + temat), "bez polpauz i pauz w tresci dla klienta");
+  assert.ok(!tekst.includes("Semantyczny HTML"), "szkolenie nie obejmuje kursu");
 });
 
 test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail podaje zdanie do odeslania", () => {
-  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s0k0-${UUID}`);
+  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s0-${UUID}`);
   const blisko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z") }).tekst;
   assert.ok(blisko.includes("odpisz na tę wiadomość zdaniem: „Żądam rozpoczęcia"));
   const daleko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-01T10:00:00Z") }).tekst;
   assert.ok(!daleko.includes("odpisz na tę wiadomość zdaniem"));
-  assert.ok(daleko.includes("dostęp otrzymasz 1 grudnia 2026 r."));
 });
 
 test("wiadomosc MIME: PDF w zalaczniku, UDW poza naglowkami, polskie znaki w temacie", () => {
@@ -412,7 +413,7 @@ test("adres z wstrzyknietym naglowkiem jest odrzucany przed polaczeniem", async 
 });
 
 const polaZaplacone = {
-  tr_id: "TR-TEST", tr_crc: `a11y-ai-dla-audytora-s0k1-${UUID}`, tr_status: "true",
+  tr_id: "TR-TEST", tr_crc: `a11y-ai-dla-audytora-s0-${UUID}`, tr_status: "true",
   tr_amount: "1599.00", tr_paid: "1599.00", tr_currency: "PLN", tr_email: "jan@example.com",
 };
 

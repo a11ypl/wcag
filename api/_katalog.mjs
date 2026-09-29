@@ -60,7 +60,6 @@ export const PRODUKTY = {
     podtytul: "jeśli zaczynasz",
     termin: "28-30.10.2026",
     dataStartu: "2026-10-28",
-    kursWPakiecie: true,
     cenaGrosze: 249900,
     warianty: {
       "webinar-2409": {
@@ -75,7 +74,6 @@ export const PRODUKTY = {
     podtytul: "jeśli chcesz audytować z AI",
     termin: "9-10.11.2026",
     dataStartu: "2026-11-09",
-    kursWPakiecie: true,
     cenaGrosze: 199900,
     warianty: {
       "webinar-2409": {
@@ -90,7 +88,6 @@ export const PRODUKTY = {
     podtytul: "jeśli chcesz tworzyć dostępne dokumenty",
     termin: "26-27.11.2026",
     dataStartu: "2026-11-26",
-    kursWPakiecie: true,
     cenaGrosze: 199900,
     warianty: {
       "webinar-2409": {
@@ -107,7 +104,9 @@ export const PRODUKTY = {
   // wSprzedazy: false blokuje go w wycenie. Nie wpisuj ceny bez decyzji
   // Damiana w notatce 01 Biznesy.
   //
-  // Uczestnicy szkolen otwartych dostaja kurs w cenie szkolenia (kursWPakiecie).
+  // Kurs NIE jest dodawany do szkolen otwartych (decyzja Damiana z 29.09.2026:
+  // byl tylko promocja przy webinarze). Gdyby kiedys mial byc czescia oferty,
+  // flaga kursWPakiecie na produkcie wlacza oswiadczenie i zdanie w potwierdzeniu.
   "semantyczny-html": {
     nazwa: "Semantyczny HTML",
     podtytul: "kurs e-learningowy",
