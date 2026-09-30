@@ -523,3 +523,16 @@ test("bramka rozmawia z Open API Tpay, nie z domena certyfikatow", async () => {
   assert.match(zrodlo, /BAZA_PRODUKCJA = "https:\/\/api\.tpay\.com"/);
   assert.match(zrodlo, /BAZA_SANDBOX = "https:\/\/openapi\.sandbox\.tpay\.com"/);
 });
+
+test("ITN: status TRUE wielkimi literami (jak wysyla Tpay) to zaplata, inne nie", async () => {
+  const { ocenPlatnosc } = await import("../api/tpay-itn.mjs");
+  const baza = { tr_amount: "1999.00", tr_paid: "1999.00", tr_currency: "PLN" };
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "TRUE" }).zaplacone, true);
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "true" }).zaplacone, true);
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "PAID" }).zaplacone, true);
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "FALSE" }).zaplacone, false);
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "CHARGEBACK" }).zaplacone, false);
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "TRUE", tr_paid: "1998.99" }).zaplacone, false, "niedoplata");
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "TRUE", tr_currency: "EUR" }).zaplacone, false);
+  assert.equal(ocenPlatnosc({ ...baza, tr_status: "TRUE" }, { zgodna: false }).zaplacone, false, "zla suma md5");
+});

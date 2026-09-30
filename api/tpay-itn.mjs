@@ -113,6 +113,25 @@ async function surowyTekst(req) {
   return Buffer.concat(kawalki).toString("utf8");
 }
 
+/**
+ * Czy powiadomienie potwierdza pelna zaplate.
+ *
+ * Status to nie wszystko. Sprawdzamy takze, czy wplynela PELNA kwota i we
+ * wlasciwej walucie - inaczej niedoplata przeszlaby jako zaplacone szkolenie.
+ * Tpay wysyla status wielkimi literami ("TRUE"; sprawdzone na sandboxie
+ * 30.09.2026). "PAID" to wplata zaksiegowana. CHARGEBACK i FALSE nie sa zaplata.
+ */
+export function ocenPlatnosc(pola, md5 = { zgodna: null }) {
+  const naleznosc = Number.parseFloat(pola.tr_amount);
+  const wplata = Number.parseFloat(pola.tr_paid);
+  const kwotaZgodna = Number.isFinite(naleznosc) && Number.isFinite(wplata) && wplata >= naleznosc;
+  const walutaZgodna = !pola.tr_currency || pola.tr_currency === "PLN";
+  const status = String(pola.tr_status || "").toUpperCase();
+  const zaplacone =
+    (status === "TRUE" || status === "PAID") && md5.zgodna !== false && kwotaZgodna && walutaZgodna;
+  return { zaplacone, kwotaZgodna, walutaZgodna };
+}
+
 /** Pamiec instancji - odsiewa powtorki w obrebie jednego procesu. */
 const obsluzone = new Set();
 
@@ -139,15 +158,7 @@ export default async function handler(req, res) {
   const pola = Object.fromEntries(new URLSearchParams(cialo));
   const md5 = sprawdzMd5(pola);
 
-  // Status to nie wszystko. Sprawdzamy takze, czy wplynela PELNA kwota i we
-  // wlasciwej walucie - inaczej niedoplata przeszlaby jako zaplacone szkolenie.
-  const naleznosc = Number.parseFloat(pola.tr_amount);
-  const wplata = Number.parseFloat(pola.tr_paid);
-  const kwotaZgodna = Number.isFinite(naleznosc) && Number.isFinite(wplata) && wplata >= naleznosc;
-  const walutaZgodna = !pola.tr_currency || pola.tr_currency === "PLN";
-
-  const zaplacone =
-    pola.tr_status === "true" && md5.zgodna !== false && kwotaZgodna && walutaZgodna;
+  const { zaplacone, kwotaZgodna, walutaZgodna } = ocenPlatnosc(pola, md5);
 
   // Idempotencja: to samo powiadomienie potrafi przyjsc wiele razy.
   const klucz = `${pola.tr_id}:${pola.tr_status}`;
