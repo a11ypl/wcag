@@ -48,3 +48,6 @@ html { scroll-padding-top: 2rem; }
   .events-page .training-card > .training-card-image, .events-page .training-card > .training-card-body, .webinar-list .training-card > .training-card-image, .webinar-list .training-card > .training-card-body, .home-webinars .training-card > .training-card-image, .home-webinars .training-card > .training-card-body { grid-column: 1; grid-row: auto; }
   .events-page .training-card-image img, .webinar-list .training-card-image img, .home-webinars .training-card-image img { aspect-ratio: 1200 / 628; }
 }
+.events-page .event-section :where(p, li) a:not(.btn), .events-page .event-section :where(p, li) a:not(.btn):visited { color: var(--primary); font-weight: 700; text-decoration: underline; text-decoration-thickness: 0.08em; text-underline-offset: 0.18em; }
+.events-page .event-section :where(p, li) a:not(.btn):hover { color: #4A1F8F; text-decoration-thickness: 0.12em; }
+.events-page .event-section :where(p, li) a:not(.btn):focus-visible { border-radius: 0.2rem; outline: 3px solid var(--accent); outline-offset: 3px; }
