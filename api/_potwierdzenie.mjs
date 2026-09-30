@@ -172,17 +172,31 @@ function tekstZSekcji(sekcje) {
  * newsletter-standard/template.html w repo mozg). Style inline, bez obrazow,
  * prawdziwe naglowki h1/h2 i listy ul, jezyk pl, landmark main i footer.
  */
+const STYL_LINKU = 'style="color:#5f28b4;text-decoration:underline;font-weight:bold;"';
+
+/**
+ * Tekst do HTML: adresy e-mail i strony jako linki w identyfikacji marki
+ * (fioletowe, podkreslone, pogrubione), jak w stopce. Kropka na koncu zdania
+ * nie wchodzi do adresu.
+ */
+function zLinkami(tekst) {
+  return esc(tekst).replace(
+    /(https:\/\/[^\s<]+?|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})(?=[.,)]?(?:\s|$))/g,
+    (adres) => `<a href="${adres.startsWith("https://") ? adres : `mailto:${adres}`}" ${STYL_LINKU}>${adres}</a>`,
+  );
+}
+
 function htmlZSekcji(sekcje, temat) {
   const P = 'style="margin:0 0 16px;"';
   const blok = (s) => {
     let h = `<h2 style="margin:0 0 12px;font-size:24px;line-height:1.3;color:#5f28b4;">${esc(s.naglowek)}</h2>`;
-    for (const a of s.akapity || []) h += `<p ${P}>${esc(a)}</p>`;
+    for (const a of s.akapity || []) h += `<p ${P}>${zLinkami(a)}</p>`;
     if (s.link) {
       h += `<p style="margin:0 0 16px;"><a href="${esc(s.link.adres)}" style="display:inline-block;padding:12px 20px;background-color:#5f28b4;color:#ffffff;font-weight:bold;text-decoration:underline;">${esc(s.link.tekst)}</a></p>`;
     }
     if (s.lista) {
       h += `<ul style="margin:0 0 16px;padding-left:24px;">${s.lista.map((e) =>
-        `<li style="margin:0 0 8px;">${e.etykieta ? `<strong>${esc(e.etykieta)}:</strong> ` : ""}${esc(e.wartosc)}</li>`).join("")}</ul>`;
+        `<li style="margin:0 0 8px;">${e.etykieta ? `<strong>${esc(e.etykieta)}:</strong> ` : ""}${zLinkami(e.wartosc)}</li>`).join("")}</ul>`;
     }
     return `<section class="pad" style="padding:8px 36px 8px;">${h}</section>`;
   };
@@ -205,7 +219,7 @@ ${sekcje.map(blok).join("\n")}
 <div class="pad" style="padding:16px 36px 12px;"><p style="margin:0 0 18px;font-weight:bold;">Zespół Accessibility First</p></div>
 <footer class="pad" style="padding:24px 36px 32px;background-color:#f8f9fa;font-size:16px;color:#000000;">
 <p style="margin:0 0 16px;">Accessibility First<br>Włącz Wizję sp. z o.o., ul. Sternicza 129 lok. 50, 01-350 Warszawa<br>tel. +48 727 935 587<br><a href="mailto:a11y@wlaczwizje.pl" style="color:#5f28b4;text-decoration:underline;font-weight:bold;">a11y@wlaczwizje.pl</a></p>
-<p style="margin:0;"><a href="https://www.a11yfirst.pl/regulamin" style="color:#5f28b4;text-decoration:underline;">Regulamin</a> · <a href="https://www.a11yfirst.pl/polityka-prywatnosci" style="color:#5f28b4;text-decoration:underline;">Polityka prywatności</a></p></footer>
+<p style="margin:0;"><a href="https://www.a11yfirst.pl/regulamin" style="color:#5f28b4;text-decoration:underline;font-weight:bold;">Regulamin</a> · <a href="https://www.a11yfirst.pl/polityka-prywatnosci" style="color:#5f28b4;text-decoration:underline;font-weight:bold;">Polityka prywatności</a></p></footer>
 </main><!--[if mso]></td></tr></table><![endif]-->
 </td></tr></table></body></html>`;
 }

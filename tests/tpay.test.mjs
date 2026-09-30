@@ -401,6 +401,15 @@ test("HTML potwierdzenia jest dostepny: jezyk, h1, naglowki h2, listy, landmarki
   assert.ok(html.includes('href="https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"'), "link zgody jako link");
   assert.ok(!/<h[3-6][ >]/.test(html), "bez przeskokow poziomow");
   assert.ok(!/<img/.test(html), "bez obrazow");
+  const tekstBezZnacznikow = html.replace(/<a [^>]*>[^<]*<\/a>/g, "").replace(/<[^>]+>/g, " ");
+  assert.ok(!/a11y@wlaczwizje\.pl/.test(tekstBezZnacznikow), "kazdy adres e-mail jest linkiem");
+  assert.ok(!/https:\/\/www\.a11yfirst\.pl\/regulamin-/.test(tekstBezZnacznikow), "adres PDF regulaminu jest linkiem");
+  for (const a of html.match(/<a [^>]*>/g)) {
+    if (a.includes("background-color")) continue; // przycisk zgody
+    assert.match(a, /color:#5f28b4;text-decoration:underline;font-weight:bold;/, `link w identyfikacji: ${a}`);
+  }
+  assert.ok(html.includes('<a href="mailto:a11y@wlaczwizje.pl"'), "mailto");
+  assert.ok(html.includes('href="https://www.a11yfirst.pl/regulamin-2026-09-29.pdf"'), "kropka po adresie poza linkiem");
   assert.ok(!/[\u2013\u2014]/.test(html), "bez polpauz i pauz");
 });
 
