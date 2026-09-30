@@ -11,8 +11,11 @@
 import crypto from "node:crypto";
 import { wycen, naZlote, REGULAMIN } from "./_katalog.mjs";
 
-const BAZA_PRODUKCJA = "https://secure.tpay.com";
-const BAZA_SANDBOX = "https://secure.sandbox.tpay.com";
+// Open API Tpay (OAuth i transakcje). Uwaga: to NIE jest domena secure.*,
+// z ktorej ITN pobiera certyfikaty JWS - secure.*/oauth/auth zwraca 404
+// (sprawdzone na sandboxie 30.09.2026).
+const BAZA_PRODUKCJA = "https://api.tpay.com";
+const BAZA_SANDBOX = "https://openapi.sandbox.tpay.com";
 
 const baza = () => (process.env.TPAY_SANDBOX === "1" ? BAZA_SANDBOX : BAZA_PRODUKCJA);
 

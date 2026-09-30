@@ -517,3 +517,9 @@ test("formularz ostrzega o szkoleniu za mniej niz 14 dni", () => {
   assert.match(formularz, /data-start="2026-10-28"/);
   assert.match(formularz, /<p id="rozpoczecieUwaga"[^>]*hidden/);
 });
+
+test("bramka rozmawia z Open API Tpay, nie z domena certyfikatow", async () => {
+  const zrodlo = readFileSync(new URL("../api/platnosc-start.mjs", import.meta.url), "utf8");
+  assert.match(zrodlo, /BAZA_PRODUKCJA = "https:\/\/api\.tpay\.com"/);
+  assert.match(zrodlo, /BAZA_SANDBOX = "https:\/\/openapi\.sandbox\.tpay\.com"/);
+});
