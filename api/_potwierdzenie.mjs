@@ -60,128 +60,165 @@ function dniDo(dataIso, odKiedy) {
 
 const kwotaZl = (tekst) => Number.parseFloat(tekst).toFixed(2).replace(".", ",");
 
-const WZOR_ODSTAPIENIA = `WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY
-(formularz należy wypełnić i odesłać tylko w przypadku zamiaru odstąpienia od umowy)
+/** Plik wzoru formularza odstapienia - osobny zalacznik, nie tresc maila. */
+export const FORMULARZ_ODSTAPIENIA = "/formularz-odstapienia-od-umowy.pdf";
 
-Adresat:
-Włącz Wizję sp. z o.o.
-ul. Sternicza 129 lok. 50
-01-350 Warszawa
-e-mail: a11y@wlaczwizje.pl
-
-Ja/My niniejszym informuję/informujemy o odstąpieniu od umowy dotyczącej:
-
-Nazwa Produktu: ..............................
-Data zawarcia umowy: ..............................
-Imię i nazwisko Konsumenta / Konsumentów: ..............................
-Adres Konsumenta / Konsumentów: ..............................
-Adres e-mail użyty przy zamówieniu: ..............................
-Data: ..............................
-Podpis Konsumenta / Konsumentów: ..............................
-
-Podpis jest wymagany wyłącznie wtedy, gdy formularz jest przesyłany w wersji papierowej.`;
-
-const STOPKA = `Zespół Accessibility First, Włącz Wizję
-Włącz Wizję sp. z o.o., ul. Sternicza 129 lok. 50, 01-350 Warszawa
-a11y@wlaczwizje.pl, tel. +48 727 935 587`;
+const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /**
- * Buduje temat i tresc potwierdzenia.
- *
- * `zamowienie`: wynik rozlozIdentyfikator; `platnosc`: {kwota, trId, czas}.
+ * Tresc potwierdzenia jako sekcje: {naglowek, akapity[], lista[], link}.
+ * Z tych samych sekcji powstaje wersja HTML (prawdziwe naglowki i listy)
+ * i wersja tekstowa - nie da sie ich rozjechac.
  */
-export function zbudujPotwierdzenie(zamowienie, platnosc, regulamin = REGULAMIN) {
+function sekcjePotwierdzenia(zamowienie, platnosc, regulamin) {
   const { produkt } = zamowienie;
   const czas = platnosc.czas || new Date();
   const plikPdf = path.basename(regulamin.pdf);
+  const plikFormularza = path.basename(FORMULARZ_ODSTAPIENIA);
   const szkolenie = !produkt.tresciCyfrowe;
-  const linie = [];
+  const sekcje = [];
 
-  linie.push(
-    "Dzień dobry,",
-    "",
-    "dziękujemy za zamówienie i płatność. Potwierdzamy zawarcie umowy.",
-    "",
-    "Dane zamówienia:",
-    `- ${szkolenie ? "szkolenie otwarte online" : "produkt"}: ${produkt.nazwa},`,
-    `- ${szkolenie ? "termin" : "dostęp"}: ${produkt.termin},`,
-    `- zapłacona kwota: ${kwotaZl(platnosc.kwota)} zł (cena końcowa, sprzedawca korzysta ze zwolnienia z VAT na podstawie art. 113 ustawy o VAT),`,
-    `- data zawarcia umowy: ${czasWarszawa(czas)} (zaksięgowanie płatności),`,
-    `- numer transakcji Tpay: ${platnosc.trId || "brak"}.`,
-    "",
-  );
+  sekcje.push({
+    naglowek: "Dane zamówienia",
+    lista: [
+      [szkolenie ? "Szkolenie otwarte online" : "Produkt", produkt.nazwa],
+      [szkolenie ? "Termin" : "Dostęp", produkt.termin],
+      ["Zapłacona kwota", `${kwotaZl(platnosc.kwota)} zł (cena końcowa, sprzedawca korzysta ze zwolnienia z VAT na podstawie art. 113 ustawy o VAT)`],
+      ["Data zawarcia umowy", `${czasWarszawa(czas)} (zaksięgowanie płatności)`],
+      ["Numer transakcji Tpay", platnosc.trId || "brak"],
+    ].map(([etykieta, wartosc]) => ({ etykieta, wartosc })),
+  });
 
-  if (szkolenie) {
-    linie.push(
-      "Jak zrealizujemy szkolenie:",
-      "- najpóźniej 1 dzień roboczy przed rozpoczęciem wyślemy wiadomość organizacyjną z linkiem do spotkania i informacjami technicznymi,",
-      "- imienny certyfikat uczestnictwa w PDF wyślemy w ciągu 14 dni od zakończenia szkolenia,",
-    );
-    if (produkt.kursWPakiecie) {
-      linie.push("- w cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r., na 12 miesięcy od przekazania dostępu,");
-    }
-  } else {
-    linie.push(
-      "Jak dostarczymy treść cyfrową:",
-      "- dane dostępu wyślemy na ten adres e-mail, w terminie zależnym od oświadczenia opisanego niżej,",
-    );
-  }
-  linie.push(
-    "- fakturę wystawimy zgodnie z przepisami, w tym w Krajowym Systemie e-Faktur. Jeśli potrzebujesz faktury na firmę, a nie podano danych w formularzu, odpisz na tę wiadomość.",
-    "",
-    "Oświadczenia złożone przy zamówieniu:",
-  );
+  const realizacja = szkolenie
+    ? [
+      "Najpóźniej 1 dzień roboczy przed rozpoczęciem wyślemy wiadomość organizacyjną z linkiem do spotkania i informacjami technicznymi.",
+      "Imienny certyfikat uczestnictwa w PDF wyślemy w ciągu 14 dni od zakończenia szkolenia.",
+      ...(produkt.kursWPakiecie ? ["W cenie szkolenia otrzymujesz dostęp do kursu e-learning „Semantyczny HTML” od 1 grudnia 2026 r., na 12 miesięcy od przekazania dostępu."] : []),
+    ]
+    : ["Dane dostępu wyślemy na ten adres e-mail, w terminie zależnym od oświadczenia opisanego niżej."];
+  realizacja.push("Fakturę wystawimy zgodnie z przepisami, w tym w Krajowym Systemie e-Faktur. Jeśli potrzebujesz faktury na firmę, a nie podano danych w formularzu, odpisz na tę wiadomość.");
+  sekcje.push({
+    naglowek: szkolenie ? "Jak zrealizujemy szkolenie" : "Jak dostarczymy treść cyfrową",
+    lista: realizacja.map((wartosc) => ({ wartosc })),
+  });
 
+  const oswiadczenia = [];
+  let link = null;
   if (szkolenie) {
     if (zamowienie.rozpoczecie) {
-      linie.push("Potwierdzamy, że zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy i przyjąłeś(-ęłaś) do wiadomości, że po jej pełnym wykonaniu utracisz prawo odstąpienia od umowy.");
+      oswiadczenia.push("Potwierdzamy, że zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy i przyjąłeś(-ęłaś) do wiadomości, że po jej pełnym wykonaniu utracisz prawo odstąpienia od umowy.");
     } else {
-      linie.push("Nie zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy.");
+      oswiadczenia.push("Nie zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy.");
       if (produkt.dataStartu && dniDo(produkt.dataStartu, czas) < 14) {
-        // Klient nie musi niczego pisac: link prowadzi do strony z tym samym
-        // polem co w formularzu (api/zgoda-rozpoczecie.mjs).
-        // Dotyczy tylko konsumentow; wersja lagodna wybrana przez Damiana 29.09.
-        linie.push(platnosc.linkZgody
-          ? `Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, potwierdź jednym kliknięciem, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie: ${platnosc.linkZgody}`
-          : "Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, odpisz, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie.");
+        // Tylko konsumenci; wersja lagodna wybrana przez Damiana 29.09.
+        if (platnosc.linkZgody) {
+          oswiadczenia.push("Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, potwierdź jednym kliknięciem, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie.");
+          link = { tekst: "Chcę wziąć udział w szkoleniu", adres: platnosc.linkZgody };
+        } else {
+          oswiadczenia.push("Szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, odpisz, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie.");
+        }
       }
     }
     if (produkt.kursWPakiecie) {
-      linie.push("");
       if (zamowienie.kurs) {
-        linie.push("Potwierdzamy, że zażądałeś(-aś) dostarczenia kursu e-learning „Semantyczny HTML” przed upływem 14 dni na odstąpienie od umowy i przyjąłeś(-ęłaś) do wiadomości, że po jego dostarczeniu utracisz prawo odstąpienia od umowy w zakresie kursu.");
+        oswiadczenia.push("Potwierdzamy, że zażądałeś(-aś) dostarczenia kursu e-learning „Semantyczny HTML” przed upływem 14 dni na odstąpienie od umowy i przyjąłeś(-ęłaś) do wiadomości, że po jego dostarczeniu utracisz prawo odstąpienia od umowy w zakresie kursu.");
       } else if (dniDo(START_KURSU, czas) < 14) {
-        linie.push("Nie zażądałeś(-aś) wcześniejszego dostarczenia kursu e-learning „Semantyczny HTML”, więc dostęp do niego otrzymasz po upływie 14 dni od zawarcia umowy.");
-      } else {
-        linie.push("Nie zażądałeś(-aś) wcześniejszego dostarczenia kursu e-learning „Semantyczny HTML”. Do startu kursu minie ponad 14 dni, więc dostęp otrzymasz 1 grudnia 2026 r.");
+        oswiadczenia.push("Nie zażądałeś(-aś) wcześniejszego dostarczenia kursu e-learning „Semantyczny HTML”, więc dostęp do niego otrzymasz po upływie 14 dni od zawarcia umowy.");
       }
     }
   } else if (zamowienie.natychmiast) {
-    linie.push("Potwierdzamy, że zażądałeś(-aś) dostarczenia treści cyfrowej przed upływem 14 dni na odstąpienie od umowy i przyjąłeś(-ęłaś) do wiadomości, że po jej dostarczeniu utracisz prawo odstąpienia od umowy.");
+    oswiadczenia.push("Potwierdzamy, że zażądałeś(-aś) dostarczenia treści cyfrowej przed upływem 14 dni na odstąpienie od umowy i przyjąłeś(-ęłaś) do wiadomości, że po jej dostarczeniu utracisz prawo odstąpienia od umowy.");
   } else {
-    linie.push("Nie zażądałeś(-aś) natychmiastowego dostarczenia treści cyfrowej, więc dostęp wyślemy po upływie 14 dni od zawarcia umowy. Do tego czasu możesz odstąpić od umowy bez podawania przyczyny.");
+    oswiadczenia.push("Nie zażądałeś(-aś) natychmiastowego dostarczenia treści cyfrowej, więc dostęp wyślemy po upływie 14 dni od zawarcia umowy. Do tego czasu możesz odstąpić od umowy bez podawania przyczyny.");
   }
+  sekcje.push({ naglowek: "Oświadczenia złożone przy zamówieniu", akapity: oswiadczenia, link });
 
-  linie.push(
-    "",
-    "Prawo odstąpienia od umowy:",
-    "Jeśli kupujesz jako konsument albo przedsiębiorca na prawach konsumenta, możesz odstąpić od umowy w ciągu 14 dni od jej zawarcia, bez podawania przyczyny, na zasadach z § 11 regulaminu. Wystarczy napisać na a11y@wlaczwizje.pl. Możesz skorzystać ze wzoru formularza zamieszczonego niżej, ale nie musisz.",
-    "",
-    `W załączniku przesyłamy regulamin w wersji obowiązującej w chwili zawarcia umowy (plik ${plikPdf}, do pobrania też z https://www.a11yfirst.pl${regulamin.pdf}).`,
-    "",
-    "Pytania i reklamacje: a11y@wlaczwizje.pl. Reklamacje rozpatrujemy w ciągu 14 dni.",
-    "",
-    STOPKA,
-    "",
-    "",
-    WZOR_ODSTAPIENIA,
-  );
+  sekcje.push({
+    naglowek: "Prawo odstąpienia od umowy",
+    akapity: [
+      "Jeśli kupujesz jako konsument albo przedsiębiorca na prawach konsumenta, możesz odstąpić od umowy w ciągu 14 dni od jej zawarcia, bez podawania przyczyny, na zasadach z § 11 regulaminu. Wystarczy napisać na a11y@wlaczwizje.pl.",
+      `Wzór formularza odstąpienia przesyłamy w załączniku (plik ${plikFormularza}). Możesz z niego skorzystać, ale nie musisz.`,
+    ],
+  });
+  sekcje.push({
+    naglowek: "Regulamin",
+    akapity: [`W załączniku przesyłamy regulamin w wersji obowiązującej w chwili zawarcia umowy (plik ${plikPdf}). Jest też do pobrania ze strony https://www.a11yfirst.pl${regulamin.pdf}.`],
+  });
+  sekcje.push({
+    naglowek: "Pytania i reklamacje",
+    akapity: ["Napisz na a11y@wlaczwizje.pl. Reklamacje rozpatrujemy w ciągu 14 dni."],
+  });
 
-  return {
-    temat: `Potwierdzenie zawarcia umowy: ${produkt.nazwa}, ${produkt.termin}`,
-    tekst: linie.join("\n"),
-    plikPdf,
+  return { sekcje, plikPdf, plikFormularza };
+}
+
+function tekstZSekcji(sekcje) {
+  const linie = ["Dzień dobry,", "", "dziękujemy za zamówienie i płatność. Potwierdzamy zawarcie umowy.", ""];
+  for (const s of sekcje) {
+    linie.push(s.naglowek.toUpperCase());
+    for (const a of s.akapity || []) linie.push(a);
+    if (s.link) linie.push(`${s.link.tekst}: ${s.link.adres}`);
+    for (const e of s.lista || []) linie.push(`- ${e.etykieta ? `${e.etykieta}: ` : ""}${e.wartosc}`);
+    linie.push("");
+  }
+  linie.push("Zespół Accessibility First, Włącz Wizję",
+    "Włącz Wizję sp. z o.o., ul. Sternicza 129 lok. 50, 01-350 Warszawa",
+    "a11y@wlaczwizje.pl, tel. +48 727 935 587");
+  return linie.join("\n");
+}
+
+/**
+ * HTML w identyfikacji Accessibility First (kolory, krój, stopka jak
+ * newsletter-standard/template.html w repo mozg). Style inline, bez obrazow,
+ * prawdziwe naglowki h1/h2 i listy ul, jezyk pl, landmark main i footer.
+ */
+function htmlZSekcji(sekcje, temat) {
+  const P = 'style="margin:0 0 16px;"';
+  const blok = (s) => {
+    let h = `<h2 style="margin:0 0 12px;font-size:24px;line-height:1.3;color:#5f28b4;">${esc(s.naglowek)}</h2>`;
+    for (const a of s.akapity || []) h += `<p ${P}>${esc(a)}</p>`;
+    if (s.link) {
+      h += `<p style="margin:0 0 16px;"><a href="${esc(s.link.adres)}" style="display:inline-block;padding:12px 20px;background-color:#5f28b4;color:#ffffff;font-weight:bold;text-decoration:underline;">${esc(s.link.tekst)}</a></p>`;
+    }
+    if (s.lista) {
+      h += `<ul style="margin:0 0 16px;padding-left:24px;">${s.lista.map((e) =>
+        `<li style="margin:0 0 8px;">${e.etykieta ? `<strong>${esc(e.etykieta)}:</strong> ` : ""}${esc(e.wartosc)}</li>`).join("")}</ul>`;
+    }
+    return `<section class="pad" style="padding:8px 36px 8px;">${h}</section>`;
   };
+  return `<!doctype html>
+<html lang="pl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(temat)}</title>
+<style>a:focus{outline:3px solid #000;outline-offset:4px}@media(max-width:480px){.pad{padding-left:20px!important;padding-right:20px!important}h1{font-size:30px!important}h2{font-size:22px!important}}@media(forced-colors:active){a{border:2px solid LinkText!important}}</style></head>
+<body style="margin:0;padding:0;background-color:#f8f9fa;color:#000000;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.6;overflow-wrap:anywhere;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;table-layout:fixed;border-collapse:collapse;"><tr><td style="padding:24px 0;" align="center">
+<!--[if mso]><table role="presentation" width="640" align="center"><tr><td><![endif]-->
+<main style="width:100%;max-width:640px;box-sizing:border-box;margin:0 auto;background-color:#ffffff;text-align:left;">
+<div class="pad" style="padding:28px 36px;border-top:8px solid #fa9632;">
+<p style="margin:0;color:#5f28b4;font-size:24px;line-height:1.3;font-weight:bold;">Accessibility First</p>
+<p style="margin:6px 0 0;color:#000000;font-size:16px;">Włącz Wizję · dostępność w praktyce</p></div>
+<div class="pad" style="padding:32px 36px;background-color:#5f28b4;color:#ffffff;">
+<p style="margin:0 0 12px;font-size:16px;">Potwierdzenie zamówienia</p>
+<h1 style="margin:0;font-size:36px;line-height:1.2;color:#ffffff;">Potwierdzamy zawarcie umowy</h1></div>
+<div class="pad" style="padding:32px 36px 8px;"><p ${P}>Dzień dobry,</p><p ${P}>dziękujemy za zamówienie i płatność. Potwierdzamy zawarcie umowy.</p></div>
+${sekcje.map(blok).join("\n")}
+<div class="pad" style="padding:16px 36px 12px;"><p style="margin:0 0 18px;font-weight:bold;">Zespół Accessibility First</p></div>
+<footer class="pad" style="padding:24px 36px 32px;background-color:#f8f9fa;font-size:16px;color:#000000;">
+<p style="margin:0 0 16px;">Accessibility First<br>Włącz Wizję sp. z o.o., ul. Sternicza 129 lok. 50, 01-350 Warszawa<br>tel. +48 727 935 587<br><a href="mailto:a11y@wlaczwizje.pl" style="color:#5f28b4;text-decoration:underline;font-weight:bold;">a11y@wlaczwizje.pl</a></p>
+<p style="margin:0;"><a href="https://www.a11yfirst.pl/regulamin" style="color:#5f28b4;text-decoration:underline;">Regulamin</a> · <a href="https://www.a11yfirst.pl/polityka-prywatnosci" style="color:#5f28b4;text-decoration:underline;">Polityka prywatności</a></p></footer>
+</main><!--[if mso]></td></tr></table><![endif]-->
+</td></tr></table></body></html>`;
+}
+
+/**
+ * Buduje temat, tekst i HTML potwierdzenia.
+ *
+ * `zamowienie`: wynik rozlozIdentyfikator; `platnosc`: {kwota, trId, czas, linkZgody}.
+ */
+export function zbudujPotwierdzenie(zamowienie, platnosc, regulamin = REGULAMIN) {
+  const temat = `Potwierdzenie zawarcia umowy: ${zamowienie.produkt.nazwa}, ${zamowienie.produkt.termin}`;
+  const { sekcje, plikPdf, plikFormularza } = sekcjePotwierdzenia(zamowienie, platnosc, regulamin);
+  return { temat, tekst: tekstZSekcji(sekcje), html: htmlZSekcji(sekcje, temat), plikPdf, plikFormularza };
 }
 
 /**
@@ -191,6 +228,12 @@ export function zbudujPotwierdzenie(zamowienie, platnosc, regulamin = REGULAMIN)
  * nie wysylamy - § 7 ust. 9 wymaga regulaminu w zalaczniku, sam link nie wystarcza.
  */
 export async function wczytajRegulaminPdf(adresPubliczny, env = process.env, regulamin = REGULAMIN) {
+  return wczytajPdf(regulamin.pdf, adresPubliczny, env);
+}
+
+/** PDF z public/: paczka funkcji, REGULAMIN_PDF_URL (tylko regulamin), wlasna domena, www. */
+export async function wczytajPdf(sciezka, adresPubliczny, env = process.env) {
+  const regulamin = { pdf: sciezka };
   const lokalny = path.join(process.cwd(), "public", regulamin.pdf);
   try {
     const dane = await fs.readFile(lokalny);
@@ -211,5 +254,5 @@ export async function wczytajRegulaminPdf(adresPubliczny, env = process.env, reg
       if (dane.subarray(0, 5).toString() === "%PDF-") return dane;
     } catch { /* nastepny adres */ }
   }
-  throw new Error(`nie znaleziono PDF regulaminu ${regulamin.pdf}`);
+  throw new Error(`nie znaleziono PDF ${regulamin.pdf}`);
 }

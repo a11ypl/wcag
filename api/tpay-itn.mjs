@@ -19,7 +19,9 @@
  */
 
 import crypto from "node:crypto";
-import { rozlozIdentyfikator, zbudujPotwierdzenie, wczytajRegulaminPdf } from "./_potwierdzenie.mjs";
+import {
+  rozlozIdentyfikator, zbudujPotwierdzenie, wczytajRegulaminPdf, wczytajPdf, FORMULARZ_ODSTAPIENIA,
+} from "./_potwierdzenie.mjs";
 import { wyslijMail, konfiguracjaPoczty } from "./_poczta.mjs";
 import { podpiszZgode } from "./_zgoda.mjs";
 
@@ -202,13 +204,16 @@ function adresPubliczny() {
 }
 
 /**
- * Wysyla klientowi potwierdzenie z PDF regulaminu, z kopia UDW na POCZTA_KOPIA
+ * Wysyla klientowi potwierdzenie z PDF regulaminu i wzoru formularza
+ * odstapienia (dwa zalaczniki), z kopia UDW na POCZTA_KOPIA
  * (archiwum i dowod oswiadczen). Nigdy nie rzuca - kazdy problem konczy sie
  * wpisem w logu i, jesli sie da, alarmem do czlowieka.
  */
 export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
   const wyslij = zaleznosci.wyslijMail || wyslijMail;
   const pdf = zaleznosci.wczytajRegulaminPdf || wczytajRegulaminPdf;
+  const formularzPdf = zaleznosci.wczytajFormularzPdf
+    || ((adres) => wczytajPdf(FORMULARZ_ODSTAPIENIA, adres));
   const poczta = konfiguracjaPoczty();
   const zamowienie = rozlozIdentyfikator(pola.tr_crc);
 
@@ -220,7 +225,7 @@ export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
         temat: `[Tpay] Potwierdzenie NIE wysłane: ${pola.tr_id || pola.tr_crc}`,
         tekst: [
           "Płatność jest zaksięgowana, ale automatyczne potwierdzenie zawarcia umowy nie wyszło.",
-          "Wyślij je ręcznie z PDF regulaminu (szablon: raporty/2026-09-24-mail-dostep-tresci-cyfrowej-szablon.md).",
+          "Wyślij je ręcznie z PDF regulaminu i formularzem odstąpienia (szablon: raporty/2026-09-24-mail-dostep-tresci-cyfrowej-szablon.md).",
           "",
           `Powód: ${powod}`,
           `Transakcja Tpay: ${pola.tr_id}`,
@@ -243,9 +248,13 @@ export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
     return { wyslano: false, powod: "brak konfiguracji SMTP" };
   }
 
+  // Bez regulaminu albo wzoru formularza potwierdzenie bylby niepelny
+  // (§ 7 ust. 9, art. 21 ustawy o prawach konsumenta) - wtedy tylko alarm.
   let regulamin;
+  let formularz;
   try {
     regulamin = await pdf(adresPubliczny());
+    formularz = await formularzPdf(adresPubliczny());
   } catch (blad) {
     return alarm(String(blad.message || blad));
   }
@@ -262,7 +271,7 @@ export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
     } catch { /* bez sekretu - tresc podpowie kontakt mailowy */ }
   }
 
-  const { temat, tekst, plikPdf } = zbudujPotwierdzenie(zamowienie, {
+  const { temat, tekst, html, plikPdf, plikFormularza } = zbudujPotwierdzenie(zamowienie, {
     kwota: pola.tr_paid || pola.tr_amount,
     trId: pola.tr_id,
     czas: new Date(),
@@ -275,7 +284,11 @@ export async function wyslijPotwierdzenie(pola, zaleznosci = {}) {
       udw: [poczta.kopia],
       temat,
       tekst,
-      zalaczniki: [{ nazwa: plikPdf, typ: "application/pdf", dane: regulamin }],
+      html,
+      zalaczniki: [
+        { nazwa: plikPdf, typ: "application/pdf", dane: regulamin },
+        { nazwa: plikFormularza, typ: "application/pdf", dane: formularz },
+      ],
     });
   } catch (blad) {
     return alarm(`wysylka do klienta: ${String(blad.message || blad)}`);

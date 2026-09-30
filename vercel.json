@@ -7,7 +7,7 @@
   "cleanUrls": true,
   "functions": {
     "api/tpay-itn.mjs": {
-      "includeFiles": "public/regulamin-*.pdf"
+      "includeFiles": "public/*.pdf"
     }
   },
   "rewrites": [

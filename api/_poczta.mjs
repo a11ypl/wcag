@@ -6,7 +6,7 @@
  * kroku instalacji (vercel.json: installCommand "Skip install"), a glowny
  * package.json nalezy do innego projektu. Zaleznosc npm oznaczalaby zmiane
  * sposobu wdrazania calej strony. Potrzebujemy jednej rzeczy: wyslac jeden
- * mail tekstowy z jednym zalacznikiem PDF - to kilkadziesiat linii.
+ * mail (tekst, opcjonalnie HTML) z zalacznikami PDF - to kilkadziesiat linii.
  *
  * Konfiguracja wylacznie w zmiennych srodowiskowych Vercela:
  *   SMTP_UZYTKOWNIK  konto Google, ktore wysyla (np. a11y@wlaczwizje.pl)
@@ -54,11 +54,25 @@ function czystyAdres(adres) {
   return a;
 }
 
+/** Czesc MIME zakodowana base64. */
+function czesc(granica, typ, dane, dodatkowe = []) {
+  return [
+    `--${granica}`,
+    `Content-Type: ${typ}`,
+    ...dodatkowe,
+    "Content-Transfer-Encoding: base64",
+    "",
+    base64WLiniach(dane),
+  ].join("\r\n");
+}
+
 /**
- * Buduje wiadomosc MIME: tekst (UTF-8) i opcjonalne zalaczniki.
+ * Buduje wiadomosc MIME: tekst (UTF-8), opcjonalnie HTML, i zalaczniki.
+ * Z HTML tresc idzie jako multipart/alternative (tekst, potem HTML - klient
+ * poczty wybiera ostatnia wersje, ktora umie pokazac) wewnatrz multipart/mixed.
  * Pole UDW nie trafia do naglowkow - tylko do koperty SMTP.
  */
-export function zbudujWiadomosc({ od, nazwaNadawcy, do: odbiorca, odpowiedzDo, temat, tekst, zalaczniki = [] }) {
+export function zbudujWiadomosc({ od, nazwaNadawcy, do: odbiorca, odpowiedzDo, temat, tekst, html, zalaczniki = [] }) {
   const granica = `a11y-${crypto.randomUUID()}`;
   const domena = od.split("@")[1];
   const naglowki = [
@@ -71,22 +85,26 @@ export function zbudujWiadomosc({ od, nazwaNadawcy, do: odbiorca, odpowiedzDo, t
     "MIME-Version: 1.0",
     `Content-Type: multipart/mixed; boundary="${granica}"`,
   ];
+  const utf8 = (t) => Buffer.from(t.replace(/\r?\n/g, "\r\n"), "utf8");
+  const czescTekstowa = (g) => czesc(g, "text/plain; charset=utf-8", utf8(tekst));
+  let tresc;
+  if (html) {
+    const alt = `a11y-alt-${crypto.randomUUID()}`;
+    tresc = [
+      `--${granica}`,
+      `Content-Type: multipart/alternative; boundary="${alt}"`,
+      "",
+      czescTekstowa(alt),
+      czesc(alt, "text/html; charset=utf-8", utf8(html)),
+      `--${alt}--`,
+    ].join("\r\n");
+  } else {
+    tresc = czescTekstowa(granica);
+  }
   const czesci = [
-    [
-      `--${granica}`,
-      "Content-Type: text/plain; charset=utf-8",
-      "Content-Transfer-Encoding: base64",
-      "",
-      base64WLiniach(Buffer.from(tekst.replace(/\r?\n/g, "\r\n"), "utf8")),
-    ].join("\r\n"),
-    ...zalaczniki.map((z) => [
-      `--${granica}`,
-      `Content-Type: ${z.typ}; name="${z.nazwa}"`,
-      `Content-Disposition: attachment; filename="${z.nazwa}"`,
-      "Content-Transfer-Encoding: base64",
-      "",
-      base64WLiniach(z.dane),
-    ].join("\r\n")),
+    tresc,
+    ...zalaczniki.map((z) => czesc(granica, `${z.typ}; name="${z.nazwa}"`, z.dane,
+      [`Content-Disposition: attachment; filename="${z.nazwa}"`])),
   ];
   return `${naglowki.join("\r\n")}\r\n\r\n${czesci.join("\r\n")}\r\n--${granica}--\r\n`;
 }
@@ -152,7 +170,7 @@ function rozmowaSmtp({ uzytkownik, haslo, od, odbiorcy, wiadomosc }) {
  * Wysyla mail. Zwraca {wyslano: true} albo rzuca blad bez danych logowania.
  * `udw` - lista adresow kopii ukrytej (tylko koperta, nie naglowki).
  */
-export async function wyslijMail({ do: odbiorca, udw = [], temat, tekst, zalaczniki = [] }, env = process.env) {
+export async function wyslijMail({ do: odbiorca, udw = [], temat, tekst, html, zalaczniki = [] }, env = process.env) {
   const k = konfiguracjaPoczty(env);
   if (!k.gotowa) throw new Error("brak konfiguracji SMTP (SMTP_UZYTKOWNIK, SMTP_HASLO)");
   const od = czystyAdres(k.nadawca);
@@ -165,6 +183,7 @@ export async function wyslijMail({ do: odbiorca, udw = [], temat, tekst, zalaczn
     odpowiedzDo: k.kopia,
     temat,
     tekst,
+    html,
     zalaczniki,
   });
   await rozmowaSmtp({ uzytkownik: k.uzytkownik, haslo: k.haslo, od, odbiorcy: [cel, ...kopie], wiadomosc });

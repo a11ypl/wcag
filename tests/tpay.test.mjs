@@ -369,19 +369,39 @@ test("identyfikator zamowienia rozklada sie na produkt i oswiadczenia", () => {
 
 test("potwierdzenie szkolenia zawiera wymagane elementy i powtarza oswiadczenia", () => {
   const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s1-${UUID}`);
-  const { temat, tekst, plikPdf } = zbudujPotwierdzenie(z, {
+  const { temat, tekst, html, plikPdf, plikFormularza } = zbudujPotwierdzenie(z, {
     kwota: "1999.00", trId: "TR-TEST", czas: new Date("2026-10-01T12:05:00Z"),
   });
+  assert.equal(plikFormularza, "formularz-odstapienia-od-umowy.pdf");
   assert.equal(temat, "Potwierdzenie zawarcia umowy: WCAG dla specjalistów, 28-30.10.2026");
   assert.equal(plikPdf, "regulamin-2026-09-29.pdf");
   for (const fragment of [
     "1999,00 zł", "01.10.2026, godz. 14:05", "TR-TEST", "art. 113",
     "zażądałeś(-aś) rozpoczęcia świadczenia usługi przed upływem 14 dni",
-    "WZÓR FORMULARZA ODSTĄPIENIA OD UMOWY", "regulamin-2026-09-29.pdf",
+    "formularz-odstapienia-od-umowy.pdf", "regulamin-2026-09-29.pdf",
     "Krajowym Systemie e-Faktur",
   ]) assert.ok(tekst.includes(fragment), `brak: ${fragment}`);
   assert.ok(!/[\u2013\u2014]/.test(tekst + temat), "bez polpauz i pauz w tresci dla klienta");
   assert.ok(!tekst.includes("Semantyczny HTML"), "szkolenie nie obejmuje kursu");
+  assert.ok(!tekst.includes("Ja/My niniejszym"), "wzor formularza jest w zalaczniku, nie w tresci");
+  assert.ok(!html.includes("Ja/My niniejszym"));
+  assert.ok(html.includes("TR-TEST") && html.includes("1999,00 zł"), "HTML ma te same dane co tekst");
+});
+
+test("HTML potwierdzenia jest dostepny: jezyk, h1, naglowki h2, listy, landmarki", () => {
+  const z = rozlozIdentyfikator(`a11y-wcag-dla-specjalistow-s0-${UUID}`);
+  const { html } = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z"),
+    linkZgody: "https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc" });
+  assert.match(html, /<html lang="pl">/);
+  assert.equal((html.match(/<h1[ >]/g) || []).length, 1, "dokladnie jeden h1");
+  assert.ok((html.match(/<h2[ >]/g) || []).length >= 5, "sekcje jako prawdziwe naglowki h2");
+  assert.match(html, /<ul[ >][\s\S]*<li[ >]/, "dane zamowienia jako lista");
+  assert.match(html, /<main[ >]/);
+  assert.match(html, /<footer[ >]/);
+  assert.ok(html.includes('href="https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"'), "link zgody jako link");
+  assert.ok(!/<h[3-6][ >]/.test(html), "bez przeskokow poziomow");
+  assert.ok(!/<img/.test(html), "bez obrazow");
+  assert.ok(!/[\u2013\u2014]/.test(html), "bez polpauz i pauz");
 });
 
 test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail daje link zamiast formulki", () => {
@@ -392,7 +412,7 @@ test("bez zadania rozpoczecia, przy szkoleniu za mniej niz 14 dni, mail daje lin
   const zLinkiem = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-20T10:00:00Z"),
     linkZgody: "https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc" }).tekst;
   assert.ok(zLinkiem.includes("Jeśli kupujesz jako osoba prywatna, potwierdź jednym kliknięciem"));
-  assert.ok(zLinkiem.includes("na odstąpienie: https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"));
+  assert.ok(zLinkiem.includes("Chcę wziąć udział w szkoleniu: https://www.a11yfirst.pl/zgoda-rozpoczecie#t=abc"));
   assert.ok(!zLinkiem.includes("nie możemy dopuścić"), "wersja lagodna");
   const daleko = zbudujPotwierdzenie(z, { kwota: "2499.00", trId: "T", czas: new Date("2026-10-01T10:00:00Z") }).tekst;
   assert.ok(!daleko.includes("Jeśli kupujesz jako osoba prywatna"));
@@ -408,6 +428,27 @@ test("wiadomosc MIME: PDF w zalaczniku, UDW poza naglowkami, polskie znaki w tem
   assert.match(m, /Content-Disposition: attachment; filename="regulamin.pdf"/);
   assert.ok(m.includes(Buffer.from("%PDF-1.7 test").toString("base64")));
   assert.ok(!/^Bcc:/mi.test(m));
+  assert.ok(!/multipart\/alternative/.test(m), "bez HTML: sam tekst");
+});
+
+test("wiadomosc MIME z HTML: tekst i HTML jako alternatywy, oba zalaczniki osobno", () => {
+  const m = zbudujWiadomosc({
+    od: "a11y@wlaczwizje.pl", do: "jan@example.com", temat: "t", tekst: "Dzień dobry",
+    html: "<!doctype html><html lang=\"pl\"><body><h1>Dzień dobry</h1></body></html>",
+    zalaczniki: [
+      { nazwa: "regulamin.pdf", typ: "application/pdf", dane: Buffer.from("%PDF-1") },
+      { nazwa: "formularz.pdf", typ: "application/pdf", dane: Buffer.from("%PDF-2") },
+    ],
+  });
+  const zewn = /^Content-Type: multipart\/mixed; boundary="([^"]+)"/m.exec(m)[1];
+  const alt = /Content-Type: multipart\/alternative; boundary="([^"]+)"/.exec(m)[1];
+  assert.notEqual(zewn, alt);
+  const czescAlt = m.slice(m.indexOf(`--${alt}`), m.indexOf(`--${alt}--`));
+  assert.ok(czescAlt.indexOf("text/plain") < czescAlt.indexOf("text/html"), "tekst przed HTML");
+  assert.ok(m.replace(/\r\n/g, "").includes(Buffer.from("<!doctype html><html lang=\"pl\"><body><h1>Dzień dobry</h1></body></html>").toString("base64")));
+  assert.ok(m.indexOf(`--${alt}--`) < m.indexOf('filename="regulamin.pdf"'), "zalaczniki poza alternative");
+  assert.match(m, /filename="formularz.pdf"/);
+  assert.ok(m.trimEnd().endsWith(`--${zewn}--`));
 });
 
 test("adres z wstrzyknietym naglowkiem jest odrzucany przed polaczeniem", async () => {
@@ -428,13 +469,44 @@ test("po platnosci klient dostaje potwierdzenie z PDF, a a11y@ kopie UDW", async
   const wynik = await wyslijPotwierdzenie(polaZaplacone, {
     wyslijMail: async (m) => { wyslane.push(m); },
     wczytajRegulaminPdf: async () => Buffer.from("%PDF-1.7"),
+    wczytajFormularzPdf: async () => Buffer.from("%PDF-1.7 formularz"),
   });
   assert.equal(wynik.wyslano, true);
   assert.equal(wyslane.length, 1);
   assert.equal(wyslane[0].do, "jan@example.com");
   assert.deepEqual(wyslane[0].udw, ["a11y@wlaczwizje.pl"]);
-  assert.equal(wyslane[0].zalaczniki[0].typ, "application/pdf");
+  assert.deepEqual(wyslane[0].zalaczniki.map((z) => z.nazwa),
+    ["regulamin-2026-09-29.pdf", "formularz-odstapienia-od-umowy.pdf"]);
+  assert.ok(wyslane[0].zalaczniki.every((z) => z.typ === "application/pdf"));
   assert.ok(wyslane[0].tekst.includes("AI w audytowaniu dostępności cyfrowej"));
+  assert.match(wyslane[0].html, /<h2[ >]/, "klient dostaje tez wersje HTML");
+});
+
+test("bez PDF formularza odstapienia potwierdzenie nie wychodzi, idzie alarm do a11y@", async () => {
+  const wyslane = [];
+  const wynik = await wyslijPotwierdzenie(polaZaplacone, {
+    wyslijMail: async (m) => { wyslane.push(m); },
+    wczytajRegulaminPdf: async () => Buffer.from("%PDF-1.7"),
+    wczytajFormularzPdf: async () => { throw new Error("nie znaleziono PDF /formularz-odstapienia-od-umowy.pdf"); },
+  });
+  assert.equal(wynik.wyslano, false);
+  assert.equal(wyslane.length, 1);
+  assert.equal(wyslane[0].do, "a11y@wlaczwizje.pl");
+  assert.match(wyslane[0].tekst, /formularz-odstapienia/);
+});
+
+test("PDF formularza odstapienia lezy w public/, jest w paczce funkcji ITN i ma te sama tresc co regulamin", async () => {
+  const fs = await import("node:fs/promises");
+  const pdf = await fs.readFile(new URL("../public/formularz-odstapienia-od-umowy.pdf", import.meta.url));
+  assert.equal(pdf.subarray(0, 5).toString(), "%PDF-");
+  const vercel = JSON.parse(await fs.readFile(new URL("../vercel.json", import.meta.url), "utf8"));
+  assert.equal(vercel.functions["api/tpay-itn.mjs"].includeFiles, "public/*.pdf");
+  const strona = await fs.readFile(new URL("../public/formularz-odstapienia-od-umowy.html", import.meta.url), "utf8");
+  const regulamin = await fs.readFile(new URL("../public/regulamin.html", import.meta.url), "utf8");
+  const pola = (h) => [...h.matchAll(/<strong>([^<]+):<\/strong>/g)].map((x) => x[1]);
+  const zalacznik = regulamin.slice(regulamin.indexOf('id="zalacznik"'));
+  assert.deepEqual(pola(strona), pola(zalacznik), "pola formularza zgodne z zalacznikiem regulaminu");
+  assert.match(strona, /<html lang="pl">/);
 });
 
 test("bez PDF regulaminu klient nie dostaje niepelnego potwierdzenia, idzie alarm do a11y@", async () => {
