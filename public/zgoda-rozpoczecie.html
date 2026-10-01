@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udział w szkoleniu - Accessibility First</title>
+    <meta name="description" content="Potwierdzenie żądania rozpoczęcia usługi przed upływem 14 dni.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.a11yfirst.pl/zgoda-rozpoczecie">
+    <link rel="icon" href="assets/a11yfirst-icon.svg?v=7" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Accessibility First">
+    <meta property="og:title" content="Udział w szkoleniu - Accessibility First">
+    <meta property="og:description" content="Potwierdzenie żądania rozpoczęcia usługi przed upływem 14 dni.">
+    <meta property="og:url" content="https://www.a11yfirst.pl/zgoda-rozpoczecie">
+    <meta property="og:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Udział w szkoleniu - Accessibility First">
+    <meta name="twitter:description" content="Potwierdzenie żądania rozpoczęcia usługi przed upływem 14 dni.">
+    <meta name="twitter:image" content="https://www.a11yfirst.pl/assets/social-preview.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Włącz Wizję sp. z o.o.",
+      "url": "https://www.a11yfirst.pl",
+      "email": "a11y@wlaczwizje.pl",
+      "sameAs": [
+        "https://wlaczwizje.pl",
+        "https://linktr.ee/bergivision"
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="assets/styles.css?v=20">
+    <script>
+    (function(w,d,s,a,m,t) {
+      a = d.createElement(s);
+      m = d.getElementsByTagName(s)[0];
+      a.defer = true;
+      a.fetchpriority = 'high';
+      a.id = 'auditor_app';
+      a.dataset.cfasync = 'false';
+      a.src = 'https://auditor.sitelint.com/auditor.bundle.js?tokenId=fd12afc29248ca4ee2939c8b112c5ede39422cbbe3c779066fef8bef466d6b5a';
+
+      function onPageLoaded() {
+        w.clearTimeout(t);
+        w.removeEventListener('DOMContentLoaded', onPageLoaded);
+        m.parentNode.insertBefore(a, m);
+      }
+
+      function onAuditorLoaded() {
+        auditor.config({
+          includeHidden: true,
+          stripTextFromReport: false,
+          watchDomChanges: false
+        }).run();
+      }
+
+      a.addEventListener('load', onAuditorLoaded);
+
+      if (d.readyState !== 'loading') {
+        onPageLoaded();
+        return;
+      }
+
+      w.addEventListener('DOMContentLoaded', onPageLoaded);
+    })(window, document, 'script');
+    </script>
+
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=7" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/szkolenia">Szkolenia</a></li><li aria-current="page">Udział w szkoleniu</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <h1>Chcę wziąć udział w szkoleniu</h1>
+                <p class="subtitle">Twoje szkolenie zaczyna się wcześniej niż 14 dni od zawarcia umowy. Jeśli kupujesz jako osoba prywatna, potwierdź poniżej, że chcesz, żebyśmy zaczęli przed upływem 14 dni na odstąpienie.</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div id="zgodaStatus" class="checkout-discount-summary" role="status" aria-live="polite" hidden></div>
+                <div id="zgodaBledy" class="checkout-error-summary" tabindex="-1" hidden></div>
+
+                <form id="zgodaForm" novalidate>
+                    <div class="form-field">
+                        <input type="checkbox" id="rozpoczecie" name="rozpoczecie" required aria-describedby="rozpoczecieOpis">
+                        <label for="rozpoczecie">Żądam rozpoczęcia świadczenia usługi przed upływem 14 dni na odstąpienie od umowy. Przyjmuję do wiadomości, że po pełnym wykonaniu usługi utracę prawo odstąpienia od umowy. <span class="required-indicator" aria-hidden="true">*</span><span class="sr-only"> pole wymagane</span></label>
+                        <p id="rozpoczecieOpis" class="form-hint">Jeśli odstąpisz od umowy w trakcie szkolenia, zapłacisz za część już wykonaną. Szczegóły: <a href="/regulamin#par-11">§ 11 regulaminu</a>. Potwierdzenie wyślemy na adres e-mail podany przy zamówieniu.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Potwierdzam i chcę wziąć udział</button>
+                </form>
+
+                <p>Nie chcesz jeszcze decydować? Nic nie musisz robić. Możesz też napisać na <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a>.</p>
+            </div>
+        </section>
+    </main>
+    <script src="assets/zgoda.js?v=1" defer></script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

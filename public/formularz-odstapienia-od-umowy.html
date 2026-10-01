@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzór formularza odstąpienia od umowy - Accessibility First</title>
+    <meta name="description" content="Wzór formularza odstąpienia od umowy zawartej w serwisie a11yfirst.pl (załącznik do regulaminu). Do wydruku albo wypełnienia i odesłania na a11y@wlaczwizje.pl.">
+    <link rel="canonical" href="https://www.a11yfirst.pl/formularz-odstapienia-od-umowy">
+    <meta name="author" content="Włącz Wizję sp. z o.o.">
+    <meta name="copyright" content="Włącz Wizję sp. z o.o.">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <link rel="stylesheet" href="assets/styles.css?v=21">
+    <style>
+        /* Ta sama tresc co zalacznik regulaminu (public/regulamin.html, #zalacznik). Zmieniasz jedno - zmien drugie i przegeneruj PDF. */
+        .legal-document .knowledge-panel p { margin-bottom: 0.75rem; }
+        .legal-blank { display: inline-block; max-width: 100%; overflow: hidden; white-space: nowrap; vertical-align: bottom; }
+        .legal-download { margin-bottom: 2rem; }
+        .legal-download a { color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+        .legal-download a:hover { color: black; }
+        @media print {
+            header, footer, .breadcrumbs, .skip-link, .legal-download { display: none !important; }
+            .hero, .page-hero { background: none !important; color: black !important; padding: 0 0 1rem !important; }
+            .hero h1, .hero p { color: black !important; }
+            .knowledge-article { padding: 0 !important; }
+            .legal-document .knowledge-panel { border: none; box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Przejdź do głównej treści</a>
+
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="assets/a11yfirst-icon.svg?v=8" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <nav class="breadcrumbs" aria-label="Ścieżka okruszków"><ol><li><a href="/">Strona główna</a></li><li><a href="/regulamin">Regulamin</a></li><li aria-current="page">Formularz odstąpienia</li></ol></nav>
+        <section class="hero page-hero">
+            <div class="container">
+                <h1 id="formularz-tytul">Wzór formularza odstąpienia od umowy</h1>
+                <p class="subtitle">Załącznik do regulaminu serwisu a11yfirst.pl, wersja z 29 września 2026 r.</p>
+            </div>
+        </section>
+
+        <section class="knowledge-article legal-document">
+            <div class="container">
+                <p class="legal-download"><a href="/formularz-odstapienia-od-umowy.pdf">Pobierz formularz w formacie PDF</a></p>
+                <div class="knowledge-panel legal-section">
+                                        <p>Formularz należy wypełnić i odesłać tylko w przypadku zamiaru odstąpienia od umowy.</p>
+                    <p><strong>Adresat:</strong><br>
+Włącz Wizję sp. z o.o.<br>
+ul. Sternicza 129 lok. 50<br>
+01-350 Warszawa<br>
+e-mail: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+                    <p>Ja/My niniejszym informuję/informujemy o odstąpieniu od umowy dotyczącej:</p>
+                    <p><strong>Nazwa Produktu:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p><strong>Data zawarcia umowy:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p><strong>Imię i nazwisko Konsumenta / Konsumentów:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p><strong>Adres Konsumenta / Konsumentów:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p><strong>Adres e-mail użyty przy zamówieniu:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p><strong>Data:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p><strong>Podpis Konsumenta / Konsumentów:</strong><br>
+<span class="legal-blank" aria-hidden="true">.........................................................</span></p>
+                    <p>Podpis jest wymagany wyłącznie wtedy, gdy formularz jest przesyłany w wersji papierowej.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
