@@ -47,7 +47,7 @@ main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1
    Pole zostaje prawdziwym <textarea> (czytnik, zaznaczanie, kopiowanie działają normalnie). */
 .edytor { position: relative; flex: 1; min-height: 8rem; overflow: hidden; background: #fff; }
 .edytor textarea, .edytor .warstwa {
-  position: absolute; inset: 0; margin: 0; border: 0; width: 100%; height: 100%;
+  position: absolute; inset: 8px; margin: 0; border: 0; width: auto; height: auto;  /* 8 px na obwódkę fokusu wokół paska przewijania */
   padding: .7rem .8rem; font: 1rem/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   white-space: pre-wrap; overflow-wrap: break-word; word-break: normal; tab-size: 2;
   overflow-y: auto; scrollbar-gutter: stable;
