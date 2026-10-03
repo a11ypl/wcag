@@ -55,13 +55,13 @@ main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1
 .edytor .warstwa { color: #1b1b1b; pointer-events: none; overflow: hidden; }
 .edytor textarea { color: transparent; background: transparent; caret-color: #000; z-index: 1; resize: none; }
 .edytor textarea::selection { background: rgba(95, 51, 138, .35); color: transparent; }
-.warstwa .kom { background: #ffe94d; color: #3a2a00; border-radius: 2px; }
-/* TRYB KONTRASTOWY: biały kod na czarnym, komentarze żółte (ok. 19:1 i 15:1) */
+.warstwa .kom { color: #5c5c5c; }  /* szary na bieli: ok. 6,7:1 */
+/* TRYB KONTRASTOWY: biały kod na czarnym (21:1), komentarze szare */
 body.kontrast .edytor { background: #000; }
 body.kontrast .edytor .warstwa { color: #fff; }
 body.kontrast .edytor textarea { caret-color: #fff; }
 body.kontrast .edytor textarea::selection { background: rgba(255, 255, 255, .35); }
-body.kontrast .warstwa .kom { background: none; color: #ffdd00; }
+body.kontrast .warstwa .kom { color: #a8a8a8; }  /* szary na czerni: ok. 9:1 */
 body.kontrast .naglowek-panelu { background: #000; color: #fff; border-bottom: 2px solid #fff; }
 body.kontrast .naglowek-panelu small { color: #fff; }
 body.kontrast .zwin { color: #fff; border-color: #fff; }
