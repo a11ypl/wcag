@@ -65,6 +65,12 @@ body.kontrast .warstwa .kom { color: #a8a8a8; }  /* szary na czerni: ok. 9:1 */
 body.kontrast .naglowek-panelu { background: #000; color: #fff; border-bottom: 2px solid #fff; }
 body.kontrast .naglowek-panelu small { color: #fff; }
 body.kontrast .zwin { color: #fff; border-color: #fff; }
+/* FOKUS POLA KODU: rysowany wewnątrz edytora (krawędź panelu nie może go obciąć) */
+.edytor:focus-within { box-shadow: inset 0 0 0 3px #FEDB16, inset 0 0 0 6px #000; }
+.panel.edycja .edytor:focus-within { box-shadow: inset 0 0 0 5px #FEDB16, inset 0 0 0 8px #000; }
+body.kontrast .edytor:focus-within { box-shadow: inset 0 0 0 3px #FEDB16, inset 0 0 0 6px #fff; }
+body.kontrast .panel.edycja .edytor:focus-within { box-shadow: inset 0 0 0 5px #FEDB16, inset 0 0 0 8px #fff; }
+.edytor textarea:focus-visible { outline: none; box-shadow: none; }
 /* plakietka trybu: przeglądanie / edycja (tekst, nie sam kolor) */
 .naglowek-panelu .tryb { font-weight: 600; padding: .1rem .5rem; border-radius: .3rem; border: 2px solid currentColor; }
 .panel.edycja .naglowek-panelu .tryb { background: #5F338A; color: #fff; border-color: #5F338A; }
@@ -227,7 +233,9 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   function wczytaj(nazwa) {
     var p = PRZYKLADY[nazwa];
     if (!p) { return; }
-    html.value = p.html; css.value = p.css; pokaz();
+    html.value = p.html; css.value = p.css;
+    [html, css].forEach(function (pole) { pole.dataset.poz = "0,0,0"; pole.scrollTop = 0; });
+    pokaz();
     status.textContent = "Wczytano: " + wybor.options[wybor.selectedIndex].text + ".";
   }
   /* Kod kursanta zapisujemy przy każdej zmianie (także przy wyłączonym „Na żywo”)
@@ -393,11 +401,28 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     return true;
   }
 
+  /* POZYCJA KURSORA: przy wejściu z klawiatury wraca tam, gdzie kursant skończył
+     (z przewinięciem), a za pierwszym razem na początek kodu, nie na koniec. */
+  function zapamietajPozycje(pole) {
+    pole.dataset.poz = pole.selectionStart + "," + pole.selectionEnd + "," + pole.scrollTop;
+  }
+  function przywrocPozycje(pole) {
+    var z = (pole.dataset.poz || "0,0,0").split(",").map(Number);
+    var max = pole.value.length;
+    pole.setSelectionRange(Math.min(z[0], max), Math.min(z[1], max));
+    pole.scrollTop = z[2]; pole.previousElementSibling.scrollTop = z[2];
+  }
   [html, css].forEach(function (pole) {
     ustawEdycje(pole, false, true);
     pole.addEventListener("mousedown", function () { zMyszy = true; });
-    pole.addEventListener("focus", function () { ustawEdycje(pole, zMyszy, !zMyszy); zMyszy = false; });
-    pole.addEventListener("blur", function () { ustawEdycje(pole, false, true); });
+    pole.addEventListener("focus", function () {
+      if (!zMyszy) { przywrocPozycje(pole); }   // klik myszą ustawia kursor sam, w miejscu kliknięcia
+      ustawEdycje(pole, zMyszy, !zMyszy); zMyszy = false;
+    });
+    pole.addEventListener("blur", function () { zapamietajPozycje(pole); ustawEdycje(pole, false, true); });
+    ["keyup", "mouseup", "scroll"].forEach(function (zd) {
+      pole.addEventListener(zd, function () { if (document.activeElement === pole) { zapamietajPozycje(pole); } });
+    });
     pole.addEventListener("keydown", function (e) {
       var mod = e.ctrlKey || e.metaKey || e.altKey;
       if ((e.ctrlKey || e.metaKey) && e.key === "/") { e.preventDefault(); komentuj(pole); return; }
