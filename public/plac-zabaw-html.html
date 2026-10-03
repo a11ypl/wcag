@@ -65,6 +65,11 @@ body.kontrast .warstwa .kom { color: #a8a8a8; }  /* szary na czerni: ok. 9:1 */
 body.kontrast .naglowek-panelu { background: #000; color: #fff; border-bottom: 2px solid #fff; }
 body.kontrast .naglowek-panelu small { color: #fff; }
 body.kontrast .zwin { color: #fff; border-color: #fff; }
+/* plakietka trybu: przeglądanie / edycja (tekst, nie sam kolor) */
+.naglowek-panelu .tryb { font-weight: 600; padding: .1rem .5rem; border-radius: .3rem; border: 2px solid currentColor; }
+.panel.edycja .naglowek-panelu .tryb { background: #5F338A; color: #fff; border-color: #5F338A; }
+body.kontrast .panel.edycja .naglowek-panelu .tryb { background: #fff; color: #000; border-color: #fff; }
+.panel.edycja { box-shadow: 0 0 0 4px #FEDB16; }
 /* KOLORY SKŁADNI (na życzenie): bez pogrubień, żeby warstwa nie rozjechała się z polem */
 .warstwa .tag { color: #8a1c7c; }      /* znacznik: śliwkowy, ok. 7:1 na bieli */
 .warstwa .atr { color: #9a4d00; }      /* atrybut: brązowy, ok. 5,9:1 */
@@ -125,27 +130,25 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     </select>
     <button type="button" id="kontrast" aria-pressed="false">Tryb kontrastowy</button>
     <button type="button" id="skladnia" aria-pressed="false">Kolory składni</button>
-    <button type="button" id="tab-tryb" aria-pressed="true">Tab: wcięcie (Ctrl+M)</button>
     <button type="button" id="komentarz">Dodaj komentarz (Ctrl+/)</button>
     <button type="button" class="glowny" id="uruchom">Pokaż wynik (Ctrl+Enter)</button>
     <label class="przelacznik"><input type="checkbox" id="na-zywo" checked> Na żywo</label>
     <button type="button" id="nowa-karta">Otwórz w nowej karcie</button>
     <button type="button" id="pobierz">Pobierz .html</button>
   </div>
-  <p id="tab-opis" class="sr-only">Tab robi wcięcie. Wyjście z pola: Esc, potem Tab, albo Ctrl+M wyłącza wcięcia Tabem.</p>
-  <p class="skroty" id="skroty">Skróty: Ctrl+M Tab wcięcie/przejście · Esc, Tab wyjście z pola · Ctrl/Cmd+Z cofnij · Ctrl+Y albo Cmd+Shift+Z ponów · Enter nowa linia z wcięciem · Tab wcięcie · Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
+  <p class="skroty" id="skroty">Skróty: Enter/Spacja na polu kodu: edycja · Esc: koniec edycji · Ctrl/Cmd+Z cofnij · Ctrl+Y albo Cmd+Shift+Z ponów · Enter nowa linia z wcięciem · w edycji: Tab wcięcie, Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
   <p id="status" role="status" aria-live="polite"></p>
 </header>
 <main>
   <div class="edytory">
     <section class="panel" aria-labelledby="h-html">
-      <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument · Tab: wcięcie · Alt+1-4: panele</small></h2>
+      <h2 id="h-html"><label for="kod-html">HTML</label> <small class="tryb" id="tryb-html">Przeglądanie: Enter albo Spacja, żeby edytować</small></h2>
       <!-- Tab robi wcięcie. Panele: Alt+1-4. Awaryjne wyjście z pola: Esc, potem Tab (WCAG 2.1.2). -->
-      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" aria-describedby="tab-opis" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
+      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" aria-describedby="tryb-html" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
     <section class="panel" aria-labelledby="h-css">
-      <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; · Tab: wcięcie · Alt+1-4: panele</small></h2>
-      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" aria-describedby="tab-opis" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
+      <h2 id="h-css"><label for="kod-css">CSS</label> <small class="tryb" id="tryb-css">Przeglądanie: Enter albo Spacja, żeby edytować</small></h2>
+      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" aria-describedby="tryb-css" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
   </div>
   <div class="prawa">
@@ -283,24 +286,27 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   /* TAB = WCIĘCIE jak w edytorze kodu. Bez pułapki klawiatury (WCAG 2.1.2):
      Esc, a potem Tab wychodzi z pola. Shift+Tab cofa wcięcie. */
   var WCIECIE = "  ";
-  var wyjscie = false;
-  /* TRYB TABA: wcięcie (domyślnie) albo zwykłe przechodzenie fokusu. Ctrl+M jak w VS Code.
-     Razem z „Esc, potem Tab” to wyjście z pola bez pułapki klawiatury (WCAG 2.1.2). */
-  var tabWcina = true;
-  var przyciskTab = document.getElementById("tab-tryb");
-  function ustawTab(wl, cicho) {
-    tabWcina = wl;
-    przyciskTab.setAttribute("aria-pressed", wl ? "true" : "false");
-    przyciskTab.textContent = wl ? "Tab: wcięcie (Ctrl+M)" : "Tab: przejście (Ctrl+M)";
-    document.getElementById("tab-opis").textContent = wl
-      ? "Tab robi wcięcie. Wyjście z pola: Esc, potem Tab, albo Ctrl+M wyłącza wcięcia Tabem."
-      : "Tab przechodzi do kolejnego elementu. Ctrl+M włącza wcięcia Tabem.";
-    try { localStorage.setItem("plac-tab", wl ? "" : "przejscie"); } catch (e) {}
-    if (!cicho) { status.textContent = wl ? "Tab robi wcięcie. Wyjście z pola: Esc, potem Tab." : "Tab przechodzi do kolejnego elementu."; }
+  /* TRYB PRZEGLĄDANIA I EDYCJI (bez pułapki klawiatury, WCAG 2.1.2):
+     - wejście Tabem = przeglądanie: Tab i Shift+Tab chodzą po placu jak po stronie,
+     - Enter albo Spacja = edycja: Tab wcina, Shift+Tab cofa wcięcie, Enter wcina automatycznie,
+     - Escape = koniec edycji, fokus zostaje na polu, kolejny Tab idzie dalej,
+     - kliknięcie myszą albo zaczęcie pisania od razu włącza edycję. */
+  var zMyszy = false;
+  function opisTrybu(pole) { return document.getElementById(pole === html ? "tryb-html" : "tryb-css"); }
+  function ustawEdycje(pole, wl, cicho) {
+    pole.dataset.edycja = wl ? "tak" : "";
+    pole.closest(".panel").classList.toggle("edycja", wl);
+    var nazwa = pole === html ? "HTML" : "CSS";
+    opisTrybu(pole).textContent = wl
+      ? "Edycja: Tab wcina, Esc kończy edycję"
+      : "Przeglądanie: Enter albo Spacja, żeby edytować";
+    if (!cicho) {
+      status.textContent = wl
+        ? "Edycja kodu " + nazwa + ". Tab robi wcięcie, Escape kończy edycję."
+        : "Koniec edycji. Tab przechodzi dalej.";
+    }
   }
-  function przelaczTab() { ustawTab(!tabWcina); }
-  przyciskTab.addEventListener("click", przelaczTab);
-  try { if (localStorage.getItem("plac-tab") === "przejscie") { ustawTab(false, true); } } catch (e) {}
+  function wEdycji(pole) { return pole.dataset.edycja === "tak"; }
 
   function wcinaj(pole, cofnij) {
     var v = pole.value, a = pole.selectionStart, b = pole.selectionEnd;
@@ -388,30 +394,30 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   }
 
   [html, css].forEach(function (pole) {
+    ustawEdycje(pole, false, true);
+    pole.addEventListener("mousedown", function () { zMyszy = true; });
+    pole.addEventListener("focus", function () { ustawEdycje(pole, zMyszy, !zMyszy); zMyszy = false; });
+    pole.addEventListener("blur", function () { ustawEdycje(pole, false, true); });
     pole.addEventListener("keydown", function (e) {
+      var mod = e.ctrlKey || e.metaKey || e.altKey;
       if ((e.ctrlKey || e.metaKey) && e.key === "/") { e.preventDefault(); komentuj(pole); return; }
       if (e.ctrlKey && !e.metaKey && (e.key === "y" || e.key === "Y")) {
         // Ctrl+Y = ponów (na Macu przeglądarka sama tego nie robi)
         e.preventDefault(); try { document.execCommand("redo", false); } catch (er) {} return;
       }
-      if (e.key === "Enter" && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && !e.isComposing) {
-        e.preventDefault(); wyjscie = false; enter(pole); return;
+      if (!wEdycji(pole)) {
+        // PRZEGLĄDANIE: Tab idzie dalej; Enter/Spacja włączają edycję; pisanie też
+        if (e.key === "Tab") { return; }
+        if ((e.key === "Enter" || e.key === " ") && !mod && !e.shiftKey) { e.preventDefault(); ustawEdycje(pole, true); return; }
+        if (e.key.length === 1 && !mod) { ustawEdycje(pole, true); }
+        else { return; }
       }
-      if ((e.key === "/" || e.key === "}") && !e.ctrlKey && !e.metaKey && !e.altKey && cofnijPrzyZamknieciu(pole, e.key)) {
-        e.preventDefault(); wyjscie = false; return;
-      }
-      if (e.ctrlKey && !e.metaKey && !e.altKey && (e.key === "m" || e.key === "M")) { e.preventDefault(); przelaczTab(); return; }
-      if (e.key === "Escape") { wyjscie = true; status.textContent = "Teraz Tab albo Shift+Tab przeniesie fokus poza pole."; return; }
-      if (/^(Shift|Control|Alt|Meta|CapsLock)$/.test(e.key)) { return; }  // same modyfikatory nie kasują wyjścia
-      if (e.key === "Tab" && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        if (wyjscie || !tabWcina) { wyjscie = false; return; }  // zwykłe przejście fokusu (w obie strony)
-        e.preventDefault();
-        wcinaj(pole, e.shiftKey);
-        return;
-      }
-      wyjscie = false;
+      // EDYCJA
+      if (e.key === "Escape") { e.preventDefault(); ustawEdycje(pole, false); return; }
+      if (e.key === "Enter" && !mod && !e.shiftKey && !e.isComposing) { e.preventDefault(); enter(pole); return; }
+      if ((e.key === "/" || e.key === "}") && !mod && cofnijPrzyZamknieciu(pole, e.key)) { e.preventDefault(); return; }
+      if (e.key === "Tab" && !mod) { e.preventDefault(); wcinaj(pole, e.shiftKey); return; }
     });
-    pole.addEventListener("blur", function () { wyjscie = false; });
   });
 
   html.addEventListener("input", zmiana);
@@ -613,6 +619,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     var kon = html.value.indexOf(">", pocz); kon = kon < 0 ? pocz : kon + 1;
     var linia = html.value.slice(0, pocz).split("\n").length;
     html.focus();
+    ustawEdycje(html, true, true);  // od razu można poprawiać
     html.setSelectionRange(pocz, kon);
     var wys = parseFloat(getComputedStyle(html).lineHeight) || 24;
     html.scrollTop = Math.max(0, (linia - 4) * wys);
