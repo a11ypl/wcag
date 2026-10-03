@@ -42,8 +42,34 @@ main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1
   display: flex; justify-content: space-between; align-items: center; }
 .naglowek-panelu h2 { margin: 0; font-size: 1rem; }
 .naglowek-panelu small { font-weight: 400; color: #333; }
-textarea { flex: 1; min-height: 8rem; width: 100%; border: 0; resize: none; padding: .7rem .8rem;
-  font: 1rem/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #1b1b1b; background: #fff; tab-size: 2; }
+
+/* EDYTOR Z PODŚWIETLENIEM: przezroczyste pole tekstowe nad warstwą <pre> z kolorami.
+   Pole zostaje prawdziwym <textarea> (czytnik, zaznaczanie, kopiowanie działają normalnie). */
+.edytor { position: relative; flex: 1; min-height: 8rem; overflow: hidden; background: #fff; }
+.edytor textarea, .edytor .warstwa {
+  position: absolute; inset: 0; margin: 0; border: 0; width: 100%; height: 100%;
+  padding: .7rem .8rem; font: 1rem/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  white-space: pre-wrap; overflow-wrap: break-word; word-break: normal; tab-size: 2;
+  overflow-y: auto; scrollbar-gutter: stable;
+}
+.edytor .warstwa { color: #1b1b1b; pointer-events: none; overflow: hidden; }
+.edytor textarea { color: transparent; background: transparent; caret-color: #000; z-index: 1; resize: none; }
+.edytor textarea::selection { background: rgba(95, 51, 138, .35); color: transparent; }
+.warstwa .kom { background: #ffe94d; color: #3a2a00; border-radius: 2px; }
+/* TRYB KONTRASTOWY: biały kod na czarnym, komentarze żółte (ok. 19:1 i 15:1) */
+body.kontrast .edytor { background: #000; }
+body.kontrast .edytor .warstwa { color: #fff; }
+body.kontrast .edytor textarea { caret-color: #fff; }
+body.kontrast .edytor textarea::selection { background: rgba(255, 255, 255, .35); }
+body.kontrast .warstwa .kom { background: none; color: #ffdd00; }
+body.kontrast .naglowek-panelu { background: #000; color: #fff; border-bottom: 2px solid #fff; }
+body.kontrast .naglowek-panelu small { color: #fff; }
+body.kontrast .zwin { color: #fff; border-color: #fff; }
+/* Wymuszone kolory systemu (np. wysoki kontrast w Windows): bez warstwy, zwykłe pole. */
+@media (forced-colors: active) {
+  .edytor .warstwa { display: none; }
+  .edytor textarea { color: CanvasText; background: Canvas; }
+}
 iframe { flex: 1; width: 100%; border: 0; background: #fff; }
 #status { color: #fff; font-size: .95rem; margin: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
@@ -81,6 +107,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
       <option value="bledy">Przykład: strona z błędami (do poprawy)</option>
       <option value="pusta">Przykład: pusta strona</option>
     </select>
+    <button type="button" id="kontrast" aria-pressed="false">Tryb kontrastowy</button>
     <button type="button" id="komentarz">Dodaj komentarz (Ctrl+/)</button>
     <button type="button" class="glowny" id="uruchom">Pokaż wynik (Ctrl+Enter)</button>
     <label class="przelacznik"><input type="checkbox" id="na-zywo" checked> Na żywo</label>
@@ -94,11 +121,11 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     <section class="panel" aria-labelledby="h-html">
       <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument: &lt;head&gt; i &lt;body&gt;</small></h2>
       <!-- Tab przenosi fokus dalej (bez pułapki klawiatury). Wcięcia: spacje. -->
-      <textarea id="kod-html" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
     <section class="panel" aria-labelledby="h-css">
       <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; jako &lt;style&gt;</small></h2>
-      <textarea id="kod-css" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
   </div>
   <div class="prawa">
@@ -141,6 +168,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
       "<title>Moja strona</title>\n" + styl + "</head>\n<body>\n" + v + "\n</body>\n</html>\n";
   }
   function pokaz() {
+    if (typeof podswietlKod === "function") { podswietlKod(html); podswietlKod(css); }
     podglad.srcdoc = dokument();
     try { localStorage.setItem("plac-html", html.value); localStorage.setItem("plac-css", css.value); } catch (e) {}
   }
@@ -179,6 +207,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     pole.focus();
     pole.setRangeText(wstaw, a, b, "end");
     pole.setSelectionRange(zaznA, zaznB);
+    podswietlKod(pole);
     zmiana();
   }
   document.getElementById("komentarz").addEventListener("click", function () { komentuj(ostatniEdytor); });
@@ -484,6 +513,39 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     panel.insertBefore(pasek, h2); pasek.appendChild(h2); pasek.appendChild(prawaStrona);
     try { if (localStorage.getItem("plac-zwiniety-" + i)) { b.click(); } } catch (e) {}
   });
+
+
+  /* PODŚWIETLANIE KOMENTARZY: <!-- --> w HTML, /* *\/ w CSS. */
+  function ucieczka(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function podswietlKod(pole) {
+    var warstwa = pole.previousElementSibling;
+    var rx = pole === html ? /<!--[\s\S]*?(?:-->|$)/g : /\/\*[\s\S]*?(?:\*\/|$)/g;
+    var v = pole.value, wynik = "", ost = 0, m;
+    while ((m = rx.exec(v)) !== null) {
+      wynik += ucieczka(v.slice(ost, m.index)) + '<span class="kom">' + ucieczka(m[0]) + "</span>";
+      ost = m.index + m[0].length;
+      if (m[0].length === 0) { rx.lastIndex++; }
+    }
+    // Spacja na końcu: ostatnia pusta linia też ma wysokość, warstwa nie rozjeżdża się z polem.
+    warstwa.innerHTML = wynik + ucieczka(v.slice(ost)) + " ";
+    warstwa.scrollTop = pole.scrollTop;
+  }
+  [html, css].forEach(function (pole) {
+    pole.addEventListener("input", function () { podswietlKod(pole); });
+    pole.addEventListener("scroll", function () { pole.previousElementSibling.scrollTop = pole.scrollTop; });
+  });
+  var przyciskKontrast = document.getElementById("kontrast");
+  function ustawKontrast(wl) {
+    document.body.classList.toggle("kontrast", wl);
+    przyciskKontrast.setAttribute("aria-pressed", wl ? "true" : "false");
+    try { localStorage.setItem("plac-kontrast", wl ? "1" : ""); } catch (e) {}
+  }
+  przyciskKontrast.addEventListener("click", function () {
+    var wl = !document.body.classList.contains("kontrast");
+    ustawKontrast(wl);
+    status.textContent = wl ? "Tryb kontrastowy włączony: biały kod na czarnym tle." : "Tryb kontrastowy wyłączony.";
+  });
+  try { if (localStorage.getItem("plac-kontrast")) { ustawKontrast(true); } } catch (e) {}
 
   var zapisanyHtml = null, zapisanyCss = null;
   try { zapisanyHtml = localStorage.getItem("plac-html"); zapisanyCss = localStorage.getItem("plac-css"); } catch (e) {}
