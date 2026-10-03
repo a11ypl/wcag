@@ -65,12 +65,23 @@ body.kontrast .warstwa .kom { color: #a8a8a8; }  /* szary na czerni: ok. 9:1 */
 body.kontrast .naglowek-panelu { background: #000; color: #fff; border-bottom: 2px solid #fff; }
 body.kontrast .naglowek-panelu small { color: #fff; }
 body.kontrast .zwin { color: #fff; border-color: #fff; }
+/* KOLORY SKŁADNI (na życzenie): bez pogrubień, żeby warstwa nie rozjechała się z polem */
+.warstwa .tag { color: #8a1c7c; }      /* znacznik: śliwkowy, ok. 7:1 na bieli */
+.warstwa .atr { color: #9a4d00; }      /* atrybut: brązowy, ok. 5,9:1 */
+.warstwa .wart { color: #1a6b2f; }     /* wartość: zielony, ok. 6,4:1 */
+.warstwa .sel { color: #8a1c7c; }      /* selektor CSS */
+.warstwa .wlas { color: #0b4f8a; }     /* właściwość CSS: niebieski, ok. 7,6:1 */
+body.kontrast .warstwa .tag, body.kontrast .warstwa .sel { color: #ff9ee8; }
+body.kontrast .warstwa .atr { color: #ffc266; }
+body.kontrast .warstwa .wart { color: #8ff0a4; }
+body.kontrast .warstwa .wlas { color: #8cc8ff; }
 /* Wymuszone kolory systemu (np. wysoki kontrast w Windows): bez warstwy, zwykłe pole. */
 @media (forced-colors: active) {
   .edytor .warstwa { display: none; }
   .edytor textarea { color: CanvasText; background: Canvas; }
 }
 iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+.skroty { flex-basis: 100%; margin: 0; color: #fff; font-size: .85rem; opacity: .95; }
 #status { color: #fff; font-size: .95rem; margin: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 .analiza-pasek { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; padding: .5rem .8rem; border-bottom: 1px solid #ddd; }
@@ -108,29 +119,31 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
       <option value="pusta">Przykład: pusta strona</option>
     </select>
     <button type="button" id="kontrast" aria-pressed="false">Tryb kontrastowy</button>
+    <button type="button" id="skladnia" aria-pressed="false">Kolory składni</button>
     <button type="button" id="komentarz">Dodaj komentarz (Ctrl+/)</button>
     <button type="button" class="glowny" id="uruchom">Pokaż wynik (Ctrl+Enter)</button>
     <label class="przelacznik"><input type="checkbox" id="na-zywo" checked> Na żywo</label>
     <button type="button" id="nowa-karta">Otwórz w nowej karcie</button>
     <button type="button" id="pobierz">Pobierz .html</button>
   </div>
+  <p class="skroty">Skróty: Enter nowa linia z wcięciem · Tab wcięcie · Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Esc, Tab wyjście z pola · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
   <p id="status" role="status" aria-live="polite"></p>
 </header>
 <main>
   <div class="edytory">
     <section class="panel" aria-labelledby="h-html">
-      <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument · Tab: wcięcie · Esc, Tab: wyjście z pola</small></h2>
-      <!-- Tab robi wcięcie; Esc, potem Tab wychodzi z pola (bez pułapki klawiatury). -->
+      <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument · Tab: wcięcie · Alt+1-4: panele</small></h2>
+      <!-- Tab robi wcięcie. Panele: Alt+1-4. Awaryjne wyjście z pola: Esc, potem Tab (WCAG 2.1.2). -->
       <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
     <section class="panel" aria-labelledby="h-css">
-      <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; · Tab: wcięcie · Esc, Tab: wyjście</small></h2>
+      <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; · Tab: wcięcie · Alt+1-4: panele</small></h2>
       <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
   </div>
   <div class="prawa">
     <section class="panel" aria-labelledby="podglad-naglowek">
-      <h2 id="podglad-naglowek" tabindex="-1">Podgląd <small>tak to widzi przeglądarka</small></h2>
+      <h2 id="podglad-naglowek" tabindex="-1">Podgląd <small>tak to widzi przeglądarka · Alt+3</small></h2>
       <iframe id="podglad" title="Podgląd strony z edytora"></iframe>
     </section>
     <section class="panel" aria-labelledby="h-analiza">
@@ -178,7 +191,14 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     html.value = p.html; css.value = p.css; pokaz();
     status.textContent = "Wczytano: " + wybor.options[wybor.selectedIndex].text + ".";
   }
+  /* Kod kursanta zapisujemy przy każdej zmianie (także przy wyłączonym „Na żywo”)
+     i przy zamykaniu karty, pod tymi samymi kluczami co od pierwszej wersji placu. */
+  function zapisz() {
+    try { localStorage.setItem("plac-html", html.value); localStorage.setItem("plac-css", css.value); } catch (e) {}
+  }
+  window.addEventListener("pagehide", zapisz);
   function zmiana() {
+    zapisz();
     if (!naZywo.checked) { return; }
     clearTimeout(zegar); zegar = setTimeout(pokaz, 400);
   }
@@ -239,9 +259,76 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     podswietlKod(pole);
     zmiana();
   }
+  /* PRZESKAKIWANIE MIĘDZY PANELAMI: Alt+1 HTML, Alt+2 CSS, Alt+3 podgląd, Alt+4 analiza.
+     e.code, bo na Macu Option+cyfra wpisuje znak (¡, ™), a nie cyfrę. */
+  var CELE = { Digit1: function () { return html; }, Digit2: function () { return css; },
+    Digit3: function () { return document.getElementById("podglad-naglowek"); },
+    Digit4: function () { return document.getElementById("h-analiza"); } };
+  document.addEventListener("keydown", function (e) {
+    if (!e.altKey || e.ctrlKey || e.metaKey || !CELE[e.code]) { return; }
+    e.preventDefault();
+    var cel = CELE[e.code]();
+    var panel = cel.closest(".panel");
+    if (panel && panel.classList.contains("zwiniety")) { panel.querySelector(".zwin").click(); }
+    if (!cel.hasAttribute("tabindex") && cel.tagName !== "TEXTAREA") { cel.setAttribute("tabindex", "-1"); }
+    cel.focus();
+    status.textContent = { Digit1: "Panel HTML.", Digit2: "Panel CSS.", Digit3: "Podgląd.", Digit4: "Analiza dostępności." }[e.code];
+  });
+
+  /* AUTOMATYCZNE WCIĘCIA (jak w CodePenie): Enter zachowuje wcięcie, po znaczniku
+     otwierającym albo { dodaje poziom, między <li>|</li> rozdziela na trzy linie,
+     a „</” albo „}” na pustej linii cofa poziom. */
+  var PUSTE = /^(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr|!doctype)$/i;
+  function otwierajacy(linia) {
+    // ostatni znacznik w linii jest otwarty i nie został w niej zamknięty
+    var m = linia.match(/<([A-Za-z][\w-]*)(?:\s[^<>]*)?>\s*$/);
+    if (!m || PUSTE.test(m[1]) || /\/>\s*$/.test(linia)) { return false; }
+    return linia.lastIndexOf("</" + m[1]) < linia.lastIndexOf("<" + m[1]);
+  }
+  function enter(pole) {
+    var v = pole.value, a = pole.selectionStart, b = pole.selectionEnd;
+    var pocz = v.lastIndexOf("\n", a - 1) + 1;
+    var linia = v.slice(pocz, a);
+    var wciecie = linia.match(/^[ \t]*/)[0];
+    var dalej = v.slice(b);
+    var glebiej = pole === html ? otwierajacy(linia) : /\{\s*$/.test(linia);
+    var zamykaPo = pole === html ? /^\s*<\//.test(dalej) : /^\s*\}/.test(dalej);
+    var wstaw;
+    if (glebiej && zamykaPo) {
+      wstaw = "\n" + wciecie + WCIECIE + "\n" + wciecie;
+      pole.setRangeText(wstaw, a, b, "start");
+      var kursor = a + 1 + wciecie.length + WCIECIE.length;
+      pole.setSelectionRange(kursor, kursor);
+    } else {
+      wstaw = "\n" + wciecie + (glebiej ? WCIECIE : "");
+      pole.setRangeText(wstaw, a, b, "end");
+    }
+    podswietlKod(pole); zmiana();
+  }
+  function cofnijPrzyZamknieciu(pole, znak) {
+    // „</” albo „}” wpisane na linii z samymi spacjami: jeden poziom mniej
+    var v = pole.value, a = pole.selectionStart;
+    var pocz = v.lastIndexOf("\n", a - 1) + 1;
+    var przed = v.slice(pocz, a);
+    var html_ = pole === html && znak === "/" && /^[ \t]*<$/.test(przed);
+    var css_ = pole === css && znak === "}" && /^[ \t]*$/.test(przed);
+    if (!(html_ || css_)) { return false; }
+    var wc = przed.match(/^[ \t]*/)[0];
+    if (wc.length < WCIECIE.length) { return false; }
+    pole.setRangeText(wc.slice(WCIECIE.length) + przed.slice(wc.length) + znak, pocz, a, "end");
+    podswietlKod(pole); zmiana();
+    return true;
+  }
+
   [html, css].forEach(function (pole) {
     pole.addEventListener("keydown", function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key === "/") { e.preventDefault(); komentuj(pole); return; }
+      if (e.key === "Enter" && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && !e.isComposing) {
+        e.preventDefault(); wyjscie = false; enter(pole); return;
+      }
+      if ((e.key === "/" || e.key === "}") && !e.ctrlKey && !e.metaKey && !e.altKey && cofnijPrzyZamknieciu(pole, e.key)) {
+        e.preventDefault(); wyjscie = false; return;
+      }
       if (e.key === "Escape") { wyjscie = true; status.textContent = "Teraz Tab przeniesie fokus poza pole."; return; }
       if (e.key === "Tab" && !e.ctrlKey && !e.metaKey && !e.altKey) {
         if (wyjscie) { wyjscie = false; return; }  // zwykłe przejście fokusu
@@ -255,7 +342,9 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   });
 
   html.addEventListener("input", zmiana);
+  html.addEventListener("input", zapisz);
   css.addEventListener("input", zmiana);
+  css.addEventListener("input", zapisz);
   document.getElementById("uruchom").addEventListener("click", function () { pokaz(); status.textContent = "Podgląd odświeżony."; });
   wybor.addEventListener("change", function () { wczytaj(wybor.value); });
   document.addEventListener("keydown", function (e) {
@@ -554,8 +643,56 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
 
   /* PODŚWIETLANIE KOMENTARZY: <!-- --> w HTML, /* *\/ w CSS. */
   function ucieczka(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  var skladnia = false;
+  function sp(klasa, tekst) { return tekst ? '<span class="' + klasa + '">' + ucieczka(tekst) + "</span>" : ""; }
+  function kolorujHtml(v) {
+    var wynik = "", i = 0, rx = /<!--[\s\S]*?(?:-->|$)|<\/?[A-Za-z!][^\s>\/]*|>|\/>/g, m, wTagu = false, ost = 0;
+    // prosty skaner: komentarze, nazwy znaczników, a w środku znacznika atrybuty i wartości
+    while ((m = rx.exec(v)) !== null) {
+      var przed = v.slice(ost, m.index);
+      wynik += wTagu ? kolorujAtrybuty(przed) : ucieczka(przed);
+      if (m[0].indexOf("<!--") === 0) { wynik += sp("kom", m[0]); wTagu = false; }
+      else if (m[0] === ">" || m[0] === "/>") { wynik += wTagu ? sp("tag", m[0]) : ucieczka(m[0]); wTagu = false; }
+      else { wynik += sp("tag", m[0]); wTagu = true; }
+      ost = m.index + m[0].length;
+    }
+    var reszta = v.slice(ost);
+    return wynik + (wTagu ? kolorujAtrybuty(reszta) : ucieczka(reszta));
+  }
+  function kolorujAtrybuty(s) {
+    return s.replace(/([^\s=]+)(\s*=\s*)?("[^"]*"?|'[^']*'?|[^\s"'>]+)?|(\s+)/g, function (cale, nazwa, rowna, wart, biale) {
+      if (biale) { return biale; }
+      if (!rowna) { return sp("atr", nazwa); }
+      return sp("atr", nazwa) + ucieczka(rowna) + sp("wart", wart || "");
+    });
+  }
+  function kolorujCss(v) {
+    var wynik = "", gl = 0, bufor = "", wWart = false;
+    function wylej(klasa) { wynik += klasa ? sp(klasa, bufor) : ucieczka(bufor); bufor = ""; }
+    for (var i = 0; i < v.length; i++) {
+      if (v.substr(i, 2) === "/*") {
+        wylej(gl ? (wWart ? "wart" : "wlas") : "sel");
+        var k = v.indexOf("*/", i + 2); k = k < 0 ? v.length : k + 2;
+        wynik += sp("kom", v.slice(i, k)); i = k - 1; continue;
+      }
+      var c = v.charAt(i);
+      if (c === "{") { wylej("sel"); gl++; wynik += ucieczka(c); wWart = false; continue; }
+      if (c === "}") { wylej(wWart ? "wart" : "wlas"); gl = Math.max(0, gl - 1); wynik += ucieczka(c); wWart = false; continue; }
+      if (gl && c === ":" && !wWart) { wylej("wlas"); wynik += ":"; wWart = true; continue; }
+      if (gl && c === ";") { wylej(wWart ? "wart" : "wlas"); wynik += ";"; wWart = false; continue; }
+      if (c === "\n" && !bufor.trim()) { wynik += ucieczka(bufor + c); bufor = ""; continue; }
+      bufor += c;
+    }
+    wylej(gl ? (wWart ? "wart" : "wlas") : "sel");
+    return wynik;
+  }
   function podswietlKod(pole) {
     var warstwa = pole.previousElementSibling;
+    if (skladnia) {
+      warstwa.innerHTML = (pole === html ? kolorujHtml(pole.value) : kolorujCss(pole.value)) + " ";
+      warstwa.scrollTop = pole.scrollTop;
+      return;
+    }
     var rx = pole === html ? /<!--[\s\S]*?(?:-->|$)/g : /\/\*[\s\S]*?(?:\*\/|$)/g;
     var v = pole.value, wynik = "", ost = 0, m;
     while ((m = rx.exec(v)) !== null) {
@@ -583,6 +720,18 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     status.textContent = wl ? "Tryb kontrastowy włączony: biały kod na czarnym tle." : "Tryb kontrastowy wyłączony.";
   });
   try { if (localStorage.getItem("plac-kontrast")) { ustawKontrast(true); } } catch (e) {}
+  var przyciskSkladnia = document.getElementById("skladnia");
+  function ustawSkladnie(wl) {
+    skladnia = wl;
+    przyciskSkladnia.setAttribute("aria-pressed", wl ? "true" : "false");
+    podswietlKod(html); podswietlKod(css);
+    try { localStorage.setItem("plac-skladnia", wl ? "1" : ""); } catch (e) {}
+  }
+  przyciskSkladnia.addEventListener("click", function () {
+    ustawSkladnie(!skladnia);
+    status.textContent = skladnia ? "Kolory składni włączone: znaczniki, atrybuty i wartości w kolorach." : "Kolory składni wyłączone.";
+  });
+  try { if (localStorage.getItem("plac-skladnia")) { ustawSkladnie(true); } } catch (e) {}
 
   var zapisanyHtml = null, zapisanyCss = null;
   try { zapisanyHtml = localStorage.getItem("plac-html"); zapisanyCss = localStorage.getItem("plac-css"); } catch (e) {}
