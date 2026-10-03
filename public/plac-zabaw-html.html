@@ -119,12 +119,12 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
 <main>
   <div class="edytory">
     <section class="panel" aria-labelledby="h-html">
-      <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument: &lt;head&gt; i &lt;body&gt;</small></h2>
-      <!-- Tab przenosi fokus dalej (bez pułapki klawiatury). Wcięcia: spacje. -->
+      <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument · Tab: wcięcie · Esc, Tab: wyjście z pola</small></h2>
+      <!-- Tab robi wcięcie; Esc, potem Tab wychodzi z pola (bez pułapki klawiatury). -->
       <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
     <section class="panel" aria-labelledby="h-css">
-      <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; jako &lt;style&gt;</small></h2>
+      <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; · Tab: wcięcie · Esc, Tab: wyjście</small></h2>
       <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
   </div>
@@ -211,10 +211,47 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     zmiana();
   }
   document.getElementById("komentarz").addEventListener("click", function () { komentuj(ostatniEdytor); });
+  /* TAB = WCIĘCIE jak w edytorze kodu. Bez pułapki klawiatury (WCAG 2.1.2):
+     Esc, a potem Tab wychodzi z pola. Shift+Tab cofa wcięcie. */
+  var WCIECIE = "  ";
+  var wyjscie = false;
+  function wcinaj(pole, cofnij) {
+    var v = pole.value, a = pole.selectionStart, b = pole.selectionEnd;
+    var pocz = v.lastIndexOf("\n", a - 1) + 1;
+    if (!cofnij && a === b) {
+      pole.setRangeText(WCIECIE, a, b, "end");
+    } else {
+      var kon = b > a && v.charAt(b - 1) === "\n" ? b - 1 : b;
+      var linie = v.slice(pocz, kon).split("\n");
+      var zmienione = linie.map(function (l) {
+        if (!cofnij) { return WCIECIE + l; }
+        return l.indexOf(WCIECIE) === 0 ? l.slice(WCIECIE.length) : l.replace(/^ /, "");
+      });
+      var nowy = zmienione.join("\n");
+      pole.setRangeText(nowy, pocz, kon, "preserve");
+      if (a === b) {
+        var roznica = zmienione[0].length - linie[0].length;
+        pole.setSelectionRange(Math.max(pocz, a + roznica), Math.max(pocz, a + roznica));
+      } else {
+        pole.setSelectionRange(pocz, pocz + nowy.length);
+      }
+    }
+    podswietlKod(pole);
+    zmiana();
+  }
   [html, css].forEach(function (pole) {
     pole.addEventListener("keydown", function (e) {
-      if ((e.ctrlKey || e.metaKey) && e.key === "/") { e.preventDefault(); komentuj(pole); }
+      if ((e.ctrlKey || e.metaKey) && e.key === "/") { e.preventDefault(); komentuj(pole); return; }
+      if (e.key === "Escape") { wyjscie = true; status.textContent = "Teraz Tab przeniesie fokus poza pole."; return; }
+      if (e.key === "Tab" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        if (wyjscie) { wyjscie = false; return; }  // zwykłe przejście fokusu
+        e.preventDefault();
+        wcinaj(pole, e.shiftKey);
+        return;
+      }
+      wyjscie = false;
     });
+    pole.addEventListener("blur", function () { wyjscie = false; });
   });
 
   html.addEventListener("input", zmiana);
