@@ -81,6 +81,10 @@ body.kontrast .warstwa .wlas { color: #8cc8ff; }
   .edytor textarea { color: CanvasText; background: Canvas; }
 }
 iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+/* ZWIJANA WSTĄŻKA: po zwinięciu zostaje „Pokaż narzędzia” i „Pokaż wynik”, skróty działają dalej */
+button.wstazka { border-style: dashed; }
+header.zwinieta .przyciski > :not(#uruchom) { display: none; }
+header.zwinieta .skroty { display: none; }
 .skroty { flex-basis: 100%; margin: 0; color: #fff; font-size: .85rem; opacity: .95; }
 #status { color: #fff; font-size: .95rem; margin: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
@@ -111,7 +115,8 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
 <a class="skiplink" href="#podglad-naglowek">Przejdź do podglądu</a>
 <header>
   <h1>Plac zabaw <span>HTML</span></h1>
-  <div class="przyciski">
+  <button type="button" id="wstazka" class="wstazka" aria-expanded="true" aria-controls="narzedzia skroty">Zwiń narzędzia</button>
+  <div class="przyciski" id="narzedzia">
     <label for="przyklad" class="sr-only">Wybierz przykład</label>
     <select id="przyklad">
       <option value="zespol">Przykład: strona z zespołem</option>
@@ -126,7 +131,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     <button type="button" id="nowa-karta">Otwórz w nowej karcie</button>
     <button type="button" id="pobierz">Pobierz .html</button>
   </div>
-  <p class="skroty">Skróty: Enter nowa linia z wcięciem · Tab wcięcie · Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Esc, Tab wyjście z pola · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
+  <p class="skroty" id="skroty">Skróty: Ctrl/Cmd+Z cofnij · Ctrl+Y albo Cmd+Shift+Z ponów · Enter nowa linia z wcięciem · Tab wcięcie · Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Esc, Tab wyjście z pola · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
   <p id="status" role="status" aria-live="polite"></p>
 </header>
 <main>
@@ -171,9 +176,38 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   /* HTML w edytorze to cały dokument (doctype, <html lang>, <head>, <body>).
      CSS z panelu obok wstawiamy na koniec <head>. Gdy ktoś wklei sam fragment
      bez <head>, owijamy go minimalnym szkieletem, żeby podgląd i tak działał. */
-  function dokument() {
-    var styl = "<style>\n" + css.value + "\n</style>\n";
-    var v = html.value;
+  /* POZYCJE W ŹRÓDLE: w podglądzie każdy znacznik otwierający dostaje data-plac-poz
+     z pozycją w kodzie z edytora. Dzięki temu błąd z analizy wskazuje linię w kodzie.
+     Pobieranie i „Otwórz w nowej karcie” dostają czysty kod, bez tych atrybutów. */
+  function znacznikiPozycji(src) {
+    var wynik = "", i = 0, n = src.length;
+    while (i < n) {
+      var lt = src.indexOf("<", i);
+      if (lt < 0) { wynik += src.slice(i); break; }
+      wynik += src.slice(i, lt);
+      if (src.substr(lt, 4) === "<!--") {
+        var kon = src.indexOf("-->", lt + 4); kon = kon < 0 ? n : kon + 3;
+        wynik += src.slice(lt, kon); i = kon; continue;
+      }
+      var m = /^<([A-Za-z][\w-]*)/.exec(src.slice(lt, lt + 40));
+      if (!m) { wynik += "<"; i = lt + 1; continue; }
+      var nazwa = m[1].toLowerCase(), po = lt + m[0].length;
+      wynik += src.slice(lt, po) + ' data-plac-poz="' + lt + '"';
+      i = po;
+      if (nazwa === "script" || nazwa === "style" || nazwa === "textarea" || nazwa === "title") {
+        // treść surowa: nie szukamy w niej znaczników
+        var zam = src.toLowerCase().indexOf("</" + nazwa, po);
+        zam = zam < 0 ? n : zam;
+        wynik += src.slice(po, zam); i = zam;
+      }
+    }
+    return wynik;
+  }
+  function dokument(dlaPodgladu) {
+    // W ramce podglądu: <base href="about:srcdoc">, żeby href="#main" przewijał podgląd,
+    // a nie ładował w ramce całego placu (adres bazowy srcdoc to adres placu).
+    var styl = (dlaPodgladu ? '<base href="about:srcdoc">\n' : "") + "<style>\n" + css.value + "\n</style>\n";
+    var v = dlaPodgladu ? znacznikiPozycji(html.value) : html.value;
     if (/<\/head>/i.test(v)) { return v.replace(/<\/head>/i, styl + "</head>"); }
     if (/<body[\s>]/i.test(v)) { return v.replace(/<body/i, "<head>\n" + styl + "</head>\n<body"); }
     return "<!DOCTYPE html>\n<html lang=\"pl\">\n<head>\n<meta charset=\"UTF-8\">\n" +
@@ -182,7 +216,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   }
   function pokaz() {
     if (typeof podswietlKod === "function") { podswietlKod(html); podswietlKod(css); }
-    podglad.srcdoc = dokument();
+    podglad.srcdoc = dokument(true);
     try { localStorage.setItem("plac-html", html.value); localStorage.setItem("plac-css", css.value); } catch (e) {}
   }
   function wczytaj(nazwa) {
@@ -208,24 +242,37 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   var ostatniEdytor = html;
   html.addEventListener("focus", function () { ostatniEdytor = html; });
   css.addEventListener("focus", function () { ostatniEdytor = css; });
+  /* WSTAWIANIE PRZEZ HISTORIĘ COFANIA: execCommand("insertText") trafia do natywnego
+     stosu cofania przeglądarki, więc Ctrl+Z / Cmd+Z i Ctrl+Y / Cmd+Shift+Z cofają
+     też nasze wcięcia, Enter i komentarze. setRangeText tylko jako zapas. */
+  function wstaw(pole, txt, a, b) {
+    pole.focus();
+    pole.setSelectionRange(a, b);
+    var ok = false;
+    try { ok = txt !== "" && document.execCommand("insertText", false, txt); } catch (e) {}
+    if (!ok) {
+      if (txt === "") { try { ok = document.execCommand("delete", false); } catch (e) {} }
+      if (!ok) { pole.setRangeText(txt, a, b, "end"); }
+    }
+  }
   function komentuj(pole) {
     var jestHtml = pole === html;
     var otw = jestHtml ? "<!-- " : "/* ", zam = jestHtml ? " -->" : " */";
     var a = pole.selectionStart, b = pole.selectionEnd, v = pole.value;
-    var zazn = v.slice(a, b), wstaw, zaznA, zaznB;
+    var zazn = v.slice(a, b), tekstW, zaznA, zaznB;
     var rx = jestHtml ? /^\s*<!--\s?([\s\S]*?)\s?-->\s*$/ : /^\s*\/\*\s?([\s\S]*?)\s?\*\/\s*$/;
     if (zazn && rx.test(zazn)) {
-      wstaw = zazn.replace(rx, "$1"); zaznA = a; zaznB = a + wstaw.length;
+      tekstW = zazn.replace(rx, "$1"); zaznA = a; zaznB = a + tekstW.length;
       status.textContent = "Usunięto komentarz.";
     } else if (zazn) {
-      wstaw = otw + zazn + zam; zaznA = a; zaznB = a + wstaw.length;
+      tekstW = otw + zazn + zam; zaznA = a; zaznB = a + tekstW.length;
       status.textContent = "Zaznaczony fragment jest teraz komentarzem: przeglądarka go nie pokaże.";
     } else {
-      wstaw = otw + "komentarz" + zam; zaznA = a + otw.length; zaznB = zaznA + "komentarz".length;
+      tekstW = otw + "komentarz" + zam; zaznA = a + otw.length; zaznB = zaznA + "komentarz".length;
       status.textContent = "Wstawiono komentarz. Wpisz jego treść.";
     }
     pole.focus();
-    pole.setRangeText(wstaw, a, b, "end");
+    wstaw(pole, tekstW, a, b);
     pole.setSelectionRange(zaznA, zaznB);
     podswietlKod(pole);
     zmiana();
@@ -239,7 +286,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     var v = pole.value, a = pole.selectionStart, b = pole.selectionEnd;
     var pocz = v.lastIndexOf("\n", a - 1) + 1;
     if (!cofnij && a === b) {
-      pole.setRangeText(WCIECIE, a, b, "end");
+      wstaw(pole, WCIECIE, a, b);
     } else {
       var kon = b > a && v.charAt(b - 1) === "\n" ? b - 1 : b;
       var linie = v.slice(pocz, kon).split("\n");
@@ -248,7 +295,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
         return l.indexOf(WCIECIE) === 0 ? l.slice(WCIECIE.length) : l.replace(/^ /, "");
       });
       var nowy = zmienione.join("\n");
-      pole.setRangeText(nowy, pocz, kon, "preserve");
+      wstaw(pole, nowy, pocz, kon);
       if (a === b) {
         var roznica = zmienione[0].length - linie[0].length;
         pole.setSelectionRange(Math.max(pocz, a + roznica), Math.max(pocz, a + roznica));
@@ -293,15 +340,15 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     var dalej = v.slice(b);
     var glebiej = pole === html ? otwierajacy(linia) : /\{\s*$/.test(linia);
     var zamykaPo = pole === html ? /^\s*<\//.test(dalej) : /^\s*\}/.test(dalej);
-    var wstaw;
+    var tekstW;
     if (glebiej && zamykaPo) {
-      wstaw = "\n" + wciecie + WCIECIE + "\n" + wciecie;
-      pole.setRangeText(wstaw, a, b, "start");
+      tekstW = "\n" + wciecie + WCIECIE + "\n" + wciecie;
+      wstaw(pole, tekstW, a, b);
       var kursor = a + 1 + wciecie.length + WCIECIE.length;
       pole.setSelectionRange(kursor, kursor);
     } else {
-      wstaw = "\n" + wciecie + (glebiej ? WCIECIE : "");
-      pole.setRangeText(wstaw, a, b, "end");
+      tekstW = "\n" + wciecie + (glebiej ? WCIECIE : "");
+      wstaw(pole, tekstW, a, b);
     }
     podswietlKod(pole); zmiana();
   }
@@ -315,7 +362,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     if (!(html_ || css_)) { return false; }
     var wc = przed.match(/^[ \t]*/)[0];
     if (wc.length < WCIECIE.length) { return false; }
-    pole.setRangeText(wc.slice(WCIECIE.length) + przed.slice(wc.length) + znak, pocz, a, "end");
+    wstaw(pole, wc.slice(WCIECIE.length) + przed.slice(wc.length) + znak, pocz, a);
     podswietlKod(pole); zmiana();
     return true;
   }
@@ -323,6 +370,10 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
   [html, css].forEach(function (pole) {
     pole.addEventListener("keydown", function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key === "/") { e.preventDefault(); komentuj(pole); return; }
+      if (e.ctrlKey && !e.metaKey && (e.key === "y" || e.key === "Y")) {
+        // Ctrl+Y = ponów (na Macu przeglądarka sama tego nie robi)
+        e.preventDefault(); try { document.execCommand("redo", false); } catch (er) {} return;
+      }
       if (e.key === "Enter" && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && !e.isComposing) {
         e.preventDefault(); wyjscie = false; enter(pole); return;
       }
@@ -357,11 +408,24 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     var okno = window.open(url, "_blank");
     status.textContent = okno ? "Strona otwarta w nowej karcie." : "Przeglądarka zablokowała nową kartę. Zezwól na wyskakujące okna.";
   });
+  /* NAZWA POBIERANEGO PLIKU: z <title>, a gdy go brak, z <h1>; inaczej mojastrona.html.
+     Polskie znaki na łacińskie, reszta na myślniki: „Mówimy prostym językiem” -> mowimy-prostym-jezykiem.html */
+  function nazwaPliku() {
+    var d = new DOMParser().parseFromString(html.value, "text/html");
+    var tytul = d.querySelector("title"), h1 = d.querySelector("h1");
+    var zrodlo = (tytul && tytul.textContent.trim()) || (h1 && h1.textContent.trim()) || "";
+    var PL = { "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n", "ó": "o", "ś": "s", "ź": "z", "ż": "z" };
+    var slug = zrodlo.toLowerCase().replace(/[ąćęłńóśźż]/g, function (z) { return PL[z]; })
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60).replace(/-+$/, "");
+    return (slug || "mojastrona") + ".html";
+  }
   document.getElementById("pobierz").addEventListener("click", function () {
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([dokument()], { type: "text/html" }));
-    a.download = "moja-strona.html"; document.body.appendChild(a); a.click(); a.remove();
-    status.textContent = "Pobrano plik moja-strona.html.";
+    var plik = nazwaPliku();
+    a.download = plik; document.body.appendChild(a); a.click(); a.remove();
+    status.textContent = "Pobrano plik " + plik + ".";
   });
 
 
@@ -413,9 +477,9 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
 
     // GŁOWA: <html lang>, <title>, viewport (tego nie widać, a czytnik i telefon z tego korzystają)
     var jezyk = (d.documentElement.getAttribute("lang") || "").trim();
-    if (!jezyk) { dodaj("blad", "Brak lang w <html>. Czytnik nie wie, jakim głosem czytać. Dodaj lang=\"pl\".", "WCAG 3.1.1"); }
+    if (!jezyk) { dodaj("blad", "Brak lang w <html>. Czytnik nie wie, jakim głosem czytać. Dodaj lang=\"pl\".", "WCAG 3.1.1", d.documentElement); }
     var tytul = d.querySelector("head title");
-    if (!tytul || !tytul.textContent.trim()) { dodaj("blad", "Brak <title> w <head>. Tytuł karty to pierwsze, co słyszy użytkownik czytnika.", "WCAG 2.4.2"); }
+    if (!tytul || !tytul.textContent.trim()) { dodaj("blad", "Brak <title> w <head>. Tytuł karty to pierwsze, co słyszy użytkownik czytnika.", "WCAG 2.4.2", d.head); }
     var vp = d.querySelector("meta[name=viewport]");
     if (!vp) { dodaj("ostrzezenie", "Brak meta viewport. Telefon pokaże stronę pomniejszoną jak na komputerze.", "WCAG 1.4.10"); }
     else {
@@ -515,6 +579,24 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     el.scrollIntoView({ block: "center", behavior: "smooth" });
     status.textContent = "Zaznaczono w podglądzie: " + opisEl(el);
   }
+  /* BŁĄD -> KOD: zaznacza w edytorze HTML znacznik, którego dotyczy błąd, przewija do niego
+     i przenosi tam fokus, żeby od razu poprawiać. Podgląd podświetla ten sam element. */
+  function pokazWKodzie(el, tytul) {
+    tytul = String(tytul).replace(/[.\s]+$/, "");
+    var z = el && el.closest ? el.closest("[data-plac-poz]") : null;
+    var panel = html.closest(".panel");
+    if (panel && panel.classList.contains("zwiniety")) { panel.querySelector(".zwin").click(); }
+    if (!z) { status.textContent = "Błąd: " + tytul + ". Nie znalazłem tego miejsca w kodzie."; return; }
+    var pocz = +z.getAttribute("data-plac-poz");
+    var kon = html.value.indexOf(">", pocz); kon = kon < 0 ? pocz : kon + 1;
+    var linia = html.value.slice(0, pocz).split("\n").length;
+    html.focus();
+    html.setSelectionRange(pocz, kon);
+    var wys = parseFloat(getComputedStyle(html).lineHeight) || 24;
+    html.scrollTop = Math.max(0, (linia - 4) * wys);
+    html.previousElementSibling.scrollTop = html.scrollTop;
+    status.textContent = "Błąd: " + tytul + ", linia " + linia + ".";
+  }
   function pokazWyniki(lista, zrodlo) {
     lista.sort(function (a, b) { return KOLEJNOSC[a.poziom] - KOLEJNOSC[b.poziom]; });
     wyniki.innerHTML = "";
@@ -533,8 +615,8 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
       li.appendChild(poz); li.appendChild(opis);
       if (w.el) {
         var b = document.createElement("button"); b.type = "button"; b.textContent = "Pokaż";
-        b.setAttribute("aria-label", "Pokaż w podglądzie: " + w.tytul);
-        b.addEventListener("click", function () { podswietl(w.el); });
+        b.setAttribute("aria-label", "Pokaż w kodzie i w podglądzie: " + w.tytul);
+        b.addEventListener("click", function () { podswietl(w.el); pokazWKodzie(w.el, w.tytul); });
         li.appendChild(b);
       } else { li.appendChild(document.createElement("span")); }
       wyniki.appendChild(li);
@@ -544,26 +626,14 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     // Komunikat dla czytnika tylko przy zmianie wyniku, nie przy każdym znaku.
     if (podsumowanie !== ostatniKomunikat) { ostatniKomunikat = podsumowanie; status.textContent = "Analiza: " + podsumowanie + "."; }
   }
-  /* Podgląd to about:srcdoc, a jego adres bazowy to adres placu zabaw. Bez tej obsługi
-     link href="#main" ładował w ramce cały plac zamiast przewinąć stronę. Tu robimy to,
-     co zrobiłaby prawdziwa strona: przewijamy do celu i przenosimy na niego fokus. */
+  /* Bez nasłuchu kliknięć na dokumencie podglądu: Chrome ogłaszał wtedy czytnikowi
+     każdy element jako „klikalny”. Kotwice załatwia <base href="about:srcdoc">,
+     a linki zewnętrzne dostają target="_blank", więc ramka zostaje z renderem. */
   function kotwice(d) {
-    d.addEventListener("click", function (e) {
-      var a = e.target.closest && e.target.closest("a[href]");
-      if (!a) { return; }
+    d.querySelectorAll("a[href]").forEach(function (a) {
       var h = a.getAttribute("href");
-      if (h.charAt(0) === "#") {
-        e.preventDefault();
-        var cel = h.length > 1 ? d.getElementById(decodeURIComponent(h.slice(1))) : d.body;
-        if (cel) {
-          if (!cel.hasAttribute("tabindex") && !cel.matches("a[href], button, input, select, textarea")) { cel.setAttribute("tabindex", "-1"); }
-          cel.scrollIntoView(); cel.focus({ preventScroll: true });
-        }
-      } else if (!/^(mailto:|tel:)/i.test(h)) {
-        // Linki zewnętrzne i do innych plików otwieramy w nowej karcie, ramka zostaje z renderem.
-        e.preventDefault();
-        window.open(a.href, "_blank", "noopener");
-        status.textContent = "Link z podglądu otwarty w nowej karcie.";
+      if (h.charAt(0) !== "#" && !/^(mailto:|tel:)/i.test(h) && !a.hasAttribute("target")) {
+        a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener");
       }
     });
   }
@@ -732,6 +802,22 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     status.textContent = skladnia ? "Kolory składni włączone: znaczniki, atrybuty i wartości w kolorach." : "Kolory składni wyłączone.";
   });
   try { if (localStorage.getItem("plac-skladnia")) { ustawSkladnie(true); } } catch (e) {}
+
+
+  /* WSTĄŻKA: zwiń/pokaż narzędzia, stan zapamiętany */
+  var przyciskWstazka = document.getElementById("wstazka");
+  function ustawWstazke(zwin) {
+    document.querySelector("body > header").classList.toggle("zwinieta", zwin);
+    przyciskWstazka.setAttribute("aria-expanded", zwin ? "false" : "true");
+    przyciskWstazka.textContent = zwin ? "Pokaż narzędzia" : "Zwiń narzędzia";
+    try { localStorage.setItem("plac-wstazka", zwin ? "1" : ""); } catch (e) {}
+  }
+  przyciskWstazka.addEventListener("click", function () {
+    var zwin = przyciskWstazka.getAttribute("aria-expanded") === "true";
+    ustawWstazke(zwin);
+    status.textContent = zwin ? "Narzędzia zwinięte. Skróty klawiaturowe działają dalej." : "Narzędzia pokazane.";
+  });
+  try { if (localStorage.getItem("plac-wstazka")) { ustawWstazke(true); } } catch (e) {}
 
   var zapisanyHtml = null, zapisanyCss = null;
   try { zapisanyHtml = localStorage.getItem("plac-html"); zapisanyCss = localStorage.getItem("plac-css"); } catch (e) {}
