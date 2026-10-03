@@ -389,9 +389,35 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     // Komunikat dla czytnika tylko przy zmianie wyniku, nie przy każdym znaku.
     if (podsumowanie !== ostatniKomunikat) { ostatniKomunikat = podsumowanie; status.textContent = "Analiza: " + podsumowanie + "."; }
   }
+  /* Podgląd to about:srcdoc, a jego adres bazowy to adres placu zabaw. Bez tej obsługi
+     link href="#main" ładował w ramce cały plac zamiast przewinąć stronę. Tu robimy to,
+     co zrobiłaby prawdziwa strona: przewijamy do celu i przenosimy na niego fokus. */
+  function kotwice(d) {
+    d.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a) { return; }
+      var h = a.getAttribute("href");
+      if (h.charAt(0) === "#") {
+        e.preventDefault();
+        var cel = h.length > 1 ? d.getElementById(decodeURIComponent(h.slice(1))) : d.body;
+        if (cel) {
+          if (!cel.hasAttribute("tabindex") && !cel.matches("a[href], button, input, select, textarea")) { cel.setAttribute("tabindex", "-1"); }
+          cel.scrollIntoView(); cel.focus({ preventScroll: true });
+        }
+      } else if (!/^(mailto:|tel:)/i.test(h)) {
+        // Linki zewnętrzne i do innych plików otwieramy w nowej karcie, ramka zostaje z renderem.
+        e.preventDefault();
+        window.open(a.href, "_blank", "noopener");
+        status.textContent = "Link z podglądu otwarty w nowej karcie.";
+      }
+    });
+  }
   podglad.addEventListener("load", function () {
-    var d = podglad.contentDocument;
-    if (d) { pokazWyniki(analizuj(d), ""); }
+    var d = null;
+    try { d = podglad.contentDocument; } catch (e) {}
+    if (!d || d.URL !== "about:srcdoc") { pokaz(); return; }  // ramka uciekła: wracamy do renderu
+    kotwice(d);
+    pokazWyniki(analizuj(d), "");
   });
 
   /* axe-core: wstrzykujemy do podglądu na żądanie (CDN jsDelivr, polskie komunikaty). */
