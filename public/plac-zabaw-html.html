@@ -125,13 +125,15 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     </select>
     <button type="button" id="kontrast" aria-pressed="false">Tryb kontrastowy</button>
     <button type="button" id="skladnia" aria-pressed="false">Kolory składni</button>
+    <button type="button" id="tab-tryb" aria-pressed="true">Tab: wcięcie (Ctrl+M)</button>
     <button type="button" id="komentarz">Dodaj komentarz (Ctrl+/)</button>
     <button type="button" class="glowny" id="uruchom">Pokaż wynik (Ctrl+Enter)</button>
     <label class="przelacznik"><input type="checkbox" id="na-zywo" checked> Na żywo</label>
     <button type="button" id="nowa-karta">Otwórz w nowej karcie</button>
     <button type="button" id="pobierz">Pobierz .html</button>
   </div>
-  <p class="skroty" id="skroty">Skróty: Ctrl/Cmd+Z cofnij · Ctrl+Y albo Cmd+Shift+Z ponów · Enter nowa linia z wcięciem · Tab wcięcie · Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Esc, Tab wyjście z pola · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
+  <p id="tab-opis" class="sr-only">Tab robi wcięcie. Wyjście z pola: Esc, potem Tab, albo Ctrl+M wyłącza wcięcia Tabem.</p>
+  <p class="skroty" id="skroty">Skróty: Ctrl+M Tab wcięcie/przejście · Esc, Tab wyjście z pola · Ctrl/Cmd+Z cofnij · Ctrl+Y albo Cmd+Shift+Z ponów · Enter nowa linia z wcięciem · Tab wcięcie · Shift+Tab cofnij wcięcie · Alt+1 HTML · Alt+2 CSS · Alt+3 podgląd · Alt+4 analiza · Ctrl+/ komentarz · Ctrl+Enter wynik</p>
   <p id="status" role="status" aria-live="polite"></p>
 </header>
 <main>
@@ -139,11 +141,11 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
     <section class="panel" aria-labelledby="h-html">
       <h2 id="h-html"><label for="kod-html">HTML</label> <small>cały dokument · Tab: wcięcie · Alt+1-4: panele</small></h2>
       <!-- Tab robi wcięcie. Panele: Alt+1-4. Awaryjne wyjście z pola: Esc, potem Tab (WCAG 2.1.2). -->
-      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
+      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-html" aria-describedby="tab-opis" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
     <section class="panel" aria-labelledby="h-css">
       <h2 id="h-css"><label for="kod-css">CSS</label> <small>trafia do &lt;head&gt; · Tab: wcięcie · Alt+1-4: panele</small></h2>
-      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
+      <div class="edytor"><pre class="warstwa" aria-hidden="true"></pre><textarea id="kod-css" aria-describedby="tab-opis" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
     </section>
   </div>
   <div class="prawa">
@@ -282,6 +284,24 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
      Esc, a potem Tab wychodzi z pola. Shift+Tab cofa wcięcie. */
   var WCIECIE = "  ";
   var wyjscie = false;
+  /* TRYB TABA: wcięcie (domyślnie) albo zwykłe przechodzenie fokusu. Ctrl+M jak w VS Code.
+     Razem z „Esc, potem Tab” to wyjście z pola bez pułapki klawiatury (WCAG 2.1.2). */
+  var tabWcina = true;
+  var przyciskTab = document.getElementById("tab-tryb");
+  function ustawTab(wl, cicho) {
+    tabWcina = wl;
+    przyciskTab.setAttribute("aria-pressed", wl ? "true" : "false");
+    przyciskTab.textContent = wl ? "Tab: wcięcie (Ctrl+M)" : "Tab: przejście (Ctrl+M)";
+    document.getElementById("tab-opis").textContent = wl
+      ? "Tab robi wcięcie. Wyjście z pola: Esc, potem Tab, albo Ctrl+M wyłącza wcięcia Tabem."
+      : "Tab przechodzi do kolejnego elementu. Ctrl+M włącza wcięcia Tabem.";
+    try { localStorage.setItem("plac-tab", wl ? "" : "przejscie"); } catch (e) {}
+    if (!cicho) { status.textContent = wl ? "Tab robi wcięcie. Wyjście z pola: Esc, potem Tab." : "Tab przechodzi do kolejnego elementu."; }
+  }
+  function przelaczTab() { ustawTab(!tabWcina); }
+  przyciskTab.addEventListener("click", przelaczTab);
+  try { if (localStorage.getItem("plac-tab") === "przejscie") { ustawTab(false, true); } } catch (e) {}
+
   function wcinaj(pole, cofnij) {
     var v = pole.value, a = pole.selectionStart, b = pole.selectionEnd;
     var pocz = v.lastIndexOf("\n", a - 1) + 1;
@@ -380,9 +400,11 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
       if ((e.key === "/" || e.key === "}") && !e.ctrlKey && !e.metaKey && !e.altKey && cofnijPrzyZamknieciu(pole, e.key)) {
         e.preventDefault(); wyjscie = false; return;
       }
-      if (e.key === "Escape") { wyjscie = true; status.textContent = "Teraz Tab przeniesie fokus poza pole."; return; }
+      if (e.ctrlKey && !e.metaKey && !e.altKey && (e.key === "m" || e.key === "M")) { e.preventDefault(); przelaczTab(); return; }
+      if (e.key === "Escape") { wyjscie = true; status.textContent = "Teraz Tab albo Shift+Tab przeniesie fokus poza pole."; return; }
+      if (/^(Shift|Control|Alt|Meta|CapsLock)$/.test(e.key)) { return; }  // same modyfikatory nie kasują wyjścia
       if (e.key === "Tab" && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        if (wyjscie) { wyjscie = false; return; }  // zwykłe przejście fokusu
+        if (wyjscie || !tabWcina) { wyjscie = false; return; }  // zwykłe przejście fokusu (w obie strony)
         e.preventDefault();
         wcinaj(pole, e.shiftKey);
         return;
