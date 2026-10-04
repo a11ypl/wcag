@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skróty klawiaturowe dla audytorów dostępności cyfrowej</title>
+<meta name="description" content="Podręcznik ze skrótami klawiaturowymi dla audytorów dostępności cyfrowej: system, przeglądarka, narzędzia deweloperskie, powiększanie, zrzuty ekranu, test klawiaturą i operatory wyszukiwania Google (dorking). Wersje dla Windows i macOS. Materiał dla uczestników Accessibility First.">
+<meta name="keywords" content="skróty klawiaturowe, audyt dostępności, dostępność cyfrowa, WCAG, Windows, macOS, DevTools, dorking, Accessibility First, Włącz Wizję">
+<meta name="author" content="Damian Żłobicki">
+<meta name="copyright" content="© 2026 Włącz Wizję sp. z o.o.">
+<meta name="publisher" content="Włącz Wizję sp. z o.o.">
+<meta name="generator" content="Accessibility First">
+<style>
+/* Accessibility First: kolory marki z a11yfirst.pl (styles.css). Kontrast sprawdzony liczbowo:
+   #1a1a1a na #fff 17,4:1; #5F28B4 na #fff 8,57:1; #fff na #5F28B4 8,57:1; #FACC15 (logo) na #5F28B4 5,6:1;
+   #1a1a1a na #EFE9F8 14,65:1; #4f5963 na #fff 7,14:1. */
+:root { --primary:#5F28B4; --primary-dark:#4a1f8f; --accent:#fa9632; --dark:#1a1a1a; --gray:#4f5963; --tint:#EFE9F8; --light:#f8f9fa; }
+@page { size: A4; margin: 14mm 15mm 18mm;
+  @bottom-left { content: "Accessibility First: a11yfirst.pl, a11y@wlaczwizje.pl"; font-family: Arial, sans-serif; font-size: 8pt; color: #4f5963; }
+  @bottom-right { content: "Strona " counter(page) " z " counter(pages); font-family: Arial, sans-serif; font-size: 8pt; color: #4f5963; } }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0 auto; max-width: 60rem; font-family: Arial, "Segoe UI", Roboto, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--dark); background: #fff; }
+a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+a:focus-visible { outline: 4px solid #FF00FF; outline-offset: 2px; box-shadow: 0 0 0 7px #CCFF00; }
+.brand { background: var(--primary); color: #fff; padding: 12pt 16pt; border-radius: 8px; border-bottom: 4px solid var(--accent); }
+.brand p { margin: 0; }
+.brand-logo img { display: block; width: 240px; height: auto; }
+.brand-line { margin-top: 6pt !important; font-size: 9.5pt; }
+h1 { color: var(--primary); font-size: 21pt; line-height: 1.2; margin: 16pt 0 6pt; }
+h2 { color: var(--primary); font-size: 14pt; line-height: 1.25; margin: 16pt 0 6pt; padding-bottom: 3pt; border-bottom: 2px solid var(--tint); break-after: avoid; }
+h3 { color: var(--primary-dark); font-size: 11.5pt; margin: 10pt 0 4pt; break-after: avoid; }
+p, ul, ol { margin: 0 0 6pt; }
+ul, ol { padding-left: 18pt; }
+li { margin-bottom: 2pt; }
+.lead { font-size: 11.5pt; }
+nav ol { columns: 2; column-gap: 24pt; }
+table { width: 100%; border-collapse: collapse; margin: 4pt 0 6pt; break-inside: avoid; }
+tr { break-inside: avoid; }
+caption { text-align: left; font-weight: 700; padding: 0 0 4pt; color: var(--dark); caption-side: top; break-after: avoid; }
+th, td { border: 1px solid #b9b2c7; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+thead th { background: var(--primary); color: #fff; }
+tbody th { font-weight: 600; width: 38%; background: #fff; }
+tbody tr:nth-child(even) th, tbody tr:nth-child(even) td { background: var(--tint); }
+kbd { font-family: inherit; font-size: 0.95em; white-space: nowrap; }
+kbd kbd, td > kbd:not(.k), th > kbd:not(.k), p > kbd:not(.k), li > kbd:not(.k) { display: inline-block; padding: 0 4pt; border: 1px solid var(--gray); border-bottom-width: 2px; border-radius: 4px; background: var(--light); color: var(--dark); line-height: 1.35; }
+code { font-family: Menlo, Consolas, "Courier New", monospace; font-size: 0.92em; background: var(--light); color: var(--dark); padding: 0 2pt; border-radius: 3px; }
+code { white-space: nowrap; }
+.dork tbody th { width: 22%; }
+.dork td:nth-child(2) { width: 33%; }
+.note { background: var(--light); border-left: 4px solid var(--accent); padding: 5pt 8pt; break-inside: avoid; }
+.examples li { margin-bottom: 5pt; }
+section { break-inside: auto; }
+section[aria-labelledby="kryteria"] ul { columns: 2; column-gap: 24pt; }
+.site-footer { margin-top: 18pt; padding-top: 8pt; border-top: 4px solid var(--primary); color: var(--gray); font-size: 9pt; break-inside: avoid; }
+.site-footer p { margin: 0 0 3pt; }
+.site-footer strong { color: var(--dark); }
+@media screen { body { padding: 1.5rem; } }
+section[aria-labelledby="system"] table { break-inside: auto; }
+section[aria-labelledby="dorking"] { break-before: page; }
+section[aria-labelledby="kryteria"] { break-inside: avoid; }
+table + .note { break-before: avoid; }
+section[aria-labelledby="klawiatura"] { break-before: page; }
+
+</style>
+</head>
+<body>
+
+<header class="brand">
+  <p class="brand-logo"><img src="data:image/png;base64,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" alt="Accessibility First" width="320" height="24"></p>
+  <p class="brand-line">Materiał dla uczestników szkoleń Accessibility First, marki Włącz Wizję sp. z o.o.</p>
+</header>
+
+<main>
+<h1>Skróty klawiaturowe dla audytorów dostępności cyfrowej</h1>
+
+<p class="lead">Ściąga na co dzień: system, przeglądarka, narzędzia deweloperskie, powiększanie, zrzuty ekranu, test klawiaturą i wyszukiwanie z operatorami Google. Każdy skrót ma wersję dla Windows i dla Maca.</p>
+
+<section aria-labelledby="jak-czytac">
+<h2 id="jak-czytac">Jak czytać ten podręcznik</h2>
+<ul>
+  <li>Plus między klawiszami oznacza: naciśnij je razem, np. <kbd class="k"><kbd>Ctrl</kbd>+<kbd>C</kbd></kbd>.</li>
+  <li>Na Macu <strong>Cmd</strong> to klawisz Command (⌘), a <strong>Option</strong> to klawisz Option (⌥, na części klawiatur opisany jako Alt).</li>
+  <li>Numer w nawiasie, np. (WCAG 1.4.10), to kryterium sukcesu, przy którego sprawdzaniu skrót się przydaje. Pełne nazwy kryteriów są na końcu.</li>
+  <li>Skróty przeglądarki sprawdziliśmy dla Chrome i Edge. Firefox i Safari mają większość z nich, ale nie wszystkie: wyjątki są w uwagach pod tabelami.</li>
+</ul>
+</section>
+
+<nav aria-labelledby="spis">
+<h2 id="spis">Spis treści</h2>
+<ol>
+  <li><a href="#system">System operacyjny</a></li>
+  <li><a href="#karty">Przeglądarka: karty i pasek adresu</a></li>
+  <li><a href="#odswiezanie">Odświeżanie i zakładki</a></li>
+  <li><a href="#szukanie">Wyszukiwanie na stronie</a></li>
+  <li><a href="#tekst">Edycja tekstu do raportu</a></li>
+  <li><a href="#devtools">Narzędzia deweloperskie</a></li>
+  <li><a href="#powiekszanie">Powiększanie, zrzuty i nagrania</a></li>
+  <li><a href="#okna">Okna obok siebie</a></li>
+  <li><a href="#klawiatura">Test klawiaturą na stronie</a></li>
+  <li><a href="#dorking">Dorking: operatory wyszukiwania Google</a></li>
+  <li><a href="#kryteria">Kryteria WCAG w tym podręczniku</a></li>
+  <li><a href="#zrodla">Źródła</a></li>
+</ol>
+</nav>
+
+<section aria-labelledby="system">
+<h2 id="system">1. System operacyjny</h2>
+<table>
+  <caption>Skróty systemowe: Windows i macOS</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Przełącz aplikację</th><td><kbd class="k"><kbd>Alt</kbd>+<kbd>Tab</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Tab</kbd></kbd></td></tr>
+    <tr><th scope="row">Pokaż pulpit</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>D</kbd></kbd></td><td><kbd class="k"><kbd>Fn</kbd>+<kbd>H</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>F3</kbd></kbd> (klawisz Mission Control)</td></tr>
+    <tr><th scope="row">Zablokuj ekran, gdy odchodzisz od komputera</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>L</kbd></kbd></td><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Cmd</kbd>+<kbd>Q</kbd></kbd></td></tr>
+    <tr><th scope="row">Zamknij aplikację</th><td><kbd class="k"><kbd>Alt</kbd>+<kbd>F4</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Q</kbd></kbd></td></tr>
+    <tr><th scope="row">Zamknij okno albo kartę</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>W</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>W</kbd></kbd></td></tr>
+    <tr><th scope="row">Zminimalizuj okno</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>strzałka w dół</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>M</kbd></kbd></td></tr>
+    <tr><th scope="row">Wyszukiwanie w systemie</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>S</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Spacja</kbd></kbd> (Spotlight)</td></tr>
+    <tr><th scope="row">Menedżer plików</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>E</kbd></kbd> (Eksplorator plików)</td><td><kbd class="k"><kbd>Option</kbd>+<kbd>Cmd</kbd>+<kbd>Spacja</kbd></kbd> (okno wyszukiwania Findera)</td></tr>
+    <tr><th scope="row">Zawieszona aplikacja</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd></kbd> (Menedżer zadań)</td><td><kbd class="k"><kbd>Option</kbd>+<kbd>Cmd</kbd>+<kbd>Esc</kbd></kbd> (Wymuś koniec)</td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Uwaga:</strong> w Windows zmaksymalizowane okno po <kbd class="k"><kbd>Win</kbd>+<kbd>strzałka w dół</kbd></kbd> najpierw się zmniejsza. Drugie naciśnięcie je minimalizuje.</p>
+</section>
+
+<section aria-labelledby="karty">
+<h2 id="karty">2. Przeglądarka: karty i pasek adresu</h2>
+<table>
+  <caption>Karty i pasek adresu w Chrome i Edge</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Nowa karta</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>T</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>T</kbd></kbd></td></tr>
+    <tr><th scope="row">Zamknij kartę</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>W</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>W</kbd></kbd></td></tr>
+    <tr><th scope="row">Przywróć zamkniętą kartę</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd></kbd></td></tr>
+    <tr><th scope="row">Następna karta</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Tab</kbd></kbd></td><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Tab</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>strzałka w prawo</kbd></kbd></td></tr>
+    <tr><th scope="row">Poprzednia karta</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Tab</kbd></kbd></td><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>strzałka w lewo</kbd></kbd></td></tr>
+    <tr><th scope="row">Karta o numerze od 1 do 8</th><td>od <kbd class="k"><kbd>Ctrl</kbd>+<kbd>1</kbd></kbd> do <kbd class="k"><kbd>Ctrl</kbd>+<kbd>8</kbd></kbd></td><td>od <kbd class="k"><kbd>Cmd</kbd>+<kbd>1</kbd></kbd> do <kbd class="k"><kbd>Cmd</kbd>+<kbd>8</kbd></kbd></td></tr>
+    <tr><th scope="row">Ostatnia karta</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>9</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>9</kbd></kbd></td></tr>
+    <tr><th scope="row">Przejdź do paska adresu i zaznacz adres (np. do raportu)</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>L</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>L</kbd></kbd></td></tr>
+    <tr><th scope="row">Dopisz www. i .com do wpisanej nazwy</th><td>wpisz nazwę, potem <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Enter</kbd></kbd></td><td>wpisz nazwę, potem <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Return</kbd></kbd></td></tr>
+    <tr><th scope="row">Otwórz wpisany adres w nowej karcie</th><td>wpisz adres, potem <kbd class="k"><kbd>Alt</kbd>+<kbd>Enter</kbd></kbd></td><td>wpisz adres, potem <kbd class="k"><kbd>Cmd</kbd>+<kbd>Return</kbd></kbd> (karta w tle)</td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Uwaga:</strong> <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Enter</kbd></kbd> dopisuje zawsze .com, nie .pl. Polskie adresy wpisuj w całości.</p>
+</section>
+
+<section aria-labelledby="odswiezanie">
+<h2 id="odswiezanie">3. Odświeżanie i zakładki</h2>
+<table>
+  <caption>Odświeżanie strony i zakładki w Chrome i Edge</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Odśwież stronę</th><td><kbd>F5</kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>R</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>R</kbd></kbd></td></tr>
+    <tr><th scope="row">Odśwież bez pamięci podręcznej, np. po poprawce wdrożonej przez dewelopera</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>F5</kbd></kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></kbd></td></tr>
+    <tr><th scope="row">Dodaj stronę do zakładek</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>D</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>D</kbd></kbd></td></tr>
+    <tr><th scope="row">Dodaj wszystkie otwarte karty do zakładek, np. całą próbę stron z audytu</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></kbd></td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Uwaga:</strong> w Safari <kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></kbd> włącza Czytnik, a nie odświeża strony.</p>
+</section>
+
+<section aria-labelledby="szukanie">
+<h2 id="szukanie">4. Wyszukiwanie na stronie</h2>
+<table>
+  <caption>Wyszukiwanie tekstu na stronie</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Znajdź na stronie</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>F</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>F</kbd></kbd></td></tr>
+    <tr><th scope="row">Następne trafienie</th><td><kbd>Enter</kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>G</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>G</kbd></kbd></td></tr>
+    <tr><th scope="row">Poprzednie trafienie</th><td><kbd class="k"><kbd>Shift</kbd>+<kbd>Enter</kbd></kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd></kbd></td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Podpowiedź:</strong> wyszukaj na stronie słowa „więcej” albo „tutaj”. Szybko znajdziesz łącza, których cel trudno zrozumieć bez kontekstu (WCAG 2.4.4).</p>
+</section>
+
+<section aria-labelledby="tekst">
+<h2 id="tekst">5. Edycja tekstu do raportu</h2>
+<table>
+  <caption>Edycja tekstu: Windows i macOS</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Kopiuj</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>C</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>C</kbd></kbd></td></tr>
+    <tr><th scope="row">Wytnij</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>X</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>X</kbd></kbd></td></tr>
+    <tr><th scope="row">Wklej</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>V</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>V</kbd></kbd></td></tr>
+    <tr><th scope="row">Wklej bez formatowania</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></kbd></td><td><kbd class="k"><kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>V</kbd></kbd></td></tr>
+    <tr><th scope="row">Cofnij</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Z</kbd></kbd></td></tr>
+    <tr><th scope="row">Ponów</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Y</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></kbd></td></tr>
+    <tr><th scope="row">Zaznacz wszystko</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>A</kbd></kbd></td></tr>
+    <tr><th scope="row">Skok o słowo (z Shift: zaznaczanie)</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>strzałka w lewo</kbd></kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>strzałka w prawo</kbd></kbd></td><td><kbd class="k"><kbd>Option</kbd>+<kbd>strzałka w lewo</kbd></kbd> albo <kbd class="k"><kbd>Option</kbd>+<kbd>strzałka w prawo</kbd></kbd></td></tr>
+    <tr><th scope="row">Początek albo koniec linii</th><td><kbd>Home</kbd> albo <kbd>End</kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>strzałka w lewo</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>strzałka w prawo</kbd></kbd></td></tr>
+    <tr><th scope="row">Początek albo koniec dokumentu</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Home</kbd></kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>End</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>strzałka w górę</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>strzałka w dół</kbd></kbd></td></tr>
+    <tr><th scope="row">Historia schowka</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>V</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Spacja</kbd></kbd>, potem <kbd class="k"><kbd>Cmd</kbd>+<kbd>4</kbd></kbd> (macOS 26 Tahoe i nowsze)</td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Uwaga:</strong> wklejanie bez formatowania działa w przeglądarkach i w większości aplikacji, ale nie wszędzie. Historię schowka w Windows i w macOS trzeba przy pierwszym użyciu włączyć albo na nią zezwolić.</p>
+</section>
+
+<section aria-labelledby="devtools">
+<h2 id="devtools">6. Narzędzia deweloperskie</h2>
+<table>
+  <caption>Narzędzia deweloperskie w Chrome i Edge</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Otwórz narzędzia deweloperskie</th><td><kbd>F12</kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd></kbd></td></tr>
+    <tr><th scope="row">Zbadaj element: wskaż go na stronie</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></kbd></td></tr>
+    <tr><th scope="row">Konsola</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>J</kbd></kbd></td></tr>
+    <tr><th scope="row">Tryb urządzenia, np. szerokość 320 pikseli (WCAG 1.4.10)</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></kbd></td></tr>
+    <tr><th scope="row">Menu poleceń, np. wpisz „Rendering”, żeby symulować zaburzenia widzenia barw</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></kbd></td></tr>
+    <tr><th scope="row">Szukaj w kodzie strony (panel Elements)</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>F</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>F</kbd></kbd></td></tr>
+    <tr><th scope="row">Okno incognito: strona bez rozszerzeń i bez zalogowania</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></kbd></td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Uwaga:</strong> tryb urządzenia i menu poleceń działają, gdy narzędzia deweloperskie są otwarte i mają fokus. W Firefoksie okno prywatne otwierasz skrótem <kbd class="k"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></kbd>.</p>
+</section>
+
+<section aria-labelledby="powiekszanie">
+<h2 id="powiekszanie">7. Powiększanie, zrzuty i nagrania</h2>
+<table>
+  <caption>Powiększanie, zrzuty ekranu i nagrania</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Powiększ albo pomniejsz stronę (WCAG 1.4.4, 1.4.10)</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>plus</kbd></kbd> albo <kbd class="k"><kbd>Ctrl</kbd>+<kbd>minus</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>plus</kbd></kbd> albo <kbd class="k"><kbd>Cmd</kbd>+<kbd>minus</kbd></kbd></td></tr>
+    <tr><th scope="row">Wróć do 100%</th><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>0</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>0</kbd></kbd></td></tr>
+    <tr><th scope="row">Pełny ekran</th><td><kbd>F11</kbd></td><td><kbd class="k"><kbd>Ctrl</kbd>+<kbd>Cmd</kbd>+<kbd>F</kbd></kbd></td></tr>
+    <tr><th scope="row">Zrzut fragmentu ekranu</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd></kbd></td></tr>
+    <tr><th scope="row">Zrzut jednego okna</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></kbd>, potem tryb okna na pasku narzędzia</td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd></kbd>, potem <kbd>Spacja</kbd> i kliknij okno</td></tr>
+    <tr><th scope="row">Zrzut całego ekranu</th><td><kbd>PrtScn</kbd></td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>3</kbd></kbd></td></tr>
+    <tr><th scope="row">Nagranie ekranu, np. ginącego fokusu (WCAG 2.4.7)</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd></kbd> (Xbox Game Bar, nagrywa aktywne okno)</td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>5</kbd></kbd></td></tr>
+    <tr><th scope="row">Tryb wysokiego kontrastu</th><td><kbd class="k"><kbd>lewy Alt</kbd>+<kbd>lewy Shift</kbd>+<kbd>PrtScn</kbd></kbd></td><td><kbd class="k"><kbd>Option</kbd>+<kbd>Cmd</kbd>+<kbd>F5</kbd></kbd> (panel skrótów dostępności)</td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Podpowiedź:</strong> okno przeglądarki o szerokości 1280 pikseli przy powiększeniu 400% pokazuje stronę tak, jakby miała 320 pikseli szerokości. To szybki test dopasowania do ekranu bez narzędzi deweloperskich (WCAG 1.4.10).</p>
+</section>
+
+<section aria-labelledby="okna">
+<h2 id="okna">8. Okna obok siebie</h2>
+<table>
+  <caption>Układanie okien: Windows i macOS</caption>
+  <thead>
+    <tr><th scope="col">Co robisz</th><th scope="col">Windows</th><th scope="col">Mac</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Okno na lewą albo prawą połowę ekranu</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>strzałka w lewo</kbd></kbd> albo <kbd class="k"><kbd>Win</kbd>+<kbd>strzałka w prawo</kbd></kbd></td><td><kbd class="k"><kbd>Fn</kbd>+<kbd>Ctrl</kbd>+<kbd>strzałka w lewo</kbd></kbd> albo <kbd class="k"><kbd>Fn</kbd>+<kbd>Ctrl</kbd>+<kbd>strzałka w prawo</kbd></kbd></td></tr>
+    <tr><th scope="row">Okno na cały ekran, bez trybu pełnoekranowego</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>strzałka w górę</kbd></kbd></td><td><kbd class="k"><kbd>Fn</kbd>+<kbd>Ctrl</kbd>+<kbd>F</kbd></kbd></td></tr>
+    <tr><th scope="row">Przełącz okna tej samej aplikacji</th><td>brak stałego skrótu</td><td><kbd class="k"><kbd>Cmd</kbd>+<kbd>`</kbd></kbd> (klawisz grawisu, jego miejsce zależy od układu klawiatury)</td></tr>
+    <tr><th scope="row">Przenieś okno na drugi monitor</th><td><kbd class="k"><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>strzałka w lewo</kbd></kbd> albo <kbd class="k"><kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>strzałka w prawo</kbd></kbd></td><td>brak domyślnego skrótu</td></tr>
+  </tbody>
+</table>
+<p class="note"><strong>Uwaga:</strong> skróty z <kbd class="k"><kbd>Fn</kbd>+<kbd>Ctrl</kbd></kbd> na Macu działają od macOS 15 Sequoia.</p>
+</section>
+
+<section aria-labelledby="klawiatura">
+<h2 id="klawiatura">9. Test klawiaturą na stronie</h2>
+<p>Odłóż mysz. Te klawisze działają tak samo w Windows i na Macu.</p>
+<table>
+  <caption>Klawisze do testu obsługi strony z klawiatury</caption>
+  <thead>
+    <tr><th scope="col">Klawisz</th><th scope="col">Co sprawdzasz</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row"><kbd>Tab</kbd></th><td>Fokus przechodzi do następnego elementu interaktywnego, jest widoczny i idzie w logicznej kolejności (WCAG 2.1.1, 2.4.3, 2.4.7)</td></tr>
+    <tr><th scope="row"><kbd class="k"><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd></th><td>Fokus wraca do poprzedniego elementu i nigdzie nie utyka (WCAG 2.1.2)</td></tr>
+    <tr><th scope="row"><kbd>Enter</kbd></th><td>Uruchamia łącze i przycisk (WCAG 2.1.1)</td></tr>
+    <tr><th scope="row"><kbd>Spacja</kbd></th><td>Uruchamia przycisk, zaznacza pole wyboru. Gdy fokus nie jest na kontrolce, przewija stronę</td></tr>
+    <tr><th scope="row"><kbd>strzałki</kbd></th><td>Poruszają się w grupie przycisków opcji, na liście rozwijanej, w menu i w kartach. Gdy fokus nie jest na kontrolce, przewijają stronę</td></tr>
+    <tr><th scope="row"><kbd>Esc</kbd></th><td>Zamyka okno dialogowe, menu albo podpowiedź. Fokus wraca w sensowne miejsce, zwykle do przycisku, który je otworzył</td></tr>
+  </tbody>
+</table>
+
+<h3>Pułapka na Macu: Safari i Firefox</h3>
+<ul>
+  <li><strong>Safari</strong> domyślnie pomija łącza przy <kbd>Tab</kbd>. Doraźnie użyj <kbd class="k"><kbd>Option</kbd>+<kbd>Tab</kbd></kbd>. Na stałe: Safari, Ustawienia, Zaawansowane, zaznacz „Naciśnięcie klawisza Tab wyróżnia każdy element na stronie”.</li>
+  <li><strong>Firefox</strong> na Macu korzysta z ustawienia systemowego: Ustawienia systemowe, Klawiatura, włącz „Nawigacja klawiaturą”.</li>
+</ul>
+<p class="note"><strong>Zanim zgłosisz błąd:</strong> sprawdź te ustawienia. Inaczej łącza, które działają poprawnie, wyglądają na niedostępne z klawiatury.</p>
+</section>
+
+<section aria-labelledby="dorking">
+<h2 id="dorking">10. Dorking: operatory wyszukiwania Google</h2>
+<p>Dorking to wyszukiwanie w Google z operatorami. Audytorowi pomaga ustalić zakres: ile jest plików PDF, gdzie jest deklaracja dostępności, jakie są subdomeny. Wyniki są przybliżone, bo Google pokazuje tylko to, co zaindeksował.</p>
+<table class="dork">
+  <caption>Operatory wyszukiwania Google, które działają</caption>
+  <thead>
+    <tr><th scope="col">Operator</th><th scope="col">Co robi</th><th scope="col">Przykład</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row"><code>site:</code></th><td>Wyniki tylko z jednej domeny albo subdomeny</td><td><code>site:gov.pl</code></td></tr>
+    <tr><th scope="row"><code>filetype:</code> albo <code>ext:</code></th><td>Pliki jednego typu</td><td><code>filetype:pdf</code></td></tr>
+    <tr><th scope="row"><code>intitle:</code></th><td>Słowo w tytule strony</td><td><code>intitle:dostępność</code></td></tr>
+    <tr><th scope="row"><code>allintitle:</code></th><td>Wszystkie słowa w tytule strony</td><td><code>allintitle:deklaracja dostępności</code></td></tr>
+    <tr><th scope="row"><code>inurl:</code></th><td>Słowo w adresie strony</td><td><code>inurl:deklaracja-dostepnosci</code></td></tr>
+    <tr><th scope="row"><code>allinurl:</code></th><td>Wszystkie słowa w adresie strony</td><td><code>allinurl:bip deklaracja</code></td></tr>
+    <tr><th scope="row"><code>intext:</code></th><td>Słowo w treści strony</td><td><code>intext:formularz</code></td></tr>
+    <tr><th scope="row"><code>allintext:</code></th><td>Wszystkie słowa w treści strony</td><td><code>allintext:formularz zgłoszenia</code></td></tr>
+    <tr><th scope="row"><code>"fraza"</code></th><td>Dokładnie ta fraza</td><td><code>"deklaracja dostępności"</code></td></tr>
+    <tr><th scope="row"><code>OR</code></th><td>Jedno albo drugie, pisz wielkimi literami</td><td><code>filetype:doc OR filetype:docx</code></td></tr>
+    <tr><th scope="row"><code>-</code> (minus)</th><td>Wyklucza słowo albo operator</td><td><code>site:gov.pl -site:www.gov.pl</code></td></tr>
+    <tr><th scope="row"><code>..</code> (dwie kropki)</th><td>Zakres liczb</td><td><code>raport 2020..2026</code></td></tr>
+    <tr><th scope="row"><code>before:</code> i <code>after:</code></th><td>Wyniki sprzed albo po dacie, w formacie RRRR-MM-DD</td><td><code>after:2025-06-28</code></td></tr>
+  </tbody>
+</table>
+
+<h3>Przykłady dla audytora</h3>
+<ul class="examples">
+  <li><code>site:gov.pl filetype:pdf</code><br>Pliki PDF w domenie. Sprawdź, czy są otagowane i mają tytuł i język.</li>
+  <li><code>site:domena.pl inurl:deklaracja-dostepnosci</code><br>Gdzie w serwisie jest deklaracja dostępności.</li>
+  <li><code>site:domena.pl -site:www.domena.pl</code><br>Subdomeny, o których klient mógł zapomnieć przy ustalaniu zakresu audytu.</li>
+</ul>
+
+<h3>Operatory wycofane</h3>
+<p>Google wycofał operatory <code>cache:</code>, <code>info:</code>, <code>link:</code> i <code>related:</code>. Nie używaj ich: nie dają już wiarygodnych wyników. Zamiast <code>cache:</code> sprawdź archiwalne wersje strony w Internet Archive (web.archive.org).</p>
+</section>
+
+<section aria-labelledby="kryteria">
+<h2 id="kryteria">Kryteria WCAG w tym podręczniku</h2>
+<ul>
+  <li>1.4.4 Zmiana rozmiaru tekstu</li>
+  <li>1.4.10 Dopasowanie do ekranu</li>
+  <li>2.1.1 Klawiatura</li>
+  <li>2.1.2 Bez pułapki na klawiaturę</li>
+  <li>2.4.3 Kolejność fokusu</li>
+  <li>2.4.4 Cel łącza (w kontekście)</li>
+  <li>2.4.7 Widoczny fokus</li>
+</ul>
+</section>
+
+<section aria-labelledby="zrodla">
+<h2 id="zrodla">Źródła</h2>
+<ul class="sources">
+  <li><a href="https://support.google.com/chrome/answer/157179">Google: skróty klawiszowe w Chrome</a></li>
+  <li><a href="https://developer.chrome.com/docs/devtools/shortcuts">Chrome for Developers: skróty narzędzi deweloperskich</a></li>
+  <li><a href="https://support.apple.com/pl-pl/102650">Apple: skróty klawiszowe na Macu</a></li>
+  <li><a href="https://support.apple.com/pl-pl/guide/mac-help/mchl9674d0b0/mac">Apple: układanie okien na Macu</a></li>
+  <li><a href="https://support.apple.com/guide/mac-help/search-your-clipboard-history-mchl40d5b86b/mac">Apple: historia schowka w Spotlight</a></li>
+  <li><a href="https://support.microsoft.com/pl-pl/accessibility/windows/keyboard-shortcuts-in-windows">Microsoft: skróty klawiaturowe w systemie Windows</a></li>
+  <li><a href="https://support.google.com/websearch/answer/2466433">Google: zawężanie wyszukiwania w sieci</a></li>
+  <li><a href="https://www.w3.org/Translations/WCAG21-pl/">W3C: WCAG 2.1, autoryzowane tłumaczenie na język polski</a></li>
+</ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p><strong>Accessibility First</strong>: <a href="https://www.a11yfirst.pl">a11yfirst.pl</a>, <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+  <p>Opracowanie: Damian Żłobicki. © 2026 Włącz Wizję sp. z o.o. Materiał dla uczestników szkoleń Accessibility First.</p>
+  <p>Stan na październik 2026 r. Skróty mogą się zmieniać razem z wersjami systemów i przeglądarek.</p>
+</footer>
+</body>
+</html>
