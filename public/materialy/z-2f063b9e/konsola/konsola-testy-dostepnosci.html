@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konsola Chrome: 22 testy dostępności z instrukcją | Accessibility First</title>
+<meta name="description" content="Gotowe komendy do konsoli Chrome: fokus, kolejność Taba, ARIA, obszary żywe, odstępy w tekście, rozmiar celów.">
+<style>
+:root { --fiolet:#5F338A; --fiolet-ciemny:#431651; --blekit:#E2F4FF; --zolty:#FEDB16; --tekst:#14191d; --kod:#1b0f2b; }
+* { box-sizing: border-box; }
+html { scroll-padding-top: 1rem; }
+body { margin: 0; background: var(--fiolet); color: var(--tekst);
+  font: 18px/1.6 Inter, "Helvetica Neue", Arial, system-ui, sans-serif; }
+:focus-visible { outline: 4px solid var(--tekst); outline-offset: 3px; box-shadow: 0 0 0 8px var(--zolty); }
+.skiplink { position: absolute; left: 1rem; top: -4rem; background: var(--zolty); color: #000; font-weight: 800; padding: .6rem 1rem; border-radius: 4px; z-index: 10; }
+.skiplink:focus { top: 1rem; }
+.pasek-marki { margin: 0; padding: 1rem; text-align: center; color: #fff; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; font-size: 1.3rem; }
+.pasek-marki span { color: var(--zolty); }
+header.tytul { background: linear-gradient(135deg, #7C27A0 0%, #5F338A 45%, #431651 100%); color: #fff; padding: 2.5rem 1.25rem 2rem; }
+.srodek { max-width: 62rem; margin: 0 auto; }
+header.tytul h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; }
+header.tytul p { margin: 0; max-width: 46rem; font-size: 1.1rem; }
+header.tytul strong { color: var(--zolty); }
+header.tytul .pasek-marki { max-width: none; margin: -1.5rem 0 1.5rem; font-size: 1.3rem; }
+main { background: var(--blekit); padding: 1.5rem 1.25rem 3rem; }
+main h2 { color: var(--fiolet); font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 2.5rem 0 1rem; line-height: 1.2; }
+.jak { background: #fff; border-left: 8px solid var(--zolty); border-radius: 4px; padding: 1rem 1.25rem; }
+.jak h2 { margin-top: 0; font-size: 1.3rem; }
+.jak ol { margin: 0; padding-left: 1.3rem; }
+.jak li { margin-bottom: .35rem; }
+nav.spis ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+nav.spis a { display: inline-block; padding: .45rem .9rem; background: #fff; color: var(--fiolet); border: 3px solid var(--fiolet); border-radius: 6px; font-weight: 800; text-decoration: none; min-height: 44px; }
+nav.spis a:hover { background: var(--fiolet); color: #fff; text-decoration: underline; }
+.test { background: #fff; border: 3px solid var(--fiolet); border-radius: 6px; padding: 1rem 1.25rem 1.25rem; margin: 0 0 1rem; }
+.test h3 { margin: 0 0 .3rem; font-size: 1.25rem; color: var(--tekst); display: flex; gap: .6rem; align-items: baseline; }
+.nr { flex: none; display: inline-grid; place-items: center; min-width: 2rem; height: 2rem; padding: 0 .4rem; border-radius: 1rem; background: var(--fiolet); color: #fff; font-size: .95rem; }
+.test p { margin: 0 0 .5rem; }
+.meta { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .9rem; margin: 0 0 .6rem; }
+.wcag { background: var(--blekit); color: var(--fiolet-ciemny); font-weight: 700; padding: .1rem .55rem; border-radius: 4px; }
+.uwaga { margin: 0 0 .7rem; padding: .5rem .8rem; background: #fff7c2; border-left: 5px solid #8a6d00; border-radius: 4px; font-size: .95rem; }
+.kod { position: relative; }
+.kod pre { margin: 0; padding: 1rem 1rem 1rem; background: var(--kod); color: #f4ecff; border-radius: 6px; overflow-x: auto;
+  font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
+.kod pre code { background: none; color: inherit; padding: 0; font: inherit; }
+.kod pre:focus-visible { outline-color: var(--zolty); box-shadow: 0 0 0 8px var(--tekst); }
+.kopiuj { margin-top: .6rem; font: inherit; font-weight: 800; font-size: 1rem; min-height: 44px; padding: .45rem 1.1rem; background: var(--zolty); color: #000;
+  border: 3px solid #000; border-radius: 6px; cursor: pointer; }
+.kopiuj:hover { background: #000; color: var(--zolty); }
+.kopiuj[data-skopiowano] { background: #14601f; color: #fff; border-color: #14601f; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--blekit); padding: .05em .3em; border-radius: 4px; font-size: .92em; }
+footer { color: #fff; padding: 1.5rem 1.25rem 2.5rem; font-size: .95rem; }
+footer a { color: var(--zolty); }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.instr { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.1rem; padding-top: 1rem; border-top: 2px dashed #b9a6d6; }
+.instr h4 { margin: 0 0 .4rem; color: var(--fiolet); font-size: 1.05rem; }
+.instr ol, .instr ul { margin: 0; padding-left: 1.3rem; font-size: .95rem; }
+.instr li { margin-bottom: .45rem; }
+.ocena { list-style: none; padding-left: 0 !important; }
+.ocena li { padding: .35rem .6rem; border-left: 5px solid; border-radius: 3px; }
+.oc-ok { border-color: #14601f; background: #eaf6ec; } .oc-ok strong { color: #14601f; }
+.oc-blad { border-color: #a31414; background: #fdecee; } .oc-blad strong { color: #a31414; }
+.oc-uw { border-color: #8a6d00; background: #fff7c2; } .oc-uw strong { color: #5c4900; }
+@media (max-width: 52rem) { .instr { grid-template-columns: 1fr; } }
+@media (max-width: 40rem) { body { font-size: 17px; } }
+@media print {
+  body, main { background: #fff; } header.tytul { background: #fff; color: #000; } header.tytul strong { color: #000; }
+  .pasek-marki { color: #5F338A; } .pasek-marki span { color: #000; }
+  .kopiuj, .skiplink, nav.spis { display: none; }
+  .kod pre { background: #f6f3fb; color: #000; border: 1px solid #ccc; } .test { break-inside: avoid; } footer { color: #000; }
+}
+</style>
+</head>
+<body>
+<a class="skiplink" href="#tresc">Przejdź do treści</a>
+<header class="tytul">
+  <p class="pasek-marki" aria-hidden="true">Accessibility <span>First</span></p>
+  <div class="srodek">
+    <h1>Konsola Chrome: 22 testy dostępności</h1>
+    <p>Komendy do szybkiego sprawdzenia tego, czego nie robi walidator ani HeadingsMap. <strong>Wynik to trop do ręcznej weryfikacji, nie werdykt.</strong></p>
+  </div>
+</header>
+<main id="tresc">
+<div class="srodek">
+  <section class="jak" aria-labelledby="jak">
+    <h2 id="jak">Jak używać</h2>
+    <ol>
+      <li>Otwórz konsolę: <code>Cmd+Option+J</code> na Macu, <code>Ctrl+Shift+J</code> na Windowsie.</li>
+      <li>Kliknij w linię ze znakiem <code>&gt;</code> na dole konsoli. Nie w pole filtra u góry.</li>
+      <li>Wklej kod i naciśnij Enter. Najedź na element w wyniku, a podświetli się na stronie.</li>
+      <li>Często używane zapisz w Źródła → Fragmenty kodu (Snippets) i uruchamiaj skrótem <code>Cmd+Enter</code>.</li>
+    </ol>
+  </section>
+  <nav class="spis" aria-labelledby="spis"><h2 id="spis">Grupy testów</h2><ul><li><a href="#fokus">Fokus i klawiatura</a></li><li><a href="#aria">ARIA i powiązania</a></li><li><a href="#tresc">Obrazki i linki</a></li><li><a href="#wyglad">Wygląd, rozmiar, ruch</a></li><li><a href="#formularze">Formularze</a></li></ul></nav>
+  <section aria-labelledby="fokus"><h2 id="fokus">Fokus i klawiatura</h2>
+<article class="test" aria-labelledby="t1">
+  <h3 id="t1"><span class="nr" aria-hidden="true">1</span><span><span class="sr-only">Test 1: </span>Śledzenie fokusu</span></h3>
+  <p>Wypisuje w konsoli każdy element, na który trafia fokus. Uruchom i chodź Tabem po stronie.</p>
+  <p class="meta"><span class="wcag">WCAG 2.4.3</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Działa do odświeżenia strony.</p>
+  <div class="kod" data-tytul="Śledzenie fokusu"><pre tabindex="0" aria-label="Kod: Śledzenie fokusu"><code>document.addEventListener(&quot;focusin&quot;, e =&gt; console.log(&quot;Fokus:&quot;, e.target), true);</code></pre></div>
+  <div class="instr"><div><h4 id="k1">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Kliknij raz w pusty obszar na samej górze strony, żeby fokus wrócił do strony, a nie do konsoli.</li><li>Naciskaj Tab, krok po kroku, aż przejdziesz całą stronę. Każdy krok dopisuje wpis w konsoli.</li><li>Najedź kursorem na wpis w konsoli: element podświetli się na stronie.</li></ol></div><div><h4 id="o1">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> każdy Tab dodaje jeden wpis, a na stronie widać, gdzie jest fokus.</li><li class="oc-blad"><strong>Błąd:</strong> wpis się pojawia, a na stronie nie widać fokusu (2.4.7) albo element jest niewidoczny, np. link w zwiniętym menu.</li><li class="oc-blad"><strong>Błąd:</strong> kolejne wpisy skaczą po stronie bez logiki, np. z nagłówka do stopki i z powrotem (2.4.3).</li><li class="oc-blad"><strong>Błąd:</strong> te same elementy powtarzają się w kółko i nie da się wyjść Tabem ani Esc. To pułapka klawiaturowa (2.1.2).</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t2">
+  <h3 id="t2"><span class="nr" aria-hidden="true">2</span><span><span class="sr-only">Test 2: </span>Alarm zgubionego fokusu</span></h3>
+  <p>Ostrzega, gdy fokus spada na &lt;body&gt;, np. po zamknięciu okna dialogowego albo usunięciu elementu.</p>
+  <p class="meta"><span class="wcag">WCAG 2.4.3</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Działa do odświeżenia strony.</p>
+  <div class="kod" data-tytul="Alarm zgubionego fokusu"><pre tabindex="0" aria-label="Kod: Alarm zgubionego fokusu"><code>document.addEventListener(&quot;focusout&quot;, () =&gt; setTimeout(() =&gt; { if (document.activeElement === document.body) console.warn(&quot;Fokus zgubiony: wrócił na &lt;body&gt;&quot;); }, 0), true);</code></pre></div>
+  <div class="instr"><div><h4 id="k2">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Kliknij w stronę i od tej chwili używaj tylko klawiatury.</li><li>Otwórz Tabem i Enterem okno dialogowe, menu albo baner cookies, a potem zamknij je Esc albo przyciskiem „Zamknij”.</li><li>Powtórz dla rzeczy, które znikają: zamknięcie komunikatu, usunięcie produktu z koszyka, wysłanie formularza.</li><li>Po każdej akcji spójrz, czy w konsoli pojawiło się żółte ostrzeżenie „Fokus zgubiony”.</li></ol></div><div><h4 id="o2">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> brak ostrzeżenia, a test 1 pokazuje, że fokus wrócił do przycisku, który otworzył okno.</li><li class="oc-blad"><strong>Błąd:</strong> ostrzeżenie. Następny Tab zacznie od początku strony i użytkownik traci miejsce (2.4.3).</li><li class="oc-uw"><strong>Uwaga:</strong> kliknięcie myszą w pusty obszar też przenosi fokus na &lt;body&gt; i da ostrzeżenie. Testuj klawiaturą.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t3">
+  <h3 id="t3"><span class="nr" aria-hidden="true">3</span><span><span class="sr-only">Test 3: </span>Kolejność Taba w tabeli</span></h3>
+  <p>Numer, element, tekst i pozycja na ekranie. Skoki wartości y w górę i w dół zdradzają kolejność niezgodną z wyglądem.</p>
+  <p class="meta"><span class="wcag">WCAG 2.4.3</span></p>
+  
+  <div class="kod" data-tytul="Kolejność Taba w tabeli"><pre tabindex="0" aria-label="Kod: Kolejność Taba w tabeli"><code>console.table([...document.querySelectorAll(&#x27;a[href], button, input:not([type=hidden]), select, textarea, summary, [tabindex]:not([tabindex=&quot;-1&quot;])&#x27;)].filter(e =&gt; !e.disabled &amp;&amp; e.getClientRects().length).map((e, i) =&gt; { const r = e.getBoundingClientRect(); return { nr: i + 1, element: e.tagName.toLowerCase(), tekst: (e.innerText || e.value || e.getAttribute(&quot;aria-label&quot;) || &quot;&quot;).trim().slice(0, 40), tabindex: e.getAttribute(&quot;tabindex&quot;), x: Math.round(r.left), y: Math.round(r.top + scrollY) }; }));</code></pre></div>
+  <div class="instr"><div><h4 id="k3">Jak testować</h4><ol><li>Przewiń stronę na samą górę.</li><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Czytaj tabelę od góry. Kolumna <code>y</code> to pozycja w pionie, <code>x</code> w poziomie.</li><li>Podejrzane wiersze znajdź na stronie testem 4 albo wyszukiwaniem w panelu Elementy.</li></ol></div><div><h4 id="o3">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> <code>y</code> rośnie, a w obrębie jednego wiersza ekranu rośnie <code>x</code>.</li><li class="oc-blad"><strong>Błąd:</strong> <code>y</code> nagle spada, czyli Tab wraca w górę strony. Sprawdź wzrokowo, czy kolejność ma sens (2.4.3). Częsta przyczyna: CSS <code>order</code> albo <code>flex-direction: row-reverse</code>.</li><li class="oc-blad"><strong>Błąd:</strong> w kolumnie <code>tabindex</code> stoi liczba większa od 0.</li><li class="oc-uw"><strong>Uwaga:</strong> pusta kolumna <code>tekst</code> może oznaczać element bez nazwy. Sprawdź go w panelu Elementy, zakładka Ułatwienia dostępu.</li><li class="oc-uw"><strong>Uwaga:</strong> elementy w zamkniętych menu i oknach są pomijane. Otwórz je i uruchom test jeszcze raz (strzałka w górę przywraca ostatnią komendę).</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t4">
+  <h3 id="t4"><span class="nr" aria-hidden="true">4</span><span><span class="sr-only">Test 4: </span>Numery Taba na stronie</span></h3>
+  <p>Rysuje żółte numery przy każdym elemencie, do którego dojdzie Tab.</p>
+  <p class="meta"><span class="wcag">WCAG 2.4.3</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Numery znikają po odświeżeniu strony.</p>
+  <div class="kod" data-tytul="Numery Taba na stronie"><pre tabindex="0" aria-label="Kod: Numery Taba na stronie"><code>[...document.querySelectorAll(&#x27;a[href], button, input:not([type=hidden]), select, textarea, summary, [tabindex]:not([tabindex=&quot;-1&quot;])&#x27;)].filter(e =&gt; !e.disabled &amp;&amp; e.getClientRects().length).forEach((e, i) =&gt; { const r = e.getBoundingClientRect(), b = document.createElement(&quot;span&quot;); b.textContent = i + 1; b.style.cssText = `position:absolute;left:${r.left + scrollX}px;top:${r.top + scrollY}px;z-index:99999;background:#FEDB16;color:#000;font:700 12px/1 sans-serif;padding:2px 4px;border:2px solid #000;border-radius:9px;pointer-events:none`; document.body.append(b); });</code></pre></div>
+  <div class="instr"><div><h4 id="k4">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Zamknij albo zwiń narzędzia deweloperskie, żeby widzieć całą stronę.</li><li>Przewiń stronę i czytaj żółte numery po kolei.</li><li>Porównaj ich kolejność z naturalnym kierunkiem czytania: od lewej do prawej, z góry na dół.</li></ol></div><div><h4 id="o4">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> numery idą płynnie, w kolejności czytania.</li><li class="oc-blad"><strong>Błąd:</strong> numery skaczą, np. 5 w nagłówku, 6 w stopce, 7 znowu w nagłówku (2.4.3).</li><li class="oc-blad"><strong>Błąd:</strong> coś wygląda na klikalne, a nie ma numeru. Tab do tego nie dojdzie (2.1.1).</li><li class="oc-uw"><strong>Uwaga:</strong> numer w lewym górnym rogu strony to zwykle skiplink albo element ukryty wizualnie. Sprawdź Tabem, czy pojawia się po fokusie.</li><li class="oc-uw"><strong>Uwaga:</strong> po zmianie rozmiaru okna numery się nie przesuwają. Odśwież stronę i uruchom test jeszcze raz.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t19">
+  <h3 id="t19"><span class="nr" aria-hidden="true">19</span><span><span class="sr-only">Test 19: </span>Fokus niewidoczny</span></h3>
+  <p>Elementy z fokusem, które mają zerowy rozmiar, są przezroczyste albo stoją poza ekranem.</p>
+  <p class="meta"><span class="wcag">WCAG 2.4.7, 2.4.11</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Skiplink wyjdzie zawsze, bo jest schowany do chwili fokusu. To poprawne.</p>
+  <div class="kod" data-tytul="Fokus niewidoczny"><pre tabindex="0" aria-label="Kod: Fokus niewidoczny"><code>[...document.querySelectorAll(&#x27;a[href], button, input:not([type=hidden]), select, textarea, [tabindex]:not([tabindex=&quot;-1&quot;])&#x27;)].filter(e =&gt; { const r = e.getBoundingClientRect(), s = getComputedStyle(e); return !e.disabled &amp;&amp; e.getClientRects().length &amp;&amp; (r.width &lt; 2 || r.height &lt; 2 || s.opacity === &quot;0&quot; || r.right &lt; 0 || r.bottom &lt; 0); });</code></pre></div>
+  <div class="instr"><div><h4 id="k19">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na wyniki, żeby zobaczyć, gdzie są.</li><li>Dojdź do każdego Tabem (test 1 pomoże) i sprawdź, czy wtedy staje się widoczny.</li></ol></div><div><h4 id="o19">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> element pojawia się po fokusie, jak skiplink.</li><li class="oc-blad"><strong>Błąd:</strong> element ma fokus, a dalej go nie widać (2.4.7). Typowo: linki w ukrytej karuzeli albo zwiniętym menu.</li><li class="oc-uw"><strong>Uwaga:</strong> ten test nie wykryje fokusu zasłoniętego przez przyklejony nagłówek albo baner (2.4.11). To sprawdzasz, chodząc Tabem i patrząc.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t7">
+  <h3 id="t7"><span class="nr" aria-hidden="true">7</span><span><span class="sr-only">Test 7: </span>Rola bez klawiatury</span></h3>
+  <p>role=&quot;button&quot;, &quot;link&quot;, &quot;checkbox&quot; i podobne na elemencie, do którego Tab nie dojdzie.</p>
+  <p class="meta"><span class="wcag">WCAG 2.1.1</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Nieaktywne zakładki z tabindex=&quot;-1&quot; w poprawnym komponencie też wyjdą.</p>
+  <div class="kod" data-tytul="Rola bez klawiatury"><pre tabindex="0" aria-label="Kod: Rola bez klawiatury"><code>[...document.querySelectorAll(&#x27;[role=button], [role=link], [role=checkbox], [role=switch], [role=tab], [role=menuitem], [role=option]&#x27;)].filter(e =&gt; e.tabIndex &lt; 0 &amp;&amp; !e.matches(&quot;button, a[href], input, select, textarea&quot;));</code></pre></div>
+  <div class="instr"><div><h4 id="k7">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na każdy wynik, żeby zobaczyć go na stronie.</li><li>Spróbuj dojść do niego Tabem i uruchomić Enterem albo Spacją.</li></ol></div><div><h4 id="o7">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica.</li><li class="oc-blad"><strong>Błąd:</strong> Tab nie dochodzi do elementu, który czytnik ogłasza jako przycisk, link czy pole wyboru (2.1.1).</li><li class="oc-uw"><strong>Uwaga:</strong> zakładki, menu i listy opcji celowo mają <code>tabindex="-1"</code> na nieaktywnych pozycjach. Tab dochodzi tylko do aktywnej, a resztę wybiera się strzałkami. Sprawdź strzałkami, zanim zgłosisz błąd.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t8">
+  <h3 id="t8"><span class="nr" aria-hidden="true">8</span><span><span class="sr-only">Test 8: </span>Klikalne divy po zdarzeniach</span></h3>
+  <p>Elementy bez fokusu, które mają podpięte kliknięcie. getEventListeners działa tylko w konsoli Chrome.</p>
+  <p class="meta"><span class="wcag">WCAG 2.1.1, 4.1.2</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Nie złapie zdarzeń podpiętych wyżej w strukturze (np. React). Wtedy użyj testu po kursorze.</p>
+  <div class="kod" data-tytul="Klikalne divy po zdarzeniach"><pre tabindex="0" aria-label="Kod: Klikalne divy po zdarzeniach"><code>[...document.querySelectorAll(&quot;div, span, li, img, td, svg&quot;)].filter(e =&gt; { const l = getEventListeners(e); return (l.click || l.mousedown || l.pointerdown || l.mouseup) &amp;&amp; e.tabIndex &lt; 0; });</code></pre></div>
+  <div class="instr"><div><h4 id="k8">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter. <code>getEventListeners</code> działa tylko wklejone w konsolę.</li><li>Najedź na każdy wynik, żeby zobaczyć go na stronie.</li><li>Kliknij go myszą: czy coś się dzieje?</li><li>Spróbuj zrobić to samo klawiaturą.</li></ol></div><div><h4 id="o8">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica.</li><li class="oc-blad"><strong>Błąd:</strong> element robi coś po kliknięciu, a klawiaturą nie da się do niego dojść ani go uruchomić (2.1.1). Zwykle nie ma też roli (4.1.2). Poprawka: <code>&lt;button&gt;</code>.</li><li class="oc-uw"><strong>Uwaga:</strong> kliknięcie nic nie robi, bo element tylko liczy statystyki? To fałszywy alarm.</li><li class="oc-uw"><strong>Uwaga:</strong> strony na frameworkach (React, Vue) podpinają kliknięcia wyżej w strukturze i ten test ich nie widzi. Użyj testu 9.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t9">
+  <h3 id="t9"><span class="nr" aria-hidden="true">9</span><span><span class="sr-only">Test 9: </span>Klikalne po kursorze</span></h3>
+  <p>Elementy z kursorem „rączką”, które nie są linkiem ani przyciskiem i nie mają fokusu.</p>
+  <p class="meta"><span class="wcag">WCAG 2.1.1</span></p>
+  
+  <div class="kod" data-tytul="Klikalne po kursorze"><pre tabindex="0" aria-label="Kod: Klikalne po kursorze"><code>[...document.querySelectorAll(&quot;div, span, li, img, svg&quot;)].filter(e =&gt; getComputedStyle(e).cursor === &quot;pointer&quot; &amp;&amp; e.tabIndex &lt; 0 &amp;&amp; !e.closest(&quot;a, button, label, summary&quot;));</code></pre></div>
+  <div class="instr"><div><h4 id="k9">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na wyniki. Jeden klikalny kafelek może dać kilka wyników, bo kursor dziedziczą elementy w środku.</li><li>Kliknij myszą, a potem spróbuj klawiaturą.</li></ol></div><div><h4 id="o9">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica albo same elementy, które nic nie robią.</li><li class="oc-blad"><strong>Błąd:</strong> element działa po kliknięciu, a klawiatura go nie obsługuje (2.1.1).</li><li class="oc-uw"><strong>Uwaga:</strong> grupuj wyniki po rodzicu. Kilka <code>span</code> w jednym klikalnym <code>div</code> to jeden błąd, nie kilka.</li></ul></div></div>
+</article></section><section aria-labelledby="aria"><h2 id="aria">ARIA i powiązania</h2>
+<article class="test" aria-labelledby="t5">
+  <h3 id="t5"><span class="nr" aria-hidden="true">5</span><span><span class="sr-only">Test 5: </span>Fokus ukryty przed czytnikiem</span></h3>
+  <p>Linki, przyciski i pola wewnątrz aria-hidden=&quot;true&quot;. Tab do nich dojdzie, a czytnik nic nie powie.</p>
+  <p class="meta"><span class="wcag">WCAG 4.1.2</span></p>
+  
+  <div class="kod" data-tytul="Fokus ukryty przed czytnikiem"><pre tabindex="0" aria-label="Kod: Fokus ukryty przed czytnikiem"><code>[...document.querySelectorAll(&#x27;[aria-hidden=&quot;true&quot;]&#x27;)].flatMap(h =&gt; [...h.querySelectorAll(&#x27;a[href], button, input, select, textarea, [tabindex]:not([tabindex=&quot;-1&quot;])&#x27;)]).filter(e =&gt; !e.disabled);</code></pre></div>
+  <div class="instr"><div><h4 id="k5">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Jeśli wynik jest pusty, otwórz menu, okna i rozwijane panele, a potem uruchom test jeszcze raz.</li><li>Najedź na każdy element wyniku, żeby zobaczyć go na stronie.</li><li>Dojdź do niego Tabem.</li></ol></div><div><h4 id="o5">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica <code>[]</code>.</li><li class="oc-blad"><strong>Błąd:</strong> Tab dochodzi do elementu, a czytnik ekranu go nie ogłasza albo mówi „pusto” (4.1.2). Poprawka: <code>inert</code> na ukrytym kontenerze albo usunięcie <code>aria-hidden</code>.</li><li class="oc-uw"><strong>Uwaga:</strong> jeśli Tab do elementu nie dochodzi, bo kontener ma też <code>display: none</code> albo <code>inert</code>, to fałszywy alarm.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t6">
+  <h3 id="t6"><span class="nr" aria-hidden="true">6</span><span><span class="sr-only">Test 6: </span>Zerwane powiązania</span></h3>
+  <p>aria-labelledby, aria-describedby, aria-controls i for wskazują id, którego nie ma na stronie.</p>
+  <p class="meta"><span class="wcag">WCAG 1.3.1, 4.1.2</span></p>
+  
+  <div class="kod" data-tytul="Zerwane powiązania"><pre tabindex="0" aria-label="Kod: Zerwane powiązania"><code>console.table([...document.querySelectorAll(&quot;[aria-labelledby], [aria-describedby], [aria-controls], label[for]&quot;)].flatMap(e =&gt; [&quot;aria-labelledby&quot;, &quot;aria-describedby&quot;, &quot;aria-controls&quot;, &quot;for&quot;].flatMap(a =&gt; (e.getAttribute(a) || &quot;&quot;).split(/\s+/).filter(id =&gt; id &amp;&amp; !document.getElementById(id)).map(id =&gt; ({ element: e.tagName.toLowerCase(), atrybut: a, brakujace_id: id })))));</code></pre></div>
+  <div class="instr"><div><h4 id="k6">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Przejrzyj tabelę: element, atrybut i brakujące <code>id</code>.</li><li>Wyślij formularz z błędami i uruchom test jeszcze raz. Komunikaty błędów często pojawiają się dopiero wtedy.</li><li>Dla każdego wiersza wyszukaj brakujące <code>id</code> w panelu Elementy (<code>Cmd+F</code>, wpisz <code>#nazwa-id</code>). Może to literówka.</li></ol></div><div><h4 id="o6">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> tabela jest pusta.</li><li class="oc-blad"><strong>Błąd przy <code>aria-labelledby</code>:</strong> pole albo przycisk traci nazwę (4.1.2).</li><li class="oc-blad"><strong>Błąd przy <code>aria-describedby</code>:</strong> podpowiedź albo komunikat błędu nie zostanie odczytany przy polu (1.3.1).</li><li class="oc-blad"><strong>Błąd przy <code>for</code>:</strong> etykieta nie jest powiązana z polem. Kliknięcie etykiety nie przeniesie do pola, a czytnik nie przeczyta jej przy polu (1.3.1, 4.1.2).</li><li class="oc-uw"><strong>Uwaga:</strong> przy <code>aria-controls</code> to zwykle drobny problem. Wiele czytników i tak z niego nie korzysta.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t18">
+  <h3 id="t18"><span class="nr" aria-hidden="true">18</span><span><span class="sr-only">Test 18: </span>Podsłuch obszarów żywych</span></h3>
+  <p>Wypisuje w konsoli, co strona ogłasza czytnikowi przez aria-live, role=&quot;status&quot; i role=&quot;alert&quot;.</p>
+  <p class="meta"><span class="wcag">WCAG 4.1.3</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Przybliżenie, nie zapis z prawdziwego czytnika. Działa do odświeżenia strony.</p>
+  <div class="kod" data-tytul="Podsłuch obszarów żywych"><pre tabindex="0" aria-label="Kod: Podsłuch obszarów żywych"><code>document.querySelectorAll(&#x27;[aria-live], [role=status], [role=alert], [role=log]&#x27;).forEach(r =&gt; new MutationObserver(() =&gt; console.log(&quot;📢&quot;, r.getAttribute(&quot;aria-live&quot;) || r.getAttribute(&quot;role&quot;), &quot;→&quot;, r.textContent.trim())).observe(r, { childList: true, subtree: true, characterData: true }));</code></pre></div>
+  <div class="instr"><div><h4 id="k18">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter, ZANIM coś zrobisz na stronie.</li><li>Wykonaj akcję, która zmienia coś bez przeładowania: wyślij formularz z błędem, dodaj do koszyka, wyszukaj, przefiltruj.</li><li>Obserwuj konsolę: każde ogłoszenie zaczyna się od 📢.</li></ol></div><div><h4 id="o18">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> 📢 pojawia się przy każdej ważnej zmianie, a jego treść jest pełna i zrozumiała bez patrzenia na ekran.</li><li class="oc-blad"><strong>Błąd:</strong> na ekranie pojawia się komunikat (np. „Dodano do koszyka”), a 📢 nie ma. Czytnik się o tym nie dowie (4.1.3).</li><li class="oc-uw"><strong>Uwaga:</strong> test widzi tylko obszary, które istniały w chwili uruchomienia. Obszar dodany razem z komunikatem czytniki też często pomijają.</li><li class="oc-uw"><strong>Uwaga:</strong> to przybliżenie. Potwierdź wynik w NVDA albo VoiceOverze.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t22">
+  <h3 id="t22"><span class="nr" aria-hidden="true">22</span><span><span class="sr-only">Test 22: </span>Ramki bez tytułu</span></h3>
+  <p>iframe bez atrybutu title i bez aria-label.</p>
+  <p class="meta"><span class="wcag">WCAG 4.1.2</span></p>
+  
+  <div class="kod" data-tytul="Ramki bez tytułu"><pre tabindex="0" aria-label="Kod: Ramki bez tytułu"><code>[...document.querySelectorAll(&quot;iframe&quot;)].filter(f =&gt; !f.title.trim() &amp;&amp; !f.getAttribute(&quot;aria-label&quot;));</code></pre></div>
+  <div class="instr"><div><h4 id="k22">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na każdy wynik, żeby zobaczyć ramkę.</li></ol></div><div><h4 id="o22">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica. Sprawdź też, czy istniejące tytuły opisują zawartość („Mapa dojazdu”, nie „iframe”).</li><li class="oc-blad"><strong>Błąd:</strong> widoczna ramka z treścią bez <code>title</code> (4.1.2).</li><li class="oc-uw"><strong>Uwaga:</strong> ramka niewidoczna i niedostępna z klawiatury, np. 1 na 1 px do statystyk, to fałszywy alarm.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t21">
+  <h3 id="t21"><span class="nr" aria-hidden="true">21</span><span><span class="sr-only">Test 21: </span>Fragmenty w innym języku</span></h3>
+  <p>Wszystkie elementy z atrybutem lang i ich wartości.</p>
+  <p class="meta"><span class="wcag">WCAG 3.1.1, 3.1.2</span></p>
+  
+  <div class="kod" data-tytul="Fragmenty w innym języku"><pre tabindex="0" aria-label="Kod: Fragmenty w innym języku"><code>[...document.querySelectorAll(&quot;[lang]&quot;)].map(e =&gt; `${e.tagName.toLowerCase()}: ${e.lang}`);</code></pre></div>
+  <div class="instr"><div><h4 id="k21">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Pierwszy wynik to <code>html</code> z językiem strony.</li><li>Znajdź na stronie fragmenty w innym języku: cytaty, nazwy, przełącznik języka („English”).</li></ol></div><div><h4 id="o21">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> <code>html</code> ma <code>lang</code> zgodny z językiem strony, np. <code>pl</code>.</li><li class="oc-blad"><strong>Błąd:</strong> brak <code>lang</code> na <code>html</code> albo zła wartość (3.1.1). Czytnik przeczyta stronę złym głosem.</li><li class="oc-blad"><strong>Błąd:</strong> dłuższy fragment w innym języku bez <code>lang</code> (3.1.2), np. link „English” bez <code>lang="en"</code>.</li><li class="oc-uw"><strong>Uwaga:</strong> nazwy własne, terminy techniczne i słowa, które weszły do polszczyzny, nie potrzebują <code>lang</code>.</li></ul></div></div>
+</article></section><section aria-labelledby="tresc"><h2 id="tresc">Obrazki i linki</h2>
+<article class="test" aria-labelledby="t10">
+  <h3 id="t10"><span class="nr" aria-hidden="true">10</span><span><span class="sr-only">Test 10: </span>Podejrzany alt</span></h3>
+  <p>Alt z nazwą pliku albo samym słowem „zdjęcie”, „grafika”, „logo”.</p>
+  <p class="meta"><span class="wcag">WCAG 1.1.1</span></p>
+  
+  <div class="kod" data-tytul="Podejrzany alt"><pre tabindex="0" aria-label="Kod: Podejrzany alt"><code>[...document.images].filter(i =&gt; /\.(jpe?g|png|gif|webp|svg|avif)\b|^(obraz(ek)?|zdj[eę]cie|grafika|foto|image|img|photo|picture|logo|ikona|icon)$/i.test(i.alt.trim()));</code></pre></div>
+  <div class="instr"><div><h4 id="k10">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na każdy wynik, żeby zobaczyć obrazek.</li><li>Ustal, po co jest obrazek: informuje, zdobi czy jest w linku.</li><li>Wszystkie alty strony do przejrzenia ręcznie: <code>[...document.images].map(i =&gt; i.alt)</code>.</li></ol></div><div><h4 id="o10">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica, ale to nie znaczy, że alty są dobre. Przejrzyj listę wszystkich altów.</li><li class="oc-blad"><strong>Błąd:</strong> alt to nazwa pliku albo samo „zdjęcie”, „grafika”, „logo”. Nie mówi, co obrazek przekazuje (1.1.1).</li><li class="oc-uw"><strong>Uwaga:</strong> logo w linku do strony głównej powinno mieć alt z nazwą i celem, np. „Urząd Miasta, strona główna”.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t11">
+  <h3 id="t11"><span class="nr" aria-hidden="true">11</span><span><span class="sr-only">Test 11: </span>Podwójny odczyt w linku</span></h3>
+  <p>Obrazek z niepustym alt w linku, który ma już tekst. Czytnik przeczyta oba.</p>
+  <p class="meta"><span class="wcag">WCAG 1.1.1</span></p>
+  
+  <div class="kod" data-tytul="Podwójny odczyt w linku"><pre tabindex="0" aria-label="Kod: Podwójny odczyt w linku"><code>[...document.querySelectorAll(&#x27;a img[alt]:not([alt=&quot;&quot;])&#x27;)].filter(i =&gt; i.closest(&quot;a&quot;).textContent.trim()).map(i =&gt; ({ link: i.closest(&quot;a&quot;).textContent.trim().slice(0, 50), alt: i.alt }));</code></pre></div>
+  <div class="instr"><div><h4 id="k11">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Porównaj kolumny <code>link</code> i <code>alt</code> w wyniku.</li></ol></div><div><h4 id="o11">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica.</li><li class="oc-blad"><strong>Błąd:</strong> alt powtarza tekst linku albo nic nie dodaje. Czytnik przeczyta to dwa razy. Poprawka: <code>alt=""</code> (1.1.1).</li><li class="oc-uw"><strong>Uwaga:</strong> jeśli alt dodaje ważną informację, nie usuwaj go, tylko rozważ dopisanie jej do tekstu linku.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t12">
+  <h3 id="t12"><span class="nr" aria-hidden="true">12</span><span><span class="sr-only">Test 12: </span>Ten sam tekst, różne adresy</span></h3>
+  <p>„Czytaj więcej” prowadzące w osiem miejsc.</p>
+  <p class="meta"><span class="wcag">WCAG 2.4.4</span></p>
+  
+  <div class="kod" data-tytul="Ten sam tekst, różne adresy"><pre tabindex="0" aria-label="Kod: Ten sam tekst, różne adresy"><code>Object.entries([...document.querySelectorAll(&quot;a[href]&quot;)].reduce((m, a) =&gt; { const t = (a.getAttribute(&quot;aria-label&quot;) || a.textContent).trim().toLowerCase() || &quot;(pusty)&quot;; (m[t] ??= new Set()).add(a.href); return m; }, {})).filter(([, s]) =&gt; s.size &gt; 1).map(([t, s]) =&gt; `${t}: ${s.size} różnych adresów`);</code></pre></div>
+  <div class="instr"><div><h4 id="k12">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Wynik to lista tekstów linków, które prowadzą w kilka miejsc.</li><li>Dla każdego znajdź linki na stronie: panel Elementy, <code>Cmd+F</code>, wpisz tekst linku.</li><li>Sprawdź, co jest wokół linku: akapit, punkt listy, komórka tabeli, nagłówek.</li></ol></div><div><h4 id="o12">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica.</li><li class="oc-ok"><strong>Dobrze warunkowo:</strong> cel wynika z otoczenia, np. „Czytaj więcej” w tym samym akapicie co tytuł artykułu. Kryterium 2.4.4 to dopuszcza.</li><li class="oc-blad"><strong>Błąd:</strong> z linku i jego otoczenia nie da się zrozumieć, dokąd prowadzi (2.4.4).</li><li class="oc-uw"><strong>Uwaga:</strong> nawet gdy otoczenie wystarcza, lista linków w czytniku (<code>Insert+F7</code> w NVDA) pokaże osiem „Czytaj więcej”. Warto to zalecić do poprawy.</li><li class="oc-uw"><strong>Uwaga:</strong> ten sam adres z innymi parametrami (np. <code>?utm_source=</code>) liczy się jako inny.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t13">
+  <h3 id="t13"><span class="nr" aria-hidden="true">13</span><span><span class="sr-only">Test 13: </span>Nowe okno bez ostrzeżenia</span></h3>
+  <p>target=&quot;_blank&quot; bez informacji w treści linku, aria-label ani title.</p>
+  <p class="meta"><span class="wcag">WCAG 3.2.5 (AAA), dobra praktyka</span></p>
+  
+  <div class="kod" data-tytul="Nowe okno bez ostrzeżenia"><pre tabindex="0" aria-label="Kod: Nowe okno bez ostrzeżenia"><code>[...document.querySelectorAll(&#x27;a[target=&quot;_blank&quot;]&#x27;)].filter(a =&gt; !/now(ym|e|ej) (okn|kar)|new (window|tab)/i.test(a.textContent + &quot; &quot; + (a.getAttribute(&quot;aria-label&quot;) || &quot;&quot;) + &quot; &quot; + a.title));</code></pre></div>
+  <div class="instr"><div><h4 id="k13">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na każdy wynik. Sprawdź, czy przy linku jest ikona nowego okna i jaki ma alt.</li><li>Kliknij link: otwiera się nowa karta?</li></ol></div><div><h4 id="o13">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica.</li><li class="oc-uw"><strong>Uwaga:</strong> test nie widzi altu ikonki w linku. Ikona z altem „otwiera się w nowym oknie” wystarczy, to fałszywy alarm.</li><li class="oc-blad"><strong>Błąd, poziom AAA:</strong> nowe okno bez ostrzeżenia narusza 3.2.5. W audycie na AA to zalecenie, nie błąd. Dobra praktyka: napisać w treści linku, że otwiera nowe okno.</li></ul></div></div>
+</article></section><section aria-labelledby="wyglad"><h2 id="wyglad">Wygląd, rozmiar, ruch</h2>
+<article class="test" aria-labelledby="t14">
+  <h3 id="t14"><span class="nr" aria-hidden="true">14</span><span><span class="sr-only">Test 14: </span>Odstępy w tekście</span></h3>
+  <p>Wstawia odstępy z kryterium 1.4.12. Sprawdzasz, czy tekst się nie ucina i nie nachodzi.</p>
+  <p class="meta"><span class="wcag">WCAG 1.4.12</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Wyłączenie: document.getElementById(&quot;test-1412&quot;).remove()</p>
+  <div class="kod" data-tytul="Odstępy w tekście"><pre tabindex="0" aria-label="Kod: Odstępy w tekście"><code>document.head.insertAdjacentHTML(&quot;beforeend&quot;, &#x27;&lt;style id=&quot;test-1412&quot;&gt;*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}p{margin-bottom:2em!important}&lt;/style&gt;&#x27;);</code></pre></div>
+  <div class="instr"><div><h4 id="k14">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Przewiń całą stronę. Najważniejsze miejsca: menu, przyciski, karty, formularze, etykiety, stopka.</li><li>Zrób zrzuty miejsc, gdzie coś się psuje.</li><li>Wyłącz test: <code>document.getElementById("test-1412").remove()</code>.</li></ol></div><div><h4 id="o14">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> tekst się zawija, nic się nie ucina i nic na siebie nie nachodzi.</li><li class="oc-blad"><strong>Błąd:</strong> tekst ucięty (stała wysokość, <code>overflow: hidden</code>), nachodzi na inny element albo znika (1.4.12).</li><li class="oc-uw"><strong>Uwaga:</strong> zmiana wyglądu to nie błąd. Kryterium wymaga tylko, żeby nie ginęła treść ani funkcja.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t15">
+  <h3 id="t15"><span class="nr" aria-hidden="true">15</span><span><span class="sr-only">Test 15: </span>Przewijanie w poziomie</span></h3>
+  <p>Elementy szersze niż okno. Najpierw włącz tryb urządzenia i ustaw szerokość 320 px.</p>
+  <p class="meta"><span class="wcag">WCAG 1.4.10</span></p>
+  
+  <div class="kod" data-tytul="Przewijanie w poziomie"><pre tabindex="0" aria-label="Kod: Przewijanie w poziomie"><code>[...document.querySelectorAll(&quot;body *&quot;)].filter(e =&gt; e.getBoundingClientRect().right &gt; document.documentElement.clientWidth + 1 &amp;&amp; getComputedStyle(e).position !== &quot;fixed&quot;);</code></pre></div>
+  <div class="instr"><div><h4 id="k15">Jak testować</h4><ol><li>Włącz tryb urządzenia w narzędziach deweloperskich: <code>Cmd+Shift+M</code>.</li><li>Na górze ustaw tryb „Responsywny” i szerokość 320.</li><li>Odśwież stronę.</li><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Przewiń stronę: czy pojawia się poziomy pasek przewijania?</li></ol></div><div><h4 id="o15">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica i brak poziomego przewijania.</li><li class="oc-blad"><strong>Błąd:</strong> treść wychodzi poza ekran i trzeba przewijać w dwóch kierunkach, żeby ją przeczytać (1.4.10).</li><li class="oc-uw"><strong>Uwaga:</strong> tabele danych, mapy, wykresy i edytory mogą przewijać się w poziomie. To wyjątek w kryterium.</li><li class="oc-uw"><strong>Uwaga:</strong> elementy celowo poza ekranem (skiplink, tekst tylko dla czytnika, slajdy karuzeli) też wyjdą. Liczy się to, czy widać problem.</li><li class="oc-uw"><strong>Uwaga:</strong> drugi sposób na ten test to przybliżenie 400% przy oknie szerokim na 1280 px.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t16">
+  <h3 id="t16"><span class="nr" aria-hidden="true">16</span><span><span class="sr-only">Test 16: </span>Za małe cele</span></h3>
+  <p>Linki, przyciski i pola poniżej 24 na 24 piksele.</p>
+  <p class="meta"><span class="wcag">WCAG 2.5.8</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Linki w środku zdania są zwolnione. Liczy się też odstęp od sąsiednich celów.</p>
+  <div class="kod" data-tytul="Za małe cele"><pre tabindex="0" aria-label="Kod: Za małe cele"><code>[...document.querySelectorAll(&#x27;a[href], button, input:not([type=hidden]), select, [role=button]&#x27;)].filter(e =&gt; { const r = e.getBoundingClientRect(); return r.width &amp;&amp; r.height &amp;&amp; (r.width &lt; 24 || r.height &lt; 24); }).map(e =&gt; ({ el: e, szer: Math.round(e.getBoundingClientRect().width), wys: Math.round(e.getBoundingClientRect().height) }));</code></pre></div>
+  <div class="instr"><div><h4 id="k16">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Rozwiń wynik: element, szerokość i wysokość.</li><li>Najedź na każdy wynik, żeby zobaczyć go na stronie.</li></ol></div><div><h4 id="o16">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica.</li><li class="oc-ok"><strong>Dobrze, wyjątek:</strong> link w środku zdania.</li><li class="oc-ok"><strong>Dobrze, wyjątek odstępu:</strong> koło o średnicy 24 px wokół środka małego celu nie zachodzi na inny cel ani jego koło.</li><li class="oc-ok"><strong>Dobrze, wyjątek przeglądarki:</strong> pole wyboru albo przycisk opcji w wyglądzie domyślnym przeglądarki, bez zmian w CSS.</li><li class="oc-blad"><strong>Błąd:</strong> mały cel blisko innego celu, bez żadnego wyjątku (2.5.8).</li><li class="oc-uw"><strong>Uwaga:</strong> elementy o wymiarach 1 px to zwykle skiplink albo tekst dla czytnika. Pomiń je.</li></ul></div></div>
+</article>
+<article class="test" aria-labelledby="t20">
+  <h3 id="t20"><span class="nr" aria-hidden="true">20</span><span><span class="sr-only">Test 20: </span>Ruch i dźwięk bez zgody</span></h3>
+  <p>Wideo i audio z autoplay oraz animacje, które nigdy się nie kończą.</p>
+  <p class="meta"><span class="wcag">WCAG 1.4.2, 2.2.2</span></p>
+  
+  <div class="kod" data-tytul="Ruch i dźwięk bez zgody"><pre tabindex="0" aria-label="Kod: Ruch i dźwięk bez zgody"><code>({ autoplay: [...document.querySelectorAll(&quot;video[autoplay], audio[autoplay]&quot;)], animacje_bez_konca: document.getAnimations().filter(a =&gt; a.effect?.getTiming().iterations === Infinity).map(a =&gt; a.effect.target) });</code></pre></div>
+  <div class="instr"><div><h4 id="k20">Jak testować</h4><ol><li>Załaduj stronę i poczekaj, aż wszystko się uruchomi.</li><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Rozwiń <code>autoplay</code> i <code>animacje_bez_konca</code>, najedź na wyniki.</li><li>Szukaj przycisku pauzy, zatrzymania albo ukrycia przy każdym z nich.</li></ol></div><div><h4 id="o20">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> puste listy albo każdy element da się zatrzymać.</li><li class="oc-blad"><strong>Błąd:</strong> dźwięk gra sam dłużej niż 3 sekundy i nie da się go zatrzymać ani ściszyć (1.4.2).</li><li class="oc-blad"><strong>Błąd:</strong> ruch startuje sam, trwa dłużej niż 5 sekund, jest obok innej treści i nie ma pauzy (2.2.2).</li><li class="oc-uw"><strong>Uwaga:</strong> wskaźnik ładowania to wyjątek, jeśli jest niezbędny.</li><li class="oc-uw"><strong>Uwaga:</strong> dodatkowo włącz Więcej narzędzi → Renderowanie → <code>prefers-reduced-motion: reduce</code> i sprawdź, czy strona ogranicza ruch. To dobra praktyka.</li></ul></div></div>
+</article></section><section aria-labelledby="formularze"><h2 id="formularze">Formularze</h2>
+<article class="test" aria-labelledby="t17">
+  <h3 id="t17"><span class="nr" aria-hidden="true">17</span><span><span class="sr-only">Test 17: </span>Brak autocomplete</span></h3>
+  <p>Pola na imię, e-mail, telefon i adres bez właściwej wartości autocomplete.</p>
+  <p class="meta"><span class="wcag">WCAG 1.3.5</span></p>
+  <p class="uwaga"><strong>Uwaga:</strong> Wykrywa po typie i nazwie pola, więc może coś pominąć.</p>
+  <div class="kod" data-tytul="Brak autocomplete"><pre tabindex="0" aria-label="Kod: Brak autocomplete"><code>[...document.querySelectorAll(&#x27;input[type=email], input[type=tel], input[name*=name i], input[name*=imie i], input[name*=nazwisk i], input[name*=mail i], input[name*=tel i], input[name*=adres i], input[name*=kod i]&#x27;)].filter(i =&gt; !i.getAttribute(&quot;autocomplete&quot;) || /^(on|off)$/i.test(i.getAttribute(&quot;autocomplete&quot;)));</code></pre></div>
+  <div class="instr"><div><h4 id="k17">Jak testować</h4><ol><li>Otwórz badaną stronę, konsolę (<code>Cmd+Option+J</code>) i kliknij w linię z <code>&gt;</code>. Wklej kod i naciśnij Enter.</li><li>Najedź na każdy wynik, żeby zobaczyć pole i jego etykietę.</li></ol></div><div><h4 id="o17">Jak ocenić wynik</h4><ul class="ocena"><li class="oc-ok"><strong>Dobrze:</strong> pusta tablica. Test szuka po typie i nazwie pola, więc pola o innych nazwach sprawdź ręcznie.</li><li class="oc-blad"><strong>Błąd:</strong> pole pyta o dane osoby, która wypełnia formularz, a nie ma właściwego <code>autocomplete</code> (1.3.5). Wartości: <code>given-name</code>, <code>family-name</code>, <code>email</code>, <code>tel</code>, <code>street-address</code>, <code>postal-code</code>.</li><li class="oc-uw"><strong>Uwaga:</strong> pole o kimś innym, np. imię dziecka albo dane odbiorcy prezentu, nie musi mieć <code>autocomplete</code>.</li><li class="oc-uw"><strong>Uwaga:</strong> <code>kod</code> w nazwie może oznaczać kod rabatowy. To fałszywy alarm.</li></ul></div></div>
+</article></section>
+  <p id="status" class="sr-only" role="status"></p>
+</div>
+</main>
+<footer><div class="srodek">
+  <p><strong>Accessibility First</strong> · Włącz Wizję sp. z o.o. · <a href="https://www.a11yfirst.pl">a11yfirst.pl</a></p>
+  <p>Testy sprawdzone w Chrome. Nazwy kryteriów: <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>.</p>
+</div></footer>
+<script>
+(function () {
+  var status = document.getElementById("status");
+  function ogłoś(t) { status.textContent = ""; setTimeout(function () { status.textContent = t; }, 50); }
+  function kopiujZapasowo(pre) {
+    var r = document.createRange(); r.selectNodeContents(pre);
+    var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+    return ok;
+  }
+  document.querySelectorAll(".kod").forEach(function (blok) {
+    var pre = blok.querySelector("pre");
+    var tytul = blok.getAttribute("data-tytul");
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "kopiuj";
+    b.innerHTML = 'Kopiuj kod<span class="sr-only">: ' + tytul + "</span>";
+    b.addEventListener("click", function () {
+      var tekst = pre.textContent;
+      var gotowe = function () {
+        b.setAttribute("data-skopiowano", "");
+        b.firstChild.nodeValue = "Skopiowano";
+        ogłoś("Skopiowano kod: " + tytul + ". Wklej go w konsoli Chrome.");
+        setTimeout(function () { b.removeAttribute("data-skopiowano"); b.firstChild.nodeValue = "Kopiuj kod"; }, 2500);
+      };
+      var blad = function () {
+        if (kopiujZapasowo(pre)) { gotowe(); return; }
+        ogłoś("Nie udało się skopiować. Kod jest zaznaczony: naciśnij Cmd+C albo Ctrl+C.");
+      };
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(tekst).then(gotowe, blad); } else { blad(); }
+    });
+    blok.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

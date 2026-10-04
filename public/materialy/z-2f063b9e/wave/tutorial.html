@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WAVE krok po kroku: tutorial uczestnika | Accessibility First</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f4f5f7; --bg3:#eceef2;
+  --tekst:#15171c; --tekst2:#4c5260;
+  --akcent:#7a2ff2; --akcent-tekst:#ffffff; --akcent-slaby:#f0e8ff;
+  --kreska:#d6d9e0;
+  --zle:#a3162b; --zle-tlo:#fdeaed; --dobrze:#1c6b3f; --dobrze-tlo:#e3f4ea;
+  --kod-tlo:#f6f7f9;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+    --tekst:#f2f3f6; --tekst2:#a9b0c0;
+    --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+    --kreska:#2f3542;
+    --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+    --kod-tlo:#1a1d25;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+  --tekst:#f2f3f6; --tekst2:#a9b0c0;
+  --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+  --kreska:#2f3542;
+  --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+  --kod-tlo:#1a1d25;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--tekst);
+  font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.srodek{max-width:760px; margin:0 auto; padding:0 20px}
+.szeroko{max-width:1000px}
+a{color:var(--akcent)}
+:focus-visible{outline:3px solid var(--akcent); outline-offset:2px; border-radius:4px}
+img{max-width:100%}
+
+.przeskok{position:absolute; left:-9999px; top:0; background:var(--akcent);
+  color:var(--akcent-tekst); padding:12px 18px; z-index:20; font-weight:600;
+  border-radius:0 0 var(--radius) 0}
+.przeskok:focus{left:0}
+
+.gorny{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:12px 0}
+.gorny-tresc{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+.marka{font-weight:700; letter-spacing:-.01em; text-decoration:none; color:var(--tekst)}
+.marka span{color:var(--akcent)}
+.gorny nav ul{display:flex; flex-wrap:wrap; gap:16px; list-style:none; margin:0; padding:0; font-size:15px}
+
+header.tytul{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:40px 0 32px}
+.etykieta{display:inline-block; background:var(--akcent-slaby); color:var(--akcent);
+  font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:5px 11px; border-radius:999px}
+h1{font-size:clamp(28px,5vw,42px); line-height:1.15; margin:16px 0 10px; letter-spacing:-.02em}
+.podtytul{color:var(--tekst2); font-size:18px; margin:0 0 20px; max-width:60ch}
+.fakty{display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:0}
+.fakty li{background:var(--bg); border:1px solid var(--kreska); border-radius:999px;
+  padding:6px 14px; font-size:14px}
+.fakty b{color:var(--akcent)}
+
+main h2{font-size:clamp(22px,3.5vw,29px); margin:44px 0 12px; letter-spacing:-.01em;
+  padding-top:8px}
+main h3{font-size:20px; margin:32px 0 10px}
+main h4{font-size:17px; margin:24px 0 8px; color:var(--tekst2)}
+main p{margin:0 0 16px}
+main ul,main ol{margin:0 0 18px; padding-left:24px}
+main li{margin-bottom:7px}
+hr{border:0; border-top:1px solid var(--kreska); margin:36px 0}
+
+.kod{margin:0 0 20px; border:1px solid var(--kreska); border-radius:var(--radius); overflow:hidden}
+.kod-etykieta{margin:0; background:var(--bg3); color:var(--tekst2); font-size:12px;
+  font-weight:700; letter-spacing:.06em; padding:7px 14px; border-bottom:1px solid var(--kreska)}
+pre{margin:0; padding:14px 16px; overflow-x:auto; background:var(--kod-tlo)}
+pre code{font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+p code,li code,td code,th code{background:var(--bg3); padding:2px 6px; border-radius:5px;
+  font:0.9em/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+.tabela{overflow-x:auto; margin:0 0 20px}
+table{width:100%; border-collapse:collapse; font-size:15px}
+th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--kreska); vertical-align:top}
+thead th{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--tekst2)}
+
+.ramka{background:var(--bg2); border-left:4px solid var(--akcent);
+  border-radius:0 var(--radius) var(--radius) 0; padding:16px 20px; margin:0 0 22px}
+.ramka > :last-child{margin-bottom:0}
+
+.quiz{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:24px; margin:44px 0}
+.quiz h2{margin-top:0}
+.quiz-wstep{color:var(--tekst2); font-size:15px}
+.pytanie{border-top:1px solid var(--kreska); padding-top:22px; margin-top:22px}
+.pytanie:first-of-type{border-top:0; padding-top:0}
+.pytanie-tresc{margin:0 0 4px; font-size:18px}
+.pytanie-nr{display:block; color:var(--akcent); font-size:13px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px}
+.pytanie-typ{color:var(--tekst2); font-size:13px; margin:0 0 14px}
+.pytanie-uwaga{color:var(--tekst2); font-size:14px; margin:10px 0 0}
+.odpowiedzi{list-style:none; margin:0; padding:0}
+.odpowiedzi li{margin-bottom:10px}
+button.odpowiedz{display:flex; gap:12px; align-items:flex-start; width:100%; text-align:left;
+  background:var(--bg); color:var(--tekst); border:1px solid var(--kreska);
+  border-radius:9px; padding:13px 16px; font:inherit; font-size:16px; cursor:pointer}
+button.odpowiedz:hover{border-color:var(--akcent)}
+.znak{flex:0 0 28px; width:28px; height:28px; border:2px solid var(--kreska);
+  border-radius:50%; margin-top:1px; display:grid; place-items:center;
+  font-size:14px; font-weight:700; color:var(--tekst2)}
+.znak .litera{line-height:1}
+button.odpowiedz[aria-pressed="true"] .litera{display:none}
+
+/* --- tryb krokowy: jedno pytanie na ekran --- */
+.quiz-start{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:0 0 20px}
+.przycisk-glowny{background:var(--akcent); color:var(--akcent-tekst); border:2px solid var(--akcent);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-glowny:hover{filter:brightness(1.08)}
+.przycisk-drugi{background:transparent; color:var(--tekst); border:2px solid var(--kreska);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-drugi:hover{border-color:var(--akcent)}
+.przycisk-drugi[disabled]{opacity:.45; cursor:default}
+
+.krokowy{position:fixed; inset:0; z-index:100; background:var(--bg);
+  display:flex; flex-direction:column; overflow:auto}
+.krokowy[hidden]{display:none}
+.krokowy-gora{border-bottom:1px solid var(--kreska); background:var(--bg2); padding:14px 0}
+.krokowy-gora .srodek{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between}
+.postep{flex:1 1 220px; min-width:180px}
+.postep-tekst{font-size:14px; color:var(--tekst2); margin:0 0 6px}
+.postep-pasek{height:8px; background:var(--bg3); border-radius:99px; overflow:hidden}
+.postep-wypelnienie{height:100%; background:var(--akcent); width:0; transition:width .2s}
+.krokowy-zamknij{background:none; border:2px solid var(--kreska); border-radius:8px;
+  padding:8px 14px; font:600 15px/1 inherit; font-family:inherit; color:inherit; cursor:pointer}
+.krokowy-tresc{flex:1; padding:32px 0}
+.krokowy .pytanie{border:0; padding:0; margin:0}
+.krokowy .pytanie-tresc{font-size:clamp(20px,3vw,26px)}
+.krokowy-dol{border-top:1px solid var(--kreska); background:var(--bg2); padding:16px 0}
+.krokowy-dol .srodek{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+.krokowy-info{color:var(--tekst2); font-size:14px; margin:0}
+
+.podsumowanie h2{margin-top:0}
+.wynik-duzy{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.03em; margin:0;
+  color:var(--akcent)}
+.wynik-duzy.zaliczony{color:var(--dobrze)}
+.wynik-opis{color:var(--tekst2); margin:4px 0 22px}
+ol.podsumowanie-lista{list-style:none; padding:0; margin:0 0 24px}
+ol.podsumowanie-lista li{display:grid; grid-template-columns:34px 1fr auto; gap:12px 16px;
+  align-items:center; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:9px; padding:11px 14px; margin:0 0 8px}
+.pod-nr{font-weight:700; color:var(--tekst2); font-variant-numeric:tabular-nums}
+.pod-stan{font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap}
+li.ok .pod-stan{color:var(--dobrze)}
+li.zle .pod-stan{color:var(--zle)}
+li.pusto .pod-stan{color:var(--tekst2)}
+.pod-tresc{font-size:15px}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"]{
+  border-color:var(--dobrze); background:var(--dobrze-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak{
+  border-color:var(--dobrze); color:var(--dobrze)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak::after{content:"✓"}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"]{
+  border-color:var(--zle); background:var(--zle-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak{
+  border-color:var(--zle); color:var(--zle)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak::after{content:"✕"}
+.wyjasnienie{margin:8px 0 0; padding:11px 15px; background:var(--bg3);
+  border-radius:8px; font-size:15px; color:var(--tekst2)}
+.wyjasnienie-etykieta{font-weight:700; color:var(--tekst)}
+.quiz-wynik{margin:22px 0 0; font-weight:600; color:var(--akcent)}
+.quiz-wynik.zaliczone{color:var(--dobrze)}
+.quiz-oparty{color:var(--tekst2); font-size:15px; margin:16px 0 0}
+.karta-quiz{border-left:4px solid var(--akcent)}
+ul.zrodla{color:var(--tekst2); font-size:15px}
+
+.przeglad .blok{margin:0 0 44px}
+.przeglad .blok h2{display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  border-bottom:2px solid var(--kreska); padding-bottom:8px; margin-top:36px}
+.link-lekcji{font-size:15px; font-weight:400}
+.przeglad .ile{color:var(--tekst2); font-size:14px; margin:6px 0 16px}
+.przeglad ol.pytania{list-style:none; padding:0; margin:0}
+.przeglad li.pyt{background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:16px 18px; margin:0 0 12px}
+.przeglad .pyt-tresc{font-weight:600; margin:0 0 12px}
+.przeglad .typ{font-weight:400; font-size:13px; color:var(--tekst2);
+  background:var(--bg3); border-radius:5px; padding:2px 8px; white-space:nowrap}
+.przeglad ul.odp{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.przeglad ul.odp li{display:grid; grid-template-columns:42px 1fr; gap:10px;
+  padding:9px 12px; border-radius:8px; margin:0; font-size:15px}
+.przeglad ul.odp li.dobra{background:var(--dobrze-tlo, #e3f4ea)}
+.przeglad ul.odp li.zla{background:var(--bg3)}
+.przeglad .znacznik{font-weight:700}
+.przeglad li.dobra .znacznik{color:var(--dobrze, #1c6b3f)}
+.przeglad li.zla .znacznik{color:var(--tekst2)}
+.przeglad .wyj{display:block; color:var(--tekst2); font-size:14px; margin-top:4px}
+
+figure.media{margin:0 0 24px; padding:0}
+figure.media img,figure.media video{display:block; width:100%; height:auto;
+  border:1px solid var(--kreska); border-radius:var(--radius); background:var(--bg2)}
+figure.media figcaption{color:var(--tekst2); font-size:15px; margin-top:8px}
+figure.media.dekoracyjna figcaption{display:none}
+details.transkrypcja{margin-top:10px; border:1px solid var(--kreska);
+  border-radius:var(--radius); background:var(--bg2)}
+details.transkrypcja summary{padding:11px 16px; cursor:pointer; font-weight:600; font-size:15px}
+details.transkrypcja[open] summary{border-bottom:1px solid var(--kreska)}
+details.transkrypcja > :not(summary){padding:0 16px}
+details.transkrypcja > p:last-child{padding-bottom:14px}
+
+.lekcje{list-style:none; padding:0; margin:0}
+.lekcje li{margin-bottom:10px}
+.lekcja-kafel{display:grid; grid-template-columns:52px 1fr auto; gap:16px; align-items:center;
+  background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:16px 18px; text-decoration:none; color:inherit}
+a.lekcja-kafel:hover{border-color:var(--akcent)}
+a.lekcja-kafel:hover .lekcja-tytul{color:var(--akcent)}
+.lekcja-kafel.pusty{opacity:.72}
+.lekcja-nr{background:var(--bg3); border-radius:8px; text-align:center; padding:8px 0;
+  font-weight:700; color:var(--akcent); font-variant-numeric:tabular-nums}
+.lekcja-tytul{font-weight:600; font-size:17px; display:block}
+.lekcja-meta{color:var(--tekst2); font-size:14px; margin-top:3px; display:block}
+.lekcja-stan{font-size:13px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  white-space:nowrap; color:var(--tekst2)}
+.lekcja-stan.gotowa{color:var(--akcent)}
+
+.chipy{display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:10px 0 0}
+.chipy li{background:var(--akcent-slaby); color:var(--akcent); border-radius:6px;
+  padding:3px 9px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; margin:0}
+
+.karty{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;
+  list-style:none; padding:0; margin:0 0 20px}
+.karty li{margin:0}
+.karta{display:block; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:18px; text-decoration:none; color:inherit; height:100%}
+a.karta:hover{border-color:var(--akcent)}
+.karta b{display:block; margin-bottom:5px}
+.karta span{color:var(--tekst2); font-size:15px}
+
+.nawigacja-lekcji{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  margin:44px 0 0; padding-top:22px; border-top:1px solid var(--kreska)}
+.nawigacja-lekcji a{font-weight:600; text-decoration:none}
+.nawigacja-lekcji a:hover{text-decoration:underline}
+
+.cele{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:18px 22px; margin:0 0 28px}
+.cele h2{margin:0 0 10px; font-size:16px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--tekst2); padding-top:0}
+.cele ul{margin:0; padding-left:22px}
+
+footer{margin:60px 0 0; border-top:1px solid var(--kreska); background:var(--bg2); padding:26px 0 44px}
+footer p{color:var(--tekst2); font-size:14px; margin:0 0 6px}
+.wizualnie-ukryte{position:absolute; width:1px; height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap}
+@media (max-width:560px){
+  .lekcja-kafel{grid-template-columns:44px 1fr}
+  .lekcja-stan{grid-column:2; justify-self:start}
+}
+
+/* ===== IDENTYFIKACJA ACCESSIBILITY FIRST (nadpisuje styl kursu) ===== */
+:root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+  --bg:#ffffff; --bg2:#E2F4FF; --bg3:#d4ecfb; --tekst:#14191d; --tekst2:#3d4350;
+  --akcent:#5F338A; --akcent-tekst:#ffffff; --akcent-slaby:#E2F4FF; --kreska:#b9a6d6;
+  --zle:#a31414; --zle-tlo:#fdecee; --dobrze:#14601f; --dobrze-tlo:#e7f5ea; --kod-tlo:#f7f4fb; --radius:6px;
+  color-scheme: light;
+}
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: Inter, "Helvetica Neue", Arial, system-ui, sans-serif; }
+:focus-visible { outline: 4px solid #14191d; outline-offset: 3px; box-shadow: 0 0 0 8px #FEDB16; border-radius: 2px; }
+.pasek-marki { margin: 0; background: #5F338A; color: #fff; text-align: center; padding: .9rem 1rem;
+  font-weight: 900; letter-spacing: .02em; text-transform: uppercase; font-size: 1.15rem; line-height: 1; }
+.pasek-marki span { color: #FEDB16; margin-left: .32em; }
+.okladka { background: linear-gradient(135deg, #7C27A0 0%, #5F338A 45%, #431651 100%); color: #fff; padding: 2.6rem 0 2.2rem; }
+.okladka h1 { color: #fff; margin: 0 0 .6rem; }
+.okladka p { margin: 0; color: #FEDB16; font-weight: 700; }
+main h2 { color: #5F338A; border-bottom: 3px solid #E2F4FF; padding-bottom: .25rem; }
+main h3 { color: #431651; }
+.spis { background: #E2F4FF; border-left: 6px solid #5F338A; border-radius: 6px; padding: .4rem 1.2rem 1rem; margin: 1.5rem 0; }
+.spis h2 { border: 0; margin-top: .8rem; }
+.kod { border-color: #b9a6d6; }
+.kod-etykieta { background: #5F338A; color: #fff; border-bottom: 0; }
+main code { color: #431651; }
+pre code { color: #14191d; }
+.ramka { background: #E2F4FF; border-left: 6px solid #FEDB16; border-radius: 6px; }
+table th { background: #5F338A; color: #fff; }
+footer { background: #5F338A; color: #fff; margin-top: 3rem; padding: 1rem 0; }
+footer a, footer strong { color: #FEDB16; }
+
+.spis ul { columns: 2; column-gap: 2rem; list-style: none; padding-left: 0; }
+.spis li { break-inside: avoid; }
+ul.sciaga { list-style: none; padding-left: 0; }
+ul.sciaga li::before { content: "☐ "; font-weight: 700; }
+@media (max-width: 40rem) { .spis ul { columns: 1; } }
+@media print {
+  body { font-size: 11pt; }
+  .przeskok { display: none; }
+  h2 { break-after: avoid; } h3 { break-after: avoid; }
+  .kod, table, .ramka { break-inside: avoid; }
+  a { color: inherit; }
+}
+@page { size: A4; margin: 18mm 16mm; }
+</style>
+</head>
+<body>
+<a class="przeskok" href="#tresc-glowna">Przejdź do treści</a>
+<header>
+<p class="pasek-marki">Accessibility <span>First</span></p>
+<div class="okladka"><div class="srodek"><h1>WAVE krok po kroku: tutorial uczestnika</h1><p>Accessibility First · materiał do zajęć SDC „WAVE: kompendium dla audytora” · wersja z 4.10.2026</p></div></div>
+</header>
+<main id="tresc-glowna" class="srodek">
+<p>Ten tutorial przechodzisz sam po zajęciach. Potrzebujesz przeglądarki Chrome, Firefox albo Edge i około 45 minut. Każde ćwiczenie ma ten sam układ: <strong>Zrób</strong>, <strong>Co zobaczysz</strong>, <strong>Jak to ocenić</strong>.</p>
+<p>Informacje o WAVE sprawdziliśmy 4.10.2026 w dokumentacji WebAIM (wave.webaim.org/help, /extension, /accessibility i indeks ikon /api/docs). Miejsca, których nie udało się potwierdzić, mają oznaczenie <strong>[DO SPRAWDZENIA]</strong>. Interfejs WAVE się zmienia: jeśli coś wygląda inaczej, wierz temu, co widzisz, i zajrzyj do pomocy WebAIM.</p>
+<div class="ramka"><p><strong>Najważniejsze zdanie.</strong> WebAIM pisze wprost: WAVE nie powie Ci, czy strona jest dostępna. Tylko człowiek może to ocenić. Brak błędów w WAVE nie oznacza zgodności z WCAG.</p></div>
+<nav class="spis" aria-labelledby="spis-tresci"><h2 id="spis-tresci">Spis treści</h2><ul><li><a href="#1-instalacja-i-uruchomienie">1. Instalacja i uruchomienie</a></li><li><a href="#2-panel-boczny">2. Panel boczny</a></li><li><a href="#3-szesc-kategorii-ikon">3. Sześć kategorii ikon</a></li><li><a href="#4-cwiczenie-strona-z-bledami">4. Ćwiczenie: strona z błędami</a></li><li><a href="#5-cwiczenie-structure-order-i-styles">5. Ćwiczenie: Structure, Order i Styles</a></li><li><a href="#6-cwiczenie-kontrast">6. Ćwiczenie: kontrast</a></li><li><a href="#7-czego-wave-nie-sprawdzi-test-reczny">7. Czego WAVE nie sprawdzi: test ręczny</a></li><li><a href="#8-jak-opisac-wynik-w-raporcie">8. Jak opisać wynik w raporcie</a></li><li><a href="#sciaga">Ściąga</a></li><li><a href="#zrodla">Źródła</a></li></ul></nav>
+<h2 id="1-instalacja-i-uruchomienie">1. Instalacja i uruchomienie</h2>
+<p><strong>Zrób</strong></p>
+<ol><li>Wejdź na wave.webaim.org/extension i wybierz sklep swojej przeglądarki (Chrome Web Store, Firefox Add-ons, Edge Add-ons).</li><li>Zainstaluj rozszerzenie i przypnij jego ikonę obok paska adresu.</li><li>Otwórz dowolną stronę i uruchom WAVE na jeden z trzech sposobów: - kliknij ikonę WAVE, - naciśnij <code>Ctrl+Shift+U</code> (Windows, Linux) albo <code>Cmd+Shift+U</code> (Mac), - kliknij prawym przyciskiem i wybierz „WAVE this page”.</li></ol>
+<p><strong>Co zobaczysz</strong></p>
+<p>Po lewej panel boczny WAVE, w treści strony kolorowe ikony. Układ strony może się „rozjechać”, bo WAVE wstawia ikony do kodu. To normalne.</p>
+<p><strong>Jak to ocenić</strong></p>
+<p>Na razie nic nie oceniasz. Zapamiętaj: żeby wyłączyć WAVE, kliknij ikonę jeszcze raz albo odśwież stronę. W Edge skrót klawiszowy możesz ustawić na stronie zarządzania rozszerzeniami.</p>
+<h2 id="2-panel-boczny">2. Panel boczny</h2>
+<p>W wersji online WAVE (3.3.3.0, sprawdzone 4.10.2026) panel ma zakładki:</p>
+<div class="tabela"><table><thead><tr><th scope="col">Zakładka</th><th scope="col">Do czego służy</th></tr></thead><tbody><tr><td>Summary</td><td>liczby w sześciu kategoriach</td></tr><tr><td>Details</td><td>lista wszystkich ikon, można wyłączać kategorie i typy</td></tr><tr><td>Reference</td><td>opis wybranej ikony: co znaczy, dlaczego ważne, co zrobić, algorytm, kryteria WCAG</td></tr><tr><td>Order</td><td>kolejność, rola i nazwa elementów, do których dojdziesz klawiaturą</td></tr><tr><td>Structure</td><td>nagłówki, landmarki, listy w kolejności z kodu</td></tr><tr><td>Contrast</td><td>wyniki kontrastu, kalkulator kolorów, podgląd w skali szarości</td></tr></tbody></table></div>
+<p>Dodatkowo: przełącznik <strong>Styles</strong> (wyłącza CSS strony) i panel <strong>Code</strong> na dole ekranu (kod strony z ikonami). Zakładka „Tests” w rozszerzeniu: <strong>[DO SPRAWDZENIA]</strong>.</p>
+<p>Panel obsłużysz klawiaturą: zakładki zmieniasz strzałkami, <code>Tab</code> przenosi do treści zakładki. Ikony w treści strony są przyciskami: Enter otwiera dymek z opisem.</p>
+<h2 id="3-szesc-kategorii-ikon">3. Sześć kategorii ikon</h2>
+<div class="tabela"><table><thead><tr><th scope="col">Kategoria</th><th scope="col">Znaczenie</th><th scope="col">Co robisz</th></tr></thead><tbody><tr><td>Errors (czerwone)</td><td>prawie na pewno problem</td><td>potwierdzasz w kodzie i opisujesz</td></tr><tr><td>Contrast Errors</td><td>bardzo niski kontrast tekstu (1.4.3)</td><td>potwierdzasz, mierzysz</td></tr><tr><td>Alerts (żółte)</td><td>może być problem</td><td>oceniasz: błąd czy nie</td></tr><tr><td>Features (zielone)</td><td>prawdopodobnie pomaga</td><td>sprawdzasz jakość, np. sens alt</td></tr><tr><td>Structure</td><td>nagłówki, listy, landmarki, tabele</td><td>oceniasz strukturę</td></tr><tr><td>ARIA</td><td>atrybuty ARIA na stronie</td><td>sprawdzasz, czy są potrzebne i poprawne</td></tr></tbody></table></div>
+<p>Celem nie jest „zero ikon”. Zielona ikona przy obrazku mówi tylko, że alt istnieje. Nie mówi, że jest dobry.</p>
+<h2 id="4-cwiczenie-strona-z-bledami">4. Ćwiczenie: strona z błędami</h2>
+<p>Użyjesz przykładowej strony z placu zabaw Accessibility First.</p>
+<p><strong>Zrób</strong></p>
+<ol><li>Otwórz https://www.a11yfirst.pl/plac-zabaw-html.</li><li>Z listy „Wybierz przykład” wybierz „Przykład: strona z błędami (do poprawy)”.</li><li>Kliknij „Otwórz w nowej karcie”. Strona otworzy się pod adresem zaczynającym się od <code>blob:</code>.</li><li>Na tej karcie uruchom WAVE (<code>Ctrl+Shift+U</code> albo <code>Cmd+Shift+U</code>).</li></ol>
+<p><strong>Jeśli WAVE nie działa na karcie <code>blob:</code></strong> (to, czy rozszerzenie działa na takich adresach, jest <strong>[DO SPRAWDZENIA]</strong>; nie znaleźliśmy tego w dokumentacji WebAIM):</p>
+<ol><li>Wróć do placu zabaw i kliknij „Pobierz .html”.</li><li>Otwórz pobrany plik w przeglądarce (przeciągnij go do okna albo <code>Ctrl+O</code> / <code>Cmd+O</code>). Adres zacznie się od <code>file://</code>.</li><li>Włącz rozszerzeniu dostęp do plików lokalnych. W Chrome: menu Rozszerzenia → Zarządzaj rozszerzeniami → WAVE → Szczegóły → „Zezwalaj na dostęp do adresów URL plików”. W innych przeglądarkach nazwa opcji może być inna. WebAIM potwierdza tylko, że dostęp do stron lokalnych „może wymagać włączenia w ustawieniach rozszerzenia”.</li><li>Odśwież plik i uruchom WAVE.</li></ol>
+<p><strong>Co zobaczysz</strong></p>
+<p>Strona ma celowo wstawione błędy, m.in. takie fragmenty:</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;div class=&quot;menu&quot;&gt;
+  &lt;div onclick=&quot;location.href=&#x27;#&#x27;&quot;&gt;Start&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1&gt;Maruderzy Dostępności&lt;/h1&gt;
+&lt;img src=&quot;zdjecie-zespolu.jpg&quot; width=&quot;200&quot; height=&quot;100&quot;&gt;
+&lt;h3&gt;Nasz zespół&lt;/h3&gt;
+&lt;p&gt;Poznaj nas! &lt;a href=&quot;#&quot;&gt;Kliknij tutaj&lt;/a&gt;&lt;/p&gt;
+&lt;input type=&quot;email&quot; placeholder=&quot;Twój e-mail&quot;&gt;
+&lt;button&gt;&lt;/button&gt;</code></pre></div>
+<p><strong>Jak to ocenić</strong></p>
+<p>Zapisz w tabeli każdy wynik WAVE i swoją decyzję:</p>
+<div class="tabela"><table><thead><tr><th scope="col">Element</th><th scope="col">Czego się spodziewać w WAVE</th><th scope="col">Twoja ocena</th></tr></thead><tbody><tr><td><code>&lt;img&gt;</code> bez <code>alt</code></td><td>Error: Missing alternative text</td><td>błąd, 1.1.1 Treść nietekstowa</td></tr><tr><td><code>&lt;input&gt;</code> z samym placeholderem</td><td>Error: Missing form label</td><td>błąd, 1.3.1 i 3.3.2</td></tr><tr><td>pusty <code>&lt;button&gt;</code></td><td>Error: Empty button</td><td>błąd, 4.1.2 Nazwa, rola, wartość</td></tr><tr><td><code>h1</code> → <code>h3</code></td><td>Alert: Skipped heading level</td><td>oceń: tu tak, błąd 1.3.1</td></tr><tr><td>„Kliknij tutaj”</td><td>Alert: Suspicious link text (jeśli WAVE go uzna)</td><td>oceń w kontekście, 2.4.4</td></tr><tr><td>tabela z samych <code>&lt;td&gt;</code></td><td>prawdopodobnie Alert: Layout table</td><td>to tabela danych bez nagłówków: błąd 1.3.1</td></tr><tr><td><code>&lt;div onclick&gt;</code> w menu</td><td>prawdopodobnie nic</td><td>sprawdź klawiaturą: błąd 2.1.1 i 4.1.2</td></tr></tbody></table></div>
+<p>Kolumna „czego się spodziewać” to nasza prognoza na podstawie indeksu ikon WebAIM. Porównaj ją z tym, co pokazał WAVE. Każda różnica to dobra lekcja.</p>
+<h2 id="5-cwiczenie-structure-order-i-styles">5. Ćwiczenie: Structure, Order i Styles</h2>
+<p><strong>Zrób</strong></p>
+<ol><li>Na tej samej stronie otwórz zakładkę Structure.</li><li>Otwórz zakładkę Order.</li><li>Wyłącz Styles.</li></ol>
+<p><strong>Co zobaczysz</strong></p>
+<ul><li>Structure: lista nagłówków z poziomami i brak landmarków (<code>header</code>, <code>nav</code>, <code>main</code>).</li><li>Order: elementy, do których dojdziesz klawiaturą. Klikalnych divów z menu tam nie będzie, bo nie dostają fokusu.</li><li>Styles OFF: strona bez CSS, w kolejności kodu. Tak ją dostaje czytnik ekranu.</li></ul>
+<p><strong>Jak to ocenić</strong></p>
+<ul><li>Czy nagłówki tworzą sensowny spis treści? (1.3.1, 2.4.6)</li><li>Czy da się przeskoczyć powtarzające się bloki? (2.4.1)</li><li>Czy wszystko, co klikalne, jest w Order? Jeśli nie, masz problem z klawiaturą (2.1.1).</li></ul>
+<h2 id="6-cwiczenie-kontrast">6. Ćwiczenie: kontrast</h2>
+<p><strong>Zrób</strong></p>
+<ol><li>Otwórz zakładkę Contrast. Kliknij ikonę kontrastu w treści strony.</li><li>W kalkulatorze zmieniaj jasność koloru tekstu, aż wynik WCAG AA zmieni się na „Pass”.</li></ol>
+<p><strong>Co zobaczysz</strong></p>
+<p>Kolor tekstu, kolor tła, stosunek kontrastu i wynik dla AA i AAA.</p>
+<p><strong>Jak to ocenić</strong></p>
+<p>WAVE nie zmierzy kontrastu, gdy tło ma gradient, filtr albo przezroczystość, ani tekstu na obrazku (komunikat w zakładce Contrast). Takie miejsca mierzysz ręcznie pipetą. WAVE nie sprawdza też kontrastu ikon, ramek pól i fokusu (1.4.11 Kontrast elementów nietekstowych).</p>
+<h2 id="7-czego-wave-nie-sprawdzi-test-reczny">7. Czego WAVE nie sprawdzi: test ręczny</h2>
+<p>Po WAVE zawsze robisz test ręczny. Minimum:</p>
+<ol><li><strong>Klawiatura.</strong> <code>Tab</code>, <code>Shift+Tab</code>, <code>Enter</code>, <code>Spacja</code>. Czy dochodzisz do wszystkiego, czy widać fokus, czy kolejność ma sens? (2.1.1, 2.4.3, 2.4.7)</li><li><strong>Sens treści.</strong> Czy alt opisuje to, co ważne? Czy etykiety mówią, co wpisać? (1.1.1, 2.4.6)</li><li><strong>Czytnik ekranu.</strong> NVDA albo VoiceOver: lista nagłówków, landmarków i pól formularza. Czy komunikat błędu formularza jest odczytany? (3.3.1, 4.1.3)</li><li><strong>Powiększenie i reflow.</strong> 200% tekstu, 400% powiększenia przy szerokości 1280 px. (1.4.4, 1.4.10)</li><li><strong>Treść ukryta.</strong> WAVE bada też elementy ukryte (CSS, <code>hidden</code>, <code>aria-hidden</code>). Błąd w menu, które nigdy się nie pokazuje, możesz pominąć. Błąd w rozwijanym menu zostaje.</li></ol>
+<h2 id="8-jak-opisac-wynik-w-raporcie">8. Jak opisać wynik w raporcie</h2>
+<p>Nie przepisuj nazw ikon. Opisz problem tak, żeby deweloper go znalazł i naprawił.</p>
+<div class="kod"><p class="kod-etykieta">TEXT</p><pre class="jezyk-text"><code>Problem: Pole „Twój e-mail” nie ma etykiety. Czytnik ekranu ogłosi tylko
+typ pola, bez nazwy. Podpowiedź (placeholder) znika po wpisaniu tekstu.
+Kryterium: 1.3.1 Informacje i relacje, 3.3.2 Etykiety lub instrukcje (A)
+Miejsce: formularz „Napisz do nas”, &lt;input type=&quot;email&quot;&gt;
+Jak wykryto: WAVE (rozszerzenie Chrome), Missing form label; potwierdzone NVDA
+Poprawka: &lt;label for=&quot;email&quot;&gt;Twój e-mail&lt;/label&gt; &lt;input type=&quot;email&quot; id=&quot;email&quot;&gt;</code></pre></div>
+<p>Na początku raportu podaj narzędzia: nazwę, wersję, przeglądarkę, datę badania i listę adresów. Liczby z Summary możesz podać jako tło, nigdy jako ocenę zgodności.</p>
+<h2 id="sciaga">Ściąga</h2>
+<ul class="sciaga"><li>Uruchamiam WAVE: ikona, <code>Ctrl/Cmd+Shift+U</code> albo „WAVE this page”</li><li>Każdy Error i Contrast Error potwierdzam w Code</li><li>Każdy Alert oceniam: błąd, nie błąd, do sprawdzenia</li><li>Features też sprawdzam: sens alt, sens etykiet</li><li>Przeglądam Structure, Order i stronę ze Styles OFF</li><li>Kontrast na gradientach i obrazkach mierzę ręcznie</li><li>Robię test klawiaturą i czytnikiem ekranu</li><li>W raporcie: problem, skutek, kryterium (numer i nazwa), miejsce, poprawka</li></ul>
+<h2 id="zrodla">Źródła</h2>
+<p>Wszystkie sprawdzone 4.10.2026.</p>
+<ul><li>WebAIM, WAVE Help: wave.webaim.org/help</li><li>WebAIM, WAVE Browser Extensions: wave.webaim.org/extension</li><li>WebAIM, WAVE Accessibility Tips: wave.webaim.org/accessibility</li><li>WebAIM, indeks ikon WAVE z kryteriami WCAG: wave.webaim.org/api/docs</li><li>WebAIM, skróty czytników ekranu: webaim.org/resources/shortcuts/</li><li>W3C WAI, WCAG 2.2: w3.org/TR/WCAG22/</li><li>Plac zabaw HTML, Accessibility First: a11yfirst.pl/plac-zabaw-html</li></ul>
+</main>
+<footer><div class="srodek"><p><strong>Accessibility First</strong> · Włącz Wizję sp. z o.o. · a11yfirst.pl · a11y@wlaczwizje.pl</p></div></footer>
+</body>
+</html>
