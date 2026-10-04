@@ -152,7 +152,8 @@ export function normalizeScope(meta) {
   meta.standard = version.wcag;
   if (framework.fixedLevel) meta.conformanceLevel = framework.fixedLevel;
   else if (!framework.levels.includes(meta.conformanceLevel)) meta.conformanceLevel = "AA";
-  const available = Object.keys(version.extras || {});
+  // Dozwolone grupy: wymagania standardu oraz wymagania ustawy (sektor publiczny) — tak jak pokazuje kreator.
+  const available = Object.keys(extraGroupsFor(meta));
   meta.extraGroups = (Array.isArray(meta.extraGroups) ? meta.extraGroups : []).filter((key) => available.includes(key));
   // Wymagania własne BITV są obowiązkowe, gdy wybrano BITV.
   if (meta.framework === "bitv" && !meta.extraGroups.includes("bitv")) meta.extraGroups.unshift("bitv");

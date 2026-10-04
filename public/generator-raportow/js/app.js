@@ -370,7 +370,7 @@ function onField(event) {
 
   if (d.meta) {
     report.meta[d.meta] = value;
-    if (d.meta === "sector") renderScope();
+    if (d.meta === "sector") { refreshCriteria(report); renderScope(); }
     if (["signature", "auditStatus", "auditedEntity", "websiteUrl"].includes(d.meta)) renderCurrentAudit();
   } else if (d.metaList) report.meta[d.metaList] = lines(value);
   else if (d.toolList) report.tools[d.toolList] = lines(value);
