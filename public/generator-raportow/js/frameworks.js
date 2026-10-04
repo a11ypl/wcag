@@ -193,22 +193,32 @@ export function scopeLabel(meta) {
   return `${framework.label} ${version.label} (${version.wcag}, poziom ${level})`;
 }
 
-// Podpowiedzi podstawy prawnej — klocki do wstawienia jednym kliknięciem.
+// Akty prawne do podpowiedzi „Podstawa prawna”. Tylko prawo — normy i wytyczne (WCAG, EN 301 549)
+// opisuje pole „Standard i poziom”. Numery publikacji podane tylko tam, gdzie zostały zweryfikowane;
+// nowelizacje oznaczone „z późn. zm.”. Lista zgodna z działem „Prawo” Biblioteki Liderów Dostępności IRDpl.
+export const LEGAL_ACTS = [
+  { group: "public", text: "Ustawa z dnia 4 kwietnia 2019 r. o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych (Dz.U. 2019 poz. 848 z późn. zm.)" },
+  { group: "public", text: "Ustawa z dnia 19 lipca 2019 r. o zapewnianiu dostępności osobom ze szczególnymi potrzebami (Dz.U. 2019 poz. 1696 z późn. zm.)" },
+  { group: "private", text: "Ustawa z dnia 26 kwietnia 2024 r. o zapewnianiu spełniania wymagań dostępności niektórych produktów i usług przez podmioty gospodarcze (Polski Akt Dostępności, Dz.U. 2024 poz. 731)" },
+  { group: "public", text: "Dyrektywa Parlamentu Europejskiego i Rady (UE) 2016/2102 z dnia 26 października 2016 r. w sprawie dostępności stron internetowych i mobilnych aplikacji organów sektora publicznego" },
+  { group: "public", text: "Decyzja wykonawcza Komisji (UE) 2018/1523 z dnia 11 października 2018 r. ustanawiająca wzór oświadczenia w sprawie dostępności" },
+  { group: "private", text: "Dyrektywa Parlamentu Europejskiego i Rady (UE) 2019/882 z dnia 17 kwietnia 2019 r. w sprawie wymogów dostępności produktów i usług (Europejski akt o dostępności)" },
+  { group: "all", text: "Konwencja o prawach osób niepełnosprawnych, sporządzona w Nowym Jorku dnia 13 grudnia 2006 r. (Dz.U. 2012 poz. 1169)" },
+  { group: "all", text: "Konstytucja Rzeczypospolitej Polskiej z dnia 2 kwietnia 1997 r. (art. 32 i 69)" },
+  { group: "all", text: "Karta Praw Osób Niepełnosprawnych — uchwała Sejmu Rzeczypospolitej Polskiej z dnia 1 sierpnia 1997 r." },
+  { group: "public", text: "Ustawa z dnia 6 września 2001 r. o dostępie do informacji publicznej (z późn. zm.)" },
+  { group: "public", text: "Ustawa z dnia 19 sierpnia 2011 r. o języku migowym i innych środkach komunikowania się (z późn. zm.)" },
+  { group: "public", text: "Ustawa z dnia 11 września 2019 r. — Prawo zamówień publicznych (z późn. zm.)" },
+  { group: "all", text: "Ustawa z dnia 27 sierpnia 1997 r. o rehabilitacji zawodowej i społecznej oraz zatrudnianiu osób niepełnosprawnych (z późn. zm.)" },
+  { group: "all", text: "Ustawa z dnia 29 grudnia 1992 r. o radiofonii i telewizji (z późn. zm.)" },
+  { group: "public", text: "Ustawa z dnia 9 października 2015 r. o rewitalizacji (z późn. zm.)" },
+  { group: "all", text: "Ustawa z dnia 6 września 2001 r. — Prawo farmaceutyczne (z późn. zm.)" },
+  { group: "all", text: "Rozporządzenie Komisji (UE) nr 1300/2014 z dnia 18 listopada 2014 r. w sprawie technicznych specyfikacji interoperacyjności w zakresie dostępności systemu kolei Unii dla osób niepełnosprawnych i osób o ograniczonej możliwości poruszania się" },
+];
+
+// Kolejność podpowiedzi: najpierw akty dla sektora podmiotu, potem pozostałe.
 export function legalBasisSuggestions(meta) {
-  const list = [];
-  const fw = meta?.framework || "wcag";
-  if (meta?.sector === "publiczny" || fw === "en301549") {
-    list.push("Ustawa z dnia 4 kwietnia 2019 r. o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych (Dz.U. 2019 poz. 848)");
-    list.push("Dyrektywa Parlamentu Europejskiego i Rady (UE) 2016/2102 w sprawie dostępności stron internetowych i mobilnych aplikacji organów sektora publicznego");
-  }
-  if (meta?.sector === "prywatny" || fw === "en301549") {
-    list.push("Ustawa z dnia 26 kwietnia 2024 r. o zapewnianiu spełniania wymagań dostępności niektórych produktów i usług przez podmioty gospodarcze (Dz.U. 2024 poz. 731)");
-    list.push("Dyrektywa Parlamentu Europejskiego i Rady (UE) 2019/882 w sprawie wymogów dostępności produktów i usług (Europejski akt o dostępności)");
-  }
-  if (fw === "en301549" || fw === "bitv") list.push(`EN 301 549 ${versionOf({ ...meta, framework: "en301549", frameworkVersion: fw === "bitv" ? "3.2.1" : meta.frameworkVersion }).label} — Wymagania dostępności produktów i usług ICT`);
-  if (fw === "section508") list.push("Section 508 of the Rehabilitation Act (29 U.S.C. § 794d), Revised 508 Standards (36 CFR Part 1194)");
-  if (fw === "bitv") list.push("Barrierefreie-Informationstechnik-Verordnung (BITV 2.0) w brzmieniu z 2019 r.");
-  if (fw === "rgaa") list.push("Référentiel général d'amélioration de l'accessibilité (RGAA) 4.1.2");
-  list.push(`${versionOf(meta).wcag} — Web Content Accessibility Guidelines, rekomendacja W3C`);
-  return [...new Set(list)];
+  const sector = meta?.sector;
+  const rank = (act) => (act.group === "all" ? 1 : sector === "publiczny" ? (act.group === "public" ? 0 : 2) : sector === "prywatny" ? (act.group === "private" ? 0 : 2) : 1);
+  return LEGAL_ACTS.map((act, index) => ({ act, index })).sort((a, b) => rank(a.act) - rank(b.act) || a.index - b.index).map(({ act }) => act.text);
 }

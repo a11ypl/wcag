@@ -452,16 +452,10 @@ function renderScope(focusId) {
     return `<div class="choice choice--card"><input type="checkbox" id="extra-${key}" name="extra-group" value="${key}"${(meta.extraGroups || []).includes(key) ? " checked" : ""}${locked ? " disabled" : ""} aria-describedby="extra-${key}-hint"><label for="extra-${key}">${escapeHtml(group.label)} (${group.items.length})</label><p class="choice-hint" id="extra-${key}-hint">${escapeHtml(group.hint)}${locked ? " Obowiązkowe dla BITV." : ""}</p></div>`;
   }).join("");
   $("scope-summary").textContent = `Raport obejmie: ${scopeLabel(meta)} — ${state.report.criteriaResults.length} wymagań.`;
-  renderLegalSuggestions();
   // Fokus wraca dokładnie na pole, którego użyto (po przerysowaniu ma ten sam identyfikator).
   if (focusId) $(focusId)?.focus();
 }
 
-function renderLegalSuggestions() {
-  const current = new Set(state.report.meta.legalBasis || []);
-  const missing = legalBasisSuggestions(state.report.meta).filter((item) => !current.has(item));
-  $("legal-suggestions").innerHTML = missing.map((item) => `<button class="chip" type="button" data-action="add-legal" data-value="${attr(item)}">Dodaj: ${escapeHtml(item)}</button>`).join("");
-}
 
 function onIssueField(field, eventType, value) {
   const index = Number(field.dataset.issue);
@@ -579,15 +573,6 @@ function onAction(event) {
       rerender(renderIssues, `#issue-${d.issue}-image-upload`, [Number(d.issue)]);
       announce("Usunięto obraz.");
       break;
-    case "add-legal": {
-      const list = state.report.meta.legalBasis || (state.report.meta.legalBasis = []);
-      list.push(d.value);
-      $("legal-basis").value = list.join("\n");
-      renderLegalSuggestions();
-      ($("legal-suggestions").querySelector("button") || $("legal-basis")).focus();
-      announce(`Dodano do podstawy prawnej: ${d.value}`);
-      break;
-    }
     case "add-fix": {
       const issue = report.issues[index];
       const fix = blockById(d.block)?.fixes[Number(d.fix)];
@@ -1031,7 +1016,7 @@ function addIssueFromBlock(block) {
 // Tryby: list — pole z pozycjami w wierszach; paragraph — gotowe zdania doklejane akapitem;
 // single — jedna wartość; blocks — gotowe opisy problemów (tytuł problemu); newIssue — nowy problem z klocka.
 const SUGGEST_MODE = {
-  manualTools: "list", automaticTools: "list", userTesting: "list", methodology: "list",
+  manualTools: "list", automaticTools: "list", userTesting: "list", legalBasis: "list", methodology: "list",
   mainProblems: "list", recommendedActions: "list", auditScope: "paragraph", finalRecommendation: "paragraph", disclaimers: "paragraph",
   viewNames: "single", blocks: "blocks", newIssue: "newIssue", disclaimers: "paragraph",
   "tech-browser": "tech", "tech-reader": "tech", "tech-other": "tech",
@@ -1065,7 +1050,7 @@ function suggestionsFor(field) {
     if (query && !items.some((item) => fold(item.value) === q) && !have.has(q)) items.push({ value: query, label: `własną pozycję „${query}”` });
     return { mode, query, items };
   }
-  const declared = key === "envBrowser" ? state.report.browsers.map(withVersion) : key === "envAT" ? state.report.assistiveTech.map(withVersion) : [];
+  const declared = key === "legalBasis" ? legalBasisSuggestions(state.report.meta) : key === "envBrowser" ? state.report.browsers.map(withVersion) : key === "envAT" ? state.report.assistiveTech.map(withVersion) : [];
   const all = [...new Set([...declared, ...(SUGGESTIONS[key] || [])])];
   const present = new Set((mode === "list" ? lines(field.value) : [field.value.trim()]).map(fold));
   const query = mode === "list" ? currentLine(field).text.trim() : mode === "single" ? field.value.trim() : "";
