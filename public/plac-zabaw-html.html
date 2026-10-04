@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plac zabaw HTML | Accessibility First</title>
+<title>Edytor HTML online z analizą dostępności | Accessibility First</title>
+<meta name="description" content="Bezpłatny edytor HTML i CSS w przeglądarce: piszesz kod, widzisz podgląd i od razu wynik analizy dostępności (reguły Accessibility First i axe-core).">
+<link rel="canonical" href="https://www.a11yfirst.pl/plac-zabaw-html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Accessibility First">
+<meta property="og:title" content="Plac zabaw HTML: edytor z analizą dostępności">
+<meta property="og:description" content="Piszesz HTML i CSS, widzisz podgląd i od razu wynik analizy dostępności. Bezpłatnie, w przeglądarce.">
+<meta property="og:url" content="https://www.a11yfirst.pl/plac-zabaw-html">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Plac zabaw HTML", "url": "https://www.a11yfirst.pl/plac-zabaw-html", "description": "Bezpłatny edytor HTML i CSS w przeglądarce: piszesz kod, widzisz podgląd i od razu wynik analizy dostępności (reguły Accessibility First i axe-core).", "applicationCategory": "DeveloperApplication", "operatingSystem": "Przeglądarka internetowa", "isAccessibleForFree": true, "inLanguage": "pl-PL", "publisher": {"@type": "Organization", "name": "Accessibility First", "url": "https://www.a11yfirst.pl"}}</script>
 <style>
 :root {
   --fiolet: #5F338A; --zolty: #FEDB16; --tlo: #E2F4FF; --tekst: #14191d;
@@ -94,6 +103,8 @@ body.kontrast .warstwa .wlas { color: #8cc8ff; }
 iframe { flex: 1; width: 100%; border: 0; background: #fff; }
 /* ZWIJANA WSTĄŻKA: po zwinięciu zostaje „Pokaż narzędzia” i „Pokaż wynik”, skróty działają dalej */
 button.wstazka { border-style: dashed; }
+.powrot { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: .15em; }
+.powrot:hover { color: var(--zolty); }
 header.zwinieta .przyciski > :not(#uruchom) { display: none; }
 header.zwinieta .skroty { display: none; }
 .skroty { flex-basis: 100%; margin: 0; color: #fff; font-size: .85rem; opacity: .95; }
@@ -126,6 +137,7 @@ button.maly { min-height: 40px; color: var(--fiolet); border-color: var(--fiolet
 <a class="skiplink" href="#podglad-naglowek">Przejdź do podglądu</a>
 <header>
   <h1>Plac zabaw <span>HTML</span></h1>
+  <a class="powrot" href="https://www.a11yfirst.pl/">a11yfirst.pl</a>
   <button type="button" id="wstazka" class="wstazka" aria-expanded="true" aria-controls="narzedzia skroty">Zwiń narzędzia</button>
   <div class="przyciski" id="narzedzia">
     <label for="przyklad" class="sr-only">Wybierz przykład</label>
