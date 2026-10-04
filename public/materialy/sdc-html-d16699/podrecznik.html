@@ -283,6 +283,13 @@ main code { color: #431651; }
 pre code { color: #14191d; }
 .ramka { background: #E2F4FF; border-left: 6px solid #FEDB16; border-radius: 6px; }
 table th { background: #5F338A; color: #fff; }
+/* tabele: czarne obramowanie każdej komórki, żeby siatka była postrzegalna (WCAG 1.4.11) */
+table { border: 1px solid #14191d; }
+th, td { border: 1px solid #14191d; }
+/* linki: fioletowe, pogrubione i podkreślone (nie tylko kolorem, WCAG 1.4.1) */
+main a, .spis a { color: #5F338A; font-weight: 700; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .15em; }
+main a:hover { color: #431651; }
+
 footer { background: #5F338A; color: #fff; margin-top: 3rem; padding: 1rem 0; }
 footer a, footer strong { color: #FEDB16; }
 
@@ -310,7 +317,7 @@ ul.sciaga li::before { content: "☐ "; font-weight: 700; }
 <main id="tresc-glowna" class="srodek">
 <p>Ten podręcznik zbiera to, co omawiamy na zajęciach. Nie zastępuje dokumentacji. Ma pomóc wrócić do tematu po zajęciach i naprawić własną stronę.</p>
 <p>Każdy rozdział ma ten sam układ: <strong>co się psuje</strong>, <strong>reguła</strong>, <strong>kod źle i dobrze</strong>, <strong>jak sprawdzić</strong>.</p>
-<p>Przykłady działają po wklejeniu do pustego pliku albo do placu zabaw na a11yfirst.pl/plac-zabaw-html.</p>
+<p>Przykłady działają po wklejeniu do pustego pliku albo do placu zabaw na <a href="https://www.a11yfirst.pl/plac-zabaw-html">a11yfirst.pl/plac-zabaw-html</a>.</p>
 <div class="ramka"><p><strong>Uwaga o czytnikach ekranu.</strong> Tam, gdzie piszemy, co „ogłosi czytnik”, to przybliżenie. NVDA, JAWS i VoiceOver mówią to inaczej i zależnie od ustawień. Pewne jest to, jaką rolę, nazwę i stan dostaje element. To widać w drzewie dostępności w narzędziach deweloperskich przeglądarki.</p></div>
 <nav class="spis" aria-labelledby="spis-tresci"><h2 id="spis-tresci">Spis treści</h2><ul><li><a href="#1-jak-zbudowana-jest-strona">1. Jak zbudowana jest strona</a></li><li><a href="#2-skad-sie-wzial-html-i-po-co-semantyka">2. Skąd się wziął HTML i po co semantyka</a></li><li><a href="#3-naglowki-i-landmarki">3. Nagłówki i landmarki</a></li><li><a href="#4-obrazki">4. Obrazki</a></li><li><a href="#5-link-czy-przycisk">5. Link czy przycisk?</a></li><li><a href="#6-div-i-span">6. Div i span</a></li><li><a href="#7-listy">7. Listy</a></li><li><a href="#8-tabele">8. Tabele</a></li><li><a href="#9-formularze">9. Formularze</a></li><li><a href="#10-fokus-kolor-rozmiar">10. Fokus, kolor, rozmiar</a></li><li><a href="#11-przyklad-z-zajec-recenzja-strony">11. Przykład z zajęć: recenzja strony</a></li><li><a href="#12-jak-sprawdzic-wlasna-strone-w-10-minut">12. Jak sprawdzić własną stronę w 10 minut</a></li><li><a href="#sciaga">Ściąga</a></li><li><a href="#zrodla">Źródła</a></li></ul></nav>
 <h2 id="1-jak-zbudowana-jest-strona">1. Jak zbudowana jest strona</h2>
