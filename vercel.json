@@ -7,6 +7,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/materialy/trener",
+      "destination": "/api/materialy-trenera"
+    },
+    {
       "source": "/",
       "destination": "/index.html"
     }
