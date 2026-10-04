@@ -283,6 +283,13 @@ main code { color: #431651; }
 pre code { color: #14191d; }
 .ramka { background: #E2F4FF; border-left: 6px solid #FEDB16; border-radius: 6px; }
 table th { background: #5F338A; color: #fff; }
+/* tabele: czarne obramowanie każdej komórki, żeby siatka była postrzegalna (WCAG 1.4.11) */
+table { border: 1px solid #14191d; }
+th, td { border: 1px solid #14191d; }
+/* linki: fioletowe, pogrubione i podkreślone (nie tylko kolorem, WCAG 1.4.1) */
+main a, .spis a { color: #5F338A; font-weight: 700; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .15em; }
+main a:hover { color: #431651; }
+
 footer { background: #5F338A; color: #fff; margin-top: 3rem; padding: 1rem 0; }
 footer a, footer strong { color: #FEDB16; }
 
@@ -330,7 +337,7 @@ ul.sciaga li::before { content: "☐ "; font-weight: 700; }
 <h2 id="4-cwiczenie-strona-z-bledami">4. Ćwiczenie: strona z błędami</h2>
 <p>Użyjesz przykładowej strony z placu zabaw Accessibility First.</p>
 <p><strong>Zrób</strong></p>
-<ol><li>Otwórz https://www.a11yfirst.pl/plac-zabaw-html.</li><li>Z listy „Wybierz przykład” wybierz „Przykład: strona z błędami (do poprawy)”.</li><li>Kliknij „Otwórz w nowej karcie”. Strona otworzy się pod adresem zaczynającym się od <code>blob:</code>.</li><li>Na tej karcie uruchom WAVE (<code>Ctrl+Shift+U</code> albo <code>Cmd+Shift+U</code>).</li></ol>
+<ol><li>Otwórz <a href="https://www.a11yfirst.pl/plac-zabaw-html">plac zabaw HTML</a>.</li><li>Z listy „Wybierz przykład” wybierz „Przykład: strona z błędami (do poprawy)”.</li><li>Kliknij „Otwórz w nowej karcie”. Strona otworzy się pod adresem zaczynającym się od <code>blob:</code>.</li><li>Na tej karcie uruchom WAVE (<code>Ctrl+Shift+U</code> albo <code>Cmd+Shift+U</code>).</li></ol>
 <p><strong>Jeśli WAVE nie działa na karcie <code>blob:</code></strong> (to, czy rozszerzenie działa na takich adresach, jest <strong>[DO SPRAWDZENIA]</strong>; nie znaleźliśmy tego w dokumentacji WebAIM):</p>
 <ol><li>Wróć do placu zabaw i kliknij „Pobierz .html”.</li><li>Otwórz pobrany plik w przeglądarce (przeciągnij go do okna albo <code>Ctrl+O</code> / <code>Cmd+O</code>). Adres zacznie się od <code>file://</code>.</li><li>Włącz rozszerzeniu dostęp do plików lokalnych. W Chrome: menu Rozszerzenia → Zarządzaj rozszerzeniami → WAVE → Szczegóły → „Zezwalaj na dostęp do adresów URL plików”. W innych przeglądarkach nazwa opcji może być inna. WebAIM potwierdza tylko, że dostęp do stron lokalnych „może wymagać włączenia w ustawieniach rozszerzenia”.</li><li>Odśwież plik i uruchom WAVE.</li></ol>
 <p><strong>Co zobaczysz</strong></p>
@@ -378,7 +385,7 @@ Poprawka: &lt;label for=&quot;email&quot;&gt;Twój e-mail&lt;/label&gt; &lt;inpu
 <ul class="sciaga"><li>Uruchamiam WAVE: ikona, <code>Ctrl/Cmd+Shift+U</code> albo „WAVE this page”</li><li>Każdy Error i Contrast Error potwierdzam w Code</li><li>Każdy Alert oceniam: błąd, nie błąd, do sprawdzenia</li><li>Features też sprawdzam: sens alt, sens etykiet</li><li>Przeglądam Structure, Order i stronę ze Styles OFF</li><li>Kontrast na gradientach i obrazkach mierzę ręcznie</li><li>Robię test klawiaturą i czytnikiem ekranu</li><li>W raporcie: problem, skutek, kryterium (numer i nazwa), miejsce, poprawka</li></ul>
 <h2 id="zrodla">Źródła</h2>
 <p>Wszystkie sprawdzone 4.10.2026.</p>
-<ul><li>WebAIM, WAVE Help: wave.webaim.org/help</li><li>WebAIM, WAVE Browser Extensions: wave.webaim.org/extension</li><li>WebAIM, WAVE Accessibility Tips: wave.webaim.org/accessibility</li><li>WebAIM, indeks ikon WAVE z kryteriami WCAG: wave.webaim.org/api/docs</li><li>WebAIM, skróty czytników ekranu: webaim.org/resources/shortcuts/</li><li>W3C WAI, WCAG 2.2: w3.org/TR/WCAG22/</li><li>Plac zabaw HTML, Accessibility First: a11yfirst.pl/plac-zabaw-html</li></ul>
+<ul><li>WebAIM, WAVE Help: wave.webaim.org/help</li><li>WebAIM, WAVE Browser Extensions: wave.webaim.org/extension</li><li>WebAIM, WAVE Accessibility Tips: wave.webaim.org/accessibility</li><li>WebAIM, indeks ikon WAVE z kryteriami WCAG: wave.webaim.org/api/docs</li><li>WebAIM, skróty czytników ekranu: webaim.org/resources/shortcuts/</li><li>W3C WAI, WCAG 2.2: w3.org/TR/WCAG22/</li><li><a href="https://www.a11yfirst.pl/plac-zabaw-html">Plac zabaw HTML, Accessibility First</a></li></ul>
 </main>
 <footer><div class="srodek"><p><strong>Accessibility First</strong> · Włącz Wizję sp. z o.o. · a11yfirst.pl · a11y@wlaczwizje.pl</p></div></footer>
 </body>
