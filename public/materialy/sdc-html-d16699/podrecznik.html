@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML od podstaw: podręcznik uczestnika | Accessibility First</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f4f5f7; --bg3:#eceef2;
+  --tekst:#15171c; --tekst2:#4c5260;
+  --akcent:#7a2ff2; --akcent-tekst:#ffffff; --akcent-slaby:#f0e8ff;
+  --kreska:#d6d9e0;
+  --zle:#a3162b; --zle-tlo:#fdeaed; --dobrze:#1c6b3f; --dobrze-tlo:#e3f4ea;
+  --kod-tlo:#f6f7f9;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+    --tekst:#f2f3f6; --tekst2:#a9b0c0;
+    --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+    --kreska:#2f3542;
+    --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+    --kod-tlo:#1a1d25;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+  --tekst:#f2f3f6; --tekst2:#a9b0c0;
+  --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+  --kreska:#2f3542;
+  --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+  --kod-tlo:#1a1d25;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--tekst);
+  font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.srodek{max-width:760px; margin:0 auto; padding:0 20px}
+.szeroko{max-width:1000px}
+a{color:var(--akcent)}
+:focus-visible{outline:3px solid var(--akcent); outline-offset:2px; border-radius:4px}
+img{max-width:100%}
+
+.przeskok{position:absolute; left:-9999px; top:0; background:var(--akcent);
+  color:var(--akcent-tekst); padding:12px 18px; z-index:20; font-weight:600;
+  border-radius:0 0 var(--radius) 0}
+.przeskok:focus{left:0}
+
+.gorny{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:12px 0}
+.gorny-tresc{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+.marka{font-weight:700; letter-spacing:-.01em; text-decoration:none; color:var(--tekst)}
+.marka span{color:var(--akcent)}
+.gorny nav ul{display:flex; flex-wrap:wrap; gap:16px; list-style:none; margin:0; padding:0; font-size:15px}
+
+header.tytul{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:40px 0 32px}
+.etykieta{display:inline-block; background:var(--akcent-slaby); color:var(--akcent);
+  font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:5px 11px; border-radius:999px}
+h1{font-size:clamp(28px,5vw,42px); line-height:1.15; margin:16px 0 10px; letter-spacing:-.02em}
+.podtytul{color:var(--tekst2); font-size:18px; margin:0 0 20px; max-width:60ch}
+.fakty{display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:0}
+.fakty li{background:var(--bg); border:1px solid var(--kreska); border-radius:999px;
+  padding:6px 14px; font-size:14px}
+.fakty b{color:var(--akcent)}
+
+main h2{font-size:clamp(22px,3.5vw,29px); margin:44px 0 12px; letter-spacing:-.01em;
+  padding-top:8px}
+main h3{font-size:20px; margin:32px 0 10px}
+main h4{font-size:17px; margin:24px 0 8px; color:var(--tekst2)}
+main p{margin:0 0 16px}
+main ul,main ol{margin:0 0 18px; padding-left:24px}
+main li{margin-bottom:7px}
+hr{border:0; border-top:1px solid var(--kreska); margin:36px 0}
+
+.kod{margin:0 0 20px; border:1px solid var(--kreska); border-radius:var(--radius); overflow:hidden}
+.kod-etykieta{margin:0; background:var(--bg3); color:var(--tekst2); font-size:12px;
+  font-weight:700; letter-spacing:.06em; padding:7px 14px; border-bottom:1px solid var(--kreska)}
+pre{margin:0; padding:14px 16px; overflow-x:auto; background:var(--kod-tlo)}
+pre code{font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+p code,li code,td code,th code{background:var(--bg3); padding:2px 6px; border-radius:5px;
+  font:0.9em/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+.tabela{overflow-x:auto; margin:0 0 20px}
+table{width:100%; border-collapse:collapse; font-size:15px}
+th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--kreska); vertical-align:top}
+thead th{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--tekst2)}
+
+.ramka{background:var(--bg2); border-left:4px solid var(--akcent);
+  border-radius:0 var(--radius) var(--radius) 0; padding:16px 20px; margin:0 0 22px}
+.ramka > :last-child{margin-bottom:0}
+
+.quiz{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:24px; margin:44px 0}
+.quiz h2{margin-top:0}
+.quiz-wstep{color:var(--tekst2); font-size:15px}
+.pytanie{border-top:1px solid var(--kreska); padding-top:22px; margin-top:22px}
+.pytanie:first-of-type{border-top:0; padding-top:0}
+.pytanie-tresc{margin:0 0 4px; font-size:18px}
+.pytanie-nr{display:block; color:var(--akcent); font-size:13px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px}
+.pytanie-typ{color:var(--tekst2); font-size:13px; margin:0 0 14px}
+.pytanie-uwaga{color:var(--tekst2); font-size:14px; margin:10px 0 0}
+.odpowiedzi{list-style:none; margin:0; padding:0}
+.odpowiedzi li{margin-bottom:10px}
+button.odpowiedz{display:flex; gap:12px; align-items:flex-start; width:100%; text-align:left;
+  background:var(--bg); color:var(--tekst); border:1px solid var(--kreska);
+  border-radius:9px; padding:13px 16px; font:inherit; font-size:16px; cursor:pointer}
+button.odpowiedz:hover{border-color:var(--akcent)}
+.znak{flex:0 0 28px; width:28px; height:28px; border:2px solid var(--kreska);
+  border-radius:50%; margin-top:1px; display:grid; place-items:center;
+  font-size:14px; font-weight:700; color:var(--tekst2)}
+.znak .litera{line-height:1}
+button.odpowiedz[aria-pressed="true"] .litera{display:none}
+
+/* --- tryb krokowy: jedno pytanie na ekran --- */
+.quiz-start{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:0 0 20px}
+.przycisk-glowny{background:var(--akcent); color:var(--akcent-tekst); border:2px solid var(--akcent);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-glowny:hover{filter:brightness(1.08)}
+.przycisk-drugi{background:transparent; color:var(--tekst); border:2px solid var(--kreska);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-drugi:hover{border-color:var(--akcent)}
+.przycisk-drugi[disabled]{opacity:.45; cursor:default}
+
+.krokowy{position:fixed; inset:0; z-index:100; background:var(--bg);
+  display:flex; flex-direction:column; overflow:auto}
+.krokowy[hidden]{display:none}
+.krokowy-gora{border-bottom:1px solid var(--kreska); background:var(--bg2); padding:14px 0}
+.krokowy-gora .srodek{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between}
+.postep{flex:1 1 220px; min-width:180px}
+.postep-tekst{font-size:14px; color:var(--tekst2); margin:0 0 6px}
+.postep-pasek{height:8px; background:var(--bg3); border-radius:99px; overflow:hidden}
+.postep-wypelnienie{height:100%; background:var(--akcent); width:0; transition:width .2s}
+.krokowy-zamknij{background:none; border:2px solid var(--kreska); border-radius:8px;
+  padding:8px 14px; font:600 15px/1 inherit; font-family:inherit; color:inherit; cursor:pointer}
+.krokowy-tresc{flex:1; padding:32px 0}
+.krokowy .pytanie{border:0; padding:0; margin:0}
+.krokowy .pytanie-tresc{font-size:clamp(20px,3vw,26px)}
+.krokowy-dol{border-top:1px solid var(--kreska); background:var(--bg2); padding:16px 0}
+.krokowy-dol .srodek{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+.krokowy-info{color:var(--tekst2); font-size:14px; margin:0}
+
+.podsumowanie h2{margin-top:0}
+.wynik-duzy{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.03em; margin:0;
+  color:var(--akcent)}
+.wynik-duzy.zaliczony{color:var(--dobrze)}
+.wynik-opis{color:var(--tekst2); margin:4px 0 22px}
+ol.podsumowanie-lista{list-style:none; padding:0; margin:0 0 24px}
+ol.podsumowanie-lista li{display:grid; grid-template-columns:34px 1fr auto; gap:12px 16px;
+  align-items:center; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:9px; padding:11px 14px; margin:0 0 8px}
+.pod-nr{font-weight:700; color:var(--tekst2); font-variant-numeric:tabular-nums}
+.pod-stan{font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap}
+li.ok .pod-stan{color:var(--dobrze)}
+li.zle .pod-stan{color:var(--zle)}
+li.pusto .pod-stan{color:var(--tekst2)}
+.pod-tresc{font-size:15px}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"]{
+  border-color:var(--dobrze); background:var(--dobrze-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak{
+  border-color:var(--dobrze); color:var(--dobrze)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak::after{content:"✓"}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"]{
+  border-color:var(--zle); background:var(--zle-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak{
+  border-color:var(--zle); color:var(--zle)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak::after{content:"✕"}
+.wyjasnienie{margin:8px 0 0; padding:11px 15px; background:var(--bg3);
+  border-radius:8px; font-size:15px; color:var(--tekst2)}
+.wyjasnienie-etykieta{font-weight:700; color:var(--tekst)}
+.quiz-wynik{margin:22px 0 0; font-weight:600; color:var(--akcent)}
+.quiz-wynik.zaliczone{color:var(--dobrze)}
+.quiz-oparty{color:var(--tekst2); font-size:15px; margin:16px 0 0}
+.karta-quiz{border-left:4px solid var(--akcent)}
+ul.zrodla{color:var(--tekst2); font-size:15px}
+
+.przeglad .blok{margin:0 0 44px}
+.przeglad .blok h2{display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  border-bottom:2px solid var(--kreska); padding-bottom:8px; margin-top:36px}
+.link-lekcji{font-size:15px; font-weight:400}
+.przeglad .ile{color:var(--tekst2); font-size:14px; margin:6px 0 16px}
+.przeglad ol.pytania{list-style:none; padding:0; margin:0}
+.przeglad li.pyt{background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:16px 18px; margin:0 0 12px}
+.przeglad .pyt-tresc{font-weight:600; margin:0 0 12px}
+.przeglad .typ{font-weight:400; font-size:13px; color:var(--tekst2);
+  background:var(--bg3); border-radius:5px; padding:2px 8px; white-space:nowrap}
+.przeglad ul.odp{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.przeglad ul.odp li{display:grid; grid-template-columns:42px 1fr; gap:10px;
+  padding:9px 12px; border-radius:8px; margin:0; font-size:15px}
+.przeglad ul.odp li.dobra{background:var(--dobrze-tlo, #e3f4ea)}
+.przeglad ul.odp li.zla{background:var(--bg3)}
+.przeglad .znacznik{font-weight:700}
+.przeglad li.dobra .znacznik{color:var(--dobrze, #1c6b3f)}
+.przeglad li.zla .znacznik{color:var(--tekst2)}
+.przeglad .wyj{display:block; color:var(--tekst2); font-size:14px; margin-top:4px}
+
+figure.media{margin:0 0 24px; padding:0}
+figure.media img,figure.media video{display:block; width:100%; height:auto;
+  border:1px solid var(--kreska); border-radius:var(--radius); background:var(--bg2)}
+figure.media figcaption{color:var(--tekst2); font-size:15px; margin-top:8px}
+figure.media.dekoracyjna figcaption{display:none}
+details.transkrypcja{margin-top:10px; border:1px solid var(--kreska);
+  border-radius:var(--radius); background:var(--bg2)}
+details.transkrypcja summary{padding:11px 16px; cursor:pointer; font-weight:600; font-size:15px}
+details.transkrypcja[open] summary{border-bottom:1px solid var(--kreska)}
+details.transkrypcja > :not(summary){padding:0 16px}
+details.transkrypcja > p:last-child{padding-bottom:14px}
+
+.lekcje{list-style:none; padding:0; margin:0}
+.lekcje li{margin-bottom:10px}
+.lekcja-kafel{display:grid; grid-template-columns:52px 1fr auto; gap:16px; align-items:center;
+  background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:16px 18px; text-decoration:none; color:inherit}
+a.lekcja-kafel:hover{border-color:var(--akcent)}
+a.lekcja-kafel:hover .lekcja-tytul{color:var(--akcent)}
+.lekcja-kafel.pusty{opacity:.72}
+.lekcja-nr{background:var(--bg3); border-radius:8px; text-align:center; padding:8px 0;
+  font-weight:700; color:var(--akcent); font-variant-numeric:tabular-nums}
+.lekcja-tytul{font-weight:600; font-size:17px; display:block}
+.lekcja-meta{color:var(--tekst2); font-size:14px; margin-top:3px; display:block}
+.lekcja-stan{font-size:13px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  white-space:nowrap; color:var(--tekst2)}
+.lekcja-stan.gotowa{color:var(--akcent)}
+
+.chipy{display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:10px 0 0}
+.chipy li{background:var(--akcent-slaby); color:var(--akcent); border-radius:6px;
+  padding:3px 9px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; margin:0}
+
+.karty{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;
+  list-style:none; padding:0; margin:0 0 20px}
+.karty li{margin:0}
+.karta{display:block; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:18px; text-decoration:none; color:inherit; height:100%}
+a.karta:hover{border-color:var(--akcent)}
+.karta b{display:block; margin-bottom:5px}
+.karta span{color:var(--tekst2); font-size:15px}
+
+.nawigacja-lekcji{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  margin:44px 0 0; padding-top:22px; border-top:1px solid var(--kreska)}
+.nawigacja-lekcji a{font-weight:600; text-decoration:none}
+.nawigacja-lekcji a:hover{text-decoration:underline}
+
+.cele{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:18px 22px; margin:0 0 28px}
+.cele h2{margin:0 0 10px; font-size:16px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--tekst2); padding-top:0}
+.cele ul{margin:0; padding-left:22px}
+
+footer{margin:60px 0 0; border-top:1px solid var(--kreska); background:var(--bg2); padding:26px 0 44px}
+footer p{color:var(--tekst2); font-size:14px; margin:0 0 6px}
+.wizualnie-ukryte{position:absolute; width:1px; height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap}
+@media (max-width:560px){
+  .lekcja-kafel{grid-template-columns:44px 1fr}
+  .lekcja-stan{grid-column:2; justify-self:start}
+}
+
+/* ===== IDENTYFIKACJA ACCESSIBILITY FIRST (nadpisuje styl kursu) ===== */
+:root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+  --bg:#ffffff; --bg2:#E2F4FF; --bg3:#d4ecfb; --tekst:#14191d; --tekst2:#3d4350;
+  --akcent:#5F338A; --akcent-tekst:#ffffff; --akcent-slaby:#E2F4FF; --kreska:#b9a6d6;
+  --zle:#a31414; --zle-tlo:#fdecee; --dobrze:#14601f; --dobrze-tlo:#e7f5ea; --kod-tlo:#f7f4fb; --radius:6px;
+  color-scheme: light;
+}
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: Inter, "Helvetica Neue", Arial, system-ui, sans-serif; }
+:focus-visible { outline: 4px solid #14191d; outline-offset: 3px; box-shadow: 0 0 0 8px #FEDB16; border-radius: 2px; }
+.pasek-marki { margin: 0; background: #5F338A; color: #fff; text-align: center; padding: .9rem 1rem;
+  font-weight: 900; letter-spacing: .02em; text-transform: uppercase; font-size: 1.15rem; line-height: 1; }
+.pasek-marki span { color: #FEDB16; margin-left: .32em; }
+.okladka { background: linear-gradient(135deg, #7C27A0 0%, #5F338A 45%, #431651 100%); color: #fff; padding: 2.6rem 0 2.2rem; }
+.okladka h1 { color: #fff; margin: 0 0 .6rem; }
+.okladka p { margin: 0; color: #FEDB16; font-weight: 700; }
+main h2 { color: #5F338A; border-bottom: 3px solid #E2F4FF; padding-bottom: .25rem; }
+main h3 { color: #431651; }
+.spis { background: #E2F4FF; border-left: 6px solid #5F338A; border-radius: 6px; padding: .4rem 1.2rem 1rem; margin: 1.5rem 0; }
+.spis h2 { border: 0; margin-top: .8rem; }
+.kod { border-color: #b9a6d6; }
+.kod-etykieta { background: #5F338A; color: #fff; border-bottom: 0; }
+main code { color: #431651; }
+pre code { color: #14191d; }
+.ramka { background: #E2F4FF; border-left: 6px solid #FEDB16; border-radius: 6px; }
+table th { background: #5F338A; color: #fff; }
+footer { background: #5F338A; color: #fff; margin-top: 3rem; padding: 1rem 0; }
+footer a, footer strong { color: #FEDB16; }
+
+.spis ul { columns: 2; column-gap: 2rem; list-style: none; padding-left: 0; }
+.spis li { break-inside: avoid; }
+ul.sciaga { list-style: none; padding-left: 0; }
+ul.sciaga li::before { content: "☐ "; font-weight: 700; }
+@media (max-width: 40rem) { .spis ul { columns: 1; } }
+@media print {
+  body { font-size: 11pt; }
+  .przeskok { display: none; }
+  h2 { break-after: avoid; } h3 { break-after: avoid; }
+  .kod, table, .ramka { break-inside: avoid; }
+  a { color: inherit; }
+}
+@page { size: A4; margin: 18mm 16mm; }
+</style>
+</head>
+<body>
+<a class="przeskok" href="#tresc-glowna">Przejdź do treści</a>
+<header>
+<p class="pasek-marki">Accessibility <span>First</span></p>
+<div class="okladka"><div class="srodek"><h1>HTML od podstaw: podręcznik uczestnika</h1><p>Accessibility First · materiał do zajęć „Nauka HTMLa od podstaw” · wersja z 3.10.2026</p></div></div>
+</header>
+<main id="tresc-glowna" class="srodek">
+<p>Ten podręcznik zbiera to, co omawiamy na zajęciach. Nie zastępuje dokumentacji. Ma pomóc wrócić do tematu po zajęciach i naprawić własną stronę.</p>
+<p>Każdy rozdział ma ten sam układ: <strong>co się psuje</strong>, <strong>reguła</strong>, <strong>kod źle i dobrze</strong>, <strong>jak sprawdzić</strong>.</p>
+<p>Przykłady działają po wklejeniu do pustego pliku albo do placu zabaw na a11yfirst.pl/plac-zabaw-html.</p>
+<div class="ramka"><p><strong>Uwaga o czytnikach ekranu.</strong> Tam, gdzie piszemy, co „ogłosi czytnik”, to przybliżenie. NVDA, JAWS i VoiceOver mówią to inaczej i zależnie od ustawień. Pewne jest to, jaką rolę, nazwę i stan dostaje element. To widać w drzewie dostępności w narzędziach deweloperskich przeglądarki.</p></div>
+<nav class="spis" aria-labelledby="spis-tresci"><h2 id="spis-tresci">Spis treści</h2><ul><li><a href="#1-jak-zbudowana-jest-strona">1. Jak zbudowana jest strona</a></li><li><a href="#2-skad-sie-wzial-html-i-po-co-semantyka">2. Skąd się wziął HTML i po co semantyka</a></li><li><a href="#3-naglowki-i-landmarki">3. Nagłówki i landmarki</a></li><li><a href="#4-obrazki">4. Obrazki</a></li><li><a href="#5-link-czy-przycisk">5. Link czy przycisk?</a></li><li><a href="#6-div-i-span">6. Div i span</a></li><li><a href="#7-listy">7. Listy</a></li><li><a href="#8-tabele">8. Tabele</a></li><li><a href="#9-formularze">9. Formularze</a></li><li><a href="#10-fokus-kolor-rozmiar">10. Fokus, kolor, rozmiar</a></li><li><a href="#11-przyklad-z-zajec-recenzja-strony">11. Przykład z zajęć: recenzja strony</a></li><li><a href="#12-jak-sprawdzic-wlasna-strone-w-10-minut">12. Jak sprawdzić własną stronę w 10 minut</a></li><li><a href="#sciaga">Ściąga</a></li><li><a href="#zrodla">Źródła</a></li></ul></nav>
+<h2 id="1-jak-zbudowana-jest-strona">1. Jak zbudowana jest strona</h2>
+<h3 id="html-jak-czlowiek">HTML jak człowiek</h3>
+<ul><li><strong>Głowa = <code>&lt;head&gt;</code>.</strong> Myśli, których nie widać: tytuł karty, język, kodowanie, opis strony.</li><li><strong>Ciało = <code>&lt;body&gt;</code>.</strong> Wszystko, co widać i z czym wchodzimy w interakcję.</li><li><strong>CSS = makijaż.</strong> Wygląd: kolory, czcionki, układ. Nie zmienia tego, czym element jest.</li><li><strong>JavaScript = humory.</strong> Reakcje: kliknięcia, rozwijanie, podmiana treści.</li></ul>
+<h3 id="minimalny-poprawny-dokument">Minimalny poprawny dokument</h3>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pl&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Kontakt | Biblioteka Miejska w Opolu&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Kontakt&lt;/h1&gt;
+  &lt;p&gt;Zapraszamy od poniedziałku do piątku.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<ul><li><code>&lt;!DOCTYPE html&gt;</code>: bez niego przeglądarka przechodzi w tryb zgodności wstecznej i inaczej liczy wymiary.</li><li><code>lang=&quot;pl&quot;</code>: czytnik ekranu wybiera polski głos i wymowę. Bez tego może czytać polski tekst z angielskim akcentem (WCAG 3.1.1 Język strony).</li><li><code>&lt;title&gt;</code>: pierwsza rzecz, którą słyszy użytkownik czytnika po wejściu na stronę. Najpierw to, co konkretne, potem nazwa serwisu (WCAG 2.4.2 Tytuł strony).</li></ul>
+<h3 id="gdzie-wstawic-css-i-javascript">Gdzie wstawić CSS i JavaScript</h3>
+<ul><li>CSS w <code>&lt;style&gt;</code> w <code>&lt;head&gt;</code> albo w osobnym pliku przez <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code>.</li><li>Skrypt najlepiej na końcu <code>&lt;body&gt;</code>. Skrypt widzi tylko to, co stoi nad nim, więc musi być <strong>pod</strong> elementami, których szuka.</li><li><code>&lt;script&gt;</code> jest niewidoczny dla czytnika ekranu. Nie zmienia struktury strony.</li></ul>
+<h3 id="dwa-bledy-ktore-zjadaja-pol-strony">Dwa błędy, które „zjadają” pół strony</h3>
+<ol><li><strong>Niedomknięty <code>&lt;style&gt;</code>.</strong> Wszystko po nim przeglądarka traktuje jako CSS. Znika treść, choć kod wygląda na kompletny.</li><li><strong>Brakująca klamra <code>}</code> w CSS.</strong> Przeglądarki obsługują dziś zagnieżdżanie reguł (CSS nesting). Bez klamry kolejne reguły trafiają do środka poprzedniej i przestają działać. Żaden błąd się nie pojawia, styl po prostu znika.</li></ol>
+<p>Podobnie działa <strong>nieistniejąca zmienna</strong>: <code>color: var(--blad)</code> bez zdefiniowanego <code>--blad</code> nie zgłasza błędu, tylko po cichu nie działa.</p>
+<h2 id="2-skad-sie-wzial-html-i-po-co-semantyka">2. Skąd się wziął HTML i po co semantyka</h2>
+<ul><li>1989: Tim Berners-Lee w CERN proponuje sieć dokumentów połączonych linkami.</li><li>1991: pierwszy opis znaczników HTML. Były tytuły, nagłówki, akapity, listy i linki. <strong>Nie było żadnego znacznika wyglądu</strong>: pogrubienia, koloru ani czcionki. Obrazy doszły w 1993 roku.</li><li>1994: powstaje W3C, organizacja, która rozwija standardy sieci, w tym WCAG.</li></ul>
+<p>HTML od początku opisuje, <strong>czym jest</strong> treść, a nie jak wygląda. To jest semantyka.</p>
+<h3 id="co-z-tego-ma-uzytkownik">Co z tego ma użytkownik</h3>
+<p>Przeglądarka zamienia HTML w <strong>drzewo dostępności</strong> (accessibility tree). Każdy element dostaje w nim:</p>
+<ul><li><strong>rolę</strong>: czym jest (przycisk, link, nagłówek, lista),</li><li><strong>nazwę</strong>: jak się nazywa (tekst przycisku, etykieta pola, alt obrazka),</li><li><strong>stan</strong>: w jakim jest stanie (zaznaczony, rozwinięty, nieprawidłowy).</li></ul>
+<p>Czytnik ekranu, sterowanie głosem i nawigacja klawiaturą korzystają z tego drzewa, a nie z wyglądu strony. <code>&lt;div&gt;</code> wystylowany na przycisk wygląda jak przycisk tylko dla osoby, która go widzi.</p>
+<h3 id="aria-w-jednym-akapicie">ARIA w jednym akapicie</h3>
+<p>ARIA (Accessible Rich Internet Applications) to atrybuty, które zmieniają to, co trafia do drzewa dostępności: <code>role</code>, <code>aria-label</code>, <code>aria-expanded</code> i inne. <strong>ARIA zmienia tylko to, co słyszy czytnik. Nie dodaje fokusu, obsługi klawiatury ani zachowania.</strong></p>
+<p>Pierwsza zasada ARIA według W3C: jeśli istnieje natywny element HTML, który robi to, czego potrzebujesz, użyj go.</p>
+<h2 id="3-naglowki-i-landmarki">3. Nagłówki i landmarki</h2>
+<p><strong>Co się psuje.</strong> Użytkownik czytnika ekranu nie przegląda strony wzrokiem. Skacze po nagłówkach i po obszarach strony. Jeśli nagłówki są tylko „dużą czcionką”, strona dla niego nie ma spisu treści.</p>
+<p><strong>Reguła.</strong> Nagłówek to tytuł sekcji, nie rozmiar tekstu. Obszary strony oznaczamy elementami <code>header</code>, <code>nav</code>, <code>main</code> i <code>footer</code>.</p>
+<p>✗ Źle: wygląda jak nagłówek, nie jest nagłówkiem</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;p class=&quot;duzy-tytul&quot;&gt;Godziny otwarcia&lt;/p&gt;
+&lt;p&gt;Poniedziałek–piątek, 8:00–18:00&lt;/p&gt;</code></pre></div>
+<p>✓ Dobrze</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;h2&gt;Godziny otwarcia&lt;/h2&gt;
+&lt;p&gt;Poniedziałek–piątek, 8:00–18:00&lt;/p&gt;</code></pre></div>
+<p><strong>Dobre praktyki:</strong></p>
+<ul><li>jeden <code>h1</code> z tematem strony,</li><li>poziomy bez przeskoków: po <code>h2</code> przychodzi <code>h3</code>, nie <code>h5</code>,</li><li>bez pustych nagłówków. Nagłówek, pod którym nic nie ma, w liście nagłówków wygląda jak sekcja-widmo,</li><li>jeden <code>main</code> na stronę,</li><li>dwa elementy <code>nav</code> dostają różne nazwy, np. <code>aria-label=&quot;Główna&quot;</code> i <code>aria-label=&quot;Stopka&quot;</code>.</li></ul>
+<h3 id="skiplink-link-przejdz-do-tresci">Skiplink: link „Przejdź do treści”</h3>
+<p>Osoba korzystająca z klawiatury nie musi przechodzić Tabem przez całe menu na każdej podstronie.</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;body&gt;
+  &lt;a class=&quot;skiplink&quot; href=&quot;#tresc&quot;&gt;Przejdź do treści&lt;/a&gt;
+  &lt;header&gt;…&lt;/header&gt;
+  &lt;main id=&quot;tresc&quot;&gt;
+    &lt;h1&gt;Kontakt&lt;/h1&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre></div>
+<p>Link może być schowany wizualnie, ale <strong>musi się pokazać po fokusie</strong>. Nie chowaj go przez <code>display: none</code>, bo wtedy Tab do niego nie dojdzie.</p>
+<p><strong>Jak sprawdzić:</strong> NVDA: <code>H</code> następny nagłówek, <code>1</code>–<code>6</code> nagłówek danego poziomu, <code>D</code> następny landmark, <code>Insert+F7</code> lista elementów. VoiceOver na Macu: <code>VO+U</code> otwiera pokrętło (rotor).</p>
+<p>WCAG: 1.3.1 Informacje i relacje · 2.4.1 Możliwość pominięcia bloków · 2.4.6 Nagłówki i etykiety.</p>
+<h2 id="4-obrazki">4. Obrazki</h2>
+<p><strong>Reguła.</strong> Każdy <code>&lt;img&gt;</code> ma atrybut <code>alt</code>. Jego treść zależy od tego, <strong>po co</strong> jest obrazek.</p>
+<div class="tabela"><table><thead><tr><th scope="col">Rodzaj obrazka</th><th scope="col">Co wpisać w <code>alt</code></th><th scope="col">Przykład</th></tr></thead><tbody><tr><td>Informacyjny</td><td>to, co przekazuje</td><td><code>alt=&quot;Mapa dojazdu: wejście od ulicy Kościuszki&quot;</code></td></tr><tr><td>Dekoracyjny</td><td>pusty: <code>alt=&quot;&quot;</code></td><td>ozdobny ornament, tło</td></tr><tr><td>W linku albo przycisku</td><td>dokąd prowadzi albo co robi</td><td><code>alt=&quot;Pobierz z App Store: aplikacja Moje ING&quot;</code></td></tr><tr><td>Złożony (wykres, schemat)</td><td>krótki opis, pełny opis obok w tekście</td><td><code>alt=&quot;Wykres sprzedaży 2026, szczegóły w tabeli poniżej&quot;</code></td></tr></tbody></table></div>
+<ul><li>Nie pisz „obrazek przedstawiający…”. Czytnik sam mówi, że to grafika.</li><li>Brak <code>alt</code> to co innego niż <code>alt=&quot;&quot;</code>. Bez atrybutu czytnik może przeczytać nazwę pliku.</li><li>Link z tekstem i ikoną: tekst już jest nazwą linku, więc ikona dostaje <code>alt=&quot;&quot;</code>.</li></ul>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;a href=&quot;https://ing.pl&quot;&gt;
+  Dowiedz się, co robimy w banku
+  &lt;img src=&quot;logo-ing.png&quot; alt=&quot;&quot;&gt;
+&lt;/a&gt;</code></pre></div>
+<p>WCAG: 1.1.1 Treść nietekstowa.</p>
+<h2 id="5-link-czy-przycisk">5. Link czy przycisk?</h2>
+<p><strong>Reguła.</strong> Zmienia się adres strony: <strong>link</strong> (<code>&lt;a href&gt;</code>). Coś dzieje się na stronie: <strong>przycisk</strong> (<code>&lt;button&gt;</code>).</p>
+<div class="tabela"><table><thead><tr><th scope="col"></th><th scope="col">Link <code>&lt;a href&gt;</code></th><th scope="col">Przycisk <code>&lt;button&gt;</code></th></tr></thead><tbody><tr><td>Do czego</td><td>przenosi: inna strona, kotwica, plik</td><td>działa: otwiera, wysyła, przełącza</td></tr><tr><td>Enter</td><td>tak</td><td>tak</td></tr><tr><td>Spacja</td><td>nie (przewija stronę)</td><td>tak</td></tr><tr><td>Czytnik ogłasza</td><td>„link”</td><td>„przycisk”</td></tr></tbody></table></div>
+<ul><li>Tekst linku ma mieć sens w kontekście. Osiem razy „czytaj więcej” na liście linków niczego nie mówi (WCAG 2.4.4 Cel łącza w kontekście).</li><li><code>&lt;button&gt;</code> w formularzu domyślnie <strong>wysyła formularz</strong>. Przycisk, który ma tylko coś zrobić na stronie, dostaje <code>type=&quot;button&quot;</code>.</li><li>Link do pliku: podaj format i rozmiar w treści linku, np. „Pobierz informator (PDF, 2 MB)”.</li></ul>
+<p>WCAG: 2.1.1 Klawiatura · 2.4.4 Cel łącza (w kontekście) · 4.1.2 Nazwa, rola, wartość.</p>
+<h2 id="6-div-i-span">6. Div i span</h2>
+<p><code>&lt;div&gt;</code> i <code>&lt;span&gt;</code> nic nie znaczą. To jest w porządku: służą do układu i stylowania. Problem zaczyna się wtedy, gdy udają przycisk, link, nagłówek albo listę.</p>
+<h3 id="div-jak-button-test-1-1">Div jak button: test 1:1</h3>
+<p>To przykład z naszej strony ćwiczeniowej:</p>
+<p>✗ Źle: wygląda i brzmi jak przycisk, ale nie działa z klawiatury</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;div role=&quot;button&quot; tabindex=&quot;0&quot; onclick=&quot;zapisz()&quot;&gt;Zapisz&lt;/div&gt;</code></pre></div>
+<ul><li><code>role=&quot;button&quot;</code>: czytnik powie „przycisk”,</li><li><code>tabindex=&quot;0&quot;</code>: Tab do niego dojdzie,</li><li>ale <strong>Enter i Spacja nic nie robią</strong>, bo <code>onclick</code> reaguje tylko na kliknięcie. Osoba korzystająca z klawiatury słyszy przycisk, którego nie da się nacisnąć.</li></ul>
+<p>✓ Dobrze</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;button type=&quot;button&quot; onclick=&quot;zapisz()&quot;&gt;Zapisz&lt;/button&gt;</code></pre></div>
+<p>Jedna linia. Rola, fokus, Enter, Spacja, obsługa w formularzu: wszystko jest wbudowane.</p>
+<h3 id="a-jesli-naprawde-musisz-uzyc-diva">A jeśli naprawdę musisz użyć diva</h3>
+<p>Czasem div narzuca gotowy komponent albo system, którego nie zmienisz. Żeby działał tak samo jak przycisk, potrzebujesz:</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;div role=&quot;button&quot; tabindex=&quot;0&quot; id=&quot;zapisz&quot;&gt;Zapisz&lt;/div&gt;
+&lt;script&gt;
+  const el = document.getElementById(&quot;zapisz&quot;);
+  el.addEventListener(&quot;click&quot;, zapisz);
+  el.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+    if (e.key === &quot;Enter&quot;) { e.preventDefault(); el.click(); }
+    if (e.key === &quot; &quot;) e.preventDefault(); // Spacja nie przewija strony
+  });
+  el.addEventListener(&quot;keyup&quot;, (e) =&gt; {
+    if (e.key === &quot; &quot;) el.click();         // Spacja działa po puszczeniu
+  });
+&lt;/script&gt;</code></pre></div>
+<ul><li><strong>Enter</strong> uruchamia przycisk od razu, przy wciśnięciu klawisza.</li><li><strong>Spacja</strong> uruchamia go po puszczeniu klawisza. Przy wciśnięciu trzeba zablokować przewijanie strony.</li><li><code>el.click()</code> wywołuje ten sam kod co kliknięcie myszą, więc akcja jest w jednym miejscu.</li></ul>
+<p>Nawet wtedy div <strong>nie dostanie</strong> kilku rzeczy, które <code>&lt;button&gt;</code> ma wbudowane:</p>
+<ul><li><code>disabled</code>: nieaktywny przycisk znika z kolejności Taba i nie reaguje na kliknięcie. Div trzeba wyłączać ręcznie: <code>aria-disabled=&quot;true&quot;</code> i sprawdzenie w skrypcie,</li><li><code>type=&quot;submit&quot;</code>: wysyłanie formularza, także Enterem w polu tekstowym,</li><li><code>name</code> i <code>value</code> wysyłane razem z formularzem.</li></ul>
+<p>Wniosek: <strong>jedna linia HTML kontra kilkanaście linii JS do napisania i przetestowania.</strong></p>
+<p><strong>Jak sprawdzić:</strong> odłóż mysz. Przejdź Tabem po stronie. Czy dochodzisz do wszystkiego, co klikalne? Czy Enter i Spacja działają na każdym przycisku?</p>
+<p>WCAG: 2.1.1 Klawiatura · 4.1.2 Nazwa, rola, wartość.</p>
+<h2 id="7-listy">7. Listy</h2>
+<ul><li><code>&lt;ul&gt;</code>: kolejność nie ma znaczenia (składniki, cechy).</li><li><code>&lt;ol&gt;</code>: kolejność ma znaczenie (kroki, ranking).</li><li>Menu nawigacji to też lista linków.</li></ul>
+<p>Czytnik ogłasza listę i liczbę pozycji, np. „lista, 3 pozycje”. Dokładne brzmienie zależy od czytnika. Użytkownik od razu wie, ile tego jest, i może listę pominąć.</p>
+<p>✗ Źle: lista udawana myślnikami i <code>&lt;br&gt;</code></p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;p&gt;- Prostym&lt;br&gt;- Klarownym&lt;br&gt;- Łatwym&lt;/p&gt;</code></pre></div>
+<p>✓ Dobrze</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;ul&gt;
+  &lt;li&gt;Prostym&lt;/li&gt;
+  &lt;li&gt;Klarownym&lt;/li&gt;
+  &lt;li&gt;Łatwym&lt;/li&gt;
+&lt;/ul&gt;</code></pre></div>
+<p>Safari z VoiceOverem może przestać ogłaszać listę, gdy w CSS ma <code>list-style: none</code>. Obejście: <code>&lt;ul role=&quot;list&quot;&gt;</code>.</p>
+<p>WCAG: 1.3.1 Informacje i relacje.</p>
+<h2 id="8-tabele">8. Tabele</h2>
+<p><strong>Reguła.</strong> Tabela służy do danych. Nigdy do układu strony.</p>
+<p>Najważniejsze elementy:</p>
+<ul><li><code>&lt;caption&gt;</code>: tytuł tabeli, czytnik ogłasza go przy wejściu do tabeli,</li><li><code>&lt;th scope=&quot;col&quot;&gt;</code>: nagłówek kolumny, <code>&lt;th scope=&quot;row&quot;&gt;</code>: nagłówek wiersza,</li><li><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>: nagłówek, dane, podsumowanie.</li></ul>
+<p>Dzięki <code>th</code> czytnik przy każdej komórce podaje, do której kolumny i wiersza należy. Zamiast samego „18” użytkownik usłyszy „Audyty w 2026, Ania, 18”.</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;div class=&quot;tabela-przewijana&quot; role=&quot;region&quot; aria-labelledby=&quot;t-zespol&quot; tabindex=&quot;0&quot;&gt;
+  &lt;table&gt;
+    &lt;caption id=&quot;t-zespol&quot;&gt;Zespół i audyty w 2026 roku&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Imię&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Rola&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Audyty&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;Ania&lt;/th&gt;&lt;td&gt;Audytorka WCAG&lt;/td&gt;&lt;td&gt;18&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;Bartek&lt;/th&gt;&lt;td&gt;Frontend developer&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+      &lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;Razem&lt;/th&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tfoot&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre></div>
+<p>Kontener z <code>tabindex=&quot;0&quot;</code> pozwala przewijać szeroką tabelę klawiaturą na telefonie, a nazwa pozwala go rozpoznać (WCAG 1.4.10 Dopasowanie do ekranu).</p>
+<p><strong>Jak sprawdzić:</strong> NVDA: <code>T</code> następna tabela, <code>Ctrl+Alt+strzałki</code> ruch po komórkach.</p>
+<p>WCAG: 1.3.1 Informacje i relacje.</p>
+<h2 id="9-formularze">9. Formularze</h2>
+<p>Formularz to miejsce, gdzie brak semantyki boli najbardziej. Osoba, która nie wie, co wpisać w pole, nie wyśle zgłoszenia.</p>
+<h3 id="etykiety-grupy-podpowiedzi">Etykiety, grupy, podpowiedzi</h3>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;label for=&quot;email&quot;&gt;Adres e-mail&lt;/label&gt;
+&lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; required
+       aria-describedby=&quot;email-podp&quot;&gt;
+&lt;p id=&quot;email-podp&quot;&gt;Na przykład: jan.kowalski@poczta.pl&lt;/p&gt;</code></pre></div>
+<ul><li><strong>Każde pole ma <code>&lt;label&gt;</code></strong> połączony przez <code>for</code> i <code>id</code>. Kliknięcie etykiety przenosi do pola, a czytnik czyta etykietę razem z polem.</li><li><strong>Placeholder to nie etykieta.</strong> Znika przy pisaniu i zwykle ma za słaby kontrast.</li><li><strong><code>autocomplete</code></strong> przy danych osobowych (<code>name</code>, <code>given-name</code>, <code>email</code>, <code>tel</code>). Przeglądarka podpowie dane, a to pomaga osobom z trudnościami motorycznymi i poznawczymi (WCAG 1.3.5).</li><li><strong>Grupy pól</strong> (dane osobowe, wybór jednej z opcji) w <code>&lt;fieldset&gt;</code> z <code>&lt;legend&gt;</code>. Czytnik poda nazwę grupy przy wejściu do niej.</li><li><strong>Instrukcja przed polami</strong>, nie pod przyciskiem: „Wszystkie pola są wymagane”.</li><li><strong>Pole wymagane:</strong> atrybut <code>required</code> i słowo „wymagane” albo zdanie na początku formularza. Sama gwiazdka albo sam kolor to za mało.</li><li><strong>Podpowiedź</strong> podpięta przez <code>aria-describedby</code>. Czytnik przeczyta ją po etykiecie.</li></ul>
+<h3 id="komunikat-bledu-ktory-wszyscy-zauwaza">Komunikat błędu, który wszyscy zauważą</h3>
+<p>Błąd musi być widoczny i słyszalny. Nie może opierać się tylko na kolorze (WCAG 1.4.1 Użycie koloru).</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;label for=&quot;email&quot;&gt;Adres e-mail&lt;/label&gt;
+&lt;input id=&quot;email&quot; type=&quot;email&quot; aria-invalid=&quot;true&quot;
+       aria-describedby=&quot;email-blad&quot;&gt;
+&lt;p id=&quot;email-blad&quot; class=&quot;komunikat-bledu&quot;&gt;
+  Błąd: adres musi zawierać znak @, na przykład jan.kowalski@firma.pl.
+&lt;/p&gt;</code></pre></div>
+<ul><li><code>aria-invalid=&quot;true&quot;</code>: czytnik powie, że pole jest nieprawidłowe,</li><li>komunikat podpięty przez <code>aria-describedby</code>: czytnik przeczyta go przy polu,</li><li>słowo „Błąd:” w treści: informacja nie zależy od koloru,</li><li>komunikat mówi, <strong>jak poprawić</strong>, a nie tylko, że jest źle (WCAG 3.3.3).</li></ul>
+<p>Podświetlenie błędnego pola i jego etykiety w CSS:</p>
+<div class="kod"><p class="kod-etykieta">CSS</p><pre class="jezyk-css"><code>:root { --blad: #b00020; --blad-tlo: #fdecee; }
+
+form [aria-invalid=&quot;true&quot;] {
+  border: 3px solid var(--blad);
+  background: var(--blad-tlo);
+}
+.pole:has([aria-invalid=&quot;true&quot;]) label {
+  color: var(--blad);
+  font-weight: 800;
+}</code></pre></div>
+<p>Przy dłuższym formularzu dochodzi <strong>podsumowanie błędów</strong> nad formularzem: lista z linkami do błędnych pól. Po próbie wysłania przenosimy na nie fokus, więc czytnik od razu je odczyta.</p>
+<h3 id="komunikat-wyslano">Komunikat „wysłano”</h3>
+<p>Komunikat, który pojawia się bez przeładowania strony, wstawiamy do elementu z <code>role=&quot;status&quot;</code>. Ten element musi być na stronie od początku, pusty. Czytnik ogłosi tekst, który się w nim pojawi, bez przenoszenia fokusu (WCAG 4.1.3 Komunikaty o stanie).</p>
+<div class="kod"><p class="kod-etykieta">HTML</p><pre class="jezyk-html"><code>&lt;div id=&quot;status&quot; role=&quot;status&quot;&gt;&lt;/div&gt;</code></pre></div>
+<h3 id="aria-hidden-ostroznie"><code>aria-hidden</code>: ostrożnie</h3>
+<p><code>aria-hidden=&quot;true&quot;</code> ukrywa element przed czytnikiem. Używaj go tylko do rzeczy, które dla czytnika są zbędne: ozdobnej ikony albo licznika, który zmienia się przy każdym znaku. <strong>Nie ukrywaj widocznego tekstu</strong>, takiego jak podpowiedź czy instrukcja. Osoba słabowidząca, która patrzy i słucha jednocześnie, widzi tekst, którego czytnik „nie zna”.</p>
+<p>WCAG: 1.3.1 · 1.3.5 Określenie pożądanej wartości · 3.3.1 Identyfikacja błędu · 3.3.2 Etykiety lub instrukcje · 3.3.3 Sugestie korekty błędów · 4.1.2 Nazwa, rola, wartość.</p>
+<h2 id="10-fokus-kolor-rozmiar">10. Fokus, kolor, rozmiar</h2>
+<ul><li><strong>Widoczny fokus.</strong> Nie usuwaj obrysu (<code>outline: none</code>) bez zamiennika. Dobry fokus ma dwa kolory, np. żółty i czarny, żeby był widoczny na każdym tle (WCAG 2.4.7 Widoczny fokus).</li><li><strong>Kontrast.</strong> Tekst: co najmniej 4,5:1 (duży tekst 3:1). Ramki pól i ikony: co najmniej 3:1 (WCAG 1.4.3, 1.4.11).</li><li><strong>Nie tylko kolor.</strong> Link w tekście ma podkreślenie, błąd ma słowo „Błąd”, pole wymagane ma słowo „wymagane”.</li><li><strong>Cel dotyku.</strong> Co najmniej 24 na 24 piksele CSS (WCAG 2.5.8, AA). 44 na 44 to poziom AAA (2.5.5) i dobry nawyk.</li><li><strong><code>tabindex</code>.</strong> <code>0</code> dodaje element do kolejności Taba. <code>-1</code> pozwala ustawić na nim fokus skryptem. <strong>Nigdy wartość dodatnia</strong>: przestawia kolejność Taba w całej stronie. Nagłówki i akapity nie potrzebują <code>tabindex</code>.</li></ul>
+<h2 id="11-przyklad-z-zajec-recenzja-strony">11. Przykład z zajęć: recenzja strony</h2>
+<p>Na zajęciach zbudowaliśmy stronę banku z listą, linkami, tabelą zespołu i formularzem kontaktowym. Tabela i formularz były zrobione dobrze. Recenzja znalazła sześć rzeczy do poprawy, od najważniejszej:</p>
+<ol><li><strong>Błędne pole nie robiło się czerwone.</strong> CSS korzystał ze zmiennych <code>--blad</code> i <code>--ok</code>, których nikt nie zdefiniował. Przeglądarka nie zgłasza takiego błędu. Poprawka: zdefiniować je w <code>:root</code>.</li><li><strong>Brak <code>&lt;main&gt;</code> i skiplinka.</strong> Styl skiplinka był w CSS, ale samego linku na stronie nie było. Poprawka: dopisać link i <code>&lt;main id=&quot;tresc&quot;&gt;</code>.</li><li><strong>Pusty nagłówek.</strong> <code>h3</code> „Zarejestruj się”, pod którym nic nie było. Poprawka: usunąć.</li><li><strong>Div udający przycisk.</strong> Opisany w rozdziale 6.</li><li><strong><code>aria-labelledby</code> na zwykłym <code>&lt;div&gt;</code>.</strong> Specyfikacja ARIA 1.2 nie pozwala nadawać nazwy elementowi bez roli, więc część czytników ją pomija. Poprawka: usunąć atrybut albo nadać elementowi rolę.</li><li><strong><code>aria-hidden</code> na widocznych podpowiedziach.</strong> Opisane w rozdziale 9.</li></ol>
+<p>Wniosek: większość błędów to nie brak wiedzy, tylko brak sprawdzenia. Dlatego ostatni rozdział jest o testowaniu.</p>
+<h2 id="12-jak-sprawdzic-wlasna-strone-w-10-minut">12. Jak sprawdzić własną stronę w 10 minut</h2>
+<ol><li><strong>Walidator W3C</strong> (validator.w3.org): niedomknięte znaczniki, zduplikowane <code>id</code>, literówki w nazwach elementów.</li><li><strong>Sama klawiatura.</strong> Tab, Shift+Tab, Enter, Spacja. Czy widać fokus? Czy dochodzisz do wszystkiego? Czy kolejność ma sens?</li><li><strong>Lista nagłówków i landmarków.</strong> W NVDA <code>Insert+F7</code>, w VoiceOverze <code>VO+U</code>. Albo rozszerzenie HeadingsMap.</li><li><strong>Drzewo dostępności</strong> w narzędziach deweloperskich przeglądarki (zakładka Accessibility). Czy każdy przycisk i pole ma rolę i nazwę?</li><li><strong>Automat</strong> (axe DevTools, WAVE). Znajdzie część problemów, nie wszystkie. Nie oceni, czy alt ma sens ani czy kolejność jest logiczna.</li></ol>
+<h2 id="sciaga">Ściąga</h2>
+<ul class="sciaga"><li><code>lang</code>, <code>title</code>, jeden <code>main</code>, skiplink</li><li>nagłówki jako mapa strony, bez pustych i bez przeskoków</li><li>każdy <code>img</code> ma <code>alt</code>, dekoracyjny ma <code>alt=&quot;&quot;</code></li><li>link przenosi, przycisk działa, oba działają z klawiatury</li><li>każde pole ma <code>label</code>, błąd jest powiązany z polem i nie opiera się na samym kolorze</li><li>tabela ma <code>caption</code> i <code>th</code> ze <code>scope</code></li><li>widać fokus, <code>tabindex</code> tylko 0 albo -1</li></ul>
+<h2 id="zrodla">Źródła</h2>
+<ul><li>W3C WAI, WCAG 2.2 po polsku i angielsku: w3.org/WAI/standards-guidelines/wcag/</li><li>W3C, „Using ARIA” i „ARIA in HTML”: w3.org/TR/using-aria/, w3.org/TR/html-aria/</li><li>W3C WAI, ARIA Authoring Practices Guide: w3.org/WAI/ARIA/apg/</li><li>W3C WAI Tutorials (obrazy, tabele, formularze): w3.org/WAI/tutorials/</li><li>MDN Web Docs: developer.mozilla.org/pl/</li><li>WebAIM, skróty NVDA i VoiceOver: webaim.org/resources/shortcuts/</li><li>„HTML Tags”, kopia W3C z 3.11.1992: w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html</li></ul>
+</main>
+<footer><div class="srodek"><p><strong>Accessibility First</strong> · Włącz Wizję sp. z o.o. · a11yfirst.pl · a11y@wlaczwizje.pl</p></div></footer>
+</body>
+</html>
