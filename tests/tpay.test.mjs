@@ -341,6 +341,9 @@ test("oswiadczenia o wczesniejszym rozpoczeciu nie sa wymagane ani zaznaczone", 
 test("informacja o metodach platnosci jest przed przyciskiem, a kurs bez ceny nie jest w ofercie", () => {
   assert.ok(formularz.indexOf("Jak przebiega płatność") < formularz.indexOf("Zamawiam z obowiązkiem zapłaty"));
   assert.ok(!formularz.includes('value="semantyczny-html"'));
+  // WCAG dla specjalistow nie ma terminu od 04.10 (decyzja Damiana, PR #49 na main):
+  // nie sprzedajemy go z formularza, dopoki nie bedzie nowej daty w katalogu i na /szkolenia.
+  assert.ok(!formularz.includes('value="wcag-dla-specjalistow"'));
   assert.ok(!/[\u2013\u2014]/.test(formularz), "bez polpauz i pauz w tekscie dla klienta");
 });
 
@@ -595,7 +598,7 @@ test("strona zgody: pole niezaznaczone, noindex, bez pauz", () => {
 });
 
 test("formularz ostrzega o szkoleniu za mniej niz 14 dni", () => {
-  assert.match(formularz, /data-start="2026-10-28"/);
+  assert.match(formularz, /data-start="2026-11-09"/);
   assert.match(formularz, /<p id="rozpoczecieUwaga"[^>]*hidden/);
 });
 
