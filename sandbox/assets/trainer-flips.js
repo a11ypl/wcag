@@ -4,19 +4,19 @@ window.A11yFirstTrainerFlip = (() => {
             id: 'damian',
             name: 'Damian Żłobicki',
             company: 'Włącz Wizję',
-            bio: 'Trener biznesu, andragog, prezes Włącz Wizję. Twórca podcastu „AKTYWIZJE”. Ekspert od wystąpień publicznych i AI.',
+            bio: 'Trener biznesu specjalizujący się w AI i dostępności cyfrowej. Założyciel Włącz Wizję, twórca podcastu „AKTYWIZJE”.',
             image: 'assets/damian-profil-4.jpg',
             alt: 'Portret Damiana Żłobickiego.',
             backContent: `
                 <h3>Damian Żłobicki</h3>
                 <p class="trainer-flip-label">Kompetencje:</p>
                 <ul class="instructor-credentials">
-                    <li>Szkoleniowiec z 4000h doświadczenia</li>
+                    <li>Ponad 5000 godzin na sali szkoleniowej, 11 lat doświadczenia</li>
                     <li>Audytor stron internetowych i aplikacji mobilnych</li>
                     <li>Ekspert w projekcie "AI DC - sztuczna inteligencja wspierająca dostępność cyfrową"</li>
                     <li>Lider <a href="https://www.gov.pl/web/dostepnosc-cyfrowa/sklad-sieci-dostepnosci-cyfrowej" target="_blank" rel="noopener noreferrer" class="trainer-flip-inline-link">Sieci Dostępności Cyfrowej<span class="sr-only"> (otwiera się w nowym oknie)</span></a></li>
                 </ul>
-                <a href="https://linktr.ee/bergivision" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">Poznaj Damiana<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+                <a href="https://damianzlobicki.pl" target="_blank" rel="noopener noreferrer" class="instructor-cta-link">Poznaj Damiana<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
             `
         },
         {
