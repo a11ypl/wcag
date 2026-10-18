@@ -224,7 +224,17 @@ function normalizeIssue(issue) {
   if (item.reauditStatus === "nie badano ponownie") item.reauditStatus = "";
   item.includeNotesInExport = Boolean(item.includeNotesInExport);
   item.confirmed = item.confirmed === undefined ? !item.source : Boolean(item.confirmed);
+  // Obraz bez tekstu alternatywnego jest dekoracyjny. W starszych projektach alt obrazu dekoracyjnego
+  // nie trafiał do raportu, więc go czyścimy, żeby wynik się nie zmienił.
+  item.images = item.images.filter(isPlainObject).map((image) => {
+    const alt = image.isDecorative ? "" : String(image.alt ?? "");
+    return { ...image, alt, isDecorative: !alt.trim() };
+  });
   return item;
+}
+
+export function isDecorativeImage(image) {
+  return !String(image?.alt || "").trim();
 }
 
 // Dopasowuje listę kryteriów do standardu i poziomu, zachowując istniejące oceny.
@@ -325,6 +335,8 @@ export function validateProject(report) {
     const prefix = `issues.${index}`;
     const name = issue.title || `nr ${index + 1}`;
     if (!String(issue.title || "").trim()) add(`${prefix}.title`, `Problem nr ${index + 1} wymaga tytułu.`);
+    const id = String(issue.id || "").trim();
+    if (id && (report.issues || []).findIndex((other) => String(other.id || "").trim() === id) !== index) add(`${prefix}.id`, `Identyfikator ${id} jest już użyty przy innym problemie: ${name}.`);
     if (!(issue.viewIds || []).length || !(issue.viewIds || []).every((id) => viewIds.has(id))) add(`${prefix}.viewId`, `Wskaż widok, w którym występuje problem: ${name}.`);
     if (issue.issueType === "błąd") {
       if (!(issue.criteria || []).length) add(`${prefix}.criteria`, `Problem typu błąd wymaga kryterium WCAG: ${name}.`);
@@ -341,9 +353,6 @@ export function validateProject(report) {
       }
     });
     (issue.images || []).forEach((image, imageIndex) => {
-      if (!image.isDecorative && !String(image.alt || "").trim()) {
-        add(`${prefix}.images.${imageIndex}.alt`, `Obraz informacyjny wymaga tekstu alternatywnego: ${name}.`);
-      }
       if (dataUrlSize(image.dataUrl) > MAX_IMAGE_BYTES) add(`${prefix}.images.${imageIndex}.dataUrl`, `Obraz przekracza limit 3 MB: ${name}.`);
     });
     if (issue.source && !issue.confirmed) add(`${prefix}.confirmed`, `Problem zaimportowany automatycznie czeka na potwierdzenie audytora: ${name}.`, "warning");

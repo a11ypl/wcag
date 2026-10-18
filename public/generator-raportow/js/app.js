@@ -3,7 +3,7 @@
 import { FRAMEWORKS, extraGroupsFor, frameworkOf, legalBasisSuggestions, scopeLabel, versionOf } from "./frameworks.js";
 import { HOW_TO_CHECK } from "./hints.js";
 import { FIELD_HINTS, ISSUE_BLOCKS, SEVERITY_HINT, blockById, blocksForCriteria, searchBlocks } from "./library.js";
-import { ENVIRONMENT_PRESETS, SUGGESTIONS } from "./suggestions.js";
+import { ENVIRONMENT_PRESETS, SUGGESTIONS, matchesQuery } from "./suggestions.js";
 import { importFiles } from "./import.js";
 import {
   CRITERION_STATUSES, ISSUE_TYPES, MAX_IMAGE_BYTES, REAUDIT_STATUSES, SEVERITIES, VIEW_TYPES,
@@ -44,6 +44,7 @@ document.addEventListener("input", (event) => { if (event.target instanceof HTML
 async function init() {
   bindEvents();
   bindImageDrop();
+  bindToggletips();
   await loadRegister();
   hydrateFields();
   showStep(0, false);
@@ -244,6 +245,7 @@ function bindEvents() {
   form.addEventListener("submit", (event) => event.preventDefault());
   form.addEventListener("keydown", (event) => {
     const field = event.target;
+    if (event.key === "Escape" && dismissSuggest(field)) { event.preventDefault(); return; }
     if (event.key === "Enter" && /^tech-/.test(field.dataset?.suggest || "")) {
       event.preventDefault();
       const first = suggestionsFor(field).items[0];
@@ -404,16 +406,7 @@ function onField(event) {
 function onScopeField(field) {
   const meta = state.report.meta;
   const name = field.name;
-  if (!["framework", "framework-version", "level", "extra-group", "issue-view", "report-grouping", "sample-size"].includes(name)) return false;
-  if (name === "sample-size") {
-    meta.sampleSize = field.value;
-    const preset = SAMPLE_SIZES[field.value].pages;
-    meta.sampleSizeCustom = preset ?? meta.sampleSizeCustom ?? null;
-    renderSample();
-    $(`sample-size-${field.value}`)?.focus();
-    announce(preset ? `Wybrano: ${SAMPLE_SIZES[field.value].label.toLowerCase()}, ${preset} stron.` : "Wpisz liczbę stron lub widoków w polu poniżej.");
-    return true;
-  }
+  if (!["framework", "framework-version", "level", "extra-group", "issue-view", "report-grouping"].includes(name)) return false;
   if (name === "issue-view") { state.issueView = field.value; renderIssues(); return true; }
   if (name === "report-grouping") { meta.reportGrouping = field.value; return true; }
   if (name === "framework") { meta.framework = field.value; meta.frameworkVersion = FRAMEWORKS[field.value].defaultVersion; meta.extraGroups = []; }
@@ -472,17 +465,13 @@ function onIssueField(field, eventType, value) {
     const image = issue.images[imageIndex];
     if (!image) return;
     image[key] = value;
-    if (key === "isDecorative") {
-      const alt = $(`issue-${index}-image-${imageIndex}-alt`);
-      alt.disabled = Boolean(value);
-      $(`issue-${index}-image-${imageIndex}-alt-label`).innerHTML = altLabel(Boolean(value));
-    }
+    if (key === "alt") image.isDecorative = !String(value).trim();
     return;
   }
   if (key === "stepsToReproduce") issue.stepsToReproduce = lines(value);
   else issue[key] = value;
   if (key === "issueType") suggestCriterionStatuses(state.report);
-  if (["title", "severity", "confirmed", "shortName"].includes(key)) { updateCardHeading(field, issueSummary(issue, index)); renderIssueNav(); }
+  if (["id", "title", "severity", "confirmed", "shortName"].includes(key)) { updateCardHeading(field, issueSummary(issue, index)); renderIssueNav(); }
 }
 
 function onAction(event) {
@@ -494,6 +483,21 @@ function onAction(event) {
   const d = button.dataset;
   const index = Number(d.index);
   switch (d.action) {
+    case "sample-size": {
+      const meta = report.meta;
+      meta.sampleSize = d.value;
+      const preset = SAMPLE_SIZES[d.value].pages;
+      meta.sampleSizeCustom = preset ?? meta.sampleSizeCustom ?? null;
+      renderSample();
+      if (preset) {
+        $(`sample-size-${d.value}`)?.focus();
+        announce(`Wybrano: ${SAMPLE_SIZES[d.value].label.toLowerCase()}, ${preset} stron.`);
+      } else {
+        $("sample-custom").focus();
+        announce("Wybrano własną wielkość próby. Wpisz liczbę stron lub widoków.");
+      }
+      break;
+    }
     case "remove-view": {
       const [removed] = report.testedViews.splice(index, 1);
       report.issues.forEach((issue) => { issue.viewIds = issue.viewIds.filter((id) => id !== removed?.id); issue.viewId = issue.viewIds[0] || ""; });
@@ -723,8 +727,9 @@ function hydrateFields() {
 
 function renderSample({ keepNumber = false } = {}) {
   const meta = state.report.meta;
-  const focused = document.activeElement?.name === "sample-size" ? document.activeElement.id : null;
-  $("sample-choices").innerHTML = Object.entries(SAMPLE_SIZES).map(([key, item]) => radio("sample-size", key, item.pages ? `${item.label} — ${item.pages} stron` : item.label, item.pages ? "" : "Wpisz liczbę w polu poniżej.", meta.sampleSize === key)).join("");
+  const focused = document.activeElement?.dataset?.action === "sample-size" ? document.activeElement.id : null;
+  // Przyciski z aria-pressed: cały kafel jest klikalny, Tab przechodzi po kolejnych wariantach.
+  $("sample-choices").innerHTML = Object.entries(SAMPLE_SIZES).map(([key, item]) => `<button type="button" class="choice-button" id="sample-size-${key}" data-action="sample-size" data-value="${key}" aria-pressed="${meta.sampleSize === key}"><span class="choice-button__label">${escapeHtml(item.label)}</span><span class="choice-button__meta">${item.pages ? `${item.pages} stron` : "wpisz liczbę poniżej"}</span></button>`).join("");
   if (focused) $(focused)?.focus();
   if (!keepNumber) $("sample-custom").value = samplePages(meta) ?? "";
   const target = samplePages(meta);
@@ -749,7 +754,7 @@ function renderViews() {
         <div class="field"><label for="view-${i}-name">Nazwa widoku</label><input id="view-${i}-name" data-view="${i}" data-field="name" data-suggest="viewNames" autocomplete="off" value="${attr(view.name)}"></div>
         <div class="field"><label for="view-${i}-url">Adres</label><input id="view-${i}-url" type="url" inputmode="url" data-view="${i}" data-field="url" value="${attr(view.url)}"></div>
         <div class="field"><label for="view-${i}-type">Rodzaj</label><select id="view-${i}-type" data-view="${i}" data-field="type">${options(VIEW_TYPES, view.type)}</select></div>
-        <div class="field field--check"><input type="checkbox" id="view-${i}-key" data-view="${i}" data-field="isKeyView"${view.isKeyView ? " checked" : ""}><label for="view-${i}-key">Widok kluczowy</label></div>
+        <div class="field field--check field--tip"><input type="checkbox" id="view-${i}-key" data-view="${i}" data-field="isKeyView" aria-describedby="view-${i}-key-tip"${view.isKeyView ? " checked" : ""}><label for="view-${i}-key">Widok kluczowy</label>${toggletip(`view-${i}-key-tip`, "Co to jest widok kluczowy?", KEY_VIEW_TIP)}</div>
         <div class="field field--wide"><label for="view-${i}-description">Opis</label><textarea id="view-${i}-description" data-view="${i}" data-field="description" rows="2">${escapeHtml(view.description)}</textarea></div>
       </div>
       <div class="card-actions">
@@ -919,7 +924,7 @@ function matchCriteria(query) {
   if (!q) return [];
   return state.report.criteriaResults.filter((item) => {
     const ids = [item.criterionId, item.displayId].map(fold);
-    return ids.some((id) => id.startsWith(q) || id.startsWith(q.replace(/^9\./, ""))) || fold(item.title).includes(q);
+    return ids.some((id) => id.startsWith(q) || id.startsWith(q.replace(/^9\./, ""))) || matchesQuery(item.title, q);
   });
 }
 
@@ -1046,18 +1051,18 @@ function suggestionsFor(field) {
     const query = field.value.trim();
     const q = fold(query);
     const have = new Set(techEntries(kind).map((entry) => fold(entry.name)));
-    const items = [...TECH[kind].presets, ...TECH[kind].extra].filter((name) => !have.has(fold(name)) && (!q || fold(name).includes(q))).map((name) => ({ value: name, label: name }));
+    const items = [...TECH[kind].presets, ...TECH[kind].extra].filter((name) => !have.has(fold(name)) && matchesQuery(name, query)).map((name) => ({ value: name, label: name }));
     if (query && !items.some((item) => fold(item.value) === q) && !have.has(q)) items.push({ value: query, label: `własną pozycję „${query}”` });
     return { mode, query, items };
   }
   const declared = key === "legalBasis" ? legalBasisSuggestions(state.report.meta) : key === "envBrowser" ? state.report.browsers.map(withVersion) : key === "envAT" ? state.report.assistiveTech.map(withVersion) : [];
   const all = [...new Set([...declared, ...(SUGGESTIONS[key] || [])])];
   const present = new Set((mode === "list" ? lines(field.value) : [field.value.trim()]).map(fold));
-  const query = mode === "list" ? currentLine(field).text.trim() : mode === "single" ? field.value.trim() : "";
-  const q = fold(query);
+  // Akapit: zawężamy po tekście wpisywanym w bieżącym wierszu, tak jak w polach z listą.
+  const query = mode === "single" ? field.value.trim() : currentLine(field).text.trim();
   const items = all
     .filter((item) => !present.has(fold(item)) && !(mode === "paragraph" && fold(field.value).includes(fold(item))))
-    .filter((item) => !q || fold(item).includes(q))
+    .filter((item) => matchesQuery(item, query))
     .map((item) => ({ value: item, label: item }));
   return { mode, query, items };
 }
@@ -1082,22 +1087,23 @@ function suggestBox(field) {
 }
 
 function renderSuggest(field) {
+  if (field._suggestDismissed) return hideSuggest(field);
   const { mode, query, items } = suggestionsFor(field);
   const box = suggestBox(field);
   const count = $(`${field.id}-suggest-count`);
   if (!items.length) {
-    box.innerHTML = (mode === "blocks" || mode === "newIssue") && query.length >= 2 ? '<p class="muted">Brak gotowego opisu — opisz problem własnymi słowami.</p>' : "";
+    box.innerHTML = (mode === "blocks" || mode === "newIssue") && query.length >= 2 ? '<p class="muted">Brak gotowego opisu. Opisz problem własnymi słowami.</p>' : "";
     count.textContent = "";
     return;
   }
   const shown = items.slice(0, MAX_SHOWN);
-  count.textContent = `Podpowiedzi: ${items.length}. Przejdź klawiszem Tab, aby wybrać.`;
+  count.textContent = `Podpowiedzi: ${items.length}. Przejdź klawiszem Tab, aby wybrać, Escape zamyka listę.`;
   const verb = mode === "newIssue" ? "Dodaj problem" : mode === "blocks" ? "Użyj opisu" : mode === "single" ? "Wybierz" : "Dodaj";
   const tech = mode === "tech";
   const many = (mode === "list" || tech) && query && items.filter((item) => !/^własną/.test(item.label)).length > 1;
-  box.innerHTML = `${(mode === "blocks" || mode === "newIssue") ? `<p class="suggest__lead">Gotowe opisy problemów — kryteria WCAG dodadzą się same:</p>` : ""}
+  box.innerHTML = `${(mode === "blocks" || mode === "newIssue") ? `<p class="suggest__lead">Gotowe opisy problemów. Kryteria WCAG dodadzą się same:</p>` : ""}
     <ul class="suggest__list">${shown.map((item, k) => `<li><button class="chip" type="button" data-suggest-pick="${k}" data-for="${field.id}">${escapeHtml(verb)}: ${escapeHtml(item.label)}</button></li>`).join("")}</ul>
-    ${items.length > shown.length ? `<p class="muted">…i ${items.length - shown.length} więcej — wpisz kolejne litery, aby zawęzić.</p>` : ""}
+    ${items.length > shown.length ? `<p class="muted">…i ${items.length - shown.length} więcej. Wpisz kolejne litery, aby zawęzić.</p>` : ""}
     ${many ? `<button class="button button--small button--secondary" type="button" data-suggest-all data-for="${field.id}">Dodaj wszystkie pasujące (${items.filter((item) => !/^własną/.test(item.label)).length})</button>` : ""}`;
   box._items = shown;
   box._all = items;
@@ -1110,6 +1116,18 @@ function hideSuggest(field) {
   if (count) count.textContent = "";
 }
 
+// Escape w polu albo na propozycji: lista znika, fokus wraca do pola, a kolejny Tab idzie do następnego pola.
+// Lista wraca, gdy zaczniesz pisać albo wejdziesz do pola ponownie.
+function dismissSuggest(target) {
+  const field = target.dataset?.suggest ? target : target.dataset?.for ? $(target.dataset.for) : null;
+  if (!field || !$(`${field.id}-suggest`)?.innerHTML.trim()) return false;
+  field._suggestDismissed = true;
+  hideSuggest(field);
+  if (target !== field) field.focus();
+  announce("Zamknięto podpowiedzi.");
+  return true;
+}
+
 function onSuggestFocus(event) {
   const field = event.target;
   if (field.dataset?.suggest) renderSuggest(field);
@@ -1117,7 +1135,9 @@ function onSuggestFocus(event) {
 
 function onSuggestInput(event) {
   const field = event.target;
-  if (field.dataset?.suggest) renderSuggest(field);
+  if (!field.dataset?.suggest) return;
+  field._suggestDismissed = false;
+  renderSuggest(field);
 }
 
 function onSuggestBlur(event) {
@@ -1127,7 +1147,10 @@ function onSuggestBlur(event) {
   setTimeout(() => {
     const active = document.activeElement;
     if (active?.id === id || active?.dataset?.for === id) return;
-    hideSuggest($(id));
+    const field = $(id);
+    if (!field) return;
+    field._suggestDismissed = false;
+    hideSuggest(field);
   }, 0);
 }
 
@@ -1160,7 +1183,14 @@ function pickSuggestion(button) {
   }
   const values = picked.map((item) => item.value);
   if (mode === "single") field.value = values[0];
-  else if (mode === "paragraph") field.value = [field.value.trim(), ...values].filter(Boolean).join("\n\n");
+  else if (mode === "paragraph") {
+    // Wpisany fragment („Serwis”) zamienia się na wybrane zdanie; reszta tekstu zostaje na swoim miejscu.
+    const line = currentLine(field);
+    const before = field.value.slice(0, line.start).trim();
+    const after = field.value.slice(line.end).trim();
+    field.value = [before, ...values, after].filter(Boolean).join("\n\n");
+    if (!after) field.value += "\n\n";
+  }
   else {
     const line = currentLine(field);
     const before = field.value.slice(0, line.start);
@@ -1171,6 +1201,7 @@ function pickSuggestion(button) {
   field.dispatchEvent(new Event("input", { bubbles: true }));
   field.dispatchEvent(new Event("change", { bubbles: true }));
   field.focus();
+  if (mode === "paragraph" && field.value.endsWith("\n\n")) field.setSelectionRange(field.value.length, field.value.length);
   if (mode === "list") {
     field.value = field.value.replace(/\n?$/, "\n");
     field.setSelectionRange(field.value.length, field.value.length);
@@ -1198,7 +1229,7 @@ function visibleIssues() {
 }
 
 // Stan problemu na liście: kompletny, do potwierdzenia albo czego brakuje.
-const MISSING_LABELS = { title: "tytułu", viewId: "widoku", criteria: "kryterium", description: "opisu", userImpact: "wpływu na użytkowników", recommendation: "sposobu naprawy", images: "tekstu alternatywnego", codeExamples: "etykiety kodu" };
+const MISSING_LABELS = { id: "unikalnego identyfikatora", title: "tytułu", viewId: "widoku", criteria: "kryterium", description: "opisu", userImpact: "wpływu na użytkowników", recommendation: "sposobu naprawy", images: "tekstu alternatywnego", codeExamples: "etykiety kodu" };
 function issueStatus(index) {
   const issue = state.report.issues[index];
   const missing = [...new Set(state.validation.filter((item) => item.severity === "error" && item.path.startsWith(`issues.${index}.`)).map((item) => MISSING_LABELS[item.path.split(".")[2]]).filter(Boolean))];
@@ -1228,7 +1259,7 @@ function renderIssueNav() {
     const current = index === state.currentIssue;
     return `<li><button class="issue-pick${current ? " is-current" : ""}" type="button" data-action="select-issue" data-index="${index}"${current ? ' aria-current="true"' : ""}>
       <span class="issue-pick__title"><span class="issue-pick__num">${index + 1}.</span> ${escapeHtml(issue.shortName || issue.title || "Problem bez tytułu")}</span>
-      <span class="issue-pick__meta">${escapeHtml(issue.criteria.map((id) => id.replace(/^[a-z]+:/, "")).join(", ") || "bez kryterium")} · ${escapeHtml(issue.severity)}</span>
+      <span class="issue-pick__meta">${issue.id ? `${escapeHtml(issue.id)} · ` : ""}${escapeHtml(issue.criteria.map((id) => id.replace(/^[a-z]+:/, "")).join(", ") || "bez kryterium")} · ${escapeHtml(issue.severity)}</span>
       <span class="issue-pick__status is-${status.kind}">${escapeHtml(status.text)}</span>
     </button></li>`;
   }).join("")}</ol>` : '<p class="empty">Brak problemów do wyświetlenia. Dodaj pierwszy problem powyżej.</p>';
@@ -1268,7 +1299,7 @@ function renderCriteriaView(visible) {
 function hint(key, i) {
   const item = FIELD_HINTS[key];
   if (!item) return "";
-  return `<p class="field-help" id="issue-${i}-${key}-tip">${escapeHtml(item.tip)}</p><details class="example"><summary>Przykład<span class="visually-hidden">: ${escapeHtml(key === "stepsToReproduce" ? "kroki odtworzenia" : key === "userImpact" ? "wpływ na użytkowników" : key === "recommendation" ? "rekomendacja" : key === "evidence" ? "dowody" : key === "title" ? "tytuł" : "opis")}</span></summary><p>${escapeHtml(item.example).replace(/\n/g, "<br>")}</p></details>`;
+  return `<p class="field-help" id="issue-${i}-${key}-tip">${escapeHtml(item.tip)}</p><details class="example"><summary>Przykład<span class="visually-hidden">: ${escapeHtml(key === "stepsToReproduce" ? "kroki odtworzenia" : key === "userImpact" ? "wpływ na użytkowników" : key === "recommendation" ? "rekomendacja" : key === "evidence" ? "lokalizacja" : key === "title" ? "tytuł" : "opis")}</span></summary><p>${escapeHtml(item.example).replace(/\n/g, "<br>")}</p></details>`;
 }
 
 function blockPanel(issue, i) {
@@ -1291,8 +1322,8 @@ function viewPicker(issue, i) {
   if (!views.length) return `<div class="field field--wide"><span class="field-label" id="issue-${i}-viewId">Widoki, w których występuje problem</span><p class="muted">Najpierw dodaj badane widoki w kroku 2.</p></div>`;
   return `<fieldset class="field field--wide pick-group" id="issue-${i}-views">
     <legend>Widoki, w których występuje problem <span class="required">(wymagane)</span></legend>
-    <p class="field-help">Ten sam błąd na wielu stronach opisz raz i zaznacz wszystkie widoki.</p>
-    <div class="pick-grid">${views.map((view, v) => `<div class="choice"><input type="checkbox" id="issue-${i}-${v === 0 ? "viewId" : `view-${v}`}" data-issue="${i}" data-view-toggle="${attr(view.id)}"${issue.viewIds.includes(view.id) ? " checked" : ""}><label for="issue-${i}-${v === 0 ? "viewId" : `view-${v}`}">${escapeHtml(view.name || `Widok ${v + 1}`)}</label></div>`).join("")}</div>
+    <p class="field-help">Ten sam błąd na wielu stronach opisz raz i zaznacz wszystkie widoki. Adresy problemu w raporcie biorą się z zaznaczonych widoków; brakujący adres dodasz w kroku z widokami.</p>
+    <div class="pick-grid">${views.map((view, v) => `<div class="choice choice--view"><input type="checkbox" id="issue-${i}-${v === 0 ? "viewId" : `view-${v}`}" data-issue="${i}" data-view-toggle="${attr(view.id)}"${issue.viewIds.includes(view.id) ? " checked" : ""}><label for="issue-${i}-${v === 0 ? "viewId" : `view-${v}`}">${escapeHtml(view.name || `Widok ${v + 1}`)}<span class="choice__url">${view.url ? escapeHtml(view.url) : "bez adresu"}</span></label></div>`).join("")}</div>
   </fieldset>`;
 }
 
@@ -1308,17 +1339,13 @@ function environmentPicker(issue, i) {
   </fieldset>`;
 }
 
-function altLabel(decorative) {
-  return decorative ? "Tekst alternatywny (niepotrzebny dla obrazu dekoracyjnego)" : 'Tekst alternatywny <span class="required">(wymagane)</span>';
-}
-
 function issueCard(issue, i) {
   const field = (key, label, html, wide = false, help = "") => `<div class="field${wide ? " field--wide" : ""}"><label for="issue-${i}-${key}">${label}</label>${html}${help}</div>`;
   const input = (key, extra = "") => `<input id="issue-${i}-${key}" data-issue="${i}" data-field="${key}" value="${attr(issue[key])}"${extra}>`;
   const area = (key, rows, value = issue[key], tip = null) => `<textarea id="issue-${i}-${key}" data-issue="${i}" data-field="${key}" rows="${rows}"${tip ? ` aria-describedby="issue-${i}-${tip}-tip"` : ""}>${escapeHtml(value)}</textarea>`;
   const codes = issue.codeExamples.map((code, c) => `
     <div class="card card--nested" role="group" aria-labelledby="issue-${i}-code-${c}-heading">
-      <h5 id="issue-${i}-code-${c}-heading">Fragment kodu ${c + 1}</h5>
+      <h6 id="issue-${i}-code-${c}-heading">Fragment kodu ${c + 1}</h6>
       <div class="form-grid">
         <div class="field"><label for="issue-${i}-code-${c}-label">Etykieta <span class="required">(wymagane)</span></label><input id="issue-${i}-code-${c}-label" data-issue="${i}" data-code="${c}" data-field="label" value="${attr(code.label)}"></div>
         <div class="field"><label for="issue-${i}-code-${c}-language">Język</label><select id="issue-${i}-code-${c}-language" data-issue="${i}" data-code="${c}" data-field="language">${options(["html", "css", "js", "ts", "jsx", "tsx", "json", "xml", "text"], code.language)}</select></div>
@@ -1328,12 +1355,11 @@ function issueCard(issue, i) {
     </div>`).join("");
   const images = issue.images.map((image, m) => `
     <div class="card card--nested" role="group" aria-labelledby="issue-${i}-image-${m}-heading">
-      <h5 id="issue-${i}-image-${m}-heading">Obraz ${m + 1}: ${escapeHtml(image.fileName || "bez nazwy")}</h5>
+      <h6 id="issue-${i}-image-${m}-heading">Zrzut ${m + 1}: ${escapeHtml(image.fileName || "bez nazwy")}</h6>
       <div class="image-editor">
         <img src="${attr(image.dataUrl)}" alt="" class="image-thumb">
         <div class="form-grid">
-          <div class="field field--check field--wide"><input type="checkbox" id="issue-${i}-image-${m}-decorative" data-issue="${i}" data-image="${m}" data-field="isDecorative"${image.isDecorative ? " checked" : ""}><label for="issue-${i}-image-${m}-decorative">Obraz dekoracyjny</label></div>
-          <div class="field field--wide"><label for="issue-${i}-image-${m}-alt" id="issue-${i}-image-${m}-alt-label">${altLabel(image.isDecorative)}</label><textarea id="issue-${i}-image-${m}-alt" data-issue="${i}" data-image="${m}" data-field="alt" rows="2"${image.isDecorative ? " disabled" : ""}>${escapeHtml(image.alt)}</textarea></div>
+          <div class="field field--wide"><label for="issue-${i}-image-${m}-alt">Tekst alternatywny</label><textarea id="issue-${i}-image-${m}-alt" data-issue="${i}" data-image="${m}" data-field="alt" rows="2" aria-describedby="issue-${i}-image-${m}-alt-help">${escapeHtml(image.alt)}</textarea><p class="field-help" id="issue-${i}-image-${m}-alt-help">Opisz, co widać na zrzucie i na czym polega błąd. Bez tekstu alternatywnego obraz trafi do raportu jako dekoracyjny (pusty alt).</p></div>
           <div class="field field--wide"><label for="issue-${i}-image-${m}-caption">Podpis pod obrazem</label><input id="issue-${i}-image-${m}-caption" data-issue="${i}" data-image="${m}" data-field="caption" value="${attr(image.caption)}"></div>
         </div>
       </div>
@@ -1352,10 +1378,10 @@ function issueCard(issue, i) {
     <div class="issue-card__body">
       <div class="form-grid">
         ${imported}
+        ${field("id", "Identyfikator", input("id", ` aria-describedby="issue-${i}-id-help" autocomplete="off" spellcheck="false"`), false, `<p class="field-help" id="issue-${i}-id-help">Nadawany automatycznie (A11Y-001, A11Y-002…). Możesz go zmienić, np. na numer z systemu zgłoszeń.</p>`)}
         ${field("title", 'Tytuł problemu <span class="required">(wymagane)</span>', input("title", ` aria-describedby="issue-${i}-title-tip" data-suggest="blocks" autocomplete="off"`), true, hint("title", i))}
         ${viewPicker(issue, i)}
         ${environmentPicker(issue, i)}
-        ${field("url", "Adres, pod którym występuje problem", input("url", ' type="url" inputmode="url"'))}
         ${field("issueType", "Rodzaj", `<select id="issue-${i}-issueType" data-issue="${i}" data-field="issueType">${options(ISSUE_TYPES, issue.issueType)}</select>`)}
         ${field("severity", "Priorytet", `<select id="issue-${i}-severity" data-issue="${i}" data-field="severity" aria-describedby="issue-${i}-severity-tip">${options(SEVERITIES, issue.severity)}</select>`, false, `<p class="field-help" id="issue-${i}-severity-tip">${escapeHtml(SEVERITY_HINT)}</p>`)}
         ${field("shortName", "Krótka nazwa do tabeli „Problemy w skrócie” (opcjonalnie)", input("shortName", ` aria-describedby="issue-${i}-shortName-help"`), true, `<p class="field-help" id="issue-${i}-shortName-help">Gdy puste, w tabeli pojawi się tytuł problemu.</p>`)}
@@ -1364,26 +1390,31 @@ function issueCard(issue, i) {
         ${field("stepsToReproduce", "Kroki odtworzenia", area("stepsToReproduce", 3, issue.stepsToReproduce.join("\n"), "stepsToReproduce"), true, hint("stepsToReproduce", i))}
         ${field("userImpact", "Wpływ na użytkowników", area("userImpact", 3, issue.userImpact, "userImpact"), true, hint("userImpact", i))}
         ${field("recommendation", "Jak naprawić", area("recommendation", 5, issue.recommendation, "recommendation"), true, hint("recommendation", i))}
-        ${field("evidence", "Dowody i lokalizacja", area("evidence", 3, issue.evidence, "evidence"), true, hint("evidence", i))}
+        ${field("evidence", "Lokalizacja", area("evidence", 3, issue.evidence, "evidence"), true, hint("evidence", i))}
+      </div>
+      <div class="nested evidence" role="group" aria-labelledby="issue-${i}-evidence-heading">
+        <h4 id="issue-${i}-evidence-heading">Dowody</h4>
+        <div class="evidence__group" role="group" aria-labelledby="issue-${i}-codes-heading">
+          <h5 id="issue-${i}-codes-heading">Fragmenty kodu</h5>
+          ${codes || "<p class=\"empty\">Brak fragmentów kodu.</p>"}
+          <button class="button button--small button--secondary" type="button" data-action="add-code" data-index="${i}">Dodaj fragment kodu</button>
+        </div>
+        <div class="evidence__group" role="group" aria-labelledby="issue-${i}-images-heading">
+          <h5 id="issue-${i}-images-heading">Zrzuty ekranu</h5>
+          ${images || "<p class=\"empty\">Brak zrzutów ekranu.</p>"}
+          <div class="dropzone" data-index="${i}">
+            <p class="dropzone__text">Wklej zrzut ekranu skrótem <kbd>Cmd</kbd>+<kbd>V</kbd> (Windows: <kbd>Ctrl</kbd>+<kbd>V</kbd>) albo przeciągnij pliki tutaj.</p>
+            <div class="field"><label for="issue-${i}-image-upload">Albo wybierz pliki z dysku</label><input id="issue-${i}-image-upload" type="file" multiple accept="image/png,image/jpeg,image/webp" data-image-upload data-index="${i}" aria-describedby="issue-${i}-image-help"><p class="field-help" id="issue-${i}-image-help">PNG, JPG lub WebP, do 3 MB każdy. Można dodać kilka naraz.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-grid nested">
         ${field("reauditStatus", "Status reaudytu", `<select id="issue-${i}-reauditStatus" data-issue="${i}" data-field="reauditStatus">${options(REAUDIT_STATUSES, issue.reauditStatus, { "": "nie badano ponownie" })}</select>`)}
         ${field("reauditComment", "Komentarz reaudytu", area("reauditComment", 2))}
         ${field("notes", "Uwagi wewnętrzne", area("notes", 2), true)}
         <div class="field field--check field--wide"><input type="checkbox" id="issue-${i}-includeNotes" data-issue="${i}" data-field="includeNotesInExport"${issue.includeNotesInExport ? " checked" : ""}><label for="issue-${i}-includeNotes">Dołącz uwagi wewnętrzne do raportu</label></div>
       </div>
       <div id="issue-${i}-blocks-wrap">${blockPanel(issue, i)}</div>
-      <div class="nested" role="group" aria-labelledby="issue-${i}-codes-heading">
-        <h4 id="issue-${i}-codes-heading">Fragmenty kodu</h4>
-        ${codes || "<p class=\"empty\">Brak fragmentów kodu.</p>"}
-        <button class="button button--small button--secondary" type="button" data-action="add-code" data-index="${i}">Dodaj fragment kodu</button>
-      </div>
-      <div class="nested" role="group" aria-labelledby="issue-${i}-images-heading">
-        <h4 id="issue-${i}-images-heading">Zrzuty ekranu i grafiki</h4>
-        ${images || "<p class=\"empty\">Brak obrazów.</p>"}
-        <div class="dropzone" data-index="${i}">
-          <p class="dropzone__text">Wklej zrzut ekranu skrótem <kbd>Cmd</kbd>+<kbd>V</kbd> (Windows: <kbd>Ctrl</kbd>+<kbd>V</kbd>) albo przeciągnij pliki tutaj.</p>
-          <div class="field"><label for="issue-${i}-image-upload">Albo wybierz pliki z dysku</label><input id="issue-${i}-image-upload" type="file" multiple accept="image/png,image/jpeg,image/webp" data-image-upload data-index="${i}" aria-describedby="issue-${i}-image-help"><p class="field-help" id="issue-${i}-image-help">PNG, JPG lub WebP, do 3 MB każdy. Można dodać kilka naraz.</p></div>
-        </div>
-      </div>
       <div class="card-actions">
         ${i > 0 ? `<button class="button button--small button--secondary" type="button" data-action="move-issue" data-index="${i}" data-dir="-1">Przenieś wyżej<span class="visually-hidden">: problem ${i + 1}</span></button>` : ""}
         ${i < state.report.issues.length - 1 ? `<button class="button button--small button--secondary" type="button" data-action="move-issue" data-index="${i}" data-dir="1">Przenieś niżej<span class="visually-hidden">: problem ${i + 1}</span></button>` : ""}
@@ -1413,7 +1444,7 @@ async function addImages(index, files) {
     try {
       const image = await readImage(file);
       const name = file.name && file.name !== "image.png" ? file.name : `zrzut-${issue.images.length + 1}.png`;
-      issue.images.push({ id: randomId(), fileName: name, alt: "", isDecorative: false, caption: "", ...image });
+      issue.images.push({ id: randomId(), fileName: name, alt: "", isDecorative: true, caption: "", ...image });
       added++;
     } catch { skipped.push(file.name || "plik"); }
   }
@@ -1421,7 +1452,37 @@ async function addImages(index, files) {
     rerender(renderIssues, `#issue-${index}-image-${issue.images.length - added}-alt`, [index]);
     changed();
   }
-  announce([added ? `Dodano obrazy: ${added}. Wpisz tekst alternatywny albo oznacz obraz jako dekoracyjny.` : "", skipped.length ? `Pominięto: ${skipped.join(", ")}. Dozwolone są PNG, JPG i WebP do 3 MB.` : ""].filter(Boolean).join(" "), !added);
+  announce([added ? `Dodano obrazy: ${added}. Wpisz tekst alternatywny. Bez niego obraz będzie dekoracyjny.` : "", skipped.length ? `Pominięto: ${skipped.join(", ")}. Dozwolone są PNG, JPG i WebP do 3 MB.` : ""].filter(Boolean).join(" "), !added);
+}
+
+// ── podpowiedź „?” (toggletip) ───────────────────────────────────────────────
+// Przycisk pokazuje i chowa treść (Enter, Spacja, kliknięcie); Escape chowa i zostawia fokus na przycisku.
+// Treść jest w DOM zaraz za przyciskiem, więc czytnik dojdzie do niej strzałką po rozwinięciu.
+const KEY_VIEW_TIP = "Widok kluczowy to strona lub ekran, bez których użytkownik nie załatwi najważniejszych spraw w serwisie, np. strona główna, logowanie, formularz kontaktowy, koszyk i płatność, deklaracja dostępności. Metodyka WCAG-EM (W3C) zaleca, by takie strony zawsze trafiły do próby. W raporcie przy nazwie widoku pojawi się dopisek „widok kluczowy”.";
+
+function toggletip(id, label, text) {
+  return `<button type="button" class="toggletip" data-toggletip aria-expanded="false" aria-controls="${id}"><span aria-hidden="true">?</span><span class="visually-hidden">${escapeHtml(label)}</span></button><p class="toggletip__text" id="${id}" hidden>${escapeHtml(text)}</p>`;
+}
+
+function setToggletip(button, open) {
+  button.setAttribute("aria-expanded", String(open));
+  $(button.getAttribute("aria-controls")).hidden = !open;
+}
+
+function bindToggletips() {
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest?.("[data-toggletip]");
+    document.querySelectorAll('[data-toggletip][aria-expanded="true"]').forEach((other) => { if (other !== button) setToggletip(other, false); });
+    if (button) setToggletip(button, button.getAttribute("aria-expanded") !== "true");
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const open = [...document.querySelectorAll('[data-toggletip][aria-expanded="true"]')];
+    if (!open.length) return;
+    open.forEach((button) => setToggletip(button, false));
+    const own = document.activeElement?.closest?.("[data-toggletip]");
+    if (own) event.preventDefault();
+  });
 }
 
 function bindImageDrop() {
@@ -1532,7 +1593,7 @@ function stepFor(path) {
 function targetFor(path) {
   const fixed = { "meta.reportTitle": "report-title", "meta.auditedEntity": "audited-entity", "meta.websiteUrl": "website-url", "meta.auditDate": "audit-date", testedViews: "add-view", criteriaResults: "criteria-heading" };
   if (fixed[path]) return fixed[path];
-  let match = path.match(/^issues\.(\d+)\.(title|viewId|criteria|description|userImpact|recommendation|confirmed)$/);
+  let match = path.match(/^issues\.(\d+)\.(id|title|viewId|criteria|description|userImpact|recommendation|confirmed)$/);
   if (match) return `issue-${match[1]}-${match[2]}`;
   match = path.match(/^issues\.(\d+)\.codeExamples\.(\d+)/);
   if (match) return `issue-${match[1]}-code-${match[2]}-label`;

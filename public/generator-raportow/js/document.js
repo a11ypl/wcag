@@ -13,7 +13,7 @@
 //   note     { title, intro, items: string[] } — ostrzeżenie o wersji roboczej
 
 import { scopeLabel as describeScope } from "./frameworks.js";
-import { SAMPLE_SIZES, SEVERITY_INFO, SEVERITY_LEGEND, withVersion, criteriaStats, environmentLabel, issuesByCriterion, issuesByView, samplePages, severityCounts, validateProject, CRITERION_STATUSES, SEVERITIES } from "./model.js";
+import { SAMPLE_SIZES, SEVERITY_INFO, SEVERITY_LEGEND, withVersion, criteriaStats, isDecorativeImage, environmentLabel, issuesByCriterion, issuesByView, samplePages, severityCounts, validateProject, CRITERION_STATUSES, SEVERITIES } from "./model.js";
 import { cleanList, formatDate, formatPeriod, isSafeUrl, slug, text } from "./text.js";
 
 export const GENERATOR_NAME = "Generator raportów dostępności A11y First";
@@ -90,9 +90,10 @@ export function buildDocument(report) {
     blocks.push({
       type: "table",
       caption: "Problemy według priorytetu",
-      headers: ["Nr", "Problem", "Kryteria", "Priorytet"],
+      headers: ["Nr", "Identyfikator", "Problem", "Kryteria", "Priorytet"],
       rows: sorted.map(({ issue, index }) => [
         String(index + 1),
+        text(issue.id, "—"),
         [internal(`problem-${index + 1}`, text(issue.shortName || issue.title, "Bez tytułu"))],
         (issue.criteria || []).map((id) => requirements.get(id)?.displayId || id.replace(/^[a-z]+:/, "")).join(", ") || "—",
         issue.severity,
@@ -348,18 +349,19 @@ function countLabel(n) {
 }
 
 function issueBlocks(issue, number, ctx, level) {
-  const view = ctx.views.get(issue.viewId) || {};
   const criteriaRuns = (issue.criteria || []).flatMap((id, n) => {
     const item = ctx.requirements.get(id);
     const label = item ? `${item.displayId || id} ${item.title}${item.level !== "—" ? ` (${item.level})` : ""}` : `${id} (poza zakresem raportu)`;
     return [...(n ? [{ text: "; " }] : []), item ? internal(criterionAnchor(id), label) : { text: label }];
   });
-  const url = issue.url || view.url;
+  // Adresy wynikają z zaznaczonych widoków; issue.url zostaje tylko dla starszych projektów bez adresów widoków.
+  const urls = [...new Set((issue.viewIds || []).map((id) => String(ctx.views.get(id)?.url || "").trim()).filter(Boolean))];
+  if (!urls.length && String(issue.url || "").trim()) urls.push(String(issue.url).trim());
   const rows = [
     ["Identyfikator", r(text(issue.id))],
     ["Widoki", viewRuns(issue, ctx)],
     ["Środowiska", environmentRuns(issue, ctx)],
-    ...(url ? [["Adres", link(url)]] : []),
+    ...(urls.length ? [[urls.length > 1 ? "Adresy" : "Adres", urls.flatMap((url, n) => [...(n ? [{ text: "; " }] : []), ...link(url)])]] : []),
     ["Typ", r(issue.issueType)],
     ["Priorytet", r(`${issue.severity} — ${SEVERITY_INFO[issue.severity] || ""}`)],
     ["Kryteria", criteriaRuns.length ? criteriaRuns : r("Nie przypisano")],
@@ -376,9 +378,12 @@ function issueBlocks(issue, number, ctx, level) {
   if (steps.length) blocks.push(heading(level + 1, "Kroki odtworzenia", `${id}-kroki`), { type: "list", ordered: true, items: steps.map(r) });
   blocks.push(heading(level + 1, "Wpływ na użytkowników", `${id}-wplyw`), ...paragraphs(issue.userImpact, "Nie podano.", `issues.${number - 1}.userImpact`));
   blocks.push(heading(level + 1, "Jak naprawić", `${id}-rekomendacja`), ...pointsOrParagraphs(issue.recommendation, `issues.${number - 1}.recommendation`));
-  if (String(issue.evidence || "").trim()) blocks.push(heading(level + 1, "Dowody i lokalizacja", `${id}-dowody`), ...paragraphs(issue.evidence, "Nie podano.", `issues.${number - 1}.evidence`));
-  (issue.codeExamples || []).forEach((code) => blocks.push({ type: "code", label: text(code.label, "Fragment kodu"), language: text(code.language, "text"), code: String(code.code ?? "") }));
-  (issue.images || []).forEach((image) => blocks.push({ type: "image", ...image }));
+  if (String(issue.evidence || "").trim()) blocks.push(heading(level + 1, "Lokalizacja", `${id}-lokalizacja`), ...paragraphs(issue.evidence, "Nie podano.", `issues.${number - 1}.evidence`));
+  const codes = issue.codeExamples || [];
+  const images = issue.images || [];
+  if (codes.length || images.length) blocks.push(heading(level + 1, "Dowody", `${id}-dowody`));
+  codes.forEach((code) => blocks.push({ type: "code", label: text(code.label, "Fragment kodu"), language: text(code.language, "text"), code: String(code.code ?? "") }));
+  images.forEach((image) => blocks.push({ type: "image", ...image, isDecorative: isDecorativeImage(image) }));
   if (issue.includeNotesInExport && String(issue.notes || "").trim()) blocks.push(heading(level + 1, "Uwagi audytora", `${id}-uwagi`), ...paragraphs(issue.notes));
   return blocks;
 }
