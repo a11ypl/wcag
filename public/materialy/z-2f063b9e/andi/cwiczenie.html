@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sklep z kubkami: strona do ćwiczeń z ANDI</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0 2rem 2rem; color: #14191d; background: #fff; }
+nav a { margin-right: 1rem; }
+.szary { color: #aaa; }
+.ukryj { display: none; }
+.sr { position: absolute; left: -9999px; }
+img { width: 120px; height: 60px; background: #E2F4FF; border: 1px solid #5F338A; margin-right: .5rem; }
+table { border-collapse: collapse; margin: 1rem 0; } td, th { border: 1px solid #999; padding: .3rem .6rem; }
+.btn { display: inline-block; padding: .3rem 1rem; background: #5F338A; color: #fff; cursor: pointer; }
+</style>
+</head>
+<body>
+<!-- Strona ćwiczeniowa do prezentacji o ANDI (Accessibility First). Błędy są celowe. -->
+<header>
+  <nav><a href="/oferta">Czytaj więcej</a> <a href="/kontakt">Czytaj więcej</a></nav>
+</header>
+<main>
+  <h1>Sklep z kubkami</h1>
+  <h3>Promocje tygodnia</h3>
+  <p>
+    <img src="baner.jpg" alt="baner.jpg">
+    <img src="logo.png">
+    <img src="ozdobnik.png" alt="">
+  </p>
+  <p>
+    <button aria-label="Zamknij">X</button>
+    <button><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="5"></circle></svg></button>
+    <button>Dodaj do koszyka</button>
+    <button>Dodaj do koszyka</button>
+  </p>
+  <form>
+    <p><label for="mail">E-mail</label> <input id="email" type="email"></p>
+    <p><input type="text" placeholder="Imię"></p>
+    <div class="btn" onclick="alert('Wysłano')">Wyślij</div>
+  </form>
+  <p class="szary">Bezpłatna dostawa od 100 zł</p>
+  <table>
+    <tr><td>Produkt</td><td>Cena</td></tr>
+    <tr><td>Kubek biały</td><td>20 zł</td></tr>
+  </table>
+  <table>
+    <caption>Cennik</caption>
+    <tr><th scope="col">Produkt</th><th scope="col">Cena</th></tr>
+    <tr><td>Kubek czarny</td><td>25 zł</td></tr>
+  </table>
+  <div class="ukryj">Kod rabatowy: KUBEK10</div>
+  <span class="sr">Ceny zawierają VAT</span>
+  <iframe src="about:blank" title="Mapa dojazdu" width="300" height="80"></iframe>
+</main>
+</body>
+</html>
