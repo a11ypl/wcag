@@ -1,0 +1,44 @@
+/* Menu i stopka a11yfirst.pl dla wersji generatora osadzonej na stronie (/generator-raportow/).
+   Skrypt eksportu wstawia znaczniki <header> i <footer> skopiowane z podstrony a11yfirst.pl,
+   a ten arkusz odtwarza ich wygląd z /assets/styles.css strony. Reguły są zawężone do body > header
+   i body > footer, żeby nie zmieniały formularzy generatora. Menu nie jest przyklejone do góry ekranu
+   (inaczej niż na innych podstronach), bo w długim formularzu zasłaniałoby pole z fokusem (WCAG 2.4.11). */
+
+body > header, body > footer { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; }
+body > header *, body > footer * { box-sizing: border-box; }
+body > header :focus-visible, body > footer :focus-visible, .skip-link:focus-visible { outline: 4px solid #ff00ff; outline-offset: 4px; box-shadow: 0 0 0 8px #ccff00; }
+
+body > header { background: linear-gradient(135deg, #5f28b4 0%, #4a1f8f 100%); color: #fff; padding: .55rem 0; box-shadow: 0 2px 8px rgba(0, 0, 0, .1); }
+body > header .container, body > footer .container { width: auto; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+body > header .header-content { display: flex; align-items: center; justify-content: center; gap: 1.75rem; }
+body > header .site-banner { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; height: 54px; width: min(300px, 34vw); border-radius: 8px; }
+body > header .site-banner img { display: block; object-fit: contain; }
+body > header .site-banner-full { display: block !important; width: 100%; height: auto; max-height: 54px; }
+body > header .site-banner-icon { display: none !important; width: 44px; height: 44px; padding: 4px; background: #5f28b4; border: 2px solid #ffcc00; border-radius: 8px; }
+body > header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem 1rem; }
+body > header nav a { color: #ffcc00; font-size: .9rem; font-weight: 800; text-decoration: underline; text-decoration-thickness: .12em; text-underline-offset: .22em; }
+body > header nav a:hover { color: #fff; }
+
+body > footer { margin-top: 4rem; padding: 4rem 2rem; background: #1a1a1a; color: #fff; text-align: center; }
+body > footer p { margin: 0 0 1rem; }
+body > footer .footer-contact a { color: #fa9632; text-decoration: none; font-weight: 700; }
+body > footer .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; margin: 1.5rem 0; }
+body > footer .footer-nav a { color: #fa9632; font-weight: 700; text-decoration: underline; text-underline-offset: .18rem; }
+body > footer .footer-social a { color: #fa9632; text-decoration: underline; font-weight: 700; }
+body > footer .footer-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, .1); font-size: .9rem; opacity: .7; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 10000; padding: 1rem 1.25rem; background: #fa9632; color: #000; border: 3px solid #000; border-radius: 8px; font-weight: 800; text-decoration: underline; text-underline-offset: .18em; transform: translateY(calc(-100% - 2rem)); }
+.skip-link:focus, .skip-link:focus-visible { top: 1rem; transform: translateY(0); }
+
+@media (max-width: 992px) {
+  body > header .container, body > footer .container { padding: 0 1.25rem; }
+  body > header .site-banner { width: 44px; height: 44px; margin-right: .5rem; }
+  body > header .site-banner-full { display: none !important; }
+  body > header .site-banner-icon { display: block !important; }
+}
+
+@media (forced-colors: active) {
+  body > header, body > footer { border-block: 2px solid CanvasText; }
+}
