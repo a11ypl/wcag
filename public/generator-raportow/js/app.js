@@ -6,8 +6,8 @@ import { FIELD_HINTS, ISSUE_BLOCKS, SEVERITY_HINT, blockById, blocksForCriteria,
 import { ENVIRONMENT_PRESETS, SUGGESTIONS, matchesQuery } from "./suggestions.js";
 import { importFiles } from "./import.js";
 import {
-  CRITERION_STATUSES, ISSUE_TYPES, MAX_IMAGE_BYTES, REAUDIT_STATUSES, SEVERITIES, VIEW_TYPES,
-  criteriaStats, defaultProject, migrateProject, newIssue, nextId, randomId, refreshCriteria,
+  CRITERION_STATUSES, COMPACT_IMAGE_BYTES, ISSUE_TYPES, MAX_IMAGE_BYTES, MAX_IMAGE_SIDE, REAUDIT_STATUSES, SEVERITIES, VIEW_TYPES,
+  criteriaStats, dataUrlSize, defaultProject, migrateProject, newIssue, nextId, randomId, refreshCriteria,
   AUDIT_STATUSES, BROWSER_PRESETS, OTHER_AT_PRESETS, SAMPLE_SIZES, SCREEN_READER_PRESETS, environmentLabel, nextSignature, withVersion, issuesByCriterion, requirementLabel, samplePages, severityCounts, suggestCriterionStatuses, validateProject,
 } from "./model.js";
 import { renderReportDocx, DOCX_MIME } from "./render-docx.js";
@@ -1404,7 +1404,7 @@ function issueCard(issue, i) {
           ${images || "<p class=\"empty\">Brak zrzutów ekranu.</p>"}
           <div class="dropzone" data-index="${i}">
             <p class="dropzone__text">Wklej zrzut ekranu skrótem <kbd>Cmd</kbd>+<kbd>V</kbd> (Windows: <kbd>Ctrl</kbd>+<kbd>V</kbd>) albo przeciągnij pliki tutaj.</p>
-            <div class="field"><label for="issue-${i}-image-upload">Albo wybierz pliki z dysku</label><input id="issue-${i}-image-upload" type="file" multiple accept="image/png,image/jpeg,image/webp" data-image-upload data-index="${i}" aria-describedby="issue-${i}-image-help"><p class="field-help" id="issue-${i}-image-help">PNG, JPG lub WebP, do 3 MB każdy. Można dodać kilka naraz.</p></div>
+            <div class="field"><label for="issue-${i}-image-upload">Albo wybierz pliki z dysku</label><input id="issue-${i}-image-upload" type="file" multiple accept="image/png,image/jpeg,image/webp" data-image-upload data-index="${i}" aria-describedby="issue-${i}-image-help"><p class="field-help" id="issue-${i}-image-help">PNG, JPG lub WebP, do 25 MB każdy. Większe niż 2000 pikseli zmniejszymy automatycznie. Można dodać kilka naraz.</p></div>
           </div>
         </div>
       </div>
@@ -1440,7 +1440,7 @@ async function addImages(index, files) {
   const skipped = [];
   for (const file of files) {
     if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) { skipped.push(`${file.name || "plik"} (zły format)`); continue; }
-    if (file.size > MAX_IMAGE_BYTES) { skipped.push(`${file.name || "plik"} (ponad 3 MB)`); continue; }
+    if (file.size > MAX_IMAGE_BYTES) { skipped.push(`${file.name || "plik"} (ponad 25 MB)`); continue; }
     try {
       const image = await readImage(file);
       const name = file.name && file.name !== "image.png" ? file.name : `zrzut-${issue.images.length + 1}.png`;
@@ -1452,7 +1452,7 @@ async function addImages(index, files) {
     rerender(renderIssues, `#issue-${index}-image-${issue.images.length - added}-alt`, [index]);
     changed();
   }
-  announce([added ? `Dodano obrazy: ${added}. Wpisz tekst alternatywny. Bez niego obraz będzie dekoracyjny.` : "", skipped.length ? `Pominięto: ${skipped.join(", ")}. Dozwolone są PNG, JPG i WebP do 3 MB.` : ""].filter(Boolean).join(" "), !added);
+  announce([added ? `Dodano obrazy: ${added}. Wpisz tekst alternatywny. Bez niego obraz będzie dekoracyjny.` : "", skipped.length ? `Pominięto: ${skipped.join(", ")}. Dozwolone są PNG, JPG i WebP do 25 MB.` : ""].filter(Boolean).join(" "), !added);
 }
 
 // ── podpowiedź „?” (toggletip) ───────────────────────────────────────────────
@@ -1519,14 +1519,26 @@ function readImage(file) {
       img.onerror = reject;
       img.onload = () => {
         let dataUrl = reader.result;
-        if (file.type === "image/webp") {
+        const scale = Math.min(1, MAX_IMAGE_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
+        const width = Math.round(img.naturalWidth * scale);
+        const height = Math.round(img.naturalHeight * scale);
+        // Duże zrzuty zmniejszamy do 2000 px (to wciąż ostro w raporcie A4), a gdy PNG nadal waży ponad 3 MB, zapisujemy JPG.
+        if (file.type === "image/webp" || scale < 1 || file.size > COMPACT_IMAGE_BYTES) {
           const canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
-          canvas.getContext("2d").drawImage(img, 0, 0);
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.imageSmoothingQuality = "high";
+          ctx.drawImage(img, 0, 0, width, height);
           dataUrl = canvas.toDataURL("image/png");
+          if (dataUrlSize(dataUrl) > COMPACT_IMAGE_BYTES) {
+            ctx.globalCompositeOperation = "destination-over";
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, width, height);
+            dataUrl = canvas.toDataURL("image/jpeg", 0.9);
+          }
         }
-        resolve({ dataUrl, width: img.naturalWidth, height: img.naturalHeight });
+        resolve({ dataUrl, width, height });
       };
       img.src = reader.result;
     };

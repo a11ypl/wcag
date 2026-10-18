@@ -79,6 +79,24 @@
   ],
   "headers": [
     {
+      "source": "/generator-raportow",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/generator-raportow/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/materialy/(.*)",
       "headers": [
         {

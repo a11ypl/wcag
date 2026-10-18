@@ -5,7 +5,10 @@ import { normalizeScope, requirementsFor } from "./frameworks.js";
 
 export const SCHEMA_VERSION = 1;
 export const FORMAT_ID = "a11yfirst-raport";
-export const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
+// Wczytujemy pliki do 25 MB (zrzuty z ekranów Retina są duże); generator zmniejsza je przed zapisem.
+export const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
+export const MAX_IMAGE_SIDE = 2000;
+export const COMPACT_IMAGE_BYTES = 3 * 1024 * 1024;
 
 export const CRITERION_STATUSES = ["spełnione", "niespełnione", "nie dotyczy", "do weryfikacji", "niebadane"];
 export const ISSUE_TYPES = ["błąd", "rekomendacja", "do weryfikacji manualnej"];
@@ -353,7 +356,7 @@ export function validateProject(report) {
       }
     });
     (issue.images || []).forEach((image, imageIndex) => {
-      if (dataUrlSize(image.dataUrl) > MAX_IMAGE_BYTES) add(`${prefix}.images.${imageIndex}.dataUrl`, `Obraz przekracza limit 3 MB: ${name}.`);
+      if (dataUrlSize(image.dataUrl) > MAX_IMAGE_BYTES) add(`${prefix}.images.${imageIndex}.dataUrl`, `Obraz przekracza limit 25 MB: ${name}.`);
     });
     if (issue.source && !issue.confirmed) add(`${prefix}.confirmed`, `Problem zaimportowany automatycznie czeka na potwierdzenie audytora: ${name}.`, "warning");
   });
