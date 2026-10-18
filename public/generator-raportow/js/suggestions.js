@@ -2,6 +2,15 @@
 // Klucz = wartość atrybutu data-suggest w polu. Pierwsze pozycje pochodzą z szablonów i raportów
 // Accessibility First (uogólnione, bez danych klientów), dalsze to zestaw podstawowy.
 
+const fold = (value) => String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ł/g, "l");
+
+// Podpowiedź pasuje, gdy zawiera każde wpisane słowo (bez względu na wielkość liter i polskie znaki).
+export function matchesQuery(item, query) {
+  const words = fold(query).split(/\s+/).filter(Boolean);
+  const text = fold(item);
+  return words.every((word) => text.includes(word));
+}
+
 export const SUGGESTIONS = {
   "manualTools": [
     "Nawigacja klawiaturą",

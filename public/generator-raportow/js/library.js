@@ -27,8 +27,8 @@ export const FIELD_HINTS = {
     example: "Dodaj do każdego pola widoczną etykietę <label> powiązaną atrybutem for z identyfikatorem pola.",
   },
   evidence: {
-    tip: "Dowód, który pozwoli wrócić do problemu: selektor, zmierzona wartość, nazwa narzędzia, zrzut ekranu.",
-    example: "form#kontakt input[name=email] — brak elementu label i atrybutów aria-label/aria-labelledby (sprawdzone w DevTools, 01.10.2026).",
+    tip: "Gdzie dokładnie jest problem: miejsce na stronie, element, selektor. Kod i zrzuty ekranu dodasz niżej, w grupie „Dowody”.",
+    example: "Formularz kontaktowy, pole „E-mail”: form#kontakt input[name=email].",
   },
 };
 
