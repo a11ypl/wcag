@@ -17,6 +17,21 @@
   ],
   "redirects": [
     {
+      "source": "/materialy/sdc-grupy-dae286",
+      "destination": "/materialy/sdc-99-3-e1599b/",
+      "permanent": true
+    },
+    {
+      "source": "/materialy/sdc-grupy-dae286/",
+      "destination": "/materialy/sdc-99-3-e1599b/",
+      "permanent": true
+    },
+    {
+      "source": "/materialy/sdc-grupy-dae286/(.*)",
+      "destination": "/materialy/sdc-99-3-e1599b/$1",
+      "permanent": true
+    },
+    {
       "source": "/kurs",
       "destination": "/kurs-semantyczny-html",
       "permanent": false
