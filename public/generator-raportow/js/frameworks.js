@@ -204,7 +204,6 @@ export const LEGAL_ACTS = [
   { group: "public", text: "Decyzja wykonawcza Komisji (UE) 2018/1523 z dnia 11 października 2018 r. ustanawiająca wzór oświadczenia w sprawie dostępności" },
   { group: "private", text: "Dyrektywa Parlamentu Europejskiego i Rady (UE) 2019/882 z dnia 17 kwietnia 2019 r. w sprawie wymogów dostępności produktów i usług (Europejski akt o dostępności)" },
   { group: "all", text: "Konwencja o prawach osób niepełnosprawnych, sporządzona w Nowym Jorku dnia 13 grudnia 2006 r. (Dz.U. 2012 poz. 1169)" },
-  { group: "all", text: "Konstytucja Rzeczypospolitej Polskiej z dnia 2 kwietnia 1997 r. (art. 32 i 69)" },
   { group: "all", text: "Karta Praw Osób Niepełnosprawnych — uchwała Sejmu Rzeczypospolitej Polskiej z dnia 1 sierpnia 1997 r." },
   { group: "public", text: "Ustawa z dnia 6 września 2001 r. o dostępie do informacji publicznej (z późn. zm.)" },
   { group: "public", text: "Ustawa z dnia 19 sierpnia 2011 r. o języku migowym i innych środkach komunikowania się (z późn. zm.)" },

@@ -60,6 +60,7 @@ export function langCode(value) {
 
 export function fileBaseName(report) {
   const entity = slug(report?.meta?.auditedEntity || report?.meta?.websiteUrl || "", "");
-  const date = String(report?.meta?.auditDate || "").trim();
+  const meta = report?.meta || {};
+  const date = String(meta.auditEndDate || meta.auditStartDate || meta.auditDate || "").trim();
   return ["raport-dostepnosci", entity, date].filter(Boolean).join("-");
 }

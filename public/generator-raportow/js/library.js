@@ -23,7 +23,7 @@ export const FIELD_HINTS = {
     example: "Osoba niewidoma korzystająca z czytnika ekranu słyszy tylko „pole edycji” i nie wie, co wpisać. Osoba z trudnościami z pamięcią po wpisaniu pierwszego znaku traci informację, czego dotyczy pole.",
   },
   recommendation: {
-    tip: "Jeden punkt w wierszu — w raporcie powstanie lista kroków. Pisz rzeczowo: „Dodać…”, „Zapewnić…”. Złóż ją z gotowych rozwiązań poniżej i dopasuj.",
+    tip: "Jeden punkt w wierszu, w raporcie powstanie lista kroków. Pisz rzeczowo: „Dodać…”, „Zapewnić…”. Zacznij pisać, a pod polem pojawią się gotowe rozwiązania pasujące do kryteriów; wybrane trafia jako punkt, a jego przykład kodu do Dowodów.",
     example: "Dodaj do każdego pola widoczną etykietę <label> powiązaną atrybutem for z identyfikatorem pola.",
   },
   evidence: {
