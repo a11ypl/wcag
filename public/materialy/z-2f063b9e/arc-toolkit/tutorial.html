@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARC Toolkit krok po kroku: tutorial uczestnika | Accessibility First</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f4f5f7; --bg3:#eceef2;
+  --tekst:#15171c; --tekst2:#4c5260;
+  --akcent:#7a2ff2; --akcent-tekst:#ffffff; --akcent-slaby:#f0e8ff;
+  --kreska:#d6d9e0;
+  --zle:#a3162b; --zle-tlo:#fdeaed; --dobrze:#1c6b3f; --dobrze-tlo:#e3f4ea;
+  --kod-tlo:#f6f7f9;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+    --tekst:#f2f3f6; --tekst2:#a9b0c0;
+    --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+    --kreska:#2f3542;
+    --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+    --kod-tlo:#1a1d25;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+  --tekst:#f2f3f6; --tekst2:#a9b0c0;
+  --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+  --kreska:#2f3542;
+  --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+  --kod-tlo:#1a1d25;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--tekst);
+  font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.srodek{max-width:760px; margin:0 auto; padding:0 20px}
+.szeroko{max-width:1000px}
+a{color:var(--akcent)}
+:focus-visible{outline:3px solid var(--akcent); outline-offset:2px; border-radius:4px}
+img{max-width:100%}
+
+.przeskok{position:absolute; left:-9999px; top:0; background:var(--akcent);
+  color:var(--akcent-tekst); padding:12px 18px; z-index:20; font-weight:600;
+  border-radius:0 0 var(--radius) 0}
+.przeskok:focus{left:0}
+
+.gorny{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:12px 0}
+.gorny-tresc{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+.marka{font-weight:700; letter-spacing:-.01em; text-decoration:none; color:var(--tekst)}
+.marka span{color:var(--akcent)}
+.gorny nav ul{display:flex; flex-wrap:wrap; gap:16px; list-style:none; margin:0; padding:0; font-size:15px}
+
+header.tytul{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:40px 0 32px}
+.etykieta{display:inline-block; background:var(--akcent-slaby); color:var(--akcent);
+  font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:5px 11px; border-radius:999px}
+h1{font-size:clamp(28px,5vw,42px); line-height:1.15; margin:16px 0 10px; letter-spacing:-.02em}
+.podtytul{color:var(--tekst2); font-size:18px; margin:0 0 20px; max-width:60ch}
+.fakty{display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:0}
+.fakty li{background:var(--bg); border:1px solid var(--kreska); border-radius:999px;
+  padding:6px 14px; font-size:14px}
+.fakty b{color:var(--akcent)}
+
+main h2{font-size:clamp(22px,3.5vw,29px); margin:44px 0 12px; letter-spacing:-.01em;
+  padding-top:8px}
+main h3{font-size:20px; margin:32px 0 10px}
+main h4{font-size:17px; margin:24px 0 8px; color:var(--tekst2)}
+main p{margin:0 0 16px}
+main ul,main ol{margin:0 0 18px; padding-left:24px}
+main li{margin-bottom:7px}
+hr{border:0; border-top:1px solid var(--kreska); margin:36px 0}
+
+.kod{margin:0 0 20px; border:1px solid var(--kreska); border-radius:var(--radius); overflow:hidden}
+.kod-etykieta{margin:0; background:var(--bg3); color:var(--tekst2); font-size:12px;
+  font-weight:700; letter-spacing:.06em; padding:7px 14px; border-bottom:1px solid var(--kreska)}
+pre{margin:0; padding:14px 16px; overflow-x:auto; background:var(--kod-tlo)}
+pre code{font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+p code,li code,td code,th code{background:var(--bg3); padding:2px 6px; border-radius:5px;
+  font:0.9em/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+.tabela{overflow-x:auto; margin:0 0 20px}
+table{width:100%; border-collapse:collapse; font-size:15px}
+th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--kreska); vertical-align:top}
+thead th{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--tekst2)}
+
+.ramka{background:var(--bg2); border-left:4px solid var(--akcent);
+  border-radius:0 var(--radius) var(--radius) 0; padding:16px 20px; margin:0 0 22px}
+.ramka > :last-child{margin-bottom:0}
+
+.quiz{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:24px; margin:44px 0}
+.quiz h2{margin-top:0}
+.quiz-wstep{color:var(--tekst2); font-size:15px}
+.pytanie{border-top:1px solid var(--kreska); padding-top:22px; margin-top:22px}
+.pytanie:first-of-type{border-top:0; padding-top:0}
+.pytanie-tresc{margin:0 0 4px; font-size:18px}
+.pytanie-nr{display:block; color:var(--akcent); font-size:13px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px}
+.pytanie-typ{color:var(--tekst2); font-size:13px; margin:0 0 14px}
+.pytanie-uwaga{color:var(--tekst2); font-size:14px; margin:10px 0 0}
+.odpowiedzi{list-style:none; margin:0; padding:0}
+.odpowiedzi li{margin-bottom:10px}
+button.odpowiedz{display:flex; gap:12px; align-items:flex-start; width:100%; text-align:left;
+  background:var(--bg); color:var(--tekst); border:1px solid var(--kreska);
+  border-radius:9px; padding:13px 16px; font:inherit; font-size:16px; cursor:pointer}
+button.odpowiedz:hover{border-color:var(--akcent)}
+.znak{flex:0 0 28px; width:28px; height:28px; border:2px solid var(--kreska);
+  border-radius:50%; margin-top:1px; display:grid; place-items:center;
+  font-size:14px; font-weight:700; color:var(--tekst2)}
+.znak .litera{line-height:1}
+button.odpowiedz[aria-pressed="true"] .litera{display:none}
+
+/* --- tryb krokowy: jedno pytanie na ekran --- */
+.quiz-start{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:0 0 20px}
+.przycisk-glowny{background:var(--akcent); color:var(--akcent-tekst); border:2px solid var(--akcent);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-glowny:hover{filter:brightness(1.08)}
+.przycisk-drugi{background:transparent; color:var(--tekst); border:2px solid var(--kreska);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-drugi:hover{border-color:var(--akcent)}
+.przycisk-drugi[disabled]{opacity:.45; cursor:default}
+
+.krokowy{position:fixed; inset:0; z-index:100; background:var(--bg);
+  display:flex; flex-direction:column; overflow:auto}
+.krokowy[hidden]{display:none}
+.krokowy-gora{border-bottom:1px solid var(--kreska); background:var(--bg2); padding:14px 0}
+.krokowy-gora .srodek{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between}
+.postep{flex:1 1 220px; min-width:180px}
+.postep-tekst{font-size:14px; color:var(--tekst2); margin:0 0 6px}
+.postep-pasek{height:8px; background:var(--bg3); border-radius:99px; overflow:hidden}
+.postep-wypelnienie{height:100%; background:var(--akcent); width:0; transition:width .2s}
+.krokowy-zamknij{background:none; border:2px solid var(--kreska); border-radius:8px;
+  padding:8px 14px; font:600 15px/1 inherit; font-family:inherit; color:inherit; cursor:pointer}
+.krokowy-tresc{flex:1; padding:32px 0}
+.krokowy .pytanie{border:0; padding:0; margin:0}
+.krokowy .pytanie-tresc{font-size:clamp(20px,3vw,26px)}
+.krokowy-dol{border-top:1px solid var(--kreska); background:var(--bg2); padding:16px 0}
+.krokowy-dol .srodek{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+.krokowy-info{color:var(--tekst2); font-size:14px; margin:0}
+
+.podsumowanie h2{margin-top:0}
+.wynik-duzy{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.03em; margin:0;
+  color:var(--akcent)}
+.wynik-duzy.zaliczony{color:var(--dobrze)}
+.wynik-opis{color:var(--tekst2); margin:4px 0 22px}
+ol.podsumowanie-lista{list-style:none; padding:0; margin:0 0 24px}
+ol.podsumowanie-lista li{display:grid; grid-template-columns:34px 1fr auto; gap:12px 16px;
+  align-items:center; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:9px; padding:11px 14px; margin:0 0 8px}
+.pod-nr{font-weight:700; color:var(--tekst2); font-variant-numeric:tabular-nums}
+.pod-stan{font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap}
+li.ok .pod-stan{color:var(--dobrze)}
+li.zle .pod-stan{color:var(--zle)}
+li.pusto .pod-stan{color:var(--tekst2)}
+.pod-tresc{font-size:15px}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"]{
+  border-color:var(--dobrze); background:var(--dobrze-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak{
+  border-color:var(--dobrze); color:var(--dobrze)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak::after{content:"✓"}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"]{
+  border-color:var(--zle); background:var(--zle-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak{
+  border-color:var(--zle); color:var(--zle)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak::after{content:"✕"}
+.wyjasnienie{margin:8px 0 0; padding:11px 15px; background:var(--bg3);
+  border-radius:8px; font-size:15px; color:var(--tekst2)}
+.wyjasnienie-etykieta{font-weight:700; color:var(--tekst)}
+.quiz-wynik{margin:22px 0 0; font-weight:600; color:var(--akcent)}
+.quiz-wynik.zaliczone{color:var(--dobrze)}
+.quiz-oparty{color:var(--tekst2); font-size:15px; margin:16px 0 0}
+.karta-quiz{border-left:4px solid var(--akcent)}
+ul.zrodla{color:var(--tekst2); font-size:15px}
+
+.przeglad .blok{margin:0 0 44px}
+.przeglad .blok h2{display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  border-bottom:2px solid var(--kreska); padding-bottom:8px; margin-top:36px}
+.link-lekcji{font-size:15px; font-weight:400}
+.przeglad .ile{color:var(--tekst2); font-size:14px; margin:6px 0 16px}
+.przeglad ol.pytania{list-style:none; padding:0; margin:0}
+.przeglad li.pyt{background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:16px 18px; margin:0 0 12px}
+.przeglad .pyt-tresc{font-weight:600; margin:0 0 12px}
+.przeglad .typ{font-weight:400; font-size:13px; color:var(--tekst2);
+  background:var(--bg3); border-radius:5px; padding:2px 8px; white-space:nowrap}
+.przeglad ul.odp{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.przeglad ul.odp li{display:grid; grid-template-columns:42px 1fr; gap:10px;
+  padding:9px 12px; border-radius:8px; margin:0; font-size:15px}
+.przeglad ul.odp li.dobra{background:var(--dobrze-tlo, #e3f4ea)}
+.przeglad ul.odp li.zla{background:var(--bg3)}
+.przeglad .znacznik{font-weight:700}
+.przeglad li.dobra .znacznik{color:var(--dobrze, #1c6b3f)}
+.przeglad li.zla .znacznik{color:var(--tekst2)}
+.przeglad .wyj{display:block; color:var(--tekst2); font-size:14px; margin-top:4px}
+
+figure.media{margin:0 0 24px; padding:0}
+figure.media img,figure.media video{display:block; width:100%; height:auto;
+  border:1px solid var(--kreska); border-radius:var(--radius); background:var(--bg2)}
+figure.media figcaption{color:var(--tekst2); font-size:15px; margin-top:8px}
+figure.media.dekoracyjna figcaption{display:none}
+details.transkrypcja{margin-top:10px; border:1px solid var(--kreska);
+  border-radius:var(--radius); background:var(--bg2)}
+details.transkrypcja summary{padding:11px 16px; cursor:pointer; font-weight:600; font-size:15px}
+details.transkrypcja[open] summary{border-bottom:1px solid var(--kreska)}
+details.transkrypcja > :not(summary){padding:0 16px}
+details.transkrypcja > p:last-child{padding-bottom:14px}
+
+.lekcje{list-style:none; padding:0; margin:0}
+.lekcje li{margin-bottom:10px}
+.lekcja-kafel{display:grid; grid-template-columns:52px 1fr auto; gap:16px; align-items:center;
+  background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:16px 18px; text-decoration:none; color:inherit}
+a.lekcja-kafel:hover{border-color:var(--akcent)}
+a.lekcja-kafel:hover .lekcja-tytul{color:var(--akcent)}
+.lekcja-kafel.pusty{opacity:.72}
+.lekcja-nr{background:var(--bg3); border-radius:8px; text-align:center; padding:8px 0;
+  font-weight:700; color:var(--akcent); font-variant-numeric:tabular-nums}
+.lekcja-tytul{font-weight:600; font-size:17px; display:block}
+.lekcja-meta{color:var(--tekst2); font-size:14px; margin-top:3px; display:block}
+.lekcja-stan{font-size:13px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  white-space:nowrap; color:var(--tekst2)}
+.lekcja-stan.gotowa{color:var(--akcent)}
+
+.chipy{display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:10px 0 0}
+.chipy li{background:var(--akcent-slaby); color:var(--akcent); border-radius:6px;
+  padding:3px 9px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; margin:0}
+
+.karty{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;
+  list-style:none; padding:0; margin:0 0 20px}
+.karty li{margin:0}
+.karta{display:block; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:18px; text-decoration:none; color:inherit; height:100%}
+a.karta:hover{border-color:var(--akcent)}
+.karta b{display:block; margin-bottom:5px}
+.karta span{color:var(--tekst2); font-size:15px}
+
+.nawigacja-lekcji{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  margin:44px 0 0; padding-top:22px; border-top:1px solid var(--kreska)}
+.nawigacja-lekcji a{font-weight:600; text-decoration:none}
+.nawigacja-lekcji a:hover{text-decoration:underline}
+
+.cele{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:18px 22px; margin:0 0 28px}
+.cele h2{margin:0 0 10px; font-size:16px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--tekst2); padding-top:0}
+.cele ul{margin:0; padding-left:22px}
+
+footer{margin:60px 0 0; border-top:1px solid var(--kreska); background:var(--bg2); padding:26px 0 44px}
+footer p{color:var(--tekst2); font-size:14px; margin:0 0 6px}
+.wizualnie-ukryte{position:absolute; width:1px; height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap}
+@media (max-width:560px){
+  .lekcja-kafel{grid-template-columns:44px 1fr}
+  .lekcja-stan{grid-column:2; justify-self:start}
+}
+
+/* ===== IDENTYFIKACJA ACCESSIBILITY FIRST (nadpisuje styl kursu) ===== */
+:root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+  --bg:#ffffff; --bg2:#E2F4FF; --bg3:#d4ecfb; --tekst:#14191d; --tekst2:#3d4350;
+  --akcent:#5F338A; --akcent-tekst:#ffffff; --akcent-slaby:#E2F4FF; --kreska:#b9a6d6;
+  --zle:#a31414; --zle-tlo:#fdecee; --dobrze:#14601f; --dobrze-tlo:#e7f5ea; --kod-tlo:#f7f4fb; --radius:6px;
+  color-scheme: light;
+}
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: Inter, "Helvetica Neue", Arial, system-ui, sans-serif; }
+:focus-visible { outline: 4px solid #14191d; outline-offset: 3px; box-shadow: 0 0 0 8px #FEDB16; border-radius: 2px; }
+.pasek-marki { margin: 0; background: #5F338A; color: #fff; text-align: center; padding: .9rem 1rem;
+  font-weight: 900; letter-spacing: .02em; text-transform: uppercase; font-size: 1.15rem; line-height: 1; }
+.pasek-marki span { color: #FEDB16; margin-left: .32em; }
+.okladka { background: linear-gradient(135deg, #7C27A0 0%, #5F338A 45%, #431651 100%); color: #fff; padding: 2.6rem 0 2.2rem; }
+.okladka h1 { color: #fff; margin: 0 0 .6rem; }
+.okladka p { margin: 0; color: #FEDB16; font-weight: 700; }
+main h2 { color: #5F338A; border-bottom: 3px solid #E2F4FF; padding-bottom: .25rem; }
+main h3 { color: #431651; }
+.spis { background: #E2F4FF; border-left: 6px solid #5F338A; border-radius: 6px; padding: .4rem 1.2rem 1rem; margin: 1.5rem 0; }
+.spis h2 { border: 0; margin-top: .8rem; }
+.kod { border-color: #b9a6d6; }
+.kod-etykieta { background: #5F338A; color: #fff; border-bottom: 0; }
+main code { color: #431651; }
+pre code { color: #14191d; }
+.ramka { background: #E2F4FF; border-left: 6px solid #FEDB16; border-radius: 6px; }
+.ramka-zrzut { background: #fff7c2; border: 3px dashed #5F338A; border-radius: 6px; padding: .6rem 1rem; }
+table th { background: #5F338A; color: #fff; }
+/* tabele: czarne obramowanie każdej komórki, żeby siatka była postrzegalna (WCAG 1.4.11) */
+table { border: 1px solid #14191d; }
+th, td { border: 1px solid #14191d; }
+/* linki: fioletowe, pogrubione i podkreślone (nie tylko kolorem, WCAG 1.4.1) */
+main a, .spis a { color: #5F338A; font-weight: 700; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .15em; }
+main a:hover { color: #431651; }
+
+footer { background: #5F338A; color: #fff; margin-top: 3rem; padding: 1rem 0; }
+footer p { color: #ffffff; }
+footer a, footer strong { color: #FEDB16; }
+
+.spis ul { columns: 2; column-gap: 2rem; list-style: none; padding-left: 0; }
+.spis li { break-inside: avoid; }
+ul.sciaga { list-style: none; padding-left: 0; }
+ul.sciaga li::before { content: "☐ "; font-weight: 700; }
+@media (max-width: 40rem) { .spis ul { columns: 1; } }
+@media print {
+  body { font-size: 11pt; }
+  .przeskok { display: none; }
+  h2 { break-after: avoid; } h3 { break-after: avoid; }
+  .kod, table, .ramka { break-inside: avoid; }
+  .spis { break-before: page; }
+  .spis ul { columns: auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+  a { color: inherit; }
+}
+@page { size: A4; margin: 18mm 16mm; }
+</style>
+</head>
+<body>
+<a class="przeskok" href="#tresc-glowna">Przejdź do treści</a>
+<header>
+<p class="pasek-marki">Accessibility <span>First</span></p>
+<div class="okladka"><div class="srodek"><h1>ARC Toolkit krok po kroku: tutorial uczestnika</h1><p>Accessibility First · materiał do zajęć SDC „ARC Toolkit: kompendium dla audytora” · wersja z 18.10.2026</p></div></div>
+</header>
+<main id="tresc-glowna" class="srodek">
+<p>Ten tutorial przechodzisz sam po zajęciach. Potrzebujesz przeglądarki Chrome albo Firefox, pliku „Sklep z kubkami” z materiałów (arc-cwiczenie-sklep-z-kubkami.html) i około 60 minut. Każde ćwiczenie ma ten sam układ: <strong>Zrób</strong>, <strong>Co zobaczysz</strong>, <strong>Jak to ocenić</strong>.</p>
+<p>Informacje o narzędziu sprawdziliśmy 18.10.2026 w przewodniku ARC Toolkit Quick Start Guide (TPGi), w karcie rozszerzenia w Chrome Web Store (wersja 5.7.11) i w samym rozszerzeniu. Klucz do ćwiczeń pochodzi z uruchomienia silnika reguł z tej wersji rozszerzenia z ustawieniami domyślnymi. Interfejs ARC się zmienia: jeśli coś wygląda inaczej, wierz temu, co widzisz.</p>
+<div class="ramka"><p><strong>Najważniejsze zdanie.</strong> ARC Toolkit oznacza część wyników jako Alerts: możliwe problemy, które wymagają ręcznej weryfikacji. Brak błędów w ARC nie oznacza zgodności z WCAG. Narzędzie mierzy, orzeka audytor.</p></div>
+<nav class="spis" aria-labelledby="spis-tresci"><h2 id="spis-tresci">Spis treści</h2><ul><li><a href="#1-do-czego-sluzy-i-czego-nie-zrobi">1. Do czego służy i czego nie zrobi</a></li><li><a href="#2-instalacja-i-start">2. Instalacja i start</a></li><li><a href="#3-ustawienia">3. Ustawienia</a></li><li><a href="#4-pierwszy-test-i-panel-wynikow">4. Pierwszy test i panel wyników</a></li><li><a href="#5-tematy">5. Tematy</a></li><li><a href="#6-cwiczenie-1-run-tests">6. Ćwiczenie 1: Run tests</a></li><li><a href="#7-cwiczenie-2-ocen-alerts">7. Ćwiczenie 2: oceń Alerts</a></li><li><a href="#8-cwiczenie-3-klawiatura-odstepy-i-reflow">8. Ćwiczenie 3: klawiatura, odstępy i reflow</a></li><li><a href="#9-other-tools-walidator-i-aria">9. Other tools: walidator i ARIA</a></li><li><a href="#10-typowe-falszywe-alarmy-i-spory">10. Typowe fałszywe alarmy i spory</a></li><li><a href="#11-arc-ibm-wave-i-andi-kiedy-ktore">11. ARC, IBM, WAVE i ANDI: kiedy które</a></li><li><a href="#12-jak-opisac-wynik-w-raporcie">12. Jak opisać wynik w raporcie</a></li><li><a href="#sciaga">Ściąga</a></li><li><a href="#zrodla">Źródła</a></li></ul></nav>
+<h2 id="1-do-czego-sluzy-i-czego-nie-zrobi">1. Do czego służy i czego nie zrobi</h2>
+<p>ARC Toolkit to bezpłatne rozszerzenie narzędzi deweloperskich (DevTools) od TPGi, firmy z grupy Vispero. Używa tych samych reguł co płatna platforma ARC do monitorowania serwisów. Działa lokalnie w przeglądarce, także w ramkach iframe. Kod jest zamknięty, a interfejs i komunikaty są po angielsku.</p>
+<div class="tabela"><table><thead><tr><th scope="col">Co robi dobrze</th><th scope="col">Czego nie zrobi</th></tr></thead><tbody><tr><td>wyniki według tematów i elementów, z kryteriami WCAG</td><td>nie oceni, czy alt i etykiety mają sens</td></tr><tr><td>wizualizacja kolejności tabulacji</td><td>nie zgłosi klikalnego diva bez obsługi klawiatury (na stronie testowej)</td></tr><tr><td>jednym kliknięciem warunki testu 1.4.12 i 1.4.10</td><td>nie oceni wyniku testu odstępów i reflow za Ciebie</td></tr><tr><td>szybkie przejście do elementu w DevTools, kopiowanie XPath</td><td>nie przeskanuje treści ukrytej (display:none)</td></tr></tbody></table></div>
+<h2 id="2-instalacja-i-start">2. Instalacja i start</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Zainstaluj rozszerzenie z <a href="https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce">Chrome Web Store</a> albo <a href="https://addons.mozilla.org/en-US/firefox/addon/arc-toolkit/">Firefox Add-ons</a>.</li><li>Tylko Chrome, do plików z dysku: menu Rozszerzenia, Zarządzaj rozszerzeniami, ARC Toolkit, Szczegóły. Włącz „Zezwalaj na dostęp do adresów URL plików”.</li><li>Otwórz plik „Sklep z kubkami” w przeglądarce.</li><li>Otwórz DevTools: <code>F12</code> albo <code>Ctrl+Shift+I</code> (Mac: <code>Cmd+Option+I</code>). Zadokuj je na dole albo w osobnym oknie: panel ARC jest szeroki.</li><li>Na pasku DevTools wybierz zakładkę <strong>ARC Toolkit</strong> (może być schowana za strzałką <code>»</code>).</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<p>Panel z przyciskiem <strong>Run tests</strong>, listą tematów (All topics) i przyciskami Highlight, Other tools i Settings (koło zębate).</p>
+<h2 id="3-ustawienia">3. Ustawienia</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Kliknij koło zębate nad tabelą wyników.</li><li>W grupie <strong>Use standard</strong> wybierz wersję WCAG. Domyślnie jest WCAG 2.2.</li><li>Sprawdź, czy w domyślnych typach wyników zaznaczone są Errors, Alerts i Best Practices.</li></ol>
+<h3 id="jak-to-ocenic">Jak to ocenić</h3>
+<ul><li>Ustawa z 4.04.2019 o dostępności cyfrowej (art. 5 ust. 1 i załącznik) wymaga WCAG 2.1 AA. Standard WCAG 2.2 obejmuje kryteria 2.1 (bez 4.1.1, usuniętego w 2.2).</li><li>W silniku ARC 5.7.6 nie ma reguł dla kryteriów nowych w WCAG 2.2 (np. 2.4.11, 2.5.8). Te kryteria i tak sprawdzasz ręcznie.</li><li>Ustawienia zapamiętują filtry. Jeśli wyniki wyglądają inaczej niż u kolegi, porównajcie ustawienia.</li></ul>
+<h2 id="4-pierwszy-test-i-panel-wynikow">4. Pierwszy test i panel wyników</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Zostaw „All topics” i kliknij <strong>Run tests</strong>.</li><li>Przejrzyj lewą tabelę (wyniki według typów elementów) i prawą część (wyniki według reguł).</li><li>Przełącz widok na wyniki według elementów, a potem według komunikatów.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<div class="tabela"><table><thead><tr><th scope="col">Typ</th><th scope="col">Znaczenie według TPGi</th><th scope="col">Co robisz</th></tr></thead><tbody><tr><td>Errors (błędy)</td><td>znaleziony problem z dostępnością</td><td>potwierdzasz w kodzie i opisujesz</td></tr><tr><td>Alerts (alerty)</td><td>możliwy problem, wymaga ręcznej weryfikacji</td><td>oceniasz: błąd, nie błąd, nie dotyczy</td></tr><tr><td>Best Practices (dobre praktyki)</td><td>poza wytycznymi, ale wpływa na użytkowników technologii wspomagających</td><td>decydujesz, czy wpisać jako zalecenie</td></tr></tbody></table></div>
+<p>Filtr <strong>Only Show</strong> nad tabelą zostawia tylko wybrane typy. Każdy wynik ma tytuł, opis, rekomendację, kryteria WCAG, wagę i grupy użytkowników. Ikona lupy (Inspect element) otwiera element w panelu Elements, ikona schowka kopiuje XPath.</p>
+<h2 id="5-tematy">5. Tematy</h2>
+<p>Reguły ARC są pogrupowane w 17 tematów. Możesz uruchomić test tylko dla jednego z nich (lista All topics) albo odznaczyć temat w tabeli wyników.</p>
+<div class="tabela"><table><thead><tr><th scope="col">Temat</th><th scope="col">Przykłady reguł</th></tr></thead><tbody><tr><td>Images</td><td>brak alt, problematyczny alt</td></tr><tr><td>Contrast</td><td>kontrast tekstu</td></tr><tr><td>Interactive controls</td><td>etykiety pól i przycisków, placeholder, autocomplete</td></tr><tr><td>Structure &amp; semantics</td><td>nagłówki, tabele, listy</td></tr><tr><td>Keyboard, Order &amp; focus</td><td>tabindex, accesskey, elementy w kolejności tabulacji</td></tr><tr><td>Content adaptability</td><td>możliwość zmiany odstępów w tekście, blokada powiększania</td></tr><tr><td>Page navigation &amp; language</td><td>tytuł strony, język, tytuły ramek</td></tr><tr><td>Parsing</td><td>poprawność id i odwołań do id, doctype (dawne 4.1.1)</td></tr></tbody></table></div>
+<p>Pozostałe tematy: Audio / video / multimedia, Custom widgets, Errors / status, Pointer / motion, Repetitive content (m.in. pomijanie bloków), Sensory, Dynamic changes &amp; timed behavior, Usability / Best Practice. Temat to grupa reguł, nie kryterium WCAG: kryterium jest przy każdym wyniku.</p>
+<h2 id="6-cwiczenie-1-run-tests">6. Ćwiczenie 1: Run tests</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Uruchom <strong>Run tests</strong> na pliku „Sklep z kubkami” z ustawieniami domyślnymi.</li><li>Zapisz liczby trzech typów.</li><li>Przejrzyj Errors.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<p>Silnik ARC uruchomiony 18.10.2026 na tym pliku dał 13 wyników: 5 Errors, 7 Alerts i 1 Best Practice. Errors:</p>
+<div class="tabela"><table><thead><tr><th scope="col">Element</th><th scope="col">Tytuł w ARC</th><th scope="col">Kryterium według ARC</th><th scope="col">Twoja ocena</th></tr></thead><tbody><tr><td><code>&lt;img src=&quot;logo.png&quot;&gt;</code> bez alt</td><td>No <code>alt</code> text</td><td>1.1.1 Treść nietekstowa</td><td>błąd</td></tr><tr><td>pusty przycisk z ikoną SVG</td><td>No label for button element</td><td>4.1.2 Nazwa, rola, wartość</td><td>błąd</td></tr><tr><td>pole E-mail (<code>for=&quot;mail&quot;</code>, <code>id=&quot;email&quot;</code>)</td><td>Input has no accessible name</td><td>4.1.2 Nazwa, rola, wartość</td><td>błąd, także 1.3.1</td></tr><tr><td>pole z placeholderem „Imię”</td><td>Placeholder used for label</td><td>3.3.2 Etykiety lub instrukcje</td><td>sporne (punkt 10)</td></tr><tr><td>szary tekst</td><td>Insufficient normal text contrast</td><td>1.4.3 Kontrast (minimum)</td><td>błąd</td></tr></tbody></table></div>
+<h2 id="7-cwiczenie-2-ocen-alerts">7. Ćwiczenie 2: oceń Alerts</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>W filtrze Only Show zostaw tylko Alerts.</li><li>Przy każdym wyniku zdecyduj: błąd, nie błąd, nie dotyczy. Przy błędzie wpisz kryterium.</li></ol>
+<h3 id="co-zobaczysz-i-jak-to-ocenic">Co zobaczysz i jak to ocenić</h3>
+<div class="tabela"><table><thead><tr><th scope="col">Wynik w ARC</th><th scope="col">Element</th><th scope="col">Proponowana ocena</th></tr></thead><tbody><tr><td>Problematic <code>alt</code> text</td><td>alt=&quot;baner.jpg&quot;</td><td>błąd 1.1.1: nazwa pliku nic nie mówi</td></tr><tr><td>Missing <code>ID</code></td><td><code>&lt;label for=&quot;mail&quot;&gt;</code></td><td>ten sam problem co pole E-mail bez nazwy; w raporcie raz</td></tr><tr><td>Label <code>for</code> has no matching <code>id</code></td><td><code>&lt;label for=&quot;mail&quot;&gt;</code></td><td>jw.</td></tr><tr><td>Autocomplete missing</td><td>pole E-mail</td><td>błąd 1.3.5 Określenie pożądanej wartości: pole zbiera dane o użytkowniku</td></tr><tr><td>Autocomplete missing</td><td>pole Imię</td><td>jw.</td></tr><tr><td>Unknown table purpose</td><td>pierwsza tabela</td><td>to tabela danych bez <code>th</code>: błąd 1.3.1 Informacje i relacje</td></tr><tr><td>Missing bypass methods</td><td>strona</td><td>ocena w skali serwisu (2.4.1); na jednej stronie testowej nie dotyczy</td></tr></tbody></table></div>
+<h2 id="8-cwiczenie-3-klawiatura-odstepy-i-reflow">8. Ćwiczenie 3: klawiatura, odstępy i reflow</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Kliknij <strong>Highlight</strong>, w grupie Keyboard wybierz <strong>Tab order</strong>.</li><li>Przejdź stronę klawiszem <code>Tab</code>: czy widać fokus na każdym elemencie?</li><li>W grupie Page włącz <strong>Check Text Spacing</strong>, potem wyłącz.</li><li>Włącz <strong>Check Page Reflow</strong>, potem wyłącz.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<ul><li>Tab order: numery i linia przy łączach, przyciskach i polach. „Wyślij” nie ma numeru: to div bez tabindex.</li><li>Check Text Spacing: wysokość linii 1.5, odstęp między literami 0.12 em, między słowami 0.16 em, po akapicie 2 em, czyli progi z 1.4.12 Odstępy w tekście.</li><li>Check Page Reflow: ARC zmienia okno na 1280 x 1024 px i powiększenie na 400%, czyli szerokość 320 px CSS z 1.4.10 Dopasowanie do ekranu.</li></ul>
+<h3 id="jak-to-ocenic">Jak to ocenić</h3>
+<ul><li>„Wyślij” nie dostaje fokusu: formularza nie wyślesz klawiaturą. Błąd 2.1.1 Klawiatura i 4.1.2 Nazwa, rola, wartość. ARC nie dał na to wyniku: sama wizualizacja jest sygnałem.</li><li>Odstępy: w naszym teście w Chrome tekst się nie uciął ani nie nałożył.</li><li>Reflow: przy 320 px strona przewija się w poziomie o kilkanaście pikseli przez ramkę „Mapa dojazdu” o stałej szerokości 300 px. Mapa to treść wymagająca układu dwuwymiarowego, więc może być wyjątkiem z 1.4.10. Zwykły blok tekstu o stałej szerokości byłby błędem.</li><li>Widoczność fokusu (2.4.7), brak pułapki (2.1.2) i logiczną kolejność (2.4.3) oceniasz sam.</li></ul>
+<h2 id="9-other-tools-walidator-i-aria">9. Other tools: walidator i ARIA</h2>
+<p>Przycisk <strong>Other tools</strong> nad tabelą wyników ma: Send URL i Send selected DOM do walidatora W3C oraz ARIA Checker. Otwierają się w nowym oknie.</p>
+<ul><li>„Send selected DOM” wysyła kod strony do zewnętrznej usługi validator.w3.org. Przy stronach za logowaniem albo z danymi osobowymi najpierw zapytaj klienta.</li><li>4.1.1 Parsowanie nie obowiązuje w WCAG 2.2. Błędy walidatora same w sobie nie są niezgodnością z 2.2, ale bywają tropem: np. zduplikowane id może zepsuć powiązanie etykiety z polem (1.3.1, 4.1.2).</li></ul>
+<h2 id="10-typowe-falszywe-alarmy-i-spory">10. Typowe fałszywe alarmy i spory</h2>
+<ol><li><strong>Autocomplete missing.</strong> 1.3.5 dotyczy tylko pól, które zbierają informacje o samym użytkowniku. Pole wyszukiwania, kod rabatowy albo e-mail znajomego to fałszywy alarm.</li><li><strong>Placeholder used for label.</strong> ARC daje Error, IBM tylko Needs review. Jedno stanowisko: pole ma nazwę i widoczną podpowiedź, dopóki jest puste, więc wymóg jest spełniony. Drugie: podpowiedź znika przy wpisywaniu i zwykle ma słaby kontrast, więc nie działa jak etykieta (3.3.2). Decyzję uzasadnia audytor.</li><li><strong>Unknown table purpose.</strong> ARC nie wie, czy tabela niesie dane, czy służy do układu. Decydujesz Ty: tabela danych potrzebuje nagłówków, tabela układu ról prezentacyjnych.</li><li><strong>Heading level skipped.</strong> To Best Practice. O niezgodności z 1.3.1 decyduje, czy nagłówki oddają strukturę treści.</li><li><strong>Missing bypass methods.</strong> Ma sens w skali serwisu z powtarzalnymi blokami.</li><li><strong>Treść ukryta.</strong> W naszym teście obraz bez alt w ukrytym divie nie dał wyniku. Pokaż menu, okno albo błędy formularza i uruchom testy ponownie.</li></ol>
+<h2 id="11-arc-ibm-wave-i-andi-kiedy-ktore">11. ARC, IBM, WAVE i ANDI: kiedy które</h2>
+<div class="tabela"><table><thead><tr><th scope="col">Narzędzie</th><th scope="col">Najmocniejsza strona</th><th scope="col">Kiedy sięgnąć</th></tr></thead><tbody><tr><td>WAVE</td><td>ikony w treści strony, szybka mapa</td><td>pierwszy rzut oka, struktura, kontrast</td></tr><tr><td>ANDI</td><td>nazwa i opis jednego elementu</td><td>co usłyszy użytkownik czytnika przy polu, przycisku, komórce tabeli</td></tr><tr><td>IBM Equal Access</td><td>lista według kryteriów WCAG 2.2, wersja reguł, eksport do Excela</td><td>robocza lista do raportu, powtarzalny test po poprawkach</td></tr><tr><td>ARC Toolkit</td><td>tematy, Tab order, Text Spacing, Page Reflow</td><td>druga opinia innego silnika, test 1.4.10 i 1.4.12</td></tr></tbody></table></div>
+<p>Ten sam plik „Sklep z kubkami” w trzech narzędziach (ANDI 4.10.2026, IBM i ARC 18.10.2026):</p>
+<div class="tabela"><table><thead><tr><th scope="col">Problem</th><th scope="col">ANDI</th><th scope="col">IBM</th><th scope="col">ARC</th></tr></thead><tbody><tr><td>obraz bez alt</td><td>alert</td><td>Violation</td><td>Error</td></tr><tr><td>alt z nazwą pliku</td><td>alert</td><td>Needs review</td><td>Alert</td></tr><tr><td>pole E-mail bez nazwy, pusty przycisk</td><td>alert</td><td>Violation</td><td>Error</td></tr><tr><td>placeholder zamiast etykiety</td><td>brak</td><td>Needs review</td><td>Error</td></tr><tr><td>kontrast 2.32:1</td><td>FAIL</td><td>Violation</td><td>Error</td></tr><tr><td>tabela bez <code>th</code></td><td>alert</td><td>Violation</td><td>Alert</td></tr><tr><td>div „Wyślij” z <code>onclick</code></td><td>brak numeru w porządku tabulacji, bez alertu</td><td>Violation</td><td>brak</td></tr><tr><td>dwa łącza „Czytaj więcej”</td><td>alert</td><td>brak</td><td>brak</td></tr><tr><td>przeskok h1 → h3</td><td>brak</td><td>brak</td><td>Best Practice</td></tr><tr><td>brak autocomplete</td><td>brak</td><td>brak</td><td>Alert</td></tr></tbody></table></div>
+<p>Każde narzędzie ma inne reguły. Dwa silniki znajdą więcej, ale dadzą też więcej do oceny. Żaden nie zastąpi testu klawiaturą, czytnikiem ekranu i powiększeniem.</p>
+<h2 id="12-jak-opisac-wynik-w-raporcie">12. Jak opisać wynik w raporcie</h2>
+<p>Nie przepisuj tytułu reguły po angielsku. Opisz problem po polsku tak, żeby deweloper go znalazł i naprawił.</p>
+<div class="kod"><p class="kod-etykieta">TEXT</p><pre class="jezyk-text"><code>Problem: Pola E-mail i Imię nie mają atrybutu autocomplete, choć zbierają
+dane o użytkowniku. Przeglądarka i narzędzia wspomagające nie podpowiedzą
+wartości, co utrudnia wypełnianie osobom z niepełnosprawnościami
+poznawczymi i ruchowymi.
+Kryterium: 1.3.5 Określenie pożądanej wartości (AA)
+Miejsce: //html/body/main/form/p[1]/input, //html/body/main/form/p[2]/input
+Jak wykryto: ARC Toolkit 5.7.11 (Chrome), standard WCAG 2.2, Alert
+&quot;Autocomplete missing&quot;; potwierdzone w kodzie
+Poprawka: autocomplete=&quot;email&quot; oraz autocomplete=&quot;given-name&quot;</code></pre></div>
+<p>Na początku raportu podaj narzędzia: nazwę, wersję, standard, przeglądarkę, datę badania i listę adresów.</p>
+<h2 id="sciaga">Ściąga</h2>
+<ul class="sciaga"><li>W ustawieniach sprawdzam standard (WCAG 2.2 albo 2.1) i typy wyników</li><li>Uruchamiam Run tests na każdej stronie z próbki i w każdym ważnym stanie</li><li>Każdy Error potwierdzam w kodzie (lupa: Inspect element)</li><li>Każdy Alert oceniam: błąd, nie błąd, nie dotyczy</li><li>Best Practices traktuję jako zalecenia, nie niezgodności</li><li>Tab order, potem test klawiaturą i widoczności fokusu</li><li>Check Text Spacing i Check Page Reflow: oglądam stronę i oceniam sam</li><li>Nie wysyłam DOM strony klienta do walidatora bez zgody</li><li>Test czytnikiem ekranu i powiększenie 200%</li><li>W raporcie: problem, skutek, kryterium (numer i nazwa), miejsce (XPath), poprawka, narzędzie z wersją</li></ul>
+<h2 id="zrodla">Źródła</h2>
+<p>Wszystkie sprawdzone 18.10.2026.</p>
+<ul><li><a href="https://www.tpgi.com/wp-content/uploads/ARC-Toolkit-Quickstart-2024.pdf">ARC Toolkit Quick Start Guide, TPGi (PDF, 2024)</a></li><li><a href="https://vispero.com/lp/arc-toolkit/">ARC Toolkit, strona produktu (Vispero)</a></li><li><a href="https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce">ARC Toolkit w Chrome Web Store</a></li><li><a href="https://github.com/ThePacielloGroup/ARC-Toolkit">Repozytorium wsparcia: github.com/ThePacielloGroup/ARC-Toolkit</a></li><li><a href="https://testy.lepszyweb.pl/nod-arc">Polski opis LepszyWeb (2019, starsza wersja)</a></li><li><a href="https://www.w3.org/TR/WCAG22/">W3C WAI, WCAG 2.2</a></li><li><a href="https://www.w3.org/Translations/WCAG21-pl/">WCAG 2.1, autoryzowane tłumaczenie na polski</a></li></ul>
+</main>
+<footer><div class="srodek"><p><strong>Accessibility First</strong> · Włącz Wizję sp. z o.o. · a11yfirst.pl · a11y@wlaczwizje.pl</p></div></footer>
+</body>
+</html>

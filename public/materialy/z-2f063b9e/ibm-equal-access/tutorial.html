@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBM Equal Access krok po kroku: tutorial uczestnika | Accessibility First</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f4f5f7; --bg3:#eceef2;
+  --tekst:#15171c; --tekst2:#4c5260;
+  --akcent:#7a2ff2; --akcent-tekst:#ffffff; --akcent-slaby:#f0e8ff;
+  --kreska:#d6d9e0;
+  --zle:#a3162b; --zle-tlo:#fdeaed; --dobrze:#1c6b3f; --dobrze-tlo:#e3f4ea;
+  --kod-tlo:#f6f7f9;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+    --tekst:#f2f3f6; --tekst2:#a9b0c0;
+    --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+    --kreska:#2f3542;
+    --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+    --kod-tlo:#1a1d25;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101218; --bg2:#171a22; --bg3:#1f232d;
+  --tekst:#f2f3f6; --tekst2:#a9b0c0;
+  --akcent:#b78bff; --akcent-tekst:#15171c; --akcent-slaby:#2a2140;
+  --kreska:#2f3542;
+  --zle:#ff9aa8; --zle-tlo:#2c1418; --dobrze:#7fd6a4; --dobrze-tlo:#162a20;
+  --kod-tlo:#1a1d25;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--tekst);
+  font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.srodek{max-width:760px; margin:0 auto; padding:0 20px}
+.szeroko{max-width:1000px}
+a{color:var(--akcent)}
+:focus-visible{outline:3px solid var(--akcent); outline-offset:2px; border-radius:4px}
+img{max-width:100%}
+
+.przeskok{position:absolute; left:-9999px; top:0; background:var(--akcent);
+  color:var(--akcent-tekst); padding:12px 18px; z-index:20; font-weight:600;
+  border-radius:0 0 var(--radius) 0}
+.przeskok:focus{left:0}
+
+.gorny{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:12px 0}
+.gorny-tresc{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+.marka{font-weight:700; letter-spacing:-.01em; text-decoration:none; color:var(--tekst)}
+.marka span{color:var(--akcent)}
+.gorny nav ul{display:flex; flex-wrap:wrap; gap:16px; list-style:none; margin:0; padding:0; font-size:15px}
+
+header.tytul{background:var(--bg2); border-bottom:1px solid var(--kreska); padding:40px 0 32px}
+.etykieta{display:inline-block; background:var(--akcent-slaby); color:var(--akcent);
+  font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:5px 11px; border-radius:999px}
+h1{font-size:clamp(28px,5vw,42px); line-height:1.15; margin:16px 0 10px; letter-spacing:-.02em}
+.podtytul{color:var(--tekst2); font-size:18px; margin:0 0 20px; max-width:60ch}
+.fakty{display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:0}
+.fakty li{background:var(--bg); border:1px solid var(--kreska); border-radius:999px;
+  padding:6px 14px; font-size:14px}
+.fakty b{color:var(--akcent)}
+
+main h2{font-size:clamp(22px,3.5vw,29px); margin:44px 0 12px; letter-spacing:-.01em;
+  padding-top:8px}
+main h3{font-size:20px; margin:32px 0 10px}
+main h4{font-size:17px; margin:24px 0 8px; color:var(--tekst2)}
+main p{margin:0 0 16px}
+main ul,main ol{margin:0 0 18px; padding-left:24px}
+main li{margin-bottom:7px}
+hr{border:0; border-top:1px solid var(--kreska); margin:36px 0}
+
+.kod{margin:0 0 20px; border:1px solid var(--kreska); border-radius:var(--radius); overflow:hidden}
+.kod-etykieta{margin:0; background:var(--bg3); color:var(--tekst2); font-size:12px;
+  font-weight:700; letter-spacing:.06em; padding:7px 14px; border-bottom:1px solid var(--kreska)}
+pre{margin:0; padding:14px 16px; overflow-x:auto; background:var(--kod-tlo)}
+pre code{font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+p code,li code,td code,th code{background:var(--bg3); padding:2px 6px; border-radius:5px;
+  font:0.9em/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+.tabela{overflow-x:auto; margin:0 0 20px}
+table{width:100%; border-collapse:collapse; font-size:15px}
+th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--kreska); vertical-align:top}
+thead th{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--tekst2)}
+
+.ramka{background:var(--bg2); border-left:4px solid var(--akcent);
+  border-radius:0 var(--radius) var(--radius) 0; padding:16px 20px; margin:0 0 22px}
+.ramka > :last-child{margin-bottom:0}
+
+.quiz{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:24px; margin:44px 0}
+.quiz h2{margin-top:0}
+.quiz-wstep{color:var(--tekst2); font-size:15px}
+.pytanie{border-top:1px solid var(--kreska); padding-top:22px; margin-top:22px}
+.pytanie:first-of-type{border-top:0; padding-top:0}
+.pytanie-tresc{margin:0 0 4px; font-size:18px}
+.pytanie-nr{display:block; color:var(--akcent); font-size:13px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px}
+.pytanie-typ{color:var(--tekst2); font-size:13px; margin:0 0 14px}
+.pytanie-uwaga{color:var(--tekst2); font-size:14px; margin:10px 0 0}
+.odpowiedzi{list-style:none; margin:0; padding:0}
+.odpowiedzi li{margin-bottom:10px}
+button.odpowiedz{display:flex; gap:12px; align-items:flex-start; width:100%; text-align:left;
+  background:var(--bg); color:var(--tekst); border:1px solid var(--kreska);
+  border-radius:9px; padding:13px 16px; font:inherit; font-size:16px; cursor:pointer}
+button.odpowiedz:hover{border-color:var(--akcent)}
+.znak{flex:0 0 28px; width:28px; height:28px; border:2px solid var(--kreska);
+  border-radius:50%; margin-top:1px; display:grid; place-items:center;
+  font-size:14px; font-weight:700; color:var(--tekst2)}
+.znak .litera{line-height:1}
+button.odpowiedz[aria-pressed="true"] .litera{display:none}
+
+/* --- tryb krokowy: jedno pytanie na ekran --- */
+.quiz-start{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:0 0 20px}
+.przycisk-glowny{background:var(--akcent); color:var(--akcent-tekst); border:2px solid var(--akcent);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-glowny:hover{filter:brightness(1.08)}
+.przycisk-drugi{background:transparent; color:var(--tekst); border:2px solid var(--kreska);
+  border-radius:9px; padding:12px 22px; font:600 16px/1 inherit; font-family:inherit; cursor:pointer}
+.przycisk-drugi:hover{border-color:var(--akcent)}
+.przycisk-drugi[disabled]{opacity:.45; cursor:default}
+
+.krokowy{position:fixed; inset:0; z-index:100; background:var(--bg);
+  display:flex; flex-direction:column; overflow:auto}
+.krokowy[hidden]{display:none}
+.krokowy-gora{border-bottom:1px solid var(--kreska); background:var(--bg2); padding:14px 0}
+.krokowy-gora .srodek{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between}
+.postep{flex:1 1 220px; min-width:180px}
+.postep-tekst{font-size:14px; color:var(--tekst2); margin:0 0 6px}
+.postep-pasek{height:8px; background:var(--bg3); border-radius:99px; overflow:hidden}
+.postep-wypelnienie{height:100%; background:var(--akcent); width:0; transition:width .2s}
+.krokowy-zamknij{background:none; border:2px solid var(--kreska); border-radius:8px;
+  padding:8px 14px; font:600 15px/1 inherit; font-family:inherit; color:inherit; cursor:pointer}
+.krokowy-tresc{flex:1; padding:32px 0}
+.krokowy .pytanie{border:0; padding:0; margin:0}
+.krokowy .pytanie-tresc{font-size:clamp(20px,3vw,26px)}
+.krokowy-dol{border-top:1px solid var(--kreska); background:var(--bg2); padding:16px 0}
+.krokowy-dol .srodek{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+.krokowy-info{color:var(--tekst2); font-size:14px; margin:0}
+
+.podsumowanie h2{margin-top:0}
+.wynik-duzy{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.03em; margin:0;
+  color:var(--akcent)}
+.wynik-duzy.zaliczony{color:var(--dobrze)}
+.wynik-opis{color:var(--tekst2); margin:4px 0 22px}
+ol.podsumowanie-lista{list-style:none; padding:0; margin:0 0 24px}
+ol.podsumowanie-lista li{display:grid; grid-template-columns:34px 1fr auto; gap:12px 16px;
+  align-items:center; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:9px; padding:11px 14px; margin:0 0 8px}
+.pod-nr{font-weight:700; color:var(--tekst2); font-variant-numeric:tabular-nums}
+.pod-stan{font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap}
+li.ok .pod-stan{color:var(--dobrze)}
+li.zle .pod-stan{color:var(--zle)}
+li.pusto .pod-stan{color:var(--tekst2)}
+.pod-tresc{font-size:15px}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"]{
+  border-color:var(--dobrze); background:var(--dobrze-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak{
+  border-color:var(--dobrze); color:var(--dobrze)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="tak"] .znak::after{content:"✓"}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"]{
+  border-color:var(--zle); background:var(--zle-tlo)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak{
+  border-color:var(--zle); color:var(--zle)}
+button.odpowiedz[aria-pressed="true"][data-poprawna="nie"] .znak::after{content:"✕"}
+.wyjasnienie{margin:8px 0 0; padding:11px 15px; background:var(--bg3);
+  border-radius:8px; font-size:15px; color:var(--tekst2)}
+.wyjasnienie-etykieta{font-weight:700; color:var(--tekst)}
+.quiz-wynik{margin:22px 0 0; font-weight:600; color:var(--akcent)}
+.quiz-wynik.zaliczone{color:var(--dobrze)}
+.quiz-oparty{color:var(--tekst2); font-size:15px; margin:16px 0 0}
+.karta-quiz{border-left:4px solid var(--akcent)}
+ul.zrodla{color:var(--tekst2); font-size:15px}
+
+.przeglad .blok{margin:0 0 44px}
+.przeglad .blok h2{display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  border-bottom:2px solid var(--kreska); padding-bottom:8px; margin-top:36px}
+.link-lekcji{font-size:15px; font-weight:400}
+.przeglad .ile{color:var(--tekst2); font-size:14px; margin:6px 0 16px}
+.przeglad ol.pytania{list-style:none; padding:0; margin:0}
+.przeglad li.pyt{background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:16px 18px; margin:0 0 12px}
+.przeglad .pyt-tresc{font-weight:600; margin:0 0 12px}
+.przeglad .typ{font-weight:400; font-size:13px; color:var(--tekst2);
+  background:var(--bg3); border-radius:5px; padding:2px 8px; white-space:nowrap}
+.przeglad ul.odp{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.przeglad ul.odp li{display:grid; grid-template-columns:42px 1fr; gap:10px;
+  padding:9px 12px; border-radius:8px; margin:0; font-size:15px}
+.przeglad ul.odp li.dobra{background:var(--dobrze-tlo, #e3f4ea)}
+.przeglad ul.odp li.zla{background:var(--bg3)}
+.przeglad .znacznik{font-weight:700}
+.przeglad li.dobra .znacznik{color:var(--dobrze, #1c6b3f)}
+.przeglad li.zla .znacznik{color:var(--tekst2)}
+.przeglad .wyj{display:block; color:var(--tekst2); font-size:14px; margin-top:4px}
+
+figure.media{margin:0 0 24px; padding:0}
+figure.media img,figure.media video{display:block; width:100%; height:auto;
+  border:1px solid var(--kreska); border-radius:var(--radius); background:var(--bg2)}
+figure.media figcaption{color:var(--tekst2); font-size:15px; margin-top:8px}
+figure.media.dekoracyjna figcaption{display:none}
+details.transkrypcja{margin-top:10px; border:1px solid var(--kreska);
+  border-radius:var(--radius); background:var(--bg2)}
+details.transkrypcja summary{padding:11px 16px; cursor:pointer; font-weight:600; font-size:15px}
+details.transkrypcja[open] summary{border-bottom:1px solid var(--kreska)}
+details.transkrypcja > :not(summary){padding:0 16px}
+details.transkrypcja > p:last-child{padding-bottom:14px}
+
+.lekcje{list-style:none; padding:0; margin:0}
+.lekcje li{margin-bottom:10px}
+.lekcja-kafel{display:grid; grid-template-columns:52px 1fr auto; gap:16px; align-items:center;
+  background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:16px 18px; text-decoration:none; color:inherit}
+a.lekcja-kafel:hover{border-color:var(--akcent)}
+a.lekcja-kafel:hover .lekcja-tytul{color:var(--akcent)}
+.lekcja-kafel.pusty{opacity:.72}
+.lekcja-nr{background:var(--bg3); border-radius:8px; text-align:center; padding:8px 0;
+  font-weight:700; color:var(--akcent); font-variant-numeric:tabular-nums}
+.lekcja-tytul{font-weight:600; font-size:17px; display:block}
+.lekcja-meta{color:var(--tekst2); font-size:14px; margin-top:3px; display:block}
+.lekcja-stan{font-size:13px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  white-space:nowrap; color:var(--tekst2)}
+.lekcja-stan.gotowa{color:var(--akcent)}
+
+.chipy{display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:10px 0 0}
+.chipy li{background:var(--akcent-slaby); color:var(--akcent); border-radius:6px;
+  padding:3px 9px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; margin:0}
+
+.karty{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;
+  list-style:none; padding:0; margin:0 0 20px}
+.karty li{margin:0}
+.karta{display:block; background:var(--bg2); border:1px solid var(--kreska);
+  border-radius:var(--radius); padding:18px; text-decoration:none; color:inherit; height:100%}
+a.karta:hover{border-color:var(--akcent)}
+.karta b{display:block; margin-bottom:5px}
+.karta span{color:var(--tekst2); font-size:15px}
+
+.nawigacja-lekcji{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  margin:44px 0 0; padding-top:22px; border-top:1px solid var(--kreska)}
+.nawigacja-lekcji a{font-weight:600; text-decoration:none}
+.nawigacja-lekcji a:hover{text-decoration:underline}
+
+.cele{background:var(--bg2); border:1px solid var(--kreska); border-radius:var(--radius);
+  padding:18px 22px; margin:0 0 28px}
+.cele h2{margin:0 0 10px; font-size:16px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--tekst2); padding-top:0}
+.cele ul{margin:0; padding-left:22px}
+
+footer{margin:60px 0 0; border-top:1px solid var(--kreska); background:var(--bg2); padding:26px 0 44px}
+footer p{color:var(--tekst2); font-size:14px; margin:0 0 6px}
+.wizualnie-ukryte{position:absolute; width:1px; height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap}
+@media (max-width:560px){
+  .lekcja-kafel{grid-template-columns:44px 1fr}
+  .lekcja-stan{grid-column:2; justify-self:start}
+}
+
+/* ===== IDENTYFIKACJA ACCESSIBILITY FIRST (nadpisuje styl kursu) ===== */
+:root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+  --bg:#ffffff; --bg2:#E2F4FF; --bg3:#d4ecfb; --tekst:#14191d; --tekst2:#3d4350;
+  --akcent:#5F338A; --akcent-tekst:#ffffff; --akcent-slaby:#E2F4FF; --kreska:#b9a6d6;
+  --zle:#a31414; --zle-tlo:#fdecee; --dobrze:#14601f; --dobrze-tlo:#e7f5ea; --kod-tlo:#f7f4fb; --radius:6px;
+  color-scheme: light;
+}
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: Inter, "Helvetica Neue", Arial, system-ui, sans-serif; }
+:focus-visible { outline: 4px solid #14191d; outline-offset: 3px; box-shadow: 0 0 0 8px #FEDB16; border-radius: 2px; }
+.pasek-marki { margin: 0; background: #5F338A; color: #fff; text-align: center; padding: .9rem 1rem;
+  font-weight: 900; letter-spacing: .02em; text-transform: uppercase; font-size: 1.15rem; line-height: 1; }
+.pasek-marki span { color: #FEDB16; margin-left: .32em; }
+.okladka { background: linear-gradient(135deg, #7C27A0 0%, #5F338A 45%, #431651 100%); color: #fff; padding: 2.6rem 0 2.2rem; }
+.okladka h1 { color: #fff; margin: 0 0 .6rem; }
+.okladka p { margin: 0; color: #FEDB16; font-weight: 700; }
+main h2 { color: #5F338A; border-bottom: 3px solid #E2F4FF; padding-bottom: .25rem; }
+main h3 { color: #431651; }
+.spis { background: #E2F4FF; border-left: 6px solid #5F338A; border-radius: 6px; padding: .4rem 1.2rem 1rem; margin: 1.5rem 0; }
+.spis h2 { border: 0; margin-top: .8rem; }
+.kod { border-color: #b9a6d6; }
+.kod-etykieta { background: #5F338A; color: #fff; border-bottom: 0; }
+main code { color: #431651; }
+pre code { color: #14191d; }
+.ramka { background: #E2F4FF; border-left: 6px solid #FEDB16; border-radius: 6px; }
+.ramka-zrzut { background: #fff7c2; border: 3px dashed #5F338A; border-radius: 6px; padding: .6rem 1rem; }
+table th { background: #5F338A; color: #fff; }
+/* tabele: czarne obramowanie każdej komórki, żeby siatka była postrzegalna (WCAG 1.4.11) */
+table { border: 1px solid #14191d; }
+th, td { border: 1px solid #14191d; }
+/* linki: fioletowe, pogrubione i podkreślone (nie tylko kolorem, WCAG 1.4.1) */
+main a, .spis a { color: #5F338A; font-weight: 700; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .15em; }
+main a:hover { color: #431651; }
+
+footer { background: #5F338A; color: #fff; margin-top: 3rem; padding: 1rem 0; }
+footer p { color: #ffffff; }
+footer a, footer strong { color: #FEDB16; }
+
+.spis ul { columns: 2; column-gap: 2rem; list-style: none; padding-left: 0; }
+.spis li { break-inside: avoid; }
+ul.sciaga { list-style: none; padding-left: 0; }
+ul.sciaga li::before { content: "☐ "; font-weight: 700; }
+@media (max-width: 40rem) { .spis ul { columns: 1; } }
+@media print {
+  body { font-size: 11pt; }
+  .przeskok { display: none; }
+  h2 { break-after: avoid; } h3 { break-after: avoid; }
+  .kod, table, .ramka { break-inside: avoid; }
+  .spis { break-before: page; }
+  .spis ul { columns: auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+  a { color: inherit; }
+}
+@page { size: A4; margin: 18mm 16mm; }
+</style>
+</head>
+<body>
+<a class="przeskok" href="#tresc-glowna">Przejdź do treści</a>
+<header>
+<p class="pasek-marki">Accessibility <span>First</span></p>
+<div class="okladka"><div class="srodek"><h1>IBM Equal Access krok po kroku: tutorial uczestnika</h1><p>Accessibility First · materiał do zajęć SDC „IBM Equal Access Accessibility Checker: kompendium dla audytora” · wersja z 18.10.2026</p></div></div>
+</header>
+<main id="tresc-glowna" class="srodek">
+<p>Ten tutorial przechodzisz sam po zajęciach. Potrzebujesz przeglądarki Chrome, Firefox albo Edge, pliku „Sklep z kubkami” z materiałów (ibm-cwiczenie-sklep-z-kubkami.html) i około 60 minut. Każde ćwiczenie ma ten sam układ: <strong>Zrób</strong>, <strong>Co zobaczysz</strong>, <strong>Jak to ocenić</strong>.</p>
+<p>Informacje o narzędziu sprawdziliśmy 18.10.2026 w podręczniku użytkownika IBM (User guide w rozszerzeniu i w repozytorium github.com/IBMa/equal-access), na ibm.com/able i w karcie rozszerzenia w Chrome Web Store (wersja 4.0.33). Klucz do ćwiczeń pochodzi z uruchomienia tego samego silnika reguł, którego używa rozszerzenie. Interfejs IBM się zmienia: jeśli coś wygląda inaczej, wierz temu, co widzisz, i zajrzyj do User guide.</p>
+<div class="ramka"><p><strong>Najważniejsze zdanie.</strong> IBM pisze wprost: jak każde narzędzie automatyczne, Checker nie wykrywa wszystkich problemów. Brak naruszeń w IBM nie oznacza zgodności z WCAG. Narzędzie mierzy, orzeka audytor.</p></div>
+<nav class="spis" aria-labelledby="spis-tresci"><h2 id="spis-tresci">Spis treści</h2><ul><li><a href="#1-do-czego-sluzy-i-czego-nie-zrobi">1. Do czego służy i czego nie zrobi</a></li><li><a href="#2-instalacja">2. Instalacja</a></li><li><a href="#3-dwa-widoki-i-pierwszy-skan">3. Dwa widoki i pierwszy skan</a></li><li><a href="#4-ustawienia-wersja-wcag-i-data-regul">4. Ustawienia: wersja WCAG i data reguł</a></li><li><a href="#5-jak-czytac-wyniki">5. Jak czytać wyniki</a></li><li><a href="#6-cwiczenie-1-pierwszy-skan">6. Ćwiczenie 1: pierwszy skan</a></li><li><a href="#7-cwiczenie-2-ocen-needs-review">7. Ćwiczenie 2: oceń Needs review</a></li><li><a href="#8-cwiczenie-3-klawiatura-i-zestaw-regul">8. Ćwiczenie 3: klawiatura i zestaw reguł</a></li><li><a href="#9-raporty-i-ukrywanie-wynikow">9. Raporty i ukrywanie wyników</a></li><li><a href="#10-typowe-falszywe-alarmy-i-pulapki">10. Typowe fałszywe alarmy i pułapki</a></li><li><a href="#11-ibm-wave-andi-i-arc-kiedy-ktore">11. IBM, WAVE, ANDI i ARC: kiedy które</a></li><li><a href="#12-jak-opisac-wynik-w-raporcie">12. Jak opisać wynik w raporcie</a></li><li><a href="#sciaga">Ściąga</a></li><li><a href="#zrodla">Źródła</a></li></ul></nav>
+<h2 id="1-do-czego-sluzy-i-czego-nie-zrobi">1. Do czego służy i czego nie zrobi</h2>
+<p>IBM Equal Access Accessibility Checker to bezpłatne rozszerzenie narzędzi deweloperskich (DevTools) od IBM, z otwartym kodem. Skanuje bieżący stan strony (DOM po wykonaniu skryptów), przypisuje każdy wynik do reguły i do kryterium WCAG, podpowiada poprawkę i eksportuje wyniki do arkusza. Ten sam silnik działa w testach automatycznych (pakiety dla Node, Cypress, Karma).</p>
+<div class="tabela"><table><thead><tr><th scope="col">Co robi dobrze</th><th scope="col">Czego nie zrobi</th></tr></thead><tbody><tr><td>lista wyników według kryteriów WCAG 2.2</td><td>nie oceni, czy alt i etykiety mają sens</td></tr><tr><td>wybór wersji WCAG i daty reguł</td><td>nie sprawdzi obsługi klawiaturą, tylko ją zwizualizuje</td></tr><tr><td>eksport do Excela i HTML, raport z wielu skanów</td><td>nie przeskanuje treści ukrytej (display:none)</td></tr><tr><td>wizualizacja kolejności tabulacji</td><td>nie zastąpi czytnika ekranu ani testu powiększenia</td></tr></tbody></table></div>
+<h2 id="2-instalacja">2. Instalacja</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Zainstaluj rozszerzenie z <a href="https://chrome.google.com/webstore/detail/ibm-equal-access-accessib/lkcagbfjnkomcinoddgooolagloogehp">Chrome Web Store</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/accessibility-checker/">Firefox Add-ons</a> albo <a href="https://microsoftedge.microsoft.com/addons/detail/ibm-equal-access-accessib/ompccpejakabkmfepbijnagedbdfldka">Edge Add-ons</a>.</li><li>Przypnij ikonę rozszerzenia obok paska adresu.</li><li>Tylko Chrome: menu Rozszerzenia, Zarządzaj rozszerzeniami, IBM Equal Access Accessibility Checker, Szczegóły. Włącz „Zezwalaj na dostęp do adresów URL plików”. Bez tego nie przeskanujesz pliku z dysku. Firefox skanuje pliki lokalne bez tej zmiany.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<p>Po instalacji nic się nie zmienia na stronie. Checker mieszka w DevTools.</p>
+<h2 id="3-dwa-widoki-i-pierwszy-skan">3. Dwa widoki i pierwszy skan</h2>
+<p>Rozszerzenie ma dwa widoki z tym samym zestawem wyników:</p>
+<div class="tabela"><table><thead><tr><th scope="col">Widok</th><th scope="col">Gdzie</th><th scope="col">Do czego</th></tr></thead><tbody><tr><td>Accessibility Checker (Tester dostępności)</td><td>zakładka w panelu Elements (Firefox: Inspector)</td><td>szukanie problemu w kodzie, podgląd elementu</td></tr><tr><td>Accessibility Assessment (Ocena dostępności)</td><td>osobna zakładka na pasku DevTools</td><td>podsumowanie z liczbami i pełna pomoc do wyniku</td></tr></tbody></table></div>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Otwórz plik „Sklep z kubkami” w Chrome (przeciągnij go do okna albo <code>Ctrl+O</code>, na Macu <code>Cmd+O</code>).</li><li>Otwórz DevTools: <code>F12</code> albo <code>Ctrl+Shift+I</code> (Mac: <code>Cmd+Option+I</code>), albo prawy przycisk na stronie i „Zbadaj”.</li><li>W panelu Elements wybierz zakładkę Accessibility Checker. Jeśli jej nie widać, poszukaj jej za strzałką <code>»</code> przy zakładkach (położenie zależy od dokowania DevTools).</li><li>Kliknij niebieski przycisk <strong>Scan</strong>.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<p>Liczbę wszystkich wyników, liczniki Violations, Needs review i Recommendations oraz listę wyników pogrupowaną według ról elementów.</p>
+<h3 id="jak-to-ocenic">Jak to ocenić</h3>
+<p>Na razie zapisz liczby. Pamiętaj: Checker domyślnie pomija treść ukrytą. Rozwijane menu, okno dialogowe albo komunikat o błędzie formularza musisz najpierw pokazać, a potem skanować jeszcze raz.</p>
+<h2 id="4-ustawienia-wersja-wcag-i-data-regul">4. Ustawienia: wersja WCAG i data reguł</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Otwórz ustawienia: koło zębate w panelu Checkera albo ikona rozszerzenia na pasku przeglądarki i „Settings”. Ustawienia otworzą się w nowej karcie.</li><li>Na liście wytycznych wybierz <strong>WCAG 2.2 (A, AA)</strong>.</li><li>Na liście dat zostaw <strong>Latest Deployment</strong> albo wybierz konkretną datę wdrożenia reguł.</li><li>Zapisz zmiany i skanuj stronę jeszcze raz. Jeśli wynik się nie zmienił, zamknij i otwórz DevTools.</li></ol>
+<div class="tabela"><table><thead><tr><th scope="col">Zestaw</th><th scope="col">Co zawiera</th></tr></thead><tbody><tr><td>IBM Accessibility 7.3</td><td>WCAG 2.2 A i AA plus dodatkowe wymagania IBM (domyślny od 1.10.2024)</td></tr><tr><td>WCAG 2.2 (A, AA)</td><td>tylko WCAG 2.2, bez wymagań IBM</td></tr><tr><td>WCAG 2.1 (A, AA)</td><td>wersja, do której odsyła polska ustawa i EN 301 549 V3.2.1</td></tr><tr><td>WCAG 2.0 (A, AA)</td><td>wersja, do której odsyła amerykańska Sekcja 508</td></tr></tbody></table></div>
+<h3 id="jak-to-ocenic">Jak to ocenić</h3>
+<ul><li>Do audytu wybierz zestaw WCAG, nie IBM. Wymagania IBM są dobre, ale to nie są kryteria WCAG.</li><li>Ustawa z 4.04.2019 o dostępności cyfrowej (art. 5 ust. 1 i załącznik) wymaga WCAG 2.1 AA. Zestaw WCAG 2.2 obejmuje kryteria 2.1 (bez 4.1.1, usuniętego w 2.2). Wyniki dla kryteriów nowych w 2.2 opisz w raporcie osobno.</li><li>Data wdrożenia reguł pozwala powtórzyć test po poprawkach na tych samych regułach. Zapisz ją w raporcie.</li></ul>
+<h2 id="5-jak-czytac-wyniki">5. Jak czytać wyniki</h2>
+<div class="tabela"><table><thead><tr><th scope="col">Typ</th><th scope="col">Znaczenie według IBM</th><th scope="col">Co robisz</th></tr></thead><tbody><tr><td>Violation (naruszenie)</td><td>błąd do poprawy</td><td>potwierdzasz w kodzie i opisujesz</td></tr><tr><td>Needs review (do przeglądu)</td><td>może nie być błędem, sprawdź ręcznie</td><td>oceniasz: błąd, nie błąd, nie dotyczy</td></tr><tr><td>Recommendation (rekomendacja)</td><td>dobra praktyka</td><td>decydujesz, czy wpisać jako zalecenie</td></tr><tr><td>Hidden (ukryte)</td><td>wyniki, które sam ukryłeś</td><td>wracasz do nich filtrem Hidden</td></tr></tbody></table></div>
+<p>Wyniki możesz pogrupować na trzy sposoby: <strong>Element roles</strong> (według ról ARIA, domyślnie), <strong>Requirements</strong> (według wymagań, czyli kryteriów WCAG) i <strong>Rules</strong> (według reguł silnika). Do raportu najwygodniejszy jest widok Requirements.</p>
+<p>Kliknij wynik, a potem <strong>Learn more</strong>. Pomoc ma sekcje: opis problemu, Element location (fragment kodu), What to do (poprawka), About this requirement, Who does this affect i Why is this important. Mapowanie na kryterium WCAG robi IBM: sprawdź, czy pasuje do skutku, który widzisz.</p>
+<h2 id="6-cwiczenie-1-pierwszy-skan">6. Ćwiczenie 1: pierwszy skan</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Ustaw zestaw <strong>IBM Accessibility 7.3</strong> (domyślny) i przeskanuj plik „Sklep z kubkami”.</li><li>Zapisz liczby trzech typów.</li><li>Przełącz grupowanie na Requirements i przejrzyj Violations.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<p>Silnik IBM uruchomiony 18.10.2026 na tym pliku dał 17 wyników: 8 Violations, 7 Needs review i 2 Recommendations. W rozszerzeniu liczby mogą się trochę różnić, bo reguły są aktualizowane. Violations:</p>
+<div class="tabela"><table><thead><tr><th scope="col">Element</th><th scope="col">Reguła IBM</th><th scope="col">Kryterium według IBM</th><th scope="col">Twoja ocena</th></tr></thead><tbody><tr><td><code>&lt;img src=&quot;logo.png&quot;&gt;</code> bez alt</td><td>img_alt_valid</td><td>1.1.1 Treść nietekstowa</td><td>błąd</td></tr><tr><td><code>&lt;label for=&quot;mail&quot;&gt;</code>, pole ma <code>id=&quot;email&quot;</code></td><td>label_ref_valid</td><td>1.3.1 Informacje i relacje</td><td>błąd</td></tr><tr><td>pole E-mail bez nazwy</td><td>input_label_exists</td><td>4.1.2 Nazwa, rola, wartość</td><td>błąd (ten sam problem co wyżej)</td></tr><tr><td>pusty przycisk z ikoną SVG</td><td>input_label_exists</td><td>4.1.2 Nazwa, rola, wartość</td><td>błąd</td></tr><tr><td><code>&lt;div onclick&gt;</code> „Wyślij”</td><td>aria_eventhandler_role_valid</td><td>4.1.2 Nazwa, rola, wartość</td><td>błąd, także 2.1.1 Klawiatura</td></tr><tr><td>szary tekst, kontrast 2.32:1</td><td>text_contrast_sufficient</td><td>1.4.3 Kontrast (minimum)</td><td>błąd</td></tr><tr><td>tabela bez komórek <code>th</code></td><td>table_headers_exists</td><td>1.3.1 Informacje i relacje</td><td>błąd, to tabela danych</td></tr><tr><td>pusta ramka about:blank bez lang</td><td>html_lang_exists</td><td>3.1.1 Język strony</td><td>nie dotyczy (patrz punkt 10)</td></tr></tbody></table></div>
+<h3 id="jak-to-ocenic">Jak to ocenić</h3>
+<p>Dwa wyniki dla pola E-mail to jeden problem w raporcie: etykieta nie jest powiązana z polem. Opisz go raz i podaj oba kryteria.</p>
+<h2 id="7-cwiczenie-2-ocen-needs-review">7. Ćwiczenie 2: oceń Needs review</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>W filtrze zostaw zaznaczone tylko Needs review.</li><li>Przy każdym wyniku zdecyduj: błąd, nie błąd, nie dotyczy. Przy błędzie wpisz kryterium.</li><li>Wyniki ocenione jako „nie błąd” albo „nie dotyczy” zaznacz i kliknij <strong>Hide</strong>. Znikną z liczników, a wrócisz do nich filtrem Hidden.</li></ol>
+<h3 id="co-zobaczysz-i-jak-to-ocenic">Co zobaczysz i jak to ocenić</h3>
+<div class="tabela"><table><thead><tr><th scope="col">Wynik (reguła)</th><th scope="col">Co pyta IBM</th><th scope="col">Proponowana ocena</th></tr></thead><tbody><tr><td>alt=&quot;baner.jpg&quot; (img_alt_misuse)</td><td>czy nazwa pliku dobrze zastępuje obraz</td><td>błąd 1.1.1: nazwa pliku nic nie mówi</td></tr><tr><td>placeholder „Imię” (input_label_visible)</td><td>placeholder to jedyna widoczna etykieta</td><td>sporne; zwykle błąd 3.3.2 Etykiety lub instrukcje, bo podpowiedź znika przy pisaniu</td></tr><tr><td>formularz (form_submit_button_exists)</td><td>czy formularz ma przycisk wysyłania</td><td>problem jest, ale to skutek diva „Wyślij”: opisz jako 2.1.1 i 4.1.2, nie jako 3.2.2</td></tr><tr><td>arkusz stylów (style_color_misuse)</td><td>czy kolor nie jest jedynym nośnikiem informacji</td><td>nie błąd 1.4.1: szary tekst nie niesie informacji samym kolorem</td></tr><tr><td>arkusz stylów (style_highcontrast_visible)</td><td>czy treść działa w trybie wysokiego kontrastu Windows</td><td>wymaganie IBM; w zestawie WCAG 2.2 to tylko rekomendacja</td></tr><tr><td>strona (html_skipnav_exists)</td><td>czy da się pominąć powtarzające się bloki</td><td>ocena w skali serwisu (2.4.1 Możliwość pominięcia bloków); na jednej stronie testowej nie dotyczy</td></tr><tr><td>ramka (frame_src_valid)</td><td>czy treść ramki jest dostępna</td><td>ramka about:blank jest pusta: nie dotyczy</td></tr></tbody></table></div>
+<p>O placeholderze w środowisku są dwa stanowiska. Pierwsze: pole ma nazwę dostępną z placeholder, a podpowiedź jest widoczna, dopóki pole jest puste, więc wymóg jest spełniony. Drugie: podpowiedź znika przy wpisywaniu i ma zwykle słaby kontrast, więc nie działa jak stała etykieta, a to niezgodność z 3.3.2. Narzędzia też się różnią: IBM daje Needs review, ARC Toolkit zgłasza to jako Error. Decyzję i jej uzasadnienie zapisuje audytor.</p>
+<h2 id="8-cwiczenie-3-klawiatura-i-zestaw-regul">8. Ćwiczenie 3: klawiatura i zestaw reguł</h2>
+<h3 id="zrob">Zrób</h3>
+<ol><li>Włącz <strong>Keyboard checker mode</strong> (ikona w panelu Checkera).</li><li>Sprawdź, czy przycisk „Wyślij” ma numer w kolejności tabulacji. Potwierdź klawiszem <code>Tab</code>.</li><li>W ustawieniach wybierz <strong>WCAG 2.2 (A, AA)</strong> i przeskanuj stronę jeszcze raz.</li></ol>
+<h3 id="co-zobaczysz">Co zobaczysz</h3>
+<ul><li>Numery przy łączach, przyciskach i polach, połączone liniami. „Wyślij” nie ma numeru: to div bez tabindex, więc nie dostaje fokusu.</li><li>Po zmianie zestawu silnik daje 8 Violations, 6 Needs review i 3 Recommendations. Wynik o trybie wysokiego kontrastu przechodzi z Needs review do Recommendation.</li></ul>
+<h3 id="jak-to-ocenic">Jak to ocenić</h3>
+<ul><li>Formularza nie wyślesz klawiaturą: błąd 2.1.1 Klawiatura i 4.1.2 Nazwa, rola, wartość.</li><li>Wizualizacja nie śledzi zmian na stronie: po otwarciu menu albo okna wyłącz ją i włącz ponownie.</li><li>Kolejność, pułapki klawiaturowe i widoczność fokusu (2.4.3, 2.1.2, 2.4.7) sprawdzasz ręcznie: <code>Tab</code>, <code>Shift+Tab</code>, <code>Enter</code>, <code>Spacja</code>, strzałki, <code>Esc</code>.</li><li>Zestaw reguł zmienia liczby. Liczby do raportu podawaj zawsze z nazwą zestawu i datą reguł.</li></ul>
+<h2 id="9-raporty-i-ukrywanie-wynikow">9. Raporty i ukrywanie wyników</h2>
+<ul><li><strong>Export XLS</strong> pobiera raport z bieżącego skanu w dwóch formatach: HTML i Excel.</li><li><strong>Raport z wielu skanów</strong>: menu Options, Start storing scans. Skanuj kolejne strony i stany (np. formularz przed i po błędzie). View stored scans pozwala nadać każdemu skanowi etykietę i pobrać jeden arkusz (do 50 skanów).</li><li>Excel ma 5 arkuszy, w tym podsumowanie według priorytetów Level 1-4 z IBM Equal Access Toolkit.</li><li>Raport HTML pokazuje procent elementów bez naruszeń i bez wyników do przeglądu. IBM sam zaznacza, że to wynik tylko testów automatycznych. Nie przepisuj go do raportu jako „poziomu dostępności”.</li></ul>
+<h2 id="10-typowe-falszywe-alarmy-i-pulapki">10. Typowe fałszywe alarmy i pułapki</h2>
+<ol><li><strong>Brak <code>lang</code> w pustej ramce.</strong> Silnik bada też dokumenty ramek z tej samej domeny. Pusta ramka about:blank nie ma treści, więc brak lang nie ma skutku. Ramka z prawdziwą treścią bez lang to już problem 3.1.1.</li><li><strong>Mapowanie na kryterium.</strong> IBM łączy brak przycisku wysyłania z 3.2.2 Podczas wprowadzania danych. Kryterium wybierasz według skutku dla użytkownika, nie według reguły.</li><li><strong>Wymagania IBM a WCAG.</strong> W zestawie IBM Accessibility 7.3 są wyniki spoza WCAG (np. tryb wysokiego kontrastu Windows). W zestawie WCAG 2.2 te same reguły są tylko rekomendacją.</li><li><strong>Pominięcie bloków na jednej stronie.</strong> html_skipnav_exists ma sens w skali serwisu. Na pojedynczej stronie testowej nie dotyczy.</li><li><strong>Treść ukryta.</strong> Zero wyników w menu, którego nie rozwinąłeś, to nie zero błędów.</li></ol>
+<h2 id="11-ibm-wave-andi-i-arc-kiedy-ktore">11. IBM, WAVE, ANDI i ARC: kiedy które</h2>
+<div class="tabela"><table><thead><tr><th scope="col">Narzędzie</th><th scope="col">Najmocniejsza strona</th><th scope="col">Kiedy sięgnąć</th></tr></thead><tbody><tr><td>WAVE</td><td>ikony w treści strony, szybka mapa</td><td>pierwszy rzut oka, struktura, kontrast</td></tr><tr><td>ANDI</td><td>nazwa i opis jednego elementu</td><td>co usłyszy użytkownik czytnika przy polu, przycisku, komórce tabeli</td></tr><tr><td>IBM Equal Access</td><td>lista wyników według kryteriów WCAG 2.2, wersja reguł, eksport</td><td>robocza lista do raportu, powtarzalny test po poprawkach</td></tr><tr><td>ARC Toolkit</td><td>panel w DevTools, tematy, kolejność tabulacji, odstępy i reflow</td><td>drugie zdanie innego silnika, test 1.4.10 i 1.4.12</td></tr></tbody></table></div>
+<p>Ten sam plik „Sklep z kubkami” w ANDI (4.10.2026) i w IBM (18.10.2026):</p>
+<div class="tabela"><table><thead><tr><th scope="col">Problem</th><th scope="col">ANDI</th><th scope="col">IBM</th></tr></thead><tbody><tr><td>obraz bez alt, alt z nazwą pliku</td><td>alert</td><td>Violation, Needs review</td></tr><tr><td>pole E-mail bez nazwy, pusty przycisk</td><td>alert</td><td>Violation</td></tr><tr><td>kontrast 2.32:1</td><td>FAIL</td><td>Violation</td></tr><tr><td>tabela bez <code>th</code></td><td>alert</td><td>Violation</td></tr><tr><td>div „Wyślij” z <code>onclick</code></td><td>brak numeru w porządku tabulacji, bez alertu</td><td>Violation</td></tr><tr><td>dwa łącza „Czytaj więcej”</td><td>alert (łącza dwuznaczne)</td><td>brak</td></tr><tr><td>przeskok h1 → h3</td><td>brak</td><td>brak</td></tr></tbody></table></div>
+<p>Każde narzędzie ma inne reguły. Dwa różne silniki znajdą więcej niż jeden, ale żaden nie zastąpi testu ręcznego.</p>
+<h2 id="12-jak-opisac-wynik-w-raporcie">12. Jak opisać wynik w raporcie</h2>
+<p>Nie przepisuj ID reguły ani komunikatu narzędzia. Opisz problem tak, żeby deweloper go znalazł i naprawił.</p>
+<div class="kod"><p class="kod-etykieta">TEXT</p><pre class="jezyk-text"><code>Problem: Przycisk „Wyślij” jest elementem div z obsługą kliknięcia.
+Nie dostaje fokusu i nie ma roli przycisku: formularza nie wyślesz
+klawiaturą, a czytnik ekranu nie ogłosi przycisku.
+Kryterium: 2.1.1 Klawiatura (A), 4.1.2 Nazwa, rola, wartość (A)
+Miejsce: formularz zapisu, &lt;div class=&quot;btn&quot; onclick=&quot;...&quot;&gt;Wyślij&lt;/div&gt;
+Jak wykryto: IBM Equal Access 4.0.33 (Chrome), zestaw WCAG 2.2 (A, AA),
+reguły z dnia wdrożenia; potwierdzone klawiaturą
+Poprawka: &lt;button type=&quot;submit&quot;&gt;Wyślij&lt;/button&gt;</code></pre></div>
+<p>Na początku raportu podaj narzędzia: nazwę, wersję, zestaw reguł z datą, przeglądarkę, datę badania i listę adresów.</p>
+<h2 id="sciaga">Ściąga</h2>
+<ul class="sciaga"><li>W ustawieniach wybieram zestaw WCAG 2.2 (A, AA) albo WCAG 2.1 i zapisuję datę reguł</li><li>Skanuję każdą stronę z próbki i każdy ważny stan (menu, okno, błędy formularza)</li><li>Każdy Violation potwierdzam w kodzie, duplikaty łączę w jeden problem</li><li>Każdy Needs review oceniam: błąd, nie błąd, nie dotyczy; ocenione ukrywam przez Hide</li><li>Recommendations traktuję jako zalecenia, nie niezgodności</li><li>Sprawdzam mapowanie na kryterium WCAG według skutku dla użytkownika</li><li>Keyboard checker mode, potem test klawiaturą</li><li>Test czytnikiem ekranu, powiększenie 200% i reflow 400%</li><li>W raporcie: problem, skutek, kryterium (numer i nazwa), miejsce, poprawka, narzędzie z wersją</li></ul>
+<h2 id="zrodla">Źródła</h2>
+<p>Wszystkie sprawdzone 18.10.2026.</p>
+<ul><li><a href="https://www.ibm.com/able/toolkit/tools">IBM Equal Access Toolkit: narzędzia</a></li><li><a href="https://www.ibm.com/able/requirements/checker-rule-sets">IBM: zestawy reguł Checkera i mapowanie na wymagania</a></li><li><a href="https://www.ibm.com/able/requirements/requirements/">IBM Accessibility Requirements</a></li><li><a href="https://www.ibm.com/able/toolkit/verify/overview">IBM Equal Access Toolkit: faza Verify</a></li><li><a href="https://github.com/IBMa/equal-access">Kod, wydania i User guide: github.com/IBMa/equal-access</a></li><li><a href="https://testy.lepszyweb.pl/nod-equal-access">Polski podręcznik LepszyWeb (opisuje wersję 3.0.0)</a></li><li><a href="https://www.w3.org/TR/WCAG22/">W3C WAI, WCAG 2.2</a></li><li><a href="https://www.w3.org/Translations/WCAG21-pl/">WCAG 2.1, autoryzowane tłumaczenie na polski</a></li></ul>
+</main>
+<footer><div class="srodek"><p><strong>Accessibility First</strong> · Włącz Wizję sp. z o.o. · a11yfirst.pl · a11y@wlaczwizje.pl</p></div></footer>
+</body>
+</html>
