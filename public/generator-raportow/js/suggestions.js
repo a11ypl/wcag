@@ -153,7 +153,7 @@ export const SUGGESTIONS = {
     "Testy manualne obejmowały nawigację klawiaturą, ocenę widoczności fokusu, strukturę nagłówków i landmarków oraz kontrast.",
     "Testy z technologiami asystującymi wykonano z użyciem czytników ekranu oraz powiększania, aby ocenić realne doświadczenie użytkownika.",
     "Każde kryterium sukcesu na poziomie A i AA zostało ocenione jako spełnione, niespełnione albo niedotyczące badanych treści.",
-    "Kryteria poziomu AAA nie były objęte audytem i zostały oznaczone jako niebadane.",
+    "Kryteria poziomu AAA nie były objęte audytem i nie są oceniane w raporcie.",
     "Każdy wykryty problem opisano wraz ze wskazaniem kryterium WCAG, wpływu na użytkowników i rekomendacji naprawczej.",
     "Błędy powtarzające się na wielu stronach opisano przy pierwszym wystąpieniu i pominięto w dalszej części raportu.",
     "Badanie wykonano w co najmniej dwóch środowiskach, obejmujących komputer oraz urządzenie mobilne.",

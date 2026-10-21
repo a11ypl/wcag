@@ -7,7 +7,7 @@ import { ENVIRONMENT_PRESETS, SUGGESTIONS, matchesQuery } from "./suggestions.js
 import { importFiles } from "./import.js";
 import {
   CRITERION_STATUSES, COMPACT_IMAGE_BYTES, ISSUE_TYPES, MAX_IMAGE_BYTES, MAX_IMAGE_SIDE, REAUDIT_STATUSES, SEVERITIES, VIEW_TYPES,
-  criteriaStats, dataUrlSize, defaultProject, migrateProject, newIssue, nextId, randomId, refreshCriteria,
+  criteriaStats, dataUrlSize, defaultProject, migrateProject, reportDateOf, todayLocal, newIssue, nextId, randomId, refreshCriteria,
   AUDIT_STATUSES, BROWSER_PRESETS, OTHER_AT_PRESETS, SAMPLE_SIZES, SCREEN_READER_PRESETS, environmentLabel, nextSignature, withVersion, issuesByCriterion, requirementLabel, samplePages, severityCounts, suggestCriterionStatuses, validateProject,
 } from "./model.js";
 import { renderReportDocx, DOCX_MIME } from "./render-docx.js";
@@ -15,9 +15,10 @@ import { renderReportHtml } from "./render-html.js";
 import { draftExecutiveSummary } from "./document.js";
 import { renderReportMarkdown } from "./render-md.js";
 import { currentAuditId, deleteAudit as removeAuditRecord, dropLegacyProject, isPersistent, listAudits, saveAudit, savePending, setCurrentAuditId, takeLegacyProject, takePending } from "./storage.js";
-import { escapeHtml, fileBaseName } from "./text.js";
+import { escapeHtml, fileBaseName, formatPeriod } from "./text.js";
 
-const STEPS = ["meta", "views", "tools", "criteria", "issues", "summary", "preview"];
+const STEPS = ["meta", "views", "tools", "issues", "criteria", "summary", "preview"];
+const TRASH_ICON = '<svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M9 3h6l1 2h4v2H4V5h4l1-2zm-3 6h12l-1 12H7L6 9zm4 2v8h2v-8h-2zm4 0v8h2v-8h-2z"/></svg>';
 
 const state = { report: null, auditId: null, audits: [], step: 0, issueView: "problems", currentIssue: 0, validation: [], showErrors: false, saveTimer: 0, validateTimer: 0 };
 const $ = (id) => document.getElementById(id);
@@ -40,6 +41,11 @@ function fitTextareas(root = document) {
 }
 new MutationObserver(() => fitTextareas()).observe(document.body, { childList: true, subtree: true });
 document.addEventListener("input", (event) => { if (event.target instanceof HTMLTextAreaElement) fitTextareas(event.target.parentElement); });
+
+// Lista problemów nie przerysowuje się, gdy wciśnięty jest przycisk myszy (kliknięcie by przepadło).
+let pointerDown = false;
+document.addEventListener("pointerdown", () => { pointerDown = true; }, true);
+document.addEventListener("pointerup", () => { setTimeout(() => { pointerDown = false; }, 0); }, true);
 
 async function init() {
   bindEvents();
@@ -162,12 +168,12 @@ function renderRegister() {
     const label = `${meta.signature} ${meta.auditedEntity || "bez nazwy"}`;
     return `<li class="register-item${current ? " is-current" : ""}">
       <h3 class="register-item__title"><span class="current-audit__sig">${escapeHtml(meta.signature || "—")}</span> ${escapeHtml(meta.auditedEntity || "Audyt bez nazwy podmiotu")}${current ? ' <span class="badge">otwarty</span>' : ""}</h3>
-      <p class="register-item__meta">${escapeHtml(meta.websiteUrl || "brak adresu")} · data audytu: ${escapeHtml(meta.auditDate || "nie podano")} · problemy: ${project.issues.length} · zmiana: ${escapeHtml(new Date(updatedAt).toLocaleString("pl-PL", { dateStyle: "short", timeStyle: "short" }))}</p>
+      <p class="register-item__meta">${escapeHtml(meta.websiteUrl || "brak adresu")} · badanie: ${escapeHtml(formatPeriod(meta) === "Nie podano" ? "nie podano" : formatPeriod(meta))} · problemy: ${project.issues.length} · zmiana: ${escapeHtml(new Date(updatedAt).toLocaleString("pl-PL", { dateStyle: "short", timeStyle: "short" }))}</p>
       <div class="register-item__actions">
         <div class="field field--inline"><label for="status-${id}">Stan<span class="visually-hidden">: ${escapeHtml(label)}</span></label><select id="status-${id}" data-register-status="${id}">${options(AUDIT_STATUSES, meta.auditStatus || "w toku")}</select></div>
         ${current ? "" : `<button class="button button--small" type="button" data-register="open" data-id="${id}">Otwórz<span class="visually-hidden"> ${escapeHtml(label)}</span></button>`}
         <button class="button button--small button--secondary" type="button" data-register="duplicate" data-id="${id}">Duplikuj<span class="visually-hidden"> ${escapeHtml(label)}</span></button>
-        <button class="button button--small button--danger" type="button" data-register="delete" data-id="${id}">Usuń<span class="visually-hidden"> ${escapeHtml(label)}</span></button>
+        <button class="button button--small button--danger" type="button" data-register="delete" data-id="${id}">${TRASH_ICON}Usuń<span class="visually-hidden"> ${escapeHtml(label)}</span></button>
       </div>
     </li>`;
   }).join("") || '<li class="empty">Brak audytów pasujących do wyszukiwania.</li>';
@@ -246,6 +252,7 @@ function bindEvents() {
   form.addEventListener("keydown", (event) => {
     const field = event.target;
     if (event.key === "Escape" && dismissSuggest(field)) { event.preventDefault(); return; }
+    if ((event.key === "Backspace" || event.key === "Delete") && field.dataset?.piece !== undefined) { event.preventDefault(); removePiece(field); return; }
     if (event.key === "Enter" && /^tech-/.test(field.dataset?.suggest || "")) {
       event.preventDefault();
       const first = suggestionsFor(field).items[0];
@@ -288,6 +295,11 @@ function bindEvents() {
   $("register-filter").addEventListener("input", renderRegister);
   $("add-view").addEventListener("click", addView);
   $("add-environment").addEventListener("click", addEnvironment);
+  $("toggle-issue-editor").addEventListener("click", () => {
+    const open = $("toggle-issue-editor").getAttribute("aria-expanded") !== "true";
+    setIssueEditor(open);
+    announce(open ? "Rozwinięto formularz problemu." : "Zwinięto formularz problemu.");
+  });
   $("add-issue").addEventListener("click", addIssue);
   form.addEventListener("focusin", onSuggestFocus);
   form.addEventListener("focusout", onSuggestBlur);
@@ -377,6 +389,12 @@ function onField(event) {
   } else if (d.metaList) report.meta[d.metaList] = lines(value);
   else if (d.toolList) report.tools[d.toolList] = lines(value);
   else if (d.summary) report.summary[d.summary] = value;
+  else if (d.reportDate !== undefined) {
+    // Puste pole wraca do daty automatycznej (dzisiejszej).
+    report.summary.reportCreatedAt = value;
+    report.summary.reportCreatedAtManual = Boolean(value) && value !== todayLocal();
+    if (!value && event.type === "change") field.value = reportDateOf(report);
+  }
   else if (d.summaryList) report.summary[d.summaryList] = lines(value);
   else if (d.summaryNumber) report.summary[d.summaryNumber] = value === "" ? null : Number(value);
   else if (d.view !== undefined) {
@@ -471,12 +489,17 @@ function onIssueField(field, eventType, value) {
   if (key === "stepsToReproduce") issue.stepsToReproduce = lines(value);
   else issue[key] = value;
   if (key === "issueType") suggestCriterionStatuses(state.report);
-  if (["id", "title", "severity", "confirmed", "shortName"].includes(key)) { updateCardHeading(field, issueSummary(issue, index)); renderIssueNav(); }
+  // Pola tekstowe odświeżają listę przy pisaniu (input), nie przy opuszczeniu pola (change): przerysowanie
+  // listy w chwili kliknięcia innego problemu zjadało to kliknięcie.
+  const live = eventType === "input" || field.tagName === "SELECT" || field.type === "checkbox";
+  if (live && ["id", "title", "severity", "confirmed", "shortName"].includes(key)) { updateCardHeading(field, issueSummary(issue, index)); renderIssueNav(); }
 }
 
 function onAction(event) {
   const pick = event.target.closest("button[data-suggest-pick], button[data-suggest-all]");
   if (pick) return pickSuggestion(pick);
+  const piece = event.target.closest("button[data-piece]");
+  if (piece) return removePiece(piece);
   const button = event.target.closest("button[data-action]");
   if (!button) return;
   const report = state.report;
@@ -522,7 +545,7 @@ function onAction(event) {
     }
     case "add-environment-preset":
       report.environment.push({ id: randomId(), notes: "", ...ENVIRONMENT_PRESETS[index] });
-      rerender(renderEnvironments, `[data-action="add-environment-preset"][data-index="${index}"]`);
+      rerender(renderEnvironments, `#environment-${report.environment.length - 1}-device`);
       announce(`Dodano środowisko: ${Object.values(ENVIRONMENT_PRESETS[index]).join(", ")}. Zmień wersje programów, jeśli trzeba.`);
       break;
     case "remove-environment": {
@@ -533,9 +556,12 @@ function onAction(event) {
       break;
     }
     case "remove-issue": {
+      const target = report.issues[index];
+      if (!isEmptyIssue(target) && !window.confirm(`Usunąć problem ${index + 1} „${target.title || "bez tytułu"}”? Tego nie da się cofnąć.`)) return;
       const [removed] = report.issues.splice(index, 1);
       suggestCriterionStatuses(report);
-      rerender(renderIssues, "#add-issue");
+      const next = Math.min(index, report.issues.length - 1);
+      rerender(renderIssues, next >= 0 && d.place === "nav" ? `.issue-pick[data-index="${next}"]` : "#add-issue");
       announce(`Usunięto problem: ${removed?.title || "bez tytułu"}.`);
       break;
     }
@@ -550,11 +576,16 @@ function onAction(event) {
       announce("Utworzono kopię problemu.");
       break;
     }
-    case "move-issue":
+    case "move-issue": {
+      const place = d.place ? `[data-place="${d.place}"]` : ":not([data-place])";
+      const to = index + Number(d.dir);
       move(report.issues, index, Number(d.dir));
-      rerender(renderIssues, [`[data-action="move-issue"][data-index="${index + Number(d.dir)}"][data-dir="${d.dir}"]`, `[data-action="move-issue"][data-index="${index + Number(d.dir)}"]`, `#issue-${index + Number(d.dir)}-editor-heading`], [index + Number(d.dir)]);
-      announce(`Przeniesiono problem na pozycję ${index + Number(d.dir) + 1}.`);
+      if (state.currentIssue === index) state.currentIssue = to;
+      else if (state.currentIssue === to) state.currentIssue = index;
+      rerender(renderIssues, [`[data-action="move-issue"]${place}[data-index="${to}"][data-dir="${d.dir}"]`, `[data-action="move-issue"]${place}[data-index="${to}"]`, d.place ? `.issue-pick[data-index="${to}"]` : `#issue-${to}-editor-heading`], [to]);
+      announce(`Przeniesiono problem na pozycję ${to + 1}.`);
       break;
+    }
     case "add-code":
       report.issues[index].codeExamples.push({ id: randomId(), label: "", language: "html", code: "" });
       rerender(renderIssues, `#issue-${index}-code-${report.issues[index].codeExamples.length - 1}-label`, [index]);
@@ -577,16 +608,6 @@ function onAction(event) {
       rerender(renderIssues, `#issue-${d.issue}-image-upload`, [Number(d.issue)]);
       announce("Usunięto obraz.");
       break;
-    case "add-fix": {
-      const issue = report.issues[index];
-      const fix = blockById(d.block)?.fixes[Number(d.fix)];
-      if (!fix) return;
-      issue.recommendation = [issue.recommendation, fix.text].filter((part) => String(part || "").trim()).join("\n");
-      if (fix.code) issue.codeExamples.push({ id: randomId(), label: `Przykład rozwiązania: ${fix.label}`, language: fix.code.language, code: fix.code.code });
-      rerender(renderIssues, `#issue-${index}-recommendation`, [index]);
-      announce(`Dodano do rekomendacji: ${fix.label}${fix.code ? " oraz przykład kodu" : ""}.`);
-      break;
-    }
     case "remove-criterion": {
       const issue = report.issues[index];
       issue.criteria = issue.criteria.filter((id) => id !== d.id);
@@ -611,6 +632,7 @@ function onAction(event) {
       const draft = draftExecutiveSummary(report);
       report.summary.executiveSummary = area.value.trim() ? `${area.value.trim()}\n\n${draft}` : draft;
       area.value = report.summary.executiveSummary;
+      renderPieces(area);
       area.focus();
       announce("Wstawiono szkic streszczenia z danych raportu. Zredaguj go — fragment w nawiasie kwadratowym uzupełnij sam.");
       break;
@@ -619,6 +641,7 @@ function onAction(event) {
       gotoIssue(index);
       return;
     case "select-issue":
+      setIssueEditor(true);
       gotoIssue(index, { switchStep: false });
       return;
     case "new-issue":
@@ -720,6 +743,10 @@ function hydrateFields() {
   document.querySelectorAll("[data-summary]").forEach((field) => { field.value = summary[field.dataset.summary] ?? ""; });
   document.querySelectorAll("[data-summary-list]").forEach((field) => { field.value = (summary[field.dataset.summaryList] || []).join("\n"); });
   document.querySelectorAll("[data-summary-number]").forEach((field) => { field.value = summary[field.dataset.summaryNumber] ?? ""; });
+  $("report-created-at").value = reportDateOf(state.report);
+  document.querySelectorAll("[data-suggest]").forEach(renderPieces);
+  // Rok najwyżej bieżący: przeglądarka nie pozwoli wybrać późniejszej daty w kalendarzu.
+  document.querySelectorAll("[data-date-limit]").forEach((field) => { field.max = `${new Date().getFullYear()}-12-31`; });
   updateMetrics();
 }
 
@@ -760,7 +787,7 @@ function renderViews() {
       <div class="card-actions">
         ${i > 0 ? `<button class="button button--small button--secondary" type="button" data-action="move-view" data-index="${i}" data-dir="-1">Przenieś wyżej<span class="visually-hidden">: widok ${i + 1}</span></button>` : ""}
         ${i < views.length - 1 ? `<button class="button button--small button--secondary" type="button" data-action="move-view" data-index="${i}" data-dir="1">Przenieś niżej<span class="visually-hidden">: widok ${i + 1}</span></button>` : ""}
-        <button class="button button--small button--danger" type="button" data-action="remove-view" data-index="${i}">Usuń widok<span class="visually-hidden"> ${i + 1}: ${escapeHtml(view.name || "bez nazwy")}</span></button>
+        <button class="button button--small button--danger" type="button" data-action="remove-view" data-index="${i}">${TRASH_ICON}Usuń widok<span class="visually-hidden"> ${i + 1}: ${escapeHtml(view.name || "bez nazwy")}</span></button>
       </div>
     </article>`).join("") : '<p class="empty">Nie dodano jeszcze żadnego widoku.</p>';
   applyFieldErrors();
@@ -795,7 +822,7 @@ function renderTech(kind = null) {
       ${entries.length ? `<ul class="tech-added">${entries.map((item, k) => `<li>
         <span class="tech-added__name">${escapeHtml(item.name)}</span>
         <span class="tech-added__version"><label for="tech-${key}-${k}-version">Wersja<span class="visually-hidden">: ${escapeHtml(item.name)}</span></label><input id="tech-${key}-${k}-version" data-tech-version data-kind="${key}" data-name="${attr(item.name)}" value="${attr(item.version)}" autocomplete="off"></span>
-        <button class="button button--small button--danger" type="button" data-action="remove-tech" data-kind="${key}" data-name="${attr(item.name)}">Usuń<span class="visually-hidden"> ${escapeHtml(item.name)}</span></button>
+        <button class="button button--small button--danger" type="button" data-action="remove-tech" data-kind="${key}" data-name="${attr(item.name)}">${TRASH_ICON}Usuń<span class="visually-hidden"> ${escapeHtml(item.name)}</span></button>
       </li>`).join("")}</ul>` : `<p class="muted">${TECH[key].empty}</p>`}
       <div class="field"><label for="tech-${key}-search">${TECH[key].add} — zacznij pisać</label><input type="search" id="tech-${key}-search" data-suggest="tech-${key}" autocomplete="off" value="${attr(query)}"></div>`;
     if (searchHadFocus) $(`tech-${key}-search`).focus();
@@ -815,8 +842,20 @@ function addTech(kind, name) {
   changed();
 }
 
+const PRESET_KEYS = ["device", "operatingSystem", "browser", "assistiveTechnology"];
+const samePreset = (preset, env) => PRESET_KEYS.every((key) => fold(preset[key]) === fold(env[key]));
+
+// Gotowe środowiska w tabeli z kolumnami: urządzenie | system | przeglądarka | czytnik. Dodane znikają z tabeli.
 function renderEnvironmentPresets() {
-  $("environment-presets").innerHTML = ENVIRONMENT_PRESETS.map((preset, k) => `<button class="chip" type="button" data-action="add-environment-preset" data-index="${k}">${escapeHtml([preset.device, preset.operatingSystem, preset.browser, preset.assistiveTechnology].join(" · "))}</button>`).join(" ");
+  const left = ENVIRONMENT_PRESETS.map((preset, k) => ({ preset, k })).filter(({ preset }) => !state.report.environment.some((env) => samePreset(preset, env)));
+  $("environment-presets").innerHTML = left.length ? `
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="env-presets-caption">
+      <table class="preset-table">
+        <caption id="env-presets-caption">Gotowe środowiska</caption>
+        <thead><tr><th scope="col">Urządzenie</th><th scope="col">System operacyjny</th><th scope="col">Przeglądarka</th><th scope="col">Czytnik lub technologia asystująca</th><th scope="col"><span class="visually-hidden">Akcja</span></th></tr></thead>
+        <tbody>${left.map(({ preset, k }) => `<tr>${PRESET_KEYS.map((key) => `<td>${escapeHtml(preset[key])}</td>`).join("")}<td><button class="button button--small button--secondary" type="button" data-action="add-environment-preset" data-index="${k}">Wybierz<span class="visually-hidden">: ${escapeHtml(PRESET_KEYS.map((key) => preset[key]).join(", "))}</span></button></td></tr>`).join("")}</tbody>
+      </table>
+    </div>` : "";
 }
 
 function renderEnvironments() {
@@ -829,7 +868,7 @@ function renderEnvironments() {
       <div class="form-grid">
         ${fields.map(([key, label, suggest]) => `<div class="field"><label for="environment-${i}-${key}">${label}</label><input id="environment-${i}-${key}" data-environment="${i}" data-field="${key}" data-suggest="${suggest}" autocomplete="off" value="${attr(item[key])}"><p class="field-help">Wpisz albo wybierz z listy.</p></div>`).join("")}
       </div>
-      <div class="card-actions"><button class="button button--small button--danger" type="button" data-action="remove-environment" data-index="${i}">Usuń środowisko ${i + 1}</button></div>
+      <div class="card-actions"><button class="button button--small button--danger" type="button" data-action="remove-environment" data-index="${i}">${TRASH_ICON}Usuń środowisko ${i + 1}</button></div>
     </article>`).join("") : '<p class="empty">Nie dodano środowiska testowego.</p>';
 }
 
@@ -946,7 +985,7 @@ function selectedCriteria(issue, i) {
   const valid = new Set(state.report.criteriaResults.map((item) => item.criterionId));
   return `<ul class="selected-criteria">${issue.criteria.map((id) => {
     const label = valid.has(id) ? requirementLabel(state.report, id) : `${id} (poza zakresem raportu)`;
-    return `<li>${valid.has(id) ? `<button class="chip" type="button" data-action="goto-criterion" data-id="${attr(id)}">${escapeHtml(label)}<span class="visually-hidden"> — przejdź do oceny kryterium</span></button>` : `<span class="chip chip--static">${escapeHtml(label)}</span>`}<button class="chip chip--remove" type="button" data-action="remove-criterion" data-index="${i}" data-id="${attr(id)}">Usuń<span class="visually-hidden"> kryterium ${escapeHtml(label)}</span></button></li>`;
+    return `<li>${valid.has(id) ? `<button class="chip" type="button" data-action="goto-criterion" data-id="${attr(id)}">${escapeHtml(label)}<span class="visually-hidden"> — przejdź do oceny kryterium</span></button>` : `<span class="chip chip--static">${escapeHtml(label)}</span>`}<button class="chip chip--remove" type="button" data-action="remove-criterion" data-index="${i}" data-id="${attr(id)}">${TRASH_ICON}Usuń<span class="visually-hidden"> kryterium ${escapeHtml(label)}</span></button></li>`;
   }).join("")}</ul>`;
 }
 
@@ -1023,7 +1062,7 @@ function addIssueFromBlock(block) {
 const SUGGEST_MODE = {
   manualTools: "list", automaticTools: "list", userTesting: "list", legalBasis: "list", methodology: "list",
   mainProblems: "list", recommendedActions: "list", auditScope: "paragraph", finalRecommendation: "paragraph", disclaimers: "paragraph",
-  viewNames: "single", blocks: "blocks", newIssue: "newIssue", disclaimers: "paragraph",
+  viewNames: "single", blocks: "blocks", newIssue: "newIssue", disclaimers: "paragraph", fixes: "fix",
   "tech-browser": "tech", "tech-reader": "tech", "tech-other": "tech",
   excludedElements: "paragraph", limitations: "paragraph", executiveSummary: "paragraph",
   envDevice: "single", envOS: "single", envBrowser: "single", envAT: "single", envViewport: "single",
@@ -1045,6 +1084,18 @@ function suggestionsFor(field) {
     const query = field.value.trim();
     const found = query.length >= 2 ? searchBlocks(query) : [];
     return { mode, query, items: found.map((block) => ({ value: block.id, label: `${block.title} (${criteriaText(block)})`, block })) };
+  }
+  if (mode === "fix") {
+    // Rozwiązania z klocków pasujących do kryteriów problemu (bez kryteriów: wszystkie), zawężane po wpisanym wierszu.
+    const issue = state.report.issues[Number(field.dataset.issue)];
+    const query = currentLine(field).text.trim();
+    const have = fold(field.value);
+    const seen = new Set();
+    const items = (issue?.criteria.length ? blocksForCriteria(issue.criteria) : ISSUE_BLOCKS)
+      .flatMap((block) => block.fixes.map((fix, f) => ({ value: fix.text, label: `${fix.label} (${block.title})`, block, fix, f })))
+      .filter((item) => !seen.has(item.value) && seen.add(item.value) && !have.includes(fold(item.value)))
+      .filter((item) => matchesQuery(`${item.label} ${item.value}`, query));
+    return { mode, query, items };
   }
   if (mode === "tech") {
     const kind = key.slice(5);
@@ -1101,8 +1152,8 @@ function renderSuggest(field) {
   const verb = mode === "newIssue" ? "Dodaj problem" : mode === "blocks" ? "Użyj opisu" : mode === "single" ? "Wybierz" : "Dodaj";
   const tech = mode === "tech";
   const many = (mode === "list" || tech) && query && items.filter((item) => !/^własną/.test(item.label)).length > 1;
-  box.innerHTML = `${(mode === "blocks" || mode === "newIssue") ? `<p class="suggest__lead">Gotowe opisy problemów. Kryteria WCAG dodadzą się same:</p>` : ""}
-    <ul class="suggest__list">${shown.map((item, k) => `<li><button class="chip" type="button" data-suggest-pick="${k}" data-for="${field.id}">${escapeHtml(verb)}: ${escapeHtml(item.label)}</button></li>`).join("")}</ul>
+  box.innerHTML = `${(mode === "blocks" || mode === "newIssue") ? `<p class="suggest__lead">Gotowe opisy problemów. Kryteria WCAG dodadzą się same:</p>` : mode === "fix" ? `<p class="suggest__lead">Gotowe rozwiązania${state.report.issues[Number(field.dataset.issue)]?.criteria.length ? " dla kryteriów tego problemu" : ""}:</p>` : ""}
+    <ul class="suggest__list">${shown.map((item, k) => `<li><button class="chip" type="button" data-suggest-pick="${k}" data-for="${field.id}"><span class="visually-hidden">${escapeHtml(verb)}: </span>${escapeHtml(item.label)}</button></li>`).join("")}</ul>
     ${items.length > shown.length ? `<p class="muted">…i ${items.length - shown.length} więcej. Wpisz kolejne litery, aby zawęzić.</p>` : ""}
     ${many ? `<button class="button button--small button--secondary" type="button" data-suggest-all data-for="${field.id}">Dodaj wszystkie pasujące (${items.filter((item) => !/^własną/.test(item.label)).length})</button>` : ""}`;
   box._items = shown;
@@ -1128,6 +1179,42 @@ function dismissSuggest(target) {
   return true;
 }
 
+// ── klocki: dodane pozycje i zdania pod polem, każdy z przyciskiem usuwania ──────
+// Lista: jeden klocek na wiersz; akapit: jeden klocek na akapit. Usuwa X, Backspace albo Delete na X.
+const pieceSplit = (field) => (SUGGEST_MODE[field.dataset.suggest] === "paragraph" ? field.value.split(/\n\s*\n/) : field.value.split("\n")).map((part) => part.trim()).filter(Boolean);
+
+function renderPieces(field) {
+  const mode = SUGGEST_MODE[field.dataset.suggest];
+  if (mode !== "list" && mode !== "paragraph") return;
+  let box = $(`${field.id}-pieces`);
+  if (!box) {
+    box = document.createElement("ul");
+    box.id = `${field.id}-pieces`;
+    box.className = "pieces";
+    box.setAttribute("aria-label", `Dodane: ${document.querySelector(`label[for="${field.id}"]`)?.textContent.trim() || "pozycje"}`);
+    ($(`${field.id}-suggest`) || field).insertAdjacentElement("afterend", box);
+  }
+  const parts = pieceSplit(field);
+  // Wiersz, który właśnie piszesz, staje się klockiem dopiero po Enterze albo po wyjściu z pola.
+  const typing = document.activeElement === field && !/\n\s*$/.test(field.value) && parts.length;
+  if (typing) parts.pop();
+  box.hidden = !parts.length;
+  box.innerHTML = parts.map((part, k) => `<li class="piece"><span class="piece__text">${escapeHtml(part)}</span><button class="piece__remove" type="button" data-piece="${k}" data-for="${field.id}">${TRASH_ICON}<span class="visually-hidden">Usuń: ${escapeHtml(part)}</span></button></li>`).join("");
+}
+
+function removePiece(button) {
+  const field = $(button.dataset.for);
+  const parts = pieceSplit(field);
+  const k = Number(button.dataset.piece);
+  const [gone] = parts.splice(k, 1);
+  field.value = parts.join(SUGGEST_MODE[field.dataset.suggest] === "paragraph" ? "\n\n" : "\n");
+  field.dispatchEvent(new Event("input", { bubbles: true }));
+  field.dispatchEvent(new Event("change", { bubbles: true }));
+  const next = $(`${field.id}-pieces`)?.querySelectorAll(".piece__remove")[Math.min(k, parts.length - 1)];
+  (next || field).focus();
+  announce(`Usunięto: ${gone}.`);
+}
+
 function onSuggestFocus(event) {
   const field = event.target;
   if (field.dataset?.suggest) renderSuggest(field);
@@ -1138,6 +1225,7 @@ function onSuggestInput(event) {
   if (!field.dataset?.suggest) return;
   field._suggestDismissed = false;
   renderSuggest(field);
+  renderPieces(field);
 }
 
 function onSuggestBlur(event) {
@@ -1151,6 +1239,7 @@ function onSuggestBlur(event) {
     if (!field) return;
     field._suggestDismissed = false;
     hideSuggest(field);
+    renderPieces(field);
   }, 0);
 }
 
@@ -1168,6 +1257,23 @@ function pickSuggestion(button) {
     renderTech(kind);
     $(`tech-${kind}-search`).focus();
     announce(`Dodano: ${names.join(", ")}. Wersję możesz wpisać obok nazwy.`);
+    return changed();
+  }
+  if (mode === "fix") {
+    // Wpisany fragment zamienia się na punkt rekomendacji; przykład kodu trafia do Dowodów.
+    const index = Number(field.dataset.issue);
+    const issue = state.report.issues[index];
+    const { fix } = picked[0];
+    const line = currentLine(field);
+    const before = field.value.slice(0, line.start).replace(/\n+$/, "");
+    const after = field.value.slice(line.end).replace(/^\n+/, "");
+    issue.recommendation = [before, fix.text, after].filter((part) => part.trim()).join("\n") + (after ? "" : "\n");
+    if (fix.code) issue.codeExamples.push({ id: randomId(), label: `Przykład rozwiązania: ${fix.label}`, language: fix.code.language, code: fix.code.code });
+    rerender(renderIssues, `#issue-${index}-recommendation`, [index]);
+    const area = $(`issue-${index}-recommendation`);
+    if (!after) area.setSelectionRange(area.value.length, area.value.length);
+    renderSuggest(area);
+    announce(`Dodano do rekomendacji: ${fix.label}${fix.code ? ". Przykład kodu jest w Dowodach" : ""}.`);
     return changed();
   }
   if (mode === "blocks") {
@@ -1257,12 +1363,35 @@ function renderIssueNav() {
   $("issue-list").innerHTML = visible.length ? `<ol class="issue-nav__list">${visible.map(({ issue, index }) => {
     const status = issueStatus(index);
     const current = index === state.currentIssue;
-    return `<li><button class="issue-pick${current ? " is-current" : ""}" type="button" data-action="select-issue" data-index="${index}"${current ? ' aria-current="true"' : ""}>
+    const name = escapeHtml(issue.shortName || issue.title || "bez tytułu");
+    const tools = `<div class="issue-row__tools">
+        ${index > 0 ? `<button class="icon-button" type="button" data-action="move-issue" data-place="nav" data-index="${index}" data-dir="-1"><span aria-hidden="true">↑</span><span class="visually-hidden">Przenieś wyżej: problem ${index + 1}, ${name}</span></button>` : ""}
+        ${index < issues.length - 1 ? `<button class="icon-button" type="button" data-action="move-issue" data-place="nav" data-index="${index}" data-dir="1"><span aria-hidden="true">↓</span><span class="visually-hidden">Przenieś niżej: problem ${index + 1}, ${name}</span></button>` : ""}
+        <button class="icon-button icon-button--danger" type="button" data-action="remove-issue" data-place="nav" data-index="${index}">${TRASH_ICON}<span class="visually-hidden">Usuń problem ${index + 1}, ${name}</span></button>
+      </div>`;
+    return `<li class="issue-row"><button class="issue-pick${current ? " is-current" : ""}" type="button" data-action="select-issue" data-index="${index}"${current ? ' aria-current="true"' : ""}>
       <span class="issue-pick__title"><span class="issue-pick__num">${index + 1}.</span> ${escapeHtml(issue.shortName || issue.title || "Problem bez tytułu")}</span>
       <span class="issue-pick__meta">${issue.id ? `${escapeHtml(issue.id)} · ` : ""}${escapeHtml(issue.criteria.map((id) => id.replace(/^[a-z]+:/, "")).join(", ") || "bez kryterium")} · ${escapeHtml(issue.severity)}</span>
       <span class="issue-pick__status is-${status.kind}">${escapeHtml(status.text)}</span>
-    </button></li>`;
+    </button>${tools}</li>`;
   }).join("")}</ol>` : '<p class="empty">Brak problemów do wyświetlenia. Dodaj pierwszy problem powyżej.</p>';
+}
+
+
+// Pusty problem (np. dodany przez pomyłkę) usuwamy bez pytania; wypełniony dopiero po potwierdzeniu.
+function isEmptyIssue(issue) {
+  if (!issue) return true;
+  const texts = ["title", "description", "userImpact", "recommendation", "evidence", "notes"].some((key) => String(issue[key] || "").trim());
+  return !texts && !issue.criteria.length && !issue.images.length && !issue.codeExamples.length && !issue.stepsToReproduce.length;
+}
+
+// Formularz problemu da się zwinąć, żeby lista po lewej była widoczna w całości.
+function setIssueEditor(open) {
+  const button = $("toggle-issue-editor");
+  button.setAttribute("aria-expanded", String(open));
+  button.textContent = open ? "Zwiń formularz problemu" : "Rozwiń formularz problemu";
+  $("issue-editor").hidden = !open;
+  document.querySelector(".issues-layout")?.classList.toggle("is-collapsed", !open);
 }
 
 function renderIssueEditor() {
@@ -1303,18 +1432,12 @@ function hint(key, i) {
 }
 
 function blockPanel(issue, i) {
-  const overlap = (block) => (block.id === issue.blockId ? 100 : 0) + block.criteria.filter((id) => issue.criteria.includes(id)).length;
-  const matching = issue.criteria.length ? blocksForCriteria(issue.criteria).sort((a, b) => overlap(b) - overlap(a)) : [];
-  const fixes = matching.flatMap((block) => block.fixes.map((fix, f) => ({ block, fix, f })));
-  const consider = [...new Set(matching.filter((block) => block.id === issue.blockId).flatMap((block) => block.alsoConsider || []))];
-  return `
-      <div class="nested blocks" role="group" aria-labelledby="issue-${i}-blocks-heading">
-        <h4 id="issue-${i}-blocks-heading">Gotowe rozwiązania</h4>
-        <p class="field-help">Gotowy opis wstawisz, zaczynając pisać tytuł problemu. Tu złożysz rekomendację z gotowych rozwiązań.</p>
-        ${consider.length ? `<p class="consider"><strong>Sprawdź też:</strong> ${escapeHtml(consider.join("; "))} — zależnie od przypadku ten problem może naruszać także te kryteria.</p>` : ""}
-        ${fixes.length ? `<h5>Rozwiązania do rekomendacji</h5><p class="field-help">Każde kliknięcie dopisuje rozwiązanie na końcu rekomendacji${fixes.some(({ fix }) => fix.code) ? ", a przykład kodu trafia do fragmentów kodu" : ""}.</p>
-        <ul class="fix-list">${fixes.map(({ block, fix, f }) => `<li><button class="chip" type="button" data-action="add-fix" data-index="${i}" data-block="${attr(block.id)}" data-fix="${f}">Dodaj: ${escapeHtml(fix.label)}<span class="visually-hidden"> — rozwiązanie z klocka „${escapeHtml(block.title)}”</span></button> <span class="muted">${escapeHtml(criteriaText(block))} · ${escapeHtml(block.title)}</span></li>`).join("")}</ul>` : `<p class="field-help">Wpisz kryteria WCAG albo wybierz klocek, a pojawią się pasujące rozwiązania.</p>`}
-      </div>`;
+  // Rozwiązania podpowiada pole „Jak naprawić” w trakcie pisania; tu zostaje tylko wskazówka o pokrewnych kryteriach.
+  const consider = [...new Set(blocksForCriteria(issue.criteria).filter((block) => block.id === issue.blockId).flatMap((block) => block.alsoConsider || []))];
+  return issue.criteria.length && consider.length ? `
+      <div class="nested blocks" role="note">
+        <p class="consider"><strong>Sprawdź też:</strong> ${escapeHtml(consider.join("; "))}. Zależnie od przypadku ten problem może naruszać także te kryteria.</p>
+      </div>` : "";
 }
 
 function viewPicker(issue, i) {
@@ -1351,7 +1474,7 @@ function issueCard(issue, i) {
         <div class="field"><label for="issue-${i}-code-${c}-language">Język</label><select id="issue-${i}-code-${c}-language" data-issue="${i}" data-code="${c}" data-field="language">${options(["html", "css", "js", "ts", "jsx", "tsx", "json", "xml", "text"], code.language)}</select></div>
         <div class="field field--wide"><label for="issue-${i}-code-${c}-code">Kod</label><textarea id="issue-${i}-code-${c}-code" class="code-input" data-issue="${i}" data-code="${c}" data-field="code" rows="6" spellcheck="false" autocapitalize="off">${escapeHtml(code.code)}</textarea></div>
       </div>
-      <button class="button button--small button--danger" type="button" data-action="remove-code" data-issue="${i}" data-code="${c}">Usuń fragment kodu ${c + 1}</button>
+      <button class="button button--small button--danger" type="button" data-action="remove-code" data-issue="${i}" data-code="${c}">${TRASH_ICON}Usuń fragment kodu ${c + 1}</button>
     </div>`).join("");
   const images = issue.images.map((image, m) => `
     <div class="card card--nested" role="group" aria-labelledby="issue-${i}-image-${m}-heading">
@@ -1366,7 +1489,7 @@ function issueCard(issue, i) {
       <div class="card-actions">
         ${m > 0 ? `<button class="button button--small button--secondary" type="button" data-action="move-image" data-issue="${i}" data-image="${m}" data-dir="-1">Przenieś wyżej<span class="visually-hidden">: obraz ${m + 1}</span></button>` : ""}
         ${m < issue.images.length - 1 ? `<button class="button button--small button--secondary" type="button" data-action="move-image" data-issue="${i}" data-image="${m}" data-dir="1">Przenieś niżej<span class="visually-hidden">: obraz ${m + 1}</span></button>` : ""}
-        <button class="button button--small button--danger" type="button" data-action="remove-image" data-issue="${i}" data-image="${m}">Usuń obraz ${m + 1}</button>
+        <button class="button button--small button--danger" type="button" data-action="remove-image" data-issue="${i}" data-image="${m}">${TRASH_ICON}Usuń obraz ${m + 1}</button>
       </div>
     </div>`).join("");
   const imported = issue.source ? `
@@ -1389,7 +1512,7 @@ function issueCard(issue, i) {
         ${field("description", "Opis problemu", area("description", 4, issue.description, "description"), true, hint("description", i))}
         ${field("stepsToReproduce", "Kroki odtworzenia", area("stepsToReproduce", 3, issue.stepsToReproduce.join("\n"), "stepsToReproduce"), true, hint("stepsToReproduce", i))}
         ${field("userImpact", "Wpływ na użytkowników", area("userImpact", 3, issue.userImpact, "userImpact"), true, hint("userImpact", i))}
-        ${field("recommendation", "Jak naprawić", area("recommendation", 5, issue.recommendation, "recommendation"), true, hint("recommendation", i))}
+        ${field("recommendation", "Jak naprawić", area("recommendation", 5, issue.recommendation, "recommendation").replace("<textarea ", '<textarea data-suggest="fixes" '), true, hint("recommendation", i))}
         ${field("evidence", "Lokalizacja", area("evidence", 3, issue.evidence, "evidence"), true, hint("evidence", i))}
       </div>
       <div class="nested evidence" role="group" aria-labelledby="issue-${i}-evidence-heading">
@@ -1419,7 +1542,7 @@ function issueCard(issue, i) {
         ${i > 0 ? `<button class="button button--small button--secondary" type="button" data-action="move-issue" data-index="${i}" data-dir="-1">Przenieś wyżej<span class="visually-hidden">: problem ${i + 1}</span></button>` : ""}
         ${i < state.report.issues.length - 1 ? `<button class="button button--small button--secondary" type="button" data-action="move-issue" data-index="${i}" data-dir="1">Przenieś niżej<span class="visually-hidden">: problem ${i + 1}</span></button>` : ""}
         <button class="button button--small button--secondary" type="button" data-action="duplicate-issue" data-index="${i}">Duplikuj<span class="visually-hidden"> problem ${i + 1}</span></button>
-        <button class="button button--small button--danger" type="button" data-action="remove-issue" data-index="${i}">Usuń problem ${i + 1}</button>
+        <button class="button button--small button--danger" type="button" data-action="remove-issue" data-index="${i}">${TRASH_ICON}Usuń problem ${i + 1}</button>
       </div>
       ${prevNext(i)}
     </div>
@@ -1555,7 +1678,7 @@ function scheduleValidation() {
 
 function validateNow() {
   state.validation = validateProject(state.report);
-  if (STEPS[state.step] === "issues" && state.issueView === "problems" && !$("issue-list").contains(document.activeElement)) renderIssueNav();
+  if (STEPS[state.step] === "issues" && state.issueView === "problems" && !$("issue-list").contains(document.activeElement) && !pointerDown) renderIssueNav();
   renderErrorSummary();
   applyFieldErrors();
   updateMetrics();
@@ -1603,7 +1726,7 @@ function stepFor(path) {
 }
 
 function targetFor(path) {
-  const fixed = { "meta.reportTitle": "report-title", "meta.auditedEntity": "audited-entity", "meta.websiteUrl": "website-url", "meta.auditDate": "audit-date", testedViews: "add-view", criteriaResults: "criteria-heading" };
+  const fixed = { "meta.reportTitle": "report-title", "meta.auditedEntity": "audited-entity", "meta.websiteUrl": "website-url", "meta.auditStartDate": "audit-start-date", "meta.auditEndDate": "audit-end-date", "summary.reportCreatedAt": "report-created-at", testedViews: "add-view", criteriaResults: "criteria-heading" };
   if (fixed[path]) return fixed[path];
   let match = path.match(/^issues\.(\d+)\.(id|title|viewId|criteria|description|userImpact|recommendation|confirmed)$/);
   if (match) return `issue-${match[1]}-${match[2]}`;
@@ -1621,7 +1744,7 @@ function onErrorLink(event) {
   const path = link.dataset.path;
   const issueIndex = path.match(/^issues\.(\d+)/)?.[1];
   if (issueIndex !== undefined) ["filter-view", "filter-severity", "filter-criterion", "filter-confirmed"].forEach((id) => { $(id).value = ""; });
-  if (path === "criteriaResults") $("criteria-filter").value = /niepotwierdz/.test(link.textContent) ? "unconfirmed" : "niebadane";
+  if (path === "criteriaResults") $("criteria-filter").value = /niepotwierdz/.test(link.textContent) ? "unconfirmed" : "do weryfikacji";
   showStep(STEPS.indexOf(stepFor(path)), false);
   const target = $(targetFor(path));
   target?.closest("details")?.setAttribute("open", "");
@@ -1638,7 +1761,7 @@ function updateMetrics() {
   $("metric-issues").textContent = report.issues.length;
   $("metric-priority").textContent = severities["Priorytet 1"];
   $("metric-failed").textContent = stats.counts["niespełnione"];
-  $("metric-untested").textContent = stats.counts["niebadane"];
+  $("metric-untested").textContent = stats.counts["do weryfikacji"];
   const errors = state.validation.filter((item) => item.severity === "error").length;
   const warnings = state.validation.length - errors;
   const badge = $("completeness");
@@ -1649,7 +1772,7 @@ function updateMetrics() {
 function updatePercentHelp() {
   const stats = criteriaStats(state.report);
   $("percent-help").textContent = stats.percentPassed === null
-    ? `Nie da się obliczyć automatycznie: ${stats.counts["niebadane"] + stats.counts["do weryfikacji"]} kryteriów nie ma rozstrzygniętej oceny. Puste pole = raport pokaże „nie obliczono”.`
+    ? `Nie da się obliczyć automatycznie: ${stats.counts["do weryfikacji"]} kryteriów nie ma rozstrzygniętej oceny. Puste pole = raport pokaże „nie obliczono”.`
     : `Z tabeli kryteriów wynika ${String(stats.percentPassed).replace(".", ",")}%. Puste pole = raport użyje tej wartości.`;
 }
 

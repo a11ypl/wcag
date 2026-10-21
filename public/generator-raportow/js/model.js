@@ -10,7 +10,10 @@ export const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
 export const MAX_IMAGE_SIDE = 2000;
 export const COMPACT_IMAGE_BYTES = 3 * 1024 * 1024;
 
-export const CRITERION_STATUSES = ["spełnione", "niespełnione", "nie dotyczy", "do weryfikacji", "niebadane"];
+// Bez „niebadane”: kryterium w zakresie audytu startuje jako „do weryfikacji”, a kryteria spoza poziomu
+// audytu nie trafiają do tabeli. Starsze projekty: „niebadane” zamienia się na „do weryfikacji”.
+export const CRITERION_STATUSES = ["spełnione", "niespełnione", "nie dotyczy", "do weryfikacji"];
+const DEFAULT_STATUS = "do weryfikacji";
 export const ISSUE_TYPES = ["błąd", "rekomendacja", "do weryfikacji manualnej"];
 export const SEVERITIES = ["Priorytet 1", "Priorytet 2", "Priorytet 3"];
 export const SEVERITY_INFO = {
@@ -125,6 +128,7 @@ export function defaultProject() {
       executiveSummary: "",
       reauditDeadline: "",
       reportCreatedAt: todayLocal(),
+      reportCreatedAtManual: false,
       disclaimer: DEFAULT_DISCLAIMER,
     },
     attachments: [],
@@ -147,6 +151,9 @@ export function migrateProject(data) {
     merged.meta.framework = "wcag";
     merged.meta.frameworkVersion = String(data.meta.standard).replace("WCAG ", "");
   }
+  // Pole „Data audytu” zastąpił okres badania; starsza data audytu staje się jego początkiem.
+  if (!merged.meta.auditStartDate && merged.meta.auditDate) merged.meta.auditStartDate = merged.meta.auditDate;
+  merged.meta.auditDate = "";
   merged.format = FORMAT_ID;
   merged.schemaVersion = SCHEMA_VERSION;
   for (const key of ["testedViews", "environment", "issues", "attachments", "placeholders", "browsers", "assistiveTech"]) {
@@ -247,7 +254,7 @@ export function refreshCriteria(report) {
   const existing = new Map((report.criteriaResults || []).filter(isPlainObject).map((item) => [item.criterionId, item]));
   report.criteriaResults = requirementsFor(meta).map((criterion) => {
     const current = existing.get(criterion.id) || {};
-    const status = CRITERION_STATUSES.includes(current.status) ? current.status : "niebadane";
+    const status = CRITERION_STATUSES.includes(current.status) ? current.status : DEFAULT_STATUS;
     const result = {
       criterionId: criterion.id,
       displayId: criterion.displayId,
@@ -266,7 +273,7 @@ export function refreshCriteria(report) {
       autoFilled: Boolean(current.autoFilled),
       suggested: Boolean(current.suggested),
     };
-    if (criterion.id === "4.1.1" && status === "niebadane" && !result.auditComment) {
+    if (criterion.id === "4.1.1" && status === DEFAULT_STATUS && !current.status && !result.auditComment) {
       result.status = "spełnione";
       result.auditComment = DEPRECATED_411_NOTE;
       result.autoFilled = true;
@@ -290,7 +297,7 @@ export function suggestCriterionStatuses(report) {
       criterion.status = "niespełnione";
     } else if (criterion.suggested) {
       // Cofamy tylko status zaproponowany przez generator, nigdy ocenę wpisaną przez audytora.
-      criterion.status = "niebadane";
+      criterion.status = DEFAULT_STATUS;
       criterion.suggested = false;
     }
   }
@@ -323,13 +330,19 @@ export function validateProject(report) {
     ["meta.reportTitle", meta.reportTitle, "Tytuł raportu jest wymagany."],
     ["meta.auditedEntity", meta.auditedEntity, "Nazwa podmiotu jest wymagana."],
     ["meta.websiteUrl", meta.websiteUrl, "Adres badanej strony jest wymagany."],
-    ["meta.auditDate", meta.auditDate, "Data audytu jest wymagana."],
+    ["meta.auditStartDate", meta.auditStartDate, "Początek badania jest wymagany."],
   ];
   for (const [path, value, message] of required) {
     if (!String(value || "").trim()) add(path, message);
   }
   const url = String(meta.websiteUrl || "").trim();
   if (url && !isHttpUrl(url)) add("meta.websiteUrl", "Podaj pełny adres zaczynający się od http:// lub https://.");
+  const maxYear = new Date().getFullYear();
+  for (const [path, value, label] of [["meta.auditStartDate", meta.auditStartDate, "Początek badania"], ["meta.auditEndDate", meta.auditEndDate, "Koniec badania"], ["summary.reportCreatedAt", report.summary?.reportCreatedAtManual ? report.summary.reportCreatedAt : "", "Data sporządzenia raportu"]]) {
+    const year = Number(String(value || "").match(/^(\d+)-/)?.[1]);
+    if (value && !(year >= 2000 && year <= maxYear)) add(path, `${label}: rok musi mieć 4 cyfry i nie może być późniejszy niż ${maxYear}.`);
+  }
+  if (meta.auditStartDate && meta.auditEndDate && meta.auditEndDate < meta.auditStartDate) add("meta.auditEndDate", "Koniec badania nie może być wcześniejszy niż jego początek.");
   if (!(report.testedViews || []).length) add("testedViews", "Dodaj co najmniej jeden badany widok.");
 
   const viewIds = new Set((report.testedViews || []).map((view) => view.id));
@@ -369,9 +382,20 @@ export function validateProject(report) {
   if (sample && (report.testedViews || []).length < sample) add("testedViews", `Zadeklarowana próba to ${sample} stron lub widoków, a dodano ${(report.testedViews || []).length}.`, "warning");
   const unconfirmed = (report.criteriaResults || []).filter((item) => item.source && !item.confirmed).length;
   if (unconfirmed) add("criteriaResults", `Liczba kryteriów z oceną zaimportowaną automatycznie, niepotwierdzoną przez audytora: ${unconfirmed}.`, "warning");
-  const untested = (report.criteriaResults || []).filter((item) => item.status === "niebadane").length;
-  if (untested) add("criteriaResults", `Liczba kryteriów bez oceny („niebadane”): ${untested}.`, "warning");
+  const untested = (report.criteriaResults || []).filter((item) => item.status === DEFAULT_STATUS && !(item.source && !item.confirmed)).length;
+  if (untested) add("criteriaResults", `Liczba kryteriów bez rozstrzygniętej oceny („do weryfikacji”): ${untested}.`, "warning");
   return issues;
+}
+
+// Data audytu = koniec badania, a przy badaniu jednodniowym jego początek.
+export function auditDateOf(meta) {
+  return String(meta?.auditEndDate || meta?.auditStartDate || meta?.auditDate || "").trim();
+}
+
+// Data sporządzenia raportu: dzisiejsza, chyba że audytor wpisał własną.
+export function reportDateOf(report, now = new Date()) {
+  const summary = report?.summary || {};
+  return summary.reportCreatedAtManual && summary.reportCreatedAt ? summary.reportCreatedAt : todayLocal(now);
 }
 
 export function isHttpUrl(value) {

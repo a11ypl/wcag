@@ -18,12 +18,12 @@ h1, h2, h3, h4, h5 { line-height: 1.25; }
 h5 { font-size: 1rem; margin: 1.2rem 0 .3rem; }
 tr:target { outline: 3px solid #b44b20; outline-offset: -3px; }
 h1 { font-size: clamp(1.8rem, 4.5vw, 3rem); margin: .4rem 0; }
-h2 { margin-top: 2.75rem; padding-bottom: .3rem; border-bottom: 2px solid var(--accent); }
+h2 { margin-top: 1.5rem; padding-bottom: .3rem; border-bottom: 2px solid var(--accent); }
 h3 { margin-top: 2rem; }
 h4 { margin: 1.4rem 0 .4rem; }
 a { color: #005a72; text-decoration-thickness: .1em; text-underline-offset: .15em; }
 a:focus-visible { outline: 3px solid #b44b20; outline-offset: 3px; }
-table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1rem; }
 caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
 th, td { border: 1px solid var(--line); padding: .5rem .65rem; text-align: left; vertical-align: top; }
 thead th { background: var(--head); }

@@ -83,8 +83,8 @@
           <li><button type="button" data-step="meta" aria-current="step"><span class="step-number" aria-hidden="true">1</span> Dane raportu</button></li>
           <li><button type="button" data-step="views"><span class="step-number" aria-hidden="true">2</span> Zakres i widoki</button></li>
           <li><button type="button" data-step="tools"><span class="step-number" aria-hidden="true">3</span> Narzędzia i środowisko</button></li>
-          <li><button type="button" data-step="criteria"><span class="step-number" aria-hidden="true">4</span> Wyniki WCAG</button></li>
-          <li><button type="button" data-step="issues"><span class="step-number" aria-hidden="true">5</span> Problemy</button></li>
+          <li><button type="button" data-step="issues"><span class="step-number" aria-hidden="true">4</span> Problemy</button></li>
+          <li><button type="button" data-step="criteria"><span class="step-number" aria-hidden="true">5</span> Wyniki WCAG</button></li>
           <li><button type="button" data-step="summary"><span class="step-number" aria-hidden="true">6</span> Podsumowanie</button></li>
           <li><button type="button" data-step="preview"><span class="step-number" aria-hidden="true">7</span> Podgląd i pobieranie</button></li>
         </ol>
@@ -98,7 +98,7 @@
             <div><dt>Problemy</dt><dd id="metric-issues">0</dd></div>
             <div><dt>Priorytet 1</dt><dd id="metric-priority">0</dd></div>
             <div><dt>Kryteria niespełnione</dt><dd id="metric-failed">0</dd></div>
-            <div><dt>Kryteria bez oceny</dt><dd id="metric-untested">0</dd></div>
+            <div><dt>Kryteria do weryfikacji</dt><dd id="metric-untested">0</dd></div>
           </dl>
           <p id="completeness" class="completeness"></p>
           <p class="muted" id="autosave-state">Projekt zapisuje się automatycznie w tej przeglądarce.</p>
@@ -158,7 +158,7 @@
               <div class="field">
                 <label for="sector">Sektor</label>
                 <select id="sector" data-meta="sector" aria-describedby="sector-help">
-                  <option value="">Nie wskazano</option>
+                  <option value="">nie wskazano</option>
                   <option value="publiczny">publiczny</option>
                   <option value="prywatny">prywatny</option>
                 </select>
@@ -170,20 +170,18 @@
                 <p class="field-help" id="website-help">Pełny adres, np. https://przyklad.pl.</p>
               </div>
               <div class="field">
-                <label for="audit-date">Data audytu <span class="required">(wymagane)</span></label>
-                <input id="audit-date" data-meta="auditDate" type="date">
-              </div>
-              <div class="field">
-                <label for="audit-start-date">Początek badania</label>
-                <input id="audit-start-date" data-meta="auditStartDate" type="date">
+                <label for="audit-start-date">Początek badania <span class="required">(wymagane)</span></label>
+                <input id="audit-start-date" data-meta="auditStartDate" type="date" min="2000-01-01" data-date-limit aria-describedby="audit-dates-help">
               </div>
               <div class="field">
                 <label for="audit-end-date">Koniec badania</label>
-                <input id="audit-end-date" data-meta="auditEndDate" type="date">
+                <input id="audit-end-date" data-meta="auditEndDate" type="date" min="2000-01-01" data-date-limit aria-describedby="audit-dates-help">
               </div>
+              <p class="field-help field--wide" id="audit-dates-help">Data audytu w raporcie to okres badania. Badanie jednodniowe: wpisz tylko początek.</p>
               <div class="field">
                 <label for="report-created-at">Data sporządzenia raportu</label>
-                <input id="report-created-at" data-summary="reportCreatedAt" type="date">
+                <input id="report-created-at" data-report-date type="date" min="2000-01-01" data-date-limit aria-describedby="report-created-help">
+                <p class="field-help" id="report-created-help">Domyślnie dzisiejsza data, także przy kolejnym pobraniu raportu. Zmień ją, jeśli raport ma nosić inną datę.</p>
               </div>
               <div class="field">
                 <label for="experts">Zespół audytorski</label>
@@ -238,11 +236,9 @@
                 <p class="field-help" id="limitations-help">Co mogło wpłynąć na wynik, np. brak dostępu do środowiska testowego, zmiany treści w trakcie badania.</p>
               </div>
             </div>
-            <div class="toolbar">
-              <h3>Badane widoki</h3>
-              <button class="button" type="button" id="add-view">Dodaj widok</button>
-            </div>
+            <h3>Badane widoki</h3>
             <div id="view-list" class="card-list"></div>
+            <div class="list-add"><button class="button" type="button" id="add-view">Dodaj widok</button></div>
           </section>
 
           <section class="step" data-section="tools" aria-labelledby="tools-heading" hidden>
@@ -270,41 +266,14 @@
               <div class="field"><label for="automatic-tools">Narzędzia automatyczne</label><textarea id="automatic-tools" data-suggest="automaticTools" data-tool-list="automatic" rows="4"></textarea></div>
               <div class="field field--wide"><label for="user-testing">Testy z udziałem użytkowników</label><textarea id="user-testing" data-suggest="userTesting" data-tool-list="userTesting" rows="4"></textarea></div>
             </div>
-            <div class="toolbar">
-              <h3>Środowiska testowe</h3>
-              <button class="button" type="button" id="add-environment">Dodaj puste środowisko</button>
-            </div>
-            <div class="chips" role="group" aria-labelledby="env-presets-label"><span class="field-label" id="env-presets-label">Dodaj gotowe:</span><span id="environment-presets"></span></div>
+            <h3>Środowiska testowe</h3>
             <div id="environment-list" class="card-list"></div>
-          </section>
-
-          <section class="step" data-section="criteria" aria-labelledby="criteria-heading" hidden>
-            <p class="step-kicker">Krok 4 z 7</p>
-            <h2 id="criteria-heading" tabindex="-1">Wyniki WCAG</h2>
-            <p>Generator proponuje status „niespełnione” dla kryteriów, do których przypisano problem typu błąd. Brak problemu nie oznacza spełnienia kryterium — decyzję podejmuje audytor.</p>
-            <div class="toolbar toolbar--wrap">
-              <div class="field field--inline">
-                <label for="criteria-filter">Pokaż kryteria</label>
-                <select id="criteria-filter">
-                  <option value="">wszystkie</option>
-                  <option value="with-issues">z przypisanymi problemami</option>
-                  <option value="unconfirmed">z importu, niepotwierdzone</option>
-                  <option value="niebadane">niebadane</option>
-                  <option value="do weryfikacji">do weryfikacji</option>
-                  <option value="niespełnione">niespełnione</option>
-                  <option value="spełnione">spełnione</option>
-                  <option value="nie dotyczy">nie dotyczy</option>
-                </select>
-              </div>
-              <button class="button button--secondary" type="button" id="confirm-imported">Potwierdzam przejrzane oceny z importu</button>
-            </div>
-            <p id="criteria-count" class="muted"></p>
-            <p id="criteria-caption" class="scope-summary"></p>
-            <div id="criteria-body" class="crit-groups"></div>
+            <div class="list-add"><button class="button" type="button" id="add-environment">Dodaj puste środowisko</button></div>
+            <div id="environment-presets"></div>
           </section>
 
           <section class="step" data-section="issues" aria-labelledby="issues-heading" hidden>
-            <p class="step-kicker">Krok 5 z 7</p>
+            <p class="step-kicker">Krok 4 z 7</p>
             <h2 id="issues-heading" tabindex="-1">Problemy dostępności</h2>
             <p>Każdy problem typu błąd wymaga kryterium WCAG, opisu, wpływu na użytkowników i rekomendacji. Obraz informacyjny wymaga tekstu alternatywnego.</p>
             <div class="filters" role="group" aria-labelledby="filters-heading">
@@ -336,6 +305,7 @@
             </fieldset>
             <div class="toolbar">
               <h3 id="issue-list-heading">Lista problemów</h3>
+              <button class="button button--small button--secondary" type="button" id="toggle-issue-editor" aria-controls="issue-editor" aria-expanded="true">Zwiń formularz problemu</button>
             </div>
             <p id="issue-count" class="muted"></p>
             <div class="issues-layout">
@@ -345,6 +315,34 @@
               </nav>
               <div id="issue-editor" class="issue-editor-wrap"></div>
             </div>
+          </section>
+
+          <section class="step" data-section="criteria" aria-labelledby="criteria-heading" hidden>
+            <p class="step-kicker">Krok 5 z 7</p>
+            <h2 id="criteria-heading" tabindex="-1">Wyniki WCAG</h2>
+            <p>Generator proponuje status „niespełnione” dla kryteriów, do których przypisano problem typu błąd. Brak problemu nie oznacza spełnienia kryterium — decyzję podejmuje audytor.</p>
+            <ul class="status-legend">
+              <li><strong>Do weryfikacji</strong>: kryterium jeszcze nie ocenione albo ocena z narzędzia automatycznego czeka na Twoje potwierdzenie. Tak startuje każde kryterium.</li>
+              <li><strong>Nie dotyczy</strong>: w badanych widokach nie ma treści, których dotyczy kryterium, np. brak nagrań wideo przy napisach rozszerzonych (1.2.x) albo brak formularzy przy kryteriach o etykietach pól. Kryteria spoza wybranego poziomu (np. AAA przy audycie na poziomie AA) nie trafiają do tabeli.</li>
+            </ul>
+            <div class="toolbar toolbar--wrap">
+              <div class="field field--inline">
+                <label for="criteria-filter">Pokaż kryteria</label>
+                <select id="criteria-filter">
+                  <option value="">wszystkie</option>
+                  <option value="with-issues">z przypisanymi problemami</option>
+                  <option value="unconfirmed">z importu, niepotwierdzone</option>
+                  <option value="do weryfikacji">do weryfikacji</option>
+                  <option value="niespełnione">niespełnione</option>
+                  <option value="spełnione">spełnione</option>
+                  <option value="nie dotyczy">nie dotyczy</option>
+                </select>
+              </div>
+              <button class="button button--secondary" type="button" id="confirm-imported">Potwierdzam przejrzane oceny z importu</button>
+            </div>
+            <p id="criteria-count" class="muted"></p>
+            <p id="criteria-caption" class="scope-summary"></p>
+            <div id="criteria-body" class="crit-groups"></div>
           </section>
 
           <section class="step" data-section="summary" aria-labelledby="summary-heading" hidden>

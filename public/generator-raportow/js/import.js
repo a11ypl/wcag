@@ -112,7 +112,6 @@ function applyManifest(report, manifest) {
   setIfEmpty(meta, "websiteUrl", host);
   setIfEmpty(meta, "auditedEntity", safeUrl(host)?.hostname.replace(/^www\./, "") || "");
   if (window.start) {
-    setIfEmpty(meta, "auditDate", localDate(window.start));
     setIfEmpty(meta, "auditStartDate", localDate(window.start));
   }
   const end = window.ostatni_pomiar || window.koniec;
@@ -158,7 +157,7 @@ const MATRIX_STATUS = {
 };
 
 function applyMatrix(report, rows) {
-  if (rows.some((row) => /^tak$/i.test(row.nowe_w_2_2 || "")) && report.meta.standard !== "WCAG 2.2" && report.criteriaResults.every((item) => item.status === "niebadane" || item.autoFilled)) {
+  if (rows.some((row) => /^tak$/i.test(row.nowe_w_2_2 || "")) && report.meta.standard !== "WCAG 2.2" && report.criteriaResults.every((item) => item.status === "do weryfikacji" || item.autoFilled)) {
     report.meta.standard = "WCAG 2.2";
     refreshCriteria(report);
   }
