@@ -1,6 +1,6 @@
 Piktogramy dostępności w tym katalogu
 
-Pliki: napisy-na-zywo.svg, dostepnosc.svg
+Pliki: napisy-na-zywo.svg, napisy-polskie.svg, dostepnosc.svg
 
 Piktogramy: Tomasz Grabowski
 Prawa autorskie: Fundacja Kultury Bez Barier (https://kulturabezbarier.org/)
