@@ -1,0 +1,17 @@
+Piktogramy dostępności w tym katalogu
+
+Pliki: napisy-na-zywo.svg, dostepnosc.svg
+
+Piktogramy: Tomasz Grabowski
+Prawa autorskie: Fundacja Kultury Bez Barier (https://kulturabezbarier.org/)
+Opracowanie SVG (metadane, ARIA, unikalne identyfikatory, nazwy plików; kształty bez zmian): Jacek Zadrożny
+Źródło: https://github.com/JacZad/piktogramy-dostepnosci (commit 01bdec1, pobrane 22.10.2026)
+Licencja: Creative Commons Uznanie autorstwa - Na tych samych warunkach 4.0 Międzynarodowe (CC BY-SA 4.0)
+Pełny tekst licencji: https://creativecommons.org/licenses/by-sa/4.0/legalcode.pl
+
+Zmiany: brak. Pliki SVG są skopiowane bez zmian.
+
+Licencja CC BY-SA 4.0 dotyczy tylko piktogramów, nie całej strony a11yfirst.pl.
+Logotyp Fundacji Kultury Bez Barier nie jest objęty tą licencją i nie jest tu używany.
+Użycie piktogramów nie oznacza, że autor, Fundacja Kultury Bez Barier ani Jacek Zadrożny
+rekomendują Accessibility First lub Włącz Wizję.
