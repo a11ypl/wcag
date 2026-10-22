@@ -81,8 +81,10 @@
 
     body {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: clamp(18px, 3vh, 34px);
       overflow-x: hidden;
     }
 
@@ -122,14 +124,13 @@
     }
 
     header,
-    .home-intro,
-    footer {
+    .home-intro {
       grid-column: 1;
     }
 
     nav {
       grid-column: 2;
-      grid-row: 1 / span 3;
+      grid-row: 1 / span 2;
     }
 
     .logo {
@@ -271,6 +272,8 @@
     }
 
     footer {
+      width: min(1180px, 100%);
+      margin: 0 auto;
       color: var(--muted);
       font-size: clamp(0.75rem, 1.6vh, 0.875rem);
     }
@@ -319,8 +322,7 @@
 
       header,
       .home-intro,
-      nav,
-      footer {
+      nav {
         grid-column: 1;
       }
 
@@ -493,6 +495,11 @@
       </ul>
     </nav>
 
+<!-- generated:webinars:start -->
+<section class="home-webinars" aria-labelledby="home-webinars-title" data-lista-webinarow="linkWebinaryHome"><h2 id="home-webinars-title">Najbliższe webinary</h2><div class="training-grid"><article class="training-card" data-typ="webinar"><div class="training-card-image"><img src="/assets/webinary/2026/css-w-dostepnosci-cyfrowej/og-1200x628.webp" width="1200" height="628" alt="Ola w niebieskiej koszuli stoi profilem przy komputerze i wskazuje wyróżniony obrys prostokąta na ekranie z siatką, kontrastowymi polami i słupkami różnej wielkości." loading="lazy"></div><div class="training-card-body"><p class="training-type">Webinar · online · udział bezpłatny</p><h3>CSS w dostępności cyfrowej</h3><p class="training-date"><strong><time datetime="2026-11-05T17:30:00+01:00">5 listopada 2026, godz. 17:30-19:00</time></strong></p><p class="training-speaker"><strong>Prowadzenie: Aleksandra Migus</strong></p><p>Bezpłatny webinar online o tym, jak CSS wpływa na dostępność cyfrową. Prowadzi Aleksandra Migus.</p><a class="btn btn-primary" href="https://forms.gle/TsApx9d1GZmJ4kG58">Zapisz się na webinar</a></div></article></div><p id="linkWebinaryHome" hidden><a href="/webinary">Zapoznaj się ze wszystkimi webinarami</a></p></section>
+<!-- generated:webinars:end -->
+  </main>
+
     <footer>
       <p>Accessibility First / Włącz Wizję</p>
       <ul class="footer-links">
@@ -501,10 +508,6 @@
         <li><a href="/deklaracja">Deklaracja dostępności</a></li>
       </ul>
     </footer>
-<!-- generated:webinars:start -->
-<section class="home-webinars" aria-labelledby="home-webinars-title" data-lista-webinarow="linkWebinaryHome"><h2 id="home-webinars-title">Najbliższe webinary</h2><div class="training-grid"><article class="training-card" data-typ="webinar"><div class="training-card-image"><img src="/assets/webinary/2026/css-w-dostepnosci-cyfrowej/og-1200x628.webp" width="1200" height="628" alt="Ola w niebieskiej koszuli stoi profilem przy komputerze i wskazuje wyróżniony obrys prostokąta na ekranie z siatką, kontrastowymi polami i słupkami różnej wielkości." loading="lazy"></div><div class="training-card-body"><p class="training-type">Webinar · online · udział bezpłatny</p><h3>CSS w dostępności cyfrowej</h3><p class="training-date"><strong><time datetime="2026-11-05T17:30:00+01:00">5 listopada 2026, godz. 17:30-19:00</time></strong></p><p class="training-speaker"><strong>Prowadzenie: Aleksandra Migus</strong></p><p>Bezpłatny webinar online o tym, jak CSS wpływa na dostępność cyfrową. Prowadzi Aleksandra Migus.</p><a class="btn btn-primary" href="https://forms.gle/TsApx9d1GZmJ4kG58">Zapisz się na webinar</a></div></article></div><p id="linkWebinaryHome" hidden><a href="/webinary">Zapoznaj się ze wszystkimi webinarami</a></p></section>
-<!-- generated:webinars:end -->
-  </main>
     <script>
         // Link do pelnej listy webinarow pokazujemy dopiero, gdy webinarow jest
         // wiecej niz jeden - przy jednym prowadzilby do strony z ta sama karta.
