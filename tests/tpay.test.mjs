@@ -106,6 +106,43 @@ test("produkt z data waznosci da sie kupic do 23:59:59 czasu polskiego tego dnia
   }
 });
 
+// --- TEST 1 zl, usunac po tescie (razem z produktem test-produkcja) ---
+
+test("produkt testowy kosztuje 1 zl tylko do 29.10.2026 23:59 czasu polskiego", () => {
+  const przed = wycen("test-produkcja", null, 1, new Date("2026-10-29T22:59:00Z"));
+  assert.equal(przed.ok, true);
+  assert.equal(przed.kwotaGrosze, 100);
+  const po = wycen("test-produkcja", null, 1, new Date("2026-10-29T23:00:00Z"));
+  assert.equal(po.ok, false, "po 23:59 zakupu nie da sie zrobic");
+  assert.equal(po.powod, "produkt-niedostepny");
+});
+
+test("produkt testowy jest ukryty: w formularzu tylko z linku, bez /szkolenia", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const zapis = await readFile(new URL("../public/zapis.html", import.meta.url), "utf8");
+  const szkolenia = await readFile(new URL("../public/szkolenia.html", import.meta.url), "utf8");
+  for (const [klucz, p] of Object.entries(PRODUKTY)) {
+    if (!p.ukryty) continue;
+    const kontener = zapis.match(new RegExp(`<div[^>]*data-tylko-z-linku[^>]*>(?:(?!</div>)[\\s\\S])*value="${klucz}"`));
+    assert.ok(kontener, `${klucz}: radio musi byc w kontenerze data-tylko-z-linku`);
+    assert.match(kontener[0], /^<div[^>]*\bhidden\b/, `${klucz}: kontener domyslnie ukryty`);
+    assert.ok(!szkolenia.includes(klucz), `${klucz}: nie moze byc na /szkolenia`);
+  }
+  assert.equal(PRODUKTY["test-produkcja"].ukryty, true);
+});
+
+test("potwierdzenie dla produktu testowego wychodzi jak dla szkolenia", () => {
+  const z = rozlozIdentyfikator(`a11y-test-produkcja-s0-${UUID}`);
+  assert.equal(z.kluczProduktu, "test-produkcja");
+  const { temat, tekst, plikPdf, plikFormularza } = zbudujPotwierdzenie(z, {
+    kwota: "1.00", trId: "TR-PROD", czas: new Date("2026-10-29T12:00:00Z"),
+  });
+  assert.equal(temat, "Potwierdzenie zawarcia umowy: Test płatności (produkt techniczny), 29.10.2026");
+  assert.ok(tekst.includes("1,00 zł") && tekst.includes("TR-PROD"));
+  assert.equal(plikPdf, "regulamin-2026-09-29.pdf");
+  assert.equal(plikFormularza, "formularz-odstapienia-od-umowy.pdf");
+});
+
 test("nieznany produkt jest odrzucany, nie wyceniany", () => {
   assert.equal(wycen("nie-ma-takiego").ok, false);
 });

@@ -106,6 +106,17 @@ export const PRODUKTY = {
       },
     },
   },
+  // TEST 1 zl, USUNAC PO TESCIE. Transakcja testowa na produkcji po wdrozeniu
+  // Tpay (29.10.2026): tylko z linku /zapis?szkolenie=test-produkcja, nie ma
+  // go na /szkolenia, sprzedaz konczy sie 29.10.2026 o 23:59 czasu polskiego.
+  // Usuwa go commit przygotowany na galezi chore/tpay-usun-produkt-testowy.
+  "test-produkcja": {
+    nazwa: "Test płatności (produkt techniczny)",
+    termin: "29.10.2026",
+    cenaGrosze: 100,
+    ukryty: true,
+    wazneDo: "2026-10-29",
+  },
   // Kurs e-learningowy "Semantyczny HTML": start 01.12.2026, preorder od
   // pazdziernika, CENA NIEUSTALONA (stan na 28.09.2026). Produkt jest w
   // katalogu, bo mechanika tresci cyfrowych (zgoda na natychmiastowe
