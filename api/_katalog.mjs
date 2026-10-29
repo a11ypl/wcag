@@ -53,14 +53,23 @@ export const REGULAMIN = {
  * 2026-10-05 - jedno okno dla wszystkich trzech szkolen, potwierdzona przez
  * Damiana 23.09.2026. Uwaga: to NIE jest to samo okno, co dawna promocja na
  * kurs (28.09-05.10), ktora jest nieaktualna wraz z odlozeniem sprzedazy.
+ *
+ * Stan na 29.10.2026: warianty "webinar-2409" wygasly 05.10 i zostaja w
+ * katalogu jako nieaktywne (stary link pokazuje cene regularna z wyjasnieniem).
+ * Nie przedluzaj ich bez decyzji Damiana - nowa promocja = nowy wariant.
  */
 export const PRODUKTY = {
+  // Termin 28-30.10.2026 odwolany. Produkt zostaje w katalogu, bo
+  // potwierdzenia i ITN rozpoznaja go po identyfikatorze zamowienia, ale
+  // wSprzedazy: false blokuje wycene. Nowy termin = nowe pola termin i
+  // dataStartu, usuniecie flagi i radio w public/zapis.html.
   "wcag-dla-specjalistow": {
     nazwa: "WCAG dla specjalistów",
     podtytul: "jeśli zaczynasz",
     termin: "28-30.10.2026",
     dataStartu: "2026-10-28",
     cenaGrosze: 249900,
+    wSprzedazy: false,
     warianty: {
       "webinar-2409": {
         nazwa: "cena dla uczestników webinaru",

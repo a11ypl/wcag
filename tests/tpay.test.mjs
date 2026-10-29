@@ -19,6 +19,11 @@ PRODUKTY["dostepne-dokumenty"].warianty["test-wygasly"] = {
 PRODUKTY["dostepne-dokumenty"].warianty["test-zadrogi"] = {
   nazwa: "wariant drozszy od ceny regularnej", cenaGrosze: 999900,
 };
+// Wariant bez daty waznosci: sprawdza mechanike obnizki niezaleznie od tego,
+// czy w katalogu jest akurat jakas aktywna promocja.
+PRODUKTY["dostepne-dokumenty"].warianty["test-aktywny"] = {
+  nazwa: "wariant testowy", cenaGrosze: 159900,
+};
 
 // Kurs "Semantyczny HTML" nie jest w sprzedazy (cena nieustalona), wiec
 // mechanike tresci cyfrowych sprawdzamy na produkcie testowym.
@@ -27,19 +32,33 @@ PRODUKTY["test-tresc-cyfrowa"] = {
 };
 
 test("cena stala zgadza sie z cennikiem", () => {
-  assert.equal(wycen("wcag-dla-specjalistow").kwotaGrosze, 249900);
   assert.equal(wycen("ai-dla-audytora").kwotaGrosze, 199900);
   assert.equal(wycen("dostepne-dokumenty").kwotaGrosze, 199900);
 });
 
+test("WCAG dla specjalistow (termin 28-30.10 odwolany) nie jest w sprzedazy", () => {
+  const w = wycen("wcag-dla-specjalistow");
+  assert.equal(w.ok, false);
+  assert.equal(w.powod, "produkt-niedostepny");
+});
+
+test("ceny powebinarowe z 24.09 wygasly i zostaja nieaktywne", () => {
+  for (const klucz of ["ai-dla-audytora", "dostepne-dokumenty"]) {
+    const w = wycen(klucz, "webinar-2409");
+    assert.equal(w.kwotaGrosze, 199900, `${klucz}: cena regularna`);
+    assert.equal(w.wariant.zastosowany, false);
+    assert.equal(w.wariant.powod, "wariant-wygasl");
+  }
+});
+
 test("wariant z linku obniza cene do ustalonej kwoty", () => {
-  const w = wycen("wcag-dla-specjalistow", "webinar-2409");
-  assert.equal(w.kwotaGrosze, 199900);
+  const w = wycen("dostepne-dokumenty", "test-aktywny");
+  assert.equal(w.kwotaGrosze, 159900);
   assert.equal(w.wariant.zastosowany, true);
 });
 
 test("wielkosc liter i spacje w identyfikatorze wariantu nie maja znaczenia", () => {
-  assert.equal(wycen("wcag-dla-specjalistow", "  WEBINAR-2409 ").kwotaGrosze, 199900);
+  assert.equal(wycen("dostepne-dokumenty", "  TEST-AKTYWNY ").kwotaGrosze, 159900);
 });
 
 test("wariant nalezy do produktu - nie da sie go przeniesc na inny", () => {
@@ -65,9 +84,9 @@ test("wariant nie moze podniesc ceny ani jej wyzerowac", () => {
 });
 
 test("zmyslony wariant nie jest bledem - obowiazuje cena regularna", () => {
-  const w = wycen("wcag-dla-specjalistow", "wymyslony-przez-kupujacego");
+  const w = wycen("dostepne-dokumenty", "wymyslony-przez-kupujacego");
   assert.equal(w.ok, true);
-  assert.equal(w.kwotaGrosze, 249900);
+  assert.equal(w.kwotaGrosze, 199900);
 });
 
 test("nieznany produkt jest odrzucany, nie wyceniany", () => {
@@ -175,13 +194,21 @@ async function wywolajStart(cialo) {
 
 test("kwota podana przez przegladarke jest ignorowana", async () => {
   const { res, zadanie } = await wywolajStart({
-    produkt: "wcag-dla-specjalistow",
+    produkt: "ai-dla-audytora",
     imie: "Jan Kowalski",
     email: "jan@example.com",
     amount: 1, kwota: 1, cenaGrosze: 100, // proba podmiany ceny
   });
   assert.equal(res.kod, 200);
-  assert.equal(zadanie.amount, 2499, "serwer musi policzyc cene sam");
+  assert.equal(zadanie.amount, 1999, "serwer musi policzyc cene sam");
+});
+
+test("produktu wylaczonego ze sprzedazy nie da sie kupic z pominieciem formularza", async () => {
+  const { res, zadanie } = await wywolajStart({
+    produkt: "wcag-dla-specjalistow", imie: "Jan Kowalski", email: "jan@example.com",
+  });
+  assert.equal(res.kod, 400);
+  assert.equal(zadanie, undefined, "bez transakcji w Tpay");
 });
 
 test("identyfikator zamowienia nie jest zgadywalny i nie wycieka w adresach powrotu", async () => {
@@ -220,7 +247,7 @@ test("zgoda na natychmiastowe swiadczenie jest widoczna w identyfikatorze", asyn
 
 test("szkolenie z terminem nie dostaje znacznika tresci cyfrowych", async () => {
   const { zadanie } = await wywolajStart({
-    produkt: "wcag-dla-specjalistow", imie: "Jan Kowalski", email: "jan@example.com",
+    produkt: "dostepne-dokumenty", imie: "Jan Kowalski", email: "jan@example.com",
     natychmiast: true,
   });
   assert.ok(!/-n[01]-/.test(zadanie.hiddenDescription), "znacznik dotyczy tylko tresci cyfrowych");
@@ -341,9 +368,11 @@ test("oswiadczenia o wczesniejszym rozpoczeciu nie sa wymagane ani zaznaczone", 
 test("informacja o metodach platnosci jest przed przyciskiem, a kurs bez ceny nie jest w ofercie", () => {
   assert.ok(formularz.indexOf("Jak przebiega płatność") < formularz.indexOf("Zamawiam z obowiązkiem zapłaty"));
   assert.ok(!formularz.includes('value="semantyczny-html"'));
-  // WCAG dla specjalistow nie ma terminu od 04.10 (decyzja Damiana, PR #49 na main):
-  // nie sprzedajemy go z formularza, dopoki nie bedzie nowej daty w katalogu i na /szkolenia.
+  // WCAG dla specjalistow: termin 28-30.10 odwolany, na /szkolenia "termin do ustalenia".
+  // Nie sprzedajemy go z formularza, dopoki nie bedzie nowej daty w katalogu i na /szkolenia.
   assert.ok(!formularz.includes('value="wcag-dla-specjalistow"'));
+  assert.match(formularz, /value="ai-dla-audytora"[\s\S]*?9-10\.11\.2026, 1999 zł/);
+  assert.match(formularz, /value="dostepne-dokumenty"[\s\S]*?26-27\.11\.2026, 1999 zł/);
   assert.ok(!/[\u2013\u2014]/.test(formularz), "bez polpauz i pauz w tekscie dla klienta");
 });
 
