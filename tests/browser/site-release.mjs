@@ -50,12 +50,12 @@ try {
   console.log(`PASS: ${htmlFiles.length} pages, headings, language, scripts and stable header`);
 
   const money = text => Number(text.replace(/[^\d,]/g, '').replace(',', '.'));
-  for (const path of ['sklep', 'szkolenie-ai-asystent', 'szkolenie-poglebiajace', 'wcag-dla-specjalistow']) {
+  for (const path of ['sklep', 'szkolenie-ai-asystent', 'szkolenie-dostepne-dokumenty', 'szkolenie-poglebiajace', 'wcag-dla-specjalistow']) {
     await page.goto(`http://a11yfirst.test/${path}`);
     assert.equal(await page.locator('[id*="discount"], .checkout-discount').count(), 0, `${path}: discount field`);
     assert.doesNotMatch(await page.locator('body').textContent(), /kod rabatowy|jestemwgrupie/i, `${path}: discount text`);
   }
-  for (const [path, prefix, price] of [['szkolenie-ai-asystent', 'ai', 1999], ['szkolenie-poglebiajace', 'poglebiajace', 1649]]) {
+  for (const [path, prefix, price] of [['szkolenie-ai-asystent', 'ai', 1999], ['szkolenie-dostepne-dokumenty', 'doc', 1999], ['szkolenie-poglebiajace', 'poglebiajace', 1649]]) {
     await page.goto(`http://a11yfirst.test/${path}`);
     assert.equal(money(await page.locator(`#${prefix}TotalPrice`).textContent()), price);
   }

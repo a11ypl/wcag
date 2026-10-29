@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator raportów dostępności — Accessibility First</title>
+  <meta name="description" content="Bezpłatny generator raportów z audytu dostępności cyfrowej WCAG 2.1 i 2.2. Dostępne raporty HTML, Markdown, DOCX i PDF. Dane nie opuszczają Twojego komputera.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/generator-raportow/img/a11yfirst-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/generator-raportow/styles.css">
+  <link rel="stylesheet" href="/generator-raportow/site-chrome.css">
+  <script type="module" src="/generator-raportow/js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do głównej treści</a>
+
+    <header>
+        <div class="container header-content">
+            <a class="site-banner" href="/" aria-label="Accessibility First - strona główna">
+                <img class="site-banner-full" src="/assets/accessibility-first-logo-transparent.png" alt="" aria-hidden="true"><img class="site-banner-icon" src="/assets/a11yfirst-icon.svg?v=8" alt="" aria-hidden="true">
+            </a>
+            <nav aria-label="Menu główne">
+                <a href="/o-nas">O nas</a>
+                <a href="/szkolenia">Szkolenia</a>
+                <a href="/audyty">Audyty</a>
+                <a href="/sklep">Sklep</a>
+                <a href="/baza-wiedzy">Baza wiedzy</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+                <a href="/kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+  <main id="main" tabindex="-1">
+    <section class="intro container" aria-labelledby="page-title">
+      <p class="eyebrow">Narzędzie dla audytorów</p>
+      <h1 id="page-title">Generator raportów dostępności</h1>
+      <p class="lead">Przygotuj raport z audytu WCAG 2.1 lub 2.2 i pobierz go jako HTML, Markdown, DOCX albo PDF. Każdy format ma nagłówki, tabele z opisanymi kolumnami, teksty alternatywne i ustawiony język.</p>
+      <div class="privacy-note">
+        <h2>Twoje dane zostają u Ciebie</h2>
+        <p>Generator działa w całości w przeglądarce. Treść raportu nie jest wysyłana na żaden serwer. Projekt zapisuje się automatycznie w pamięci tej przeglądarki — zapisz plik projektu, jeśli chcesz pracować na innym komputerze.</p>
+      </div>
+      <p class="honesty-note">Generator nie wykonuje audytu i nie ocenia zgodności. Porządkuje ustalenia audytora. Wyniki z narzędzi automatycznych trafiają do raportu jako wymagające potwierdzenia.</p>
+    </section>
+
+    <div class="container project-bar">
+      <h2 class="visually-hidden">Bieżący audyt</h2>
+      <p class="current-audit" id="current-audit"></p>
+      <div class="project-bar__actions">
+        <button class="button button--secondary" type="button" id="toggle-register" aria-controls="register" aria-expanded="false">Rejestr audytów</button>
+        <button class="button" type="button" id="new-audit">Nowy audyt</button>
+        <button class="button button--secondary" type="button" id="open-files">Wczytaj pliki</button>
+        <input class="visually-hidden" id="import-files" type="file" multiple accept=".json,.csv,application/json,text/csv" tabindex="-1" aria-hidden="true">
+        <button class="button button--secondary" type="button" id="download-json">Zapisz projekt (JSON)</button>
+      </div>
+      <details class="import-help">
+        <summary>Jakie pliki można wczytać?</summary>
+        <ul>
+          <li><strong>Projekt raportu</strong> zapisany w tym generatorze (JSON), także z Raportownika.</li>
+          <li><strong>Wyniki badania automatycznego w formacie wcagus</strong> — zaznacz razem pliki <code>macierz-kryteriow.csv</code>, <code>ustalenia.csv</code> i <code>manifest-wykonania.json</code>.</li>
+          <li><strong>Wyniki axe-core</strong> (JSON), np. z axe DevTools, Playwright lub narzędzi CI.</li>
+        </ul>
+        <p>Wczytane wyniki dopisują się do bieżącego audytu. Wczytany projekt trafia do rejestru jako nowy audyt — nic nie zostaje nadpisane.</p>
+      </details>
+    </div>
+
+    <div id="status-region" class="status-region" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <section class="container register" id="register" aria-labelledby="register-heading" hidden>
+      <h2 id="register-heading" tabindex="-1">Rejestr audytów</h2>
+      <p class="muted" id="register-storage"></p>
+      <div class="field field--inline register-search">
+        <label for="register-filter">Szukaj</label>
+        <input type="search" id="register-filter" autocomplete="off" aria-describedby="register-count">
+      </div>
+      <p class="muted" id="register-count" aria-live="polite"></p>
+      <ol class="register-list" id="register-list"></ol>
+    </section>
+
+    <div class="container app-shell">
+      <nav class="step-nav" aria-label="Kroki generatora">
+        <ol>
+          <li><button type="button" data-step="meta" aria-current="step"><span class="step-number" aria-hidden="true">1</span> Dane raportu</button></li>
+          <li><button type="button" data-step="views"><span class="step-number" aria-hidden="true">2</span> Zakres i widoki</button></li>
+          <li><button type="button" data-step="tools"><span class="step-number" aria-hidden="true">3</span> Narzędzia i środowisko</button></li>
+          <li><button type="button" data-step="criteria"><span class="step-number" aria-hidden="true">4</span> Wyniki WCAG</button></li>
+          <li><button type="button" data-step="issues"><span class="step-number" aria-hidden="true">5</span> Problemy</button></li>
+          <li><button type="button" data-step="summary"><span class="step-number" aria-hidden="true">6</span> Podsumowanie</button></li>
+          <li><button type="button" data-step="preview"><span class="step-number" aria-hidden="true">7</span> Podgląd i pobieranie</button></li>
+        </ol>
+      </nav>
+
+      <div class="main-column">
+        <aside class="summary-panel" aria-labelledby="metrics-heading">
+          <h2 id="metrics-heading">Raport w liczbach</h2>
+          <dl class="metrics">
+            <div><dt>Widoki</dt><dd id="metric-views">0</dd></div>
+            <div><dt>Problemy</dt><dd id="metric-issues">0</dd></div>
+            <div><dt>Priorytet 1</dt><dd id="metric-priority">0</dd></div>
+            <div><dt>Kryteria niespełnione</dt><dd id="metric-failed">0</dd></div>
+            <div><dt>Kryteria bez oceny</dt><dd id="metric-untested">0</dd></div>
+          </dl>
+          <p id="completeness" class="completeness"></p>
+          <p class="muted" id="autosave-state">Projekt zapisuje się automatycznie w tej przeglądarce.</p>
+        </aside>
+      <div class="workspace">
+        <div id="error-summary" class="error-summary" tabindex="-1" hidden>
+          <h2 id="error-summary-heading">Raport wymaga uzupełnienia</h2>
+          <p>Możesz pobrać wersję roboczą — będzie oznaczona jako robocza. Przed przekazaniem raportu uzupełnij poniższe dane.</p>
+          <ul id="error-list"></ul>
+        </div>
+
+        <form id="generator-form" novalidate>
+          <section class="step" data-section="meta" aria-labelledby="meta-heading">
+            <p class="step-kicker">Krok 1 z 7</p>
+            <h2 id="meta-heading" tabindex="-1">Dane raportu</h2>
+            <p>Zacznij od zakresu: względem czego robisz audyt. Generator dobierze listę wymagań i podpowie podstawę prawną.</p>
+            <fieldset class="choice-group" id="framework-group">
+              <legend>Względem czego robisz audyt?</legend>
+              <div class="choice-grid" id="framework-choices"></div>
+            </fieldset>
+            <fieldset class="choice-group" id="version-group">
+              <legend id="version-legend">Wersja</legend>
+              <div class="choice-grid" id="version-choices"></div>
+            </fieldset>
+            <fieldset class="choice-group" id="level-group">
+              <legend>Poziom zgodności</legend>
+              <div class="choice-grid choice-grid--compact" id="level-choices"></div>
+              <p class="field-help" id="level-note"></p>
+            </fieldset>
+            <fieldset class="choice-group" id="extras-group" hidden>
+              <legend>Wymagania dodatkowe standardu</legend>
+              <p class="field-help">Zaznacz, jeśli badanie je obejmuje. Trafią do tabeli wymagań obok kryteriów WCAG.</p>
+              <div id="extras-choices"></div>
+            </fieldset>
+            <p class="scope-summary" id="scope-summary" role="status"></p>
+            <h3>Dane badania</h3>
+            <div class="form-grid">
+              <div class="field">
+                <label for="signature">Sygnatura audytu</label>
+                <input id="signature" data-meta="signature" autocomplete="off" aria-describedby="signature-help">
+                <p class="field-help" id="signature-help">Numer w rejestrze, nadawany automatycznie. Nie pojawia się w raporcie.</p>
+              </div>
+              <div class="field">
+                <label for="audit-status">Stan audytu</label>
+                <select id="audit-status" data-meta="auditStatus"><option>w toku</option><option>do przeglądu</option><option>przekazany klientowi</option><option>audyt ponowny</option><option>zamknięty</option></select>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="field field--wide">
+                <label for="report-title">Tytuł raportu <span class="required">(wymagane)</span></label>
+                <input id="report-title" data-meta="reportTitle" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="audited-entity">Nazwa podmiotu <span class="required">(wymagane)</span></label>
+                <input id="audited-entity" data-meta="auditedEntity" autocomplete="organization">
+              </div>
+              <div class="field">
+                <label for="sector">Sektor</label>
+                <select id="sector" data-meta="sector" aria-describedby="sector-help">
+                  <option value="">Nie wskazano</option>
+                  <option value="publiczny">publiczny</option>
+                  <option value="prywatny">prywatny</option>
+                </select>
+                <p class="field-help" id="sector-help">Podmioty publiczne obowiązuje ustawa o dostępności cyfrowej, prywatne — m.in. Europejski akt o dostępności.</p>
+              </div>
+              <div class="field">
+                <label for="website-url">Adres badanego serwisu <span class="required">(wymagane)</span></label>
+                <input id="website-url" data-meta="websiteUrl" type="url" inputmode="url" autocomplete="url" aria-describedby="website-help">
+                <p class="field-help" id="website-help">Pełny adres, np. https://przyklad.pl.</p>
+              </div>
+              <div class="field">
+                <label for="audit-date">Data audytu <span class="required">(wymagane)</span></label>
+                <input id="audit-date" data-meta="auditDate" type="date">
+              </div>
+              <div class="field">
+                <label for="audit-start-date">Początek badania</label>
+                <input id="audit-start-date" data-meta="auditStartDate" type="date">
+              </div>
+              <div class="field">
+                <label for="audit-end-date">Koniec badania</label>
+                <input id="audit-end-date" data-meta="auditEndDate" type="date">
+              </div>
+              <div class="field">
+                <label for="report-created-at">Data sporządzenia raportu</label>
+                <input id="report-created-at" data-summary="reportCreatedAt" type="date">
+              </div>
+              <div class="field">
+                <label for="experts">Zespół audytorski</label>
+                <textarea id="experts" data-meta-list="experts" rows="3" aria-describedby="experts-help"></textarea>
+                <p class="field-help" id="experts-help">Jedna osoba w wierszu.</p>
+              </div>
+              <div class="field">
+                <label for="auditing-organization">Organizacja audytująca</label>
+                <input id="auditing-organization" data-meta="auditingOrganization" autocomplete="organization">
+              </div>
+              <div class="field field--wide">
+                <label for="legal-basis">Podstawa prawna</label>
+                <textarea id="legal-basis" data-meta-list="legalBasis" data-suggest="legalBasis" rows="4" aria-describedby="legal-help"></textarea>
+                <p class="field-help" id="legal-help">Akty prawne, na podstawie których prowadzisz audyt — każdy w osobnym wierszu. Zacznij pisać (np. „2019”, „cyfrowej”, „akt dostępności”), a pojawią się propozycje; najpierw te dla wybranego sektora. Możesz też wpisać własny akt. Normy i wytyczne (WCAG, EN 301 549) opisuje pole „Standard”.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="step" data-section="views" aria-labelledby="views-heading" hidden>
+            <p class="step-kicker">Krok 2 z 7</p>
+            <h2 id="views-heading" tabindex="-1">Zakres i widoki</h2>
+            <div class="form-grid">
+              <div class="field field--wide">
+                <label for="audit-scope">Opis zakresu badania</label>
+                <textarea id="audit-scope" data-suggest="auditScope" data-meta="auditScope" rows="5" aria-describedby="scope-help"></textarea>
+                <p class="field-help" id="scope-help">Pusta linia rozpoczyna nowy akapit.</p>
+              </div>
+              <div class="field field--wide">
+                <label for="methodology">Metodyka</label>
+                <textarea id="methodology" data-suggest="methodology" data-meta-list="methodology" rows="4" aria-describedby="methodology-help"></textarea>
+                <p class="field-help" id="methodology-help">Każdy element metodyki w osobnym wierszu.</p>
+              </div>
+            </div>
+            <fieldset class="choice-group" id="sample-group">
+              <legend>Wielkość próby</legend>
+              <div class="choice-grid choice-grid--compact" id="sample-choices"></div>
+              <div class="field sample-number" id="sample-custom-field">
+                <label for="sample-custom">Liczba stron lub widoków w próbie</label>
+                <input id="sample-custom" type="number" min="1" max="500" step="1" inputmode="numeric" data-sample-number aria-describedby="sample-status">
+              </div>
+              <p class="field-help" id="sample-status"></p>
+            </fieldset>
+            <div class="form-grid">
+              <div class="field field--wide">
+                <label for="excluded-elements">Elementy wyłączone z badania</label>
+                <textarea id="excluded-elements" data-meta="excludedElements" data-suggest="excludedElements" rows="3" aria-describedby="excluded-help"></textarea>
+                <p class="field-help" id="excluded-help">Np. treści z serwisów zewnętrznych, archiwum, część za logowaniem. Zostaw puste, jeśli nic nie wyłączono.</p>
+              </div>
+              <div class="field field--wide">
+                <label for="limitations">Ograniczenia badania</label>
+                <textarea id="limitations" data-meta="limitations" data-suggest="limitations" rows="3" aria-describedby="limitations-help"></textarea>
+                <p class="field-help" id="limitations-help">Co mogło wpłynąć na wynik, np. brak dostępu do środowiska testowego, zmiany treści w trakcie badania.</p>
+              </div>
+            </div>
+            <div class="toolbar">
+              <h3>Badane widoki</h3>
+              <button class="button" type="button" id="add-view">Dodaj widok</button>
+            </div>
+            <div id="view-list" class="card-list"></div>
+          </section>
+
+          <section class="step" data-section="tools" aria-labelledby="tools-heading" hidden>
+            <p class="step-kicker">Krok 3 z 7</p>
+            <h2 id="tools-heading" tabindex="-1">Przeglądarki, technologie asystujące i środowisko</h2>
+            <p>Dodaj, czego użyto w badaniu — zacznij pisać, a pojawią się propozycje. Wersję wpisz, jeśli ma się znaleźć w raporcie; puste pole oznacza samą nazwę.</p>
+            <div class="tech-groups">
+              <section class="tech-group" aria-labelledby="tech-browser-heading">
+                <h3 id="tech-browser-heading">Przeglądarki</h3>
+                <div id="tech-browser"></div>
+              </section>
+              <section class="tech-group" aria-labelledby="tech-reader-heading">
+                <h3 id="tech-reader-heading">Czytniki ekranu</h3>
+                <div id="tech-reader"></div>
+              </section>
+              <section class="tech-group" aria-labelledby="tech-other-heading">
+                <h3 id="tech-other-heading">Inne technologie asystujące</h3>
+                <div id="tech-other"></div>
+              </section>
+            </div>
+            <h3>Narzędzia i metody testowania</h3>
+            <p class="field-help">Każda pozycja w osobnym wierszu.</p>
+            <div class="form-grid">
+              <div class="field"><label for="manual-tools">Testy manualne</label><textarea id="manual-tools" data-suggest="manualTools" data-tool-list="manual" rows="4"></textarea></div>
+              <div class="field"><label for="automatic-tools">Narzędzia automatyczne</label><textarea id="automatic-tools" data-suggest="automaticTools" data-tool-list="automatic" rows="4"></textarea></div>
+              <div class="field field--wide"><label for="user-testing">Testy z udziałem użytkowników</label><textarea id="user-testing" data-suggest="userTesting" data-tool-list="userTesting" rows="4"></textarea></div>
+            </div>
+            <div class="toolbar">
+              <h3>Środowiska testowe</h3>
+              <button class="button" type="button" id="add-environment">Dodaj puste środowisko</button>
+            </div>
+            <div class="chips" role="group" aria-labelledby="env-presets-label"><span class="field-label" id="env-presets-label">Dodaj gotowe:</span><span id="environment-presets"></span></div>
+            <div id="environment-list" class="card-list"></div>
+          </section>
+
+          <section class="step" data-section="criteria" aria-labelledby="criteria-heading" hidden>
+            <p class="step-kicker">Krok 4 z 7</p>
+            <h2 id="criteria-heading" tabindex="-1">Wyniki WCAG</h2>
+            <p>Generator proponuje status „niespełnione” dla kryteriów, do których przypisano problem typu błąd. Brak problemu nie oznacza spełnienia kryterium — decyzję podejmuje audytor.</p>
+            <div class="toolbar toolbar--wrap">
+              <div class="field field--inline">
+                <label for="criteria-filter">Pokaż kryteria</label>
+                <select id="criteria-filter">
+                  <option value="">wszystkie</option>
+                  <option value="with-issues">z przypisanymi problemami</option>
+                  <option value="unconfirmed">z importu, niepotwierdzone</option>
+                  <option value="niebadane">niebadane</option>
+                  <option value="do weryfikacji">do weryfikacji</option>
+                  <option value="niespełnione">niespełnione</option>
+                  <option value="spełnione">spełnione</option>
+                  <option value="nie dotyczy">nie dotyczy</option>
+                </select>
+              </div>
+              <button class="button button--secondary" type="button" id="confirm-imported">Potwierdzam przejrzane oceny z importu</button>
+            </div>
+            <p id="criteria-count" class="muted"></p>
+            <p id="criteria-caption" class="scope-summary"></p>
+            <div id="criteria-body" class="crit-groups"></div>
+          </section>
+
+          <section class="step" data-section="issues" aria-labelledby="issues-heading" hidden>
+            <p class="step-kicker">Krok 5 z 7</p>
+            <h2 id="issues-heading" tabindex="-1">Problemy dostępności</h2>
+            <p>Każdy problem typu błąd wymaga kryterium WCAG, opisu, wpływu na użytkowników i rekomendacji. Obraz informacyjny wymaga tekstu alternatywnego.</p>
+            <div class="filters" role="group" aria-labelledby="filters-heading">
+              <h3 id="filters-heading">Filtruj listę</h3>
+              <div class="form-grid form-grid--compact">
+                <div class="field"><label for="filter-view">Widok</label><select id="filter-view"></select></div>
+                <div class="field"><label for="filter-severity">Priorytet</label><select id="filter-severity"></select></div>
+                <div class="field"><label for="filter-criterion">Kryterium</label><select id="filter-criterion"></select></div>
+                <div class="field"><label for="filter-confirmed">Potwierdzenie</label><select id="filter-confirmed"><option value="">wszystkie</option><option value="no">niepotwierdzone z importu</option></select></div>
+              </div>
+            </div>
+            <div class="add-panel">
+              <h3>Dodaj problem</h3>
+              <div class="add-panel__row">
+                <div class="field">
+                  <label for="block-picker">Opisz problem kilkoma słowami</label>
+                  <input type="search" id="block-picker" data-suggest="newIssue" autocomplete="off" aria-describedby="block-picker-help">
+                  <p class="field-help" id="block-picker-help">Np. „przycisk bez nazwy”, „kontrast”, „fokus”. Wybierz gotowy opis — kryteria WCAG zaznaczą się same. Wszystko możesz potem zmienić.</p>
+                </div>
+                <button class="button button--secondary" type="button" id="add-issue">Dodaj pusty problem</button>
+              </div>
+            </div>
+            <fieldset class="choice-group view-toggle">
+              <legend>Pokaż problemy</legend>
+              <div class="choice-grid choice-grid--compact">
+                <label class="choice"><input type="radio" name="issue-view" value="problems" checked> według problemów</label>
+                <label class="choice"><input type="radio" name="issue-view" value="criteria"> według kryteriów sukcesu</label>
+              </div>
+            </fieldset>
+            <div class="toolbar">
+              <h3 id="issue-list-heading">Lista problemów</h3>
+            </div>
+            <p id="issue-count" class="muted"></p>
+            <div class="issues-layout">
+              <nav class="issue-nav" aria-labelledby="issue-list-heading">
+                <div id="issue-list"></div>
+                <div id="criteria-view" class="criteria-view" hidden></div>
+              </nav>
+              <div id="issue-editor" class="issue-editor-wrap"></div>
+            </div>
+          </section>
+
+          <section class="step" data-section="summary" aria-labelledby="summary-heading" hidden>
+            <p class="step-kicker">Krok 6 z 7</p>
+            <h2 id="summary-heading" tabindex="-1">Podsumowanie</h2>
+            <p>Ocena końcowa jest decyzją audytora. Generator nie certyfikuje zgodności.</p>
+            <div class="form-grid">
+              <div class="field field--wide">
+                <label for="executive-summary">Streszczenie menedżerskie</label>
+                <textarea id="executive-summary" data-summary="executiveSummary" data-suggest="executiveSummary" rows="6" aria-describedby="executive-help"></textarea>
+                <p class="field-help" id="executive-help">Pierwsza sekcja raportu, dla osób decyzyjnych: 4–6 zdań bez żargonu — co zbadano, ile jest problemów, co naprawić najpierw i co z tego wynika. Pusta linia rozpoczyna nowy akapit.</p>
+                <div><button class="button button--small button--secondary" type="button" data-action="draft-summary">Wstaw szkic z danych raportu</button></div>
+              </div>
+              <div class="field">
+                <label for="overall-conformance">Stopień zgodności</label>
+                <select id="overall-conformance" data-summary="overallConformance">
+                  <option value="">Nie określono</option>
+                  <option>zgodna</option>
+                  <option>częściowo zgodna</option>
+                  <option>niezgodna</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="conformance-percent">Procent spełnionych kryteriów</label>
+                <input id="conformance-percent" data-summary-number="conformancePercent" type="number" min="0" max="100" step="0.1" aria-describedby="percent-help">
+                <p class="field-help" id="percent-help"></p>
+              </div>
+              <div class="field field--wide"><label for="main-problems">Główne problemy</label><textarea id="main-problems" data-suggest="mainProblems" data-summary-list="mainProblems" rows="4" aria-describedby="one-per-line"></textarea></div>
+              <div class="field field--wide"><label for="recommended-actions">Rekomendowane działania</label><textarea id="recommended-actions" data-suggest="recommendedActions" data-summary-list="recommendedActions" rows="4" aria-describedby="one-per-line"></textarea><p class="field-help" id="one-per-line">Jedna pozycja w wierszu.</p></div>
+              <div class="field field--wide"><label for="final-recommendation">Rekomendacja końcowa</label><textarea id="final-recommendation" data-suggest="finalRecommendation" data-summary="finalRecommendation" rows="4"></textarea></div>
+              <div class="field"><label for="reaudit-deadline">Termin ponownego audytu</label><input id="reaudit-deadline" data-summary="reauditDeadline" type="date"></div>
+              <div class="field field--wide"><label for="disclaimer">Nota o zakresie raportu</label><textarea id="disclaimer" data-suggest="disclaimers" data-summary="disclaimer" rows="4"></textarea></div>
+            </div>
+            <details class="guide">
+              <summary>Co oznaczają priorytety?</summary>
+              <ul>
+                <li><strong>Priorytet 1</strong> — do naprawy w pierwszej kolejności.</li>
+                <li><strong>Priorytet 2</strong> — do naprawy w drugiej kolejności.</li>
+                <li><strong>Priorytet 3</strong> — do wdrożenia na końcu (rekomendacje).</li>
+              </ul>
+            </details>
+          </section>
+
+          <section class="step" data-section="preview" aria-labelledby="preview-heading" hidden>
+            <p class="step-kicker">Krok 7 z 7</p>
+            <h2 id="preview-heading" tabindex="-1">Podgląd i pobieranie</h2>
+            <p id="page-estimate" class="scope-summary"></p>
+            <p id="draft-state" class="muted"></p>
+            <fieldset class="choice-group">
+              <legend>Układ szczegółowej analizy w raporcie</legend>
+              <div class="choice-grid choice-grid--compact">
+                <label class="choice"><input type="radio" name="report-grouping" value="problems"> według problemów</label>
+                <label class="choice"><input type="radio" name="report-grouping" value="criteria"> według kryteriów sukcesu</label>
+                <label class="choice"><input type="radio" name="report-grouping" value="views"> według widoków (jak w szablonie a11yfirst)</label>
+              </div>
+              <p class="field-help">W obu układach tabela zgodności ma linki do problemów, a każdy problem — linki do kryteriów.</p>
+            </fieldset>
+            <div class="export-grid">
+              <button class="button" type="button" data-export="docx">Pobierz DOCX</button>
+              <button class="button" type="button" data-export="html">Pobierz HTML</button>
+              <button class="button" type="button" data-export="pdf">Zapisz jako PDF</button>
+              <button class="button" type="button" data-export="md">Pobierz Markdown</button>
+            </div>
+            <details class="guide" id="pdf-help-details">
+              <summary>Jak zapisać dostępny PDF?</summary>
+              <div id="pdf-help">
+                <p>PDF powstaje z wersji HTML przez okno drukowania przeglądarki. W oknie wybierz „Zapisz jako PDF”.</p>
+                <ul>
+                  <li>Użyj <strong>Chrome</strong> lub <strong>Edge</strong> — zapisują PDF ze znacznikami (strukturą nagłówków, tabel i tekstów alternatywnych).</li>
+                  <li>Safari i część wersji Firefoksa zapisują PDF bez znaczników — taki plik nie jest dostępny.</li>
+                  <li>Nie zaznaczaj opcji „Uprość stronę” ani drukowania jako obraz.</li>
+                  <li>Przed wysłaniem sprawdź plik w PAC (PDF Accessibility Checker) albo w Acrobat Pro.</li>
+                </ul>
+                <p>Najpełniej kontrolowany PDF uzyskasz z pliku DOCX: otwórz go w Wordzie i wybierz Plik → Zapisz jako → PDF z zaznaczonym „Znaczniki struktury dokumentu dla ułatwień dostępu”.</p>
+              </div>
+            </details>
+            <h3>Podgląd raportu</h3>
+            <p class="field-help">Chcesz coś poprawić? Kliknij dwukrotnie akapit w podglądzie — przejdziesz prosto do jego pola w formularzu.</p>
+            <iframe id="report-preview" class="report-preview" title="Podgląd raportu" sandbox="allow-same-origin"></iframe>
+          </section>
+
+          <div class="form-actions">
+            <button class="button button--secondary" type="button" id="previous-step">Poprzedni krok</button>
+            <button class="button" type="button" id="next-step">Następny krok</button>
+          </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Kontakt: <a href="mailto:a11y@wlaczwizje.pl">a11y@wlaczwizje.pl</a></p>
+            </div>
+            <nav aria-label="Dokumenty prawne" class="footer-nav">
+                <a href="/regulamin">Regulamin świadczenia usług</a>
+                <a href="/polityka-prywatnosci">Polityka prywatności i Cookies</a>
+                <a href="/deklaracja">Deklaracja dostępności</a>
+            </nav>
+            <div class="footer-social">
+                <a href="https://wlaczwizje.pl" target="_blank" rel="noopener noreferrer">Włącz Wizję<span class="sr-only"> (otwiera się w nowym oknie)</span></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Włącz Wizję. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -12,11 +12,30 @@
   },
   "rewrites": [
     {
+      "source": "/materialy/trener",
+      "destination": "/api/materialy-trenera"
+    },
+    {
       "source": "/",
       "destination": "/index.html"
     }
   ],
   "redirects": [
+    {
+      "source": "/materialy/sdc-grupy-dae286",
+      "destination": "/materialy/sdc-99-3-e1599b/",
+      "permanent": true
+    },
+    {
+      "source": "/materialy/sdc-grupy-dae286/",
+      "destination": "/materialy/sdc-99-3-e1599b/",
+      "permanent": true
+    },
+    {
+      "source": "/materialy/sdc-grupy-dae286/(.*)",
+      "destination": "/materialy/sdc-99-3-e1599b/$1",
+      "permanent": true
+    },
     {
       "source": "/kurs",
       "destination": "/kurs-semantyczny-html",
@@ -80,6 +99,33 @@
   ],
   "headers": [
     {
+      "source": "/generator-raportow",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/generator-raportow/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/materialy/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [
         {
@@ -114,6 +160,15 @@
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=31536000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
+      "source": "/materialy/z-2f063b9e/andi/cwiczenie(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://lepszyweb.pl https://ajax.googleapis.com https://auditor.sitelint.com; style-src 'self' 'unsafe-inline' https://lepszyweb.pl; img-src 'self' data: https:; connect-src 'self' https://lepszyweb.pl https://api.web3forms.com https://auditor.sitelint.com; form-action 'self' mailto: https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
         }
       ]
     }

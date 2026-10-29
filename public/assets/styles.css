@@ -5741,3 +5741,101 @@ footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: 
     font-weight: 700;
     margin-top: 1rem;
 }
+
+/* Dostępność wydarzenia: piktogramy z podpisem tekstowym (22.10.2026).
+   Ikona ma alt="", bo nazwa udogodnienia stoi obok jako tekst (WCAG 1.1.1).
+   Białe tło pod ikoną: wypełnienie #1d1d1b daje ok. 16,9:1 (WCAG 1.4.11).
+   Rozmiar w rem, żeby ikona rosła razem z tekstem. */
+.event-access .event-access-list {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.event-access .event-access-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+}
+
+.event-access .event-access-icon {
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    background: white;
+}
+
+.event-access .event-access-name {
+    color: black;
+    font-weight: 800;
+    margin: 0 0 0.25rem;
+}
+
+.event-access .event-access-item p {
+    color: black;
+    margin: 0;
+}
+
+.event-access p {
+    color: black;
+    max-width: 75ch;
+}
+
+.event-access a,
+.event-access a:visited {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.event-access a:hover {
+    color: black;
+}
+
+.event-access .event-access-credits {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+
+.knowledge-article.event-access {
+    padding-block: 2.5rem;
+}
+
+.pictogram-example {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    list-style: none;
+    margin: 1rem 0 1.5rem;
+    padding: 0;
+}
+
+.pictogram-example li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: black;
+    font-weight: 700;
+}
+
+.pictogram-example img {
+    width: 3rem;
+    height: 3rem;
+    background: white;
+}
+
+.knowledge-panel blockquote {
+    border-left: 4px solid var(--primary);
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background: #faf7ff;
+    color: black;
+}

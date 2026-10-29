@@ -3,6 +3,15 @@ window.A11yFirstCheckout = (() => {
     // Wersja regulaminu zapisywana w zgloszeniu jako dowod, ktora wersje zaakceptowal kupujacy.
     const REGULAMIN_WERSJA = '2026-09-29';
 
+    // Numer zamowienia = tytul przelewu. Format AF-RRMMDD-NNNN (data w czasie polskim),
+    // zeby wyciag dalo sie rozliczyc po samym numerze z maila z zamowieniem.
+    function createOrderNumber() {
+        const parts = Object.fromEntries(new Intl.DateTimeFormat('pl-PL', { timeZone: 'Europe/Warsaw', year: '2-digit', month: '2-digit', day: '2-digit' })
+            .formatToParts(new Date()).map((part) => [part.type, part.value]));
+        const random = window.crypto && window.crypto.getRandomValues ? window.crypto.getRandomValues(new Uint32Array(1))[0] : Math.floor(Math.random() * 1e9);
+        return `AF-${parts.year}${parts.month}${parts.day}-${String(random % 10000).padStart(4, '0')}`;
+    }
+
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
@@ -245,7 +254,7 @@ window.A11yFirstCheckout = (() => {
         return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
     }
 
-    function fillTransferInfo(form, products, participant) {
+    function fillTransferInfo(form, products, orderNumber) {
         const section = document.getElementById(form.dataset.transferSection || '');
         if (!section) return;
 
@@ -253,7 +262,7 @@ window.A11yFirstCheckout = (() => {
         const amount = section.querySelector('[data-transfer-amount]');
         const title = section.querySelector('[data-transfer-title]');
         if (amount) amount.textContent = `${formatPrice(cart.total)} zł`;
-        if (title) title.textContent = `${cart.transferTitle} - ${participant.firstName} ${participant.lastName}`.trim();
+        if (title) title.textContent = orderNumber;
 
         section.hidden = false;
         section.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
@@ -300,13 +309,14 @@ window.A11yFirstCheckout = (() => {
         const products = getSelectedProducts(form);
         const cart = getCartSummary(products);
         const participant = getParticipant(form);
+        const orderNumber = createOrderNumber();
         const submitButton = form.querySelector('[type="submit"]');
         const transferSection = document.getElementById(form.dataset.transferSection || '');
         if (transferSection) transferSection.hidden = true;
 
         const payload = new FormData();
         payload.append('access_key', form.dataset.web3formsKey || WEB3FORMS_ACCESS_KEY);
-        payload.append('subject', `${form.dataset.subjectPrefix || 'Nowe zamówienie'}: ${cart.ids.length ? cart.ids.join(', ') : products.map((product) => product.title).join(', ')}`);
+        payload.append('subject', `${form.dataset.subjectPrefix || 'Nowe zamówienie'} ${orderNumber}: ${cart.ids.length ? cart.ids.join(', ') : products.map((product) => product.title).join(', ')}`);
         payload.append('from_name', 'a11yfirst.pl');
         payload.append('replyto', participant.email);
         payload.append('name', `${participant.firstName} ${participant.lastName}`.trim());
@@ -317,7 +327,8 @@ window.A11yFirstCheckout = (() => {
         payload.append('product_ids', cart.ids.join(', '));
         payload.append('products', cart.titles.join('\n'));
         payload.append('amount', `${formatPrice(cart.total)} zł`);
-        payload.append('transfer_title', cart.transferTitle);
+        payload.append('order_number', orderNumber);
+        payload.append('transfer_title', orderNumber);
         const consents = getConsentRecords(form);
         consents.forEach((consent) => payload.append(consent.name, consent.value));
         payload.append('regulamin_wersja', REGULAMIN_WERSJA);
@@ -325,6 +336,7 @@ window.A11yFirstCheckout = (() => {
         payload.append('message', [
             form.dataset.messageHeading || 'Nowe zamówienie z a11yfirst.pl',
             '',
+            `Numer zamówienia: ${orderNumber}`,
             `Produkty:\n${cart.titles.join('\n')}`,
             `Kwota: ${formatPrice(cart.total)} zł`,
             `Uczestnik / nabywca: ${participant.firstName} ${participant.lastName}`.trim(),
@@ -332,7 +344,7 @@ window.A11yFirstCheckout = (() => {
             `Telefon: ${participant.phone || 'Nie podano'}`,
             `NIP: ${participant.nip || 'Nie podano'}`,
             `Dostosowanie do potrzeb: ${participant.accessNeeds || 'Nie podano'}`,
-            `Tytuł przelewu: ${cart.transferTitle}`,
+            `Tytuł przelewu: ${orderNumber}`,
             `Akceptacja regulaminu (wersja ${REGULAMIN_WERSJA}): TAK`,
             ...consents.map((consent) => `${consent.label}: ${consent.value}`)
         ].join('\n'));
@@ -350,7 +362,7 @@ window.A11yFirstCheckout = (() => {
                 throw new Error(data.message || 'Nie udało się wysłać formularza.');
             }
 
-            fillTransferInfo(form, products, participant);
+            fillTransferInfo(form, products, orderNumber);
             showStatus(form, 'Formularz został wysłany. Dane do przelewu są dostępne poniżej.');
         } catch (error) {
             showStatus(form, 'Nie udało się wysłać formularza. Spróbuj ponownie za chwilę albo napisz na a11y@wlaczwizje.pl.');

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skróty klawiaturowe dla audytora</title>
+<style>
+:root {
+  --tlo: #0f1419;
+  --tekst: #f4f7f9;
+  --przygasz: #b6c2cc;
+  --akcent: #7cc4ff;
+  --zle: #ff9f96;
+  --dobrze: #86e79a;
+  --ramka: #2d3a44;
+  --panel: #18212a;
+  --fokus: #ffd54a;
+}
+:root[data-motyw="jasny"] {
+  --tlo: #ffffff;
+  --tekst: #14191d;
+  --przygasz: #4a565f;
+  --akcent: #0b4f9e;
+  --zle: #a31414;
+  --dobrze: #14601f;
+  --ramka: #c3cdd5;
+  --panel: #f1f4f7;
+  --fokus: #7a4d00;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--tlo);
+  color: var(--tekst);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+:focus-visible {
+  outline: 4px solid var(--fokus);
+  outline-offset: 3px;
+}
+.pomijajacy {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--panel); color: var(--tekst);
+  padding: .75rem 1.25rem; z-index: 50; border: 2px solid var(--akcent);
+}
+.pomijajacy:focus { left: 1rem; top: 1rem; }
+.czytnik {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* --- scena --- */
+#scena { flex: 1; position: relative; overflow: hidden; }
+.slajd {
+  position: absolute; inset: 0;
+  display: none;
+  flex-direction: column; justify-content: center;
+  gap: clamp(1rem, 2.4vh, 2.4rem);
+  padding: clamp(2rem, 6vmin, 5rem) clamp(2rem, 8vmin, 7rem) clamp(4.5rem, 9vmin, 6rem);
+}
+.slajd[data-aktywny="tak"] { display: flex; }
+.wiodace p {
+  margin: 0 0 .5em;
+  font-size: clamp(2rem, 5.6vw, 4.4rem);
+  font-weight: 700; line-height: 1.15; letter-spacing: -.01em;
+}
+.wiodace p:last-child { margin-bottom: 0; }
+.zwykle p {
+  margin: 0 0 .4em;
+  font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+  line-height: 1.35; color: var(--przygasz);
+}
+.zwykle p:last-child { margin-bottom: 0; }
+.linia.strzalka { color: var(--akcent); font-weight: 700; }
+.linia.zle { color: var(--zle); }
+.linia.dobrze { color: var(--dobrze); }
+
+pre.kod {
+  margin: 0;
+  background: var(--panel);
+  border: 2px solid var(--ramka);
+  border-radius: .5rem;
+  padding: clamp(1rem, 3vmin, 2rem);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(1.15rem, 2.5vw, 2.1rem);
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+pre.kod .wiersz { display: block; }
+pre.kod .wiersz.zle { color: var(--zle); }
+pre.kod .wiersz.dobrze { color: var(--dobrze); }
+
+.zrzut { margin: 0; }
+.zrzut-ramka {
+  border: 3px dashed var(--akcent);
+  border-radius: .5rem;
+  padding: clamp(1rem, 3vmin, 2rem);
+  background: var(--panel);
+}
+.zrzut-etykieta {
+  display: inline-block; margin-bottom: .6rem;
+  font-size: clamp(.85rem, 1.5vw, 1.1rem);
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--akcent);
+}
+.zrzut-ramka p { margin: 0; font-size: clamp(1.1rem, 2.2vw, 1.7rem); line-height: 1.4; }
+
+.stopka-slajdu {
+  position: absolute; right: clamp(1.5rem, 5vmin, 3.5rem); bottom: clamp(1.2rem, 3vmin, 2.2rem);
+  font-size: clamp(1rem, 1.8vw, 1.5rem); font-weight: 700; color: var(--przygasz);
+}
+.znacznik-zapasowy {
+  position: absolute; left: clamp(1.5rem, 5vmin, 3.5rem); bottom: clamp(1.2rem, 3vmin, 2.2rem);
+  font-size: clamp(.8rem, 1.4vw, 1.05rem); font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--akcent);
+}
+
+/* --- pasek --- */
+#pasek {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+  padding: .6rem 1rem;
+  background: var(--panel); border-top: 2px solid var(--ramka);
+}
+#pasek button {
+  font: inherit; font-size: 1rem;
+  background: var(--tlo); color: var(--tekst);
+  border: 2px solid var(--ramka); border-radius: .4rem;
+  padding: .45rem .85rem; cursor: pointer; min-height: 44px;
+}
+#pasek button:hover { border-color: var(--akcent); }
+#pasek button[aria-pressed="true"] { border-color: var(--akcent); color: var(--akcent); font-weight: 700; }
+#licznik { font-variant-numeric: tabular-nums; font-weight: 700; margin-left: auto; }
+#tytul-biezacy { color: var(--przygasz); font-size: .95rem; }
+#czas-biezacy { color: var(--akcent); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+#notatki {
+  padding: 1rem 1.25rem; background: var(--tlo);
+  border-top: 2px solid var(--ramka);
+  max-height: 34vh; overflow-y: auto;
+  font-size: 1.05rem; line-height: 1.55;
+}
+#notatki[hidden] { display: none; }
+#notatki h2 { margin: 0 0 .5rem; font-size: 1rem; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--akcent); }
+#notatki p { margin: 0 0 .6rem; }
+#notatki p:last-child { margin-bottom: 0; }
+#notatki code { background: var(--panel); padding: .1em .35em; border-radius: .25rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .slajd[data-aktywny="tak"] { animation: wejscie .18s ease-out; }
+  @keyframes wejscie { from { opacity: .35; } to { opacity: 1; } }
+}
+
+@media print {
+  :root {
+    --tlo: #fff; --tekst: #000; --przygasz: #333; --akcent: #003d7a;
+    --zle: #8a0000; --dobrze: #054d12; --ramka: #666; --panel: #f2f2f2;
+  }
+  body { display: block; }
+  #pasek, .pomijajacy { display: none !important; }
+  #scena { overflow: visible; }
+  .slajd {
+    display: flex !important; position: relative; inset: auto;
+    page-break-after: always; break-after: page;
+    min-height: 15cm; border-bottom: 1px solid #999;
+  }
+  #notatki { display: none; }
+}
+
+/* === Accessibility First (deck Canva 13.05.2026) === */
+:root, :root[data-motyw="jasny"] {
+  --tlo: #5F338A; --tekst: #14191d; --przygasz: #1f2430; --akcent: #5F338A;
+  --zle: #a31414; --dobrze: #14601f; --ramka: #5F338A; --panel: #ffffff; --fokus: #14191d;
+}
+html { --belka: clamp(3.2rem, 9vh, 6rem); }
+body { background: #5F338A; font-family: Inter, "Helvetica Neue", Arial, system-ui, sans-serif; }
+:focus-visible { outline: 4px solid #14191d; outline-offset: 3px; box-shadow: 0 0 0 8px #FEDB16; }
+#scena { background: #5F338A; }
+.pasek-marki {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2; margin: 0;
+  height: var(--belka); display: flex; align-items: center; justify-content: center;
+  font-weight: 900; letter-spacing: .02em; line-height: 1;
+  font-size: min(2.2vw, calc(var(--belka) * .42));
+  color: #ffffff; text-transform: uppercase;
+}
+.pasek-marki span { color: #FEDB16; margin-left: .32em; }
+.slajd {
+  inset: var(--belka) clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vh, 2rem);
+  background: #E2F4FF; border-radius: 4px;
+  justify-content: flex-start;
+  padding-top: clamp(1.5rem, 5vh, 3.5rem);
+}
+.wiodace h1 {
+  margin: 0; color: #5F338A; font-weight: 800; line-height: 1.15;
+  font-size: clamp(2rem, 4.6vw, 3.8rem);
+}
+.wiodace p { color: #14191d; }
+.lista {
+  margin: 0; padding-left: 1.2em;
+  font-size: clamp(1.35rem, 2.7vw, 2.3rem); line-height: 1.35; color: #14191d;
+}
+.lista li { margin: 0 0 .45em; }
+.lista li::marker { color: #5F338A; }
+.slajd code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #ffffff; color: #5F338A; padding: .05em .3em; border-radius: .25rem;
+  border: 1px solid #b9a6d6;
+}
+.zwykle p { color: #1f2430; }
+.slajd a.link { color: #5F338A; font-weight: 700; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .15em; }
+.slajd.tytulowy a.link { color: #FEDB16; }
+.slajd del { color: #4a4f5a; text-decoration-thickness: .12em; }
+.stopka-slajdu { color: #5F338A; }
+/* slajdy tytułowe */
+.slajd.tytulowy {
+  background: linear-gradient(135deg, #7C27A0 0%, #5F338A 45%, #431651 100%);
+  justify-content: center; align-items: center; text-align: center;
+}
+.slajd.tytulowy h1 { color: #ffffff; font-size: clamp(2.6rem, 7vw, 5.6rem); }
+.slajd.tytulowy .zwykle p, .slajd.tytulowy .stopka-slajdu { color: #ffffff; }
+.slajd.tytulowy .zwykle p:first-child { color: #FEDB16; font-weight: 700; }
+.slajd.tytulowy .lista { color: #ffffff; text-align: left; }
+.slajd.tytulowy .lista li::marker { color: #FEDB16; }
+.slajd.tytulowy .lista strong { color: #FEDB16; }
+/* slajd modułu: mały napis „Część N” nad dużym tytułem */
+.slajd.tytulowy .wiodace h1 + p, .slajd.tytulowy .wiodace p { color: #ffffff; }
+/* pasek sterowania i notatki: jasne tło, ciemny tekst */
+#pasek { background: #ffffff; border-top: 2px solid #5F338A; color: #14191d; }
+#pasek button { background: #ffffff; color: #14191d; border-color: #5F338A; }
+#pasek button[aria-pressed="true"] { color: #5F338A; }
+#tytul-biezacy { color: #1f2430; }
+#czas-biezacy { color: #5F338A; }
+#notatki { background: #ffffff; color: #14191d; border-top-color: #5F338A; }
+#notatki h2 { color: #5F338A; }
+#notatki code { background: #E2F4FF; }
+/* wstawka: makieta strony z blokami do Tab/kursora */
+.wstawka { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.makieta { width: min(100%, 62rem); display: grid; gap: .5rem; font-size: clamp(1rem, 1.7vw, 1.5rem); }
+.m-srodek { display: grid; grid-template-columns: 2fr 1fr; gap: .5rem; }
+.m-blok { position: relative; border: 3px solid #3c4a63; border-radius: 6px; padding: .55em .8em;
+  color: #14191d; text-align: center; cursor: default; transition: transform .15s, box-shadow .15s; }
+.m-blok code { font-weight: 800; font-size: 1.15em; background: none; border: 0; padding: 0; color: #14191d; }
+.m-opis { display: block; max-height: 0; overflow: hidden; opacity: 0; font-size: .85em; line-height: 1.3;
+  transition: max-height .2s, opacity .2s, margin .2s; }
+.m-blok:hover > .m-opis, .m-blok:focus > .m-opis { max-height: 6em; opacity: 1; margin-top: .3em; }
+.m-blok:hover, .m-blok:focus { box-shadow: 0 0 0 4px #5F338A; transform: scale(1.015); z-index: 1; }
+.m-blok:focus { outline: 4px solid #FEDB16; outline-offset: 3px; }
+.m-section .m-blok { margin-top: .5rem; }
+.m-header { background: #f9b4b8; } .m-nav { background: #a9e3f5; } .m-section { background: #eef7d9; }
+.m-heading { background: #f6a9ae; padding: .3em .6em; } .m-article { background: #d9c8ef; min-height: 5.5em; }
+.m-aside { background: #d2d2d6; display: flex; flex-direction: column; justify-content: center; }
+.m-footer { background: #f9c49a; }
+/* wstawka: HTML jak człowiek */
+.czlowiek { display: grid; grid-template-columns: minmax(10rem, 30%) 1fr; gap: clamp(1rem, 4vw, 4rem); align-items: center; width: 100%; }
+.cz-rys { width: 100%; max-height: 62vh; }
+.cz-glowa { fill: #f6d7b8; stroke: #5F338A; stroke-width: 4; }
+.cz-oko { fill: #14191d; }
+.cz-roz { fill: #f28fa8; opacity: .85; } .cz-usta { fill: #c2185b; }
+.cz-cialo { fill: #a9e3f5; stroke: #5F338A; stroke-width: 4; }
+.cz-konczyna { stroke: #5F338A; stroke-width: 12; stroke-linecap: round; fill: none; }
+.cz-chmura { fill: #ffffff; stroke: #5F338A; stroke-width: 3; } .cz-blysk { fill: #FEDB16; stroke: #14191d; stroke-width: 1.5; }
+.cz-nr circle { fill: #5F338A; } .cz-nr text { fill: #ffffff; font: 800 16px system-ui, sans-serif; text-anchor: middle; }
+/* powiązanie: numer albo część ludzika <-> punkt listy (hover i fokus, w obie strony) */
+.cz-czesc, .cz-nr { cursor: pointer; }
+.czlowiek:has(.cz-nr[data-n="1"]:hover, .cz-czesc[data-n="1"]:hover, li[data-n="1"]:hover, li[data-n="1"]:focus) li[data-n="1"] { background: #ffffff; outline: 4px solid #FEDB16; outline-offset: 2px; }
+.czlowiek:has(.cz-nr[data-n="1"]:hover, .cz-czesc[data-n="1"]:hover, li[data-n="1"]:hover, li[data-n="1"]:focus) .cz-nr[data-n="1"] circle { fill: #FEDB16; }
+.czlowiek:has(.cz-nr[data-n="1"]:hover, .cz-czesc[data-n="1"]:hover, li[data-n="1"]:hover, li[data-n="1"]:focus) .cz-nr[data-n="1"] text { fill: #14191d; }
+.czlowiek:has(.cz-nr[data-n="1"]:hover, .cz-czesc[data-n="1"]:hover, li[data-n="1"]:hover, li[data-n="1"]:focus) .cz-czesc[data-n="1"] { filter: drop-shadow(0 0 3px #FEDB16) drop-shadow(0 0 6px #FEDB16); }
+.czlowiek:has(.cz-nr[data-n="2"]:hover, .cz-czesc[data-n="2"]:hover, li[data-n="2"]:hover, li[data-n="2"]:focus) li[data-n="2"] { background: #ffffff; outline: 4px solid #FEDB16; outline-offset: 2px; }
+.czlowiek:has(.cz-nr[data-n="2"]:hover, .cz-czesc[data-n="2"]:hover, li[data-n="2"]:hover, li[data-n="2"]:focus) .cz-nr[data-n="2"] circle { fill: #FEDB16; }
+.czlowiek:has(.cz-nr[data-n="2"]:hover, .cz-czesc[data-n="2"]:hover, li[data-n="2"]:hover, li[data-n="2"]:focus) .cz-nr[data-n="2"] text { fill: #14191d; }
+.czlowiek:has(.cz-nr[data-n="2"]:hover, .cz-czesc[data-n="2"]:hover, li[data-n="2"]:hover, li[data-n="2"]:focus) .cz-czesc[data-n="2"] { filter: drop-shadow(0 0 3px #FEDB16) drop-shadow(0 0 6px #FEDB16); }
+.czlowiek:has(.cz-nr[data-n="3"]:hover, .cz-czesc[data-n="3"]:hover, li[data-n="3"]:hover, li[data-n="3"]:focus) li[data-n="3"] { background: #ffffff; outline: 4px solid #FEDB16; outline-offset: 2px; }
+.czlowiek:has(.cz-nr[data-n="3"]:hover, .cz-czesc[data-n="3"]:hover, li[data-n="3"]:hover, li[data-n="3"]:focus) .cz-nr[data-n="3"] circle { fill: #FEDB16; }
+.czlowiek:has(.cz-nr[data-n="3"]:hover, .cz-czesc[data-n="3"]:hover, li[data-n="3"]:hover, li[data-n="3"]:focus) .cz-nr[data-n="3"] text { fill: #14191d; }
+.czlowiek:has(.cz-nr[data-n="3"]:hover, .cz-czesc[data-n="3"]:hover, li[data-n="3"]:hover, li[data-n="3"]:focus) .cz-czesc[data-n="3"] { filter: drop-shadow(0 0 3px #FEDB16) drop-shadow(0 0 6px #FEDB16); }
+.czlowiek:has(.cz-nr[data-n="4"]:hover, .cz-czesc[data-n="4"]:hover, li[data-n="4"]:hover, li[data-n="4"]:focus) li[data-n="4"] { background: #ffffff; outline: 4px solid #FEDB16; outline-offset: 2px; }
+.czlowiek:has(.cz-nr[data-n="4"]:hover, .cz-czesc[data-n="4"]:hover, li[data-n="4"]:hover, li[data-n="4"]:focus) .cz-nr[data-n="4"] circle { fill: #FEDB16; }
+.czlowiek:has(.cz-nr[data-n="4"]:hover, .cz-czesc[data-n="4"]:hover, li[data-n="4"]:hover, li[data-n="4"]:focus) .cz-nr[data-n="4"] text { fill: #14191d; }
+.czlowiek:has(.cz-nr[data-n="4"]:hover, .cz-czesc[data-n="4"]:hover, li[data-n="4"]:hover, li[data-n="4"]:focus) .cz-czesc[data-n="4"] { filter: drop-shadow(0 0 3px #FEDB16) drop-shadow(0 0 6px #FEDB16); }
+.cz-lista { margin: 0; padding-left: 1.6em; font-size: clamp(1.25rem, 2.4vw, 2.1rem); line-height: 1.3; color: #14191d; }
+.cz-lista li { margin: 0 0 .6em; padding: .15em .3em; border-radius: 4px; }
+.cz-lista li::marker { color: #5F338A; font-weight: 800; }
+.cz-lista li:hover, .cz-lista li:focus { background: #ffffff; outline: 4px solid #FEDB16; outline-offset: 2px; }
+.cz-lista strong { display: block; color: #5F338A; }
+.cz-lista span { display: block; font-size: .8em; }
+.cz-lista code { background: none; color: inherit; }
+/* wstawka: najpopularniejsze znaczniki (kafelki z ciekawostkami) */
+.zd { width: 100%; }
+.zd-siatka { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; }
+.zd-siatka li { display: flex; flex-direction: column; gap: .35rem; }
+.zd-kafel { font: inherit; display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; width: 100%;
+  padding: .7rem .9rem; background: #ffffff; color: #14191d; border: 3px solid #5F338A; border-radius: 6px; cursor: pointer; text-align: left;
+  font-size: clamp(1.1rem, 2vw, 1.7rem); font-weight: 800; }
+.zd-kafel code { background: none; border: 0; padding: 0; color: #5F338A; font-size: 1.1em; }
+.zd-kafel .zd-liczba { font-size: .62em; font-weight: 600; color: #14191d; }
+.zd-kafel[aria-expanded="true"] { background: #5F338A; color: #ffffff; }
+.zd-kafel[aria-expanded="true"] code, .zd-kafel[aria-expanded="true"] .zd-liczba { color: #ffffff; }
+.zd-kafel:hover { outline: 3px solid #FEDB16; outline-offset: 2px; }
+.zd-kafel:focus-visible { outline: 4px solid #FEDB16; outline-offset: 3px; box-shadow: 0 0 0 9px #14191d; }
+.zd-ciek { margin: 0; font-size: clamp(.95rem, 1.5vw, 1.25rem); line-height: 1.3; color: #14191d; }
+.zd-ciek code { background: none; border: 0; padding: 0; }
+.zd-zrodlo { margin: .8rem 0 0; font-size: clamp(.8rem, 1.1vw, 1rem); color: #333; }
+@media print { .zd-ciek[hidden] { display: block !important; } }
+
+/* wstawka: recenzja strony (makieta z numerami + lista błędów, jak „człowiek”) */
+.rs { display: grid; grid-template-columns: minmax(12rem, 34%) 1fr; gap: clamp(1rem, 3vw, 3rem); align-items: start; width: 100%; }
+.rs-makieta { position: relative; display: grid; gap: .4rem; padding: .8rem; background: #ffffff; border: 3px solid #5F338A; border-radius: 6px;
+  font-size: clamp(.8rem, 1.25vw, 1.1rem); color: #14191d; }
+.rs-blok { position: relative; padding: .35em .6em; background: #ffffff; border: 2px solid #b9a6d6; border-radius: 4px; }
+.rs-h1 { font-weight: 800; background: #f6eefc; }
+.rs-przyciski { display: flex; gap: .4rem; }
+.rs-btn { padding: .1em .5em; background: #5F338A; color: #ffffff; border-radius: 4px; font-weight: 700; }
+.rs-h3 em { color: #4a4f5a; }
+.rs-form { display: grid; gap: .3rem; background: #ffffff; }
+.rs-pod, .rs-pole { position: relative; display: block; padding: .2em .5em; background: #ffffff; border: 2px dashed #b9a6d6; border-radius: 4px; }
+.rs-pole { border: 3px solid #14191d; }
+.rs-nr { position: absolute; right: -.7em; top: -.7em; display: grid; place-items: center; width: 1.7em; height: 1.7em;
+  border-radius: 50%; background: #5F338A; color: #ffffff; font-weight: 800; font-size: .95em; }
+.rs-nr-strona { right: -.8em; top: -.8em; z-index: 1; }
+.rs-lista { margin: 0; padding-left: 1.7em; display: grid; gap: .35rem; font-size: clamp(1.05rem, 1.9vw, 1.6rem); }
+.rs-lista li::marker { color: #5F338A; font-weight: 800; }
+.rs-kafel { font: inherit; font-weight: 800; width: 100%; text-align: left; padding: .2em .5em; background: #ffffff; color: #14191d;
+  border: 3px solid #5F338A; border-radius: 6px; cursor: pointer; }
+.rs-kafel code { background: none; border: 0; padding: 0; }
+.rs-kafel[aria-expanded="true"] { background: #5F338A; color: #ffffff; }
+.rs-kafel[aria-expanded="true"] code { color: #ffffff; }
+.rs-kafel:focus-visible { outline: 4px solid #FEDB16; outline-offset: 3px; box-shadow: 0 0 0 9px #14191d; }
+.rs-opis { margin: .3rem 0 .2rem; font-size: .78em; line-height: 1.35; color: #14191d; }
+.rs-opis code { background: #ffffff; }
+@media print { .rs-opis[hidden] { display: block !important; } }
+.rs:has(li[data-n="1"]:hover, li[data-n="1"]:focus-within, li[data-n="1"]:has([aria-expanded="true"])) [data-n="1"] .rs-nr, .rs:has(li[data-n="1"]:hover, li[data-n="1"]:focus-within, li[data-n="1"]:has([aria-expanded="true"])) .rs-nr[data-n="1"] { background: #FEDB16; color: #14191d; outline: 3px solid #14191d; }
+.rs:has(li[data-n="1"]:hover, li[data-n="1"]:focus-within, li[data-n="1"]:has([aria-expanded="true"])) .rs-blok[data-n="1"], .rs:has(li[data-n="1"]:hover, li[data-n="1"]:focus-within, li[data-n="1"]:has([aria-expanded="true"])) .rs-pod[data-n="1"] { outline: 4px solid #FEDB16; outline-offset: 2px; background: #fff7c2; }
+.rs:has(li[data-n="2"]:hover, li[data-n="2"]:focus-within, li[data-n="2"]:has([aria-expanded="true"])) [data-n="2"] .rs-nr, .rs:has(li[data-n="2"]:hover, li[data-n="2"]:focus-within, li[data-n="2"]:has([aria-expanded="true"])) .rs-nr[data-n="2"] { background: #FEDB16; color: #14191d; outline: 3px solid #14191d; }
+.rs:has(li[data-n="2"]:hover, li[data-n="2"]:focus-within, li[data-n="2"]:has([aria-expanded="true"])) .rs-blok[data-n="2"], .rs:has(li[data-n="2"]:hover, li[data-n="2"]:focus-within, li[data-n="2"]:has([aria-expanded="true"])) .rs-pod[data-n="2"] { outline: 4px solid #FEDB16; outline-offset: 2px; background: #fff7c2; }
+.rs:has(li[data-n="3"]:hover, li[data-n="3"]:focus-within, li[data-n="3"]:has([aria-expanded="true"])) [data-n="3"] .rs-nr, .rs:has(li[data-n="3"]:hover, li[data-n="3"]:focus-within, li[data-n="3"]:has([aria-expanded="true"])) .rs-nr[data-n="3"] { background: #FEDB16; color: #14191d; outline: 3px solid #14191d; }
+.rs:has(li[data-n="3"]:hover, li[data-n="3"]:focus-within, li[data-n="3"]:has([aria-expanded="true"])) .rs-blok[data-n="3"], .rs:has(li[data-n="3"]:hover, li[data-n="3"]:focus-within, li[data-n="3"]:has([aria-expanded="true"])) .rs-pod[data-n="3"] { outline: 4px solid #FEDB16; outline-offset: 2px; background: #fff7c2; }
+.rs:has(li[data-n="4"]:hover, li[data-n="4"]:focus-within, li[data-n="4"]:has([aria-expanded="true"])) [data-n="4"] .rs-nr, .rs:has(li[data-n="4"]:hover, li[data-n="4"]:focus-within, li[data-n="4"]:has([aria-expanded="true"])) .rs-nr[data-n="4"] { background: #FEDB16; color: #14191d; outline: 3px solid #14191d; }
+.rs:has(li[data-n="4"]:hover, li[data-n="4"]:focus-within, li[data-n="4"]:has([aria-expanded="true"])) .rs-blok[data-n="4"], .rs:has(li[data-n="4"]:hover, li[data-n="4"]:focus-within, li[data-n="4"]:has([aria-expanded="true"])) .rs-pod[data-n="4"] { outline: 4px solid #FEDB16; outline-offset: 2px; background: #fff7c2; }
+.rs:has(li[data-n="5"]:hover, li[data-n="5"]:focus-within, li[data-n="5"]:has([aria-expanded="true"])) [data-n="5"] .rs-nr, .rs:has(li[data-n="5"]:hover, li[data-n="5"]:focus-within, li[data-n="5"]:has([aria-expanded="true"])) .rs-nr[data-n="5"] { background: #FEDB16; color: #14191d; outline: 3px solid #14191d; }
+.rs:has(li[data-n="5"]:hover, li[data-n="5"]:focus-within, li[data-n="5"]:has([aria-expanded="true"])) .rs-blok[data-n="5"], .rs:has(li[data-n="5"]:hover, li[data-n="5"]:focus-within, li[data-n="5"]:has([aria-expanded="true"])) .rs-pod[data-n="5"] { outline: 4px solid #FEDB16; outline-offset: 2px; background: #fff7c2; }
+.rs:has(li[data-n="6"]:hover, li[data-n="6"]:focus-within, li[data-n="6"]:has([aria-expanded="true"])) [data-n="6"] .rs-nr, .rs:has(li[data-n="6"]:hover, li[data-n="6"]:focus-within, li[data-n="6"]:has([aria-expanded="true"])) .rs-nr[data-n="6"] { background: #FEDB16; color: #14191d; outline: 3px solid #14191d; }
+.rs:has(li[data-n="6"]:hover, li[data-n="6"]:focus-within, li[data-n="6"]:has([aria-expanded="true"])) .rs-blok[data-n="6"], .rs:has(li[data-n="6"]:hover, li[data-n="6"]:focus-within, li[data-n="6"]:has([aria-expanded="true"])) .rs-pod[data-n="6"] { outline: 4px solid #FEDB16; outline-offset: 2px; background: #fff7c2; }
+.rs:has(li[data-n="2"]:hover, li[data-n="2"]:focus-within, li[data-n="2"]:has([aria-expanded="true"])) .rs-makieta { outline: 6px solid #FEDB16; }
+.rs:has(li[data-n="1"]:hover, li[data-n="1"]:focus-within, li[data-n="1"]:has([aria-expanded="true"])) .rs-pole { outline: 4px solid #FEDB16; outline-offset: 2px; }
+
+/* wstawka: div jak button (demo 1:1) */
+.djb { width: 100%; display: grid; gap: .8rem; font-size: clamp(1.1rem, 2vw, 1.7rem); color: #14191d; }
+.djb-kolumny { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem); }
+.djb-kol { background: #ffffff; border: 3px solid #5F338A; border-radius: 6px; padding: .8rem 1rem; display: grid; gap: .5rem; justify-items: start; }
+.djb-tytul { margin: 0; font-size: 1em; }
+.djb-tytul code { font-size: 1em; }
+.djb-przycisk { font: inherit; font-weight: 800; padding: .4em 1.4em; background: #5F338A; color: #ffffff; border: 3px solid #5F338A;
+  border-radius: 6px; cursor: pointer; user-select: none; }
+.djb-przycisk:hover { background: #ffffff; color: #5F338A; }
+.djb-przycisk:active { transform: translateY(2px); }
+.djb-przycisk:focus-visible { outline: 4px solid #FEDB16; outline-offset: 3px; box-shadow: 0 0 0 9px #14191d; }
+.djb-licznik { margin: 0; font-weight: 700; }
+.djb-kod { margin: 0; font-size: .7em; color: #1f2430; }
+.djb-przelacznik { margin: 0; display: flex; align-items: center; gap: .5rem; font-size: .8em; }
+.djb-przelacznik input { width: 1.4em; height: 1.4em; accent-color: #5F338A; }
+.djb-instrukcja { margin: 0; font-size: .75em; color: #1f2430; }
+/* wstawka: div jak button, kod */
+.djk { width: 100%; display: grid; gap: .8rem; }
+.djk-blok { background: #ffffff; border: 3px solid #5F338A; border-radius: 6px; padding: .5rem 1rem; }
+.djk-etykieta { margin: 0 0 .3rem; font-weight: 800; color: #5F338A; font-size: clamp(1rem, 1.6vw, 1.4rem); }
+.djk pre { margin: 0; white-space: pre; overflow-x: auto; font-size: clamp(.8rem, 1.45vw, 1.25rem); line-height: 1.4; }
+.djk pre code { background: none; border: 0; padding: 0; color: #14191d; }
+/* wstawka: znaczniki z 1991 r. z opisem na hover/fokus */
+.z91 { position: relative; width: 100%; min-height: 9.5em; font-size: clamp(1.2rem, 2.3vw, 2rem); }
+.z91-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem .6rem; }
+.z91-tag { padding: .15em .45em; background: #ffffff; border: 2px solid #b9a3d6; border-radius: 6px; cursor: help; }
+.z91-tag code { background: none; border: 0; padding: 0; color: #5F338A; }
+.z91-tag:hover, .z91-tag:focus { background: #5F338A; border-color: #5F338A; }
+.z91-tag:hover code, .z91-tag:focus code { color: #ffffff; }
+.z91-tag:focus-visible { outline: 4px solid #FEDB16; outline-offset: 3px; box-shadow: 0 0 0 8px #14191d; }
+.z91-opis { display: none; position: absolute; left: 0; right: 0; top: 3.2em; padding: .6em .9em;
+  background: #ffffff; border-left: 6px solid #FEDB16; border-radius: 4px; color: #14191d;
+  font-size: .78em; line-height: 1.4; }
+.z91-opis strong { color: #5F338A; }
+.z91-tag:hover .z91-opis, .z91-tag:focus .z91-opis { display: block; }
+.z91-podpowiedz { position: absolute; top: 3.4em; left: 0; margin: 0; font-size: .7em; color: #4a4f5a; font-style: italic; }
+.z91:has(.z91-tag:hover, .z91-tag:focus) .z91-podpowiedz { display: none; }
+/* blok kodu na slajdzie: bez zawijania, mniejszy, przewijany w poziomie */
+.slajd pre.kod { white-space: pre; overflow-x: auto; overflow-y: hidden; font-size: clamp(1rem, 1.9vw, 1.6rem); line-height: 1.5; max-width: 100%; }
+/* obraz w szablonie slajdu (tytul + tresc + obraz), nie na cala scene */
+.slajd.z-obrazem-obok { padding-right: calc(36% + clamp(1.5rem, 4vw, 3.5rem)); }
+.slajd.z-obrazem-obok .obraz-w-slajdzie {
+  position: absolute; right: clamp(1rem, 3vw, 2.5rem); top: 50%; transform: translateY(-50%);
+  width: 34%; max-height: 78%; object-fit: cover; border-radius: 4px;
+  box-shadow: 0 .4rem 1.2rem rgba(20, 25, 29, .18);
+}
+.slajd.z-obrazem-pod .obraz-w-slajdzie {
+  display: block; margin: clamp(1rem, 3vh, 2rem) auto 0; max-width: 100%; max-height: 68%;
+  object-fit: contain; border-radius: 4px;
+}
+/* slajdy-obrazy z Canvy: na całą scenę, nad belką marki */
+.slajd.obrazowy { inset: 0; padding: 0; background: #1b0f2b; z-index: 3; justify-content: center; align-items: center; border-radius: 0; }
+.obraz-slajdu { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* pełny ekran: sam slajd, bez paska sterowania i notatek (klawiatura dalej działa) */
+:root:fullscreen #pasek, :root:fullscreen #notatki { display: none !important; }
+@media (display-mode: fullscreen) { #pasek, #notatki { display: none !important; } }
+
+</style>
+</head>
+<body>
+<a class="pomijajacy" href="#pasek">Przejdź do sterowania slajdami</a>
+
+<main id="scena">
+<p class="pasek-marki" aria-hidden="true">Accessibility <span>First</span></p>
+<section class="slajd tytulowy" role="group" aria-roledescription="slajd" aria-label="Slajd 1 z 20: Start" data-id="S1" data-tytulowy="tak" data-tytul="Start" data-czas="" data-notatki="">
+<div class="wiodace"><h1 class="linia">Skróty klawiaturowe dla audytora</h1></div>
+<div class="zwykle"><p class="linia">Windows i Mac · Accessibility First</p></div>
+<span class="stopka-slajdu" aria-hidden="true">1</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 2 z 20: System operacyjny" data-id="S2" data-tytul="System operacyjny" data-czas="1/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">System operacyjny (1/2)</h1></div>
+<ul class="lista"><li><strong>Przełącz aplikację</strong>: Windows <code>Alt+Tab</code> · Mac <code>Cmd+Tab</code></li><li><strong>Pokaż pulpit</strong>: Windows <code>Win+D</code> · Mac <code>Fn+H albo Cmd+F3 (klawisz Mission Control)</code></li><li><strong>Zablokuj ekran, gdy odchodzisz od komputera</strong>: Windows <code>Win+L</code> · Mac <code>Ctrl+Cmd+Q</code></li><li><strong>Zamknij aplikację</strong>: Windows <code>Alt+F4</code> · Mac <code>Cmd+Q</code></li><li><strong>Zamknij okno albo kartę</strong>: Windows <code>Ctrl+W</code> · Mac <code>Cmd+W</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">2</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 3 z 20: System operacyjny" data-id="S3" data-tytul="System operacyjny" data-czas="2/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">System operacyjny (2/2)</h1></div>
+<ul class="lista"><li><strong>Zminimalizuj okno</strong>: Windows <code>Win+strzałka w dół</code> · Mac <code>Cmd+M</code></li><li><strong>Wyszukiwanie w systemie</strong>: Windows <code>Win+S</code> · Mac <code>Cmd+Spacja (Spotlight)</code></li><li><strong>Menedżer plików</strong>: Windows <code>Win+E (Eksplorator plików)</code> · Mac <code>Option+Cmd+Spacja (okno wyszukiwania Findera)</code></li><li><strong>Zawieszona aplikacja</strong>: Windows <code>Ctrl+Shift+Esc (Menedżer zadań)</code> · Mac <code>Option+Cmd+Esc (Wymuś koniec)</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">3</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 4 z 20: Przeglądarka: karty i pasek adresu" data-id="S4" data-tytul="Przeglądarka: karty i pasek adresu" data-czas="1/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Przeglądarka: karty i pasek adresu (1/2)</h1></div>
+<ul class="lista"><li><strong>Nowa karta</strong>: Windows <code>Ctrl+T</code> · Mac <code>Cmd+T</code></li><li><strong>Zamknij kartę</strong>: Windows <code>Ctrl+W</code> · Mac <code>Cmd+W</code></li><li><strong>Przywróć zamkniętą kartę</strong>: Windows <code>Ctrl+Shift+T</code> · Mac <code>Cmd+Shift+T</code></li><li><strong>Następna karta</strong>: Windows <code>Ctrl+Tab</code> · Mac <code>Ctrl+Tab albo Cmd+Option+strzałka w prawo</code></li><li><strong>Poprzednia karta</strong>: Windows <code>Ctrl+Shift+Tab</code> · Mac <code>Ctrl+Shift+Tab albo Cmd+Option+strzałka w lewo</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">4</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 5 z 20: Przeglądarka: karty i pasek adresu" data-id="S5" data-tytul="Przeglądarka: karty i pasek adresu" data-czas="2/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Przeglądarka: karty i pasek adresu (2/2)</h1></div>
+<ul class="lista"><li><strong>Karta o numerze od 1 do 8</strong>: Windows <code>od Ctrl+1 do Ctrl+8</code> · Mac <code>od Cmd+1 do Cmd+8</code></li><li><strong>Ostatnia karta</strong>: Windows <code>Ctrl+9</code> · Mac <code>Cmd+9</code></li><li><strong>Przejdź do paska adresu i zaznacz adres (np. do raportu)</strong>: Windows <code>Ctrl+L</code> · Mac <code>Cmd+L</code></li><li><strong>Dopisz www. i .com do wpisanej nazwy</strong>: Windows <code>wpisz nazwę, potem Ctrl+Enter</code> · Mac <code>wpisz nazwę, potem Ctrl+Return</code></li><li><strong>Otwórz wpisany adres w nowej karcie</strong>: Windows <code>wpisz adres, potem Alt+Enter</code> · Mac <code>wpisz adres, potem Cmd+Return (karta w tle)</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">5</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 6 z 20: Odświeżanie i zakładki" data-id="S6" data-tytul="Odświeżanie i zakładki" data-czas="" data-notatki="">
+<div class="wiodace"><h1 class="linia">Odświeżanie i zakładki</h1></div>
+<ul class="lista"><li><strong>Odśwież stronę</strong>: Windows <code>F5 albo Ctrl+R</code> · Mac <code>Cmd+R</code></li><li><strong>Odśwież bez pamięci podręcznej, np. po poprawce wdrożonej przez dewelopera</strong>: Windows <code>Ctrl+F5 albo Ctrl+Shift+R</code> · Mac <code>Cmd+Shift+R</code></li><li><strong>Dodaj stronę do zakładek</strong>: Windows <code>Ctrl+D</code> · Mac <code>Cmd+D</code></li><li><strong>Dodaj wszystkie otwarte karty do zakładek, np. całą próbę stron z audytu</strong>: Windows <code>Ctrl+Shift+D</code> · Mac <code>Cmd+Shift+D</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">6</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 7 z 20: Wyszukiwanie na stronie" data-id="S7" data-tytul="Wyszukiwanie na stronie" data-czas="" data-notatki="">
+<div class="wiodace"><h1 class="linia">Wyszukiwanie na stronie</h1></div>
+<ul class="lista"><li><strong>Znajdź na stronie</strong>: Windows <code>Ctrl+F</code> · Mac <code>Cmd+F</code></li><li><strong>Następne trafienie</strong>: Windows <code>Enter albo Ctrl+G</code> · Mac <code>Cmd+G</code></li><li><strong>Poprzednie trafienie</strong>: Windows <code>Shift+Enter albo Ctrl+Shift+G</code> · Mac <code>Cmd+Shift+G</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">7</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 8 z 20: Edycja tekstu do raportu" data-id="S8" data-tytul="Edycja tekstu do raportu" data-czas="1/3" data-notatki="">
+<div class="wiodace"><h1 class="linia">Edycja tekstu do raportu (1/3)</h1></div>
+<ul class="lista"><li><strong>Kopiuj</strong>: Windows <code>Ctrl+C</code> · Mac <code>Cmd+C</code></li><li><strong>Wytnij</strong>: Windows <code>Ctrl+X</code> · Mac <code>Cmd+X</code></li><li><strong>Wklej</strong>: Windows <code>Ctrl+V</code> · Mac <code>Cmd+V</code></li><li><strong>Wklej bez formatowania</strong>: Windows <code>Ctrl+Shift+V</code> · Mac <code>Option+Shift+Cmd+V</code></li><li><strong>Cofnij</strong>: Windows <code>Ctrl+Z</code> · Mac <code>Cmd+Z</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">8</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 9 z 20: Edycja tekstu do raportu" data-id="S9" data-tytul="Edycja tekstu do raportu" data-czas="2/3" data-notatki="">
+<div class="wiodace"><h1 class="linia">Edycja tekstu do raportu (2/3)</h1></div>
+<ul class="lista"><li><strong>Ponów</strong>: Windows <code>Ctrl+Y</code> · Mac <code>Cmd+Shift+Z</code></li><li><strong>Zaznacz wszystko</strong>: Windows <code>Ctrl+A</code> · Mac <code>Cmd+A</code></li><li><strong>Skok o słowo (z Shift: zaznaczanie)</strong>: Windows <code>Ctrl+strzałka w lewo albo Ctrl+strzałka w prawo</code> · Mac <code>Option+strzałka w lewo albo Option+strzałka w prawo</code></li><li><strong>Początek albo koniec linii</strong>: Windows <code>Home albo End</code> · Mac <code>Cmd+strzałka w lewo albo Cmd+strzałka w prawo</code></li><li><strong>Początek albo koniec dokumentu</strong>: Windows <code>Ctrl+Home albo Ctrl+End</code> · Mac <code>Cmd+strzałka w górę albo Cmd+strzałka w dół</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">9</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 10 z 20: Edycja tekstu do raportu" data-id="S10" data-tytul="Edycja tekstu do raportu" data-czas="3/3" data-notatki="">
+<div class="wiodace"><h1 class="linia">Edycja tekstu do raportu (3/3)</h1></div>
+<ul class="lista"><li><strong>Historia schowka</strong>: Windows <code>Win+V</code> · Mac <code>Cmd+Spacja, potem Cmd+4 (macOS 26 Tahoe i nowsze)</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">10</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 11 z 20: Narzędzia deweloperskie" data-id="S11" data-tytul="Narzędzia deweloperskie" data-czas="1/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Narzędzia deweloperskie (1/2)</h1></div>
+<ul class="lista"><li><strong>Otwórz narzędzia deweloperskie</strong>: Windows <code>F12 albo Ctrl+Shift+I</code> · Mac <code>Cmd+Option+I</code></li><li><strong>Zbadaj element: wskaż go na stronie</strong>: Windows <code>Ctrl+Shift+C</code> · Mac <code>Cmd+Shift+C</code></li><li><strong>Konsola</strong>: Windows <code>Ctrl+Shift+J</code> · Mac <code>Cmd+Option+J</code></li><li><strong>Tryb urządzenia, np. szerokość 320 pikseli (WCAG 1.4.10)</strong>: Windows <code>Ctrl+Shift+M</code> · Mac <code>Cmd+Shift+M</code></li><li><strong>Menu poleceń, np. wpisz „Rendering”, żeby symulować zaburzenia widzenia barw</strong>: Windows <code>Ctrl+Shift+P</code> · Mac <code>Cmd+Shift+P</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">11</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 12 z 20: Narzędzia deweloperskie" data-id="S12" data-tytul="Narzędzia deweloperskie" data-czas="2/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Narzędzia deweloperskie (2/2)</h1></div>
+<ul class="lista"><li><strong>Szukaj w kodzie strony (panel Elements)</strong>: Windows <code>Ctrl+F</code> · Mac <code>Cmd+F</code></li><li><strong>Okno incognito: strona bez rozszerzeń i bez zalogowania</strong>: Windows <code>Ctrl+Shift+N</code> · Mac <code>Cmd+Shift+N</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">12</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 13 z 20: Powiększanie, zrzuty i nagrania" data-id="S13" data-tytul="Powiększanie, zrzuty i nagrania" data-czas="1/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Powiększanie, zrzuty i nagrania (1/2)</h1></div>
+<ul class="lista"><li><strong>Powiększ albo pomniejsz stronę (WCAG 1.4.4, 1.4.10)</strong>: Windows <code>Ctrl+plus albo Ctrl+minus</code> · Mac <code>Cmd+plus albo Cmd+minus</code></li><li><strong>Wróć do 100%</strong>: Windows <code>Ctrl+0</code> · Mac <code>Cmd+0</code></li><li><strong>Pełny ekran</strong>: Windows <code>F11</code> · Mac <code>Ctrl+Cmd+F</code></li><li><strong>Zrzut fragmentu ekranu</strong>: Windows <code>Win+Shift+S</code> · Mac <code>Cmd+Shift+4</code></li><li><strong>Zrzut jednego okna</strong>: Windows <code>Win+Shift+S, potem tryb okna na pasku narzędzia</code> · Mac <code>Cmd+Shift+4, potem Spacja i kliknij okno</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">13</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 14 z 20: Powiększanie, zrzuty i nagrania" data-id="S14" data-tytul="Powiększanie, zrzuty i nagrania" data-czas="2/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Powiększanie, zrzuty i nagrania (2/2)</h1></div>
+<ul class="lista"><li><strong>Zrzut całego ekranu</strong>: Windows <code>PrtScn</code> · Mac <code>Cmd+Shift+3</code></li><li><strong>Nagranie ekranu, np. ginącego fokusu (WCAG 2.4.7)</strong>: Windows <code>Win+Alt+R (Xbox Game Bar, nagrywa aktywne okno)</code> · Mac <code>Cmd+Shift+5</code></li><li><strong>Tryb wysokiego kontrastu</strong>: Windows <code>lewy Alt+lewy Shift+PrtScn</code> · Mac <code>Option+Cmd+F5 (panel skrótów dostępności)</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">14</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 15 z 20: Okna obok siebie" data-id="S15" data-tytul="Okna obok siebie" data-czas="" data-notatki="">
+<div class="wiodace"><h1 class="linia">Okna obok siebie</h1></div>
+<ul class="lista"><li><strong>Okno na lewą albo prawą połowę ekranu</strong>: Windows <code>Win+strzałka w lewo albo Win+strzałka w prawo</code> · Mac <code>Fn+Ctrl+strzałka w lewo albo Fn+Ctrl+strzałka w prawo</code></li><li><strong>Okno na cały ekran, bez trybu pełnoekranowego</strong>: Windows <code>Win+strzałka w górę</code> · Mac <code>Fn+Ctrl+F</code></li><li><strong>Przełącz okna tej samej aplikacji</strong>: Windows <code>brak stałego skrótu</code> · Mac <code>Cmd+</code> (klawisz grawisu, jego miejsce zależy od układu klawiatury)`</li><li><strong>Przenieś okno na drugi monitor</strong>: Windows <code>Win+Shift+strzałka w lewo albo Win+Shift+strzałka w prawo</code> · Mac <code>brak domyślnego skrótu</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">15</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 16 z 20: Test klawiaturą na stronie" data-id="S16" data-tytul="Test klawiaturą na stronie" data-czas="1/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Test klawiaturą na stronie (1/2)</h1></div>
+<ul class="lista"><li>Tab · Fokus przechodzi do następnego elementu interaktywnego, jest widoczny i idzie w logicznej kolejności (WCAG 2.1.1, 2.4.3, 2.4.7)</li><li>Shift+Tab · Fokus wraca do poprzedniego elementu i nigdzie nie utyka (WCAG 2.1.2)</li><li>Enter · Uruchamia łącze i przycisk (WCAG 2.1.1)</li><li>Spacja · Uruchamia przycisk, zaznacza pole wyboru. Gdy fokus nie jest na kontrolce, przewija stronę</li><li>strzałki · Poruszają się w grupie przycisków opcji, na liście rozwijanej, w menu i w kartach. Gdy fokus nie jest na kontrolce, przewijają stronę</li></ul>
+<span class="stopka-slajdu" aria-hidden="true">16</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 17 z 20: Test klawiaturą na stronie" data-id="S17" data-tytul="Test klawiaturą na stronie" data-czas="2/2" data-notatki="">
+<div class="wiodace"><h1 class="linia">Test klawiaturą na stronie (2/2)</h1></div>
+<ul class="lista"><li>Esc · Zamyka okno dialogowe, menu albo podpowiedź. Fokus wraca w sensowne miejsce, zwykle do przycisku, który je otworzył</li></ul>
+<span class="stopka-slajdu" aria-hidden="true">17</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 18 z 20: Dorking: operatory wyszukiwania Google" data-id="S18" data-tytul="Dorking: operatory wyszukiwania Google" data-czas="1/3" data-notatki="">
+<div class="wiodace"><h1 class="linia">Dorking: operatory wyszukiwania Google (1/3)</h1></div>
+<ul class="lista"><li><strong>site:</strong>: Windows <code>Wyniki tylko z jednej domeny albo subdomeny</code> · Mac <code>site:gov.pl</code></li><li><strong>filetype: albo ext:</strong>: Windows <code>Pliki jednego typu</code> · Mac <code>filetype:pdf</code></li><li><strong>intitle:</strong>: Windows <code>Słowo w tytule strony</code> · Mac <code>intitle:dostępność</code></li><li><strong>allintitle:</strong>: Windows <code>Wszystkie słowa w tytule strony</code> · Mac <code>allintitle:deklaracja dostępności</code></li><li><strong>inurl:</strong>: Windows <code>Słowo w adresie strony</code> · Mac <code>inurl:deklaracja-dostepnosci</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">18</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 19 z 20: Dorking: operatory wyszukiwania Google" data-id="S19" data-tytul="Dorking: operatory wyszukiwania Google" data-czas="2/3" data-notatki="">
+<div class="wiodace"><h1 class="linia">Dorking: operatory wyszukiwania Google (2/3)</h1></div>
+<ul class="lista"><li><strong>allinurl:</strong>: Windows <code>Wszystkie słowa w adresie strony</code> · Mac <code>allinurl:bip deklaracja</code></li><li><strong>intext:</strong>: Windows <code>Słowo w treści strony</code> · Mac <code>intext:formularz</code></li><li><strong>allintext:</strong>: Windows <code>Wszystkie słowa w treści strony</code> · Mac <code>allintext:formularz zgłoszenia</code></li><li><strong>&quot;fraza&quot;</strong>: Windows <code>Dokładnie ta fraza</code> · Mac <code>&quot;deklaracja dostępności&quot;</code></li><li><strong>OR</strong>: Windows <code>Jedno albo drugie, pisz wielkimi literami</code> · Mac <code>filetype:doc OR filetype:docx</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">19</span>
+</section>
+<section class="slajd" role="group" aria-roledescription="slajd" aria-label="Slajd 20 z 20: Dorking: operatory wyszukiwania Google" data-id="S20" data-tytul="Dorking: operatory wyszukiwania Google" data-czas="3/3" data-notatki="">
+<div class="wiodace"><h1 class="linia">Dorking: operatory wyszukiwania Google (3/3)</h1></div>
+<ul class="lista"><li><strong>- (minus)</strong>: Windows <code>Wyklucza słowo albo operator</code> · Mac <code>site:gov.pl -site:www.gov.pl</code></li><li><strong>.. (dwie kropki)</strong>: Windows <code>Zakres liczb</code> · Mac <code>raport 2020..2026</code></li><li><strong>before: i after:</strong>: Windows <code>Wyniki sprzed albo po dacie, w formacie RRRR-MM-DD</code> · Mac <code>after:2025-06-28</code></li></ul>
+<span class="stopka-slajdu" aria-hidden="true">20</span>
+</section>
+</main>
+
+<p class="czytnik" role="status" aria-live="polite" id="komunikat"></p>
+
+<div id="pasek">
+  <button type="button" id="poprzedni">← Poprzedni</button>
+  <button type="button" id="nastepny">Następny →</button>
+  <button type="button" hidden id="przelacz-notatki" aria-pressed="false" aria-controls="notatki">Notatki (N)</button>
+  <button type="button" id="przelacz-motyw">Motyw (T)</button>
+  <button type="button" id="pelny-ekran">Pełny ekran (F)</button>
+  <span id="tytul-biezacy"></span>
+  <span id="czas-biezacy"></span>
+  <span id="licznik"></span>
+</div>
+
+<div id="notatki" hidden>
+  <h2 id="notatki-naglowek">Notatki prowadzącego</h2>
+  <div id="notatki-tresc"></div>
+</div>
+
+<script>
+(function () {
+  var slajdy = Array.prototype.slice.call(document.querySelectorAll('.slajd'));
+  var biezacy = 0;
+  var komunikat = document.getElementById('komunikat');
+  var licznik = document.getElementById('licznik');
+  var tytulBiezacy = document.getElementById('tytul-biezacy');
+  var czasBiezacy = document.getElementById('czas-biezacy');
+  var notatki = document.getElementById('notatki');
+  var notatkiTresc = document.getElementById('notatki-tresc');
+  var przyciskNotatki = document.getElementById('przelacz-notatki');
+
+  function pokaz(i, cichy) {
+    if (i < 0) { i = 0; }
+    if (i > slajdy.length - 1) { i = slajdy.length - 1; }
+    slajdy.forEach(function (s, n) {
+      if (n === i) { s.setAttribute('data-aktywny', 'tak'); }
+      else { s.removeAttribute('data-aktywny'); }
+    });
+    biezacy = i;
+    var s = slajdy[i];
+    var id = s.getAttribute('data-id');
+    var tytul = s.getAttribute('data-tytul') || '';
+    var czas = s.getAttribute('data-czas') || '';
+    licznik.textContent = id + ' · ' + (i + 1) + ' z ' + slajdy.length;
+    tytulBiezacy.textContent = tytul;
+    czasBiezacy.textContent = czas;
+    notatkiTresc.innerHTML = s.getAttribute('data-notatki') || '<p>Brak notatek do tego slajdu.</p>';
+    if (history.replaceState) { history.replaceState(null, '', '#' + id.toLowerCase()); }
+    if (!cichy) { komunikat.textContent = 'Slajd ' + (i + 1) + ' z ' + slajdy.length + ': ' + tytul; }
+    try { localStorage.setItem('slajd', String(i)); } catch (e) {}
+  }
+
+  document.getElementById('poprzedni').addEventListener('click', function () { pokaz(biezacy - 1); });
+  document.getElementById('nastepny').addEventListener('click', function () { pokaz(biezacy + 1); });
+
+  przyciskNotatki.addEventListener('click', function () {
+    var otwarte = notatki.hasAttribute('hidden');
+    if (otwarte) { notatki.removeAttribute('hidden'); } else { notatki.setAttribute('hidden', ''); }
+    przyciskNotatki.setAttribute('aria-pressed', otwarte ? 'true' : 'false');
+    komunikat.textContent = otwarte ? 'Notatki prowadzącego pokazane.' : 'Notatki prowadzącego ukryte.';
+  });
+
+  document.getElementById('przelacz-motyw').addEventListener('click', function () {
+    var jasny = document.documentElement.getAttribute('data-motyw') === 'jasny';
+    document.documentElement.setAttribute('data-motyw', jasny ? 'ciemny' : 'jasny');
+    komunikat.textContent = jasny ? 'Motyw ciemny.' : 'Motyw jasny.';
+    try { localStorage.setItem('motyw', jasny ? 'ciemny' : 'jasny'); } catch (e) {}
+  });
+
+  document.getElementById('pelny-ekran').addEventListener('click', function () {
+    if (document.fullscreenElement) { document.exitFullscreen(); }
+    else if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var wPolu = /^(input|textarea|select)$/i.test((e.target.tagName || ''));
+    if (wPolu || e.metaKey || e.ctrlKey || e.altKey) { return; }
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ') { e.preventDefault(); pokaz(biezacy + 1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); pokaz(biezacy - 1); }
+    else if (k === 'Home') { e.preventDefault(); pokaz(0); }
+    else if (k === 'End') { e.preventDefault(); pokaz(slajdy.length - 1); }
+    else if (k === 'n' || k === 'N') { przyciskNotatki.click(); }
+    else if (k === 't' || k === 'T') { document.getElementById('przelacz-motyw').click(); }
+    else if (k === 'f' || k === 'F') { document.getElementById('pelny-ekran').click(); }
+  });
+
+  try {
+    var zapMotyw = localStorage.getItem('motyw');
+    if (zapMotyw) { document.documentElement.setAttribute('data-motyw', zapMotyw); }
+  } catch (e) {}
+
+  var start = 0;
+  if (location.hash) {
+    slajdy.forEach(function (s, n) {
+      if ('#' + (s.getAttribute('data-id') || '').toLowerCase() === location.hash.toLowerCase()) { start = n; }
+    });
+  } else {
+    try {
+      var zap = parseInt(null, 10);
+      if (!isNaN(zap) && zap >= 0 && zap < slajdy.length) { start = zap; }
+    } catch (e) {}
+  }
+  pokaz(start, true);
+})();
+</script>
+</body>
+</html>
