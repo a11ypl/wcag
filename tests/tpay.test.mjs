@@ -89,6 +89,23 @@ test("zmyslony wariant nie jest bledem - obowiazuje cena regularna", () => {
   assert.equal(w.kwotaGrosze, 199900);
 });
 
+test("produkt z data waznosci da sie kupic do 23:59:59 czasu polskiego tego dnia", () => {
+  PRODUKTY["test-z-data"] = { nazwa: "Produkt z data", termin: "test", cenaGrosze: 100, wazneDo: "2026-10-29" };
+  try {
+    // 29.10.2026 to juz czas zimowy (UTC+1): 23:59:59 w Warszawie = 22:59:59Z.
+    assert.equal(wycen("test-z-data", null, 1, new Date("2026-10-29T22:59:59Z")).ok, true);
+    const po = wycen("test-z-data", null, 1, new Date("2026-10-29T23:00:00Z"));
+    assert.equal(po.ok, false);
+    assert.equal(po.powod, "produkt-niedostepny");
+    // Latem (UTC+2) granica przesuwa sie o godzine.
+    PRODUKTY["test-z-data"].wazneDo = "2026-07-15";
+    assert.equal(wycen("test-z-data", null, 1, new Date("2026-07-15T21:59:59Z")).ok, true);
+    assert.equal(wycen("test-z-data", null, 1, new Date("2026-07-15T22:00:00Z")).ok, false);
+  } finally {
+    delete PRODUKTY["test-z-data"];
+  }
+});
+
 test("nieznany produkt jest odrzucany, nie wyceniany", () => {
   assert.equal(wycen("nie-ma-takiego").ok, false);
 });

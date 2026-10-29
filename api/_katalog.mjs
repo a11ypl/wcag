@@ -132,15 +132,30 @@ function znormalizuj(wartosc) {
 }
 
 /**
- * Czy wariant jest wazny na teraz.
+ * Przesuniecie czasu warszawskiego wzgledem UTC w danym dniu, np. "+01:00".
+ * Liczone z bazy stref, a nie wpisane na sztywno: na sztywno "+02:00" konczylo
+ * zimowe promocje godzine za wczesnie.
+ */
+function przesuniecieWarszawy(dzien) {
+  const poludnie = new Date(`${dzien}T12:00:00Z`);
+  if (Number.isNaN(poludnie.getTime())) return null;
+  const nazwa = new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Warsaw", timeZoneName: "longOffset" })
+    .formatToParts(poludnie).find((czesc) => czesc.type === "timeZoneName").value;
+  return nazwa === "GMT" ? "+00:00" : nazwa.slice(3);
+}
+
+/**
+ * Czy wariant albo produkt jest wazny w chwili `teraz`.
  *
- * `wazneDo` to ostatni dzien obowiazywania wlacznie, liczony do konca dnia
+ * `wazneDo` to ostatni dzien obowiazywania wlacznie, liczony do 23:59:59
  * czasu warszawskiego. Brak `wazneDo` znaczy "bezterminowo".
  */
-function czyWazny(wariant) {
-  if (!wariant.wazneDo) return true;
-  const koniec = new Date(`${wariant.wazneDo}T23:59:59+02:00`);
-  return !Number.isNaN(koniec.getTime()) && Date.now() <= koniec.getTime();
+function czyWazny(pozycja, teraz = new Date()) {
+  if (!pozycja.wazneDo) return true;
+  const przesuniecie = przesuniecieWarszawy(pozycja.wazneDo);
+  if (!przesuniecie) return false;
+  const koniec = new Date(`${pozycja.wazneDo}T23:59:59${przesuniecie}`);
+  return !Number.isNaN(koniec.getTime()) && teraz.getTime() <= koniec.getTime();
 }
 
 /**
@@ -151,11 +166,15 @@ function czyWazny(wariant) {
  *
  * Nieznany albo wygasly wariant NIE jest bledem - obowiazuje wtedy cena stala,
  * a pole `wariant` niesie powod, ktory strona pokazuje kupujacemu.
+ *
+ * Produkt z `wazneDo` po tej dacie jest niedostepny (np. produkt testowy).
+ * `teraz` podaja tylko testy.
  */
-export function wycen(kluczProduktu, kluczWariantu, liczbaOsob = 1) {
+export function wycen(kluczProduktu, kluczWariantu, liczbaOsob = 1, teraz = new Date()) {
   const produkt = PRODUKTY[kluczProduktu];
   if (!produkt) return { ok: false, powod: "nieznany-produkt" };
   if (produkt.wSprzedazy === false) return { ok: false, powod: "produkt-niedostepny" };
+  if (!czyWazny(produkt, teraz)) return { ok: false, powod: "produkt-niedostepny" };
 
   // Zakup firmowy: cena to iloczyn, bez progow ilosciowych - ta sama stawka
   // przy jednej i przy dziesieciu osobach (decyzja Damiana z 22.09.2026).
@@ -189,7 +208,7 @@ export function wycen(kluczProduktu, kluczWariantu, liczbaOsob = 1) {
   if (!klucz) return { ...wynik, wariant: { zastosowany: false, powod: "nieznany-wariant" } };
 
   const wariant = warianty[klucz];
-  if (!czyWazny(wariant)) {
+  if (!czyWazny(wariant, teraz)) {
     return {
       ...wynik,
       wariant: { zastosowany: false, powod: "wariant-wygasl", wazneDo: wariant.wazneDo },

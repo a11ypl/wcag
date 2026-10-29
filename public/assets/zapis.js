@@ -39,7 +39,13 @@
   const wybrane = parametry.get("szkolenie");
   if (wybrane) {
     const pole = form.querySelector(`input[name="produkt"][value="${CSS.escape(wybrane)}"]`);
-    if (pole) pole.checked = true;
+    if (pole) {
+      // Produkt ukryty w katalogu (ukryty: true) stoi w formularzu w ukrytym
+      // kontenerze i pokazuje sie tylko osobie, ktora dostala link.
+      const ukryty = pole.closest("[data-tylko-z-linku]");
+      if (ukryty) ukryty.hidden = false;
+      pole.checked = true;
+    }
   }
 
   /** Oswiadczenia o wczesniejszym rozpoczeciu zaleza od rodzaju produktu:
