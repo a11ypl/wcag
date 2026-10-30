@@ -13,7 +13,7 @@
 //   note     { title, intro, items: string[] } — ostrzeżenie o wersji roboczej
 
 import { scopeLabel as describeScope } from "./frameworks.js";
-import { SAMPLE_SIZES, SEVERITY_INFO, SEVERITY_LEGEND, withVersion, criteriaStats, isDecorativeImage, environmentLabel, issuesByCriterion, issuesByView, samplePages, severityCounts, validateProject, CRITERION_STATUSES, SEVERITIES } from "./model.js";
+import { SAMPLE_SIZES, SEVERITY_INFO, SEVERITY_LEGEND, withVersion, criteriaStats, isDecorativeImage, reportDateOf, environmentLabel, issuesByCriterion, issuesByView, samplePages, severityCounts, validateProject, CRITERION_STATUSES, SEVERITIES } from "./model.js";
 import { cleanList, formatDate, formatPeriod, isSafeUrl, slug, text } from "./text.js";
 
 export const GENERATOR_NAME = "Generator raportów dostępności A11y First";
@@ -109,12 +109,11 @@ export function buildDocument(report) {
       ["Podmiot badany", r(text(meta.auditedEntity))],
       ...(meta.sector ? [["Sektor", r(meta.sector)]] : []),
       ["Badany serwis", link(meta.websiteUrl)],
-      ["Data audytu", r(formatDate(meta.auditDate))],
       ["Okres badania", r(formatPeriod(meta))],
       ["Zespół audytorski", r(text(cleanList(meta.experts).join(", ")))],
       ...(meta.auditingOrganization ? [["Organizacja audytująca", r(meta.auditingOrganization)]] : []),
       ["Standard i poziom", r(scopeLabel)],
-      ["Data sporządzenia raportu", r(formatDate(summary.reportCreatedAt))],
+      ["Data sporządzenia raportu", r(formatDate(reportDateOf(report)))],
     ],
   });
 
@@ -255,7 +254,7 @@ export function buildDocument(report) {
     entity: text(meta.auditedEntity, ""),
     lang: meta.reportLanguage || "pl-PL",
     authors: cleanList(meta.experts),
-    footer: `Raport sporządzono ${formatDate(summary.reportCreatedAt, "bez daty")}. Ocena zgodności jest decyzją audytora. Dokument przygotowano w narzędziu ${GENERATOR_NAME}.`,
+    footer: `Raport sporządzono ${formatDate(reportDateOf(report), "bez daty")}. Ocena zgodności jest decyzją audytora. Dokument przygotowano w narzędziu ${GENERATOR_NAME}.`,
     isDraft: validation.length > 0,
     blocks,
   };
@@ -402,7 +401,9 @@ export function draftExecutiveSummary(report) {
   const counts = severityCounts(report);
   const entity = text(meta.auditedEntity, "badanego podmiotu");
   const site = text(meta.websiteUrl, "badany serwis");
-  const date = meta.auditDate ? ` w dniu ${formatDate(meta.auditDate)}` : "";
+  const start = String(meta.auditStartDate || "").trim();
+  const end = String(meta.auditEndDate || "").trim();
+  const date = start && end && start !== end ? ` w dniach ${formatPeriod(meta)}` : start || end ? ` w dniu ${formatDate(start || end)}` : "";
   const views = (report.testedViews || []).length;
   const plural = (n, one, few, many) => (n === 1 ? one : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? few : many);
   const parts = [
